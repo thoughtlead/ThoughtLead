@@ -1,2 +1,3 @@
 *.tmproj
 log/*.log
+config/database.yml
