@@ -19,3 +19,5 @@ set :deploy_via, :remote_cache
 role :web, domain
 role :app, domain
 role :db,  domain, :primary => true
+
+set :rails_revision, 8985
