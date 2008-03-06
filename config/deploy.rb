@@ -14,7 +14,6 @@ default_run_options[:pty] = true
 set :repository,  "git@github.com:duff/thoughtlead.git"
 set :scm, "git"
 #set :branch, "origin/master"
-set :deploy_via, :remote_cache
 
 role :web, domain
 role :app, domain
