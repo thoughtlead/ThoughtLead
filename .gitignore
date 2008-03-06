@@ -1,3 +1,4 @@
 *.tmproj
 log/*.log
 config/database.yml
+vendor/rails
