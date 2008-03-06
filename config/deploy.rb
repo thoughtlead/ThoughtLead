@@ -1,15 +1,16 @@
-set :application, "set your application name here"
-set :repository,  "set your repository location here"
+require 'spacesuit/recipes'
 
-# If you aren't deploying to /u/apps/#{application} on the target
-# servers (which is the default), you can specify the actual location
-# via the :deploy_to variable:
-# set :deploy_to, "/var/www/#{application}"
+set :client, "verticality"
+set :application, "thoughtlead"
 
-# If you aren't using Subversion to manage your source code, specify
-# your SCM below:
-# set :scm, :subversion
+set :deploy_to, "/var/www/#{client}/#{application}"
+set :domain, "#{application}.#{client}.dock.terralien.biz"
 
-role :app, "your app-server here"
-role :web, "your web-server here"
-role :db,  "your db-server here", :primary => true
+set :user, client
+set :repository, "https://terralien.devguard.com/svn/#{client}/#{application}/trunk"
+set :svn_username, "duff"
+set :rails_env, "production"
+
+role :web, domain
+role :app, domain
+role :db,  domain, :primary => true
