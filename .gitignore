@@ -2,3 +2,5 @@
 log/*.log
 config/database.yml
 vendor/rails
+.tm_last_run_ruby*
+db/schema.rb
