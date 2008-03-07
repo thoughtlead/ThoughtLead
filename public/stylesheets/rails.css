@@ -1,0 +1,21 @@
+/* FLASH MESSAGES */
+div.notice {margin-top:18px; padding:9px; background:#6BA333; color:#fff; font-weight:bold;}
+div.warning {margin-top:18px; padding:9px; background:#B04C2F; color:#fff; font-weight:bold;}
+
+/* END FLASH MESSAGES */
+
+/* VALIDATION ERRORS */
+.fieldWithErrors {
+  display: inline;
+}
+
+.fieldWithErrors input, .fieldWithErrors select, .fieldWithErrors textarea {background:#B04C2F;}
+
+#errorExplanation {font-size: 18px; border: 2px solid #000; background:#B04C2F; margin: 18px 0 18px 0; padding: 0px;}
+#errorExplanation h2 {font-size:18px; text-align:left; background:#B04C2F; padding:9px 18px; margin:0; border-bottom:2px solid #000;}
+
+#errorExplanation p {margin-bottom: 0; padding:9px 18px;  color:#000;}
+#errorExplanation ul {padding: 0 0 9px; color:#000;}
+#errorExplanation ul li {list-style: inside square; margin-left: 18px; font:normal normal normal 13px/18px verdana, arial, sans-serif}
+
+/* END VALIDATION ERRORS */

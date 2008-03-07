@@ -1,3 +1,12 @@
-# Methods added to this helper will be available to all templates in the application.
 module ApplicationHelper
+  
+  def define_js_function(function_name, &block)
+    parens = function_name.kind_of?(Symbol) ? "()" : ""
+    update_page_tag do | page |
+    	page << "function #{function_name}#{parens} {"
+      yield page
+    	page << "}"
+    end	
+  end
+  
 end

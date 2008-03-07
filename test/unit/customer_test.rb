@@ -1,75 +1,75 @@
 require File.dirname(__FILE__) + '/../test_helper'
 
-class CustomerTest < Test::Unit::TestCase
+class UserTest < Test::Unit::TestCase
 
   def test_password_required
-    customer = new_valid_customer(:login => 'my_login', :email => 'me@example.com')
-    assert(customer.send(:password_required?))
+    user = new_valid_user(:login => 'my_login', :email => 'me@example.com')
+    assert(user.send(:password_required?))
     
-    customer.password = "wow"
-    customer.password_confirmation = "wow"
-    assert(customer.save)
+    user.password = "wow"
+    user.password_confirmation = "wow"
+    assert(user.save)
     
-    customer = Customer.find(customer.id)
-    assert(!customer.send(:password_required?))
+    user = User.find(user.id)
+    assert(!user.send(:password_required?))
     
-    customer.password_required = true
-    assert(customer.send(:password_required?))
+    user.password_required = true
+    assert(user.send(:password_required?))
 
-    customer = Customer.find(customer.id)
-    customer.password = "   "
-    assert(!customer.send(:password_required?))
-    customer.password_confirmation = "  "
-    assert(!customer.send(:password_required?))
+    user = User.find(user.id)
+    user.password = "   "
+    assert(!user.send(:password_required?))
+    user.password_confirmation = "  "
+    assert(!user.send(:password_required?))
     
-    customer.password = "Something"
-    assert(customer.send(:password_required?))
+    user.password = "Something"
+    assert(user.send(:password_required?))
 
-    customer = Customer.find(customer.id)
-    assert(!customer.send(:password_required?))
+    user = User.find(user.id)
+    assert(!user.send(:password_required?))
 
-    customer.password_confirmation = "Something"
-    assert(customer.send(:password_required?))
+    user.password_confirmation = "Something"
+    assert(user.send(:password_required?))
   end
 
-  def test_should_create_customer
-    assert_difference 'Customer.count' do
-      customer = new_valid_customer
-      assert customer.save
-      assert !customer.new_record?, "#{customer.errors.full_messages.to_sentence}"
+  def test_should_create_user
+    assert_difference 'User.count' do
+      user = new_valid_user
+      assert user.save
+      assert !user.new_record?, "#{user.errors.full_messages.to_sentence}"
     end
   end
 
   def test_should_reset_password
-    customers(:duff).update_attributes(:password => 'new password', :password_confirmation => 'new password')
-    assert_equal customers(:duff), Customer.authenticate('duff', 'new password')
+    users(:duff).update_attributes(:password => 'new password', :password_confirmation => 'new password')
+    assert_equal users(:duff), User.authenticate('duff', 'new password')
   end
 
   def test_should_not_rehash_password
-    customers(:duff).update_attributes(:login => 'duff2')
-    assert_equal customers(:duff), Customer.authenticate('duff2', 'test')
+    users(:duff).update_attributes(:login => 'duff2')
+    assert_equal users(:duff), User.authenticate('duff2', 'test')
   end
 
-  def test_should_authenticate_customer
-    assert_equal customers(:duff), Customer.authenticate('duff', 'test')
+  def test_should_authenticate_user
+    assert_equal users(:duff), User.authenticate('duff', 'test')
   end
 
   def test_should_set_remember_token
-    customers(:duff).remember_me
-    assert_not_nil customers(:duff).remember_token
-    assert_not_nil customers(:duff).remember_token_expires_at
+    users(:duff).remember_me
+    assert_not_nil users(:duff).remember_token
+    assert_not_nil users(:duff).remember_token_expires_at
   end
 
   def test_should_unset_remember_token
-    customers(:duff).remember_me
-    assert_not_nil customers(:duff).remember_token
-    customers(:duff).forget_me
-    assert_nil customers(:duff).remember_token
+    users(:duff).remember_me
+    assert_not_nil users(:duff).remember_token
+    users(:duff).forget_me
+    assert_nil users(:duff).remember_token
   end
 
   private
-    def new_valid_customer(options = {})
-      Customer.new({ :login => 'quire', :email => 'quire@example.com', :password => 'quire', :password_confirmation => 'quire' }.merge(options))
+    def new_valid_user(options = {})
+      User.new({ :login => 'quire', :email => 'quire@example.com', :password => 'quire', :password_confirmation => 'quire' }.merge(options))
     end
 
 end

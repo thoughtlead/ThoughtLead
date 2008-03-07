@@ -1,6 +1,6 @@
 require 'digest/sha1'
 
-class Customer < ActiveRecord::Base
+class User < ActiveRecord::Base
   attr_accessor :password
   attr_writer :password_required
 
