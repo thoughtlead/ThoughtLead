@@ -4,5 +4,8 @@ class ApplicationController < ActionController::Base
 
   include AuthenticatedSystem
 
+  before_filter :login_from_cookie
+
   protect_from_forgery
+  
 end

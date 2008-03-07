@@ -1,0 +1,20 @@
+<h1><%= @page_title = "Login" %></h1>
+
+<% form_tag sessions_path do | f | %>
+  <%= label :user, :login %>
+  <%= text_field_tag 'login', params[:login] %>
+
+  <br />
+  
+  <%= label :user, :password %>
+	<%= password_field_tag 'password', params[:password] %>
+
+  <br />
+  
+	<%= check_box_tag 'remember_me', "1", params[:remember_me] %> Remember me on this computer
+  
+  <br />
+  
+	<%= submit_tag 'Log in' %>
+<% end -%>
+
