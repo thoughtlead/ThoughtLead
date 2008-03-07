@@ -19,25 +19,16 @@ module AuthenticatedSystem
 
     def login_required
       username, passwd = get_auth_data
-      self.current_user = (User.authenticate_for_api(username) || :false) unless username.blank?
-      @site = self.current_user.site(params[:site]) if logged_in?
+      self.current_user ||= User.authenticate(username, passwd) || :false if username && passwd
       logged_in? && authorized? ? true : access_denied
     end
     
-    # Redirect as appropriate when an access request fails.
-    #
-    # The default action is to redirect to the login screen.
-    #
-    # Override this method in your controllers if you want to have special
-    # behavior in case the user is not authorized
-    # to access the requested action.  For example, a popup window might
-    # simply close itself.
     def access_denied
       respond_to do |accepts|
         accepts.html {
           store_location
           flash[:warning] = "You must login to access that part of the site."
-          redirect_to new_session_url
+          redirect_to login_url
         }
         accepts.xml {
           headers["Status"]           = "Unauthorized"
@@ -48,35 +39,26 @@ module AuthenticatedSystem
       false
     end  
     
-    # Store the URI of the current request in the session.
-    #
-    # We can return to this location by calling #redirect_back_or_default.
     def store_location
       session[:return_to] = request.request_uri
     end
     
-    # Redirect to the URI stored by the most recent store_location call or
-    # to the passed default.
     def redirect_back_or_default(default)
       session[:return_to] ? redirect_to(session[:return_to]) : redirect_to(default)
       session[:return_to] = nil
     end
     
-    # Inclusion hook to make #current_user and #logged_in?
-    # available as ActionView helper methods.
     def self.included(base)
       base.send :helper_method, :current_user, :logged_in?
     end
 
-    # When called with before_filter :login_from_cookie will check for an :auth_token
-    # cookie and log the user back in if apropriate
     def login_from_cookie
-      return unless cookies[:auth_token] && !logged_in?
-      user = User.find_by_remember_token(cookies[:auth_token])
+      return unless cookies[:thoughtlead_auth_token] && !logged_in?
+      user = User.find_by_remember_token(cookies[:thoughtlead_auth_token])
       if user && user.remember_token?
         user.remember_me
         self.current_user = user
-        cookies[:auth_token] = { :value => self.current_user.remember_token , :expires => self.current_user.remember_token_expires_at }
+        cookies[:thoughtlead_auth_token] = { :value => self.current_user.remember_token , :expires => self.current_user.remember_token_expires_at }
         flash[:notice] = "Logged in successfully"
       end
     end
