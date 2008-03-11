@@ -11,5 +11,9 @@ class UsersController < ApplicationController
     redirect_back_or_default(root_url)
     flash[:notice] = "Thanks for signing up!  You have been logged in."
   end
+  
+  def show
+    @user = User.find(params[:id])
+  end
 
 end

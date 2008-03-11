@@ -10,7 +10,8 @@ class User < ActiveRecord::Base
   validates_uniqueness_of   :login, :email, :case_sensitive => false
   
   before_save :encrypt_password
-  
+
+  has_many :courses
     
   def self.authenticate(login, password)
     u = find_by_login(login) 

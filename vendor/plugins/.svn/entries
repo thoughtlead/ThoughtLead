@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<wc-entries
+   xmlns="svn:">
+<entry
+   committed-rev="836"
+   name=""
+   committed-date="2008-02-08T19:36:57.910749Z"
+   url="https://terralien.devguard.com/svn/spreedly/site/trunk/vendor/plugins/footnotes-edge"
+   last-author="domelia"
+   kind="dir"
+   repos="https://terralien.devguard.com/svn/spreedly"
+   revision="890"/>
+<entry
+   name="test"
+   kind="dir"/>
+<entry
+   committed-rev="836"
+   name="init.rb"
+   text-time="2008-02-08T19:35:27.000000Z"
+   committed-date="2008-02-08T19:36:57.910749Z"
+   checksum="befa9633457c8aa1283ba97393206263"
+   last-author="domelia"
+   kind="file"/>
+<entry
+   name="lib"
+   kind="dir"/>
+<entry
+   name="templates"
+   kind="dir"/>
+</wc-entries>

@@ -1,0 +1,7 @@
+
+<h1><%= @course.title %></h1>
+
+by <%= link_to @course.user, @course.user %>
+
+<br />
+<%= textilize(@course.description) %>

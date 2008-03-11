@@ -1,0 +1,10 @@
+
+<h1>Courses</h1>
+
+<%= link_to "Add a course", new_course_url %>
+<br /><br /><br />
+
+<% for course in @courses %>
+  <%= link_to course, course %>
+  <br />
+<% end %>

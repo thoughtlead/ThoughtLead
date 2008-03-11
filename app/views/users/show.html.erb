@@ -1,0 +1,11 @@
+
+<h1><%= @user %></h1>
+
+
+<br />
+
+<h2>Courses</h2>
+<% for course in @user.courses %>
+  <%= link_to course, course %>
+  <br />
+<% end %>
