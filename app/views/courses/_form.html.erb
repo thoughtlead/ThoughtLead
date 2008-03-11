@@ -1,0 +1,17 @@
+<%= error_messages_for :course %>
+
+<% form_for @course do | f | %>
+  <%= f.label(:title) %>
+  <br />
+  <%= f.text_field :title %>
+  
+  <br /><br />
+  
+  <%= f.label(:description) %>
+  <br />
+  <%= f.text_area(:description) %>
+  
+  <br /><br />
+  <%= submit_tag "Save" %>
+  
+<% end %>

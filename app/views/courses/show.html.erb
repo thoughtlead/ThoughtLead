@@ -5,3 +5,13 @@ by <%= link_to @course.user, @course.user %>
 
 <br />
 <%= textilize(@course.description) %>
+
+
+
+<br /><br /><br /><br /><br />
+
+<%= link_to "Edit this course", edit_course_url(@course) %>
+<br /><br />
+<%= link_to "View All Courses", courses_url %>
+
+

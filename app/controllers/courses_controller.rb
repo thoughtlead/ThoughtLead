@@ -16,7 +16,7 @@ class CoursesController < ApplicationController
     return render(:action => :new) unless @course.save
     
     flash[:notice] = "Successfully created"
-    redirect_to courses_path
+    redirect_to @course
   end
 
   def update
@@ -24,7 +24,7 @@ class CoursesController < ApplicationController
     return render(:action => :new) unless @course.update_attributes(params[:course])
     
     flash[:notice] = "Successfully saved"
-    redirect_to courses_path
+    redirect_to @course
   end
   
   def edit
