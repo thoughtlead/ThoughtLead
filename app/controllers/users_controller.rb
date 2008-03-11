@@ -3,7 +3,6 @@ class UsersController < ApplicationController
   before_filter :login_required, :except => [ :signup, :changed ]
   
   def signup
-    raise "Testing ExceptionNotification"
     @user = User.new(params[:user])
 
     return unless request.post? && @user.save
