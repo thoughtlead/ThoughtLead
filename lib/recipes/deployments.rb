@@ -4,12 +4,14 @@ namespace :deploy do
       For Deployment Reports
     DESC
     task :default, :except => { :no_release => true } do
-      from = current_revision
+      deployed_already = current_revision
       puts "\n\n"
       
-      puts "Deployment"
+      to_be_deployed = `git rev-parse --short "HEAD"`
+
+      puts "Deployment revision #{`git rev-parse --short "HEAD"`}"
       puts "I deployed the latest. It includes:"
-      system(%Q{git log --no-merges --pretty=format:"* %s %b (%cn)" #{from}.. | replace '<unknown>' ''})
+      system(%Q{git log --no-merges --pretty=format:"* %s %b (%cn)" #{deployed_already}.. | replace '<unknown>' ''})
       
       puts "\n\n\n"
     end
