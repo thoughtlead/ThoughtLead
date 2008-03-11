@@ -11,6 +11,7 @@ namespace :deploy do
 
       puts "Deployment revision #{`git rev-parse --short "HEAD"`}"
       puts "I deployed the latest. It includes:"
+      puts
       system(%Q{git log --no-merges --pretty=format:"* %s %b (%cn)" #{deployed_already}.. | replace '<unknown>' ''})
       
       puts "\n\n\n"
