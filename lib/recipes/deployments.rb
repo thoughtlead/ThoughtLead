@@ -9,7 +9,7 @@ namespace :deploy do
       
       puts "Deployment"
       puts "I deployed the latest. It includes:"
-      system(%Q{git log --no-merges --pretty=format:"* %H %s (%cn) %b" #{from}.. | replace '<unknown>' ''})
+      system(%Q{git log --no-merges --pretty=format:"* %s %b (%cn)" #{from}.. | replace '<unknown>' ''})
       
       puts "\n\n\n"
     end
