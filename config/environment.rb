@@ -10,7 +10,7 @@ Rails::Initializer.run do |config|
 
   config.action_controller.session = {
     :session_key => '_thoughtlead_session',
-    :secret      => 'd04452dbb492216963ed017bbb9da3766df2d19cf7f47e9a65e4b23056989d28740ff22f84b00c1d584f393c43e7d7d35f2ab74d0b5b650bc9b9ba0efe51c9d0'
+    :secret      => 'd04b52dbb492216963ed017bbb9da3766df2d19cf7f47e9a65e4b23056989d28740ff22f84b00c1d584f393c43e7d7d35f2ab74d0b5b650bc9b9ba0efe51c9d0'
   }
 
   config.active_record.default_timezone = :utc
