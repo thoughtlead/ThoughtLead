@@ -25,19 +25,15 @@ module CommunityLocation
     end
     
     def find_community
-      subdomain = request.subdomains.first
+      if (RAILS_ENV == 'production') && (request.subdomains == ["thoughtlead", "verticality", "dock"])
+        subdomain = ''
+      else
+        subdomain = request.subdomains.first
+      end
+
       if subdomain.blank?
         @current_community = nil
       else
-        logger.error(request.subdomains)
-        logger.error(RAILS_ENV)
-        
-        if (RAILS_ENV == 'production') && (request.subdomains == ["thoughtlead", "verticality", "dock"])
-          logger.error("YESSSS")
-        else
-          logger.error("NOPE!")
-        end
-          
         @current_community = Community.find_by_subdomain(subdomain)
         render_404 unless @current_community
       end
