@@ -25,6 +25,9 @@ module ActionController
     class RouteSet
       
       def extract_request_environment(request)
+        logger.error(request.subdomains)
+        logger.error(RAILS_ENV)
+        
         if (RAILS_ENV == 'production') && (request.subdomains == ["thoughtlead", "verticality", "dock"])
           subdomain = ""
         else
