@@ -20,7 +20,14 @@ module CommunityLocation
 
     def community_domain
       community_domain = ""
-      community_domain << request.subdomains[1..-1].join(".") + "." if request.subdomains.size > 1
+      if request.subdomains.size > 1
+        if RAILS_ENV == production
+          community_domain << request.subdomains[0..-1].join(".") + "." 
+        else
+          community_domain << request.subdomains[1..-1].join(".") + "." 
+        end
+      end
+      
       community_domain << request.domain + request.port_string
     end
     
