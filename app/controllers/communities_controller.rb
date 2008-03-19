@@ -16,13 +16,16 @@ class CommunitiesController < ApplicationController
     @community.valid?
     return render(:action => :new) unless @user.valid? && @community.valid?
     
-    # Going to do this on Monday!
-    # @user.save
-    # @community.owner = @user
-    # @community.save
-    redirect_to @community
+    @user.save
+    @community.owner = @user
+    @community.save
     flash[:notice] = "Successfully created your community!  An email has been sent with some information about your account."
+    flash.keep
+    redirect_to community_dashboard_url(@community)
   end
   
+  def show
+
+  end
   
 end

@@ -1,12 +1,16 @@
 ActionController::Routing::Routes.draw do |map|
 
-  # map.login '/login', :controller => "sessions", :action => 'new'
-  # map.logout '/logout', :controller => 'sessions', :action => 'destroy'
+  map.login '/login', :controller => "sessions", :action => 'new', :conditions => { :subdomain => /^.+/ }
+  map.logout '/logout', :controller => 'sessions', :action => 'destroy', :conditions => { :subdomain => /^.+/ }
+  map.signup '/signup', :controller => 'users', :action => 'signup', :conditions => { :subdomain => /^.+/ }
 
-  map.resources :communities
+  map.resources :communities, :conditions => { :subdomain => '' }
+  map.resources :courses
   map.resources :articles
   map.resources :sessions
   map.resources :users
-  map.root :controller => "home"
+
+  map.root :controller => "home", :conditions => { :subdomain => '' }
+  map.root :controller => "communities", :action => 'show', :conditions => { :subdomain => /^.+/ }
 
 end

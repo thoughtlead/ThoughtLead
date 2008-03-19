@@ -3,6 +3,11 @@
 <%= error_messages_for :user, :community %>
 <% form_for @community do | f | -%>
 
+  <%= f.label :community_name %>
+  <%= f.text_field :name %>
+
+  <br />
+
   <%= label :user, :login %>
   <%= text_field :user, :login %>
   

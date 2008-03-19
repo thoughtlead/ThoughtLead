@@ -4,7 +4,8 @@ class UsersController < ApplicationController
   
   def signup
     @user = User.new(params[:user])
-
+    @user.community = current_community
+    
     return unless request.post? && @user.save
     
     self.current_user = @user
@@ -13,7 +14,7 @@ class UsersController < ApplicationController
   end
   
   def show
-    @user = User.find(params[:id])
+    @user = current_community.users.find(params[:id])
   end
 
 end

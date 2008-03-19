@@ -12,6 +12,7 @@ class User < ActiveRecord::Base
   before_save :encrypt_password
   
   belongs_to :community
+  has_many :courses
 
   def self.authenticate(login, password)
     u = find_by_login(login) 

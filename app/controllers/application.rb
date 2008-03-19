@@ -4,6 +4,7 @@ class ApplicationController < ActionController::Base
 
   include AuthenticatedSystem
   include ExceptionNotifiable
+  include CommunityLocation
 
   before_filter :login_from_cookie
 
