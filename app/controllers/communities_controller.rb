@@ -19,8 +19,6 @@ class CommunitiesController < ApplicationController
     @user.save
     @community.owner = @user
     @community.save
-    flash[:notice] = "Successfully created your community!  An email has been sent with some information about your account."
-    flash.keep
     redirect_to community_dashboard_url(@community)
   end
   

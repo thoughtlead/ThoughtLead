@@ -21,7 +21,7 @@ module CommunityLocation
     def community_domain
       community_domain = ""
       if request.subdomains.size > 1
-        if RAILS_ENV == production
+        if RAILS_ENV == 'production'
           community_domain << request.subdomains[0..-1].join(".") + "." 
         else
           community_domain << request.subdomains[1..-1].join(".") + "." 
