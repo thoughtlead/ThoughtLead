@@ -31,7 +31,7 @@ module CommunityLocation
       else
         @current_community = Community.find_by_subdomain(subdomain)
         p request
-        p subdomains
+        p request.subdomains
         render_404 unless @current_community
       end
     end
