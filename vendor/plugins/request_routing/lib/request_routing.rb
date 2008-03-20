@@ -23,17 +23,12 @@ module ActionController
     end
     
     class RouteSet
+      include SubdomainHelper
       
-      def extract_request_environment(request)
-        if (RAILS_ENV == 'production') && (request.subdomains == ["thoughtlead", "verticality", "dock"])
-          subdomain = ""
-        else
-          subdomain = request.subdomains.first.to_s
-        end
-        
+      def extract_request_environment(request)        
         { 
           :method => request.method,
-          :subdomain => subdomain, 
+          :subdomain => subdomain_from(request), 
           :domain => request.domain, 
           :port => request.port, 
           :remote_ip => request.remote_ip, 

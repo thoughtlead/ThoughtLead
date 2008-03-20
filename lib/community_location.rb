@@ -1,4 +1,5 @@
 module CommunityLocation
+  include SubdomainHelper
   attr_reader :current_community
   
   def self.included(controller)
@@ -20,24 +21,13 @@ module CommunityLocation
 
     def community_domain
       community_domain = ""
-      if request.subdomains.size > 1
-        if RAILS_ENV == 'production'
-          community_domain << request.subdomains[0..-1].join(".") + "." 
-        else
-          community_domain << request.subdomains[1..-1].join(".") + "." 
-        end
-      end
-      
+      start_index = (RAILS_ENV == 'production') ? 0 : 1
+      community_domain << request.subdomains[start_index..-1].join(".") + "." if request.subdomains.size > 1
       community_domain << request.domain + request.port_string
     end
     
     def find_community
-      if (RAILS_ENV == 'production') && (request.subdomains == ["thoughtlead", "verticality", "dock"])
-        subdomain = ''
-      else
-        subdomain = request.subdomains.first
-      end
-
+      subdomain = subdomain_from(request)
       if subdomain.blank?
         @current_community = nil
       else
