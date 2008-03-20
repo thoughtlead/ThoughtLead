@@ -3,7 +3,7 @@ class Course < ActiveRecord::Base
 
   belongs_to :user
   belongs_to :community
-  has_many :articles
+  has_many :articles, :dependent => :destroy
 
   alias_attribute :to_s, :title
   

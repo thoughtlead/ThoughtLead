@@ -1,6 +1,6 @@
 class CoursesController < ApplicationController
   
-  before_filter :login_required, :except => [ :index, :show ]
+  before_filter :owner_login_required, :except => [ :index, :show ]
   
   def index
     @courses = current_community.courses

@@ -23,6 +23,15 @@ module AuthenticatedSystem
       logged_in? && authorized? ? true : access_denied
     end
     
+    def owner_login_required
+      return access_denied unless logged_in? && authorized?
+      return true if current_user.owner?
+
+      flash[:warning] = "You do not have permission to access that part of the site."
+      redirect_to login_url
+      false
+    end
+    
     def access_denied
       respond_to do |accepts|
         accepts.html {

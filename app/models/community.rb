@@ -1,7 +1,6 @@
 class Community < ActiveRecord::Base
-  has_many :articles
   has_many :users
-  has_many :courses
+  has_many :courses, :dependent => :destroy
   belongs_to :owner, :class_name => "User"
   
   validates_presence_of :subdomain, :name
