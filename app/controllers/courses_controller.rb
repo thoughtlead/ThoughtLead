@@ -21,7 +21,7 @@ class CoursesController < ApplicationController
 
   def update
     @course = Course.find(params[:id])
-    return render(:action => :new) unless @course.update_attributes(params[:course])
+    return render(:action => :edit) unless @course.update_attributes(params[:course])
     
     flash[:notice] = "Successfully saved"
     redirect_to @course

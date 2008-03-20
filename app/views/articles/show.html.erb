@@ -1,0 +1,15 @@
+
+<h1><%= @article %></h1>
+
+by <%= link_to @article.user, @article.user %>
+
+
+<%= textilize(@article.body) %>
+
+<br /><br /><br /><br /><br />
+
+<%= link_to "Edit this article", edit_course_article_url(@course, @article) %>
+<br /><br />
+<%= link_to "View Entire Course", @course %>
+
+
