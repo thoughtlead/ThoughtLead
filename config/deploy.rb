@@ -22,4 +22,4 @@ role :db,  domain, :primary => true
 set :rails_revision, 8985
 
 before "deploy:update_code", "deploy:pending:default" 
-after  "deploy:update_code", "deploy:cleanup"
+after  "deploy:default", "deploy:cleanup"
