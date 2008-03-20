@@ -3,7 +3,7 @@ class CoursesController < ApplicationController
   before_filter :login_required, :except => [ :index, :show ]
   
   def index
-    @courses = Course.find(:all)
+    @courses = current_community.courses
   end
   
   def new
@@ -13,6 +13,7 @@ class CoursesController < ApplicationController
   def create
     @course = Course.new(params[:course])
     @course.user = current_user
+    @course.community = current_community
     return render(:action => :new) unless @course.save
     
     flash[:notice] = "Successfully created"
