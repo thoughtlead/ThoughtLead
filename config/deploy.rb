@@ -13,6 +13,7 @@ set :rails_env, "production"
 default_run_options[:pty] = true
 set :repository,  "git@github.com:duff/thoughtlead.git"
 set :scm, "git"
+set :keep_releases, 10
 
 role :web, domain
 role :app, domain
@@ -20,4 +21,5 @@ role :db,  domain, :primary => true
 
 set :rails_revision, 8985
 
-before "deploy:update_code",   "deploy:pending:default" 
+before "deploy:update_code", "deploy:pending:default" 
+after  "deploy:update_code", "deploy:cleanup"
