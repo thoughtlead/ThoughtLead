@@ -1,5 +1,7 @@
 class ArticlesController < ApplicationController
   
+  before_filter :login_required, :except => [ :show ]
+  
   def new
     @course = Course.find(params[:course_id])
     @article = Article.new
