@@ -19,7 +19,7 @@ role :web, domain
 role :app, domain
 role :db,  domain, :primary => true
 
-set :rails_revision, 8985
+set :rails_revision, 9067
 
 before "deploy:update_code", "deploy:pending:default" 
 after  "deploy:update_code", "deploy:cleanup"
