@@ -1,16 +1,14 @@
 
-<h1><%= @course %></h1>
+<h2><%= @course %></h2>
 
 by <%= link_to @course.user, @course.user %>
 
-<h3>Course Description</h3>
+<br /><br />
+<h4>Course Description</h4>
 <%= textilize(@course.description) %>
 
-<%= link_to "New Article", new_course_article_url(@course) %>
-
-<h3>Articles in this Course</h3>
-<% for article in @course.articles %>
-  <%= link_to article, [@course, article] %>
+<% for chapter in @course.chapters %>
+  <%= chapter %>
   <br />
 <% end %>
 
@@ -19,5 +17,6 @@ by <%= link_to @course.user, @course.user %>
 <%= link_to "Edit this course", edit_course_url(@course) %>
 <br /><br />
 <%= link_to "View All Courses", courses_url %>
+
 
 
