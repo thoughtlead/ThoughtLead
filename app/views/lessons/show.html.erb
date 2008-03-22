@@ -1,0 +1,15 @@
+
+<h1><%= @lesson %></h1>
+
+by <%= link_to @lesson.user, @lesson.user %>
+
+
+<%= textilize(@lesson.body) %>
+
+<br /><br /><br /><br /><br />
+
+<%= link_to "Edit this lesson", edit_course_chapter_lesson_url(@course, @chapter, @lesson) %>
+<br /><br />
+<%= link_to "View Entire Course", @course %>
+
+

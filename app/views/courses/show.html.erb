@@ -10,8 +10,16 @@ by <%= link_to @course.user, @course.user %>
 <% for chapter in @course.chapters %>
   <strong><%= chapter %></strong>
   <br />
-  <%= link_to "Add lesson" %>
-  <br /><br />
+  <ul>
+    <% for lesson in chapter.lessons  %>
+      <li>
+        <%= link_to lesson, [@course, chapter, lesson] %>
+      </li>
+    <% end %>
+  </ul>
+  
+  <%= link_to "Add lesson", new_course_chapter_lesson_url(@course, chapter) %>
+  <br /><br /><br /><br />
 <% end %>
 
 

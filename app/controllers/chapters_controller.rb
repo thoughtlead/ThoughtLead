@@ -1,7 +1,9 @@
 class ChaptersController < ApplicationController
 
+  before_filter :owner_login_required
+  
   def create
-    @course = Course.find(params[:course_id])
+    @course = current_community.courses.find(params[:course_id])
     @chapter = Chapter.new(params[:chapter])
   
     return render(:template => 'courses/show') unless @chapter.valid?

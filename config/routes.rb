@@ -7,7 +7,10 @@ ActionController::Routing::Routes.draw do |map|
   map.resources :communities, :conditions => { :subdomain => '' }
   map.resources :sessions, :conditions => { :subdomain => /./ }
   map.resources :users, :conditions => { :subdomain => /./ }
-  map.resources :courses, :has_many => :chapters
+  
+  map.resources :courses do | courses |
+    courses.resources :chapters, :has_many => :lessons
+  end
 
   map.root :controller => "home", :conditions => { :subdomain => '' }
   map.community_home '', :controller => "communities", :action => 'show', :conditions => { :subdomain => /./ }
