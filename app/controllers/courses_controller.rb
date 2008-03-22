@@ -29,15 +29,15 @@ class CoursesController < ApplicationController
   end
   
   def edit
-    @course = Course.find(params[:id])
+    @course = current_community.courses.find(params[:id])
   end
 
   def show
-    @course = Course.find(params[:id])
+    @course = current_community.courses.find(params[:id])
   end
   
   def add_chapter
-    @course = Course.find(params[:id])
+    @course = current_community.courses.find(params[:id])
     @course.chapters << Chapter.new(:name => params[:chapter_name])
     
     redirect_to @course

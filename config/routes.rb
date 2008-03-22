@@ -8,8 +8,10 @@ ActionController::Routing::Routes.draw do |map|
   map.resources :sessions, :conditions => { :subdomain => /./ }
   map.resources :users, :conditions => { :subdomain => /./ }
   
-  map.resources :courses do | courses |
-    courses.resources :chapters, :has_many => :lessons
+  map.resources :courses, :conditions => { :subdomain => /./ } do | courses |
+    courses.resources :chapters, :conditions => { :subdomain => /./ } do | chapters |
+      chapters.resources :lessons, :conditions => { :subdomain => /./ }
+    end
   end
 
   map.root :controller => "home", :conditions => { :subdomain => '' }
