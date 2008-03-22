@@ -36,5 +36,11 @@ class CoursesController < ApplicationController
     @course = Course.find(params[:id])
   end
   
+  def add_chapter
+    @course = Course.find(params[:id])
+    @course.chapters << Chapter.new(:name => params[:chapter_name])
+    
+    redirect_to @course
+  end
   
 end

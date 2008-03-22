@@ -8,8 +8,22 @@ by <%= link_to @course.user, @course.user %>
 <%= textilize(@course.description) %>
 
 <% for chapter in @course.chapters %>
-  <%= chapter %>
+  <strong><%= chapter %></strong>
   <br />
+  <%= link_to "Add lesson" %>
+  <br /><br />
+<% end %>
+
+
+<br /><br /><br />
+
+Add Chapter
+
+<%= error_messages_for :chapter %>
+<% form_for [@course, Chapter.new] do | f | %>
+  <%= f.text_field :name %>
+  <br />
+  <%= submit_tag "Add" %>
 <% end %>
 
 <br /><br /><br /><br /><br />

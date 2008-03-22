@@ -2,6 +2,7 @@ class CreateChapters < ActiveRecord::Migration
   def self.up
     create_table :chapters do |t|
       t.belongs_to :course
+      t.string :name
       t.timestamps
     end
   end

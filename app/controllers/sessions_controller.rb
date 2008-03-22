@@ -7,7 +7,7 @@ class SessionsController < ApplicationController
     self.current_user = User.authenticate(params[:login], params[:password])
     if logged_in?
       handle_remember_me
-      redirect_back_or_default(root_url)
+      redirect_back_or_default(community_home_url)
       flash[:notice] = "Logged in successfully"
     else
       flash.now[:error]= "Invalid login or password."

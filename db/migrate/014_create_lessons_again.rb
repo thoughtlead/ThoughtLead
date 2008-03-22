@@ -3,7 +3,7 @@ class CreateLessonsAgain < ActiveRecord::Migration
     create_table :lessons do |t|
       t.string :title
       t.text :body
-
+    
       t.belongs_to :chapter
       t.belongs_to :user
       t.timestamps
@@ -11,6 +11,6 @@ class CreateLessonsAgain < ActiveRecord::Migration
   end
 
   def self.down
-    drop_table :chapters
+    drop_table :lessons
   end
 end
