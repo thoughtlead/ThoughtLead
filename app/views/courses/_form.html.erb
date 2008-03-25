@@ -1,6 +1,7 @@
-<%= error_messages_for :course %>
 
 <% form_for @course do | f | %>
+  <%= f.error_messages %>
+
   <%= f.label(:title) %>
   <br />
   <%= f.text_field :title %>

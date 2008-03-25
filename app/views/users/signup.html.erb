@@ -1,7 +1,8 @@
 <h1><%= @page_title = "Signup" %></h1>
 
-<%= error_messages_for :user %>
 <% form_for :user, @user, :url => signup_url do | f | -%>
+  <%= f.error_messages %>
+  
   <%= f.label :login %>
   <%= f.text_field :login %>
   

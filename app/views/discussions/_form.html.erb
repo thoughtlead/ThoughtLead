@@ -1,7 +1,7 @@
 
-<%= error_messages_for :discussion %>
-
 <% form_for @discussion do | f | %>
+  <%= f.error_messages %>
+
   <%= f.label(:title) %>
   <br />
   <%= f.text_field :title %>

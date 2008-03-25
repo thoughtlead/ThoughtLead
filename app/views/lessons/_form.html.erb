@@ -3,9 +3,9 @@ Course: <%= @course %>
 Chapter: <%= @chapter %>
 <br /><br /><br />
 
-<%= error_messages_for :lesson %>
-
 <% form_for [@course, @chapter, @lesson] do | f | %>
+  <%= f.error_messages %>
+  
   <%= f.label(:title) %>
   <br />
   <%= f.text_field :title %>
