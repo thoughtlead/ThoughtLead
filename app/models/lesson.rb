@@ -1,6 +1,6 @@
 class Lesson < ActiveRecord::Base
   
-  validates_presence_of :title, :body
+  validates_presence_of :title, :body, :teaser
 
   belongs_to :chapter
   belongs_to :user

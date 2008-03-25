@@ -13,3 +13,7 @@ by <%= link_to @lesson.user, @lesson.user %>
 <%= link_to "View Entire Course", @course %>
 
 
+<br /><br />
+<%= "This lesson is not published" if @lesson.draft %>
+<br /><br />
+<%= "This lesson is premium content" if @lesson.premium %>
