@@ -16,5 +16,9 @@ class UsersController < ApplicationController
   def show
     @user = current_community.users.find(params[:id])
   end
+  
+  def index
+    @users = current_community.users
+  end
 
 end
