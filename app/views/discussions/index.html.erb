@@ -1,0 +1,22 @@
+
+
+<br /><br />
+<%= link_to "New Discussion", new_discussion_url %>
+<br /><br /><br />
+
+
+<% for discussion in @discussions %>
+  <h2><%= link_to discussion, discussion %></h2>
+  <br />
+  by <%= link_to discussion.user, discussion.user %>
+  <br />
+  <%= discussion.created_at.to_s(:super_short) %>
+  <br />
+  <%= link_to pluralize(discussion.comments.count, "Comment"), discussion %>
+  <br /><br />
+  
+  
+  <%= discussion.body %>
+  
+  <br /><br /><br /><br />
+<% end %>

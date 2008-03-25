@@ -1,0 +1,34 @@
+
+<h1><%= @discussion %></h1>
+
+by <%= link_to @discussion.user, @discussion.user %>
+<br />
+Posted <%= @discussion.created_at.to_s(:super_short) %> 
+<br />
+<%= pluralize(@discussion.comments.count, "Comment") %>
+
+<%= textilize(@discussion.body) %>
+
+<br /><br /><br /><br /><br />
+
+<strong><%= pluralize(@discussion.comments.count, "Comment") %> so far</strong>
+<br /><br />
+<% for comment in @discussion.comments %>
+  <%= link_to comment.user, comment.user %>
+  <%= comment.created_at.to_s(:short) %>
+  <%= textilize(comment.body) %>
+  <br />
+<% end %>
+
+<h4>Post a comment</h4>
+<% form_for [@discussion, Comment.new] do | f | %>
+  <%= f.text_area :body, :rows => 6 %>
+  <br />
+  <%= submit_tag "Post this comment" %>
+<% end %>
+
+
+
+<br />
+<%= link_to "Edit this discussion", edit_discussion_url(@discussion) %>
+
