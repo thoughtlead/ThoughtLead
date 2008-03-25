@@ -21,14 +21,17 @@ Posted <%= @discussion.created_at.to_s(:super_short) %>
 <% end %>
 
 <h4>Post a comment</h4>
-<% form_for [@discussion, Comment.new] do | f | %>
-  <%= f.text_area :body, :rows => 6 %>
-  <br />
-  <%= submit_tag "Post this comment" %>
+<% if logged_in? %>
+  <% form_for [@discussion, Comment.new] do | f | %>
+    <%= f.text_area :body, :rows => 6 %>
+    <br />
+    <%= submit_tag "Post this comment" %>
+  <% end %>
+<% else %>
+  <%= link_to "Login to comment", login_url %>
 <% end %>
 
 
-
-<br />
+<br /><br />
 <%= link_to "Edit this discussion", edit_discussion_url(@discussion) %>
 

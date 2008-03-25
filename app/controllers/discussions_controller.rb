@@ -1,5 +1,7 @@
 class DiscussionsController < ApplicationController
   
+  before_filter :login_required, :except => [ :index, :show]
+  
   
   def index
     @discussions = current_community.discussions

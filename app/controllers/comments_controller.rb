@@ -1,5 +1,7 @@
 class CommentsController < ApplicationController
 
+  before_filter :login_required
+
   def create
     @discussion = current_community.discussions.find(params[:discussion_id])
     @comment = Comment.new(params[:comment])
