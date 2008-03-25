@@ -9,12 +9,26 @@ Chapter: <%= @chapter %>
   <%= f.label(:title) %>
   <br />
   <%= f.text_field :title %>
+
+  <br /><br />
+  
+  <%= f.label(:teaser) %>
+  <br />
+  <%= f.text_area(:teaser, :rows => 4) %>
   
   <br /><br />
   
   <%= f.label(:body) %>
   <br />
-  <%= f.text_area(:body) %>
+  <%= f.text_area(:body, :rows => 18) %>
+  
+  <br /><br />
+  <%= f.check_box :draft %>
+  <%= f.label 'Draft?' %>
+
+  <br /><br />
+  <%= f.check_box :premium %>
+  <%= f.label 'Only paid subscribers can access this lesson' %>
   
   <br /><br />
   <%= submit_tag "Save" %> or <%= link_to "Cancel", @course %>
