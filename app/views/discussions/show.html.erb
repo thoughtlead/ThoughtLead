@@ -5,30 +5,30 @@ by <%= link_to @discussion.user, @discussion.user %>
 <br />
 Posted <%= @discussion.created_at.to_s(:super_short) %> 
 <br />
-<%= pluralize(@discussion.comments.count, "Comment") %>
+<%= pluralize(@discussion.responses.count, "Response") %>
 
 <%= textilize(@discussion.body) %>
 
 <br /><br /><br /><br /><br />
 
-<strong><%= pluralize(@discussion.comments.count, "Comment") %> so far</strong>
+<strong><%= pluralize(@discussion.responses.count, "Response") %> so far</strong>
 <br /><br />
-<% for comment in @discussion.comments %>
-  <%= link_to comment.user, comment.user %>
-  <%= comment.created_at.to_s(:short) %>
-  <%= textilize(comment.body) %>
+<% for response in @discussion.responses %>
+  <%= link_to response.user, response.user %>
+  <%= response.created_at.to_s(:short) %>
+  <%= textilize(response.body) %>
   <br />
 <% end %>
 
-<h4>Post a comment</h4>
+<h4>Post a response</h4>
 <% if logged_in? %>
-  <% form_for [@discussion, Comment.new] do | f | %>
+  <% form_for [@discussion, Response.new] do | f | %>
     <%= f.text_area :body, :rows => 6 %>
     <br />
-    <%= submit_tag "Post this comment" %>
+    <%= submit_tag "Post this response" %>
   <% end %>
 <% else %>
-  <%= link_to "Login to comment", login_url %>
+  <%= link_to "Login to respond", login_url %>
 <% end %>
 
 

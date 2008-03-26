@@ -12,7 +12,7 @@
   <br />
   <%= discussion.created_at.to_s(:super_short) %>
   <br />
-  <%= link_to pluralize(discussion.comments.count, "Comment"), discussion %>
+  <%= link_to pluralize(discussion.responses.count, "Response"), discussion %>
   <br /><br />
   
   

@@ -1,4 +1,4 @@
-class Comment < ActiveRecord::Base
+class Response < ActiveRecord::Base
   
   validates_presence_of :body
   belongs_to :discussion
