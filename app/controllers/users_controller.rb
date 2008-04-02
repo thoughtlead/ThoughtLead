@@ -20,5 +20,16 @@ class UsersController < ApplicationController
   def index
     @users = current_community.users
   end
+  
+  def email
+    @send_to_user = current_community.users.find(params[:id])
+    @email = Email.new(params[:email])
+    return if request.get? || !@email.valid?
+    
+    Mailer.deliver_user_to_user_email(current_user, @send_to_user, @email)
+    
+    flash[:notice] = "Email sent to #{@send_to_user}"
+    redirect_to @send_to_user
+  end
 
 end
