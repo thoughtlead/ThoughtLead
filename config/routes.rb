@@ -21,4 +21,6 @@ ActionController::Routing::Routes.draw do |map|
   map.root :controller => "home", :conditions => { :subdomain => '' }
   map.community_home '', :controller => "communities", :action => 'show', :conditions => { :subdomain => /./ }
 
+  map.edit_community 'community/edit', :controller => 'admin', :action => 'edit_community'
+
 end

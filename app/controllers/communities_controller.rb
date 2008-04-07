@@ -1,6 +1,5 @@
 class CommunitiesController < ApplicationController
   
-  
   def index
     @communities = Community.find(:all)
   end

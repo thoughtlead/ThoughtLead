@@ -3,26 +3,28 @@
 <% form_for :user, @user, :url => signup_url do | f | -%>
   <%= f.error_messages %>
   
-  <%= f.label :login %>
-  <%= f.text_field :login %>
-  
-  <br />
+  <p>
+    <%= f.label :login %>
+    <%= f.text_field :login %>
+  </p>
 
-  <%= f.label :email %>
-  <%= f.text_field :email %>
+  <p>
+    <%= f.label :email %>
+    <%= f.text_field :email %>
+  </p>
 
-  <br />
+  <p>
+    <%= f.label :password %>
+    <%= f.password_field :password %>
+  </p>
   
-  <%= f.label :password %>
-  <%= f.password_field :password %>
-
-  <br />
-  
-  <%= f.label :password_confirmation %>
-  <%= f.password_field :password_confirmation %>
+  <p>
+    <%= f.label :password_confirmation %>
+    <%= f.password_field :password_confirmation %>
+  </p>
 	
-	<br />
-	
-	<%= submit_tag 'Sign up' %>
+  <p>
+	  <%= submit_tag 'Sign up' %>
+  </p>
 <% end -%>
 

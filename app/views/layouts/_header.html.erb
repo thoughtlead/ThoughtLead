@@ -1,20 +1,32 @@
+<div id="header">
+  <img src="" alt="" />
 
-<h1><%= link_to current_community, community_home_url %></h1>
-
-<% if logged_in? %>
-  <%= link_to("My Profile", user_url(current_user)) %> | 
-	<%= link_to('Logout', logout_url) %>
-<% else %>
-	<%= link_to('Login', login_url) %> | 
-	<%= link_to "Signup", signup_url %>
-<% end %>
+  <h1 class="community_name"><%= link_to current_community, community_home_url %></h1>
 
 
-<br /><br />
-<%= link_to "Home", community_home_url %>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-<%= link_to "Learn", courses_url %>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-<%= link_to "Discuss", discussions_url %>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-<%= link_to "Connect", users_url %>
+  <ul class="navigation_top">
+    <li class="current"><%= link_to "Learn", courses_url %></li>
+    <li><%= link_to "Discuss", discussions_url %></li>
+    <li><%= link_to "Connect", users_url %></li>
+  </ul>
+
+  <div class="user_controls">
+    <% if logged_in? %>
+      <%= link_to("My Profile", user_url(current_user)) %> &nbsp;|&nbsp; 
+    	<%= link_to('Logout', logout_url) %>
+  	
+    	<% if current_user.owner? %>
+        &nbsp;|&nbsp; 
+    	  <%= link_to "Community Setup", edit_community_url %>
+    	<% end %>
+  	
+    
+    <% else %>
+    	<%= link_to('Login', login_url) %> | 
+    	<%= link_to "Signup", signup_url %>
+    <% end %>
+  </div>
+
+
+</div>                  
+
