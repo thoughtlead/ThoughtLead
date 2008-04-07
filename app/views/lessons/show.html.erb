@@ -1,77 +1,54 @@
 
 <div id="page" class="lesson">
-                      <div id="content">
-                        <div id="primary">
-                                <div id="lesson">
-                                      <div id="lesson_title">
-                                              <h1>The Mystical, Magical Internet</h1>
-                                      </div>
-                                      <div id="lesson_body">
-                                        <div class="lesson_info">
-                                        <p>by <strong><a href="#">Sam Rosen</a></strong> | 03.2008</p>
-                                      </div>
-                                              <p>A lot of people I talk to view the Internet as both mystical and magical. Mystical, because there&#8217;s just so much stuff to learn, so many emerging technologies, and so few solid resources to help them navigate these unfamiliar waters. Magical, because &#8220;once I set up my blog, RSS feed, email newsletter, and podcast,&#8221; the story usually goes, &#8220;I&#8217;ll receive a swarm of traffic.&#8221; (Don&#8217;t worry if you&#8217;re unfamiliar with those terms&#8212;we&#8217;ll get there.)</p>
-                                              <p>Typically the magical part comes first. And then, after a few months (sometimes hours), the whole &#8220;interactive marketing&#8221; universe starts to look pretty confusing&#8212;perhaps like a whole new world.</p>
-                                              <p>Is it? Well, yes and no:</p>
-                                              <p>Yes, marketing on the Web does require new skill sets, in addition to more complex modes of thinking about consumer psychology, the public sphere, collaboration, and social networks.</p>
-                                              <p>No, it&#8217;s not mystical, and the best way to make a difference online is still through, as Seth Godin would say, being &#8220;remarkable&#8221;&#8212;and putting in some good old-fashioned creativity and sweat equity (and following some old-fashioned rules of relationship) into the marketing process.</p>
-                                              <p>So to begin, let&#8217;s be clear:</p>
-                                              <p>The Internet doesn&#8217;t &#8220;change everything,&#8221; in the sense that we can suddenly reach people just by putting up a website. That is, don&#8217;t expect that by putting up a wiki about your latest product, you&#8217;ll start harnessing the wisdom of the crowds.</p>
-                                              <p>But it does &#8220;change everything,&#8221; if you know how to use it in the right way, for the right reasons, with the right people.</p>
-                                              <p>What I often say to clients excited about the marketing potential of the Internet is: </p>
-                                              <p>Imagine that the Internet never existed. Remember those times before it was ubiquitous&#8212;you know, when you knew you had to do stuff, like creating a competitive advantage and communicating with people, to build a successful business? Start there.</p>
-                                              <p>It&#8217;s a shocking statement to many, and usually met with a combination of resistance and dismay. But I&#8217;ve found it to be absolutely true: the net is the best lever, inter-connector, and electronic communicator this world has ever seen, but it&#8217;s certainly not a replacement for ingenuity.</p>
-                                              <p>Perhaps I&#8217;m getting ahead of myself, though. Let&#8217;s start from the beginning&#8230;</p>
+  <div id="content">
+    <div id="primary">
+      <div id="lesson">
+          <div id="lesson_title">
+              <h1><%= @lesson %></h1>
+          </div>
+          <div id="lesson_body">
+            <div class="lesson_info">
+            <p>by <strong><%= link_to @lesson.user, @lesson.user %></strong> | <%= @lesson.created_at %></p>
+          </div>
+        
+          <%= textilize(@lesson.body) %>
+
+
+          <div class="lesson_navigation">
+              <p>NEXT LESSON: <a href="#">A Context to Remember &gt;</a></p>
+              <p><%= link_to "Return to Course Overview >", @lesson.chapter.course %></p>
+          </div>
+      </div>
+    </div>  
+    
+    <div id="secondary">
+      <div class="course">
+          <div class="course_title">
+            <span><img src="" alt="" />Course:</span>
+            <p>What Every Decent Human Being Should Know About Interactive Marketing</p>
+          </div>
+          <div class="lessons">
+            <ol>
+              <% for lesson in @lesson.chapter.lessons %>
+                <li><%= link_to lesson, [lesson.chapter.course, lesson.chapter, lesson] %></li>
+              <% end %>
+            </ol>
+          </div>
+      </div>
       
-                                              <div class="lesson_navigation">
-                                                      <p>NEXT LESSON: <a href="#">A Context to Remember &gt;</a></p>
-                                                      <p><a href="#">Return to Course Overview &gt;</a></p>
-                                              </div>
-                                      </div>
-                                </div>
-                              </div>
-                        <div id="secondary">
-                          <div class="course">
-                          <div class="course_title">
-              <span><img src="" alt="" />Course:</span>
-              <p>What Every Decent Human Being Should Know About Interactive Marketing</p>
-                          </div>
-                          <div class="lessons">
-                            <ol>
-                              <li class="current">The Mystical, Magical Internet</li>
-                              <li><a href="#">A Context to Remember</a></li>
-                              <li><a href="#">A Primer on Interactive Marketing</a></li>
-                              <li><a href="#">Architecting a New Civilization</a></li>
-                              <li><a href="#">(More Than) A Few Good Mechanisms of Interactive Marketing</a></li>
-                              <li><a href="#">It’s the Campaign, Stupid</a></li>
-                              <li><a href="#">The Good Kind of Traffic Jam</a></li>
-                              <li><a href="#">Email Marketing for Gorillas</a></li>
-                              <li><a href="#">The Strategy</a></li>
-                              <li><a href="#">Wrapping Up v0.9</a></li>
-                            </ol>
-                          </div>
-                          </div>
-                          <a href="#">View more courses &gt;</a>
-                        </div>
-                      </div>
-                      
-                      <div id="footer">
-                      
-                      </div>
-              </div>
+      <%= link_to "View more courses >", courses_url %>
+      
+    </div>
+    
+  </div>
+  
+  <div id="footer"> </div>
 
 
+</div>        
+</div>
 
-<h1><%= @lesson %></h1>
-
-by <%= link_to @lesson.user, @lesson.user %>
-
-
-<%= textilize(@lesson.body) %>
-
-<br /><br /><br /><br /><br />
-
-<%= link_to "Edit this lesson", edit_course_chapter_lesson_url(@course, @chapter, @lesson) %>
+<%= link_to "Edit this lesson", edit_course_chapter_lesson_url(@course, @chapter, @lesson)  if current_user.owner? %>
 <br /><br />
 <%= link_to "View Entire Course", @course %>
 
