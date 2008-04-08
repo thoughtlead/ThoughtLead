@@ -3,6 +3,7 @@ body {text-align:center; background:url(/images/body_bg.gif) left top repeat-x;}
 #page {position: relative; overflow:hidden; padding:0; word-spacing:-1px; line-height:20px; font-size:14px; font-family: arial, helvetica, sans-serif; margin:0 auto; width:933px; border-left:1px solid #2E3191; border-right:1px solid #2E3191; text-align:left; background:#fff;}
 a, a:active, a:visited, a:hover {text-decoration:none; color:#295FA6;}
 ol, ul {list-style-position:inside; list-style-type:none;}
+img {border:none;}
 #header, #content, #footer {padding:0 15px;}
 input, label, textarea {display:block;}
 input, textarea {margin-bottom:20px;}
@@ -12,15 +13,19 @@ h1 {margin-bottom:20px; color:#000; font: normal normal bolder 26px/40px arial, 
 
 /* Header */
 #header {position:relative; height:95px; overflow:hidden; background: url(/images/logo.gif) 15px bottom no-repeat;}
-#header .user_controls {float:right; margin:45px 0 15px; font-size:10px; line-height:35px; color:gray;}
-	#header .user_controls a {color:gray;}
-	#header .user_controls a:hover {color:blue;}
-h1.community_name {display:none;}
-ul.navigation_top {display:block; position:relative; overflow:hidden; float:left; padding:0; margin:45px 0 15px 330px; list-style-position:inside; list-style-type:none;}
+#header .community_name h1 {display:none;}
+#header a.logo {display:block; width:250px;}
+#header a.logo img {float:left;}
+ul.navigation_top {display:block; position:relative; overflow:hidden; float:left; padding:0; margin:45px 0 15px 228px; list-style-position:inside; list-style-type:none;}
 ul.navigation_top li {display:block; float:left; padding:0; margin:0; border-left:1px solid #BABEF4; font:normal normal normal 14px/25px georgia, "times new roman", serif;}
 	ul.navigation_top li a {display:block; width:100px; padding:5px 0 5px 14px;}
 ul.navigation_top li.current {border-left:2px solid #2E3191; background:url(/images/active_tab.gif) top left repeat-y; font:normal normal bold 14px/25px arial, verdana, sans-serif;}
 ul.navigation_top li.current a {width:99px; color:#000;}
+#header .user_controls {float:right; margin:45px 0 15px; font-size:10px; line-height:35px; color:gray;}
+	#header .user_controls a {color:gray;}
+	#header .user_controls a:hover {color:blue;}
+
+
 
 /* Content */
 
@@ -46,4 +51,5 @@ ul.navigation_top li.current a {width:99px; color:#000;}
 	#secondary .course .lessons ol {padding: 10px 0; font: normal normal normal .93em/20px arial, helvetica, verdana, sans-serif;}
 	#secondary .course .lessons ol li {padding:5px 15px 5px 30px; background:url(/images/lesson_icon.gif) 15px 11px no-repeat;}
 	#secondary .course .lessons ol li.current {color:#fff; background:#295FA6 url(/images/current_lesson_icon.gif) 15px 11px no-repeat;}
+		#secondary .course .lessons ol li.current a, #secondary .course .lessons ol li.current a:visited {color:#fff;}
 	#secondary .course .lessons ol li.current img {position:absolute; left:0px;}

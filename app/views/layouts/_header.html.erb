@@ -1,8 +1,8 @@
 <div id="header">
-  <img src="" alt="" />
 
-  <h1 class="community_name"><%= link_to current_community, community_home_url %></h1>
-
+  <div class="community_name">
+    <a href="<%= community_home_url %>" class="logo"><img src="/images/logo.gif" alt="Verticality" /></a><h1><a href="<%= community_home_url %>"><%= current_community %></a></h1>
+  </div>
 
   <ul class="navigation_top">
     <li class="current"><%= link_to "Learn", courses_url %></li>
