@@ -37,7 +37,7 @@
             <ol>
               <% for lesson in @lesson.chapter.lessons %>
                 <% if lesson == @lesson %>
-                  <li>lesson</li>
+                  <li><%= lesson %></li>
                 <% else %>
                   <li><%= link_to lesson, [lesson.chapter.course, lesson.chapter, lesson] %></li>
                 <% end %>
