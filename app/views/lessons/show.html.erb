@@ -12,7 +12,12 @@
           <%= textilize(@lesson.body) %>
 
           <div class="lesson_navigation">
-              <p>NEXT LESSON: <a href="#">A Context to Remember &gt;</a></p>
+              <% if @lesson.higher_item %>   
+                <p>PREVIOUS LESSON: <%= link_to @lesson.higher_item, [@lesson.chapter.course, @lesson.chapter, @lesson.higher_item] %> </p>
+              <% end %>
+              <% if @lesson.lower_item %>   
+                <p>NEXT LESSON: <%= link_to @lesson.lower_item, [@lesson.chapter.course, @lesson.chapter, @lesson.lower_item] %> </p>
+              <% end %>
               <p><%= link_to "Return to Course Overview >", @lesson.chapter.course %></p>
           </div>
         </div>
@@ -35,17 +40,23 @@
           </div>
       </div>
       
-      <%= link_to "View more courses >", courses_url %>
+      <p>
+        <%= link_to "View more courses >", courses_url %>
+      </p>
       
-    </div>
+      <p>
+        <%= link_to "Edit this lesson", edit_course_chapter_lesson_url(@course, @chapter, @lesson)  if logged_in? && current_user.owner? %>
+      </p>
+          
+      <p>
+        <%= link_to "View Entire Course", @course %>
+        <%= "This lesson is not published" if @lesson.draft %>
+      </p>
+
+        <%= "This lesson is premium content" if @lesson.premium %>
+  </div>
     
 
-<%= link_to "Edit this lesson", edit_course_chapter_lesson_url(@course, @chapter, @lesson)  if logged_in? && current_user.owner? %>
-
-<%= link_to "View Entire Course", @course %>
 
 
 
-<%= "This lesson is not published" if @lesson.draft %>
-
-<%= "This lesson is premium content" if @lesson.premium %>
