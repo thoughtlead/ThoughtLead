@@ -9,8 +9,12 @@
 
 
   <h2>Thoughtlead Communities</h2>
-  <% for community in @communities %>
-    <%= link_to community, community_dashboard_url(community) %>
+  <ul>
+    <% for community in @communities %>
+      <li>
+        <%= link_to community, community_dashboard_url(community) %>
+      </li>
+    <% end %>
   
-  <% end %>
+  </ul>
 </div>

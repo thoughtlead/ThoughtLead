@@ -40,7 +40,7 @@
     </div>
     
 
-<%= link_to "Edit this lesson", edit_course_chapter_lesson_url(@course, @chapter, @lesson)  if current_user.owner? %>
+<%= link_to "Edit this lesson", edit_course_chapter_lesson_url(@course, @chapter, @lesson)  if logged_in? && current_user.owner? %>
 
 <%= link_to "View Entire Course", @course %>
 
