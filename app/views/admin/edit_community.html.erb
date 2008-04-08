@@ -1,17 +1,18 @@
-<h1><%= @page_title = "Edit Community" %></h1>
+<div id="primary">
+  <h1><%= @page_title = "Edit Community" %></h1>
 
 
-<% form_for @community, :url => edit_community_url do | f | %>
+  <% form_for @community, :url => edit_community_url do | f | %>
   
-  <%= f.error_messages %>
+    <%= f.error_messages %>
   
-  <p>
-    <%= f.label :name %>
-    <%= f.text_field :name %>
-  </p>
+    <p>
+      <%= f.label :name %>
+      <%= f.text_field :name %>
+    </p>
 
-  <p>
-	  <%= submit_tag 'Save' %> or <%= link_to "Cancel", community_home_url %>
-  </p>
-<% end %>
-
+    <p>
+  	  <%= submit_tag 'Save' %> or <%= link_to "Cancel", community_home_url %>
+    </p>
+  <% end %>
+</div>

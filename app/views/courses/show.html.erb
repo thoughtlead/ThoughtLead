@@ -1,47 +1,44 @@
+<div id="primary">
+  <h1><%= @course %></h1>
+  <small>by <%= link_to @course.user, @course.user %></small>
 
-<h2><%= @course %></h2>
 
-by <%= link_to @course.user, @course.user %>
+  <h4>Course Description</h4>
+  <%= textilize(@course.description) %>
 
-<br /><br />
-<h4>Course Description</h4>
-<%= textilize(@course.description) %>
-
-<% for chapter in @course.chapters %>
-  <strong><%= chapter %></strong>
-  <br />
-  <ul>
-    <% for lesson in chapter.lessons  %>
-      <li>
-        <%= link_to lesson, [@course, chapter, lesson] %>
-        <br />
-        <%= lesson.teaser %>
-      </li>
-    <% end %>
-  </ul>
+  <% for chapter in @course.chapters %>
+    <strong><%= chapter %></strong>
   
-  <%= link_to "Add lesson", new_course_chapter_lesson_url(@course, chapter) %>
-  <br /><br /><br /><br />
-<% end %>
+    <ul>
+      <% for lesson in chapter.lessons  %>
+        <li>
+          <h2><%= link_to lesson, [@course, chapter, lesson] %></h2>
+        
+          <p><%= lesson.teaser %></p>
+        </li>
+      <% end %>
+    </ul>
+  
+  <div class="add_lesson">
+    <%= link_to "+ Add a Lesson", new_course_chapter_lesson_url(@course, chapter) %>
+  </div>
+  
+  <% end %>
 
+  <div class="add_chapter">
+    Add a New Chapter
 
-<br /><br /><br />
+    <% form_for [@course, Chapter.new] do | f | %>
+      <%= f.error_messages %>
 
-Add Chapter
+      <%= f.text_field :name %>
+  
+      <%= submit_tag "Add" %>
+    <% end %>
+  </div>
 
-<% form_for [@course, Chapter.new] do | f | %>
-  <%= f.error_messages %>
-
-  <%= f.text_field :name %>
-  <br />
-  <%= submit_tag "Add" %>
-<% end %>
-
-<br /><br /><br /><br /><br />
-
-<%= link_to "Edit this course", edit_course_url(@course) %>
-<br /><br />
-<%= link_to "View All Courses", courses_url %>
-
+  <div class="">
+  <%= link_to "Edit this course", edit_course_url(@course) %>&nbsp;|&nbsp;<%= link_to "View All Courses", courses_url %>
+</div>
 
 

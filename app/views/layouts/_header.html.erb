@@ -13,12 +13,13 @@
   <div class="user_controls">
     <% if logged_in? %>
       <%= link_to("My Profile", user_url(current_user)) %> &nbsp;|&nbsp; 
-    	<%= link_to('Logout', logout_url) %>
   	
     	<% if current_user.owner? %>
-        &nbsp;|&nbsp; 
     	  <%= link_to "Community Setup", edit_community_url %>
+    	  &nbsp;|&nbsp;
     	<% end %>
+
+    	<%= link_to('Logout', logout_url) %>
   	
     
     <% else %>
@@ -26,7 +27,5 @@
     	<%= link_to "Signup", signup_url %>
     <% end %>
   </div>
-
-
 </div>                  
 

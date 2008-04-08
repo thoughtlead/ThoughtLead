@@ -1,10 +1,8 @@
+<div id="primary">
+  <h1>Connect with Users</h1>
+  <% for user in @users %>
+    <%= link_to user, user %>
+  
 
-
-<br /><br />
-
-
-<% for user in @users %>
-  <%= link_to user, user %>
-  <br />
-
-<% end %>
+  <% end %>
+</div>

@@ -1,5 +1,5 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html>
+<html xmlns="http://www.w3.org/1999/xhtml">
 	<head>
 		<title><%=h @page_title ? "#{@page_title} | #{current_community}" : "#{current_community}" %></title>
 	    <meta http-equiv="Content-type" content="text/html; charset=utf-8" />
@@ -10,11 +10,16 @@
   
   
 	<%= body_tag %>
+    <div id="page" class="lesson"> <!-- TODO change based on page type/name -->
+  	  <%= render(:partial => '/layouts/header') %>
+      <div id="content">
+  		  <%= render(:partial => '/layouts/flash_details') %>
+  		  <%= yield %>
+  		</div>
 
-	  <%= render(:partial => '/layouts/header') %>
-		<%= render(:partial => '/layouts/flash_details') %>
-		<%= yield %>
-  	  	
+  		  <%= render(:partial => '/layouts/footer') %>
+
+  	</div>
 	</body>
 </html>
 

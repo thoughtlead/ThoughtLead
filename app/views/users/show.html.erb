@@ -1,12 +1,13 @@
+<div id="primary">
+  <h1><%= @user %></h1>
 
-<h1><%= @user %></h1>
+  <%= link_to "Email #{@user}", email_user_url(@user) %>
 
-<%= link_to "Email #{@user}", email_user_url(@user) %>
 
-<br />
 
-<h2>Courses</h2>
-<% for course in @user.courses %>
-  <%= link_to course, course %>
-  <br />
-<% end %>
+  <h2>Courses</h2>
+  <% for course in @user.courses %>
+    <%= link_to course, course %>
+  
+  <% end %>
+</div>

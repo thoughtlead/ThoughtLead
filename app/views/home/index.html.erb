@@ -1,15 +1,16 @@
-
-<h1>Welcome to ThoughtLead!</h1>
-
-
-<br />
-<br />
-
-<%= link_to "Create a community", new_community_url %> 
+<div id="primary">
+  <h1>Welcome to ThoughtLead!</h1>
 
 
-<h2>Thoughtlead Communities</h2>
-<% for community in @communities %>
-  <%= link_to community, community_dashboard_url(community) %>
-  <br />
-<% end %>
+
+
+
+  <%= link_to "Create a community", new_community_url %> 
+
+
+  <h2>Thoughtlead Communities</h2>
+  <% for community in @communities %>
+    <%= link_to community, community_dashboard_url(community) %>
+  
+  <% end %>
+</div>

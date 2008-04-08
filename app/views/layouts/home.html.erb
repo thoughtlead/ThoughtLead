@@ -1,6 +1,6 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 
-<html>
+<html xmlns="http://www.w3.org/1999/xhtml">
 	<head>
 		<title><%=h @page_title ? "#{@page_title} | #{APP_NAME}" : "#{APP_NAME}" %></title>
 	    <meta http-equiv="Content-type" content="text/html; charset=utf-8" />
@@ -8,13 +8,16 @@
 		<%= javascript_include_tag :defaults %>
 		<%= stylesheet_link_tag :all %>
 	</head>
-  
-  
+    
 	<%= body_tag %>
-
-		<%= render(:partial => '/layouts/flash_details') %>
-		<%= yield %>
-  	  	
+    <div id="page" class="home">
+      <div id="content">
+        <div id="primary">
+  	    	<%= render(:partial => '/layouts/flash_details') %>
+      		<%= yield %>
+      	</div>
+  		</div>
+		</div>
 	</body>
 </html>
 

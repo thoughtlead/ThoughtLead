@@ -1,25 +1,24 @@
-
-<div id="page" class="lesson">
-  <div id="content">
+    <div id="lesson_placeholder"> <!-- FIXME - Remove after there is the ability to target just lesson pages -->
     <div id="primary">
       <div id="lesson">
-          <div id="lesson_title">
-              <h1><%= @lesson %></h1>
-          </div>
-          <div id="lesson_body">
-            <div class="lesson_info">
+        <div id="lesson_title">
+            <h1><%= @lesson %></h1>
+        </div>
+        <div id="lesson_body">
+          <div class="lesson_info">
             <p>by <strong><%= link_to @lesson.user, @lesson.user %></strong> | <%= @lesson.created_at %></p>
           </div>
-        
+      
           <%= textilize(@lesson.body) %>
-
 
           <div class="lesson_navigation">
               <p>NEXT LESSON: <a href="#">A Context to Remember &gt;</a></p>
               <p><%= link_to "Return to Course Overview >", @lesson.chapter.course %></p>
           </div>
+        </div>
       </div>
-    </div>  
+    </div>
+    </div> <!-- Remove -->
     
     <div id="secondary">
       <div class="course">
@@ -40,20 +39,13 @@
       
     </div>
     
-  </div>
-  
-  <div id="footer"> </div>
-
-
-</div>        
-</div>
 
 <%= link_to "Edit this lesson", edit_course_chapter_lesson_url(@course, @chapter, @lesson)  if current_user.owner? %>
-<br /><br />
+
 <%= link_to "View Entire Course", @course %>
 
 
-<br /><br />
+
 <%= "This lesson is not published" if @lesson.draft %>
-<br /><br />
+
 <%= "This lesson is premium content" if @lesson.premium %>

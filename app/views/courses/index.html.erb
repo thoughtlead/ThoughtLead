@@ -1,11 +1,19 @@
 
-<h1>Courses</h1>
+<div id="primary">
+  <h1>Courses</h1>
+  <div class="courses">
+    <% for course in @courses %>
+      <div class="course_title">
+        <%= link_to course, course %>
+      </div>
+      <div class="course_description">
+        <%= course.description %>
+      </div>
+    <% end %>
+  </div>
 
-<%= link_to "Add a course", new_course_url %>
-<br /><br /><br />
+  <div>
+    <%= link_to "Add a course", new_course_url %>
+  </div>
+</div>
 
-<% for course in @courses %>
-  <%= link_to course, course %>
-  <br />
-  <%= course.description %>
-<% end %>

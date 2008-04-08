@@ -1,38 +1,39 @@
-<h1><%= @page_title = "Create a community" %></h1>
+<div id="primary">
+  <h1><%= @page_title = "Create a community" %></h1>
 
-<%= error_messages_for :user, :community %>
-<% form_for @community do | f | -%>
+  <%= error_messages_for :user, :community %>
+  <% form_for @community do | f | -%>
 
-  <%= f.label :community_name %>
-  <%= f.text_field :name %>
+    <%= f.label :community_name %>
+    <%= f.text_field :name %>
 
-  <br />
-
-  <%= label :user, :login %>
-  <%= text_field :user, :login %>
   
-  <br />
 
-  <%= label :user, :email %>
-  <%= text_field :user, :email %>
-
-  <br />
+    <%= label :user, :login %>
+    <%= text_field :user, :login %>
   
-  <%= label :user, :password %>
-  <%= password_field :user, :password %>
-
-  <br />
   
-  <%= label :user, :password_confirmation %>
-  <%= password_field :user, :password_confirmation %>
-	
-	<br />
-  <br />
-	
-  <%= f.label :subdomain %><br />
-  http://<%= f.text_field :subdomain %>.<%= APP_DOMAIN %>
-	
-	<br /><br />
-	<%= submit_tag 'Sign up' %>
-<% end -%>
 
+    <%= label :user, :email %>
+    <%= text_field :user, :email %>
+
+  
+  
+    <%= label :user, :password %>
+    <%= password_field :user, :password %>
+
+  
+  
+    <%= label :user, :password_confirmation %>
+    <%= password_field :user, :password_confirmation %>
+	
+	
+  
+	
+    <%= f.label :subdomain %>
+    http://<%= f.text_field :subdomain %>.<%= APP_DOMAIN %>
+	
+	
+  	<%= submit_tag 'Sign up' %>
+  <% end -%>
+</div>

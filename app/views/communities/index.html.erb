@@ -1,8 +1,10 @@
-<%= link_to "Home", root_url %>
-<h1>Communities</h1>
+<div id="primary">
+  <%= link_to "Home", root_url %>
+  <h1>Communities</h1>
 
 
-<% for community in @communities %>
-  <%= link_to community, community %>
-  <br />
-<% end %>
+  <% for community in @communities %>
+    <%= link_to community, community %>
+  
+  <% end %>
+</div>

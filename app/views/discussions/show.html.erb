@@ -1,37 +1,37 @@
+<div id="primary">
+  <h1><%= @discussion %></h1>
 
-<h1><%= @discussion %></h1>
+  by <%= link_to @discussion.user, @discussion.user %>
 
-by <%= link_to @discussion.user, @discussion.user %>
-<br />
-Posted <%= @discussion.created_at.to_s(:super_short) %> 
-<br />
-<%= pluralize(@discussion.responses.count, "Response") %>
+  Posted <%= @discussion.created_at.to_s(:super_short) %> 
 
-<%= textilize(@discussion.body) %>
+  <%= pluralize(@discussion.responses.count, "Response") %>
 
-<br /><br /><br /><br /><br />
+  <%= textilize(@discussion.body) %>
 
-<strong><%= pluralize(@discussion.responses.count, "Response") %> so far</strong>
-<br /><br />
-<% for response in @discussion.responses %>
-  <%= link_to response.user, response.user %>
-  <%= response.created_at.to_s(:short) %>
-  <%= textilize(response.body) %>
-  <br />
-<% end %>
 
-<h4>Post a response</h4>
-<% if logged_in? %>
-  <% form_for [@discussion, Response.new] do | f | %>
-    <%= f.text_area :body, :rows => 6 %>
-    <br />
-    <%= submit_tag "Post this response" %>
+
+  <strong><%= pluralize(@discussion.responses.count, "Response") %> so far</strong>
+
+  <% for response in @discussion.responses %>
+    <%= link_to response.user, response.user %>
+    <%= response.created_at.to_s(:short) %>
+    <%= textilize(response.body) %>
+  
   <% end %>
-<% else %>
-  <%= link_to "Login to respond", login_url %>
-<% end %>
+
+  <h4>Post a response</h4>
+  <% if logged_in? %>
+    <% form_for [@discussion, Response.new] do | f | %>
+      <%= f.text_area :body, :rows => 6 %>
+    
+      <%= submit_tag "Post this response" %>
+    <% end %>
+  <% else %>
+    <%= link_to "Login to respond", login_url %>
+  <% end %>
 
 
-<br /><br />
-<%= link_to "Edit this discussion", edit_discussion_url(@discussion) %>
 
+  <%= link_to "Edit this discussion", edit_discussion_url(@discussion) %>
+</div>
