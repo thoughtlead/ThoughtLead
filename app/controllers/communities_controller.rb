@@ -1,5 +1,7 @@
 class CommunitiesController < ApplicationController
   
+  layout :community_layout
+  
   def index
     @communities = Community.find(:all)
   end
@@ -26,5 +28,10 @@ class CommunitiesController < ApplicationController
   def show
 
   end
+  
+  private
+    def community_layout
+      params[:action] == 'new' ? 'home' : 'application'
+    end
   
 end
