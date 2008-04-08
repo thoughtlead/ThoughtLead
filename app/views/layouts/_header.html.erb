@@ -5,9 +5,17 @@
 
 
   <ul class="navigation_top">
-    <li class="current"><%= link_to "Learn", courses_url %></li>
-    <li><%= link_to "Discuss", discussions_url %></li>
-    <li><%= link_to "Connect", users_url %></li>
+    <% current_tag(:li, @current_tab == :learn) do %>
+      <%= link_to "Learn", courses_url %>
+    <% end %>
+    
+    <% current_tag(:li, @current_tab == :discuss) do %>
+      <%= link_to "Discuss", discussions_url %>
+    <% end %>
+    
+    <% current_tag(:li, @current_tab == :connect) do %>
+      <%= link_to "Connect", users_url %>
+    <% end %>
   </ul>
 
   <div class="user_controls">

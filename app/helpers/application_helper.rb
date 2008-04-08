@@ -9,4 +9,11 @@ module ApplicationHelper
     end	
   end
   
+  
+  def current_tag(tag_name, class_is_current_if, &block)
+    puts class_is_current_if
+    content_tag(tag_name, { :class => (:current if class_is_current_if) }, &block)
+  end
+  
+  
 end
