@@ -2,7 +2,7 @@
 
 <div id="primary">
   <h1 class="grouped"><%= @course %></h1>
-  <span class="author meta_info">by <%= link_to @course.user, @course.user %></p>
+  <span class="author">by <%= link_to @course.user, @course.user %></p>
   <div class="course_description">
     <%= textilize(@course.description) %>
   </div>
@@ -37,9 +37,11 @@
       <%= submit_tag "Add" %>
     <% end %>
   </div>
-
-  <div class="">
-  <%= link_to "Edit this course", edit_course_url(@course) %>&nbsp;|&nbsp;<%= link_to "View All Courses", courses_url %>
 </div>
+<div id="secondary">
+  <%= link_to "Edit this Course &rarr;", edit_course_url(@course), :class => 'action' %>
+  <%= link_to "View All Courses", courses_url %>
+</div>
+
 
 
