@@ -6,19 +6,19 @@ Chapter: <%= @chapter %>
 <% form_for [@course, @chapter, @lesson] do | f | %>
   <%= f.error_messages %>
   
-  <%= f.label(:title) %>
+  <%= f.label(:'Lesson Title') %>
   
   <%= f.text_field :title %>
 
   
   
-  <%= f.label(:teaser) %>
+  <%= f.label(:'Lesson Teaser') %>
   
   <%= f.text_area(:teaser, :rows => 4) %>
   
   
   
-  <%= f.label(:body) %>
+  <%= f.label(:'Lesson Body') %>
   
   <%= f.text_area(:body, :rows => 18) %>
   

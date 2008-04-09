@@ -4,12 +4,12 @@
   <h1>Courses</h1>
   <div class="courses">
     <% for course in @courses %>
-      <div class="course_title">
+      <h2 class="course_title">
         <%= link_to course, course %>
-      </div>
-      <div class="course_description">
+      </h2>
+      <p class="course_description">
         <%= course.description %>
-      </div>
+      </p>
     <% end %>
   </div>
 
