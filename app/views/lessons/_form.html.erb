@@ -1,35 +1,29 @@
-Course: <%= @course %>
-
-Chapter: <%= @chapter %>
-
+<div>
+  <strong>Course:</strong> <%= @course %>
+  <strong>Chapter:</strong> <%= @chapter %>
+</div>
 
 <% form_for [@course, @chapter, @lesson] do | f | %>
   <%= f.error_messages %>
   
   <%= f.label(:'Lesson Title') %>
-  
   <%= f.text_field :title, :class => "text single"  %>
-
-  
   
   <%= f.label(:'Lesson Teaser') %>
-  
   <%= f.text_area(:teaser, :rows => 4, :class => "text medium" ) %>
   
-  
-  
   <%= f.label(:'Lesson Body') %>
-  
   <%= f.text_area(:body, :rows => 18, :class => "text large" ) %>
   
-  
-  <%= f.check_box :draft %>
-  <%= f.label 'Draft?' %>
-
-  
-  <%= f.check_box :premium %>
-  <%= f.label 'Only paid subscribers can access this lesson' %>
-  
+  <div class="draft plus_label">
+      <%= f.check_box :draft %>
+      <%= f.label :'Draft?' %>
+  </div>
+  <div class="premium plus_label">
+    <%= f.check_box :premium %>
+    <%= f.label 'Only paid subscribers can access this lesson' %>
+  </div>
+ 
   
   <%= submit_tag "Save" %> or <%= link_to "Cancel", @course %>
   
