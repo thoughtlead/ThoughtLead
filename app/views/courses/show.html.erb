@@ -32,7 +32,7 @@
     <% form_for [@course, Chapter.new] do | f | %>
       <%= f.error_messages %>
 
-      <%= f.text_field :name %>
+      <%= f.text_field :name, :class => "text single"  %>
   
       <%= submit_tag "Add" %>
     <% end %>

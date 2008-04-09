@@ -8,19 +8,19 @@ Chapter: <%= @chapter %>
   
   <%= f.label(:'Lesson Title') %>
   
-  <%= f.text_field :title %>
+  <%= f.text_field :title, :class => "text single"  %>
 
   
   
   <%= f.label(:'Lesson Teaser') %>
   
-  <%= f.text_area(:teaser, :rows => 4) %>
+  <%= f.text_area(:teaser, :rows => 4, :class => "text medium" ) %>
   
   
   
   <%= f.label(:'Lesson Body') %>
   
-  <%= f.text_area(:body, :rows => 18) %>
+  <%= f.text_area(:body, :rows => 18, :class => "text large" ) %>
   
   
   <%= f.check_box :draft %>

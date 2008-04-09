@@ -11,15 +11,6 @@
     <%= textilize(@discussion.body) %>
   </div>
   
-  <%= link_to "Edit this Discussion &rarr;", edit_discussion_url(@discussion), :class => 'action' %>
-
-
-
-  
-
-
-
-
   <h2><%= pluralize(@discussion.responses.count, "Response") %> so far</h2>
 
   <% for response in @discussion.responses %>
@@ -39,4 +30,7 @@
   <% else %>
     <%= link_to "Login to respond", login_url %>
   <% end %>
+</div>
+<div id="secondary">
+  <%= link_to "Edit this Discussion &rarr;", edit_discussion_url(@discussion), :class => 'action' %>
 </div>
