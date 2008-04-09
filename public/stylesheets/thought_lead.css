@@ -75,11 +75,15 @@ ul.navigation_top li.current a {width:99px; color:#000;}
 	body #page #content #primary .discussion div.discussion_info {margin:0; padding:0;}
 
 /* Forms */
+form {padding-right:14px;}
 input.text, label, textarea {display:block;}
-input, textarea {margin-bottom:20px;}
+input, textarea {margin-bottom:20px; max-width:100%}
 textarea, label, input.text {width:100%;}
 textarea, input.text {padding:5px;}
+.plus_label label {display:inline;}
+.plus_label input {margin:0;}
 form input.text {display:block; margin-bottom:20px;}
-form input.single {}
-form input.medium {height:75px;}
-form input.large {height:200px;}
+form input.single, form textarea.single {}
+form input.medium, form textarea.medium {height:75px;}
+form input.large, form textarea.large {height:200px;}
+body #page #content form textarea#lesson_body {padding:5px; width:100%; background:none;;}
