@@ -86,4 +86,9 @@ form input.text {display:block; margin-bottom:20px;}
 form input.single, form textarea.single {}
 form input.medium, form textarea.medium {height:75px;}
 form input.large, form textarea.large {height:200px;}
-body #page #content form textarea#lesson_body {padding:5px; width:100%; background:none;;}
+body #page #content form textarea#lesson_body {padding:5px; width:100%; background:none;}
+
+/* Page structures */
+body #content #small {position:relative; width:330px; padding:50px 100px 250px; margin:0 auto; background:#fff; overflow:hidden;}
+#small div {margin-bottom:20px;}
+.divider {display:block; padding: 10px 0; border-top:1px solid #D9E2ED;}
