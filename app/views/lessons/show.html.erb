@@ -10,8 +10,18 @@
           <div class="lesson_info">
             <p>by <strong><%= link_to @lesson.user, @lesson.user %></strong> | <%= @lesson.created_at.to_s(:month_year) %></p>
           </div>
-      
-          <%= textilize(@lesson.body) %>
+          
+          <div class="course_description">
+            <p><%= @lesson.teaser %></p>
+          </div>
+          
+          <% if !@lesson.premium || current_user.active %>
+            <%= textilize(@lesson.body) %>
+          <% else %>
+            <p>
+              <strong>Upgrade your account to see the entire lesson!</strong>
+            </p>
+          <% end %>
 
           <div class="lesson_navigation">
               <% if @lesson.higher_item %>   
