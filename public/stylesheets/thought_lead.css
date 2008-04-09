@@ -2,14 +2,21 @@ html,body,h1,h2,h3,h4,h5,h6,p,span,div,img,blockquote,ol,ul,li,dl,dt,dd,form,inp
 body {text-align:center; background:url(/images/body_bg.gif) left top repeat-x;}
 #page {position: relative; overflow:hidden; padding:0; word-spacing:-1px; line-height:20px; font-size:14px; font-family: arial, helvetica, sans-serif; margin:0 auto; width:933px; border-left:1px solid #2E3191; border-right:1px solid #2E3191; text-align:left; background:#fff;}
 a, a:active, a:visited, a:hover {text-decoration:none; color:#295FA6;}
+a:hover {text-decoration:underline;}
+a.action {padding:5px 7px; background:#E0E8F5;}
+a.action:hover {text-decoration:none; background:#295FA6; color:#fff;}
 ol, ul {list-style-position:inside; list-style-type:none;}
 img {border:none;}
 #header, #content, #footer {padding:0 15px;}
 input, label, textarea {display:block;}
 input, textarea {margin-bottom:20px;}
 
-h1 {margin-bottom:20px; color:#000; font: normal normal bolder 26px/40px arial, sans-serif; letter-spacing:-.03em; word-spacing:-.03em;}
-h1.group {margin-bottom:0;}
+h1 {margin-bottom:20px; color:#000; font: normal normal bolder 26px/30px arial, sans-serif; letter-spacing:-.03em; word-spacing:-.03em;}
+.grouped {margin-bottom:0;}
+h2 {margin-top: 20px; margin-bottom:5px; color:#000; font: normal normal bolder 18px/25px arial, sans-serif; letter-spacing:-.03em; word-spacing:-.03em;}
+h3 {margin-top: 10px; margin-bottom:10px; color:#000; font: normal normal bolder 15px/20px arial, sans-serif; letter-spacing:-.03em; word-spacing:-.03em;}
+
+.meta_info {font-style:italic; font-size:.9em; color:#888;}
 
 
 /* Header */
@@ -19,7 +26,7 @@ h1.group {margin-bottom:0;}
 #header a.logo img {float:left;}
 ul.navigation_top {display:block; position:relative; overflow:hidden; float:left; padding:0; margin:45px 0 15px 228px; list-style-position:inside; list-style-type:none;}
 ul.navigation_top li {display:block; float:left; padding:0; margin:0; border-left:1px solid #BABEF4; font:normal normal normal 14px/25px georgia, "times new roman", serif;}
-	ul.navigation_top li a {display:block; width:100px; padding:5px 0 5px 14px;}
+	ul.navigation_top li a, ul.navigation_top li a:hover, ul.navigation_top li a:visited  {display:block; width:100px; padding:5px 0 5px 14px; text-decoration:none;}
 ul.navigation_top li.current {border-left:2px solid #2E3191; background:url(/images/active_tab.gif) top left repeat-y; font:normal normal bold 14px/25px arial, verdana, sans-serif;}
 ul.navigation_top li.current a {width:99px; color:#000;}
 #header .user_controls {float:right; margin:45px 0 15px; font-size:10px; line-height:35px; color:gray;}
@@ -37,7 +44,7 @@ ul.navigation_top li.current a {width:99px; color:#000;}
 	#content #lesson_placeholder #primary {width:689px; padding:0;}
 #content #primary #lesson_title h1 {display:block; overflow:hidden; padding:40px 0 8px 15px; margin:0; background: url(/images/lesson_head.gif) no-repeat scroll left top; color:#fff; font: normal normal bolder 26px/40px arial, sans-serif; letter-spacing:-.03em; word-spacing:-.03em;}
 #content #primary p {margin-bottom:20px; font: normal normal normal 13px/20px arial, sans-serif; letter-spacing:.05em; word-spacing:-.07em; color:#19191A;}
-#content #primary #lesson_body {padding:15px 115px 15px 15px; background:url(/images/body_bg.gif) left top repeat-x;}
+#content #primary #lesson_body {padding:15px 115px 15px 15px; background:url(/images/body_bg.gif) left top repeat-x; overflow:hidden;}
 #content #primary .lesson_info p {margin-bottom:40px; color:#8A8A8C;}
 #content #primary div {margin-bottom:20px;}
 /*Remove*/ 
@@ -49,8 +56,8 @@ ul.navigation_top li.current a {width:99px; color:#000;}
 		#secondary .course .course_title span {display:block; height:30px; padding: 10px 15px 0; background:url(/images/side_course_title1.gif) left top no-repeat; font:normal normal normal .7em/30px	Arial, helvetica, verdana, sans-serif; text-transform:uppercase;}
 		#secondary .course .course_title p {padding:0 15px 15px; font: 1em/20px georgia, serif;}
 	#secondary .course .lessons {background:#fff; border-left:1px solid #8eaad0; border-right:1px solid #8eaad0;}
-	#secondary .course .lessons ol {padding: 10px 0; font: normal normal normal .93em/20px arial, helvetica, verdana, sans-serif;}
-	#secondary .course .lessons ol li {padding:5px 15px 5px 30px; background:url(/images/lesson_icon.gif) 15px 11px no-repeat;}
+	#secondary .course .lessons ol {padding: 10px 0; list-style: none inside; font: normal normal normal .93em/20px arial, helvetica, verdana, sans-serif;}
+	#secondary .course .lessons ol li {padding:5px 15px 5px 30px; list-style: none inside;  background:url(/images/lesson_icon.gif) 15px 11px no-repeat;}
 	#secondary .course .lessons ol li.current {color:#fff; background:#295FA6 url(/images/current_lesson_icon.gif) 15px 11px no-repeat;}
 		#secondary .course .lessons ol li.current a, #secondary .course .lessons ol li.current a:visited {color:#fff;}
 	#secondary .course .lessons ol li.current img {position:absolute; left:0px;}
@@ -59,3 +66,8 @@ ul.navigation_top li.current a {width:99px; color:#000;}
 .chapter {text-transform:uppercase; border-bottom:1px solid #D9E2ED; color:#888; font:normal normal normal 12px/20px arial, helvetica, sans-serif;}
 #content #primary div.course_description {margin-bottom:40px;}
 	#content #primary .course_description p {font:italic normal normal 15px/20px georgia, "times new roman", serif;}
+	
+/* Discussion Index */
+.discussion {margin-bottom:20px;}
+	body #page #content #primary .discussion div.discussion_info {margin:0; padding:0;}
+	

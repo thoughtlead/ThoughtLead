@@ -1,12 +1,11 @@
 <% @current_tab = :learn %>
+<% @page_class = :courses_index %>
 
 <div id="primary">
   <h1>Courses</h1>
   <div class="courses">
     <% for course in @courses %>
-      <h2 class="course_title">
-        <%= link_to course, course %>
-      </h2>
+      <h2 class="course_title grouped"><%= link_to course, course %></h2>
       <p class="course_description">
         <%= course.description %>
       </p>
@@ -14,7 +13,7 @@
   </div>
 
   <div>
-    <%= link_to "Add a course", new_course_url %>
+    <%= link_to "+ Add a course", new_course_url, :class => 'action' %>
   </div>
 </div>
 

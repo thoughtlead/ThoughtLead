@@ -1,8 +1,8 @@
 <% @current_tab = :learn %>
 
 <div id="primary">
-  <h1 class="group"><%= @course %></h1>
-  <p class="course_author"><small>by <%= link_to @course.user, @course.user %></small></p>
+  <h1 class="grouped"><%= @course %></h1>
+  <span class="author meta_info">by <%= link_to @course.user, @course.user %></p>
   <div class="course_description">
     <%= textilize(@course.description) %>
   </div>
@@ -21,7 +21,7 @@
     </ul>
   
   <div class="add_lesson">
-    <%= link_to "+ Add a Lesson", new_course_chapter_lesson_url(@course, chapter) %>
+    <%= link_to "+ Add a Lesson", new_course_chapter_lesson_url(@course, chapter), :class => 'action' %>
   </div>
   
   <% end %>

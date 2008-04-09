@@ -1,19 +1,26 @@
 <% @current_tab = :discuss %>
 
 <div id="primary">
-  <h1><%= @discussion %></h1>
+  <h1 class="grouped"><%= @discussion %></h1>
+  <div class="discussion_info meta_info">
+    <span class="author">by <%= link_to @discussion.user, @discussion.user %></span>
+    <span class="date_posted">&nbsp;|&nbsp;Posted on <%= @discussion.created_at.to_s(:super_short) %></span>
+    <span class="responses">&nbsp;|&nbsp;<%= pluralize(@discussion.responses.count, "Response") %></span>
+  </div>
+  <div class="discussion_body">
+    <%= textilize(@discussion.body) %>
+  </div>
+  
+  <%= link_to "Edit this discussion", edit_discussion_url(@discussion), :class => 'action' %>
 
-  by <%= link_to @discussion.user, @discussion.user %>
 
-  Posted <%= @discussion.created_at.to_s(:super_short) %> 
 
-  <%= pluralize(@discussion.responses.count, "Response") %>
-
-  <%= textilize(@discussion.body) %>
+  
 
 
 
-  <strong><%= pluralize(@discussion.responses.count, "Response") %> so far</strong>
+
+  <h2><%= pluralize(@discussion.responses.count, "Response") %> so far</h2>
 
   <% for response in @discussion.responses %>
     <%= link_to response.user, response.user %>
@@ -32,8 +39,4 @@
   <% else %>
     <%= link_to "Login to respond", login_url %>
   <% end %>
-
-
-
-  <%= link_to "Edit this discussion", edit_discussion_url(@discussion) %>
 </div>
