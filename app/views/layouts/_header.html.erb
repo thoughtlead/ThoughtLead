@@ -22,7 +22,7 @@
     <% if logged_in? %>
       <%= link_to("My Profile", user_url(current_user)) %> &nbsp;|&nbsp; 
   	
-    	<% if current_user.owner? %>
+    	<% if logged_in_as_owner? %>
     	  <%= link_to "Community Setup", edit_community_url %>
     	  &nbsp;|&nbsp;
     	<% end %>

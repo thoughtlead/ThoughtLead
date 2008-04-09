@@ -29,7 +29,7 @@
     
     <div id="secondary">
       <p>
-        <%= link_to "Edit this Lesson &rarr;", edit_course_chapter_lesson_url(@course, @chapter, @lesson), :class => "action"  if logged_in? && current_user.owner? %>
+        <%= link_to "Edit this Lesson &rarr;", edit_course_chapter_lesson_url(@course, @chapter, @lesson), :class => "action"  if logged_in_as_owner? %>
       </p>
       <div class="course">
           <div class="course_title">
