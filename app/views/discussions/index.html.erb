@@ -9,7 +9,7 @@
       <h2 class="grouped"><%= link_to discussion, discussion %></h2>
       <div class="discussion_info meta_info">
         <span class="author">by <%= link_to discussion.user, discussion.user %></span>
-        <span class="date_posted">&nbsp;|&nbsp;<%= discussion.created_at.to_s(:super_short) %></span>
+        <span class="date_posted">&nbsp;|&nbsp;<%= discussion.created_at.to_s(:month_day) %></span>
         <span class="responses">&nbsp;|&nbsp;<%= link_to pluralize(discussion.responses.count, "Response"), discussion %></span>
       </div>
     <%= discussion.body %>

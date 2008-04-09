@@ -8,7 +8,7 @@
         </div>
         <div id="lesson_body">
           <div class="lesson_info">
-            <p>by <strong><%= link_to @lesson.user, @lesson.user %></strong> | <%= @lesson.created_at %></p>
+            <p>by <strong><%= link_to @lesson.user, @lesson.user %></strong> | <%= @lesson.created_at.to_s(:month_year) %></p>
           </div>
       
           <%= textilize(@lesson.body) %>
