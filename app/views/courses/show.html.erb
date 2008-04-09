@@ -21,25 +21,27 @@
     </ul>
   
   <div class="add_lesson">
-    <%= link_to "+ Add a Lesson", new_course_chapter_lesson_url(@course, chapter), :class => 'action' %>
+    <%= link_to "+ Add a Lesson", new_course_chapter_lesson_url(@course, chapter), :class => 'action' if logged_in_as_owner? %>
   </div>
   
   <% end %>
-
-  <div class="add_chapter">
-    Add a New Chapter
-
-    <% form_for [@course, Chapter.new] do | f | %>
-      <%= f.error_messages %>
-
-      <%= f.text_field :name, :class => "text single"  %>
   
-      <%= submit_tag "Add" %>
-    <% end %>
-  </div>
+  <% if logged_in_as_owner? %>
+    <div class="add_chapter">
+      Add a New Chapter
+
+      <% form_for [@course, Chapter.new] do | f | %>
+        <%= f.error_messages %>
+
+        <%= f.text_field :name, :class => "text single"  %>
+  
+        <%= submit_tag "Add" %>
+      <% end %>
+    </div>
+  <% end %>
 </div>
 <div id="secondary">
-  <%= link_to "Edit this Course &rarr;", edit_course_url(@course), :class => 'action' %>
+  <%= link_to "Edit this Course &rarr;", edit_course_url(@course), :class => 'action' if logged_in_as_owner? %>
   <%= link_to "View All Courses", courses_url %>
 </div>
 

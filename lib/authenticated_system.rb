@@ -4,6 +4,10 @@ module AuthenticatedSystem
       current_user != :false
     end
     
+    def logged_in_as_owner?
+      logged_in? && current_user.owner?
+    end  
+    
     def current_user
       @current_user ||= (session[:user] && User.find_by_id(session[:user])) || :false
     end
@@ -58,7 +62,7 @@ module AuthenticatedSystem
     end
     
     def self.included(base)
-      base.send :helper_method, :current_user, :logged_in?
+      base.send :helper_method, :current_user, :logged_in?, :logged_in_as_owner?
     end
 
     def login_from_cookie

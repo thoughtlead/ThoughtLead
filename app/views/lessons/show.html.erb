@@ -8,7 +8,7 @@
         </div>
         <div id="lesson_body">
           <div class="lesson_info">
-            <p>by <strong><%= link_to @lesson.user, @lesson.user %></strong> | <%= @lesson.created_at %></p>
+            <p>by <strong><%= link_to @lesson.user, @lesson.user %></strong> | <%= @lesson.created_at.to_s(:month_year) %></p>
           </div>
       
           <%= textilize(@lesson.body) %>
@@ -29,12 +29,12 @@
     
     <div id="secondary">
       <p>
-        <%= link_to "Edit this Lesson &rarr;", edit_course_chapter_lesson_url(@course, @chapter, @lesson), :class => "action"  if logged_in? && current_user.owner? %>
+        <%= link_to "Edit this Lesson &rarr;", edit_course_chapter_lesson_url(@course, @chapter, @lesson), :class => "action"  if logged_in_as_owner? %>
       </p>
       <div class="course">
           <div class="course_title">
             <span><!-- <img src="" alt="" /> -->Course:</span>
-            <p><%= link_to @course %></p>
+            <p><%= link_to @course, @course %></p>
           </div>
           <div class="lessons">
             <ol>

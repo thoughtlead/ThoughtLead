@@ -1,4 +1,6 @@
 ActiveSupport::CoreExtensions::Time::Conversions::DATE_FORMATS.merge!(
-  :super_short => "%b %d",
-  :short => "%d %b %y"
+  :month_day => "%b %d",
+  :day_month_year => "%d %b %y",
+  :month_year => "%m.%Y"
+  
 )
