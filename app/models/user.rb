@@ -58,6 +58,11 @@ class User < ActiveRecord::Base
   def owner?
     community.owner == self
   end
+  
+  def active
+    return true if owner?
+    super
+  end
 
   private
     def encrypt_password

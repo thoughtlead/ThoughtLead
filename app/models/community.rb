@@ -14,7 +14,7 @@ class Community < ActiveRecord::Base
 
   private
     def owner_becomes_user
-      self.users << self.owner
+      self.users << self.owner unless self.users.include?(self.owner)
     end
   
     def validate_subdomain_restrictions

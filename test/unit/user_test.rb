@@ -66,6 +66,25 @@ class UserTest < ActiveSupport::TestCase
     users(:duff).forget_me
     assert_nil users(:duff).remember_token
   end
+  
+  def test_active
+    user = users(:duff)
+    community = Community.new(:name => "Whatever", :subdomain => "whatever")
+    user.community = community
+    
+    assert !user.active
+    
+    user.active = true
+    assert user.active
+    user.active = false
+    assert !user.active
+
+    community.owner = user
+    assert user.active, "Owners should be active"
+    
+    user.active = false
+    assert user.active, "Owners should be active"
+  end
 
   private
     def new_valid_user(options = {})

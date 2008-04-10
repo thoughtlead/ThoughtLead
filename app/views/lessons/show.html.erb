@@ -15,7 +15,7 @@
             <p><%= @lesson.teaser %></p>
           </div>
           
-          <% if !@lesson.premium || current_user.active %>
+          <% if !@lesson.premium || logged_in_as_active? %>
             <%= textilize(@lesson.body) %>
           <% else %>
             <p>
