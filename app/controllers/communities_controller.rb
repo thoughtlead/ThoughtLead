@@ -22,6 +22,8 @@ class CommunitiesController < ApplicationController
     @community.owner = @user
     @community.save
     Mailer.deliver_community_created(@community, community_dashboard_url(@community))
+    
+    flash[:notice] = "Successfully created your community."
     redirect_to community_dashboard_url(@community)
   end
   

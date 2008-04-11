@@ -1,6 +1,7 @@
 class UsersController < ApplicationController
   
   before_filter :login_required, :except => [ :signup, :changed ]
+  before_filter :community_is_active
   
   def signup
     @user = User.new(params[:user])

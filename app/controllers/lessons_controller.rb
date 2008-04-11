@@ -2,6 +2,7 @@ class LessonsController < ApplicationController
   
   before_filter :load_course_and_chapter
   before_filter :owner_login_required, :except => [ :show ]
+  before_filter :community_is_active
   
   def new
     @lesson = Lesson.new

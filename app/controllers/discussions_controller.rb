@@ -1,6 +1,7 @@
 class DiscussionsController < ApplicationController
   
   before_filter :login_required, :except => [ :index, :show]
+  before_filter :community_is_active
   
   
   def index
