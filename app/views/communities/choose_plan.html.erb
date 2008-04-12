@@ -1,0 +1,19 @@
+<div id="primary">
+  <h1>Choose Your Subscription Plan</h1>
+  
+  <% form_tag('/choose_plan') do  %>
+  
+    <div id="priceTable">
+      <p><%= radio_button_tag(:selected_plan, :monthly) %> $150 per month</p>
+      <p><%= radio_button_tag(:selected_plan, :quarterly) %> $400 per quarter (3 months)</p>
+
+      <p>
+        <%= submit_tag "Purchase selected plan" %>
+      </p>
+    </div>
+  <% end %>
+  
+  
+</div>
+
+

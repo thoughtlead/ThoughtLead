@@ -20,8 +20,9 @@ ActionController::Routing::Routes.draw do |map|
 
   map.root :controller => "home", :conditions => { :subdomain => '' }
   map.community_home '', :controller => "communities", :action => 'show', :conditions => { :subdomain => /./ }
-  map.community_no_longer_active 'no_longer_active', :controller => "communities", :action => 'no_longer_active', :conditions => { :subdomain => /./ }
+  map.community_need_to_activate 'need_to_activate', :controller => "communities", :action => 'need_to_activate', :conditions => { :subdomain => /./ }
 
   map.edit_community 'community/edit', :controller => 'admin', :action => 'edit_community', :conditions => { :subdomain => /./ }
-
+  map.community_changed_on_spreedly 'changed_on_spreedly', :controller => 'communities', :action => 'changed_on_spreedly', :method => :post, :conditions => { :subdomain => '' }
+  map.community_choose_plan 'choose_plan', :controller => 'communities', :action => 'choose_plan', :conditions => { :subdomain => '' }
 end

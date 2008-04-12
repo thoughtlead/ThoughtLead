@@ -13,7 +13,7 @@ class ApplicationController < ActionController::Base
   
   private
     def community_is_active
-      return redirect_to community_no_longer_active_url unless current_community.active
+      return redirect_to(community_need_to_activate_url) unless current_community.active
     end
     
 end
