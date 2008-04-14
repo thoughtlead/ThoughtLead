@@ -18,10 +18,10 @@ h3 {margin:10px 0 10px 0; padding:0; color:#000; font: normal normal bolder 15px
 
 
 /* Header */
-#header {position:relative; height:95px; overflow:hidden; background: url(/images/logo.gif) 15px bottom no-repeat;}
+#header {position:relative; height:170px; overflow:hidden; background: url(/images/logo_lg.gif) 15px 18px no-repeat;}
 #header .community_name h1 {display:none;}
 #header a.logo {display:block; float:left; width:100px;}
-#header a.logo img {float:left;}
+#header a.logo img {display:none; float:left;}
 ul.navigation_top {background:yellow; float;left; position:relative; padding:0; margin:45px 0 15px 328px; list-style:none outside;}
 ul.navigation_top li {display:block; float:left; padding:0; margin:0; border-left:1px solid #BABEF4; font:normal normal normal 14px/25px georgia, "times new roman", serif;}
 	ul.navigation_top li a, ul.navigation_top li a:hover, ul.navigation_top li a:visited  {display:block; width:100px; padding:5px 0 5px 14px; text-decoration:none;}
