@@ -1,10 +1,10 @@
 html,body,h1,h2,h3,h4,h5,h6,p,span,div,img,blockquote,ol,ul,li,dl,dt,dd,form,input,select,textarea,a {margin:0;padding:0;}
-body {text-align:center; background:url(/images/body_bg.gif) left top repeat-x;}
-#page {position: relative; overflow:hidden; padding:0; word-spacing:-1px; line-height:20px; font-size:14px; font-family: arial, helvetica, sans-serif; margin:0 auto; width:933px; border-left:1px solid #2E3191; border-right:1px solid #2E3191; text-align:left; background:#fff;}
+body {text-align:center;}
+#page {position: relative; overflow:hidden; padding:0; word-spacing:-1px; line-height:20px; font-size:14px; font-family: arial, helvetica, sans-serif; margin:0 auto; width:933px; text-align:left; background:#fff;}
 a, a:active, a:visited, a:hover {text-decoration:none; color:#295FA6;}
 a:hover {text-decoration:underline;}
-a.action {display:block; padding:5px 7px; margin-bottom:10px; background:#E0E8F5;}
-a.action:hover {text-decoration:none; background:#295FA6; color:#fff;}
+a.action {display:block; padding:5px 7px; margin-bottom:10px; background:#A1CFF5;}
+a.action:hover {text-decoration:none; background:#319fce; color:#fff;}
 ol, ul {list-style-position:outside; list-style-type:none;}
 img {border:none;}
 #header, #content, #footer {padding:0 15px;}
@@ -18,15 +18,15 @@ h3 {margin:10px 0 10px 0; padding:0; color:#000; font: normal normal bolder 15px
 
 
 /* Header */
-#header {position:relative; height:170px; overflow:hidden; background: url(/images/logo_lg.gif) 15px 18px no-repeat;}
+#header {position:relative; height:170px; overflow:hidden; padding-left:10px; background: url(/images/logo_lg.gif) 0px 18px no-repeat;}
 #header .community_name h1 {display:none;}
-#header a.logo {display:block; float:left; width:100px;}
-#header a.logo img {display:none; float:left;}
-ul.navigation_top {background:yellow; float;left; position:relative; padding:0; margin:45px 0 15px 328px; list-style:none outside;}
-ul.navigation_top li {display:block; float:left; padding:0; margin:0; border-left:1px solid #BABEF4; font:normal normal normal 14px/25px georgia, "times new roman", serif;}
-	ul.navigation_top li a, ul.navigation_top li a:hover, ul.navigation_top li a:visited  {display:block; width:100px; padding:5px 0 5px 14px; text-decoration:none;}
-ul.navigation_top li.current {border-left:2px solid #2E3191; background:url(/images/active_tab.gif) top left repeat-y; font:normal normal bold 14px/25px arial, verdana, sans-serif;}
-ul.navigation_top li.current a {width:99px; color:#000;}
+#header a.logo {display:block; width:300px; height:140px;}
+#header a.logo img {display:none;}
+ul.navigation_top {position:relative; padding:0; margin:0; list-style:none outside;}
+ul.navigation_top li {display:block; height:30px; float:left; padding:0; margin:0; font:normal normal normal 18px/25px arial, verdana, sans-serif;}
+	ul.navigation_top li a, ul.navigation_top li a:hover, ul.navigation_top li a:visited  {display:block; padding:5px 20px 5px 20px; text-decoration:none;}
+ul.navigation_top li.current {background: url(/images/tab1.gif) no-repeat top left;}
+ul.navigation_top li.current a {color:#fff; background:url(/images/tab2.gif) no-repeat top right; }
 #header div.user_controls {float:right; padding:0; margin:0 2px 0 0; font-size:10px; line-height:35px; color:gray;}
 	#header div.user_controls a {color:gray;}
 	#header div.user_controls a:hover {color:blue;}
@@ -35,10 +35,10 @@ ul.navigation_top li.current a {width:99px; color:#000;}
 
 /* Content */
 
-#content {position:relative; overflow:hidden; padding:0; border-top:5px solid #3E70B2; background:url(/images/secondary_bg.gif) top repeat-x;}
-
+#content {position:relative; overflow:hidden; padding:0; border-top:1px solid #319fce;}
+	#content .breadcrumbs {padding:10px;}
 #content #primary {position:relative; float:left; width:689px; padding:0; margin-right:-50px; background:#fff;}
-	#content #primary {width:544px; padding:40px 130px 300px 15px; overflow:hidden;}
+	#content #primary {width:559px; padding:20px 130px 300px 0; overflow:hidden;}
 	#content #lesson_placeholder #primary {width:689px; padding:0; background:#fff;}
 #content #primary #lesson_title h1 {position:relative; display:block; overflow:hidden; padding:40px 0 8px 15px; margin:0; background: #2057A7 url(/images/lesson_head.gif) no-repeat scroll left top; color:#fff; font: normal normal bolder 26px/40px arial, sans-serif; letter-spacing:-.03em; word-spacing:-.03em;}
 #content #primary p {margin-bottom:20px; font: normal normal normal 14px/25px georgia, serif; letter-spacing:.05em; word-spacing:-.07em; color:#19191A;}
@@ -48,7 +48,9 @@ ul.navigation_top li.current a {width:99px; color:#000;}
 /*Remove*/ 
 	body #content #lesson_placeholder #primary div {margin-bottom:0;}
 
-#content #secondary {position:relative; float:right; width:215px; min-height:545px; padding:15px 15px 15px 16px; background:url(/images/side_divider.jpg) left top no-repeat;}
+#content #secondary {position:relative; float:right; overflow:hidden; width:245px; margin-top:20px; background:#eaeaea url(/images/sidebar2.gif) no-repeat bottom left;}
+	#content #secondary div {padding:15px;}
+	#content #secondary div.first {background:#eaeaea url(/images/sidebar1.gif) no-repeat top left;}
 #content #secondary .course {padding:0 0 10px 0; margin-bottom:15px; background:url(/images/side_endcap.gif) left bottom no-repeat;}
 	#secondary .course .course_title {background:url(/images/side_course_title2.gif) left 30px repeat-x #2d292b; color:#fff;}
 		#secondary .course .course_title span {display:block; height:30px; padding: 10px 15px 0; background:url(/images/side_course_title1.gif) left top no-repeat; font:normal normal normal .7em/30px	Arial, helvetica, verdana, sans-serif; text-transform:uppercase;}

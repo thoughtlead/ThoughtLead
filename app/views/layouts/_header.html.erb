@@ -5,16 +5,19 @@
   </div>
 
   <ul class="navigation_top">
+    <% current_tag(:li, @current_tab == :home) do %>
+      <%= link_to "home", community_home_url %>
+    <% end %>  
     <% current_tag(:li, @current_tab == :learn) do %>
-      <%= link_to "Learn", courses_url %>
+      <%= link_to "learn", courses_url %>
     <% end %>
     
     <% current_tag(:li, @current_tab == :discuss) do %>
-      <%= link_to "Discuss", discussions_url %>
+      <%= link_to "discuss", discussions_url %>
     <% end %>
     
     <% current_tag(:li, @current_tab == :connect) do %>
-      <%= link_to "Connect", users_url %>
+      <%= link_to "connect", users_url %>
     <% end %>
   </ul>
 

@@ -38,26 +38,28 @@
     </div> <!-- Remove -->
     
     <div id="secondary">
-      <p>
-        <%= link_to "Edit this Lesson &rarr;", edit_course_chapter_lesson_url(@course, @chapter, @lesson), :class => "action"  if logged_in_as_owner? %>
-      </p>
-      <div class="course">
-          <div class="course_title">
-            <span><!-- <img src="" alt="" /> -->Course:</span>
-            <p><%= link_to @course, @course %></p>
-          </div>
-          <div class="lessons">
-            <ol>
-              <% for lesson in @lesson.chapter.lessons %>
-                <% if lesson == @lesson %>
-                  <li class="current"><%= lesson %></li>
-                <% else %>
-                  <li><%= link_to lesson, [lesson.chapter.course, lesson.chapter, lesson] %></li>
+      <div class="first">
+        <p>
+          <%= link_to "Edit this Lesson &rarr;", edit_course_chapter_lesson_url(@course, @chapter, @lesson), :class => "action"  if logged_in_as_owner? %>
+        </p>
+        <div class="course">
+            <div class="course_title">
+              <span><!-- <img src="" alt="" /> -->Course:</span>
+              <p><%= link_to @course, @course %></p>
+            </div>
+            <div class="lessons">
+              <ol>
+                <% for lesson in @lesson.chapter.lessons %>
+                  <% if lesson == @lesson %>
+                    <li class="current"><%= lesson %></li>
+                  <% else %>
+                    <li><%= link_to lesson, [lesson.chapter.course, lesson.chapter, lesson] %></li>
+                  <% end %>
                 <% end %>
-              <% end %>
-            </ol>
-          </div>
-      </div>
+              </ol>
+            </div>
+        </div>
+      <div class="first">
       <p>
         <%= link_to "View more courses >", courses_url %>
       </p>
