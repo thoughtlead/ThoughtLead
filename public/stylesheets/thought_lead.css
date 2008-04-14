@@ -48,10 +48,11 @@ ul.navigation_top li.current a {color:#fff; background:url(/images/tab2.gif) no-
 /*Remove*/ 
 	body #content #lesson_placeholder #primary div {margin-bottom:0;}
 
-#content #secondary {position:relative; float:right; overflow:hidden; width:245px; margin-top:20px; background:#eaeaea url(/images/sidebar2.gif) no-repeat bottom left;}
-	#content #secondary div {padding:15px;}
+#content #secondary {position:relative; float:right; padding-bottom:20px; overflow:hidden; width:245px; margin-top:20px; background:#eaeaea url(/images/sidebar2.gif) no-repeat bottom left;}
+	#content #secondary div {padding:20px 15px 0;}
 	#content #secondary div.first {background:#eaeaea url(/images/sidebar1.gif) no-repeat top left;}
 #content #secondary .course {padding:0 0 10px 0; margin-bottom:15px; background:url(/images/side_endcap.gif) left bottom no-repeat;}
+#content #secondary .course div {padding:0;}
 	#secondary .course .course_title {background:url(/images/side_course_title2.gif) left 30px repeat-x #2d292b; color:#fff;}
 		#secondary .course .course_title span {display:block; height:30px; padding: 10px 15px 0; background:url(/images/side_course_title1.gif) left top no-repeat; font:normal normal normal .7em/30px	Arial, helvetica, verdana, sans-serif; text-transform:uppercase;}
 		#secondary .course .course_title p {padding-bottom:15px; font: 1em/20px georgia, serif;}
