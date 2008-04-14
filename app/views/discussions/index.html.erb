@@ -12,7 +12,7 @@
         <span class="date_posted">&nbsp;|&nbsp;<%= discussion.created_at.to_s(:month_day) %></span>
         <span class="responses">&nbsp;|&nbsp;<%= link_to pluralize(discussion.responses.count, "Response"), discussion %></span>
       </div>
-    <%= discussion.body %>
+    <p><%= discussion.body %></p>
     </div>
     <% end %>
   </div>

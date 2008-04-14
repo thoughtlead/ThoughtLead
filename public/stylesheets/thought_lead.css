@@ -27,7 +27,7 @@ ul.navigation_top li {display:block; float:left; padding:0; margin:0; border-lef
 	ul.navigation_top li a, ul.navigation_top li a:hover, ul.navigation_top li a:visited  {display:block; width:100px; padding:5px 0 5px 14px; text-decoration:none;}
 ul.navigation_top li.current {border-left:2px solid #2E3191; background:url(/images/active_tab.gif) top left repeat-y; font:normal normal bold 14px/25px arial, verdana, sans-serif;}
 ul.navigation_top li.current a {width:99px; color:#000;}
-#header div.user_controls {float:right; font-size:10px; line-height:35px; color:gray;}
+#header div.user_controls {float:right; padding:0; margin:0 2px 0 0; font-size:10px; line-height:35px; color:gray;}
 	#header div.user_controls a {color:gray;}
 	#header div.user_controls a:hover {color:blue;}
 
@@ -41,7 +41,7 @@ ul.navigation_top li.current a {width:99px; color:#000;}
 	#content #primary {width:544px; padding:40px 130px 300px 15px; overflow:hidden;}
 	#content #lesson_placeholder #primary {width:689px; padding:0; background:#fff;}
 #content #primary #lesson_title h1 {position:relative; display:block; overflow:hidden; padding:40px 0 8px 15px; margin:0; background: #2057A7 url(/images/lesson_head.gif) no-repeat scroll left top; color:#fff; font: normal normal bolder 26px/40px arial, sans-serif; letter-spacing:-.03em; word-spacing:-.03em;}
-#content #primary p {margin-bottom:20px; font: normal normal normal 14px/25px arial, sans-serif; letter-spacing:.05em; word-spacing:-.07em; color:#19191A;}
+#content #primary p {margin-bottom:20px; font: normal normal normal 14px/25px georgia, serif; letter-spacing:.05em; word-spacing:-.07em; color:#19191A;}
 #content #primary #lesson_body {padding:15px 115px 15px 15px; background:url(/images/body_bg.gif) left top repeat-x; overflow:hidden;}
 #content #primary .lesson_info p {margin-bottom:40px; color:#8A8A8C;}
 #content #primary div {margin-bottom:20px;}
