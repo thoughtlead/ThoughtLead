@@ -12,11 +12,13 @@
         <span class="date_posted">&nbsp;|&nbsp;<%= discussion.created_at.to_s(:month_day) %></span>
         <span class="responses">&nbsp;|&nbsp;<%= link_to pluralize(discussion.responses.count, "Response"), discussion %></span>
       </div>
-    <%= discussion.body %>
+    <p><%= discussion.body %></p>
     </div>
     <% end %>
   </div>
 </div>
 <div id="secondary">
-  <%= link_to "+ Add a Discussion Topic", new_discussion_url, :class => 'action' %>
+  <div class="first">
+    <%= link_to "+ Add a Discussion Topic", new_discussion_url, :class => 'action' %>
+  </div>
 </div>

@@ -14,6 +14,12 @@
   	  <%= render(:partial => '/layouts/header') %>
       <div id="content">
   		  <%= render(:partial => '/layouts/flash_details') %>
+        
+        <!-- TODO Add breadcrumb functionality to content section  -->
+  		  <div class="breadcrumbs">  
+  		    <a href="#">Section</a> > <a href="#">SubSection</a> > <a href="#">Page</a>
+  		  </div>
+  		  
   		  <%= yield %>
   		  <%= render(:partial => '/layouts/footer') %>
   		</div>

@@ -18,14 +18,14 @@ class CommunityTest < ActiveSupport::TestCase
     community = Community.new(:name => "TheName", :subdomain => "thesubdomain")
     assert community.valid?
     
-    reserved = %w(www db app server test demo staging web www1 www3123 db3 db121231 app4 app323 server1 server2321 test3 test123 demo4 demo42 staging1 staging123 web2 web1233 ftp ftp3 mail mail3)
+    reserved = %w(www db app server test staging web www1 www3123 db3 db121231 app4 app323 server1 server2321 test3 test123 staging1 staging123 web2 web1233 ftp ftp3 mail mail3)
     reserved.each do | each |
       community.subdomain = each
       assert !community.valid?, "#{each} should be reserved"
       assert_equal(["Subdomain is reserved"], community.errors.full_messages, "#{each} message should be right")
     end
     
-    unreserved = %w(wwwfine db34a www3123a app1233ba server112ab test12a demo12a staging12a web12a with-dash mail3a news3a ftp3a)
+    unreserved = %w(wwwfine db34a www3123a app1233ba server112ab test12a staging12a web12a with-dash mail3a news3a ftp3a)
     unreserved.each do | each |
       community.subdomain = each
       assert community.valid?, "#{each} should be valid"
