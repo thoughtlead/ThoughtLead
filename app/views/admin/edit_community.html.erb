@@ -17,6 +17,10 @@
     </p>
 
     <p>
+      <%= link_to "Change your payment settings", "https://spreedly.com/thoughtlead-test/subscriber_accounts/#{current_community.spreedly_token}" %>
+    </p>
+    
+    <p>
   	  <%= submit_tag 'Save' %> or <%= link_to "Cancel", community_home_url %>
     </p>
   <% end %>
