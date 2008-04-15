@@ -1,9 +1,9 @@
 class CommunitiesController < ApplicationController
   
   layout :community_layout
+
   before_filter :community_is_active, :except => [ :need_to_activate, :new, :create, :changed_on_spreedly, :choose_plan ]
   skip_before_filter :verify_authenticity_token, :only => :changed_on_spreedly
-  before_filter :login_required, :only => :choose_plan
   
   def index
     @communities = Community.find(:all)
@@ -44,13 +44,13 @@ class CommunitiesController < ApplicationController
     return if request.get? 
     return if params[:selected_plan].blank?
 
-    redirect_to "https://spreedly.com/thoughtlead-test/subscribers/#{current_user.community.id}/subscribe/#{plan_id}/#{current_user.community}"  
+    redirect_to "https://spreedly.com/thoughtlead-test/subscribers/#{current_community.id}/subscribe/#{plan_id}/#{current_community}"  
   end
   
   
   private
     def community_layout
-      params[:action] == 'new' ? 'home' : 'application'
+      ['new', 'choose_plan'].include?(params[:action]) ? 'home' : 'application'
     end
   
     def plan_id

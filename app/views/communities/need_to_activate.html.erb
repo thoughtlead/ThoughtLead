@@ -8,7 +8,7 @@
   <% else %>
     <h1><%= current_community %> is no longer active</h1>
     <% if logged_in_as_owner? %>
-      <%= link_to "Upgrade your account to make it active", "https://spreedly.com/thoughtlead-test/subscriber_accounts/#{current_community.spreedly_token}" %>
+      <%= link_to "Upgrade your account to make it active", "https://spreedly.com/thoughtlead-test/subscribers/#{current_community.id}/subscribe/56" %>
     <% end %>
   <% end %>
 
