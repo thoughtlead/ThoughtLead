@@ -47,6 +47,9 @@ class CommunitiesController < ApplicationController
     redirect_to "https://spreedly.com/thoughtlead-test/subscribers/#{current_community.id}/subscribe/#{plan_id}/#{current_community}"  
   end
   
+  def need_to_activate
+    redirect_to community_home_url if current_community.active?
+  end
   
   private
     def community_layout
