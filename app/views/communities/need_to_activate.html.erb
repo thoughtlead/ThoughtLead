@@ -3,12 +3,12 @@
 
   <% if current_community.eligible_for_free_trial %>
     <h1>Your community is ready to go.</h1>
-    <%= link_to "Start your free trial to ThoughtLead!", "https://spreedly.com/thoughtlead-test/subscribers/#{current_community.id}/subscribe/55" %>
+    <%= link_to "Start your free trial to ThoughtLead!", "https://spreedly.com/thoughtlead-test/subscribers/#{current_community.id}/subscribe/55/#{current_community.subdomain}" %>
     
   <% else %>
     <h1><%= current_community %> is no longer active</h1>
     <% if logged_in_as_owner? %>
-      <%= link_to "Upgrade your account to make it active", "https://spreedly.com/thoughtlead-test/subscribers/#{current_community.id}/subscribe/56" %>
+      <%= link_to "Upgrade your account to make it active", "https://spreedly.com/thoughtlead-test/subscribers/#{current_community.id}/subscribe/56/#{current_community.subdomain}" %>
     <% end %>
   <% end %>
 
