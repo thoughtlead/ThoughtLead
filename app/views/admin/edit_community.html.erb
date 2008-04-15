@@ -12,6 +12,11 @@
     </p>
 
     <p>
+      <%= f.label :subdomain %>
+      <%= f.text_field :subdomain, :class => "text single"  %>
+    </p>
+
+    <p>
   	  <%= submit_tag 'Save' %> or <%= link_to "Cancel", community_home_url %>
     </p>
   <% end %>

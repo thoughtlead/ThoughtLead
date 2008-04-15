@@ -7,7 +7,7 @@ class AdminController < ApplicationController
     return unless @community.update_attributes(params[:community])
     
     flash[:notice] = "Saved community settings"
-    redirect_to community_home_url
+    redirect_to community_dashboard_url
   end
   
 end
