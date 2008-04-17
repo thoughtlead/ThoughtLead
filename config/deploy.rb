@@ -13,6 +13,7 @@ set :rails_env, "production"
 default_run_options[:pty] = true
 set :repository,  "git@github.com:duff/thoughtlead.git"
 set :scm, "git"
+set :deploy_via, :remote_cache
 set :keep_releases, 10
 
 role :web, domain
