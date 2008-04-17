@@ -8,28 +8,28 @@ class CadillacEdgeDeploy
     rails_path ||= File.join(shared_path, 'rails')
 
     @rails_revision = rails_revision
-    @checkout_path = File.join(rails_path, 'trunk')
+    @clone_path = File.join(rails_path, 'master')
     @export_path = "#{rails_path}/rev_#{@rails_revision}"
 
-    checkout_trunk
-    export_revision
+    clone_rails
+    clone_revision
     link_export
   end
   
   
   private
-    def checkout_trunk
-      unless File.exists?(@checkout_path)
-        puts 'setting up rails trunk'    
-        system "svn co http://dev.rubyonrails.org/svn/rails/trunk #{@checkout_path} --quiet"
+    def clone_rails
+      unless File.exists?(@clone_path)
+        puts 'cloning rails master'    
+        system "git clone git://github.com/rails/rails.git #{@clone_path}"
       end
     end
     
-    def export_revision
+    def clone_revision
       unless File.exists?(@export_path)
         puts "setting up rails rev #{@rails_revision}"
-        system "svn up #{@checkout_path} -r #{@rails_revision} --quiet"
-        system "svn export #{@checkout_path} #{@export_path}"
+        system "cd #{@clone_path}; git pull"
+        system "git checkout #{@clone_path} #{@export_path}"
       end
     end
 
