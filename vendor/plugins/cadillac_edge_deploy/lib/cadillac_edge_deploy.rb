@@ -29,7 +29,7 @@ class CadillacEdgeDeploy
       unless File.exists?(@export_path)
         puts "setting up rails rev #{@rails_revision}"
         system "cd #{@clone_path}; git pull"
-        system "git checkout #{@clone_path} #{@export_path}"
+        system "cd #{@clone_path}; git checkout #{@clone_path} #{@export_path}"
       end
     end
 
