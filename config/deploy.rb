@@ -19,7 +19,7 @@ role :web, domain
 role :app, domain
 role :db,  domain, :primary => true
 
-set :rails_revision, '745359a49452da34978724144eaa318b8a363e08'
+set :rails_revision, '9e1d506a8cfedef2fdd605e4cbf4bf53651ad214'
 
 before "deploy:update_code", "deploy:pending:default" 
 after  "deploy:update_code", "deploy:cleanup"
