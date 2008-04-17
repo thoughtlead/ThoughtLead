@@ -4,12 +4,13 @@ class CadillacEdgeDeploy
   include FileUtils
   
   def deploy(rails_revision, release_path) 
-    shared_path  = File.join(release_path, '../../shared')
-    rails_path ||= File.join(shared_path, 'rails')
+    shared_path  = File.expand_path(File.join(release_path, '../../shared'))
+    @rails_path = File.join(shared_path, 'rails')
 
     @rails_revision = rails_revision
-    @clone_path = File.join(rails_path, 'master')
-    @export_path = "#{rails_path}/rev_#{@rails_revision}"
+    @clone_path = File.join(@rails_path, 'master')
+    @export_name = "rev_#{@rails_revision}"
+    @export_path = File.join(@rails_path, @export_name)
 
     clone_rails
     clone_revision
@@ -29,7 +30,8 @@ class CadillacEdgeDeploy
       unless File.exists?(@export_path)
         puts "setting up rails rev #{@rails_revision}"
         system "cd #{@clone_path}; git pull"
-        system "cd #{@clone_path}; git checkout #{@clone_path} #{@export_path}"
+        system "cd #{@rails_path}; git clone rails #{@export_name}"
+        system "cd #{@export_path}; git checkout #{@rails_revision}"
       end
     end
 
