@@ -41,7 +41,7 @@ class CadillacEdgeDeploy
       rm_rf   symlink_path
 
       ln_s File.expand_path(@export_path), symlink_path
-      touch "vendor/rails_#{@rails_revision}"
+      touch "vendor/rails_revision_#{@rails_revision}"
     end
     
 end
