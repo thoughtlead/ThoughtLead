@@ -6,6 +6,7 @@ class LessonsController < ApplicationController
   
   uses_tiny_mce(tiny_mce_options)
    
+   
   def new
     @lesson = Lesson.new
   end
