@@ -1,7 +1,7 @@
 <div id="small">
   <h1><%= @page_title = "Login" %></h1>
 
-  <% form_tag sessions_path do | f | %>
+  <% form_tag sessions_path do  %>
     <%= label :user, :login %>
     <%= text_field_tag 'login', params[:login], :class => 'text single' %>
 

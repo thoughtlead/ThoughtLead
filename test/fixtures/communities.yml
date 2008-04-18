@@ -1,0 +1,11 @@
+c1:
+  subdomain: c1
+  name: C1
+  owner: duff
+  active: true
+
+c2:
+  subdomain: c2
+  name: C2
+  owner: daniel
+  active: true
