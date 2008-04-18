@@ -4,7 +4,7 @@
     <div id="primary">
       <div id="lesson">
         <div id="lesson_title">
-            <h1><%= @lesson %></h1>
+            <h1><%=h @lesson %></h1>
         </div>
         <div id="lesson_body">
           <div class="lesson_info">
@@ -12,7 +12,7 @@
           </div>
           
           <div class="course_description">
-            <p><%= auto_link(h(@lesson.teaser)) %></p>
+            <p><%= teaser_format(@lesson.teaser) %></p>
           </div>
           
           <% if !@lesson.premium || logged_in_as_active? %>
@@ -51,9 +51,9 @@
               <ol>
                 <% for lesson in @lesson.chapter.lessons %>
                   <% if lesson == @lesson %>
-                    <li class="current"><%= lesson %></li>
+                    <li class="current"><%=h lesson %></li>
                   <% else %>
-                    <li><%= link_to lesson, [lesson.chapter.course, lesson.chapter, lesson] %></li>
+                    <li><%= link_to h(lesson), [lesson.chapter.course, lesson.chapter, lesson] %></li>
                   <% end %>
                 <% end %>
               </ol>

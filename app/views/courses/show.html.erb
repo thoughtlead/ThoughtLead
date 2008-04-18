@@ -1,21 +1,21 @@
 <% @current_tab = :learn %>
 
 <div id="primary">
-  <h1 class="grouped"><%= @course %></h1>
+  <h1 class="grouped"><%=h @course %></h1>
   <span class="author">by <%= link_to @course.user, @course.user %></p>
   <div class="course_description">
-    <%= textilize(@course.description) %>
+    <p><%=h @course.description %></p>
   </div>
   <% for chapter in @course.chapters %>
     <div class="chapter">
-      <%= chapter %>
+      <%=h chapter %>
     </div>
     <ul>
       <% for lesson in chapter.lessons  %>
         <li>
-          <h2><%= link_to lesson, [@course, chapter, lesson] %></h2>
+          <h2><%= link_to h(lesson), [@course, chapter, lesson] %></h2>
         
-          <p><%= lesson.teaser %></p>
+          <p><%= teaser_format(lesson.teaser) %></p>
         </li>
       <% end %>
     </ul>
