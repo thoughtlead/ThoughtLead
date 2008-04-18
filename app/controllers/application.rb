@@ -7,7 +7,8 @@ class ApplicationController < ActionController::Base
   include CommunityLocation
 
   before_filter :login_from_cookie
-  protect_from_forgery  
+  protect_from_forgery
+    
   
   private
     def community_is_active
