@@ -5,7 +5,7 @@ class LessonsController < ApplicationController
   before_filter :community_is_active
   
   uses_tiny_mce(:options => 
-{    :mode => "textareas",
+{    :mode => "specific_textareas",
   	:theme => "advanced",
   	:theme_advanced_buttons1 => "bold,italic,|,bullist,numlist,outdent,indent,|,undo,redo",
   	:theme_advanced_buttons2 => "",
