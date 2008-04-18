@@ -42,16 +42,16 @@ class UserTest < ActiveSupport::TestCase
 
   def test_should_reset_password
     users(:duff).update_attributes(:password => 'new password', :password_confirmation => 'new password')
-    assert_equal users(:duff), User.authenticate('duff', 'new password')
+    assert_equal users(:duff), communities(:c1).authenticate('duff', 'new password')
   end
 
   def test_should_not_rehash_password
     users(:duff).update_attributes(:login => 'duff2')
-    assert_equal users(:duff), User.authenticate('duff2', 'test')
+    assert_equal users(:duff), communities(:c1).authenticate('duff2', 'test')
   end
 
   def test_should_authenticate_user
-    assert_equal users(:duff), User.authenticate('duff', 'test')
+    assert_equal users(:duff), communities(:c1).authenticate('duff', 'test')
   end
 
   def test_should_set_remember_token

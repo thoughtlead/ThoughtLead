@@ -13,6 +13,11 @@ class Community < ActiveRecord::Base
 
   alias_attribute :to_s, :name
 
+  def authenticate(login, password)
+    u = users.find_by_login(login) 
+    u && u.authenticated?(password) ? u : nil
+  end
+  
   def refresh_from_spreedly
     subscriber = SpreedlyCommunity::Subscriber.find(self.id)
     self.active = subscriber.active
