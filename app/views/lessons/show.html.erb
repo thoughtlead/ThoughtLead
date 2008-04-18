@@ -11,12 +11,16 @@
             <p>by <strong><%= link_to @lesson.user, @lesson.user %></strong> | <%= @lesson.created_at.to_s(:month_year) %></p>
           </div>
           
+          stripped = h(body)
+          linked = auto_link(stripped) { | each | each[/\.(jpg|gif|png)$/] ? %Q{<img src="#{each}" width="160px" class="embeddedImage" />} : each }
+          simple_format(linked)
+          
           <div class="course_description">
-            <p><%= @lesson.teaser %></p>
+            <p><%= auto_link(h(@lesson.teaser)) %></p>
           </div>
           
           <% if !@lesson.premium || logged_in_as_active? %>
-            <%= textilize(@lesson.body) %>
+            <%= auto_link(@lesson.body) %>
           <% else %>
             <p>
               <strong>Upgrade your account to see the entire lesson!</strong>
