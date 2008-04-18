@@ -17,7 +17,8 @@ class ApplicationController < ActionController::Base
     end
     
     def self.tiny_mce_options
-      {:options => 
+      {
+        :options => 
         {   
           :mode => "specific_textareas",
         	:theme => "advanced",
