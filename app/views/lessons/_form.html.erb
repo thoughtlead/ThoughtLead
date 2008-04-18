@@ -10,11 +10,13 @@
   <%= f.text_field :title, :class => "text single"  %>
   
   <%= f.label(:'Lesson Teaser') %>
-  <%= f.text_area(:teaser, :rows => 4, :class => "text medium" ) %>
-  
+  <%= f.text_area(:teaser, :rows => 14, :cols => 70 ) %>
+
+  <br /><br />
   <%= f.label(:'Lesson Body') %>
-  <%= f.text_area(:body, :rows => 18, :class => "text large" ) %>
+  <%= f.text_area(:body, :rows => 25, :cols => 70) %>
   
+  <br /><br />
   <div class="draft plus_label">
       <%= f.check_box :draft %>
       <%= f.label :'Draft?' %>
