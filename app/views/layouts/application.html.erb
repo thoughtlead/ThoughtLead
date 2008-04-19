@@ -10,19 +10,17 @@
   
   
 	<%= body_tag %>
-    <div id="page" class="lesson"> <!-- TODO change based on page type/name -->
+    <div id="page" class="lesson"> <!-- TODO @Duff, change based on page type/name -->
   	  <%= render(:partial => '/layouts/header') %>
-      <div id="content">
-  		  <%= render(:partial => '/layouts/flash_details') %>
-        
-        <!-- TODO Add breadcrumb functionality to content section  -->
-  		  <div class="breadcrumbs">  
-  		    <a href="#">Section</a> > <a href="#">SubSection</a> > <a href="#">Page</a>
-  		  </div>
-  		  
-  		  <%= yield %>
-  		  <%= render(:partial => '/layouts/footer') %>
+      <div class="outer_wrapper content">
+        <div id="content">
+    		  <%= render(:partial => '/layouts/flash_details') %>
+    		  <%= yield %>
+    		</div>
   		</div>
+  		
+  		<%= render(:partial => '/layouts/footer') %>
+  		
   	</div>
 	</body>
 </html>

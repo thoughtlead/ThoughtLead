@@ -1,0 +1,4 @@
+html,body,h1,h2,h3,h4,h5,h6,p,span,div,img,blockquote,ol,ul,li,dl,dt,dd,form,input,select,textarea,a {margin:0;padding:0;}
+ul, ol {list-style: none inside;}
+
+body {font: normal normal normal 15px/20px Arial, sans-serif;}

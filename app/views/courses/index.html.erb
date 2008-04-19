@@ -1,8 +1,7 @@
-<% @current_tab = :learn %>
+<% @current_tab = :Courses %>
 <% @page_class = :courses_index %>
 
 <div id="primary">
-  <h1>Courses</h1>
   <div class="courses">
     <% for course in @courses %>
       <h2 class="course_title grouped"><%= link_to course, course %></h2>

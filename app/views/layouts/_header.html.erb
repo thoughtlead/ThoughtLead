@@ -1,42 +1,45 @@
-<div id="header">
+<div class="outer_wrapper head">
+  <div id="header">
+    <div class="community_title">
+      <a href="<%= community_home_url %>" class="logo"><img src="/images/logo.gif" alt="Verticality" /></a><h1><a href="<%= community_home_url %>"><%= current_community %></a></h1>
+    </div>
 
-  <div class="community_name">
-    <a href="<%= community_home_url %>" class="logo"><img src="/images/logo_lg.gif" alt="Verticality" /></a><h1><a href="<%= community_home_url %>"><%= current_community %></a></h1>
+    <div class="user_controls">
+      <% if logged_in? %>
+        <a href="<%= user_url(current_user) %>" title="Your Profile">Welcome <%= current_user %></a>&nbsp;|&nbsp;   	
+    	
+      	<% if logged_in_as_owner? %>
+      	  <%= link_to "Community Setup", edit_community_url %>
+      	  &nbsp;|&nbsp;
+      	<% end %>
+    	
+        <%= link_to('Logout', logout_url) %>
+      
+        <% else %>
+      	  <%= link_to('Login', login_url) %> | 
+      	  <%= link_to "Signup", signup_url %>
+      <% end %>
+    </div>
+
+    <ul class="navigation_top">
+      <% current_tag(:li, @current_tab == :Courses) do %>
+        <%= link_to "Courses", courses_url %>
+      <% end %>
+
+      <% current_tag(:li, @current_tab == :Discussions) do %>
+        <%= link_to "Discussions", discussions_url %>
+      <% end %>
+
+      <% current_tag(:li, @current_tab == :People) do %>
+        <%= link_to "People", users_url %>
+      <% end %>
+    </ul>
+
   </div>
+</div>
 
-  <ul class="navigation_top">
-    <% current_tag(:li, @current_tab == :home) do %>
-      <%= link_to "home", community_home_url %>
-    <% end %>  
-    <% current_tag(:li, @current_tab == :learn) do %>
-      <%= link_to "learn", courses_url %>
-    <% end %>
-    
-    <% current_tag(:li, @current_tab == :discuss) do %>
-      <%= link_to "discuss", discussions_url %>
-    <% end %>
-    
-    <% current_tag(:li, @current_tab == :connect) do %>
-      <%= link_to "connect", users_url %>
-    <% end %>
-  </ul>
-
-  <div class="user_controls">
-    <% if logged_in? %>
-      <%= link_to("My Profile", user_url(current_user)) %> &nbsp;|&nbsp; 
-  	
-    	<% if logged_in_as_owner? %>
-    	  <%= link_to "Community Setup", edit_community_url %>
-    	  &nbsp;|&nbsp;
-    	<% end %>
-
-    	<%= link_to('Logout', logout_url) %>
-  	
-    
-    <% else %>
-    	<%= link_to('Login', login_url) %> | 
-    	<%= link_to "Signup", signup_url %>
-    <% end %>
+<div class="outer_wrapper section">
+  <div id="section">
+    <h2><a href="#" title="<%= @current_tab %>"><%= @current_tab %></a></h2>
   </div>
-</div>                  
-
+</div>
