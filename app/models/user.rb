@@ -14,11 +14,6 @@ class User < ActiveRecord::Base
   belongs_to :community
   has_many :courses
 
-  def self.authenticate(login, password)
-    u = find_by_login(login) 
-    u && u.authenticated?(password) ? u : nil
-  end
-  
   def self.encrypt(password, salt)
     Digest::SHA1.hexdigest("--#{salt}--#{password}--")
   end

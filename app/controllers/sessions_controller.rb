@@ -4,7 +4,7 @@ class SessionsController < ApplicationController
   end
 
   def create
-    self.current_user = User.authenticate(params[:login], params[:password])
+    self.current_user = current_community.authenticate(params[:login], params[:password])
     if logged_in?
       handle_remember_me
       redirect_back_or_default(community_home_url)

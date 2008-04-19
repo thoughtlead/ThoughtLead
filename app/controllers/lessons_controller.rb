@@ -4,6 +4,9 @@ class LessonsController < ApplicationController
   before_filter :owner_login_required, :except => [ :show ]
   before_filter :community_is_active
   
+  uses_tiny_mce(tiny_mce_options)
+   
+   
   def new
     @lesson = Lesson.new
   end
@@ -40,5 +43,6 @@ class LessonsController < ApplicationController
       @course = current_community.courses.find(params[:course_id])
       @chapter = @course.chapters.find(params[:chapter_id])
     end
+    
   
 end

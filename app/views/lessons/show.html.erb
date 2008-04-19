@@ -12,11 +12,11 @@
           </div>
           
           <div class="course_description">
-            <p><%= @lesson.teaser %></p>
+            <p><%= teaser_format(@lesson.teaser) %></p>
           </div>
           
           <% if !@lesson.premium || logged_in_as_active? %>
-            <%= textilize(@lesson.body) %>
+            <%= auto_link(@lesson.body) %>
           <% else %>
             <p>
               <strong>Upgrade your account to see the entire lesson!</strong>
@@ -55,7 +55,7 @@
                   <li class="current"><%= lesson %></li>
                 <% else %>
                   <li><%= link_to lesson, [lesson.chapter.course, lesson.chapter, lesson] %></li>
-                <% end %>
+
               <% end %>
             </ol>
           </div>
@@ -64,12 +64,13 @@
       <p>
         <%= link_to "View more courses >", courses_url %>
       </p>
+      
       <p>
         <%= "This lesson is not published" if @lesson.draft %>
       </p>
 
-        <%= "This lesson is premium content" if @lesson.premium %>
-  </div>
+      <%= "This lesson is premium content" if @lesson.premium %>
+    </div>
     
 
 

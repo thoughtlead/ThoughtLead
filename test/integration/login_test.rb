@@ -20,5 +20,19 @@ class LoginTest < ActionController::IntegrationTest
     assert_logged_in(:duff)    
     alex_session.assert_logged_in(:alex)
   end
+  
+  def test_unable_to_login_to_another_site
+    new_session('c1') do
+      assert(login(:duff))
+      assert(login(:alex))
+      assert(!login(:daniel))
+    end
+    
+    new_session('c2') do
+      assert(!login(:duff))
+      assert(!login(:alex))
+      assert(login(:daniel))
+    end
+  end
     
 end

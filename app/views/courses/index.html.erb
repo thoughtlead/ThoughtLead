@@ -4,9 +4,9 @@
 <div id="primary">
   <div class="courses">
     <% for course in @courses %>
-      <h2 class="course_title grouped"><%= link_to course, course %></h2>
+      <h2 class="course_title grouped"><%= link_to h(course), course %></h2>
       <p class="course_description">
-        <%= course.description %>
+        <%=h course.description %>
       </p>
     <% end %>
   </div>
