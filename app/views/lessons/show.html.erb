@@ -4,7 +4,7 @@
     <div id="primary">
       <div id="lesson">
         <div id="lesson_title">
-            <h1><%= @lesson %></h1>
+            <h1 class="grouped"><%= @lesson %></h1>
         </div>
         <div id="lesson_body">
           <div class="lesson_info">
@@ -38,28 +38,29 @@
     </div> <!-- Remove -->
     
     <div id="secondary">
-      <div class="first">
-        <p>
-          <%= link_to "Edit this Lesson &rarr;", edit_course_chapter_lesson_url(@course, @chapter, @lesson), :class => "action"  if logged_in_as_owner? %>
-        </p>
-        <div class="course">
-            <div class="course_title">
-              <span><!-- <img src="" alt="" /> -->Course:</span>
-              <p><%= link_to @course, @course %></p>
-            </div>
-            <div class="lessons">
-              <ol>
-                <% for lesson in @lesson.chapter.lessons %>
-                  <% if lesson == @lesson %>
-                    <li class="current"><%= lesson %></li>
-                  <% else %>
-                    <li><%= link_to lesson, [lesson.chapter.course, lesson.chapter, lesson] %></li>
-                  <% end %>
+      <p>
+        <%= link_to "Edit this Lesson &rarr;", edit_course_chapter_lesson_url(@course, @chapter, @lesson), :class => "action"  if logged_in_as_owner? %>
+      </p>
+
+      <div class="course">
+          <div class="course_title">
+            <span>Course</span>
+            
+            <p><%= link_to @course, @course %></p>
+          </div>
+          <div class="lessons">
+            <ol>
+              <% for lesson in @lesson.chapter.lessons %>
+                <% if lesson == @lesson %>
+                  <li class="current"><%= lesson %></li>
+                <% else %>
+                  <li><%= link_to lesson, [lesson.chapter.course, lesson.chapter, lesson] %></li>
                 <% end %>
-              </ol>
-            </div>
-        </div>
-      <div class="first">
+              <% end %>
+            </ol>
+          </div>
+      </div>
+
       <p>
         <%= link_to "View more courses >", courses_url %>
       </p>

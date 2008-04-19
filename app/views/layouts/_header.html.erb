@@ -6,11 +6,11 @@
 
     <div class="user_controls">
       <% if logged_in? %>
-        <a href="<%= user_url(current_user) %>" title="Your Profile">Welcome <%= current_user %></a>&nbsp;|&nbsp;   	
+        Welcome, <i><%= current_user %></i>&nbsp;|
+        <a href="<%= user_url(current_user) %>" title="Your Profile">Your Profile</a>&nbsp;|
     	
       	<% if logged_in_as_owner? %>
-      	  <%= link_to "Community Setup", edit_community_url %>
-      	  &nbsp;|&nbsp;
+      	  <%= link_to "Community Setup", edit_community_url %>&nbsp;|
       	<% end %>
     	
         <%= link_to('Logout', logout_url) %>
@@ -40,6 +40,6 @@
 
 <div class="outer_wrapper section">
   <div id="section">
-    <h2><a href="#" title="<%= @current_tab %>"><%= @current_tab %></a></h2>
+    <h2><%= @current_tab %></h2>
   </div>
 </div>
