@@ -4,11 +4,11 @@
     <div id="primary">
       <div id="lesson">
         <div id="lesson_title">
-            <h1 class="grouped"><%= @lesson %></h1>
+            <h1 class="grouped"><%=h @lesson %></h1>
         </div>
         <div id="lesson_body">
           <div class="lesson_info">
-            <p>by <strong><%= link_to @lesson.user, @lesson.user %></strong> | <%= @lesson.created_at.to_s(:month_year) %></p>
+            <p>by <strong><%= link_to h(@lesson.user), @lesson.user %></strong> | <%= @lesson.created_at.to_s(:month_year) %></p>
           </div>
           
           <div class="course_description">
@@ -25,10 +25,10 @@
 
           <div class="lesson_navigation">
               <% if @lesson.higher_item %>   
-                <p><small>PREVIOUS LESSON</small> &mdash; <%= link_to @lesson.higher_item, [@lesson.chapter.course, @lesson.chapter, @lesson.higher_item] %> </p>
+                <p><small>PREVIOUS LESSON</small> &mdash; <%= link_to h(@lesson.higher_item), [@lesson.chapter.course, @lesson.chapter, @lesson.higher_item] %> </p>
               <% end %>
               <% if @lesson.lower_item %>   
-                <p><small>NEXT LESSON</small> &mdash; <%= link_to @lesson.lower_item, [@lesson.chapter.course, @lesson.chapter, @lesson.lower_item] %> </p>
+                <p><small>NEXT LESSON</small> &mdash; <%= link_to h(@lesson.lower_item), [@lesson.chapter.course, @lesson.chapter, @lesson.lower_item] %> </p>
               <% end %>
               <p><%= link_to "Return to Course Overview >", @lesson.chapter.course %></p>
           </div>
@@ -46,15 +46,15 @@
           <div class="course_title">
             <span>Course</span>
             
-            <p><%= link_to @course, @course %></p>
+            <p><%= link_to h(@course), @course %></p>
           </div>
           <div class="lessons">
             <ol>
               <% for lesson in @lesson.chapter.lessons %>
                 <% if lesson == @lesson %>
-                  <li class="current"><%= lesson %></li>
+                  <li class="current"><%=h lesson %></li>
                 <% else %>
-                  <li><%= link_to lesson, [lesson.chapter.course, lesson.chapter, lesson] %></li>
+                  <li><%= link_to h(lesson), [lesson.chapter.course, lesson.chapter, lesson] %></li>
                 <% end %>    
               <% end %>
             </ol>

@@ -1,6 +1,6 @@
 <div>
-  <strong>Course:</strong> <%= @course %>
-  <strong>Chapter:</strong> <%= @chapter %>
+  <strong>Course:</strong> <%=h @course %>
+  <strong>Chapter:</strong> <%=h @chapter %>
 </div>
 
 <% form_for [@course, @chapter, @lesson] do | f | %>

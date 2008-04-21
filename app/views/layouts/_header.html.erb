@@ -6,8 +6,8 @@
 
     <div class="user_controls">
       <% if logged_in? %>
-        Welcome, <i><%= current_user %></i>&nbsp;|
-        <a href="<%= user_url(current_user) %>" title="Your Profile">Your Profile</a>&nbsp;|
+        Welcome, <i><%= h(current_user) %></i>&nbsp;|
+        <%= link_to "Your Profile", user_url(current_user) %> &nbsp;|
     	
       	<% if logged_in_as_owner? %>
       	  <%= link_to "Community Setup", edit_community_url %>&nbsp;|

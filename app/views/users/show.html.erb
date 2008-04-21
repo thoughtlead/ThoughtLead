@@ -1,9 +1,9 @@
 <% @current_tab = :'Your Profile' %> <!-- TODO  Should only display if current user, otherwise show something like "_____'s Profile"  -->
 
 <div id="primary">
-  <h1 class="grouped"><%= @user %></h1>
+  <h1 class="grouped"><%=h @user %></h1>
   <div class="email_user">
-    <%= link_to "Email #{@user}", email_user_url(@user) %>
+    <%= link_to "Email #{h(@user)}", email_user_url(@user) %>
   </div>
 
   <h2>Courses</h2>
