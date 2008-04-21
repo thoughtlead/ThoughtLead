@@ -55,7 +55,7 @@
                   <li class="current"><%= lesson %></li>
                 <% else %>
                   <li><%= link_to lesson, [lesson.chapter.course, lesson.chapter, lesson] %></li>
-
+                <% end %>    
               <% end %>
             </ol>
           </div>
