@@ -25,10 +25,10 @@
 
           <div class="lesson_navigation">
               <% if @lesson.higher_item %>   
-                <p><small>PREVIOUS LESSON</small> &mdash; <%= link_to @lesson.higher_item, [@lesson.chapter.course, @lesson.chapter, @lesson.higher_item] %> </p>
+                <p><small>PREVIOUS LESSON</small> &mdash; <%= link_to h(@lesson.higher_item), [@lesson.chapter.course, @lesson.chapter, @lesson.higher_item] %> </p>
               <% end %>
               <% if @lesson.lower_item %>   
-                <p><small>NEXT LESSON</small> &mdash; <%= link_to @lesson.lower_item, [@lesson.chapter.course, @lesson.chapter, @lesson.lower_item] %> </p>
+                <p><small>NEXT LESSON</small> &mdash; <%= link_to h(@lesson.lower_item), [@lesson.chapter.course, @lesson.chapter, @lesson.lower_item] %> </p>
               <% end %>
               <p><%= link_to "Return to Course Overview >", @lesson.chapter.course %></p>
           </div>
