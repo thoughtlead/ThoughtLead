@@ -43,6 +43,11 @@ class User < ActiveRecord::Base
   end
 
   def to_s
+    display_name
+  end
+  
+  def display_name
+    return super unless super.blank?
     login
   end
   
