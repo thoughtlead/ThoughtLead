@@ -5,10 +5,8 @@
 
     <% for discussion in @discussions %>
     <div class="discussion">
-      <h2 class="grouped"><%= link_to h(discussion), discussion %></h2>
-      
-      <p><%=h discussion.body %></p>
-      
+      <h2 class="grouped"><%= link_to h(discussion), discussion %></h2> 
+      <p><%=h discussion.body %> <%= link_to  'Continue Reading >', discussion %></a></p>
       <div class="discussion_info meta_info">
         <span class="author">by <%= link_to h(discussion.user), discussion.user %></span>
         <span class="date_posted">&nbsp;|&nbsp;<%= discussion.created_at.to_s(:month_day) %></span>

@@ -7,7 +7,7 @@
 	BASIC ELEMENTS
 	===================*/
 
-body {background:#24a5d6; text-align:center; color:#555;}
+body {background:#0e91ca; text-align:center; color:#555;}
 
 abbr {}
 acronym {}
@@ -19,7 +19,7 @@ blockquote {}
 /* HEADINGS*/
 h1 {margin-bottom:20px; color:#3a3a3a; font: normal normal bolder 35px/40px arial, sans-serif; letter-spacing:-.03em; word-spacing:-.03em;}
 .grouped {margin-bottom:0;}
-h2 {margin:20px 0 5px 0; padding:0; font: normal normal bolder 23px/25px arial, sans-serif; letter-spacing:-.03em; word-spacing:-.03em;}
+h2 {margin:0 0 5px 0; padding:0; font: normal normal bolder 23px/25px arial, sans-serif; letter-spacing:-.03em; word-spacing:-.03em;}
 h3 {margin:10px 0 10px 0; padding:0; font: normal normal bolder 15px/20px arial, sans-serif; letter-spacing:-.03em; word-spacing:-.03em;}
 
 /* LINKS */
@@ -50,7 +50,7 @@ a.action:hover, a.action:focus {background:#b2cd1e; color:#fff; border border-to
 	/* COMMUNITY TITLE */
 		/*Hide header text*/
 	 	#header h1 a {display:none;}
-	.community_title {position:absolute; left:-57px;}
+	.community_title {position:absolute; left:-55px;}
 		
 	/* USER CONTROLS */
 	.user_controls {font-size:12px; line-height:33px;}
@@ -71,9 +71,10 @@ a.action:hover, a.action:focus {background:#b2cd1e; color:#fff; border border-to
 /* CONTENT --------------- */
 #content {overflow:hidden;}
 	/* PRIMARY */
-	#content #primary {position:relative; float:left; margin-right:-50px; background:#fff; width:600px; padding:20px 50px 80px 0; overflow:hidden;}
+	#content #primary {position:relative; float:left; margin-right:-50px; background:#fff; width:600px; padding:30px 50px 80px 0; overflow:hidden;}
+	#content #primary div {margin-bottom:20px;}
 		/* FONTS */
-		#primary p {margin-bottom:20px; font: normal normal normal 14px/25px georgia, serif; letter-spacing:.05em; word-spacing:-.07em; color:#555;}
+		#primary p {margin-bottom:20px; font: normal normal normal 14px/20px georgia, serif; letter-spacing:.05em; word-spacing:-.07em; color:#555;}
 		#primary h2 a {color:#096cb1;}	
 	
 	/* SECONDARY */
@@ -85,7 +86,7 @@ a.action:hover, a.action:focus {background:#b2cd1e; color:#fff; border border-to
 
 
 /* FOOTER --------------- */
-.outer_wrapper.footer {background: #24a5d6 url(/images/footer_bg.gif) repeat-x top left;}
+.outer_wrapper.footer {background: url(/images/footer_bg.gif) repeat-x top left;}
 #footer {padding:20px 0 40px; color:#fff;}
 
 
@@ -94,20 +95,54 @@ a.action:hover, a.action:focus {background:#b2cd1e; color:#fff; border border-to
 	SECTIONS & PAGES
 	===================*/
 
+/*	COURSE --------------- */
+#primary .course_description p {font: italic normal normal 16px/25px georgia, serif;}
+div.chapter {text-transform:uppercase; border-bottom:1px solid #e5e5e5; color:#888; font: normal normal normal 13px/20px arial, sans-serif;}
+
 /*	LESSON --------------- */
-#secondary .course_title span {text-transform: capitalize;}
+#lesson_placeholder #primary div.lesson_info {margin-bottom:20px; border-bottom:1px dashed #bbb;}
+#secondary a.action {margin: 0 0 20px !important;}
+#secondary .course {font: normal normal normal 16px/20px arial, sans-serif;}
+#secondary .course .course_title p {font: normal normal normal 16px/20px arial, sans-serif; padding-bottom:10px; margin-bottom:10px; border-bottom:1px solid #e5e5e5;}
+#secondary .course_title span {display:block; text-transform:uppercase; margin-bottom:5px; font: normal normal normal 14px/20px arial, sans-serif; color:#aaa;}
+#secondary .course .lessons {margin-bottom:40px;}
+#secondary .course .lessons li {font: normal normal normal 15px/20px arial, sans-serif; padding-bottom:5px; margin:0 0 5px 15px; border-bottom:1px solid #e5e5e5;}
+
+
+/*	DISCUSSIONS --------------- */
+/* Index */
+.discussions .discussion {border-bottom:1px solid #e5e5e5;}
+#primary .discussions .discussion p {padding:0; margin:0;}
+	/* Meta info */
+	.discussions .discussion .meta_info {padding:5px 0 0;}
+/* Show */
+#primary ol.comments {padding-top:20px; margin-top:10px; border-top:1px solid #e5e5e5;}
+#primary ol.comments p {font: normal normal normal 14px/20px arial, sans-serif;}
+ol.comments li {margin-bottom:20px; border-bottom:1px solid #e5e5e5;}
+.comment_info {font-weight:bold;}
+
+/*	PROFILE --------------- */
+#user_profile .about, #user_profile .interests, #user_profile .websites {border-top:1px solid #e5e5e5; padding:10px 0; overflow:hidden;}
+#user_profile h3 {display:block; width:75px; float:left; text-align:right; padding:0 20px 20px ;}
+#user_profile div.section_body {width:480px; float:right; padding-top:10px;}
+#profile_avatar {float:left; margin:0 20px 20px 0;}
+div.user_info {overflow:hidden;}
+div.user_info h1 {padding-top:20px;}
+
 	
 
 
 /* Forms */
 form {padding-right:14px;}
+label {font: normal normal normal 14px/20px arial, sans-serif; color:#000;}
 input.text, label, textarea {display:block;}
-input, textarea {margin-bottom:20px; max-width:100%}
+input, textarea {margin-bottom:20px; max-width:100%;}
 textarea, label, input.text {width:100%;}
-textarea, input.text {padding:5px;}
-.plus_label label {display:inline;}
-.plus_label input {margin:0;}
+textarea, input.text {padding:5px; font: normal normal normal 14px/18px arial, sans-serif; color:#555;}
+#content #primary .plus_label {margin:5px 0 0;}
+#primary .plus_label input {margin:0 0 10px;}
+#primary .plus_label label {display:inline;}
 form input.text {display:block; margin-bottom:20px;}
-form input.single, form textarea.single {}
+form input.single, form textarea.single {font-size:18px; line-height:20px;}
 form input.medium, form textarea.medium {height:75px;}
-form input.large, form textarea.large {height:200px;}
+form input.large, form textarea.large {height:250px;}

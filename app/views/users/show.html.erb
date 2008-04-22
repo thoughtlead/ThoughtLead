@@ -1,9 +1,43 @@
 <% @current_tab = :'Your Profile' %> <!-- TODO  Should only display if current user, otherwise show something like "_____'s Profile"  -->
 
 <div id="primary">
-  <h1 class="grouped"><%=h @user %></h1>
-  <div class="email_user">
-    <%= link_to "Email #{h(@user)}", email_user_url(@user) %>
+  <div class="user_info">
+    <img src="avatar" height="128px" width="128px" id="profile_avatar">
+    <h1 class="grouped"><%=h @user %></h1>
+    <p><%=h @user.location %></p>
   </div>
+  <div id="user_profile">
+    <div class="about">
+      <h3 class="">About</h3>
+      <div class="section_body">
+        <%= details_format(@user.about) %>
+      </div>
+    </div>
+      
+    <div class="interests">
+      <h3 class="">Interests</h3>
+      <div class="section_body">
+        <%= details_format(@user.interests)  %>
+      </div>
+    </div>
+    <div class="websites">          
+      <h3 class="">Websites</h3>
+      <div class="section_body">
+        <ul>
+          <% unless @user.website_1.blank? %>
+            <li><%= link_to @user.website_1, @user.website_1 %></li>
+          <% end %>
+          <% unless @user.website_2.blank? %>
+            <li><%= link_to @user.website_2, @user.website_2 %></li>
+          <% end %>
+        </ul>
+      </div>
+    </div>
 
+   </div>
+</div>
+
+<div id="secondary">
+    <%= link_to "Email #{h(@user)}", email_user_url(@user), :class => 'action' %>
+    <%= link_to "Edit Profile", edit_user_url(@user), :class => 'action' if current_user == @user %>
 </div>

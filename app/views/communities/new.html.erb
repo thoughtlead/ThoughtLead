@@ -28,11 +28,11 @@
     <%= password_field :user, :password_confirmation %>
 	
 	
-  
 	
     <%= f.label :subdomain %>
     http://<%= f.text_field :subdomain %>.<%= APP_DOMAIN %>
 	
+	  <br />
 	
   	<%= submit_tag 'Sign up' %> or <%= link_to "Cancel", root_url %>
   <% end -%>

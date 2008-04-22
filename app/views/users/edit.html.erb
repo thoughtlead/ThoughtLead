@@ -1,0 +1,46 @@
+<div id="primary">
+  <h1><%= @page_title = "Edit Profile" %></h1>
+
+  <% form_for @user do | f | -%>
+    <%= f.error_messages %>
+    
+    <p>
+      <%= f.label :login %>
+      <%= f.text_field :login, :class => 'text single' %>
+    </p>
+
+    <p>
+      <%= f.label :display_name %>
+      <%= f.text_field :display_name, :class => 'text single' %>
+    </p>
+
+    <p>
+      <%= f.label :location %>
+      <%= f.text_field :location, :class => 'text single' %>
+    </p>
+
+    <p>
+      <%= f.label :website_1, "Website" %>
+      <%= f.text_field :website_1, :class => 'text single' %>
+    </p>
+
+    <p>
+      <%= f.label :website_2, "Website" %>
+      <%= f.text_field :website_2, :class => 'text single' %>
+    </p>
+
+    <p>
+      <%= f.label :about %>
+      <%= f.text_area :about, :rows => 4 %>
+    </p>
+
+    <p>
+      <%= f.label :interests %>
+      <%= f.text_area :interests, :rows => 4 %>
+    </p>
+
+    <p>
+  	  <%= submit_tag 'Save' %> or <%= link_to "Cancel", @user %>
+    </p>
+  <% end -%>
+</div>
