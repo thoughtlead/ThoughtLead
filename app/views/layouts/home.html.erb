@@ -11,12 +11,10 @@
     
 	<%= body_tag %>
     <div id="page" class="home">
-      <div id="content">
-        <div id="primary">
-  	    	<%= render(:partial => '/layouts/flash_details') %>
-      		<%= yield %>
-      	</div>
-  		</div>
+      <div id="small">
+	    	<%= render(:partial => '/layouts/flash_details') %>
+    		<%= yield %>
+    	</div>
 		</div>
 	</body>
 </html>
