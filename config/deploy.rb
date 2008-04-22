@@ -35,13 +35,10 @@ end
 task :staging do
   require "spacesuit/recipes"
   
-  set :client,              "verticality"
-  set :domain,              "#{application}.#{client}.dock.terralien.biz"
-  set :rails_env,           "staging"
-  
-  before "deploy:update_code", "deploy:pending:default" 
-  after "deploy:migrations" , "deploy:cleanup"
-  set :deploy_to, "/var/www/#{client}/#{application}"
+  set :client,          "verticality"
+  set :domain,          "#{application}.#{client}.dock.terralien.biz"
+  set :rails_env,       "staging"
+  set :deploy_to,       "/var/www/#{client}/#{application}"
 
   role :web, domain
   role :app, domain
@@ -49,6 +46,7 @@ task :staging do
 end
 
 
+before "deploy:update_code", "deploy:pending:default" 
 after "deploy", "deploy:cleanup"
 after "deploy:update_code", "deploy:symlink_configs"
 

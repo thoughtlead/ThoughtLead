@@ -85,6 +85,17 @@ class UserTest < ActiveSupport::TestCase
     user.active = false
     assert user.active, "Owners should be active"
   end
+  
+  def test_display_name
+    user = User.new
+    assert_nil(user.display_name)
+    user.login = "Freddy"
+    assert_equal("Freddy", user.display_name)
+    user.display_name = "MySuper Display Name"
+    assert_equal("MySuper Display Name", user.display_name)
+  end
+  
+  
 
   private
     def new_valid_user(options = {})
