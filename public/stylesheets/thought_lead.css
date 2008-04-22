@@ -114,6 +114,11 @@ div.chapter {text-transform:uppercase; border-bottom:1px solid #e5e5e5; color:#8
 ol.comments li {margin-bottom:20px; border-bottom:1px solid #e5e5e5;}
 .comment_info {font-weight:bold;}
 
+/*	PROFILE --------------- */
+#user_profile .about, #user_profile .interests, #user_profile .websites {border-top:1px solid #e5e5e5; padding:10px 0;}
+#user_profile h3 {display:block; width:75px; float:left; text-align:right; padding:0 20px 20px ;}
+
+
 	
 
 
