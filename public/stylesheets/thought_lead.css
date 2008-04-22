@@ -81,7 +81,7 @@ a.action:hover, a.action:focus {background:#b2cd1e; color:#fff; border border-to
 	#content #secondary {position:relative; float:right; padding:30px 0; overflow:hidden; width:245px;}
 	
 	/* Small */
-	#content #small {position:relative; width:445px; padding:50px 15px 250px; margin:0 auto;}
+	#small {position:relative; width:550px; padding:50px 15px 150px; margin:0 auto; background:#fff; text-align:left;}
 	#small div {margin-bottom:20px;}
 
 
@@ -94,6 +94,13 @@ a.action:hover, a.action:focus {background:#b2cd1e; color:#fff; border border-to
 /*	===================
 	SECTIONS & PAGES
 	===================*/
+
+/*	HOME --------------- */
+#page.home #small {padding:2px 15px 75px;}
+.home #small .logo {text-align:center;}
+.home img {margin-bottom:10px;}
+.home .action {margin:20px 0;}
+.promo {font: normal normal normal 18px/30px arial, sans-serif; margin-bottom:40px;}
 
 /*	COURSE --------------- */
 #primary .course_description p {font: italic normal normal 16px/25px georgia, serif;}
