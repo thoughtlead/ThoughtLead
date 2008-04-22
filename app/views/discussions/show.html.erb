@@ -12,15 +12,20 @@
   </div>
   
   <h2><%= pluralize(@discussion.responses.count, "Response") %> so far</h2>
+  <ol class="comments">
+    <% for response in @discussion.responses %>
+    <li>      
+      <span class="comment_info meta_info">
+        <%= link_to h(response.user), response.user %>&nbsp;|&nbsp;<%= response.created_at.to_s(:day_month_year) %>
+      </span>
+      <div class="comment_body">
+        <%= textilize(response.body) %>
+      </div>
+    </li>
+    <% end %>
+  </ol>
 
-  <% for response in @discussion.responses %>
-    <%= link_to h(response.user), response.user %>
-    <%= response.created_at.to_s(:day_month_year) %>
-    <%= textilize(response.body) %>
-  
-  <% end %>
-
-  <h4>Post a response</h4>
+  <h3>Post a response</h3>
   <% if logged_in? %>
     <% form_for [@discussion, Response.new] do | f | %>
       <%= f.text_area :body, :rows => 6 %>
