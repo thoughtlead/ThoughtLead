@@ -6,9 +6,10 @@
     <%= link_to "Email #{h(@user)}", email_user_url(@user) %>
   </div>
 
-  <h2>Courses</h2>
-  <% for course in @user.courses %>
-    <h3><%= link_to course, course %></h3>
-  
-  <% end %>
+  <h2>Courses created by <%=h @user %>:</h2>
+  <ul>
+    <% for course in @user.courses %>
+    <li><%= link_to course, course %></li>
+    <% end %>
+  </ul>
 </div>

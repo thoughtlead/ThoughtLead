@@ -19,7 +19,7 @@ blockquote {}
 /* HEADINGS*/
 h1 {margin-bottom:20px; color:#3a3a3a; font: normal normal bolder 35px/40px arial, sans-serif; letter-spacing:-.03em; word-spacing:-.03em;}
 .grouped {margin-bottom:0;}
-h2 {margin:20px 0 5px 0; padding:0; font: normal normal bolder 23px/25px arial, sans-serif; letter-spacing:-.03em; word-spacing:-.03em;}
+h2 {margin:0 0 5px 0; padding:0; font: normal normal bolder 23px/25px arial, sans-serif; letter-spacing:-.03em; word-spacing:-.03em;}
 h3 {margin:10px 0 10px 0; padding:0; font: normal normal bolder 15px/20px arial, sans-serif; letter-spacing:-.03em; word-spacing:-.03em;}
 
 /* LINKS */
@@ -71,7 +71,8 @@ a.action:hover, a.action:focus {background:#b2cd1e; color:#fff; border border-to
 /* CONTENT --------------- */
 #content {overflow:hidden;}
 	/* PRIMARY */
-	#content #primary {position:relative; float:left; margin-right:-50px; background:#fff; width:600px; padding:20px 50px 80px 0; overflow:hidden;}
+	#content #primary {position:relative; float:left; margin-right:-50px; background:#fff; width:600px; padding:30px 50px 80px 0; overflow:hidden;}
+	#content #primary div {margin-bottom:20px;}
 		/* FONTS */
 		#primary p {margin-bottom:20px; font: normal normal normal 14px/25px georgia, serif; letter-spacing:.05em; word-spacing:-.07em; color:#555;}
 		#primary h2 a {color:#096cb1;}	
@@ -96,18 +97,26 @@ a.action:hover, a.action:focus {background:#b2cd1e; color:#fff; border border-to
 
 /*	LESSON --------------- */
 #secondary .course_title span {text-transform: capitalize;}
+
+/*	DISCUSSIONS --------------- */
+/* Index */
+.discussions .discussion {border-bottom:1px solid #e5e5e5;}
+#primary .discussions .discussion p {padding:0; margin:0;}
+	/* Meta info */
+	.discussions .discussion .meta_info {padding:5px 0 0;}
 	
 
 
 /* Forms */
 form {padding-right:14px;}
+label {font: normal normal normal 14px/20px arial, sans-serif; color:#000;}
 input.text, label, textarea {display:block;}
-input, textarea {margin-bottom:20px; max-width:100%}
+input, textarea {margin-bottom:20px; max-width:100%;}
 textarea, label, input.text {width:100%;}
-textarea, input.text {padding:5px;}
+textarea, input.text {padding:5px; font: normal normal normal 15px/20px georgia, serif; color:#333;}
 .plus_label label {display:inline;}
 .plus_label input {margin:0;}
 form input.text {display:block; margin-bottom:20px;}
-form input.single, form textarea.single {}
+form input.single, form textarea.single {font-size:18px; line-height:20px;}
 form input.medium, form textarea.medium {height:75px;}
-form input.large, form textarea.large {height:200px;}
+form input.large, form textarea.large {height:250px;}

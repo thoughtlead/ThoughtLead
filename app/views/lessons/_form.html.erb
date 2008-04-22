@@ -1,3 +1,4 @@
+
 <div>
   <strong>Course:</strong> <%=h @course %>
   <strong>Chapter:</strong> <%=h @chapter %>
@@ -10,13 +11,13 @@
   <%= f.text_field :title, :class => "text single"  %>
   
   <%= f.label(:'Lesson Teaser') %>
-  <%= f.text_area(:teaser, :rows => 14, :cols => 70 ) %>
+  <%= f.text_area(:teaser, :rows => 7, :cols => 70, :class => "text medium") %>
 
-  <br /><br />
+
   <%= f.label(:'Lesson Body') %>
-  <%= f.text_area(:body, :rows => 25, :cols => 70, :mce_editable => "true") %>
+  <%= f.text_area(:body, :rows => 25, :cols => 82, :mce_editable => "true", :class => "text large") %>
   
-  <br /><br />
+
   <div class="draft plus_label">
       <%= f.check_box :draft %>
       <%= f.label :'Draft?' %>
