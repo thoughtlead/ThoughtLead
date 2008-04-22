@@ -5,13 +5,3 @@
 
 <p class="promo">Part software platform, part conscious business network, part marketing service &mdash; and driven entirely by a passion to create a better future &mdash; ThoughtLead's goal is to evolve the way ideas are shared, spread, and monetized online.</p>
 
-<%= link_to "Create a community", new_community_url, :class => 'action' %> 
-
-<h2>Thoughtlead Communities</h2>
-<ul>
-  <% for community in @communities %>
-    
-  <li><%= link_to h(community), community_dashboard_url(community) %></li>
-    
-  <% end %>
-</ul>
