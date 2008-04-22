@@ -100,7 +100,14 @@ a.action:hover, a.action:focus {background:#b2cd1e; color:#fff; border border-to
 div.chapter {text-transform:uppercase; border-bottom:1px solid #e5e5e5; color:#888; font: normal normal normal 13px/20px arial, sans-serif;}
 
 /*	LESSON --------------- */
-#secondary .course_title span {text-transform: capitalize;}
+#lesson_placeholder #primary div.lesson_info {margin-bottom:20px; border-bottom:1px dashed #bbb;}
+#secondary a.action {margin: 0 0 20px !important;}
+#secondary .course {font: normal normal normal 16px/20px arial, sans-serif;}
+#secondary .course .course_title p {font: normal normal normal 16px/20px arial, sans-serif; padding-bottom:10px; margin-bottom:10px; border-bottom:1px solid #e5e5e5;}
+#secondary .course_title span {display:block; text-transform:uppercase; margin-bottom:5px; font: normal normal normal 14px/20px arial, sans-serif; color:#aaa;}
+#secondary .course .lessons {margin-bottom:40px;}
+#secondary .course .lessons li {font: normal normal normal 15px/20px arial, sans-serif; padding-bottom:5px; margin:0 0 5px 15px; border-bottom:1px solid #e5e5e5;}
+
 
 /*	DISCUSSIONS --------------- */
 /* Index */
