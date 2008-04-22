@@ -7,7 +7,7 @@
 	BASIC ELEMENTS
 	===================*/
 
-body {background:#24a5d6; text-align:center; color:#555;}
+body {background:#0e91ca; text-align:center; color:#555;}
 
 abbr {}
 acronym {}
@@ -50,7 +50,7 @@ a.action:hover, a.action:focus {background:#b2cd1e; color:#fff; border border-to
 	/* COMMUNITY TITLE */
 		/*Hide header text*/
 	 	#header h1 a {display:none;}
-	.community_title {position:absolute; left:-57px;}
+	.community_title {position:absolute; left:-55px;}
 		
 	/* USER CONTROLS */
 	.user_controls {font-size:12px; line-height:33px;}
@@ -86,7 +86,7 @@ a.action:hover, a.action:focus {background:#b2cd1e; color:#fff; border border-to
 
 
 /* FOOTER --------------- */
-.outer_wrapper.footer {background: #24a5d6 url(/images/footer_bg.gif) repeat-x top left;}
+.outer_wrapper.footer {background: url(/images/footer_bg.gif) repeat-x top left;}
 #footer {padding:20px 0 40px; color:#fff;}
 
 
@@ -128,9 +128,10 @@ label {font: normal normal normal 14px/20px arial, sans-serif; color:#000;}
 input.text, label, textarea {display:block;}
 input, textarea {margin-bottom:20px; max-width:100%;}
 textarea, label, input.text {width:100%;}
-textarea, input.text {padding:5px; font: normal normal normal 15px/20px georgia, serif; color:#333;}
-.plus_label label {display:inline;}
-.plus_label input {margin:0;}
+textarea, input.text {padding:5px; font: normal normal normal 14px/18px arial, sans-serif; color:#555;}
+#content #primary .plus_label {margin:5px 0 0;}
+#primary .plus_label input {margin:0 0 10px;}
+#primary .plus_label label {display:inline;}
 form input.text {display:block; margin-bottom:20px;}
 form input.single, form textarea.single {font-size:18px; line-height:20px;}
 form input.medium, form textarea.medium {height:75px;}

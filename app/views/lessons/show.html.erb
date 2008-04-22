@@ -17,20 +17,19 @@
           
           <% if !@lesson.premium || logged_in_as_active? %>
             <%= auto_link(@lesson.body) %>
-          <% else %>
-            <p>
-              <strong>Upgrade your account to see the entire lesson!</strong>
-            </p>
+            
+            <% else %>
+            <p><strong>Upgrade your account to see the entire lesson!</strong></p>
           <% end %>
 
           <div class="lesson_navigation">
-              <% if @lesson.higher_item %>   
-                <p><small>PREVIOUS LESSON</small> &mdash; <%= link_to h(@lesson.higher_item), [@lesson.chapter.course, @lesson.chapter, @lesson.higher_item] %> </p>
-              <% end %>
-              <% if @lesson.lower_item %>   
-                <p><small>NEXT LESSON</small> &mdash; <%= link_to h(@lesson.lower_item), [@lesson.chapter.course, @lesson.chapter, @lesson.lower_item] %> </p>
-              <% end %>
-              <p><%= link_to "Return to Course Overview >", @lesson.chapter.course %></p>
+            <% if @lesson.higher_item %>   
+              <p><small>PREVIOUS LESSON</small> &mdash; <%= link_to h(@lesson.higher_item), [@lesson.chapter.course, @lesson.chapter, @lesson.higher_item] %> </p>
+            <% end %>
+            <% if @lesson.lower_item %>   
+              <p><small>NEXT LESSON</small> &mdash; <%= link_to h(@lesson.lower_item), [@lesson.chapter.course, @lesson.chapter, @lesson.lower_item] %> </p>
+            <% end %>
+            <p><%= link_to "Return to Course Overview >", @lesson.chapter.course %></p>
           </div>
         </div>
       </div>
@@ -38,41 +37,31 @@
     </div> <!-- Remove -->
     
     <div id="secondary">
-      <p>
-        <%= link_to "Edit this Lesson &rarr;", edit_course_chapter_lesson_url(@course, @chapter, @lesson), :class => "action"  if logged_in_as_owner? %>
-      </p>
+      <p><%= link_to "Edit this Lesson &rarr;", edit_course_chapter_lesson_url(@course, @chapter, @lesson), :class => "action"  if logged_in_as_owner? %></p>
 
       <div class="course">
-          <div class="course_title">
-            <span>Course</span>
+        <div class="course_title">
+          <span>Course</span>
+          <p><%= link_to h(@course), @course %></p>
+        </div>
+        <div class="lessons">
+          <ol>
+            <% for lesson in @lesson.chapter.lessons %>
+
+              <% if lesson == @lesson %>
+              <li class="current"><%=h lesson %></li>
             
-            <p><%= link_to h(@course), @course %></p>
-          </div>
-          <div class="lessons">
-            <ol>
-              <% for lesson in @lesson.chapter.lessons %>
-                <% if lesson == @lesson %>
-                  <li class="current"><%=h lesson %></li>
-                <% else %>
+              <% else %>
                   <li><%= link_to h(lesson), [lesson.chapter.course, lesson.chapter, lesson] %></li>
-                <% end %>    
-              <% end %>
-            </ol>
-          </div>
+              <% end %>    
+            
+            <% end %>
+          </ol>
+        </div>
       </div>
 
-      <p>
-        <%= link_to "View more courses >", courses_url %>
-      </p>
-      
-      <p>
-        <%= "This lesson is not published" if @lesson.draft %>
-      </p>
-
-      <%= "This lesson is premium content" if @lesson.premium %>
+      <p><%= link_to "View more courses >", courses_url %></p>
+      <p><%= "This lesson is not published" if @lesson.draft %></p>
+      <p><%= "This lesson is premium content" if @lesson.premium %></p>
     </div>
     
-
-
-
-
