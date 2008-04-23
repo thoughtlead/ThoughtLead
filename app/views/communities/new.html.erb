@@ -5,32 +5,32 @@
   <% form_for @community do | f | -%>
 
     <%= f.label :community_name %>
-    <%= f.text_field :name %>
+    <%= f.text_field :name, :class => 'text single'  %>
 
   
 
     <%= label :user, :login %>
-    <%= text_field :user, :login %>
+    <%= text_field :user, :login, :class => 'text single'  %>
   
   
 
     <%= label :user, :email %>
-    <%= text_field :user, :email %>
+    <%= text_field :user, :email, :class => 'text single'  %>
 
   
   
     <%= label :user, :password %>
-    <%= password_field :user, :password %>
+    <%= password_field :user, :password, :class => 'text single'  %>
 
   
   
     <%= label :user, :password_confirmation %>
-    <%= password_field :user, :password_confirmation %>
+    <%= password_field :user, :password_confirmation, :class => 'text single'  %>
 	
 	
 	
     <%= f.label :subdomain %>
-    http://<%= f.text_field :subdomain %>.<%= APP_DOMAIN %>
+    http://<%= f.text_field :subdomain, :class => 'text single'  %>.<%= APP_DOMAIN %>
 	
 	  <br />
 	

@@ -2,7 +2,7 @@
 
 <div id="primary">
   <div class="user_info">
-    <img src="avatar" height="128px" width="128px" id="profile_avatar">
+    <img src="/images/avatar.gif" height="128px" width="128px" id="profile_avatar">
     <h1 class="grouped"><%=h @user %></h1>
     <p><%=h @user.location %></p>
   </div>
@@ -38,6 +38,6 @@
 </div>
 
 <div id="secondary">
-    <%= link_to "Email #{h(@user)}", email_user_url(@user), :class => 'action' %>
+    <%= link_to "Email #{h(@user)} &rarr;", email_user_url(@user), :class => 'action' %>
     <%= link_to "Edit Profile", edit_user_url(@user), :class => 'action' if current_user == @user %>
 </div>

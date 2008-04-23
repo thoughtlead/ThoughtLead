@@ -19,4 +19,12 @@ config.action_view.cache_template_loading            = true
 # config.action_controller.asset_host                  = "http://assets.example.com"
 
 # Disable delivery errors, bad email addresses will be ignored
-# config.action_mailer.raise_delivery_errors = false
+config.action_mailer.raise_delivery_errors = false
+
+ActionMailer::Base.delivery_method = :smtp
+ActionMailer::Base.smtp_settings = {
+  :domain => "thoughtlead.com",
+  :perform_deliveries => true,
+  :address => 'smtp.ey03.engineyard.com',
+  :port => 25 
+}
