@@ -7,7 +7,7 @@ ActionController::Routing::Routes.draw do |map|
   map.signup '/signup', :controller => 'users', :action => 'signup', :conditions => { :subdomain => /./ }
 
   map.resources :sessions, :conditions => { :subdomain => /./ }
-  map.resources :users, :member => { :email => :any }, :conditions => { :subdomain => /./ }
+  map.resources :users, :member => { :email => :any, :edit_password => :any }, :conditions => { :subdomain => /./ }
   map.resources :discussions, :conditions => { :subdomain => /./ } do | discussions |
     discussions.resources :responses, :conditions => { :subdomain => /./ } 
   end

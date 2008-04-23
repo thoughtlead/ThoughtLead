@@ -47,6 +47,10 @@
     </p>
 
     <p>
+      <%= link_to "Change your password", edit_password_user_url(@user) %>
+    </p>
+    
+    <p>
       <%= f.label :avatar %> 
       <%= avatar_for(@user) %>
       <%= f.file_field :uploaded_avatar_data %> 

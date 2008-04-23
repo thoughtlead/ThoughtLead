@@ -39,6 +39,22 @@ class UsersController < ApplicationController
     @users = current_community.users
   end
   
+  def edit_password
+    @user = current_community.users.find(params[:id])
+    if @user != current_user
+      flash[:warning] = "You do not have the privileges to reach that part of the site"
+      redirect_to login_url
+    end
+    
+    return if request.get?
+    
+    @user.password_required = true
+    return unless @user.update_attributes(params[:user])
+    
+    flash[:notice] = "Password saved."
+    redirect_to edit_user_url(@user)
+  end  
+  
   def email
     @send_to_user = current_community.users.find(params[:id])
     @email = Email.new(params[:email])
