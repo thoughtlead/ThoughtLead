@@ -46,6 +46,13 @@ task :staging do
 end
 
 
+namespace :deploy do
+  task :after_symlink do
+    run "ln -nfs #{shared_path}/avatars #{release_path}/avatars"
+    run "mkdir -p #{release_path}/tmp"
+  end
+end
+
 before "deploy:update_code", "deploy:pending:default" 
 after "deploy", "deploy:cleanup"
 after "deploy:update_code", "deploy:symlink_configs"
