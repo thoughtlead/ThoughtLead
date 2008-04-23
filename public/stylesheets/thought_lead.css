@@ -73,7 +73,7 @@ a.action:hover, a.action:focus {background:#b2cd1e; color:#fff; border border-to
 	#content #primary {position:relative; float:left; margin-right:-50px; background:#fff; width:600px; padding:30px 50px 80px 0; overflow:hidden;}
 	#content #primary div {margin-bottom:20px;}
 		/* FONTS */
-		#primary p {margin-bottom:20px; font: normal normal normal 14px/20px georgia, serif; letter-spacing:.05em; word-spacing:-.07em; color:#555;}
+		#primary p {margin:10px 0 20px; font: normal normal normal 16px/30px georgia, serif; letter-spacing:.05em; word-spacing:-.07em; color:#555;}
 		#primary h2 a {color:#096cb1;}	
 	
 	/* SECONDARY */
@@ -129,7 +129,7 @@ ol.comments li {margin-bottom:20px; border-bottom:1px solid #e5e5e5;}
 
 /*	PROFILE --------------- */
 #user_profile .about, #user_profile .interests, #user_profile .websites {border-top:1px solid #e5e5e5; padding:10px 0; overflow:hidden;}
-#user_profile h3 {display:block; width:80px; float:left; text-align:right; padding:0 20px 20px ;}
+#user_profile h3 {display:block; width:80px; float:left; text-align:right; padding:10px 20px 20px;}
 #user_profile div.section_body {width:475px; float:right; padding-top:10px;}
 #profile_avatar {float:left; margin:0 20px 20px 0;}
 div.user_info {overflow:hidden;}
