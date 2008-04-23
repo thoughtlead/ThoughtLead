@@ -28,12 +28,13 @@ class UsersController < ApplicationController
 
   def update
     @user = current_user
-    return render(:action => :edit) unless @user.update_attributes(params[:user])
+    @user.attributes = params[:user]
+    return render(:action => :edit) unless @user.save_with_avatar
     
     flash[:notice] = "Saved profile"
     redirect_to @user
   end
-  
+    
   def index
     @users = current_community.users
   end

@@ -1,8 +1,8 @@
 require 'digest/sha1'
 
 class User < ActiveRecord::Base
-  attr_accessor :password
-  attr_writer :password_required
+  attr_accessor :password, :uploaded_avatar_data
+  attr_writer   :password_required
 
   validates_presence_of     :login, :email
   validates_presence_of     :password, :password_confirmation, :if => :password_required?
@@ -11,8 +11,9 @@ class User < ActiveRecord::Base
   
   before_save :encrypt_password
   
-  belongs_to :community
-  has_many :courses
+  belongs_to  :community
+  has_many    :courses
+  has_one     :avatar
 
   def self.encrypt(password, salt)
     Digest::SHA1.hexdigest("--#{salt}--#{password}--")
@@ -63,6 +64,32 @@ class User < ActiveRecord::Base
     return true if owner?
     super
   end
+  
+  def save_with_avatar 
+    an_avatar = self.avatar || Avatar.new
+    begin 
+      self.transaction do 
+        if uploaded_avatar_data && uploaded_avatar_data.size > 0 
+          an_avatar.uploaded_data = uploaded_avatar_data 
+          an_avatar.destroy_thumbnails 
+          an_avatar.save! 
+          self.avatar = an_avatar
+        end 
+        save!
+      end 
+    rescue Exception => e
+      if an_avatar.errors.on(:size) 
+        errors.add_to_base("Uploaded image is too large (5MB max).") 
+        return false
+      end 
+      if an_avatar.errors.on(:content_type) 
+        errors.add_to_base("Uploaded image content-type is not valid.") 
+        return false
+      end 
+      raise e 
+    end 
+  end 
+  
 
   private
     def encrypt_password
