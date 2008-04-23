@@ -28,3 +28,5 @@ ActionMailer::Base.smtp_settings = {
   :address => 'smtp.ey03.engineyard.com',
   :port => 25 
 }
+
+ENV['INLINEDIR'] = Rails.root + "/tmp" 
