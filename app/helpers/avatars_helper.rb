@@ -11,7 +11,7 @@ module AvatarsHelper
     if user.avatar 
       user.avatar.public_filename(size)
     else 
-      "default_avatar_#{size}.gif"
+      "default_avatar_#{size}.png"
     end 
   end
   
