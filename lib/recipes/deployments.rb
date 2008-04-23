@@ -9,7 +9,7 @@ namespace :deploy do
       
       to_be_deployed = `git rev-parse --short "HEAD"`
 
-      puts "Deployment revision #{`git rev-parse --short "HEAD"`}"
+      puts "Deployment to #{rails_env.upcase} #{`git rev-parse --short "HEAD"`}"
       puts "I deployed the latest. It includes:"
       puts
       system(%Q{git log --no-merges --pretty=format:"* %s %b (%cn)" #{deployed_already}.. | replace '<unknown>' ''})
