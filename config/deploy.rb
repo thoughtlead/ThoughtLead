@@ -48,7 +48,7 @@ end
 
 namespace :deploy do
   task :after_symlink do
-    run "ln -nfs #{shared_path}/avatars #{release_path}/avatars"
+    run "ln -nfs #{shared_path}/avatars #{release_path}/public/avatars"
     run "mkdir -p #{release_path}/tmp"
   end
 end
