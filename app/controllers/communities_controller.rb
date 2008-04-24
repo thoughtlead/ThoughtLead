@@ -41,9 +41,7 @@ class CommunitiesController < ApplicationController
   end
   
   def choose_plan
-    return if request.get? 
-    return if params[:selected_plan].blank?
-
+    return if request.get? || params[:selected_plan].blank?
     redirect_to "https://spreedly.com/thoughtlead-test/subscribers/#{current_community.id}/subscribe/#{plan_id}/#{current_community}"  
   end
   

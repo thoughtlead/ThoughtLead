@@ -1,7 +1,8 @@
 class UsersController < ApplicationController
   
-  before_filter :login_required, :except => [ :signup, :changed ]
+  before_filter :login_required, :except => [ :signup, :changed_on_spreedly ]
   before_filter :community_is_active
+  skip_before_filter :verify_authenticity_token, :only => :changed_on_spreedly
   
   def signup
     @user = User.new(params[:user])
@@ -65,5 +66,30 @@ class UsersController < ApplicationController
     flash[:notice] = "Email sent to #{@send_to_user}"
     redirect_to @send_to_user
   end
+  
+  def upgrade
+    return if request.get? || params[:selected_plan].blank?
+    redirect_to "https://spreedly.com/tldemo-test/subscribers/#{current_user.id}/subscribe/#{plan_id}/#{current_user.login}"
+  end
+  
+  def changed_on_spreedly
+    subscriber_ids = params[:subscriber_ids].split(",")
+    subscriber_ids.each do | each |
+      user = current_community.users.find_by_id(each)
+      user.refresh_from_spreedly if user
+    end
+
+    head(:ok)
+  end
+  
+
+  private
+    def plan_id
+      case params[:selected_plan]
+        when 'monthly' then '58'
+        when 'quarterly' then '59'
+        when 'yearly' then '60'
+      end
+    end
 
 end

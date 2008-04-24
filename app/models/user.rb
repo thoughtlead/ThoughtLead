@@ -89,8 +89,14 @@ class User < ActiveRecord::Base
       raise e 
     end 
   end 
-  
 
+  def refresh_from_spreedly
+    subscriber = SpreedlyUser::Subscriber.find(self.id)
+    self.active = subscriber.active
+    self.spreedly_token = subscriber.token
+    save
+  end
+  
   private
     def encrypt_password
       return if password.blank?
@@ -103,3 +109,15 @@ class User < ActiveRecord::Base
     end
 
 end
+
+
+module SpreedlyUser
+  class Subscriber < ActiveResource::Base 
+    if Rails.env == "production" || Rails.env == 'staging' 
+      self.site = "https://43f5af47198f31ab66334b027b989f997e039865:X@spreedly.com/api2/test" 
+    else
+      self.site = "https://43f5af47198f31ab66334b027b989f997e039865:X@spreedly.com/api2/test" 
+    end
+  end
+end
+

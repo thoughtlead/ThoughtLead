@@ -1,0 +1,31 @@
+<div id="primary">
+  <h1>Subscribe to <%= current_community %></h1>
+  
+  <% form_tag(upgrade_url) do  %>
+  
+    <div id="priceTable">
+      <p>
+        <%= radio_button_tag(:selected_plan, :monthly) %> <%= label :selected_plan, :monthly, "$15 per month" %>
+      </p>
+      <br /><br />
+
+      <p>
+        <%= radio_button_tag(:selected_plan, :quarterly) %> <%= label :selected_plan, :quarterly, "$29 per quarterly (3 months)" %>
+      </p>
+      
+      <br /><br />
+      <p>
+        <%= radio_button_tag(:selected_plan, :yearly) %> <%= label :selected_plan, :yearly, "$99 per year (12 months)" %>
+      </p>
+      
+      <br /><br />
+      <p>
+        <%= submit_tag "Purchase selected plan" %> or <%= link_to "Cancel", :back %>
+      </p>
+    </div>
+  <% end %>
+  
+  
+</div>
+
+

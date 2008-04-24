@@ -25,7 +25,7 @@
             <%= auto_link(@lesson.body) %>
             
             <% else %>
-            <p><strong>Upgrade your account to see the entire lesson!</strong></p>
+            <p><strong><%= link_to "Upgrade your account", upgrade_url %> to see the entire lesson!</strong></p>
           <% end %>
 
           <div class="lesson_navigation">
