@@ -33,7 +33,7 @@ class Community < ActiveRecord::Base
     end
   
     def validate_subdomain_restrictions
-      errors.add :subdomain, "is reserved" if  /(www|db|app|server|test|staging|web|ftp|mail)[0-9]*$/.match(self.subdomain)
+      errors.add :subdomain, "is reserved" if  /(www|db|app|server|test|staging|web|ftp|mail|files)[0-9]*$/.match(self.subdomain)
       errors.add :subdomain if /[^a-zA-Z0-9\-]+/.match(self.subdomain)
     end
   
