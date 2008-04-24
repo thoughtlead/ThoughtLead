@@ -43,7 +43,7 @@
 <div id="secondary">
   <div class="first">
     <%= link_to "Edit this Course &rarr;", edit_course_url(@course), :class => 'action' if logged_in_as_owner? %>
-    <%= link_to "View All Courses", courses_url %>
+    <%= link_to "View All Courses", community_home_url %>
   </div>
 </div>
 
