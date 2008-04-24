@@ -14,7 +14,15 @@ namespace :deploy do
       puts
       system(%Q{git log --no-merges --pretty=format:"* %s %b (%cn)" #{deployed_already}.. | replace '<unknown>' ''})
       
-      puts "\n\n\n"
+      puts "\n\n"
+      
+      if rails_env == 'production'
+        puts "http://demo.thoughtlead.com"
+      else
+        puts "http://demo.thoughtlead.verticality.dock.terralien.biz"
+      end
+      
+      puts "\n\n"
     end
   
   end
