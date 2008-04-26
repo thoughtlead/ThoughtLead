@@ -6,7 +6,7 @@
 	BASIC ELEMENTS
 	===================*/
 
-body {background:#0e91ca; text-align:center; color:#555;}
+body {background:#0082bb url(/images/body_bg.gif) top left repeat-x; text-align:center; color:#555;}
 
 abbr {}
 acronym {}
@@ -36,20 +36,22 @@ a.action:hover, a.action:focus {background:#b2cd1e; color:#fff; border border-to
 	LAYOUT
 	===================*/
 
-/* Wrappers */
-.outer_wrapper {position:relative; width:100%;  background-color:#fff; clear:both;}
 
 /* Constraining Primary Divs*/
-#header, #section, #content, #footer {position:relative; width:920px; margin:0 auto; text-align:left;}
+#header, #section, #content, #footer {position:relative;}
+
+/* PAGE --------------- */
+#page {background: url(/images/page_bg.png) top left repeat-y; width:930px; margin:0 auto; text-align:left;}
+.head {padding:0 10px;}
 
 /* HEADER --------------- */
-.outer_wrapper.head {border-bottom:1px solid #eaeaea; background:#fff url(/images/header_bg.gif) repeat-x top left;}
-#header {text-align:right; min-height:100px;}
+.head {background: url(/images/header_bg.gif) repeat-x top left;}
+#header {background:url() top left no-repeat; text-align:right; min-height:100px; padding:0 20px;}
 
 	/* COMMUNITY TITLE */
 		/*Hide header text*/
 	 	#header h1 a {display:none;}
-	.community_title {position:absolute; left:-55px;}
+	.community_title {position:absolute; left:-16px;}
 		
 	/* USER CONTROLS */
 	.user_controls {font-size:12px; line-height:33px;}
@@ -57,27 +59,26 @@ a.action:hover, a.action:focus {background:#b2cd1e; color:#fff; border border-to
 
 	/* TOP NAVIGATION */
 	ul.navigation_top {margin-top:30px; font: normal normal normal 17px/30px Arial, sans-serif;}
-	.navigation_top li {display:inline; padding-left:20px;}
+	.navigation_top li {display:inline; width:100px; padding:0 5px;}
 	.navigation_top a, .navigation_top a:visited, .navigation_top a:hover {color:#555; padding:2px 2px 0; text-decoration:none;}
 	.navigation_top li.current a, .navigation_top li.current a:visited {color:#1070b3; border-bottom:1px solid #1070b3;}
 	.navigation_top a:hover {background:#DBEEFB;}
 
 /* SECTION --------------- */
-.outer_wrapper.section {background:#fff url(/images/section_border.gif) repeat-x bottom left;}
-#section {padding:15px 0;}
-#section h2 {margin:0; color:#E8701E; font: normal normal bolder 18px/25px arial, sans-serif; letter-spacing:-.03em; word-spacing:-.03em;}		
+#section {margin:0 10px; padding:15px 20px; background:#27648F;}
+#section h2 {margin:0; color:#E8701E; color:#fff; font: normal normal bolder 18px/25px arial, sans-serif; letter-spacing:-.03em; word-spacing:-.03em;}		
 
 /* CONTENT --------------- */
 #content {overflow:hidden;}
 	/* PRIMARY */
-	#content #primary {position:relative; float:left; margin-right:-50px; background:#fff; width:600px; padding:30px 50px 80px 0; overflow:hidden;}
+	#content #primary {position:relative; float:left; margin:0 -50px 0 10px; padding:30px 30px 80px 20px; width:510px; overflow:hidden;}
 	#content #primary div {margin-bottom:20px;}
 		/* FONTS */
-		#primary p {margin:10px 0 20px; font: normal normal normal 16px/30px georgia, serif; letter-spacing:.05em; word-spacing:-.07em; color:#555;}
+		#primary p {margin:0 0 20px; font: normal normal normal 14px/21px georgia, serif; letter-spacing:.05em; word-spacing:-.07em; color:#555;}
 		#primary h2 a {color:#096cb1;}	
 	
 	/* SECONDARY */
-	#content #secondary {position:relative; float:right; padding:30px 0; overflow:hidden; width:245px;}
+	#content #secondary {position:relative; float:right; margin-right:10px; padding:30px 20px 30px 10px; overflow:hidden; width:320px;}
 	
 	/* Small */
 	#small {position:relative; width:550px; padding:50px 15px 150px; margin:0 auto; background:#fff; text-align:left;}
@@ -85,7 +86,6 @@ a.action:hover, a.action:focus {background:#b2cd1e; color:#fff; border border-to
 
 
 /* FOOTER --------------- */
-.outer_wrapper.footer {background: url(/images/footer_bg.gif) repeat-x top left;}
 #footer {padding:20px 0 40px; color:#fff;}
 
 
@@ -129,7 +129,7 @@ ol.comments li {margin-bottom:20px; border-bottom:1px solid #e5e5e5;}
 
 /*	PROFILE --------------- */
 #user_profile .about, #user_profile .interests, #user_profile .websites {border-top:1px solid #e5e5e5; padding:10px 0; overflow:hidden;}
-#user_profile h3 {display:block; width:80px; float:left; text-align:right; padding:10px 20px 20px;}
+#user_profile h3 {display:block; width:80px; float:left; text-align:right; padding:0 20px 20px;}
 #user_profile div.section_body {width:475px; float:right; padding-top:10px;}
 #profile_avatar {float:left; margin:0 20px 20px 0;}
 div.user_info {overflow:hidden;}
@@ -152,3 +152,12 @@ form input.text {display:block; margin-bottom:20px;}
 form input.single, form textarea.single {font-size:18px; line-height:20px;}
 form input.medium, form textarea.medium {height:75px;}
 form input.large, form textarea.large {height:250px;}
+
+
+
+
+/*	===================
+	TESTING
+	===================*/
+ {background:silver;}
+ {background:gray;}

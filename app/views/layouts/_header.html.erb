@@ -1,4 +1,4 @@
-<div class="outer_wrapper head">
+<div class="head">
   <div id="header">
     <div class="community_title">
       <a href="<%= community_home_url %>" class="logo"><img src="/images/logo.gif" alt="Verticality" /></a><h1><a href="<%= community_home_url %>"><%= current_community %></a></h1>
@@ -6,8 +6,7 @@
 
     <div class="user_controls">
       <% if logged_in? %>
-        Welcome, <i><%= h(current_user) %></i>&nbsp;|
-        <%= link_to "Your Profile", user_url(current_user) %> &nbsp;|
+        <em>Welcome,</em> <%= link_to current_user, user_url(current_user) %> &nbsp;|
     	
       	<% if logged_in_as_owner? %>
       	  <%= link_to "Community Setup", edit_community_url %>&nbsp;|
@@ -38,8 +37,6 @@
   </div>
 </div>
 
-<div class="outer_wrapper section">
-  <div id="section">
-    <h2><%= @current_tab %></h2>
-  </div>
+<div id="section">
+  <h2><%= @current_tab %></h2>
 </div>
