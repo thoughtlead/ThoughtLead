@@ -3,16 +3,27 @@
 
 <div id="primary">
   <div class="courses">
-    <% for course in @courses %>
-      <h2 class="course_title grouped"><%= link_to h(course), course %></h2>
-      <p class="course_description">
-        <%=h course.description %>
-      </p>
-    <% end %>
+    <ol class="course_list">
+      <% for course in @courses %>
+
+      <li class="course">
+        <h3 class="course_title grouped"><%= link_to h(course), course %></h2>
+        <p class="course_description">
+          <%=h course.description %>
+        </p>
+      </li>
+
+      <% end %>
+    </ol>
   </div>
 </div>
 <div id="secondary">
-  <div class="first">
+  <div class="section_copy">
+    <h2>Section Copy</h2>
+    <p>Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.</p>
+  </div>
+  
+  <div class="actions">
     <%= link_to "+ Add a Course", new_course_url, :class => 'action' if logged_in_as_owner? %>
   </div>
 </div>

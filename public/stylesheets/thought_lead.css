@@ -93,6 +93,7 @@ a.action:hover, a.action:focus {background:#b2cd1e; color:#fff;}
 	
 	/* SECONDARY */
 	#content #secondary {position:relative; float:right; margin-right:10px; padding:30px 20px 30px 10px; overflow:hidden; width:320px;}
+	#secondary div {padding-bottom:40px;}
 	
 	/* Small */
 	#small {position:relative; width:430px; padding:50px 0px 150px; margin:0 auto; background:#fff; text-align:left;}
@@ -100,7 +101,7 @@ a.action:hover, a.action:focus {background:#b2cd1e; color:#fff;}
 
 
 /* FOOTER --------------- */
-#footer {padding:20px 0 40px; color:#fff;}
+#footer {padding:20px 30px 40px; color:#fff; background: #0083bd url(/images/footer_endcap.gif) top left no-repeat;}
 
 
 

@@ -6,10 +6,10 @@
 
     <div class="user_controls">
       <% if logged_in? %>
-        <em>Welcome,</em> <%= link_to current_user, user_url(current_user) %> &nbsp;|
+        <em>Welcome,</em> <%= link_to current_user, user_url(current_user) %> &nbsp;|&nbsp;
     	
       	<% if logged_in_as_owner? %>
-      	  <%= link_to "Community Setup", edit_community_url %>&nbsp;|
+      	  <%= link_to "Community Setup", edit_community_url %> &nbsp;|&nbsp;
       	<% end %>
     	
         <%= link_to('Logout', logout_url) %>
