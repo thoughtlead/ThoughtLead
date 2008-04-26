@@ -118,9 +118,14 @@ a.action:hover, a.action:focus {background:#b2cd1e; color:#fff;}
 
 /*	COURSE --------------- */
 #primary ol.courses {}
-#primary ol.courses li {padding:0 0 0px 30px; margin-bottom:20px; border-bottom:1px solid #e5e5e5; background:url(/images/course_icon.gif) no-repeat 0px 1px;}
+#primary ol.courses li {padding:0 0 10px 30px; margin-bottom:20px; border-bottom:1px solid #e5e5e5; background:url(/images/course_icon.gif) no-repeat 0px 1px;}
+#primary ol.courses li h3 {display:inline;}
+#primary a.action_sm {color:#99c903; padding-left:10px;}
+#primary ol.courses p {margin-bottom:10px;}
 #primary .course_description p {font: italic normal normal 16px/25px georgia, serif;}
+#primary .info p {font:normal normal normal 14px/20px arial, sans-serif; margin:0; padding:0;}
 div.chapter {text-transform:uppercase; border-bottom:1px solid #e5e5e5; color:#888; font: normal normal normal 13px/20px arial, sans-serif;}
+#secondary h2 {color:#ff6b00;}
 
 /*	LESSON --------------- */
 #lesson_placeholder #primary div.lesson_info {margin-bottom:20px; border-bottom:1px dashed #bbb;}

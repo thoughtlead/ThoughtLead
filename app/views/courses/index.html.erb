@@ -7,10 +7,13 @@
       <% for course in @courses %>
 
       <li class="course">
-        <h3 class="course_title grouped"><%= link_to h(course), course %></h3>
+        <h3 class="course_title grouped"><%= link_to h(course), course %></h3><%= link_to "Edit", edit_course_url(course), :class => 'action_sm' if logged_in_as_owner? %>
         <p class="course_description">
           <%=h course.description %>
         </p>
+        <span class="info">
+          <p><%= course.user %> | <%= course.created_at.to_s(:month_day) %></p>
+        </span>
       </li>
 
       <% end %>
