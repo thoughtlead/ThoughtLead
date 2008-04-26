@@ -28,7 +28,7 @@ body a:visited {color:#096cb1;}
 	
 /* ACTION LINKS */
 a.action, body a.action:visited {display:block; padding:5px 7px; margin-bottom:10px; background:#b2cd1e; color:#fff; border:2px solid #b2cd1e;}
-a.action:hover, a.action:focus {background:#b2cd1e; color:#fff; border border-top-color:#EDFB3F; border-right-color:#A0AF23;  border-bottom-color:#8A971E;  border-left-color:#CEE22E;}
+a.action:hover, a.action:focus {background:#b2cd1e; color:#fff;}
 
 
 
@@ -46,7 +46,7 @@ a.action:hover, a.action:focus {background:#b2cd1e; color:#fff; border border-to
 
 /* HEADER --------------- */
 .head {background: url(/images/header_bg.gif) repeat-x top left;}
-#header {background:url() top left no-repeat; text-align:right; min-height:100px; padding:0 20px;}
+#header {background:url() top left no-repeat; text-align:right; min-height:110px; padding:0 20px;}
 
 	/* COMMUNITY TITLE */
 		/*Hide header text*/
@@ -58,11 +58,24 @@ a.action:hover, a.action:focus {background:#b2cd1e; color:#fff; border border-to
 	.user_controls, .user_controls a, .user_controls a:visited {color:#fff;}
 
 	/* TOP NAVIGATION */
-	ul.navigation_top {margin-top:30px; font: normal normal normal 17px/30px Arial, sans-serif;}
-	.navigation_top li {display:inline; width:100px; padding:0 5px;}
-	.navigation_top a, .navigation_top a:visited, .navigation_top a:hover {color:#555; padding:2px 2px 0; text-decoration:none;}
-	.navigation_top li.current a, .navigation_top li.current a:visited {color:#1070b3; border-bottom:1px solid #1070b3;}
-	.navigation_top a:hover {background:#DBEEFB;}
+	ul.navigation_top {float:right; width:320px; font: normal normal normal 16px/40px arial, sans-serif;}
+	.navigation_top li {display:block; float:left; text-align:center; border-left:1px solid #E5E5E5;}
+	.navigation_top li a.people {}
+	.navigation_top a, .navigation_top a:visited, .navigation_top a:hover {display:block; width:104px; height:45px; padding-top:40px; line-height:40px; text-decoration:none; color:#555; }
+	.navigation_top a.discussions, .navigation_top a.discussions:visited, .navigation_top a.discussions:hover {width:108px;}
+	.navigation_top li.current {background:url(/images/tab_active.gif) top left repeat-x;}
+	.navigation_top li.current a, .navigation_top li.current a:visited {color:#fff; }
+	.navigation_top li a.courses:hover, .navigation_top li a.discussions:hover, .navigation_top li a.people:hover {color:#2E74A5;}
+	
+		/* Icons */
+		.navigation_top li a.courses {background:url(/images/courses_icon_inactive.gif) center 20px no-repeat;}
+		.navigation_top li.current a.courses {background:url(/images/courses_icon.gif) center 20px no-repeat;}
+
+		.navigation_top li a.discussions {background:url(/images/discussions_icon_inactive.gif) center 20px no-repeat;}
+		.navigation_top li.current a.discussions {background:url(/images/discussions_icon.gif) center 20px no-repeat;}
+		
+		.navigation_top li a.people {background:url(/images/people_icon_inactive.gif) center 20px no-repeat; border-right:1px solid #E5E5E5;}
+		.navigation_top li.current a.people {background:url(/images/people_icon.gif) center 20px no-repeat;}
 
 /* SECTION --------------- */
 #section {margin:0 10px; padding:15px 20px; background:#27648F;}
@@ -70,6 +83,7 @@ a.action:hover, a.action:focus {background:#b2cd1e; color:#fff; border border-to
 
 /* CONTENT --------------- */
 #content {overflow:hidden;}
+
 	/* PRIMARY */
 	#content #primary {position:relative; float:left; margin:0 -50px 0 10px; padding:30px 30px 80px 20px; width:510px; overflow:hidden;}
 	#content #primary div {margin-bottom:20px;}
@@ -81,7 +95,7 @@ a.action:hover, a.action:focus {background:#b2cd1e; color:#fff; border border-to
 	#content #secondary {position:relative; float:right; margin-right:10px; padding:30px 20px 30px 10px; overflow:hidden; width:320px;}
 	
 	/* Small */
-	#small {position:relative; width:550px; padding:50px 15px 150px; margin:0 auto; background:#fff; text-align:left;}
+	#small {position:relative; width:430px; padding:50px 0px 150px; margin:0 auto; background:#fff; text-align:left;}
 	#small div {margin-bottom:20px;}
 
 

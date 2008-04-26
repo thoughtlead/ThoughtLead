@@ -22,15 +22,15 @@
 
     <ul class="navigation_top">
       <% current_tag(:li, @current_tab == :Courses) do %>
-        <%= link_to "Courses", community_home_url %>
+        <%= link_to "Learn", community_home_url, :class => 'courses' %>
       <% end %>
 
       <% current_tag(:li, @current_tab == :Discussions) do %>
-        <%= link_to "Discussions", discussions_url %>
+        <%= link_to "Discuss", discussions_url, :class => 'discussions' %>
       <% end %>
 
       <% current_tag(:li, @current_tab == :People) do %>
-        <%= link_to "People", users_url %>
+        <%= link_to "Connect", users_url, :class => 'people' %>
       <% end %>
     </ul>
 

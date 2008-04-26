@@ -1,6 +1,6 @@
 /* FLASH MESSAGES */
-div.notice {margin-top:18px; padding:9px; background:#6BA333; color:#fff; font-weight:bold;}
-div.warning {margin-top:18px; padding:9px; background:#B04C2F; color:#fff; font-weight:bold;}
+div.notice {margin:20px 10px 0; padding:10px 20px; background:#b8ca29; color:#fff; font-weight:bold;}
+div.warning {margin:20px 10px 0; padding:10px 20px; background:#b04c2f; color:#fff; font-weight:bold;}
 
 /* END FLASH MESSAGES */
 
@@ -11,8 +11,8 @@ div.warning {margin-top:18px; padding:9px; background:#B04C2F; color:#fff; font-
 
 .fieldWithErrors input, .fieldWithErrors select, .fieldWithErrors textarea {background:#B04C2F;}
 
-#errorExplanation {font-size: 18px; border: 2px solid #000; background:#B04C2F; margin: 18px 0 18px 0; padding: 0px;}
-#errorExplanation h2 {font-size:18px; text-align:left; background:#B04C2F; padding:9px 18px; margin:0; border-bottom:2px solid #000;}
+#errorExplanation {font-size: 18px; border: 2px solid #000; background:#b04c2f; margin: 18px 0 18px 0; padding: 0px;}
+#errorExplanation h2 {font-size:18px; text-align:left; background:#b04c2f; padding:9px 18px; margin:0; border-bottom:2px solid #000;}
 
 #errorExplanation p {margin-bottom: 0; padding:9px 18px;  color:#000;}
 #errorExplanation ul {padding: 0 0 9px; color:#000;}
