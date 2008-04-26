@@ -3,11 +3,11 @@
 
 <div id="primary">
   <div class="courses">
-    <ol class="course_list">
+    <ol class="courses">
       <% for course in @courses %>
 
       <li class="course">
-        <h3 class="course_title grouped"><%= link_to h(course), course %></h2>
+        <h3 class="course_title grouped"><%= link_to h(course), course %></h3>
         <p class="course_description">
           <%=h course.description %>
         </p>
