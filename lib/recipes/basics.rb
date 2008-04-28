@@ -9,7 +9,7 @@ end
 namespace :deploy do
   namespace :git do
     task :after_pending do
-      puts "http://demo.#{domain}\n\n"
+      puts "http://demo.#{domain}\n\n\n\n"
     end
   end  
 end
