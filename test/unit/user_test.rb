@@ -2,7 +2,7 @@ require File.dirname(__FILE__) + '/../test_helper'
 
 class UserTest < ActiveSupport::TestCase
 
-  def test_password_required
+  should "require password" do
     user = new_valid_user(:login => 'my_login', :email => 'me@example.com')
     assert(user.send(:password_required?))
     
@@ -32,7 +32,7 @@ class UserTest < ActiveSupport::TestCase
     assert(user.send(:password_required?))
   end
 
-  def test_should_create_user
+  should "create user" do
     assert_difference 'User.count' do
       user = new_valid_user
       assert user.save
@@ -40,34 +40,34 @@ class UserTest < ActiveSupport::TestCase
     end
   end
 
-  def test_should_reset_password
+  should "reset password" do
     users(:duff).update_attributes(:password => 'new password', :password_confirmation => 'new password')
     assert_equal users(:duff), communities(:c1).authenticate('duff', 'new password')
   end
 
-  def test_should_not_rehash_password
+  should "not rehash password" do
     users(:duff).update_attributes(:login => 'duff2')
     assert_equal users(:duff), communities(:c1).authenticate('duff2', 'test')
   end
 
-  def test_should_authenticate_user
+  should "authenticate user" do
     assert_equal users(:duff), communities(:c1).authenticate('duff', 'test')
   end
 
-  def test_should_set_remember_token
+  should "set remember token" do
     users(:duff).remember_me
     assert_not_nil users(:duff).remember_token
     assert_not_nil users(:duff).remember_token_expires_at
   end
 
-  def test_should_unset_remember_token
+  should "unset remember token" do
     users(:duff).remember_me
     assert_not_nil users(:duff).remember_token
     users(:duff).forget_me
     assert_nil users(:duff).remember_token
   end
   
-  def test_active
+  should "ensure owners are always active" do
     user = users(:duff)
     community = Community.new(:name => "Whatever", :subdomain => "whatever")
     user.community = community
@@ -86,7 +86,7 @@ class UserTest < ActiveSupport::TestCase
     assert user.active, "Owners should be active"
   end
   
-  def test_display_name
+  should "display name" do
     user = User.new
     assert_nil(user.display_name)
     user.login = "Freddy"
