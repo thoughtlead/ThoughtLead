@@ -18,6 +18,20 @@ class DeleteCourseTest < ActionController::IntegrationTest
         assert_flash("Successfully deleted the course named 'Liberty is no more'")
       end
     end
+    
+    should "not be deletable if you're not the owner of the community" do
+      new_session_as(:alex) do
+        get course_url(courses(:liberty))
+        assert_link_does_not_exist("Delete this Course")
+        delete course_url(courses(:liberty))
+        assert_redirected_to login_url
+        follow_redirect!
+        assert_flash("You do not have permission to access that part of the site.")
+        
+        get '/'
+        assert_select("ol.courses>li", :count => 1)
+      end
+    end
   end
       
 end
