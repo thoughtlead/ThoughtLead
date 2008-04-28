@@ -1,6 +1,6 @@
+require "spacesuit/recipes/common"
 require 'capistrano/ext/multistage'
 require "eycap/recipes"
-require "spacesuit/recipes/common"
 
 
 set :keep_releases,       20
