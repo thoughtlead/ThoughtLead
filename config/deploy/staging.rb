@@ -1,4 +1,4 @@
-require "spacesuit/recipes"
+require "spacesuit/recipes/terralien"
 
 set :client,          "verticality"
 set :domain,          "#{application}.#{client}.dock.terralien.biz"

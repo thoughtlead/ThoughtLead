@@ -3,20 +3,15 @@ namespace :deploy do
     run "ln -nfs #{shared_path}/avatars #{release_path}/public/avatars"
     run "mkdir -p #{release_path}/tmp"
   end
-  
-  desc "Disable, migrate, restart, enable."
-  task :default do
-    transaction do
-      update_code
-      find_and_execute_task("deploy:web:disable")
-      symlink
-      migrate
-    end
-    restart
-    find_and_execute_task("deploy:web:enable")
-  end
-  
+
 end
 
+namespace :deploy do
+  namespace :git do
+    task :after_pending do
+      puts "http://demo.#{domain}\n\n"
+    end
+  end  
+end
 
 
