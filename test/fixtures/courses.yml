@@ -1,7 +1,5 @@
-# Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
-
-# one:
-#   column: value
-#
-# two:
-#   column: value
+liberty:
+  title: Liberty is no more 
+  description: Where on the earth does liberty exist anymore?  Nowhere really.
+  user: duff
+  community: c1

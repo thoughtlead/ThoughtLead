@@ -2,7 +2,7 @@
 
 <div id="primary">
   <h1 class="grouped"><%=h @course %></h1>
-  <span class="author">by <%= link_to h(@course.user), @course.user %></p>
+  <span class="author">by <%= link_to h(@course.user), @course.user %></span>
   <div class="course_description">
     <p><%=h @course.description %></p>
   </div>
@@ -43,6 +43,7 @@
 <div id="secondary">
   <div class="first">
     <%= link_to "Edit this Course &rarr;", edit_course_url(@course), :class => 'action' if logged_in_as_owner? %>
+    <%= link_to("Delete this Course", course_url(@course), :class => 'action', :method => :delete, :confirm => "Are you sure you would like to delete this course?  This action cannot be undone.") if logged_in_as_owner? %>
     <%= link_to "View All Courses", community_home_url %>
   </div>
 </div>

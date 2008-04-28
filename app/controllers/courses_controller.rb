@@ -37,6 +37,13 @@ class CoursesController < ApplicationController
     @course = current_community.courses.find(params[:id])
   end
   
+  def destroy
+    @course = current_community.courses.find(params[:id])
+    @course.destroy
+    flash[:notice] = "Successfully deleted the course named '#{@course}'"
+    redirect_to courses_url
+  end
+  
   def add_chapter
     @course = current_community.courses.find(params[:id])
     @course.chapters << Chapter.new(:name => params[:chapter_name])
