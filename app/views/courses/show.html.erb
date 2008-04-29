@@ -2,7 +2,7 @@
 
 <div id="primary">
   <h1 class="grouped"><%=h @course %></h1>
-  <span class="author">by <%= link_to h(@course.user), @course.user %></span>
+  <span class="meta_info author">by <%= link_to h(@course.user), @course.user %></span>
   <div class="course_description">
     <p><%=h @course.description %></p>
   </div>
