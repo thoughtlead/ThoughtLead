@@ -3,7 +3,7 @@
 <div id="primary">
   <ul>
     <% for user in @users %>
-      <li>
+      <li class="user">
         <%= avatar_for(user, :small) %>
         <%= link_to h(user), user %>
       </li>

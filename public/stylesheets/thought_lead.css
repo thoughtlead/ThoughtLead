@@ -123,7 +123,7 @@ a.action:hover, a.action:focus {background:#b2cd1e; color:#fff;}
 #primary ol.courses li h3 {display:inline;}
 #primary a.action_sm {color:#99c903; padding-left:10px;}
 #primary ol.courses p {margin-bottom:10px;}
-#primary .course_description p {font: italic normal normal 16px/25px georgia, serif;}
+#primary .course_description p {font: italic normal normal 15px/25px georgia, serif;}
 #primary .info p {font:normal normal normal 14px/20px arial, sans-serif; margin:0; padding:0;}
 div.chapter {text-transform:uppercase; border-bottom:1px solid #e5e5e5; color:#888; font: normal normal normal 13px/20px arial, sans-serif;}
 #secondary h2 {color:#ff6b00;}
@@ -150,6 +150,9 @@ div.chapter {text-transform:uppercase; border-bottom:1px solid #e5e5e5; color:#8
 #primary ol.comments p {font: normal normal normal 14px/20px arial, sans-serif;}
 ol.comments li {margin-bottom:20px; border-bottom:1px solid #e5e5e5;}
 .comment_info {font-weight:bold;}
+
+/*	PROFILE --------------- */
+li.user {line-height:48px;}
 
 /*	PROFILE --------------- */
 #user_profile .about, #user_profile .interests, #user_profile .websites {border-top:1px solid #e5e5e5; padding:10px 0; overflow:hidden;}
