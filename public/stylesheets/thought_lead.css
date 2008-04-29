@@ -16,9 +16,9 @@ b {}
 blockquote {}
 
 /* HEADINGS*/
-h1 {margin-bottom:20px; color:#3a3a3a; font: normal normal bolder 35px/40px arial, sans-serif; letter-spacing:-.03em; word-spacing:-.03em;}
+h1 {margin-bottom:20px; color:#3a3a3a; font: normal normal bolder 25px/30px arial, sans-serif; letter-spacing:-.03em; word-spacing:-.03em;}
 .grouped {margin-bottom:0;}
-h2 {margin:0 0 5px 0; padding:0; font: normal normal bolder 23px/25px arial, sans-serif; letter-spacing:-.03em; word-spacing:-.03em;}
+h2 {margin:0 0 5px 0; padding:0; font: normal normal bolder 18px/25px arial, sans-serif; letter-spacing:-.03em; word-spacing:-.03em;}
 h3 {margin:10px 0 10px 0; padding:0; font: normal normal normal 17px/20px arial, sans-serif; letter-spacing:-.03em; word-spacing:-.03em;}
 
 /* LINKS */
@@ -27,7 +27,7 @@ a:hover {text-decoration:underline; background:none;}
 body a:visited {color:#096cb1;}
 	
 /* ACTION LINKS */
-a.action, body a.action:visited {display:block; padding:5px 7px; margin-bottom:10px; background:#b2cd1e; color:#fff; border:2px solid #b2cd1e;}
+a.action, body a.action:visited {display:block; padding:5px 7px; margin-bottom:10px; background:#b2cd1e; color:#fff;}
 a.action:hover, a.action:focus {background:#b2cd1e; color:#fff;}
 
 
@@ -78,8 +78,8 @@ a.action:hover, a.action:focus {background:#b2cd1e; color:#fff;}
 		.navigation_top li.current a.people {background:url(/images/people_icon.gif) center 20px no-repeat;}
 
 /* SECTION --------------- */
-#section {margin:0 10px; padding:15px 20px; background:#27648F;}
-#section h2 {margin:0; color:#E8701E; color:#fff; font: normal normal bolder 18px/25px arial, sans-serif; letter-spacing:-.03em; word-spacing:-.03em;}		
+#section {margin:0 10px; padding-bottom:2px; border-bottom:4px solid #b2cd1e;}
+#section h2 {margin:0; padding:15px 20px; background:#27648F; color:#E8701E; color:#fff; font: normal normal bolder 18px/25px arial, sans-serif; letter-spacing:-.03em; word-spacing:-.03em;}		
 
 /* CONTENT --------------- */
 #content {overflow:hidden;}
@@ -88,7 +88,7 @@ a.action:hover, a.action:focus {background:#b2cd1e; color:#fff;}
 	#content #primary {position:relative; float:left; margin:0 -50px 0 10px; padding:30px 30px 80px 20px; width:510px; overflow:hidden;}
 	#content #primary div {margin-bottom:20px;}
 		/* FONTS */
-		#primary p {margin:5px 0 20px; font: normal normal normal 14px/20px georgia, serif; letter-spacing:.05em; word-spacing:-.07em; color:#555;}
+		#primary p {margin:5px 0 20px; font: normal normal normal 14px/18px georgia, serif; letter-spacing:.05em; word-spacing:-.07em; color:#555;}
 		#primary h2 a {color:#096cb1;}	
 	
 	/* SECONDARY */
@@ -133,7 +133,7 @@ div.chapter {text-transform:uppercase; border-bottom:1px solid #e5e5e5; color:#8
 #secondary .course {font: normal normal normal 16px/20px arial, sans-serif;}
 #secondary .course .course_title p {font: normal normal normal 16px/20px arial, sans-serif; padding-bottom:10px; margin-bottom:10px; border-bottom:1px solid #e5e5e5;}
 #secondary .course_title span {display:block; text-transform:uppercase; margin-bottom:5px; font: normal normal normal 14px/20px arial, sans-serif; color:#aaa;}
-#secondary .course .lessons {margin-bottom:40px;}
+#secondary .course .lessons {margin-bottom:20px;}
 #secondary .course .lessons li {font: normal normal normal 15px/20px arial, sans-serif; padding-bottom:5px; margin:0 0 5px 15px; border-bottom:1px solid #e5e5e5;}
 
 

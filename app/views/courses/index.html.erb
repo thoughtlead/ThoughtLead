@@ -11,8 +11,8 @@
         <p class="course_description">
           <%=h course.description %>
         </p>
-        <span class="info">
-          <p><%= course.user %> | <%= course.created_at.to_s(:month_day) %></p>
+        <span class="meta_info">
+          <%= course.user %> | <%= course.created_at.to_s(:month_day) %>
         </span>
       </li>
 

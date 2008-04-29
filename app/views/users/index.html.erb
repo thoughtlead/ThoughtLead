@@ -4,6 +4,7 @@
   <ul>
     <% for user in @users %>
       <li>
+        <%= avatar_for(user, :small) %>
         <%= link_to h(user), user %>
       </li>
     <% end %>
