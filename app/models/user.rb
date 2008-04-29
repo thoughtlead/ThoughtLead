@@ -65,7 +65,8 @@ class User < ActiveRecord::Base
     super
   end
   
-  def save_with_avatar 
+  def save_with_avatar
+    return false unless valid? 
     an_avatar = self.avatar || Avatar.new
     begin 
       self.transaction do 

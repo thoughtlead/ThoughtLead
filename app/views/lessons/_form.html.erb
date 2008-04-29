@@ -4,19 +4,21 @@
   <strong>Chapter:</strong> <%=h @chapter %>
 </div>
 
-<% form_for [@course, @chapter, @lesson] do | f | %>
+<% form_for [@course, @chapter, @lesson], :html => { :multipart => true } do | f | %>
   <%= f.error_messages %>
   
-  <%= f.label(:'Lesson Title') %>
+  <%= f.label(:title, 'Lesson Title') %>
   <%= f.text_field :title, :class => "text single"  %>
   
-  <%= f.label(:'Lesson Teaser') %>
+  <%= f.label(:teaser, "Lesson Teaser") %>
   <%= f.text_area(:teaser, :rows => 7, :cols => 70, :class => "text medium") %>
 
-
-  <%= f.label(:'Lesson Body') %>
+  <%= f.label(:body, 'Lesson Body') %>
   <%= f.text_area(:body, :rows => 25, :cols => 82, :mce_editable => "true", :class => "text large") %>
   
+
+  <%= f.label(:attachments) %>
+  <%= f.file_field :uploaded_attachment_data %> 
 
   <div class="draft plus_label">
       <%= f.check_box :draft %>
@@ -27,7 +29,11 @@
     <%= f.label 'Only paid subscribers can access this lesson' %>
   </div>
  
+ <% if mode == :new %>
+  <%= submit_tag "Create this lesson" %> or <%= link_to "Cancel", @course %>
+ <% else %>
+  <%= submit_tag "Save changes" %> or <%= link_to "Cancel", [@course, @chapter, @lesson] %>
+ <% end %>
   
-  <%= submit_tag save_button_text %> or <%= link_to "Cancel", @course %>
   
 <% end %>

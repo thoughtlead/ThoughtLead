@@ -23,8 +23,9 @@ class LessonsController < ApplicationController
 
   def update
     @lesson = @chapter.lessons.find(params[:id])
+    @lesson.attributes = params[:lesson]
     
-    return render(:action => :edit) unless @lesson.update_attributes(params[:lesson])
+    return render(:action => :edit) unless @lesson.save_with_attachment
     
     flash[:notice] = "Successfully saved"
     redirect_to [@course, @chapter, @lesson]

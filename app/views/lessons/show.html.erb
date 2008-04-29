@@ -58,6 +58,14 @@
         </div>
       </div>
 
+      <p>
+        Attachments
+      </p>
+      <p>
+        <%= link_to @lesson.attachment.filename, @lesson.attachment.public_filename if @lesson.attachment %>
+      </p>
+      
+      <br /><br />
       <p><%= link_to "View more courses >", community_home_url %></p>
       <p><%= "This lesson is not published" if @lesson.draft %></p>
       <p><%= "This lesson is premium content" if @lesson.premium %></p>
