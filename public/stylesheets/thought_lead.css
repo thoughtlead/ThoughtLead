@@ -27,9 +27,10 @@ a:hover {text-decoration:underline; background:none;}
 body a:visited {color:#096cb1;}
 	
 /* ACTION LINKS */
-a.action, body a.action:visited {display:block; padding:5px 7px; margin-bottom:10px; color:#fff; background-image:url(/images/action_top.gif); background-position:top left; background-repeat: no-repeat;}
+a.action, body a.action:visited {display:block; padding:5px 7px; margin-bottom:10px; color:#fff; background-color:#99c903;}
 a.action:hover, a.action:focus {color:#fff; }
-ul.actions li {background:#99c903 url(/images/action_bottom.gif) bottom left no-repeat;}
+#secondary a.action, body a.action:visited {background-color: transparent; background-image:url(/images/action_top.gif); background-position:top left; background-repeat: no-repeat;}
+#secondary ul.actions li {background:#99c903 url(/images/action_bottom.gif) bottom left no-repeat;}
 
 
 
