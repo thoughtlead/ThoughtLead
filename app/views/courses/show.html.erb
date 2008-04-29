@@ -41,11 +41,15 @@
   <% end %>
 </div>
 <div id="secondary">
-  <div class="first">
-    <%= link_to "Edit this Course &rarr;", edit_course_url(@course), :class => 'action' if logged_in_as_owner? %>
-    <%= link_to("Delete this Course", course_url(@course), :class => 'action', :method => :delete, :confirm => "Are you sure you would like to delete this course?  This action cannot be undone.") if logged_in_as_owner? %>
+  <ul class="actions first">
+    <li>
+      <%= link_to "Edit this Course &rarr;", edit_course_url(@course), :class => 'action' if logged_in_as_owner? %>
+    </li>
+    <li>
+      <%= link_to("Delete this Course", course_url(@course), :class => 'action', :method => :delete, :confirm => "Are you sure you would like to delete this course?  This action cannot be undone.") if logged_in_as_owner? %>
+    </li>
+  </ul>  
     <%= link_to "View All Courses", community_home_url %>
-  </div>
 </div>
 
 

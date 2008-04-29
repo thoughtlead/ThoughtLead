@@ -37,7 +37,9 @@
   <% end %>
 </div>
 <div id="secondary">
-  <div class="first">
-    <%= link_to "Edit this Discussion &rarr;", edit_discussion_url(@discussion), :class => 'action' %>
-  </div>
+  <ul class="actions first">
+    <li>
+      <%= link_to "Edit this Discussion &rarr;", edit_discussion_url(@discussion), :class => 'action' %>
+    </li>
+  </ul>
 </div>
