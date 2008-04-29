@@ -1,7 +1,8 @@
 <% @current_tab = :People %>
 
 <div id="primary">
-  <ul>
+  <h1>Connect with Other Users</h1>
+  <ul class="user_list">
     <% for user in @users %>
       <li class="user">
         <%= avatar_for(user, :small) %>
