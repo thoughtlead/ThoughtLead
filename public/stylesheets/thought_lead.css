@@ -163,8 +163,9 @@ li.user {line-height:48px;}
 div.user_info {overflow:hidden;}
 div.user_info h1 {padding-top:20px;}
 
-	
 
+/*	PROFILE --------------- */
+.user_list li.user {display:block; overflow:hidden;}
 
 /* Forms */
 form {padding-right:14px;}
