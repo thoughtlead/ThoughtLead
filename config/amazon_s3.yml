@@ -7,3 +7,8 @@ production:
   bucket_name: files
   access_key_id: 0KZF5WSE3B9MBREGM2R2
   secret_access_key: tI+fdjNY0FbZJ5PFXucDXq8EqqsCDIwvpQXQ0mXS 
+
+staging:
+  bucket_name: for_staging
+  access_key_id: 0KZF5WSE3B9MBREGM2R2
+  secret_access_key: tI+fdjNY0FbZJ5PFXucDXq8EqqsCDIwvpQXQ0mXS 
