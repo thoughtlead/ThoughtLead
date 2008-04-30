@@ -14,8 +14,11 @@
   <h2><%= pluralize(@discussion.responses.count, "Response") %> so far</h2>
   <ol class="comments">
     <% for response in @discussion.responses %>
-    <li>      
+    <li class="comments">      
       <span class="comment_info meta_info">
+        <span class="avatar">
+          <%= avatar_for(@discussion.user, :small) %>
+        </span>
         <%= link_to h(response.user), response.user %>&nbsp;|&nbsp;<%= response.created_at.to_s(:day_month_year) %>
       </span>
       <div class="comment_body">

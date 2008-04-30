@@ -81,7 +81,7 @@ a.action:hover, a.action:focus {color:#fff; }
 
 /* SECTION --------------- */
 #section {margin:0 10px; padding-bottom:2px; border-bottom:4px solid #99c903;}
-#section h2 {margin:0; padding:15px 20px; background:#27648F; color:#E8701E; color:#fff; font: normal normal bolder 18px/25px arial, sans-serif; letter-spacing:-.03em; word-spacing:-.03em;}		
+#section h2 {margin:0; padding:10px 20px; background:#27648F; color:#E8701E; color:#fff; font: normal normal normal 16px/25px arial, sans-serif; letter-spacing:-.03em; word-spacing:-.03em;}		
 
 /* CONTENT --------------- */
 #content {overflow:hidden;}
@@ -143,8 +143,8 @@ div.chapter {text-transform:uppercase; border-bottom:1px solid #e5e5e5; color:#8
 
 /*	DISCUSSIONS --------------- */
 /* Index */
-.discussions .discussion {border-bottom:1px solid #e5e5e5; margin-left:60px; position:relative; display:block;}
-.discussions .discussion span.avatar {position:absolute; left:-60px; top:5px;}
+.discussions .discussion, .comments .commment {border-bottom:1px solid #e5e5e5; margin-left:60px; position:relative; display:block;}
+.discussions .discussion span.avatar, .comments .comment .span.avatar {position:absolute; left:-60px; top:5px;}
 #primary .discussions .discussion p {padding:0; margin:0;}
 .discussions .discussion {}
 	/* Meta info */
@@ -181,8 +181,8 @@ input, textarea {margin-bottom:20px; max-width:100%;}
 textarea, label, input.text {width:100%;}
 textarea, input.text {padding:5px; font: normal normal normal 14px/18px arial, sans-serif; color:#555;}
 #content #primary .plus_label {margin:5px 0 0;}
-#primary .plus_label input {margin:0 0 10px;}
-#primary .plus_label label {display:inline;}
+.plus_label input {margin:4px 10px 10px 0; display:block; float:left;}
+.plus_label label {display:inline;}
 form input.text {display:block; margin-bottom:20px;}
 form input.single, form textarea.single {font-size:18px; line-height:20px;}
 form input.medium, form textarea.medium {height:75px;}
