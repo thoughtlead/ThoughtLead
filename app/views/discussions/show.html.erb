@@ -17,7 +17,7 @@
     <li class="comments">      
       <span class="comment_info meta_info">
         <span class="avatar">
-          <%= avatar_for(@discussion.user, :small) %>
+          <%= avatar_for(response.user, :small) %>
         </span>
         <%= link_to h(response.user), response.user %>&nbsp;|&nbsp;<%= response.created_at.to_s(:day_month_year) %>
       </span>
