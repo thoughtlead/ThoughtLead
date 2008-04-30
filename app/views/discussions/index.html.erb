@@ -5,6 +5,9 @@
 
     <% for discussion in @discussions %>
     <div class="discussion">
+      <span class="avatar">
+        <%= avatar_for(discussion.user, :small) %>
+      </span>
       <h2 class="grouped"><%= link_to h(discussion), discussion %></h2> 
       <p><%=h discussion.body %> <%= link_to  'Continue Reading >', discussion %></a></p>
       <div class="discussion_info meta_info">

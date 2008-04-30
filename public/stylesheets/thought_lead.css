@@ -143,8 +143,10 @@ div.chapter {text-transform:uppercase; border-bottom:1px solid #e5e5e5; color:#8
 
 /*	DISCUSSIONS --------------- */
 /* Index */
-.discussions .discussion {border-bottom:1px solid #e5e5e5;}
+.discussions .discussion {border-bottom:1px solid #e5e5e5; margin-left:60px; position:relative; display:block;}
+.discussions .discussion span.avatar {position:absolute; left:-60px; top:5px;}
 #primary .discussions .discussion p {padding:0; margin:0;}
+.discussions .discussion {}
 	/* Meta info */
 	.discussions .discussion .meta_info {padding:5px 0 0;}
 /* Show */
@@ -157,7 +159,7 @@ ol.comments li {margin-bottom:20px; border-bottom:1px solid #e5e5e5;}
 li.user {line-height:48px;}
 
 /*	PROFILE --------------- */
-#user_profile .about, #user_profile .interests, #user_profile .websites {border-top:1px solid #e5e5e5; padding:10px 0; overflow:hidden;}
+#user_profile .about, #user_profile .interests, #user_profile .websites {border-top:1px solid #e5e5e5; padding:10px 0 0; margin:0 !important; overflow:hidden;}
 #user_profile h3 {display:block; width:100px; float:left; margin:0 10px 20px 0; font:normal normal normal 14px/20px arial, sans-serif; text-align:right; text-transform:uppercase;}
 #user_profile div.section_body p {margin-top:0;}
 #user_profile div.section_body {width:400px; float:right; padding:0; margin:0;}
@@ -168,6 +170,8 @@ div.user_info h1 {padding-top:20px;}
 
 /*	PROFILE --------------- */
 .user_list li.user {display:block; overflow:hidden;}
+
+
 
 /* Forms */
 form {padding-right:14px;}
