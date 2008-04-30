@@ -3,6 +3,7 @@
     <div id="lesson_placeholder"> <!-- FIXME - Remove after there is the ability to target just lesson pages -->
     <div id="primary">
       <div id="lesson">
+            <p><%= link_to "&larr; Return to Course Overview", course_url %></p>
             <h1 class="grouped"><%=h @lesson %></h1>
         <div id="lesson_body">
           <div class="lesson_info">
@@ -27,7 +28,7 @@
             <% if @lesson.lower_item %>   
               <p><small>NEXT LESSON</small> &mdash; <%= link_to h(@lesson.lower_item), [@lesson.chapter.course, @lesson.chapter, @lesson.lower_item] %> </p>
             <% end %>
-            <p><%= link_to "Return to Course Overview >", @lesson.chapter.course %></p>
+            <p><%= link_to "&larr; Return to Main Courses Page", @lesson.chapter.course %></p>
           </div>
         </div>
       </div>
@@ -35,7 +36,13 @@
     </div> <!-- Remove -->
     
     <div id="secondary">
-      <p><%= link_to "Edit this Lesson &rarr;", edit_course_chapter_lesson_url(@course, @chapter, @lesson), :class => "action"  if logged_in_as_owner? %></p>
+      <ul class="actions first">
+        <li>
+          <%= link_to "Edit this Lesson", edit_course_chapter_lesson_url(@course, @chapter, @lesson), :class => "action"  if logged_in_as_owner? %>
+        </li>
+      </ul>
+
+      <p class="premium"><%= "This lesson is premium content" if @lesson.premium %></p>
 
       <div class="course">
         <div class="course_title">
@@ -58,16 +65,11 @@
         </div>
       </div>
 
-      <p>
-        Attachments
-      </p>
+      <strong>Attachments</strong>
       <p>
         <%= link_to @lesson.attachment.filename, @lesson.attachment.public_filename if @lesson.attachment %>
       </p>
-      
-      <br /><br />
-      <p><%= link_to "View more courses >", community_home_url %></p>
+
       <p><%= "This lesson is not published" if @lesson.draft %></p>
-      <p><%= "This lesson is premium content" if @lesson.premium %></p>
     </div>
     
