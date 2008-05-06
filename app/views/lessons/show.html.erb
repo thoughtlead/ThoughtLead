@@ -16,8 +16,9 @@
           
           <% if !@lesson.premium || logged_in_as_active? %>
             <%= auto_link(@lesson.body) %>
-            
-            <% else %>
+          <% elsif !logged_in? %>  
+            <p>You must <%= link_to "login", login_url %> to see this lesson because it is premium content.</p>
+          <% else %>
             <p><strong><%= link_to "Upgrade your account", upgrade_url %> to see the entire lesson!</strong></p>
           <% end %>
 
