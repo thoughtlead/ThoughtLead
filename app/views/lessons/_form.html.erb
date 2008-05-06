@@ -6,7 +6,7 @@
 
 <% form_for [@course, @chapter, @lesson], :html => { :multipart => true } do | f | %>
   <%= f.error_messages %>
-  
+  <div class="lesson">
   <%= f.label(:title, 'Lesson Title') %>
   <%= f.text_field :title, :class => "text single"  %>
   
@@ -15,18 +15,20 @@
 
   <%= f.label(:body, 'Lesson Body') %>
   <%= f.text_area(:body, :rows => 25, :cols => 82, :mce_editable => "true", :class => "text large") %>
+  </div>
   
-
   <%= f.label(:attachments) %>
   <%= f.file_field :uploaded_attachment_data %> 
 
-  <div class="draft plus_label">
-      <%= f.check_box :draft %>
-      <%= f.label :'Draft?' %>
-  </div>
-  <div class="premium plus_label">
-    <%= f.check_box :premium %>
-    <%= f.label 'Only paid subscribers can access this lesson' %>
+  <div>
+    <span class="draft plus_label">
+        <%= f.check_box :draft %>
+        <%= f.label :'Draft?' %>
+    </span>
+    <span class="premium plus_label">
+      <%= f.check_box :premium %>
+      <%= f.label 'Only paid subscribers can access this lesson' %>
+    </span>
   </div>
  
  <% if mode == :new %>
