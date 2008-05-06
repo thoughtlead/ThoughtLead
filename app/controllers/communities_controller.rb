@@ -47,9 +47,15 @@ class CommunitiesController < ApplicationController
   
   def need_to_activate
     redirect_to community_home_url if current_community.active?
+    @free_trial_url = upgrade_url(55)
+    @upgrade_url = upgrade_url(56)
   end
   
   private
+    def upgrade_url(plan_id)
+      "https://spreedly.com/thoughtlead-test/subscribers/#{current_community.id}/subscribe/#{plan_id}/#{current_community.subdomain}?return_url=#{community_dashboard_url(current_community)}"
+    end
+  
     def community_layout
       ['new', 'choose_plan'].include?(params[:action]) ? 'home' : 'application'
     end

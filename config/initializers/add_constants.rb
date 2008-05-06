@@ -5,7 +5,8 @@ def determine_domain
 end
 
 APP_DOMAIN = determine_domain
-APP_PORT = RAILS_ENV == 'development' ? ":3000" : ""
+APP_PORT = Rails.env == 'production' ? "" : ":3000"
+APP_HOST = APP_DOMAIN + APP_PORT
 APP_NAME = "ThoughtLead"
 
 
