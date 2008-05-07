@@ -25,7 +25,7 @@
     <li>
       <%= link_to "+ Add a Discussion Topic", new_discussion_url, :class => 'action' %>
     </li>
-    <% if current_user.owner? %>
+    <% if logged_in? && current_user.owner? %>
       <li>
         <%= link_to "Edit Categories", categories_url, :class => :action %>
       </li>
