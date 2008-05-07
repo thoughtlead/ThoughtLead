@@ -25,5 +25,18 @@
     <li>
       <%= link_to "+ Add a Discussion Topic", new_discussion_url, :class => 'action' %>
     </li>
+    <% if current_user.owner? %>
+      <li>
+        <%= link_to "Edit Categories", categories_url, :class => :action %>
+      </li>
+    <% end %>
+  </ul>
+  
+  <ul>
+    <% for category in current_community.categories %>
+      <li>
+        <%= link_to category %>
+      </li>
+    <% end %>
   </ul>
 </div>

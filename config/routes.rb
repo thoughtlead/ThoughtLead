@@ -1,5 +1,4 @@
 ActionController::Routing::Routes.draw do |map|
-
   map.resources :communities, :conditions => { :subdomain => '' }
 
   map.login '/login', :controller => "sessions", :action => 'new', :conditions => { :subdomain => /./ }
@@ -7,6 +6,7 @@ ActionController::Routing::Routes.draw do |map|
   map.signup '/signup', :controller => 'users', :action => 'signup', :conditions => { :subdomain => /./ }
   map.status '/status', :controller => 'home', :action => 'status', :conditions => { :subdomain => '' }
 
+  map.resources :categories, :conditions => { :subdomain => /./ }
   map.resources :sessions, :conditions => { :subdomain => /./ }
   map.resources :users, :member => { :email => :any, :edit_password => :any }, :conditions => { :subdomain => /./ }
   map.resources :discussions, :conditions => { :subdomain => /./ } do | discussions |

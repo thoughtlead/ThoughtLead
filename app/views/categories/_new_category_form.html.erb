@@ -1,0 +1,11 @@
+<% form_for @category do | f | %>
+
+  <%= f.error_messages %>
+
+  <p>
+    <%= f.label :name, "Add a new category" %>
+    <%= f.text_field :name %>
+
+	  <%= submit_tag 'Create', :disable_with => "Saving category..." %>
+	</p>  
+<% end %>
