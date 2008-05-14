@@ -5,7 +5,8 @@ class DiscussionsController < ApplicationController
   
   
   def index
-    @discussions = current_community.discussions
+    @discussions = current_community.discussions.for_category(params[:category])
+    @category = Category.find_by_id(params[:category]) if params[:category] && params[:category] != 'nil'
   end
 
   def new
@@ -38,6 +39,5 @@ class DiscussionsController < ApplicationController
   def show
     @discussion = current_community.discussions.find(params[:id])
   end
-  
   
 end

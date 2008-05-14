@@ -5,7 +5,7 @@
   <h1 class="grouped"><%=h @discussion %></h1>
   <div class="discussion_info meta_info">
     <span class="author">by <%= link_to h(@discussion.user), @discussion.user %></span>
-    <span class="date_posted">&nbsp;|&nbsp;Posted on <%= @discussion.created_at.to_s(:month_day) %></span>
+    <span class="date_posted">&nbsp;|&nbsp;Posted on <%= @discussion.created_at.to_s(:month_day) %> in <%= link_to @discussion.category ? @discussion.category.to_s : "Uncategorized" %></span>
     <span class="responses">&nbsp;|&nbsp;<%= pluralize(@discussion.responses.count, "Response") %></span>
   </div>
   <div class="discussion_body">
@@ -43,7 +43,7 @@
 <div id="secondary">
   <ul class="actions first">
     <li>
-      <%= link_to "Edit this Discussion", edit_discussion_url(@discussion), :class => 'action' %>
+      <%= link_to "Edit this Discussion", edit_discussion_url(@discussion), :class => 'action' if current_user == @discussion.user %>
     </li>
   </ul>
 </div>

@@ -21,9 +21,10 @@ ActionController::Routing::Routes.draw do |map|
 
   map.root :controller => "home", :conditions => { :subdomain => '' }
   map.community_home '', :controller => "courses", :action => 'index', :conditions => { :subdomain => /./ }
-  map.community_need_to_activate 'need_to_activate', :controller => "communities", :action => 'need_to_activate', :conditions => { :subdomain => /./ }
+  map.community_need_to_activate '/need_to_activate', :controller => "communities", :action => 'need_to_activate', :conditions => { :subdomain => /./ }
   map.upgrade '/upgrade', :controller => "users", :action => 'upgrade', :conditions => { :subdomain => /./ }
   map.users_changed_on_spreedly '/changed_on_spreedly', :controller => "users", :action => 'changed_on_spreedly', :method => :post, :conditions => { :subdomain => /./ }
+  map.discussions_for_category '/discussions/category/:id', :controller => "discussions", :action => "for_category", :conditions => { :subdomain => /./ }
 
   map.edit_community '/community/edit', :controller => 'admin', :action => 'edit_community', :conditions => { :subdomain => /./ }
   map.communities_changed_on_spreedly '/changed_on_spreedly', :controller => 'communities', :action => 'changed_on_spreedly', :method => :post, :conditions => { :subdomain => '' }
