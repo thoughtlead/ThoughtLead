@@ -92,6 +92,7 @@ class User < ActiveRecord::Base
   end 
 
   def refresh_from_spreedly
+    SpreedlyUser::Subscriber.api_key = self.community.spreedly_api_key
     subscriber = SpreedlyUser::Subscriber.find(self.id)
     self.active = subscriber.active
     self.spreedly_token = subscriber.token
@@ -114,10 +115,13 @@ end
 
 module SpreedlyUser
   class Subscriber < ActiveResource::Base 
-    if Rails.env == "production" || Rails.env == 'staging' 
-      self.site = "https://a43baac33d2a037b21b02a1e70872642f7934b61:X@spreedly.com/api/v3/test" 
-    else
-      self.site = "https://a43baac33d2a037b21b02a1e70872642f7934b61:X@spreedly.com/api/v3/test" 
+    def self.api_key=(api_key)
+      @api_key = api_key
+      if Rails.env == "production" || Rails.env == 'staging' 
+        self.site = "https://#{@api_key}:X@spreedly.com/api/v3/test" 
+      else
+        self.site = "https://#{@api_key}:X@spreedly.com/api/v3/test" 
+      end
     end
   end
 end
