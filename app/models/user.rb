@@ -115,9 +115,9 @@ end
 module SpreedlyUser
   class Subscriber < ActiveResource::Base 
     if Rails.env == "production" || Rails.env == 'staging' 
-      self.site = "https://a43baac33d2a037b21b02a1e70872642f7934b61:X@spreedly.com/api2/test" 
+      self.site = "https://a43baac33d2a037b21b02a1e70872642f7934b61:X@spreedly.com/api/v3/test" 
     else
-      self.site = "https://a43baac33d2a037b21b02a1e70872642f7934b61:X@spreedly.com/api2/test" 
+      self.site = "https://a43baac33d2a037b21b02a1e70872642f7934b61:X@spreedly.com/api/v3/test" 
     end
   end
 end
