@@ -5,7 +5,7 @@ class DiscussionsController < ApplicationController
   
   
   def index
-    @discussions = current_community.discussions
+    @discussions = current_community.discussions.for_category(params[:category])
   end
 
   def new
@@ -38,6 +38,5 @@ class DiscussionsController < ApplicationController
   def show
     @discussion = current_community.discussions.find(params[:id])
   end
-  
   
 end

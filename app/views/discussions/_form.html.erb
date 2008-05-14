@@ -8,11 +8,15 @@
   
   
   <%= f.label(:body) %>
-  
   <%= f.text_area(:body, :rows => 18, :class => "text large") %>
   
-  
-  
-  <%= submit_tag "Save" %> or <%= link_to "Cancel", discussions_url %>
+  <p>
+    <%= f.label :category_id, 'Category' %>
+  	<%= f.select(:category_id, current_community.categories.map { | each | [ each.name, each.id ] } << [ "Uncategorized", nil ] ) %>
+  </p>
+	
+  <p>
+    <%= submit_tag "Save" %> or <%= link_to "Cancel", discussions_url %>
+  </p>
   
 <% end %>

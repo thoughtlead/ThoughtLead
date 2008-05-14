@@ -36,8 +36,15 @@
     Categories
     <% for category in current_community.categories %>
       <li>
-        <%= link_to category %>
+        <%= link_to category, discussions_url(:category => category) %>
       </li>
     <% end %>
+    <li>
+      <%= link_to "Uncategorized", discussions_url(:category => 'nil') %>
+    </li>
+    <li>
+      <%= link_to "All Discussions", discussions_url %>
+    </li>
+    
   </ul>
 </div>
