@@ -43,7 +43,7 @@
 <div id="secondary">
   <ul class="actions first">
     <li>
-      <%= link_to "Edit this Discussion", edit_discussion_url(@discussion), :class => 'action' %>
+      <%= link_to "Edit this Discussion", edit_discussion_url(@discussion), :class => 'action' if current_user == @discussion.user %>
     </li>
   </ul>
 </div>
