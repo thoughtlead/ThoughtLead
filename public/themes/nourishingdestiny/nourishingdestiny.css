@@ -1,0 +1,210 @@
+/*	===================
+	BASIC ELEMENTS
+	===================*/
+
+body {background:url(/themes/nourishingdestiny/images/body_bg.gif) top left repeat-x; text-align:center; color:#555;}
+
+abbr {}
+acronym {}
+address {}
+area {}
+b {}
+blockquote {}
+
+/* HEADINGS*/
+h1 {margin-bottom:20px; color:#3a3a3a; font: normal normal bolder 25px/30px arial, sans-serif; letter-spacing:-.03em; word-spacing:-.03em;}
+h2 {margin:0; padding:0; font: normal normal bolder 18px/25px arial, sans-serif; letter-spacing:-.03em; word-spacing:-.03em;}
+h3 {margin:10px 0 10px 0; padding:0; font: normal normal normal 17px/20px arial, sans-serif; letter-spacing:-.03em; word-spacing:-.03em;}
+
+/* LINKS */
+a, a:active, a:link {color:#9da93b; text-decoration:none;}
+a:hover {text-decoration:underline; background:none;}
+body a:visited {color:#9da93b;}
+	
+/* ACTION LINKS */
+a.action, body a.action:visited {display:block; padding:5px 7px; margin-bottom:10px; color:#fff; background-color:#99c903;}
+a.action:hover, a.action:focus {color:#fff; }
+#secondary a.action, body a.action:visited {background-color: transparent; background-image:url(/images/action_top.gif); background-position:top left; background-repeat: no-repeat;}
+#secondary ul.actions li {background:#99c903 url(/images/action_bottom.gif) bottom left no-repeat;}
+
+
+
+/*	===================
+	LAYOUT
+	===================*/
+
+
+/* Constraining Primary Divs*/
+#header, #section, #content, #footer {position:relative;}
+
+/* PAGE --------------- */
+#page {background:none; width:930px; margin:0 auto; padding:0; text-align:left;}
+
+/* HEADER --------------- */
+.head {background:none; padding:0 10px;}
+#header {background:none; text-align:right; min-height:110px; padding:0 20px; overflow:hidden;}
+
+	/* COMMUNITY TITLE */
+		/*Hide header text*/
+	 	#header h1, #header h1 a {display:none;}
+	body #page #header .community_title {position:relative; float:left; margin:34px 0 0; padding:0; overflow:hidden;}
+	#header div.community_title a.logo {margin:0; padding:0;}
+	
+		
+	/* USER CONTROLS */
+	.user_controls {font-size:12px; line-height:29px; padding-bottom:5px;}
+	.user_controls, .user_controls a, .user_controls a:visited {color:#fff;}
+
+	/* TOP NAVIGATION */
+	ul.navigation_top {float:right; width:338px; font: normal normal normal 16px/40px arial, sans-serif; margin:66px 0 0;}
+	.navigation_top li {display:block; float:left; text-align:center; margin-left:6px; border-left:none; background:transparent url(/themes/nourishingdestiny/images/nav_tab_b.gif) top right no-repeat !important;}
+	.navigation_top li a.people {border-right:none;}
+	.navigation_top a, .navigation_top a:visited, .navigation_top a:hover {display:block; width:104px; height:43px; padding-top:0; line-height:43px; text-decoration:none; color:#404040; background:transparent url(/themes/nourishingdestiny/images/nav_tab_a.gif) top left no-repeat !important;}
+	.navigation_top a.discussions, .navigation_top a.discussions:visited, .navigation_top a.discussions:hover {width:108px;}
+	.navigation_top li.current {background:url() top left repeat-x;}
+	.navigation_top li.current a, .navigation_top li.current a:visited {color:#fff; }
+	.navigation_top li a.courses:hover, .navigation_top li a.discussions:hover, .navigation_top li a.people:hover {color:#2E74A5;}
+	
+		/* Removing Normal Icons */
+		.navigation_top li a.courses {background-image:none;}
+		.navigation_top li.current a.courses {background-image:none;}
+
+		.navigation_top li a.discussions {background-image:none;}
+		.navigation_top li.current a.discussions {background-image:none;}
+		
+		.navigation_top li a.people {background-image:none;}
+		.navigation_top li.current a.people {background-image:none;}
+
+		/* Tab Hover States */
+		.navigation_top li:focus, .navigation_top li:hover {background:transparent url(/themes/nourishingdestiny/images/nav_tab_b2.gif) top right no-repeat !important;}
+		.navigation_top a:focus, .navigation_top a:hover {color:#232319 !important; background:transparent url(/themes/nourishingdestiny/images/nav_tab_a2.gif) top left no-repeat !important;}		
+		#page .navigation_top li.current a:hover {color:#EFF1CE !important;}
+		
+		
+
+/* SECTION --------------- */
+#section {margin:0; padding-bottom:0; border-bottom:none; background:#859728 url(/themes/nourishingdestiny/images/section_header_b.gif) top right no-repeat !important;}
+#section h2 {margin:0; padding:8px 30px; background:transparent url(/themes/nourishingdestiny/images/section_header_a.gif) top left no-repeat !important; color:#E8701E; color:#fff; font: normal normal normal 20px/25px arial, sans-serif; letter-spacing:-.03em; word-spacing:-.03em;}
+div#section.courses h2 {padding: 8px 30px 8px 70px; background:transparent url(/themes/nourishingdestiny/images/section_courses.gif) top left no-repeat !important;}
+div#section.discussions h2 {padding: 8px 30px 8px 70px; background:transparent url(/themes/nourishingdestiny/images/section_discussions.gif) top left no-repeat !important;}
+div#section.people h2 {padding: 8px 30px 8px 70px; background:transparent url(/themes/nourishingdestiny/images/section_people.gif) top left no-repeat !important;}	
+
+/* CONTENT --------------- */
+#content {overflow:hidden; padding-top:20px; background:transparent url(/themes/nourishingdestiny/images/page_bg.gif) center top repeat-y;}
+
+	/* PRIMARY */
+	#content #primary {position:relative; float:left; margin:0 -50px 0 10px; padding:30px 30px 50px 20px; width:510px; overflow:hidden;}
+	#content #primary div {margin-bottom:20px;}
+		/* FONTS */
+		#primary p {margin:5px 0 20px; font: normal normal normal 13px/20px georgia, serif; letter-spacing:.05em; word-spacing:-.07em; color:#555;}
+		#primary h2 a {color:#859728;}	
+	
+	/* SECONDARY */
+	#content #secondary {position:relative; float:right; margin-right:10px; padding:30px 20px 30px 10px; overflow:hidden; width:320px;}
+	#secondary div {padding-bottom:20px;}
+	#secondary ul div, #secondary ol div {padding-bottom:0;}
+	
+	/* Small */
+	#small {position:relative; width:430px; padding:50px 0px 150px; margin:0 auto; background:#fff; text-align:left;}
+	#small div {margin-bottom:20px;}
+
+
+/* FOOTER --------------- */
+#footer {margin:0 10px; height:120px; padding:0; color:#fff; background: transparent url(/themes/nourishingdestiny/images/footer_endcap.gif) top right no-repeat;}
+#footer p {display:none;}
+
+
+
+/*	===================
+	SECTIONS & PAGES
+	===================*/
+
+/*	HOME --------------- */
+#page.home #small {padding:2px 15px 75px;}
+.home #small .logo {text-align:center;}
+.home img {margin-bottom:10px;}
+.home .action {margin:20px 0;}
+.promo {font: normal normal normal 18px/30px arial, sans-serif; margin-bottom:40px;}
+
+/*	COURSE --------------- */
+#primary ol.courses {}
+#primary ol.courses li {padding:0 0 10px 30px; margin-bottom:20px; border-bottom:1px solid #e5e5e5; background:url(/images/course_icon.gif) no-repeat 0px 1px;}
+#primary ol.courses li h3 {display:inline;}
+#primary a.action_sm {color:#99c903; padding-left:10px;}
+#primary ol.courses p {margin-bottom:10px;}
+#primary .course_description p {font: italic normal normal 15px/25px georgia, serif;}
+#primary .info p {font:normal normal normal 14px/20px arial, sans-serif; margin:0; padding:0;}
+div.chapter {text-transform:uppercase; border-bottom:1px solid #e5e5e5; color:#888; font: normal normal normal 13px/20px arial, sans-serif;}
+#secondary h2 {color:#b96440;}
+
+/*	LESSON --------------- */
+#lesson_placeholder #primary div.lesson_info {margin-bottom:20px; border-bottom:1px dashed #bbb;}
+#secondary p.premium {padding:10px; border: 1px solid #C8C159; background:#FFFDC8; margin-bottom:20px;}
+#secondary a.action {margin: 0 0 5px !important;}
+#secondary .course {font: normal normal normal 16px/20px arial, sans-serif;}
+#secondary .course .course_title p {font: normal normal normal 16px/20px arial, sans-serif; padding-bottom:10px; margin-bottom:0px; border-bottom:1px solid #e5e5e5;}
+#secondary .course_title span {display:block; text-transform:uppercase; margin-bottom:5px; font: normal normal normal 14px/20px arial, sans-serif; color:#aaa;}
+#secondary .course .lessons {margin-bottom:0px;}
+#secondary .course .lessons li {font: normal normal normal 15px/20px arial, sans-serif; padding-bottom:5px; margin:0 0 5px 15px; border-bottom:1px solid #e5e5e5;}
+#secondary .course .lessons ol li.current {padding:3px; background:#79869D; color:#fff;}
+#content #secondary ul, #content #secondary ol {padding:0; margin:0;}
+
+#secondary ul.actions {padding-bottom:20px !important;}
+
+
+
+/*	DISCUSSIONS --------------- */
+/* Index */
+.discussions .discussion, .comments .commment {border-bottom:1px solid #e5e5e5; margin-left:60px; position:relative; display:block;}
+.discussions .discussion span.avatar, .comments .comment .span.avatar {position:absolute; left:-60px; top:5px;}
+#primary .discussions .discussion p {padding:0; margin:0;}
+.discussions .discussion {}
+	/* Meta info */
+	.discussions .discussion .meta_info {padding:5px 0 0;}
+/* Show */
+#primary ol.comments {padding-top:20px; margin-top:5px; border-top:1px solid #e5e5e5;}
+#primary ol.comments p {font: normal normal normal 14px/20px arial, sans-serif;}
+ol.comments li {margin-bottom:20px; border-bottom:1px solid #e5e5e5;}
+.comment_info {font-weight:bold;}
+
+/*	PROFILE --------------- */
+li.user {line-height:48px;}
+
+/*	PROFILE --------------- */
+#user_profile .about, #user_profile .interests, #user_profile .websites {border-top:1px solid #e5e5e5; padding:10px 0 0; margin:0 !important; overflow:hidden;}
+#user_profile h3 {display:block; width:100px; float:left; margin:0 10px 20px 0; font:normal normal normal 14px/20px arial, sans-serif; text-align:right; text-transform:uppercase;}
+#user_profile div.section_body p {margin-top:0;}
+#user_profile div.section_body {width:400px; float:right; padding:0; margin:0;}
+#profile_avatar {float:left; margin:0 10px 20px 0;}
+div.user_info {overflow:hidden;}
+div.user_info h1 {padding-top:20px;}
+
+
+/*	PROFILE --------------- */
+.user_list li.user {display:block; overflow:hidden;}
+
+
+
+
+/*	===================
+	MODULES & MISC
+	===================*/
+
+
+/* Forms */
+form {padding-right:14px;}
+label {font: normal normal normal 14px/20px arial, sans-serif; color:#000;}
+input.text, label, textarea {display:block;}
+input, textarea {margin-bottom:20px; max-width:100%;}
+textarea, label, input.text {width:100%;}
+textarea, input.text {padding:5px; font: normal normal normal 14px/18px arial, sans-serif; color:#555;}
+#content #primary .plus_label {margin:5px 0 0;}
+.plus_label {display:block; position:relative; overflow:hidden;}
+.plus_label input {margin:4px 10px 10px 0; display:block; float:left;}
+.plus_label label {display:block;}
+form input.text {display:block; margin-bottom:20px;}
+form input.single, form textarea.single {font-size:18px; line-height:20px;}
+form input.medium, form textarea.medium {height:75px;}
+form input.large, form textarea.large {height:250px;}
+
+.grouped {margin-bottom:0;}
