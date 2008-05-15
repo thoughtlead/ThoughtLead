@@ -84,7 +84,10 @@ a.action:hover, a.action:focus {color:#fff; }
 
 /* SECTION --------------- */
 #section {margin:0; padding-bottom:0; border-bottom:none; background:#859728 url(/images/ND_com/section_header_b.gif) top right no-repeat !important;}
-#section h2 {margin:0; padding:8px 30px; background:transparent url(/images/ND_com/section_header_a.gif) top left no-repeat !important; color:#E8701E; color:#fff; font: normal normal normal 20px/25px arial, sans-serif; letter-spacing:-.03em; word-spacing:-.03em;}		
+#section h2 {margin:0; padding:8px 30px; background:transparent url(/images/ND_com/section_header_a.gif) top left no-repeat !important; color:#E8701E; color:#fff; font: normal normal normal 20px/25px arial, sans-serif; letter-spacing:-.03em; word-spacing:-.03em;}
+div#section.courses h2 {padding: 8px 30px 8px 70px; background:transparent url(/images/ND_com/section_courses.gif) top left no-repeat !important;}
+div#section.discussions h2 {padding: 8px 30px 8px 70px; background:transparent url(/images/ND_com/section_discussions.gif) top left no-repeat !important;}
+div#section.people h2 {padding: 8px 30px 8px 70px; background:transparent url(/images/ND_com/section_people.gif) top left no-repeat !important;}	
 
 /* CONTENT --------------- */
 #content {overflow:hidden; padding-top:20px; background:transparent url(/images/ND_com/page_bg.gif) center top repeat-y;}
@@ -93,7 +96,7 @@ a.action:hover, a.action:focus {color:#fff; }
 	#content #primary {position:relative; float:left; margin:0 -50px 0 10px; padding:30px 30px 50px 20px; width:510px; overflow:hidden;}
 	#content #primary div {margin-bottom:20px;}
 		/* FONTS */
-		#primary p {margin:5px 0 20px; font: normal normal normal 14px/18px georgia, serif; letter-spacing:.05em; word-spacing:-.07em; color:#555;}
+		#primary p {margin:5px 0 20px; font: normal normal normal 13px/20px georgia, serif; letter-spacing:.05em; word-spacing:-.07em; color:#555;}
 		#primary h2 a {color:#859728;}	
 	
 	/* SECONDARY */
@@ -107,7 +110,7 @@ a.action:hover, a.action:focus {color:#fff; }
 
 
 /* FOOTER --------------- */
-#footer {margin:0 10px; padding:20px 20px 70px; color:#fff; background: #ae5e3c url(/images/ND_com/footer_bg.gif) top right repeat-y;}
+#footer {margin:0 10px; height:120px; padding:0; color:#fff; background: transparent url(/images/ND_com/footer_endcap.gif) top right no-repeat;}
 #footer p {display:none;}
 
 
@@ -137,7 +140,7 @@ div.chapter {text-transform:uppercase; border-bottom:1px solid #e5e5e5; color:#8
 /*	LESSON --------------- */
 #lesson_placeholder #primary div.lesson_info {margin-bottom:20px; border-bottom:1px dashed #bbb;}
 #secondary p.premium {padding:10px; border: 1px solid #C8C159; background:#FFFDC8; margin-bottom:20px;}
-#secondary a.action {margin: 0 0 20px !important;}
+#secondary a.action {margin: 0 0 5px !important;}
 #secondary .course {font: normal normal normal 16px/20px arial, sans-serif;}
 #secondary .course .course_title p {font: normal normal normal 16px/20px arial, sans-serif; padding-bottom:10px; margin-bottom:0px; border-bottom:1px solid #e5e5e5;}
 #secondary .course_title span {display:block; text-transform:uppercase; margin-bottom:5px; font: normal normal normal 14px/20px arial, sans-serif; color:#aaa;}
@@ -145,6 +148,9 @@ div.chapter {text-transform:uppercase; border-bottom:1px solid #e5e5e5; color:#8
 #secondary .course .lessons li {font: normal normal normal 15px/20px arial, sans-serif; padding-bottom:5px; margin:0 0 5px 15px; border-bottom:1px solid #e5e5e5;}
 #secondary .course .lessons ol li.current {padding:3px; background:#79869D; color:#fff;}
 #content #secondary ul, #content #secondary ol {padding:0; margin:0;}
+
+#secondary ul.actions {padding-bottom:20px !important;}
+
 
 
 /*	DISCUSSIONS --------------- */
