@@ -8,11 +8,10 @@
     <%= tiny_mce if using_tiny_mce? %>
     
 		<%= javascript_include_tag :defaults %>
-		<%= stylesheet_link_tag :all %>
+	  <%=	stylesheet_link_tag "defaults", "thought_lead", "ND_community", "rails" %>
 	</head>
   
-  
-	<%= body_tag %>
+  <%= body_tag %>
     <div id="page" class="lesson"> <!-- TODO @Duff, change based on page type/name -->
   	  <%= render(:partial => '/layouts/header') %>
       <div id="content">
