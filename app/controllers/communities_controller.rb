@@ -2,7 +2,7 @@ class CommunitiesController < ApplicationController
   
   layout :community_layout
 
-  before_filter :community_is_active, :except => [ :need_to_activate, :new, :create, :changed_on_spreedly, :choose_plan ]
+  before_filter :community_is_active, :except => [ :need_to_activate, :new, :create, :changed_on_spreedly, :choose_plan, :index ]
   skip_before_filter :verify_authenticity_token, :only => :changed_on_spreedly
   
   def index
@@ -58,7 +58,7 @@ class CommunitiesController < ApplicationController
     end
   
     def community_layout
-      ['new', 'choose_plan'].include?(params[:action]) ? 'home' : 'application'
+      ['new', 'choose_plan', 'index'].include?(params[:action]) ? 'home' : 'application'
     end
   
     def plan_id
