@@ -3,7 +3,7 @@
 	BASIC ELEMENTS
 	===================*/
 
-body {background:#0082bb url(/images/body_bg.gif) top left repeat-x; text-align:center; color:#555;}
+body {background:#0082bb url(/themes/default/images/body_bg.gif) top left repeat-x; text-align:center; color:#555;}
 
 abbr {}
 acronym {}
@@ -26,8 +26,8 @@ body a:visited {color:#096cb1;}
 /* ACTION LINKS */
 a.action, body a.action:visited {display:block; padding:5px 7px; margin-bottom:10px; color:#fff; background-color:#99c903;}
 a.action:hover, a.action:focus {color:#fff; }
-#secondary a.action, body a.action:visited {background-color: transparent; background-image:url(/images/action_top.gif); background-position:top left; background-repeat: no-repeat;}
-#secondary ul.actions li {background:#99c903 url(/images/action_bottom.gif) bottom left no-repeat;}
+#secondary a.action, body a.action:visited {background-color: transparent; background-image:url(/themes/default/images/action_top.gif); background-position:top left; background-repeat: no-repeat;}
+#secondary ul.actions li {background:#99c903 url(/themes/default/images/action_bottom.gif) bottom left no-repeat;}
 
 
 
@@ -40,11 +40,11 @@ a.action:hover, a.action:focus {color:#fff; }
 #header, #section, #content, #footer {position:relative;}
 
 /* PAGE --------------- */
-#page {background: url(/images/page_bg.png) top left repeat-y; width:930px; margin:0 auto; text-align:left;}
+#page {background: url(/themes/default/images/page_bg.png) top left repeat-y; width:930px; margin:0 auto; text-align:left;}
 .head {padding:0 10px;}
 
 /* HEADER --------------- */
-.head {background: url(/images/header_bg.gif) repeat-x top left;}
+.head {background: url(/themes/default/images/header_bg.gif) repeat-x top left;}
 #header {background:url() top left no-repeat; text-align:right; min-height:110px; padding:0 20px;}
 
 	/* COMMUNITY TITLE */
@@ -62,19 +62,19 @@ a.action:hover, a.action:focus {color:#fff; }
 	.navigation_top li a.people {}
 	.navigation_top a, .navigation_top a:visited, .navigation_top a:hover {display:block; width:104px; height:45px; padding-top:40px; line-height:40px; text-decoration:none; color:#555; }
 	.navigation_top a.discussions, .navigation_top a.discussions:visited, .navigation_top a.discussions:hover {width:108px;}
-	.navigation_top li.current {background:url(/images/tab_active.gif) top left repeat-x;}
+	.navigation_top li.current {background:url(/themes/default/images/tab_active.gif) top left repeat-x;}
 	.navigation_top li.current a, .navigation_top li.current a:visited {color:#fff; }
 	.navigation_top li a.courses:hover, .navigation_top li a.discussions:hover, .navigation_top li a.people:hover {color:#2E74A5;}
 	
 		/* Icons */
-		.navigation_top li a.courses {background:url(/images/courses_icon_inactive.gif) center 20px no-repeat;}
-		.navigation_top li.current a.courses {background:url(/images/courses_icon.gif) center 20px no-repeat;}
+		.navigation_top li a.courses {background:url(/themes/default/images/courses_icon_inactive.gif) center 20px no-repeat;}
+		.navigation_top li.current a.courses {background:url(/themes/default/images/courses_icon.gif) center 20px no-repeat;}
 
-		.navigation_top li a.discussions {background:url(/images/discussions_icon_inactive.gif) center 20px no-repeat;}
-		.navigation_top li.current a.discussions {background:url(/images/discussions_icon.gif) center 20px no-repeat;}
+		.navigation_top li a.discussions {background:url(/themes/default/images/discussions_icon_inactive.gif) center 20px no-repeat;}
+		.navigation_top li.current a.discussions {background:url(/themes/default/images/discussions_icon.gif) center 20px no-repeat;}
 		
-		.navigation_top li a.people {background:url(/images/people_icon_inactive.gif) center 20px no-repeat; border-right:1px solid #E5E5E5;}
-		.navigation_top li.current a.people {background:url(/images/people_icon.gif) center 20px no-repeat;}
+		.navigation_top li a.people {background:url(/themes/default/images/people_icon_inactive.gif) center 20px no-repeat; border-right:1px solid #E5E5E5;}
+		.navigation_top li.current a.people {background:url(/themes/default/images/people_icon.gif) center 20px no-repeat;}
 
 /* SECTION --------------- */
 #section {margin:0 10px; padding-bottom:2px; border-bottom:4px solid #99c903;}
@@ -101,7 +101,7 @@ a.action:hover, a.action:focus {color:#fff; }
 
 
 /* FOOTER --------------- */
-#footer {padding:20px 30px 40px; color:#fff; background: #0083bd url(/images/footer_endcap.gif) top left no-repeat;}
+#footer {padding:20px 30px 40px; color:#fff; background: #0083bd url(/themes/default/images/footer_endcap.gif) top left no-repeat;}
 
 
 
@@ -118,7 +118,7 @@ a.action:hover, a.action:focus {color:#fff; }
 
 /*	COURSE --------------- */
 #primary ol.courses {}
-#primary ol.courses li {padding:0 0 10px 30px; margin-bottom:20px; border-bottom:1px solid #e5e5e5; background:url(/images/course_icon.gif) no-repeat 0px 1px;}
+#primary ol.courses li {padding:0 0 10px 30px; margin-bottom:20px; border-bottom:1px solid #e5e5e5; background:url(/themes/default/images/course_icon.gif) no-repeat 0px 1px;}
 #primary ol.courses li h3 {display:inline;}
 #primary a.action_sm {color:#99c903; padding-left:10px;}
 #primary ol.courses p {margin-bottom:10px;}
