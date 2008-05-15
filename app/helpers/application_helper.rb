@@ -17,4 +17,18 @@ module ApplicationHelper
     javascript_tag("Field.focus('#{id}')");
   end
   
+  def community_stylesheet
+    default_stylesheet = "/themes/default/default.css"
+    return default_stylesheet unless current_community
+    return default_stylesheet unless File.exist?(File.expand_path(File.dirname(__FILE__) + "/../../public/themes/#{current_community.subdomain}/#{current_community.subdomain}.css"))
+    "/themes/#{current_community.subdomain}/#{current_community.subdomain}.css"
+  end
+  
+  def community_logo
+    default_logo = "/themes/default/images/logo.gif"
+    return default_logo unless current_community
+    return default_logo unless File.exist?(File.expand_path(File.dirname(__FILE__) + "/../../public/themes/#{current_community.subdomain}/images/logo.gif"))
+    "/themes/#{current_community.subdomain}/images/logo.gif"
+  end
+  
 end

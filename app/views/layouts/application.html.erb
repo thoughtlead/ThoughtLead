@@ -8,7 +8,8 @@
     <%= tiny_mce if using_tiny_mce? %>
     
 		<%= javascript_include_tag :defaults %>
-	  <%=	stylesheet_link_tag "defaults", "thought_lead", "ND_community", "rails" %>
+	  <%=	stylesheet_link_tag :all %>
+	  <%= stylesheet_link_tag community_stylesheet %>
 	</head>
   
   <%= body_tag %>
