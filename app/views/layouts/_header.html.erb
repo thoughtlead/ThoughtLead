@@ -22,7 +22,7 @@
 
     <ul class="navigation_top">
       <% current_tag(:li, @current_tab == :Courses) do %>
-        <%= link_to "Courses", community_home_url, :class => 'courses' %>
+        <%= link_to "Courses", courses_url, :class => 'courses' %>
       <% end %>
 
       <% current_tag(:li, @current_tab == :Discussions) do %>
