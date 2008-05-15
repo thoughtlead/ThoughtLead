@@ -12,6 +12,10 @@ module CommunityLocation
     def community_dashboard_url(community = current_community, use_ssl = request.ssl?)
       (use_ssl ? "https://" : "http://") + community_host(community)
     end
+    
+    def community_login_url(community = current_community, use_ssl = request.ssl?)
+      "#{community_dashboard_url(community, use_ssl)}/login"
+    end
 
     def community_host(community)
       community_host = ""
