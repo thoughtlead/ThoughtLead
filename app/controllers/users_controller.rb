@@ -1,6 +1,6 @@
 class UsersController < ApplicationController
   
-  before_filter :login_required, :except => [ :signup, :changed_on_spreedly ]
+  before_filter :login_required, :except => [ :signup, :changed_on_spreedly, :index ]
   before_filter :community_is_active
   skip_before_filter :verify_authenticity_token, :only => :changed_on_spreedly
   
