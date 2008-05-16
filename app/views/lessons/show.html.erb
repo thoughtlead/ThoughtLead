@@ -71,10 +71,13 @@
         </div>
       </div>
 
-      <strong>Attachments</strong>
-      <p>
-        <%= link_to @lesson.attachment.filename, @lesson.attachment.public_filename if @lesson.attachment %>
-      </p>
+      <% if @lesson.attachment %>
+        <strong>Attachments</strong>
+        <p>
+          <%= link_to @lesson.attachment.filename, @lesson.attachment.public_filename %>
+        </p>
+      <% end %>
+      
 
       <p><%= "This lesson is not published" if @lesson.draft %></p>
     </div>
