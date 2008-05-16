@@ -13,7 +13,7 @@
   <% if !current_community.categories.empty? %>
     <p>
       <%= f.label :category_id, 'Category' %>
-    	<%= f.select(:category_id, current_community.categories.map { | each | [ each.name, each.id ] } << [ "Uncategorized", nil ] ) %>
+    	<%= f.select(:category_id, current_community.categories.map { | each | [ each.name, each.id ] } ) %>
     </p>
   <% end %>
 	
