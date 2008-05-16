@@ -3,7 +3,7 @@
     <div id="lesson_placeholder"> <!-- FIXME - Remove after there is the ability to target just lesson pages -->
     <div id="primary">
       <div id="lesson">
-            <p><%= link_to "&larr; Return to Course Overview", course_url %></p>
+            <p><%= link_to "&larr; Return to Course Overview", @lesson.chapter.course %></p>
             <h1 class="grouped"><%=h @lesson %></h1>
         <div id="lesson_body">
           <div class="lesson_info">

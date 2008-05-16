@@ -1,7 +1,7 @@
 <% @current_tab = :Courses %>
 
 <div id="primary">
-  <p><%= link_to "&larr; Return to Courses", community_home_url %></p>
+  <p><%= link_to "&larr; Return to Courses", courses_url %></p>
   <h1 class="grouped"><%=h @course %></h1>
   <span class="meta_info author">by <%= link_to h(@course.user), @course.user %></span>
   <div class="course_description">
