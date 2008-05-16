@@ -1,7 +1,15 @@
 <div class="head">
   <div id="header">
     <div class="community_title">
+      
+      <% if logged_in? %>
+      <%= link_to(image_tag(community_logo), courses_url) %>
+    	
+    	<% else %>
       <%= link_to(image_tag(community_logo), community_home_url) %>
+      
+      <% end %>
+      
     </div>
 
     <div class="user_controls">

@@ -2,7 +2,7 @@
 	BASIC ELEMENTS
 	===================*/
 
-body {background:url(images/body_bg.gif) top left repeat-x; text-align:center; color:#555;}
+body {background:url(images/body_bg.gif) top left repeat-x; text-align:center; color:#555; margin-bottom:0;}
 
 abbr {}
 acronym {}
@@ -89,10 +89,10 @@ div#section.discussions h2 {padding: 8px 30px 8px 70px; background:transparent u
 div#section.people h2 {padding: 8px 30px 8px 70px; background:transparent url(images/section_people.gif) top left no-repeat !important;}	
 
 /* CONTENT --------------- */
-#content {background:url(images/page_bg.gif) center top repeat-y; overflow:hidden; padding-top:20px; margin-bottom:0;}
+#content {background:url(images/page_bg.gif) center top repeat-y; overflow:hidden; padding:20px 0 80px; margin-bottom:0;}
 
 	/* PRIMARY */
-	#content #primary {position:relative; float:left; margin:0 -50px 0 10px; padding:30px 30px 50px 20px; width:510px; overflow:hidden;}
+	#content #primary {position:relative; float:left; margin:0 -50px 0 10px; padding:30px 30px 50px 20px; width:510px;}
 	#content #primary div {margin-bottom:20px;}
 		/* FONTS */
 		#primary p {margin:5px 0 20px; font: normal normal normal 13px/20px georgia, serif; letter-spacing:.05em; word-spacing:-.07em; color:#555;}
@@ -109,8 +109,9 @@ div#section.people h2 {padding: 8px 30px 8px 70px; background:transparent url(im
 
 
 /* FOOTER --------------- */
-body #footer {width:100%; background:yellow; height:120px;}
+body #footer {width:910px; height:175px; margin:0 auto; background:url(images/footer_endcap.gif) top left no-repeat;}
 #footer p {display:none;}
+#footer span.powered_by {display:block; height:100px; width:930px; margin:0 auto; background:none;}
 
 
 
@@ -123,7 +124,7 @@ body.home #header .community_title a img {margin-left:8px;}
 body.home ul.navigation_top {display:none;}
 body.home #section h2 {display:none;}
 body.home #page div#primary {width:930px; margin:0; padding:0;}
-body.home #content {padding-top:0; background:transparent;}
+body.home #content {padding:0; background:transparent;}
 body.home #community_promo {height:295px; padding:30px; background:url(images/community_promo.jpg) top left no-repeat;}
 body.home #community_promo a.signup {display:block; height:53px; width:371px; background:url(images/signup_a.gif) top left no-repeat;}
 body.home #community_promo a.signup:hover {background:url(images/signup_b.gif) top left no-repeat;}
@@ -137,6 +138,9 @@ body.home #section_overview h2 a {display:block; padding-top:130px; font:normal 
 body.home #section_overview .courses h2 {background:url(images/courses_graphic.gif) center top no-repeat;}
 body.home #section_overview .discussions h2 {background:url(images/discussions_graphic.gif) center top no-repeat;}
 body.home #section_overview .people h2 {background:url(images/people_graphic.gif) center top no-repeat;}
+body.home #footer {width:100%; height:600px; overflow:hidden; background:#ae5e3c; height:120px; text-align:center;}
+body.home #footer p {display:none;}
+body.home #footer span.powered_by {display:block; height:100px; width:910px; margin:0 auto; background:url(images/footer_bg.gif) top right no-repeat;}
 
 
 /*	COURSE --------------- */
@@ -194,7 +198,8 @@ div.user_info h1 {padding-top:20px;}
 
 
 /*	PROFILE --------------- */
-.user_list li.user {display:block; overflow:hidden;}
+.user_list {width:910px; float:left;}
+.user_list li.user {display:block; overflow:hidden; float:left; width:150px; margin-right:30px;}
 
 
 
