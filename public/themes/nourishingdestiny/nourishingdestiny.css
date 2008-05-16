@@ -38,11 +38,10 @@ a.action:hover, a.action:focus {color:#fff; }
 #header, #section, #content, #footer {position:relative;}
 
 /* PAGE --------------- */
-#page {background:none; width:930px; margin:0 auto; padding:0; text-align:left;}
+#page {width:930px; margin:0 auto; padding:0; text-align:left;}
 
 /* HEADER --------------- */
-.head {background:none; padding:0 10px;}
-#header {background:none; text-align:right; min-height:110px; padding:0 20px; overflow:hidden;}
+#header {background:none; text-align:right; min-height:110px; margin:0 10px; padding:0 20px; overflow:hidden;}
 
 	/* COMMUNITY TITLE */
 		/*Hide header text*/
@@ -56,7 +55,7 @@ a.action:hover, a.action:focus {color:#fff; }
 	.user_controls, .user_controls a, .user_controls a:visited {color:#fff;}
 
 	/* TOP NAVIGATION */
-	ul.navigation_top {float:right; width:338px; font: normal normal normal 16px/40px arial, sans-serif; margin:66px 0 0;}
+	ul.navigation_top {float:right; width:338px; font: normal normal normal 16px/40px arial, sans-serif; margin:67px 0 0;}
 	.navigation_top li {display:block; float:left; text-align:center; margin-left:6px; border-left:none; background:transparent url(images/nav_tab_b.gif) top right no-repeat !important;}
 	.navigation_top li a.people {border-right:none;}
 	.navigation_top a, .navigation_top a:visited, .navigation_top a:hover {display:block; width:104px; height:43px; padding-top:0; line-height:43px; text-decoration:none; color:#404040; background:transparent url(images/nav_tab_a.gif) top left no-repeat !important;}
@@ -90,7 +89,7 @@ div#section.discussions h2 {padding: 8px 30px 8px 70px; background:transparent u
 div#section.people h2 {padding: 8px 30px 8px 70px; background:transparent url(images/section_people.gif) top left no-repeat !important;}	
 
 /* CONTENT --------------- */
-#content {overflow:hidden; padding-top:20px; background:transparent url(images/page_bg.gif) center top repeat-y;}
+#content {background:url(images/page_bg.gif) center top repeat-y; overflow:hidden; padding-top:20px; margin-bottom:0;}
 
 	/* PRIMARY */
 	#content #primary {position:relative; float:left; margin:0 -50px 0 10px; padding:30px 30px 50px 20px; width:510px; overflow:hidden;}
@@ -110,7 +109,7 @@ div#section.people h2 {padding: 8px 30px 8px 70px; background:transparent url(im
 
 
 /* FOOTER --------------- */
-#footer {margin:0 10px; height:120px; padding:0; color:#fff; background: transparent url(images/footer_endcap.gif) top right no-repeat;}
+body #footer {width:100%; background:yellow; height:120px;}
 #footer p {display:none;}
 
 
@@ -119,12 +118,26 @@ div#section.people h2 {padding: 8px 30px 8px 70px; background:transparent url(im
 	SECTIONS & PAGES
 	===================*/
 
-/*	HOME --------------- */
-#page.home #small {padding:2px 15px 75px;}
-.home #small .logo {text-align:center;}
-.home img {margin-bottom:10px;}
-.home .action {margin:20px 0;}
-.promo {font: normal normal normal 18px/30px arial, sans-serif; margin-bottom:40px;}
+/*	HOME ----------------- */
+body.home #header .community_title a img {margin-left:8px;}
+body.home ul.navigation_top {display:none;}
+body.home #section h2 {display:none;}
+body.home #page div#primary {width:930px; margin:0; padding:0;}
+body.home #content {padding-top:0; background:transparent;}
+body.home #community_promo {height:295px; padding:30px; background:url(images/community_promo.jpg) top left no-repeat;}
+body.home #community_promo a.signup {display:block; height:53px; width:371px; background:url(images/signup_a.gif) top left no-repeat;}
+body.home #community_promo a.signup:hover {background:url(images/signup_b.gif) top left no-repeat;}
+body.home #community_promo a.signup p {display:none;}
+body.home #community_promo p {margin-right:400px; font:normal normal normal 14px/24px georgia, serif; letter-spacing:.08em;}
+body.home h1 {margin-bottom:0; font:normal normal normal 33px/50px georgia, serif; letter-spacing:.04em; color:#b96440;}
+body.home #section_overview {position:relative; padding:20px 30px; overflow:hidden;}
+body.home #section_overview div {position:relative; float:left; width:250px;}
+body.home #section_overview div.discussions, body.home #section_overview div.people {margin-left:30px; padding-left:30px; background:url(images/section_divider.gif) top left no-repeat;}
+body.home #section_overview h2 a {display:block; padding-top:130px; font:normal normal normal 24px/30px georgia, serif; letter-spacing:.12em; color:#b96440;}
+body.home #section_overview .courses h2 {background:url(images/courses_graphic.gif) center top no-repeat;}
+body.home #section_overview .discussions h2 {background:url(images/discussions_graphic.gif) center top no-repeat;}
+body.home #section_overview .people h2 {background:url(images/people_graphic.gif) center top no-repeat;}
+
 
 /*	COURSE --------------- */
 #primary ol.courses {}

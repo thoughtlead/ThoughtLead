@@ -12,17 +12,17 @@
 	  <%= stylesheet_link_tag community_stylesheet %>
 	</head>
   
-  <%= body_tag %>
+  <body class="<%= @current_tab.to_s.downcase %>">
     <div id="page" class="lesson"> <!-- TODO @Duff, change based on page type/name -->
   	  <%= render(:partial => '/layouts/header') %>
       <div id="content">
   		  <%= render(:partial => '/layouts/flash_details') %>
   		  <%= yield %>
   		</div>
+  	</div>  		
+  	<%= render(:partial => '/layouts/footer') %>
   		
-  		<%= render(:partial => '/layouts/footer') %>
-  		
-  	</div>
+
 	</body>
 </html>
 
