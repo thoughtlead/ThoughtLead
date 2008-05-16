@@ -8,7 +8,6 @@ class ApplicationController < ActionController::Base
 
   before_filter :login_from_cookie
   protect_from_forgery
-    
   
   private
     def community_is_active
@@ -30,6 +29,5 @@ class ApplicationController < ActionController::Base
         }
       }
     end
-    
     
 end

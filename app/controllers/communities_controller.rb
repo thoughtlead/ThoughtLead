@@ -9,6 +9,10 @@ class CommunitiesController < ApplicationController
     @communities = Community.find(:all)
   end
   
+  def current_community_home
+    render :file => themed_community_home, :layout => true
+  end
+  
   def new
     @community = Community.new
     @user = User.new
@@ -67,5 +71,13 @@ class CommunitiesController < ApplicationController
         when 'quarterly' then '57'
       end
     end
-  
+    
+    def themed_community_home
+      themes_dir = File.expand_path(File.dirname(__FILE__) + "/../../public/themes")
+      default_file = "#{themes_dir}/default/community_home.html.erb"
+      return default_file unless current_community
+      return default_file unless File.exist?("#{themes_dir}/#{current_community.subdomain}/community_home.html.erb")
+      "/#{themes_dir}/#{current_community.subdomain}/community_home.html.erb"
+    end
+
 end
