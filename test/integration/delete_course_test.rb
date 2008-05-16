@@ -6,7 +6,7 @@ class DeleteCourseTest < ActionController::IntegrationTest
   context "A Course" do
     should "be deletable" do
       new_session_as(:duff) do
-        get '/'
+        get '/courses'
         assert_select("ol.courses>li", :count => 1)
         assert_select("ol.courses>li>h3>a", "Liberty is no more")
         get course_url(courses(:liberty))
@@ -28,7 +28,7 @@ class DeleteCourseTest < ActionController::IntegrationTest
         follow_redirect!
         assert_flash("You do not have permission to access that part of the site.")
         
-        get '/'
+        get '/courses'
         assert_select("ol.courses>li", :count => 1)
       end
     end
