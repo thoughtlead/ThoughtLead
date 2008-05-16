@@ -10,10 +10,12 @@
   <%= f.label(:body) %>
   <%= f.text_area(:body, :rows => 18, :class => "text large") %>
   
-  <p>
-    <%= f.label :category_id, 'Category' %>
-  	<%= f.select(:category_id, current_community.categories.map { | each | [ each.name, each.id ] } << [ "Uncategorized", nil ] ) %>
-  </p>
+  <% if !current_community.categories.empty? %>
+    <p>
+      <%= f.label :category_id, 'Category' %>
+    	<%= f.select(:category_id, current_community.categories.map { | each | [ each.name, each.id ] } << [ "Uncategorized", nil ] ) %>
+    </p>
+  <% end %>
 	
   <p>
     <%= submit_tag "Save" %> or <%= link_to "Cancel", discussions_url %>

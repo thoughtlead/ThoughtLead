@@ -32,7 +32,7 @@
     <% end %>
   </ul>
   
-  <% unless current_community.categories.empty? %>
+  <% if !current_community.categories.empty? %>
     <ul>
       Categories
       <% for category in current_community.categories %>
