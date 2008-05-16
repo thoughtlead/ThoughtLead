@@ -6,9 +6,11 @@
   
       <div id="priceTable">
         <% for subscription_plan in @subscription_plans %>
-          <p>
-            <%= radio_button_tag(:selected_plan, subscription_plan.id) %> <%= label :selected_plan, subscription_plan.id, "#{subscription_plan.name} ($#{subscription_plan.price} for #{subscription_plan.terms})" %>
-          </p>
+          <% if subscription_plan.enabled %>
+            <p>
+              <%= radio_button_tag(:selected_plan, subscription_plan.id) %> <%= label :selected_plan, subscription_plan.id, "#{subscription_plan.name} ($#{subscription_plan.price} for #{subscription_plan.terms})" %>
+            </p>
+          <% end %>
         <% end %>
                 
         <p>
