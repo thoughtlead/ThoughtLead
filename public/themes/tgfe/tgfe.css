@@ -125,13 +125,15 @@ body.home ul.navigation_top {display:none;}
 body.home #section h2 {display:none;}
 body.home #page div#primary {width:930px; margin:0; padding:0;}
 body.home #content {padding:0; background:transparent;position:relative;}
-body.home #community_promo {height:336px; padding:30px 0 0 280px; background:url(images/community_promo.jpg) 35px top no-repeat;}
+body.home #community_promo {height:336px; padding:30px 0 0 280px; background:url(images/community_promo.jpg) 39px top no-repeat;}
 body.home #community_promo h1 {text-align:center;}
 body.home #community_promo p {color:#0e0b0d; padding:0 70px 0 100px; font:normal normal normal 14px/24px georgia, serif; letter-spacing:.08em;}
 body.home #community_promo a.signup {display:block; height:84px; width:436px; margin-left:96px; background:url(images/signup_a.gif) top left no-repeat;}
 body.home #community_promo a.signup:hover {background:url(images/signup_b.gif) top left no-repeat;}
 body.home #community_promo a.signup p {display:none;}
 body.home h1 {margin-bottom:0; font:normal normal normal 23px/50px arial, helvetica, serif; text-transform:uppercase; letter-spacing:.18em; color:#c69716;}
+body.home div.banner {width:100%; background:url(images/banner.gif) center top no-repeat;}
+body.home #page div.banner p {display:block; padding-right:215px; line-height:50px; text-align:center; font:normal normal normal 23px/50px arial, helvetica, serif; text-transform:uppercase; letter-spacing:.22em; color:#fff;}
 body.home #section_overview {position:relative; padding:20px 30px; overflow:hidden;}
 body.home #section_overview div {position:relative; float:left; width:250px;}
 body.home #section_overview div.discussions, body.home #section_overview div.people {margin-left:30px; padding-left:30px; background:url(images/section_divider.gif) top left no-repeat;}
