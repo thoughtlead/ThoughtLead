@@ -5,7 +5,11 @@
   <h1 class="grouped"><%=h @discussion %></h1>
   <div class="discussion_info meta_info">
     <span class="author">by <%= link_to h(@discussion.user), @discussion.user %></span>
-    <span class="date_posted">&nbsp;|&nbsp;Posted on <%= @discussion.created_at.to_s(:month_day) %> in <%= link_to @discussion.category ? @discussion.category.to_s : "Uncategorized" %></span>
+    <span class="date_posted">&nbsp;|&nbsp;Posted on <%= @discussion.created_at.to_s(:month_day) %> 
+      <% if !current_community.categories.empty? %>
+        in <%= link_to @discussion.category ? @discussion.category.to_s : "Uncategorized" %>
+      <% end %>
+    </span>
     <span class="responses">&nbsp;|&nbsp;<%= pluralize(@discussion.responses.count, "Response") %></span>
   </div>
   <div class="discussion_body">

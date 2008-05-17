@@ -22,14 +22,15 @@
     </p>
 
     <p>
-      <%= f.label :spreedly_community_name %>
-      <%= f.text_field :spreedly_community_name, :class => "text single"  %>
+      <%= f.label :use_spreedly_production_site, "Use Spreedly Production Site" %>
+      <%= f.check_box :use_spreedly_production_site  %>
     </p>
 
     <p>
-      <%= link_to "Change your payment settings", "https://spreedly.com/thoughtlead-test/subscriber_accounts/#{current_community.spreedly_token}" %>
+      <%= link_to "Change your payment settings", "https://spreedly.com/thoughtlead-test/subscriber_accounts/#{current_community.spreedly_token}" if current_community.spreedly_token %>
     </p>
     
+    <br />
     <p>
   	  <%= submit_tag 'Save' %> or <%= link_to "Cancel", community_home_url %>
     </p>

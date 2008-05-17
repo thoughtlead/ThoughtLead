@@ -32,19 +32,24 @@
     <% end %>
   </ul>
   
-  <ul>
-    Categories
-    <% for category in current_community.categories %>
-      <% content_tag(:li, :class => current_class_for_category(category)) do %>
-        <%= link_to category, discussions_url(:category => category) %>
+  <% if !current_community.categories.empty? %>
+    <ul>
+      Categories
+      <% for category in current_community.categories %>
+        <% content_tag(:li, :class => current_class_for_category(category)) do %>
+          <%= link_to category, discussions_url(:category => category) %>
+        <% end %>
       <% end %>
-    <% end %>
-    <% content_tag(:li, :class => current_class_uncategorized) do %>
-      <%= link_to "Uncategorized", discussions_url(:category => 'nil') %>
-    <% end %>
-    <% content_tag(:li, :class => current_class_all_tasks) do %>
-      <%= link_to "All Discussions", discussions_url %>
-    <% end %>
+      <% if current_community.discussions.for_category('nil').count > 0 %>
+        <% content_tag(:li, :class => current_class_uncategorized) do %>
+          <%= link_to "Uncategorized", discussions_url(:category => 'nil') %>
+        <% end %>
+      <% end %>
+      <% content_tag(:li, :class => current_class_all_tasks) do %>
+        <%= link_to "All Discussions", discussions_url %>
+      <% end %>
     
-  </ul>
+    </ul>
+  <% end %>
+  
 </div>

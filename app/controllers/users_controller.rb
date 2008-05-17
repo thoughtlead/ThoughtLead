@@ -68,13 +68,17 @@ class UsersController < ApplicationController
   end
   
   def upgrade
-    return if current_community.spreedly_api_key.blank? || current_community.spreedly_community_name.blank?
+    return if current_community.spreedly_api_key.blank?
     
-    SubscriptionPlan.api_key = current_community.spreedly_api_key
-    @subscription_plans = SubscriptionPlan.find(:all)
+    Spreedly::SubscriptionPlan.configure(current_community)
+    @subscription_plans = Spreedly::SubscriptionPlan.find(:all)
     
     return if request.get? || params[:selected_plan].blank?
-    redirect_to "https://spreedly.com/#{current_community.spreedly_community_name}/subscribers/#{current_user.id}/subscribe/#{params[:selected_plan]}/#{current_user.login}"
+    
+    Spreedly::Site.configure(current_community)
+    site = Spreedly::Site.find(:one, :from => current_community.use_spreedly_production_site ? :production : :test)
+    
+    redirect_to "https://spreedly.com/#{site.url_suffix}/subscribers/#{current_user.id}/subscribe/#{params[:selected_plan]}/#{current_user.login}"
   end
   
   def changed_on_spreedly
