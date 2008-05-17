@@ -7,6 +7,8 @@ Rails::Initializer.run do |config|
   config.load_paths += Dir["#{RAILS_ROOT}/vendor/gems/**"].map do |dir| 
     File.directory?(lib = "#{dir}/lib") ? lib : dir
   end
+  
+  config.load_paths << "#{RAILS_ROOT}/app/models/spreedly"
 
   config.action_controller.session = {
     :session_key => '_thoughtlead_session',
