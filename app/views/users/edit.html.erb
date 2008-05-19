@@ -4,7 +4,7 @@
   <h1><%= @page_title = "Edit Profile" %></h1>
 
   <% form_for(@user, :html => { :method => :put, :multipart => true } ) do | f | -%>
-    <%= f.error_messages %>
+    <%= error_messages_for(:user, :object => [@user.avatar, @user]) %>
     
     <p>
       <%= f.label :login %>
@@ -53,7 +53,7 @@
     <p>
       <%= f.label :avatar %> 
       <%= avatar_for(@user) %>
-      <%= f.file_field :uploaded_avatar_data %> 
+      <%= f.file_field :user_avatar %> 
     </p>
     
     <p>
