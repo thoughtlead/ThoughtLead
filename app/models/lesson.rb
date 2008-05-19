@@ -11,25 +11,10 @@ class Lesson < ActiveRecord::Base
   alias_attribute :to_s, :title
   
   
-  def save_with_attachment 
-    return false unless valid? 
-    an_attachment = self.attachment || Attachment.new
-    begin 
-      self.transaction do 
-        if uploaded_attachment_data && uploaded_attachment_data.size > 0 
-          an_attachment.uploaded_data = uploaded_attachment_data 
-          an_attachment.save! 
-          self.attachment = an_attachment
-        end 
-        save!
-      end 
-    rescue Exception => e
-      if an_attachment.errors.on(:size) 
-        errors.add_to_base("Uploaded file is too large (25MB max).") 
-        return false
-      end 
-      raise e 
-    end 
-  end 
-  
+  def lesson_attachment=(it)  
+    the_attachment = self.attachment || Attachment.new
+    the_attachment.uploaded_data = it
+    self.attachment = the_attachment unless it.to_s.blank?  
+  end
+    
 end

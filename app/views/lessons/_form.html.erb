@@ -5,7 +5,8 @@
 </div>
 
 <% form_for [@course, @chapter, @lesson], :html => { :multipart => true } do | f | %>
-  <%= f.error_messages %>
+  <%= error_messages_for(:lesson, :object => [@lesson.attachment, @lesson]) %>
+  
   <div class="lesson">
   <%= f.label(:title, 'Lesson Title') %>
   <%= f.text_field :title, :class => "text single"  %>
@@ -17,8 +18,8 @@
   <%= f.text_area(:body, :rows => 25, :cols => 82, :mce_editable => "true", :class => "text large") %>
   </div>
   
-  <%= f.label(:attachments) %>
-  <%= f.file_field :uploaded_attachment_data %> 
+  <%= f.label(:lesson_attachment, "Attachments") %>
+  <%= f.file_field :lesson_attachment %> 
 
   <div>
     <span class="draft plus_label">
