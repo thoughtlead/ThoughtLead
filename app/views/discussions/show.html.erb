@@ -1,7 +1,7 @@
 <% @current_tab = :Discussions %>
 
 <div id="primary">
-  <p>    <%= link_to "&larr; Return to Discussions", discussions_url, :class => 'discussions' %></p>
+  <p>    <%= link_to "&#8592; Return to Discussions", discussions_url, :class => 'discussions' %></p>
   <h1 class="grouped"><%=h @discussion %></h1>
   <div class="discussion_info meta_info">
     <span class="author">by <%= link_to h(@discussion.user), @discussion.user %></span>

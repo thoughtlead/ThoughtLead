@@ -60,23 +60,23 @@ a.action:hover, a.action:focus {color:#fff; }
 	ul.navigation_top {float:right; width:338px; font: normal normal normal 16px/40px arial, sans-serif; margin:30px 0 10px;}
 	.navigation_top li {display:block; float:left; text-align:center; margin-left:6px; border-left:none; background:transparent;}
 	.navigation_top li a.people {border-right:none;}
-	.navigation_top a, .navigation_top a:visited, .navigation_top a:hover {display:block; height:49px; width:90px; padding:40px 0 0; line-height:49px; font-size:14px; text-decoration:none; color:#404040; background:transparent;}
+	.navigation_top a, .navigation_top a:visited, .navigation_top a:hover {display:block; height:49px; width:90px; padding:40px 0 0; line-height:49px; font-size:14px; text-decoration:none; color:#404040;}
 	.navigation_top a.discussions, .navigation_top a.discussions:visited, .navigation_top a.discussions:hover {width:108px;}
 	.navigation_top li.current {background:url() top left repeat-x;}
 	.navigation_top li.current a, .navigation_top li.current a:visited {}
-	.navigation_top li a.courses:hover, .navigation_top li a.discussions:hover, .navigation_top li a.people:hover {color:#2E74A5;}
+	.navigation_top li a.courses:hover, .navigation_top li a.discussions:hover, .navigation_top li a.people:hover {}
 	
 	.navigation_top li a.courses {background:url(images/courses_tab2.gif) center center no-repeat;}
 	.navigation_top li.current a.courses {background:url(images/courses_tab.gif) center center no-repeat;}
-	.navigation_top li a.courses:hover {background:url(images/courses_tab3.gif) center center no-repeat;}		
+	.navigation_top li a.courses:hover {background:url(images/courses_tab3.gif) center center no-repeat; color:#bf9115;}		
 	
 	.navigation_top li a.discussions {background:url(images/discussions_tab2.gif) center center no-repeat;}
 	.navigation_top li.current a.discussions {background:url(images/discussions_tab.gif) center center no-repeat;}
-	.navigation_top li a.discussions:hover {background:url(images/discussions_tab3.gif) center center no-repeat;}		
+	.navigation_top li a.discussions:hover {background:url(images/discussions_tab3.gif) center center no-repeat; color:#bf9115;}		
 	
 	.navigation_top li a.people {background:url(images/people_tab2.gif) center center no-repeat;}
 	.navigation_top li.current a.people {background:url(images/people_tab.gif) center center no-repeat;}
-	.navigation_top li a.people:hover {background:url(images/people_tab3.gif) center center no-repeat;}		
+	.navigation_top li a.people:hover {background:url(images/people_tab3.gif) center center no-repeat; color:#bf9115;}		
 		
 
 /* SECTION --------------- */
@@ -107,9 +107,9 @@ div#section.people h2 {background:transparent url(images/section_people.gif) top
 
 
 /* FOOTER --------------- */
-body #footer {height:175px; margin:0 auto; background:url(images/footer.gif) right top repeat-x;}
+body #footer {height:100px; margin:0 auto; background:url(images/footer.gif) right top repeat-x;}
 #footer p {display:none;}
-#footer span.powered_by {display:block; height:100px; width:910px; margin:0 auto; background:url(images/footer_bg.gif) top right no-repeat;}
+#footer span.powered_by {display:block; height:80px; width:910px; margin:0 auto; background:url(images/footer_bg.gif) top right no-repeat;}
 
 
 
@@ -118,14 +118,15 @@ body #footer {height:175px; margin:0 auto; background:url(images/footer.gif) rig
 	===================*/
 
 /*	HOME ----------------- */
-body.home {background:url(images/body_bg.gif) top left repeat-x;}
-body.home #page {background:url(images/fish_bg.gif) right 31px no-repeat;}
+body.home {background:url(images/body_bg.gif) left top repeat-x;}
+body.home #page {background:none;}
+body.home .head {background:url(images/fish_bg.gif) 410px 31px no-repeat;}
 body.home #header {background:none;}
 body.home #header .community_title a img {margin:20px 0 40px;}
 body.home ul.navigation_top {display:none;}
 body.home #section {display:none;}
 body.home #page div#primary {width:930px; margin:0; padding:0;}
-body.home #content {padding:0; background:none; position:relative;}
+body.home #content {padding:0; background-color:#fff; position:relative;}
 body.home #community_promo {height:336px; padding:30px 0 0 280px; background:url(images/community_promo.jpg) 39px top no-repeat;}
 body.home #community_promo h1 {text-align:center;}
 body.home #community_promo p {color:#0e0b0d; padding:0 70px 0 100px; font:normal normal normal 14px/24px georgia, serif; letter-spacing:.08em;}
@@ -133,9 +134,9 @@ body.home #community_promo a.signup {display:block; height:84px; width:436px; ma
 body.home #community_promo a.signup:hover {background:url(images/signup_b.gif) top left no-repeat;}
 body.home #community_promo a.signup p {display:none;}
 body.home h1 {margin-bottom:0; font:normal normal normal 23px/50px arial, helvetica, serif; text-transform:uppercase; letter-spacing:.18em; color:#c69716;}
-body.home div.banner {width:100%; background:url(images/banner.gif) center top no-repeat;}
-body.home #page div.banner p a {display:block; padding-right:215px; line-height:50px; text-align:center; font:normal normal normal 23px/50px arial, helvetica, serif; text-transform:uppercase; letter-spacing:.22em; color:#fff;}
-body.home #page div.banner p a:hover {text-decoration:none;}
+body.home div.banner {width:100%;}
+body.home #page div.banner p a {display:block; padding-right:215px; line-height:50px; text-align:center; font:normal normal normal 23px/50px arial, helvetica, serif; text-transform:uppercase; letter-spacing:.22em; color:#fff; background:url(images/banner.gif) center top no-repeat;}
+body.home #page div.banner p a:hover {text-decoration:none; background:url(images/banner2.gif) center top no-repeat;}
 body.home #section_overview {position:relative; padding:20px 30px; overflow:hidden;}
 body.home #section_overview div {position:relative; float:left; width:250px;}
 body.home #section_overview div.discussions, body.home #section_overview div.people {margin-left:30px; padding-left:30px; background:url(images/section_divider.gif) top left no-repeat;}
@@ -143,9 +144,9 @@ body.home #section_overview h2 a {display:block; padding-top:170px; font:normal 
 body.home #section_overview .courses h2 {background:url(images/courses_graphic.gif) center top no-repeat;}
 body.home #section_overview .discussions h2 {background:url(images/discussions_graphic.gif) center top no-repeat;}
 body.home #section_overview .people h2 {background:url(images/people_graphic.gif) center top no-repeat;}
-body.home #footer {width:100%; height:600px; overflow:hidden; background:#a50b14 url(images/footer.gif) top left repeat-x; height:120px; text-align:center;}
+body.home #footer {width:100%; overflow:hidden; background:#a50b14 url(images/footer.gif) top left repeat-x; height:80px; text-align:center;}
 body.home #footer p {display:none;}
-body.home #footer span.powered_by {display:block; height:100px; width:910px; margin:0 auto; background:url(images/footer_bg.gif) top right no-repeat;}
+body.home #footer span.powered_by {display:block; height:80px; width:910px; margin:0 auto; background:url(images/footer_bg.gif) top right no-repeat;}
 
 
 /*	COURSE --------------- */
@@ -157,7 +158,7 @@ body.home #footer span.powered_by {display:block; height:100px; width:910px; mar
 #primary .course_description p {font: italic normal normal 15px/25px georgia, serif;}
 #primary .info p {font:normal normal normal 14px/20px arial, sans-serif; margin:0; padding:0;}
 div.chapter {text-transform:uppercase; border-bottom:1px solid #e5e5e5; color:#888; font: normal normal normal 13px/20px arial, sans-serif;}
-#secondary h2 {color:#b96440;}
+#secondary h2 {color:#a50b14;}
 
 /*	LESSON --------------- */
 #lesson_placeholder #primary div.lesson_info {margin-bottom:20px; border-bottom:1px dashed #bbb;}
