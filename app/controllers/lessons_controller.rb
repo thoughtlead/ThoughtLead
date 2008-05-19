@@ -39,6 +39,14 @@ class LessonsController < ApplicationController
     @lesson = @chapter.lessons.find(params[:id])
   end
   
+  def destroy
+    @lesson = @chapter.lessons.find(params[:id])
+    @lesson.destroy
+    
+    flash[:notice] = "Deleted the lesson named '#{@lesson}'"
+    redirect_to @course
+  end
+  
   private
     def load_course_and_chapter
       @course = current_community.courses.find(params[:course_id])

@@ -5,7 +5,7 @@ class Lesson < ActiveRecord::Base
 
   belongs_to :chapter
   belongs_to :user
-  has_one :attachment
+  has_one :attachment, :dependent => :destroy
   
   acts_as_list :scope => :chapter, :column => :chapter_position
   alias_attribute :to_s, :title
