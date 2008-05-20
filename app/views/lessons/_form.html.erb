@@ -5,7 +5,7 @@
 </div>
 
 <% form_for [@course, @chapter, @lesson], :html => { :multipart => true } do | f | %>
-  <%= error_messages_for(:lesson, :object => [@lesson.attachment, @lesson]) %>
+  <%= error_messages_for(:lesson, :object => @lesson.attachment ? [@lesson.attachment, @lesson] : @lesson) %>
   
   <div class="lesson">
   <%= f.label(:title, 'Lesson Title') %>

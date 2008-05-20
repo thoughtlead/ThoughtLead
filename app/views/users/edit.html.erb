@@ -4,7 +4,7 @@
   <h1><%= @page_title = "Edit Profile" %></h1>
 
   <% form_for(@user, :html => { :method => :put, :multipart => true } ) do | f | -%>
-    <%= error_messages_for(:user, :object => [@user.avatar, @user]) %>
+    <%= error_messages_for(:user, :object => @user.avatar ? [@user.avatar, @user] : @user ) %>
     
     <p>
       <%= f.label :login %>
