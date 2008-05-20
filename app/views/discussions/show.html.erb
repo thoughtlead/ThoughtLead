@@ -47,7 +47,10 @@
 <div id="secondary">
   <ul class="actions first">
     <li>
-      <%= link_to "Edit this Discussion", edit_discussion_url(@discussion), :class => 'action' if current_user == @discussion.user %>
+      <%= link_to("Edit this Discussion", edit_discussion_url(@discussion), :class => 'action') if current_user == @discussion.user %>
+    </li>
+    <li>
+      <%= link_to("Delete this Discussion", @discussion, :class => 'action', :method => :delete, :confirm => "Are you sure you'd like to delete this discussion?  All of the responses to this discussion will also be deleted.") if logged_in_as_owner?  %>
     </li>
   </ul>
 </div>

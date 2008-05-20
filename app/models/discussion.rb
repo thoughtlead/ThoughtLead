@@ -4,7 +4,7 @@ class Discussion < ActiveRecord::Base
   belongs_to :user
   belongs_to :community
   belongs_to :category
-  has_many :responses
+  has_many :responses, :dependent => :destroy
   
   alias_attribute :to_s, :title
   
