@@ -15,7 +15,9 @@ ActionController::Routing::Routes.draw do |map|
   
   map.resources :courses, :conditions => { :subdomain => /./ } do | courses |
     courses.resources :chapters, :conditions => { :subdomain => /./ } do | chapters |
-      chapters.resources :lessons, :conditions => { :subdomain => /./ }
+      chapters.resources :lessons, :conditions => { :subdomain => /./ } do | lessons |
+        lessons.resources :attachments, :conditions => { :subdomain => /./ } 
+      end
     end
   end
 
