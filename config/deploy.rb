@@ -9,7 +9,7 @@ set :repository,          "git@github.com:duff/thoughtlead.git"
 set :scm,                 :git
 # set :branch,              "origin/master"
 set :user,                "verticality"
-# set :deploy_via,          :remote_cache
+set :runner,              "verticality"
 
 set :rails_revision,      "9e1d506a8cfedef2fdd605e4cbf4bf53651ad214"
 
