@@ -28,5 +28,19 @@ class ChaptersController < ApplicationController
     flash[:notice] = "Successfully deleted the chapter named '#{@chapter}'"
     redirect_to course_chapters_url(@course)
   end
+  
+  def edit
+    @course = current_community.courses.find(params[:course_id])
+    @chapter = @course.chapters.find(params[:id])    
+  end
+
+  def update
+    @course = current_community.courses.find(params[:course_id])
+    @chapter = @course.chapters.find(params[:id])    
+
+    return render(:action => :edit) unless @chapter.update_attributes(params[:chapter])
+    
+    redirect_to course_chapters_url(@course)
+  end
 
 end
