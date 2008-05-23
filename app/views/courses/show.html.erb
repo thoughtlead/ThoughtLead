@@ -27,19 +27,6 @@
   
   <% end %>
   
-  <% if logged_in_as_owner? %>
-    <div class="add_chapter">
-      Add a New Chapter
-
-      <% form_for [@course, Chapter.new] do | f | %>
-        <%= f.error_messages %>
-
-        <%= f.text_field :name, :class => "text single"  %>
-  
-        <%= submit_tag "Add" %>
-      <% end %>
-    </div>
-  <% end %>
 </div>
 <div id="secondary">
   <ul class="actions first">
@@ -48,6 +35,9 @@
     </li>
     <li>
       <%= link_to("Delete this Course", course_url(@course), :class => 'action', :method => :delete, :confirm => "Are you sure you would like to delete this course?  This action cannot be undone.") if logged_in_as_owner? %>
+    </li>
+    <li>
+      <%= link_to("Edit Chapters", course_chapters_url(@course), :class => 'action') if logged_in_as_owner? %>
     </li>
   </ul>  
 </div>
