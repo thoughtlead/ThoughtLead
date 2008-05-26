@@ -29,5 +29,12 @@ class ApplicationController < ActionController::Base
         }
       }
     end
-    
+   
+    def themed_file(filename)
+      themes_dir = File.expand_path(File.dirname(__FILE__) + "/../../public/themes")
+      default_file = "#{themes_dir}/default/#{filename}"
+      return default_file unless current_community
+      return default_file unless File.exist?("#{themes_dir}/#{current_community.subdomain}/#{filename}")
+      "/#{themes_dir}/#{current_community.subdomain}/#{filename}"
+    end
 end

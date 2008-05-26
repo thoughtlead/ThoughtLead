@@ -21,11 +21,8 @@
   </div>
 </div>
 <div id="secondary">
-  <div class="section_copy">
-    <h2>About ThankGodForEvolution.net</h2>
-    <p>You&prime;ve read (or heard about) the book. Now you can take your exploration deeper with the TGFE! study guide online, lively discussions, and social networking. To get started, click on the first session, discuss what you&#8242;re thinking, and start contacting the people you find interesting and inspiring!</p>
-  </div>
-  
+  <%= @themed_courses_sidebar %>
+
   <ul class = "actions first">
     <li class="action add">
       <span><%= link_to "Add a Course", new_course_url, :class => 'action' if logged_in_as_owner? %></span>

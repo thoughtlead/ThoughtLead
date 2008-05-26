@@ -5,6 +5,7 @@ class CoursesController < ApplicationController
   
   def index
     @courses = current_community.courses
+    @themed_courses_sidebar = render_to_string(:file => themed_file("_courses_sidebar.html.erb"))
   end
   
   def new
@@ -50,5 +51,5 @@ class CoursesController < ApplicationController
     
     redirect_to @course
   end
-  
+      
 end
