@@ -12,3 +12,8 @@ staging:
   bucket_name: for_staging
   access_key_id: 0KZF5WSE3B9MBREGM2R2
   secret_access_key: tI+fdjNY0FbZJ5PFXucDXq8EqqsCDIwvpQXQ0mXS 
+
+test:
+  bucket_name: for_testing
+  access_key_id: 0KZF5WSE3B9MBREGM2R2
+  secret_access_key: tI+fdjNY0FbZJ5PFXucDXq8EqqsCDIwvpQXQ0mXS 
