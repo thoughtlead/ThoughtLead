@@ -11,7 +11,7 @@ set :scm,                 :git
 set :user,                "verticality"
 set :runner,              "verticality"
 
-set :rails_revision,      "9e1d506a8cfedef2fdd605e4cbf4bf53651ad214"
+set :rails_revision,      "888a2927b65889465ce7a1a71e87d37640a2b41b"
 
 ssh_options[:paranoid] = false
 default_run_options[:pty] = true
