@@ -31,7 +31,7 @@ li.action a:hover, li.action a:focus {color:#fff;}
 
 #secondary ul.actions li.edit a {padding-left:32px; background:url(images/action_edit.gif) 8px center no-repeat;}
 #secondary ul.actions li.add a {padding-left:32px; background:url(images/action_add.gif) 8px center no-repeat;}
-#secondary ul.actions li.delete a {padding-left:32px; background:url(images/action_deletex.gif) 8px center no-repeat;}
+#secondary ul.actions li.delete a {padding-left:32px; background:url(images/action_delete.gif) 8px center no-repeat;}
 #secondary ul.actions li.email a {padding-left:32px; background:url(images/action_email.gif) 8px center no-repeat;}
 
 
@@ -177,7 +177,6 @@ li.user {line-height:48px; padding-bottom:30px;}
 .user_list li.user {display:block; overflow:hidden; float:left; width:273px; margin-right:30px;}
 
 
-
 /* Forms */
 form {padding-right:14px;}
 label {font: normal normal normal 14px/20px arial, sans-serif; color:#000;}
@@ -191,8 +190,12 @@ textarea, input.text {padding:5px; font: normal normal normal 14px/18px arial, s
 .plus_label label {display:block;}
 form input.text {display:block; margin-bottom:20px;}
 form input.single, form textarea.single {font-size:18px; line-height:20px;}
+#new_community div.subdomain {overflow:hidden; margin-bottom:0; line-height:34px;}
+#community_subdomain {width:50% !important; float:left; margin-right:10px;}
 form input.medium, form textarea.medium {height:75px;}
-form input.large, form textarea.large {height:250px;}
+form input.large, form textarea.large {height:250px;}s
+
+.grouped {margin-bottom:0;}
 
 
 

@@ -28,10 +28,13 @@
     <%= password_field :user, :password_confirmation, :class => 'text single'  %>
 	
 	
-	
-    <%= f.label :subdomain %>
-    http://<%= f.text_field :subdomain, :class => 'text single'  %>.<%= APP_DOMAIN %>
-	
-  	<%= submit_tag 'Sign up' %> or <%= link_to "Cancel", root_url %>
+	  <div class="subdomain">
+      <%= f.label :subdomain %>
+      http://<%= f.text_field :subdomain, :class => 'text single half'  %>.<span><%= APP_DOMAIN %></span>
+	  </div>
+  	
+  	<div>
+  	  <%= submit_tag 'Sign up' %> or <%= link_to "Cancel", root_url %>
+  	</div>
   <% end -%>
 </div>
