@@ -30,14 +30,14 @@
 </div>
 <div id="secondary">
   <ul class="actions first">
-    <li>
-      <%= link_to "Edit this Course", edit_course_url(@course), :class => 'action' if logged_in_as_owner? %>
+    <li class="action edit">
+      <span><%= link_to "Edit this Course", edit_course_url(@course) if logged_in_as_owner? %></span>
     </li>
-    <li>
-      <%= link_to("Delete this Course", course_url(@course), :class => 'action', :method => :delete, :confirm => "Are you sure you would like to delete this course?  This action cannot be undone.") if logged_in_as_owner? %>
+    <li class="action edit">
+      <span><%= link_to("Edit Chapters", course_chapters_url(@course)) if logged_in_as_owner? %></span>
     </li>
-    <li>
-      <%= link_to("Edit Chapters", course_chapters_url(@course), :class => 'action') if logged_in_as_owner? %>
+    <li class="action delete">
+      <span><%= link_to("Delete this Course", course_url(@course), :method => :delete, :confirm => "Are you sure you would like to delete this course?  This action cannot be undone.") if logged_in_as_owner? %></span>
     </li>
   </ul>  
 </div>

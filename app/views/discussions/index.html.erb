@@ -22,19 +22,19 @@
 </div>
 <div id="secondary">
   <ul class="actions first">
-    <li>
-      <%= link_to "+ Add a Discussion Topic", new_discussion_url, :class => 'action' %>
+    <li class="action add">
+      <span><%= link_to "Add a Discussion Topic", new_discussion_url %></span>
     </li>
     <% if logged_in? && current_user.owner? %>
-      <li>
-        <%= link_to "Edit Categories", categories_url, :class => :action %>
+      <li class="action edit">
+        <span><%= link_to "Edit Categories", categories_url %></span>
       </li>
     <% end %>
   </ul>
   
   <% if !current_community.categories.empty? %>
-    <ul>
-      Categories
+    <ul class="categories">
+      <h2>Categories</h2>
       <% for category in current_community.categories %>
         <% content_tag(:li, :class => current_class_for_category(category)) do %>
           <%= link_to category, discussions_url(:category => category) %>
