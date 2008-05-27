@@ -164,6 +164,10 @@ body.home #footer span.powered_by {display:block; height:80px; width:910px; marg
 #primary .course_description p {font: italic normal normal 15px/25px georgia, serif;}
 #primary .info p {font:normal normal normal 14px/20px arial, sans-serif; margin:0; padding:0;}
 div.chapter {text-transform:uppercase; border-bottom:1px solid #e5e5e5; color:#888; font: normal normal normal 13px/20px arial, sans-serif;}
+div.chapter .chapter_title {display:block; float:left;}
+div.chapter .chapter_actions {display:block; text-transform:none; text-align:right;}
+	.chapter_actions .chapter_rename {margin-right:5px; padding-left:15px; background:url(images/chapter_edit.gif) left center no-repeat;}
+	.chapter_actions .chapter_delete {margin-left:5px; padding-left:15px; background:url(images/chapter_delete.gif) left center no-repeat;}
 #secondary h2 {color:#a50b14;}
 
 /*	LESSON --------------- */
@@ -236,7 +240,7 @@ textarea, input.text {padding:5px; font: normal normal normal 14px/18px arial, s
 form input.text {display:block; margin-bottom:20px;}
 form input.single, form textarea.single {font-size:18px; line-height:20px;}
 #new_community div.subdomain {overflow:hidden; margin-bottom:0; line-height:34px;}
-#community_subdomain {width:50% !important; float:left; margin-right:10px;}
+#new_community #community_subdomain {width:50% !important; float:left; margin-right:10px;}
 form input.medium, form textarea.medium {height:75px;}
 form input.large, form textarea.large {height:250px;}
 
