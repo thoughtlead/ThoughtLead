@@ -4,7 +4,7 @@
   <div class="user_info">
     <%= avatar_for(@user, :large) %>
     <h1 class="grouped"><%=h @user %></h1>
-    <p><%=h @user.location %></p>
+    <p><%=h @user.location %>  <%= "<br/>" + h(@user.zipcode) unless @user.zipcode.blank?%></p>
   </div>
   <div id="user_profile">
     <div class="about">

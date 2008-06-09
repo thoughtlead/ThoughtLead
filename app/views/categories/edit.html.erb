@@ -1,15 +1,4 @@
 <div id="primary">
-  <% form_for @category do | f | %>
-    <%= f.error_messages %>
-
-    <p>
-      <%= f.label :name, "Category" %>
-      <%= f.text_field :name %>
-    </p>
-    
-    <p class="submitBlock">
-  	  <%= submit_tag 'Rename', :disable_with => "Saving category..." %> or <%= link_to "Cancel", categories_url %>
-  	</p>  
-  <% end %>
+  <%= render :partial => 'categories/category_form', :locals=>{:submit_text=>'Rename'} %>
   
 </div>

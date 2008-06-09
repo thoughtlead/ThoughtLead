@@ -1,6 +1,12 @@
 <% @current_tab = :Discussions %>
 
 <div id="primary">
+  <% if @category %>
+	<%= "<h2>" + @category.name + "</h2>" %>
+	<%= "<h3>" + @category.description + "</h3>" %>
+  <% else %>
+    <%# nothing to do %>
+  <% end %>
   <div class="discussions">
     
     <% for discussion in @discussions %>
