@@ -2,10 +2,8 @@
 
 <div id="primary">
   <% if @category %>
-	<%= "<h2>" + @category.name + "</h2>" %>
-	<%= "<h3>" + @category.description + "</h3>" %>
-  <% else %>
-    <%# nothing to do %>
+	<h2><%= @category.name %></h2>
+	<h3><%= @category.description %></h3>
   <% end %>
   <div class="discussions">
     
