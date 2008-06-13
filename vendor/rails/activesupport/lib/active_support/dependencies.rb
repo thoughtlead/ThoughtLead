@@ -82,9 +82,10 @@ module Dependencies #:nodoc:
     # infinite loop with mutual dependencies.
     loaded << expanded
 
-    if load?
-      log "loading #{file_name}"
-      begin
+    begin
+      if load?
+        log "loading #{file_name}"
+
         # Enable warnings iff this file has not been loaded before and
         # warnings_on_first_load is set.
         load_args = ["#{file_name}.rb"]
@@ -95,13 +96,13 @@ module Dependencies #:nodoc:
         else
           enable_warnings { result = load_file(*load_args) }
         end
-      rescue Exception
-        loaded.delete expanded
-        raise
+      else
+        log "requiring #{file_name}"
+        result = require file_name
       end
-    else
-      log "requiring #{file_name}"
-      result = require file_name
+    rescue Exception
+      loaded.delete expanded
+      raise
     end
 
     # Record history *after* loading so first load gets warnings.
@@ -120,15 +121,26 @@ module Dependencies #:nodoc:
     # We can't use defined? because it will invoke const_missing for the parent
     # of the name we are checking.
     names.inject(Object) do |mod, name|
-      return false unless mod.const_defined? name
+      return false unless uninherited_const_defined?(mod, name)
       mod.const_get name
     end
     return true
   end
 
+  if Module.method(:const_defined?).arity == 1
+    # Does this module define this constant?
+    # Wrapper to accomodate changing Module#const_defined? in Ruby 1.9
+    def uninherited_const_defined?(mod, const)
+      mod.const_defined?(const)
+    end
+  else
+    def uninherited_const_defined?(mod, const) #:nodoc:
+      mod.const_defined?(const, false)
+    end
+  end
+
   # Given +path+, a filesystem path to a ruby file, return an array of constant
   # paths which would cause Dependencies to attempt to load this file.
-  #
   def loadable_constants_for_path(path, bases = load_paths)
     path = $1 if path =~ /\A(.*)\.rb\Z/
     expanded_path = File.expand_path(path)
@@ -237,7 +249,7 @@ module Dependencies #:nodoc:
       raise ArgumentError, "A copy of #{from_mod} has been removed from the module tree but is still active!"
     end
 
-    raise ArgumentError, "#{from_mod} is not missing constant #{const_name}!" if from_mod.const_defined?(const_name)
+    raise ArgumentError, "#{from_mod} is not missing constant #{const_name}!" if uninherited_const_defined?(from_mod, const_name)
 
     qualified_name = qualified_name_for from_mod, const_name
     path_suffix = qualified_name.underscore
@@ -246,12 +258,12 @@ module Dependencies #:nodoc:
     file_path = search_for_file(path_suffix)
     if file_path && ! loaded.include?(File.expand_path(file_path)) # We found a matching file to load
       require_or_load file_path
-      raise LoadError, "Expected #{file_path} to define #{qualified_name}" unless from_mod.const_defined?(const_name)
+      raise LoadError, "Expected #{file_path} to define #{qualified_name}" unless uninherited_const_defined?(from_mod, const_name)
       return from_mod.const_get(const_name)
     elsif mod = autoload_module!(from_mod, const_name, qualified_name, path_suffix)
       return mod
     elsif (parent = from_mod.parent) && parent != from_mod &&
-          ! from_mod.parents.any? { |p| p.const_defined?(const_name) }
+          ! from_mod.parents.any? { |p| uninherited_const_defined?(p, const_name) }
       # If our parents do not have a constant named +const_name+ then we are free
       # to attempt to load upwards. If they do have such a constant, then this
       # const_missing must be due to from_mod::const_name, which should not
@@ -373,7 +385,7 @@ module Dependencies #:nodoc:
     return new_constants
   ensure
     # Remove the stack frames that we added.
-    if defined?(watch_frames) && ! watch_frames.empty?
+    if defined?(watch_frames) && ! watch_frames.blank?
       frame_ids = watch_frames.collect(&:object_id)
       constant_watch_stack.delete_if do |watch_frame|
         frame_ids.include? watch_frame.object_id
@@ -423,10 +435,12 @@ module Dependencies #:nodoc:
 
 protected
   def log_call(*args)
-    arg_str = args.collect(&:inspect) * ', '
-    /in `([a-z_\?\!]+)'/ =~ caller(1).first
-    selector = $1 || '<unknown>'
-    log "called #{selector}(#{arg_str})"
+    if defined?(RAILS_DEFAULT_LOGGER) && RAILS_DEFAULT_LOGGER && log_activity
+      arg_str = args.collect(&:inspect) * ', '
+      /in `([a-z_\?\!]+)'/ =~ caller(1).first
+      selector = $1 || '<unknown>'
+      log "called #{selector}(#{arg_str})"
+    end
   end
 
   def log(msg)

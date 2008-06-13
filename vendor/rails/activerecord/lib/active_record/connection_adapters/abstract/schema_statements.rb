@@ -13,12 +13,16 @@ module ActiveRecord
         255
       end
 
-      # Truncates a table alias according to the limits of the current adapter.  
+      # Truncates a table alias according to the limits of the current adapter.
       def table_alias_for(table_name)
         table_name[0..table_alias_length-1].gsub(/\./, '_')
       end
 
       # def tables(name = nil) end
+
+      def table_exists?(table_name)
+        tables.include?(table_name.to_s)
+      end
 
       # Returns an array of indexes for the given table.
       # def indexes(table_name, name = nil) end
@@ -28,7 +32,7 @@ module ActiveRecord
       def columns(table_name, name = nil) end
 
       # Creates a new table
-      # There are two ways to work with #create_table.  You can use the block
+      # There are two ways to work with +create_table+.  You can use the block
       # form or the regular form, like this:
       #
       # === Block form
@@ -45,7 +49,7 @@ module ActiveRecord
       # The +options+ hash can include the following keys:
       # [<tt>:id</tt>]
       #   Whether to automatically add a primary key column. Defaults to true.
-      #   Join tables for has_and_belongs_to_many should set :id => false.
+      #   Join tables for +has_and_belongs_to_many+ should set <tt>:id => false</tt>.
       # [<tt>:primary_key</tt>]
       #   The name of the primary key, if one is to be added automatically.
       #   Defaults to +id+.
@@ -93,8 +97,8 @@ module ActiveRecord
 
         yield table_definition
 
-        if options[:force]
-          drop_table(table_name, options) rescue nil
+        if options[:force] && table_exists?(table_name)
+          drop_table(table_name, options)
         end
 
         create_sql = "CREATE#{' TEMPORARY' if options[:temporary]} TABLE "
@@ -102,6 +106,67 @@ module ActiveRecord
         create_sql << table_definition.to_sql
         create_sql << ") #{options[:options]}"
         execute create_sql
+      end
+
+      # A block for changing columns in +table+.
+      #
+      # === Example
+      #  # change_table() yields a Table instance
+      #  change_table(:suppliers) do |t|
+      #    t.column :name, :string, :limit => 60
+      #    # Other column alterations here
+      #  end
+      #
+      # ===== Examples
+      # ====== Add a column
+      #  change_table(:suppliers) do |t|
+      #    t.column :name, :string, :limit => 60
+      #  end
+      #
+      # ====== Add 2 integer columns
+      #  change_table(:suppliers) do |t|
+      #    t.integer :width, :height, :null => false, :default => 0
+      #  end
+      #
+      # ====== Add created_at/updated_at columns
+      #  change_table(:suppliers) do |t|
+      #    t.timestamps
+      #  end
+      #
+      # ====== Add a foreign key column
+      #  change_table(:suppliers) do |t|
+      #    t.references :company
+      #  end
+      #
+      # Creates a <tt>company_id(integer)</tt> column
+      #
+      # ====== Add a polymorphic foreign key column
+      #  change_table(:suppliers) do |t|
+      #    t.belongs_to :company, :polymorphic => true
+      #  end
+      #
+      # Creates <tt>company_type(varchar)</tt> and <tt>company_id(integer)</tt> columns
+      #
+      # ====== Remove a column
+      #  change_table(:suppliers) do |t|
+      #    t.remove :company
+      #  end
+      #
+      # ====== Remove several columns
+      #  change_table(:suppliers) do |t|
+      #    t.remove :company_id
+      #    t.remove :width, :height
+      #  end
+      #
+      # ====== Remove an index
+      #  change_table(:suppliers) do |t|
+      #    t.remove_index :company_id
+      #  end
+      #
+      # See also Table for details on
+      # all of the various column transformation
+      def change_table(table_name)
+        yield Table.new(table_name, self)
       end
 
       # Renames a table.
@@ -124,12 +189,16 @@ module ActiveRecord
         execute(add_column_sql)
       end
 
-      # Removes the column from the table definition.
+      # Removes the column(s) from the table definition.
       # ===== Examples
       #  remove_column(:suppliers, :qualification)
-      def remove_column(table_name, column_name)
-        execute "ALTER TABLE #{quote_table_name(table_name)} DROP #{quote_column_name(column_name)}"
+      #  remove_columns(:suppliers, :qualification, :experience)
+      def remove_column(table_name, *column_names)
+        column_names.flatten.each do |column_name|
+          execute "ALTER TABLE #{quote_table_name(table_name)} DROP #{quote_column_name(column_name)}"
+        end
       end
+      alias :remove_columns :remove_column
 
       # Changes the column's definition according to the new options.
       # See TableDefinition#column for details of the options you can use.
@@ -230,6 +299,12 @@ module ActiveRecord
       def structure_dump
       end
 
+      def dump_schema_information #:nodoc:
+        sm_table = ActiveRecord::Migrator.schema_migrations_table_name
+        migrated = select_values("SELECT version FROM #{sm_table}")
+        migrated.map { |v| "INSERT INTO #{sm_table} (version) VALUES ('#{v}');" }.join("\n\n")
+      end
+
       # Should not be called normally, but this operation is non-destructive.
       # The migrations module handles this automatically.
       def initialize_schema_migrations_table
@@ -297,7 +372,14 @@ module ActiveRecord
 
       def add_column_options!(sql, options) #:nodoc:
         sql << " DEFAULT #{quote(options[:default], options[:column])}" if options_include_default?(options)
-        sql << " NOT NULL" if options[:null] == false
+        # must explcitly check for :null to allow change_column to work on migrations
+        if options.has_key? :null
+          if options[:null] == false
+            sql << " NOT NULL"
+          else
+            sql << " NULL"
+          end
+        end
       end
 
       # SELECT DISTINCT clause for a given set of columns and a given ORDER BY clause.
@@ -307,7 +389,7 @@ module ActiveRecord
       def distinct(columns, order_by)
         "DISTINCT #{columns}"
       end
-      
+
       # ORDER BY clause for the passed order option.
       # PostgreSQL overrides this due to its stricter standards compliance.
       def add_order_by_for_association_limiting!(sql, options)
@@ -319,17 +401,17 @@ module ActiveRecord
       #  add_timestamps(:suppliers)
       def add_timestamps(table_name)
         add_column table_name, :created_at, :datetime
-        add_column table_name, :updated_at, :datetime    
+        add_column table_name, :updated_at, :datetime
       end
-      
+
       # Removes the timestamp columns (created_at and updated_at) from the table definition.
       # ===== Examples
       #  remove_timestamps(:suppliers)
       def remove_timestamps(table_name)
-        remove_column table_name, :updated_at   
-        remove_column table_name, :created_at       
+        remove_column table_name, :updated_at
+        remove_column table_name, :created_at
       end
-      
+
       protected
         def options_include_default?(options)
           options.include?(:default) && !(options[:null] == false && options[:default].nil?)

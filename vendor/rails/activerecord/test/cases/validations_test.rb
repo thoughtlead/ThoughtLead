@@ -5,6 +5,7 @@ require 'models/reply'
 require 'models/person'
 require 'models/developer'
 require 'models/warehouse_thing'
+require 'models/guid'
 
 # The following methods in Topic are used in test_conditional_validation_*
 class Topic
@@ -58,9 +59,9 @@ class ValidationsTest < ActiveRecord::TestCase
   fixtures :topics, :developers, 'warehouse-things'
 
   def setup
-    Topic.write_inheritable_attribute(:validate, nil)
-    Topic.write_inheritable_attribute(:validate_on_create, nil)
-    Topic.write_inheritable_attribute(:validate_on_update, nil)
+    Topic.instance_variable_set("@validate_callbacks", ActiveSupport::Callbacks::CallbackChain.new)
+    Topic.instance_variable_set("@validate_on_create_callbacks", ActiveSupport::Callbacks::CallbackChain.new)
+    Topic.instance_variable_set("@validate_on_update_callbacks", ActiveSupport::Callbacks::CallbackChain.new)
   end
 
   def test_single_field_validation
@@ -131,6 +132,22 @@ class ValidationsTest < ActiveRecord::TestCase
   def test_exception_on_create_bang_many
     assert_raises(ActiveRecord::RecordInvalid) do
       Reply.create!([ { "title" => "OK" }, { "title" => "Wrong Create" }])
+    end
+  end
+  
+  def test_exception_on_create_bang_with_block
+    assert_raises(ActiveRecord::RecordInvalid) do
+      Reply.create!({ "title" => "OK" }) do |r|
+        r.content = nil
+      end
+    end
+  end
+  
+  def test_exception_on_create_bang_many_with_block
+    assert_raises(ActiveRecord::RecordInvalid) do
+      Reply.create!([{ "title" => "OK" }, { "title" => "Wrong Create" }]) do |r|
+        r.content = nil
+      end
     end
   end
 
@@ -477,6 +494,13 @@ class ValidationsTest < ActiveRecord::TestCase
     end
   end
 
+  def test_validate_uniqueness_with_columns_which_are_sql_keywords
+    Guid.validates_uniqueness_of :key
+    g = Guid.new
+    g.key = "foo"
+    assert_nothing_raised { !g.valid? }
+  end
+
   def test_validate_straight_inheritance_uniqueness
     w1 = IneptWizard.create(:name => "Rincewind", :city => "Ankh-Morpork")
     assert w1.valid?, "Saving w1"
@@ -557,6 +581,12 @@ class ValidationsTest < ActiveRecord::TestCase
 
     assert t.save
     assert_nil t.errors.on(:title)
+  end
+
+  def test_validate_format_with_formatted_message
+    Topic.validates_format_of(:title, :with => /^Valid Title$/, :message => "can't be %s")
+    t = Topic.create(:title => 'Invalid title')
+    assert_equal "can't be Invalid title", t.errors.on(:title)
   end
 
   def test_validates_inclusion_of
@@ -839,16 +869,16 @@ class ValidationsTest < ActiveRecord::TestCase
     reply = t.replies.build('title' => 'areply', 'content' => 'whateveragain')
     assert t.valid?
   end
-  
+
   def test_validates_size_of_association_using_within
     assert_nothing_raised { Topic.validates_size_of :replies, :within => 1..2 }
     t = Topic.new('title' => 'noreplies', 'content' => 'whatever')
     assert !t.save
     assert t.errors.on(:replies)
-    
+
     reply = t.replies.build('title' => 'areply', 'content' => 'whateveragain')
     assert t.valid?
-    
+
     2.times { t.replies.build('title' => 'areply', 'content' => 'whateveragain') }
     assert !t.save
     assert t.errors.on(:replies)
@@ -1351,9 +1381,9 @@ class ValidatesNumericalityTest < ActiveRecord::TestCase
   JUNK = ["not a number", "42 not a number", "0xdeadbeef", "00-1", "--3", "+-3", "+3-1", "-+019.0", "12.12.13.12", "123\nnot a number"]
 
   def setup
-    Topic.write_inheritable_attribute(:validate, nil)
-    Topic.write_inheritable_attribute(:validate_on_create, nil)
-    Topic.write_inheritable_attribute(:validate_on_update, nil)
+    Topic.instance_variable_set("@validate_callbacks", ActiveSupport::Callbacks::CallbackChain.new)
+    Topic.instance_variable_set("@validate_on_create_callbacks", ActiveSupport::Callbacks::CallbackChain.new)
+    Topic.instance_variable_set("@validate_on_update_callbacks", ActiveSupport::Callbacks::CallbackChain.new)
   end
 
   def test_default_validates_numericality_of
