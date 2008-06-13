@@ -25,7 +25,7 @@ Rails::Initializer.run do |config|
   # config.gem "bj"
   # config.gem "hpricot", :version => '0.6', :source => "http://code.whytheluckystiff.net"
   # config.gem "aws-s3", :lib => "aws/s3"
-  config.gem "RedCloth"
+  config.gem "RedCloth", :lib => "redcloth"
   config.gem "mime-types", :lib => "mime/types"
   config.gem "aws-s3", :lib => "aws/s3" 
   config.gem "colored"
