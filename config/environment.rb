@@ -17,3 +17,5 @@ Rails::Initializer.run do |config|
 
   config.active_record.default_timezone = :utc
 end
+
+require RAILS_ROOT + '/lib/attachment_fu_windows_bug_fixes'

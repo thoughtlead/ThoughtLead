@@ -5,7 +5,7 @@ require "eycap/recipes"
 
 set :keep_releases,       20
 set :application,         "thoughtlead"
-set :repository,          "git@github.com:duff/thoughtlead.git"
+set :repository,          "git@github.com:Ternary/thoughtlead.git"
 set :scm,                 :git
 # set :branch,              "origin/master"
 set :user,                "verticality"
