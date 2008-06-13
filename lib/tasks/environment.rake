@@ -1,9 +1,9 @@
 # from http://errtheblog.com/posts/31-rake-around-the-rosie
 
-%w[development production staging].each do |env|
-  desc "Runs the following task in the #{env} environment"
-  task env do
-    RAILS_ENV = ENV['RAILS_ENV'] = env
+%w[development production staging].each do |environment|
+  desc "Runs the following task in the #{environment} environment"
+  task environment do
+    RAILS_ENV = ENV['RAILS_ENV'] = environment
   end
 end
 
