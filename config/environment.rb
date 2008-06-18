@@ -27,6 +27,8 @@ Rails::Initializer.run do |config|
   # config.gem "aws-s3", :lib => "aws/s3"
   config.gem "RedCloth", :lib => "redcloth"
   config.gem "mime-types", :lib => "mime/types"
+  config.gem "builder"
+  config.gem "xml-simple", :lib => "xmlsimple"
   config.gem "aws-s3", :lib => "aws/s3" 
   config.gem "colored"
   config.gem "map_by_method"
