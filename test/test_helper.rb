@@ -5,7 +5,6 @@ $: << File.expand_path(File.dirname(__FILE__) + "/integration/dsl")
 require 'basics_dsl'
 require 'thought_lead_dsl'
 
-require 'redgreen' unless ENV['TM_MODE']
 require 'test_help'
 
 class Test::Unit::TestCase
