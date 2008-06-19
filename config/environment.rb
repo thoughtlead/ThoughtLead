@@ -32,14 +32,6 @@ Rails::Initializer.run do |config|
   config.gem "aws-s3", :lib => "aws/s3" 
   config.gem "colored"
   config.gem "map_by_method"
-  config.gem "net-ssh", :lib => "net/ssh"
-  config.gem "net-sftp", :lib => "net/sftp"
-  config.gem "net-scp", :lib => "net/scp"
-  config.gem "net-ssh-gateway", :lib => 'net/ssh/gateway'
-  config.gem "highline"
-  config.gem "capistrano"
-  config.gem "capistrano-ext", :lib => "capistrano"
-  config.gem "engineyard-eycap", :lib => "eycap"
   
   # Only load the plugins named here, in the order given. By default, all plugins 
   # in vendor/plugins are loaded in alphabetical order.

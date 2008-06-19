@@ -1,6 +1,5 @@
-task :cruise => %w(testing db:migrate:reset test)
+task :cruise => %w(testing db:migrate:reset test cap_staging_deploy)
 
-task :cap_deploy => :environment  do
-  require 'capistrano/cli'
-  Capistrano::CLI.parse(%w(staging deploy)).execute!
+task :cap_staging_deploy => :environment  do
+  `cap staging deploy`
 end
