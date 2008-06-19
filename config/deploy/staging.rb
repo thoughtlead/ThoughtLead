@@ -1,9 +1,7 @@
-require "spacesuit/recipes/terralien"
-
-set :client,          "verticality"
-set :domain,          "#{application}.#{client}.dock.terralien.biz"
+set :domain,          "gukumatz.tsi.local"
 set :rails_env,       "staging"
-set :deploy_to,       "/var/www/#{client}/#{application}"
+set :deploy_to,       "/var/www/apps/#{application}"
+set :monit_group,     "verticality"
 
 role :web, domain
 role :app, domain
