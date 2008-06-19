@@ -1,0 +1,99 @@
+--- !ruby/object:Gem::Specification 
+name: engineyard-eycap
+version: !ruby/object:Gem::Version 
+  version: 0.3.4
+platform: ruby
+authors: 
+- Engine Yard
+autorequire: 
+bindir: bin
+cert_chain: []
+
+date: 2008-05-24 00:00:00 -04:00
+default_executable: 
+dependencies: 
+- !ruby/object:Gem::Dependency 
+  name: capistrano
+  version_requirement: 
+  version_requirements: !ruby/object:Gem::Requirement 
+    requirements: 
+    - - ">="
+      - !ruby/object:Gem::Version 
+        version: 2.2.0
+    version: 
+- !ruby/object:Gem::Dependency 
+  name: hoe
+  version_requirement: 
+  version_requirements: !ruby/object:Gem::Requirement 
+    requirements: 
+    - - ">="
+      - !ruby/object:Gem::Version 
+        version: 1.5.1
+    version: 
+description: A bunch of useful recipes to help deployment to Engine Yard slices
+email: tech@engineyard.com
+executables: []
+
+extensions: []
+
+extra_rdoc_files: 
+- History.txt
+- Manifest.txt
+- README.txt
+files: 
+- History.txt
+- Manifest.txt
+- README.txt
+- Rakefile
+- lib/capistrano/recipes/deploy/strategy/filtered_remote_cache.rb
+- lib/eycap.rb
+- lib/eycap/lib/ey_logger.rb
+- lib/eycap/lib/ey_logger_hooks.rb
+- lib/eycap/recipes.rb
+- lib/eycap/recipes/backgroundrb.rb
+- lib/eycap/recipes/database.rb
+- lib/eycap/recipes/deploy.rb
+- lib/eycap/recipes/ferret.rb
+- lib/eycap/recipes/juggernaut.rb
+- lib/eycap/recipes/memcached.rb
+- lib/eycap/recipes/mongrel.rb
+- lib/eycap/recipes/monit.rb
+- lib/eycap/recipes/nginx.rb
+- lib/eycap/recipes/slice.rb
+- lib/eycap/recipes/solr.rb
+- lib/eycap/recipes/sphinx.rb
+- lib/eycap/recipes/templates/maintenance.rhtml
+- lib/eycap/recipes/tomcat.rb
+- test/test_eycap.rb
+- test/test_helper.rb
+has_rdoc: true
+homepage: http://eycap.rubyforge.org
+post_install_message: 
+rdoc_options: 
+- --main
+- README.txt
+require_paths: 
+- bin
+- lib
+required_ruby_version: !ruby/object:Gem::Requirement 
+  requirements: 
+  - - ">="
+    - !ruby/object:Gem::Version 
+      version: "0"
+  version: 
+required_rubygems_version: !ruby/object:Gem::Requirement 
+  requirements: 
+  - - ">="
+    - !ruby/object:Gem::Version 
+      version: "0"
+  version: 
+requirements: []
+
+rubyforge_project: eycap
+rubygems_version: 1.1.1
+signing_key: 
+specification_version: 2
+summary: Capistrano tasks for Engine Yard slices
+test_files: 
+- test/test_eycap.rb
+- test/test_helper.rb

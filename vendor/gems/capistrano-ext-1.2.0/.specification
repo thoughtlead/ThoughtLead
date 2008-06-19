@@ -1,0 +1,67 @@
+--- !ruby/object:Gem::Specification 
+name: capistrano-ext
+version: !ruby/object:Gem::Version 
+  version: 1.2.0
+platform: ruby
+authors: 
+- Jamis Buck
+autorequire: 
+bindir: bin
+cert_chain: 
+date: 2007-07-06 00:00:00 -04:00
+default_executable: 
+dependencies: 
+- !ruby/object:Gem::Dependency 
+  name: capistrano
+  version_requirement: 
+  version_requirements: !ruby/object:Gem::Requirement 
+    requirements: 
+    - - ">="
+      - !ruby/object:Gem::Version 
+        version: 1.0.0
+    version: 
+description: 
+email: jamis@37signals.com
+executables: []
+
+extensions: []
+
+extra_rdoc_files: []
+
+files: 
+- lib/capistrano
+- lib/capistrano/ext
+- lib/capistrano/ext/assets
+- lib/capistrano/ext/assets/request-counter.rb
+- lib/capistrano/ext/monitor.rb
+- lib/capistrano/ext/multistage.rb
+- lib/capistrano/ext/version.rb
+has_rdoc: false
+homepage: http://www.capify.com
+post_install_message: 
+rdoc_options: []
+
+require_paths: 
+- bin
+- lib
+required_ruby_version: !ruby/object:Gem::Requirement 
+  requirements: 
+  - - ">"
+    - !ruby/object:Gem::Version 
+      version: 0.0.0
+  version: 
+required_rubygems_version: !ruby/object:Gem::Requirement 
+  requirements: 
+  - - ">="
+    - !ruby/object:Gem::Version 
+      version: "0"
+  version: 
+requirements: []
+
+rubyforge_project: 
+rubygems_version: 1.1.1
+signing_key: 
+specification_version: 1
+summary: Capistrano Extensions is a set of useful task libraries and methods that     other developers may reference in their own recipe files.
+test_files: []
+
