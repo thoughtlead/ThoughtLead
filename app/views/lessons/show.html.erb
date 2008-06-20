@@ -26,7 +26,7 @@
 			          so.addParam('allowscriptaccess','true');
 			          so.addVariable('width','500');
 			          so.addVariable('height','500');
-			          so.addVariable('file','<%=h flash_video_url %>');
+			          so.addVariable('file','<%= h flash_video_url %>');
 					  so.addVariable('type','flv');
 					  so.addVariable('autostart','false');
 					  so.write('player<%= @lesson.flash_video.id%>');
