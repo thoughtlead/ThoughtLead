@@ -17,6 +17,7 @@
           <% if !@lesson.premium || logged_in_as_active? %>
             <% if @lesson.flash_video %>
 				<% flash_video_url = @lesson.flash_video.authenticated_s3_url() %>
+				<% flash_video_url.gsub!("+", "%2b") %>
 				<p>Video: <%= @lesson.flash_video.filename %> </P>
 				<div id="player<%=@lesson.flash_video.id%>">This text will be replaced</div>
 				<p>
