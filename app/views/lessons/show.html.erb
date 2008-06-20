@@ -1,5 +1,5 @@
 <% @current_tab = :Courses %>
-
+	<script src="/javascripts/swfobject.js"></script>
     <div id="lesson_placeholder"> <!-- FIXME - Remove after there is the ability to target just lesson pages -->
     <div id="primary">
       <div id="lesson">
@@ -15,6 +15,24 @@
           </div>        
           
           <% if !@lesson.premium || logged_in_as_active? %>
+            <% if @lesson.flash_video %>
+				<% flash_video_url = @lesson.flash_video.authenticated_s3_url() %>
+				<p>Video: <%= @lesson.flash_video.filename %> </P>
+				<div id="player<%=@lesson.flash_video.id%>">This text will be replaced</div>
+				<p>
+					<script type="text/javascript">
+			          var so = new SWFObject('/mediaplayer.swf','mpl','500','500','8');
+			          so.addParam('allowfullscreen','true');
+			          so.addParam('allowscriptaccess','true');
+			          so.addVariable('width','500');
+			          so.addVariable('height','500');
+			          so.addVariable('file',escape('<%= flash_video_url %>'));
+					  so.addVariable('type','flv');
+					  so.addVariable('autostart','false');
+					  so.write('player<%= @lesson.flash_video.id%>');
+			        </script>
+				</p>
+			<% end %>
             <%= auto_link(@lesson.body) %>
           <% elsif !logged_in? %>  
             <p>You must <%= link_to "login", login_url %> to see this lesson because it is premium content.</p>
