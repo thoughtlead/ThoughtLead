@@ -17,9 +17,6 @@
           <% if !@lesson.premium || logged_in_as_active? %>
             <% if @lesson.flash_video %>
 				<% flash_video_url = @lesson.flash_video.authenticated_s3_url() %>
-				<% flash_video_url.gsub(/\+/, "%252b") %>
-				<% flash_video_url.gsub(/=/, "%3d") %>				
-				<% flash_video_url.gsub(/&/, "%26") %>				
 				<p>Video: <%= @lesson.flash_video.filename %> </P>
 				<div id="player<%=@lesson.flash_video.id%>">This text will be replaced</div>
 				<p>
@@ -29,7 +26,7 @@
 			          so.addParam('allowscriptaccess','true');
 			          so.addVariable('width','500');
 			          so.addVariable('height','500');
-			          so.addVariable('file', '<%= flash_video_url %>');
+			          so.addVariable('file', encodeURIComponent(encodeURIComponent('<%= flash_video_url %>')));
 					  so.addVariable('type','flv');
 					  so.addVariable('autostart','false');
 					  so.write('player<%= @lesson.flash_video.id%>');

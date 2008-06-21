@@ -21,8 +21,6 @@ class Community < ActiveRecord::Base
   
   def refresh_from_spreedly
     subscriber = Spreedly::Community::Subscriber.find(self.id)
-                 
-          
     self.active = subscriber.active
     self.spreedly_token = subscriber.token
     self.eligible_for_free_trial = subscriber.eligible_for_free_trial
