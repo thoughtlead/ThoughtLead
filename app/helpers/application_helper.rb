@@ -32,6 +32,5 @@ module ApplicationHelper
       return default_file unless File.exist?(File.expand_path(File.dirname(__FILE__) + "/../../public/themes/#{current_community.subdomain}/#{path}"))
       "/themes/#{current_community.subdomain}/#{path}"
     end
-  
-  
+    
 end
