@@ -3,3 +3,5 @@ liberty:
   description: Where on the earth does liberty exist anymore?  Nowhere really.
   user: duff
   community: c1
+  draft: false
+  
