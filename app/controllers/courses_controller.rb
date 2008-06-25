@@ -36,6 +36,7 @@ class CoursesController < ApplicationController
 
   def show
     @course = current_community.courses.find(params[:id])
+    owner_login_required if @course.draft #is there a better home for me?
   end
   
   def destroy

@@ -37,7 +37,7 @@ class LessonsController < ApplicationController
   
   def show
     @lesson = @chapter.lessons.find(params[:id])
-    owner_login_required if(@lesson.draft) #is there a better home for me?
+    owner_login_required if(@lesson.draft || @lesson.chapter.draft || @lesson.chapter.course.draft) #is there a better home for me?
   end
   
   def destroy

@@ -9,7 +9,10 @@
       <%= f.error_messages %>
 
       <%= f.text_field :name, :class => "text single"  %>
-      
+      <span class="draft plus_label"><%= f.check_box :draft %>
+        <%= f.label :draft, 'Draft?' %>
+      </span>
+
       <%= submit_tag "Rename" %> or <%= link_to "Cancel", course_chapters_url(@course) %>
     <% end %>
 </div>
