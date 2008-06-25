@@ -62,7 +62,7 @@ class CommunitiesController < ApplicationController
     end
   
     def community_layout
-      ['new', 'choose_plan', 'index'].include?(params[:action]) ? 'home' : 'application'
+      ['new', 'choose_plan', 'index'].include?(params[:action]) ? 'community_home' : 'application'
     end
   
     def plan_id
