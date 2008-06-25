@@ -1,4 +1,4 @@
-require 'test_helper'
+require File.dirname(__FILE__) + '/../test_helper' 
 
 class CommunityTest < ActiveSupport::TestCase
   should "have its owner become a community user when the community is created" do
