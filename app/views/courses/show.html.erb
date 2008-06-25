@@ -13,11 +13,13 @@
     </div>
     <ul>
       <% for lesson in chapter.lessons  %>
+	  	<% if !lesson.draft || current_user == @course.community.owner %>
         <li>
-          <h2><%= link_to h(lesson), [@course, chapter, lesson] %></h2>
+          <h2><%= link_to h(lesson), [@course, chapter, lesson] %> <% if lesson.draft %><i>Draft</i><% end %> </h2>
         
           <p><%= teaser_format(lesson.teaser) %></p>
         </li>
+		<% end %>
       <% end %>
     </ul>
   
