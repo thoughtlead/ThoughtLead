@@ -5,10 +5,10 @@ class LessonsController < ApplicationController
   before_filter :community_is_active
   
   uses_tiny_mce(tiny_mce_options)
-   
-   
+
   def new
     @lesson = Lesson.new
+    @lesson.draft = true
   end
   
   def create
@@ -20,7 +20,7 @@ class LessonsController < ApplicationController
     flash[:notice] = "Successfully created"
     redirect_to [@course, @chapter, @lesson]
   end
-
+  
   def update
     @lesson = @chapter.lessons.find(params[:id])
     @lesson.attributes = params[:lesson]
@@ -34,9 +34,10 @@ class LessonsController < ApplicationController
   def edit
     @lesson = @chapter.lessons.find(params[:id])
   end
-
+  
   def show
     @lesson = @chapter.lessons.find(params[:id])
+    owner_login_required if(@lesson.draft || @lesson.chapter.draft || @lesson.chapter.course.draft) #is there a better home for me?
   end
   
   def destroy
@@ -48,10 +49,10 @@ class LessonsController < ApplicationController
   end
   
   private
-    def load_course_and_chapter
-      @course = current_community.courses.find(params[:course_id])
-      @chapter = @course.chapters.find(params[:chapter_id])
-    end
-    
+  def load_course_and_chapter
+    @course = current_community.courses.find(params[:course_id])
+    @chapter = @course.chapters.find(params[:chapter_id])
+  end
+  
   
 end

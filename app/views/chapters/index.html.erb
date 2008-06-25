@@ -8,7 +8,8 @@
     <div class="chapter">
       <span class="chapter_title"><%=h chapter %></span>
       <span class="chapter_actions">
-        <%= link_to "Rename", edit_course_chapter_url(@course, chapter), :class => 'chapter_rename' %> | 
+      	<% if chapter.draft %>Draft<% end %>
+        <%= link_to "Edit", edit_course_chapter_url(@course, chapter), :class => 'chapter_rename' %> | 
         <%= link_to "Delete", course_chapter_url(@course, chapter), :method => :delete, :class => 'chapter_delete', :confirm => "Are you sure you would like to delete this chapter?  It's lessons will also be deleted." %>
       </span>
     </div>
@@ -21,6 +22,9 @@
     <% form_for [@course, Chapter.new] do | f | %>
       <%= f.error_messages %>
 
+      <span class="draft plus_label"><%= f.check_box :draft %>
+        <%= f.label :draft, 'Draft?' %>
+      </span>
       <%= f.text_field :name, :class => "text single"  %>
       
       <%= submit_tag "Add" %>

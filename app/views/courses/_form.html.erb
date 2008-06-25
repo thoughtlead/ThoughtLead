@@ -7,6 +7,9 @@
   
   <%= f.label(:description) %>
   <%= f.text_area(:description, :class => "text medium") %>
+  <span class="draft plus_label"><%= f.check_box :draft %>
+    <%= f.label :draft, 'Draft?' %>
+  </span>
   
   <%= submit_tag "Save" %> or <%= link_to "Cancel", courses_url %>
   

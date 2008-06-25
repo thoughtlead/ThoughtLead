@@ -3,22 +3,27 @@
 <div id="primary">
   <p><%= link_to "&#8592; Return to Courses", courses_url %></p>
   <h1 class="grouped"><%=h @course %></h1>
+  <% if @course.draft %><span style="color:red">Draft: course contents are hidden.</span><br/><% end %>
   <span class="meta_info author">by <%= link_to h(@course.user), @course.user %></span>
   <div class="course_description">
     <p><%=h @course.description %></p>
   </div>
   <% for chapter in @course.chapters %>
-    <div class="chapter">
-      <%=h chapter %>
-    </div>
-    <ul>
-      <% for lesson in chapter.lessons  %>
-        <li>
-          <h2><%= link_to h(lesson), [@course, chapter, lesson] %></h2>
-        
-          <p><%= teaser_format(lesson.teaser) %></p>
-        </li>
-      <% end %>
+  	<% if !chapter.draft || current_user == @course.community.owner %>
+	    <div class="chapter">
+	      <%=h chapter %><% if chapter.draft %><br/><span style="text-transform:capitalize; color:red">Draft: chapter contents are hidden.</span><% end %>
+	    </div>
+	    <ul>
+	      <% for lesson in chapter.lessons  %>
+		  	<% if !lesson.draft || current_user == @course.community.owner %>
+	        <li>
+	          <h2><%= link_to h(lesson), [@course, chapter, lesson] %></h2>
+			  <% if lesson.draft %><span style="color:red">Draft</span><br/><% end %> 
+	          <p><%= teaser_format(lesson.teaser) %></p>
+	        </li>
+			<% end %>
+	      <% end %>
+	  <% end %>
     </ul>
   
   <div class="add_lesson">

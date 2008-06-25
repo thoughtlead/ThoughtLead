@@ -7,4 +7,11 @@ class Course < ActiveRecord::Base
 
   alias_attribute :to_s, :title
   
+  def contains_drafts
+    for chapter in chapters
+      return true if chapter.draft || chapter.contains_drafts
+    end
+    return false
+  end
+  
 end
