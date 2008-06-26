@@ -1,0 +1,35 @@
+<% @current_tab = :Courses %>
+<div id="primary">
+    <p>
+        <%= link_to "&#8592; Return to Library", "/library" %>
+    </p>
+    <h1 class="grouped"><%=h @category %></h1>
+	<div style="text-align:right">Sort By:<select>
+		<option default="true">None</option>
+	</select> 
+	Filter By:<select>
+		<option default="true">None</option>		
+	</select></div>
+	<% puts "\n" * 5 + @category.inspect + "\n" * 5  %>
+	<ul>
+	    <% for article in @category.articles %>
+	    <li>
+	        <h2><%= link_to h(article), "#" %> <% if article.video %><a href="#"><img src="/images/video.png"/></a><% end %></h2>
+			<img src="/images/calendar.png"/> <%= article.date.strftime("%m/%d/%Y") %> | <img src="/images/dude.png"/> <%= article.user %>
+	        <p>
+	            <%= teaser_format(article.teaser) %>
+				<% if !article.attachments.blank?%>
+					<p>Attachments |  
+					<% for attachment in article.attachments %>
+						<a href="#"><%= attachment %></a> | 
+					<% end %>
+					</p>
+				<% end %>
+	        </p>
+	    </li>
+	    <% end %>
+	</ul>
+    <div class="add_lesson">
+        <%= link_to "+ Add an Article", "/library/article/new", :class => 'action_sm' if logged_in_as_owner? %>
+    </div>
+</div>

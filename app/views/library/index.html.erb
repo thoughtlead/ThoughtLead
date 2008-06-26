@@ -1,0 +1,22 @@
+<% @current_tab = :Courses %>
+<% @page_class = :courses_index %>
+
+<div id="primary">
+  <div class="courses">
+    <ol class="courses">
+      <% for category in $library %>
+	      <li class="category">
+	        <h3 class="category_title grouped"><%= link_to h(category), "/library/show" %></h3><%= link_to "Edit", "#", :class => 'action_sm' if logged_in_as_owner? %> 
+	      </li>
+      <% end %>
+    </ol>
+  </div>
+</div>
+<div id="secondary">
+  <ul class = "actions first">
+    <li class="action add">
+      <span><%= link_to "Add a Category", "#", :class => 'action' if logged_in_as_owner? %></span>
+    </li>
+  </ul>
+</div>
+
