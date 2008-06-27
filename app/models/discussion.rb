@@ -6,6 +6,8 @@ class Discussion < ActiveRecord::Base
   belongs_to :category
   has_many :responses, :dependent => :destroy
   
+  is_indexed :fields => ['title', 'body', 'community_id'] 
+  
   alias_attribute :to_s, :title
   
   named_scope :for_category, lambda { | category_id | 

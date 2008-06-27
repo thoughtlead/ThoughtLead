@@ -11,6 +11,9 @@ class Lesson < ActiveRecord::Base
   acts_as_list :scope => :chapter, :column => :chapter_position
   alias_attribute :to_s, :title
   
+  # Adding an association with the user's community so that we can filter on community
+  is_indexed :fields => ['title', 'body', 'teaser', 'draft'], :include => [{:association_name => 'user', :field => 'community_id'}]
+  
   def lesson_attachments=(it)
     for attachment in it
       if(!attachment.blank?)

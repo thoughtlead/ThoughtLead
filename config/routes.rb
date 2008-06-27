@@ -21,6 +21,8 @@ ActionController::Routing::Routes.draw do |map|
     end
   end
 
+  map.search '/search', :controller=>"search", :action=>"index", :conditions => { :subdomain => /./ }
+  
   map.root :controller => "home", :conditions => { :subdomain => '' }
   map.community_home '', :controller => "communities", :action => 'current_community_home', :conditions => { :subdomain => /./ }
   map.community_need_to_activate '/need_to_activate', :controller => "communities", :action => 'need_to_activate', :conditions => { :subdomain => /./ }

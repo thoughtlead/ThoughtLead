@@ -7,6 +7,8 @@ class Course < ActiveRecord::Base
 
   alias_attribute :to_s, :title
   
+  is_indexed :fields => ['title', 'description', 'community_id', 'draft']
+  
   def contains_drafts
     for chapter in chapters
       return true if chapter.draft || chapter.contains_drafts
