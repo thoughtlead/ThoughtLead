@@ -34,8 +34,7 @@ ActionController::Routing::Routes.draw do |map|
   map.communities_changed_on_spreedly '/changed_on_spreedly', :controller => 'communities', :action => 'changed_on_spreedly', :method => :post, :conditions => { :subdomain => '' }
   map.community_choose_plan '/choose_plan', :controller => 'communities', :action => 'choose_plan', :conditions => { :subdomain => '' }
   
-  map.library_index '/library', :controller => 'library', :action => 'index'
-  map.library_index '/library/show', :controller => 'library', :action => 'show'
+  map.library_index '/library', :controller => 'library', :action => 'show'
   map.library_index '/library/edit', :controller => 'library', :action => 'edit'
   map.library_index '/library/new', :controller => 'library', :action => 'new'  
   map.library_index '/library/article/new', :controller => 'library', :action => 'new_article'  

@@ -48,9 +48,6 @@ class LibraryController < ApplicationController
     $library = [LibraryCategory.new("Lorem"), LibraryCategory.new("Ipsum"), LibraryCategory.new("Dolor"), LibraryCategory.new("Sit"), LibraryCategory.new("Amet")]
   end
   
-  def index
-  end
-  
   def show
     @category = $library[0]
   end
@@ -61,6 +58,9 @@ class LibraryController < ApplicationController
   
   def new
     @category = $library[0]
+  end
+  
+  def new_article
   end
   
 end

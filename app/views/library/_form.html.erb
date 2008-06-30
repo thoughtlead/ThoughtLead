@@ -1,0 +1,60 @@
+<script>
+/*
+ * This gets copied for each iteration of form_for... not a good practice
+ * however, neccessary because we use f.file_field in the ruby of addAttachment
+ * if we could find a way to pass that information in we could not copy
+ * pass it in as a string?  since we use it as a string anyway...
+ */
+removeAttachment = function(removeButton) {
+	removeButton.up().remove();
+}
+
+addAttachment = function() {
+    //need to change so that there is no bottom margin for GUI goodness
+	var host = $('attachments');
+    var editor = document.createElement('span');
+	editor.innerHTML =
+	    '<%= file_field_tag "lesson[lesson_attachments][]", :class => "formField" %>' +
+    	'<input type="button" value="Remove" onclick="removeAttachment(this)" /><br/>';
+	host.appendChild(editor);
+}
+//*/
+</script>
+<div class="lesson">
+    <%= label_tag(:title, 'Article Title') %>
+    <%= text_field_tag "" %>
+    <%= label_tag(:teaser, "Article Teaser") %>
+    <%= text_area_tag("") %>
+    <%= label_tag(:body, 'Article Body') %>
+    <%= text_area_tag("") %>
+</div>
+
+
+<%= label_tag(:lesson_attachment, "Attachments") %>
+<span id="attachments">
+</span><br/>
+
+<input type="button" value="Add Attachment" onclick="addAttachment()">
+
+<%= label_tag(:lesson_flash_video, "Video") %>
+<%= file_field_tag :lesson_flash_video %>
+<%= label_tag(:lesson_attachment, "Category") %>
+<select>
+<% for category in $library do %>
+<option><%= category %></option>
+<% end %>
+</select><input type="button" value="Remove" style="margin-bottom:0px" />
+<br/><input type="button" value="Add Category">
+<div>
+    <span class="draft plus_label"><%= check_box_tag :draft %>
+        <%= label_tag :draft, 'Draft?' %>
+    </span>
+    <span class="premium plus_label"><%= check_box_tag :premium %>
+        <%= label_tag :premium, 'Only paid subscribers can access this lesson' %>
+    </span>
+</div>
+<% if mode == :new %>
+<%= link_to "Create This Article", "/library" %> or <%= link_to "Cancel", "/library" %>
+<% else %>
+<%= link_to "Save changes", "/library" %> or <%= link_to "Cancel", "/library" %>
+<% end %>
