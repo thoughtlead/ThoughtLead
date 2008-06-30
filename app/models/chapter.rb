@@ -9,6 +9,7 @@ class Chapter < ActiveRecord::Base
     for lesson in lessons
       return true if lesson.draft
     end
+    return false
   end
   
 end

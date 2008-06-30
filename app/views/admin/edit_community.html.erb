@@ -1,7 +1,6 @@
 <% @current_tab = :'Community Setup' %>
 
-<div id="small">
-
+<div id="primary">
   <% form_for @community, :url => edit_community_url do | f | %>
   
     <%= f.error_messages %>
@@ -35,4 +34,7 @@
   	  <%= submit_tag 'Save' %> or <%= link_to "Cancel", community_home_url %>
     </p>
   <% end %>
+</div>
+<div id="secondary">
+  <%= render :partial => "menu", :locals => { :mode => :edit }  %>
 </div>

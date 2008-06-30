@@ -52,6 +52,20 @@ addAttachment = function() {
     <span class="draft plus_label"><%= f.check_box :draft %>
         <%= f.label :draft, 'Draft?' %>
     </span>
+	
+    <span class="draft plus_label">
+    	<%= f.radio_button(:access_level, "Public") %>
+        <%= f.label :access_level, 'Public' %>
+    </span>
+	<span class="draft plus_label">
+		<%= f.radio_button :access_level, "Registered" %>
+        <%= f.label :access_level, 'Registered' %>
+    </span>
+    <span class="draft plus_label">
+    	<%= f.radio_button :access_level, "Premium" %>
+        <%= f.label :access_level, 'Premium' %>
+    </span>	
+	
     <span class="premium plus_label"><%= f.check_box :premium %>
         <%= f.label :premium, 'Only paid subscribers can access this lesson' %>
     </span>
