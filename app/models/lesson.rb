@@ -14,6 +14,37 @@ class Lesson < ActiveRecord::Base
   # Adding an association with the user's community so that we can filter on community
   is_indexed :fields => ['title', 'body', 'teaser', 'draft'], :include => [{:association_name => 'user', :field => 'community_id'}]
   
+  def accessible_to(user)
+    if self.draft? && user != self.chapter.course.community.owner
+      return false
+    end
+    if user == self.chapter.course.community.owner
+      return true
+    end
+    #Authenticated System uses :false when there is no current_user
+    if (user == :false) && (self.premium? || self.registered?)
+      return false
+    end
+    if self.premium?
+      return user.active?
+    end
+    if self.registered? 
+      return !user.nil?
+    end
+    return true    
+  end
+  
+  def access_level
+    return "Premium" if self.premium
+    return "Registered" if self.registered
+    return "Public"
+  end
+  
+  def access_level= (value)
+    self.premium = (value == "Premium")
+    self.registered = (value == "Registered")
+  end
+  
   def lesson_attachments=(it)
     for attachment in it
       if(!attachment.blank?)

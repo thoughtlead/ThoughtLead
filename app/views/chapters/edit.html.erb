@@ -2,7 +2,7 @@
 
 <div id="primary">
   <p><%= link_to "&#8592; Return to Course Overview", @course %></p>
-  <h1 class="grouped">Rename chapter</h1>
+  <h1 class="grouped">Edit chapter</h1>
   <br />
 
     <% form_for [@course, @chapter] do | f | %>
@@ -13,7 +13,7 @@
         <%= f.label :draft, 'Draft?' %>
       </span>
 
-      <%= submit_tag "Rename" %> or <%= link_to "Cancel", course_chapters_url(@course) %>
+      <%= submit_tag "Save" %> or <%= link_to "Cancel", course_chapters_url(@course) %>
     <% end %>
 </div>
 

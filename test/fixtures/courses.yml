@@ -5,3 +5,9 @@ liberty:
   community: c1
   draft: false
   
+happiness:
+  title: Pursuit of Something
+  description: Where on the earth does happiness exist? Yay! Cheer up dude!
+  user: sam
+  community: c3
+  draft: false

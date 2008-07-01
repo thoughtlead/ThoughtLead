@@ -1,0 +1,21 @@
+<% @current_tab = :'Community Setup' %>
+<div id="primary">
+    <% form_for @community, :url => access_rights_url do | f | %>
+    <%= f.error_messages %>
+    	<h1>Default Profile Visibility Settings</h1>
+    <p>
+    <p>
+     	<%= f.label :public, "Public" %>
+		<%= f.select :junk, [["Nothing",0],["Names",1],["All But E-mails",2],["Full",3]] %>
+    	<%= f.label :registered, "Registered" %>
+		<%= f.select :junk, [["Nothing",0],["Names",1],["All But E-mails",2],["Full",3]] %>
+    	<%= f.label :premium, "Premium" %>
+		<%= f.select :junk, [["Nothing",0],["Names",1],["All But E-mails",2],["Full",3]] %>
+		</p>
+        <%= submit_tag 'Save' %> or <%= link_to "Cancel", community_home_url %>
+    </p>
+    <% end %>
+</div>
+<div id="secondary">
+    <%= render :partial => "menu", :locals => { :mode => :edit } %>
+</div>
