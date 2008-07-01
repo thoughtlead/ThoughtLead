@@ -16,7 +16,7 @@
           
           <% if !@lesson.premium || logged_in_as_active? %>
             <% if @lesson.flash_video %>
-				<% flash_video_url = @lesson.flash_video.authenticated_s3_url() %>
+				<% flash_video_url = @lesson.flash_video.authenticated_s3_url(:expires_in => 2.hours) %>
 				<p>Video: <%= @lesson.flash_video.filename %> </P>
 				<div id="player<%=@lesson.flash_video.id%>">This text will be replaced</div>
 				<p>
@@ -64,12 +64,11 @@
         </li>
       </ul>
 
-      <% if @lesson.premium %>
-      <p class="premium">
-        This lesson is premium content
-      </p>
-      <% end %>
-
+      	<% if !(s = lesson_notes(@lesson)).blank? %>
+			<p class="premium">
+				This lesson is: <%= s %>
+			</p>
+		<% end %>
       
       <div class="course">
         <div class="course_title">
@@ -96,7 +95,7 @@
         <strong>Attachments</strong>
       <% for attachment in @lesson.attachments %>
         <p>
-          <%= link_to attachment.filename, attachment.public_filename %> 
+          <%= link_to attachment.filename, attachment.authenticated_s3_url(:expires_in => 2.hours) %> 
           <% if logged_in_as_owner? %>
             [ <%= link_to("Delete", course_chapter_lesson_attachment_url(@course, @chapter, @lesson, attachment), :method => :delete, :confirm => "Are you sure you'd like to delete this attachment?") %>]
           <% end %>
@@ -104,6 +103,5 @@
       <% end end %>
       
 
-      <p><%= "This lesson is not published" if @lesson.draft %></p>
     </div>
     

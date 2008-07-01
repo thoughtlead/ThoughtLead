@@ -3,7 +3,7 @@ class LessonsController < ApplicationController
   before_filter :load_course_and_chapter
   before_filter :owner_login_required, :except => [ :show ]
   before_filter :community_is_active
-  before_filter :user_has_correct_privileges
+  before_filter :user_has_correct_privileges, :except => [ :index ]
   
   uses_tiny_mce(tiny_mce_options)
   
@@ -11,8 +11,7 @@ class LessonsController < ApplicationController
     return true if !params[:id]
     lesson = Lesson.find_by_id(params[:id])
     if !lesson.accessible_to(current_user)
-      flash[:notice] = "You do not have permission to access the lesson \"#{lesson.title}\"."
-      return redirect_to lesson.chapter.course
+      access_denied
     end
   end
   

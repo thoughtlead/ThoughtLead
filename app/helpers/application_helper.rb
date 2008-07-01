@@ -1,5 +1,47 @@
 module ApplicationHelper
   
+    def display_lesson(lesson)
+    !lesson.draft || current_user == lesson.chapter.course.community.owner
+  end
+  
+  def lesson_notes(lesson)
+    s = []
+    if lesson.premium
+      s << "Premium"
+    end
+    if lesson.registered
+      s << "Registered"
+    end
+    if lesson.draft
+      s << "Draft"
+    end
+    return s * "; "
+  end
+  
+  def course_index_notes(course)
+    s = []
+    if course.draft
+      s << "Draft"
+    elsif course.contains_drafts && current_user == course.community.owner
+      s << "Has Draft Content"
+    end
+    if course.contains_premium
+      s << "Has Premium Content"
+    end
+    if course.contains_registered
+      s << "Has Registered Content"
+    end
+    return s * "; "
+  end
+  
+  def link_to_lesson(lesson)
+    if(lesson.accessible_to(current_user))
+      return link_to(h(lesson), [lesson.chapter.course, lesson.chapter, lesson])
+    else
+      return h(lesson)
+    end
+  end
+  
   def define_js_function(function_name, &block)
     parens = function_name.kind_of?(Symbol) ? "()" : ""
     update_page_tag do | page |

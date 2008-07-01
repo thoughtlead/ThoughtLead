@@ -14,6 +14,10 @@ class Lesson < ActiveRecord::Base
   # Adding an association with the user's community so that we can filter on community
   is_indexed :fields => ['title', 'body', 'teaser', 'draft'], :include => [{:association_name => 'user', :field => 'community_id'}]
   
+  def draft_to_users?
+    return self.draft? || self.chapter.draft_to_users?
+  end
+  
   def accessible_to(user)
     if self.draft? && user != self.chapter.course.community.owner
       return false

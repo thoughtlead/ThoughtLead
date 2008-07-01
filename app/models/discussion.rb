@@ -14,4 +14,12 @@ class Discussion < ActiveRecord::Base
     { :conditions => ({ :category_id => (category_id == 'nil' || category_id == '') ? nil : category_id } if category_id) } 
   }
   
+  def accessible_to(user)
+    if self.community.discussion_accessibility > 0
+      #TODO stuff
+      return false
+    end
+    return false
+  end
+  
 end

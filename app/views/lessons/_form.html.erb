@@ -66,9 +66,6 @@ addAttachment = function() {
         <%= f.label :access_level, 'Premium' %>
     </span>	
 	
-    <span class="premium plus_label"><%= f.check_box :premium %>
-        <%= f.label :premium, 'Only paid subscribers can access this lesson' %>
-    </span>
 </div>
 <% if mode == :new %>
 <%= submit_tag "Create this lesson" %>or <%= link_to "Cancel", @course %>
