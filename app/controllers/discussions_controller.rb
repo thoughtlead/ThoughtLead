@@ -15,8 +15,8 @@ class DiscussionsController < ApplicationController
 
   
   def index
-    @discussions = current_community.discussions.for_category(params[:category])
-    @category = Category.find_by_id(params[:category]) if params[:category] && params[:category] != 'nil'
+    @discussions = current_community.discussions.for_theme(params[:theme])
+    @theme = Theme.find_by_id(params[:theme]) if params[:theme] && params[:theme] != 'nil'
   end
 
   def new

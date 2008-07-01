@@ -1,9 +1,9 @@
 <% @current_tab = :Discussions %>
 
 <div id="primary">
-  <% if @category %>
-	<h2><%= @category.name %></h2>
-	<h3><%= @category.description %></h3>
+  <% if @theme %>
+	<h2><%= @theme.name %></h2>
+	<h3><%= @theme.description %></h3>
   <% end %>
   <div class="discussions">
     
@@ -31,22 +31,22 @@
     </li>
     <% if logged_in? && current_user.owner? %>
       <li class="action edit">
-        <span><%= link_to "Edit Categories", categories_url %></span>
+        <span><%= link_to "Edit Themes", themes_url %></span>
       </li>
     <% end %>
   </ul>
   
-  <% if !current_community.categories.empty? %>
-    <ul class="categories">
-      <h2>Categories</h2>
-      <% for category in current_community.categories %>
-        <% content_tag(:li, :class => current_class_for_category(category)) do %>
-          <%= link_to category, discussions_url(:category => category) %>
+  <% if !current_community.themes.empty? %>
+    <ul class="themes">
+      <h2>Themes</h2>
+      <% for theme in current_community.themes %>
+        <% content_tag(:li, :class => current_class_for_theme(theme)) do %>
+          <%= link_to theme, discussions_url(:theme => theme) %>
         <% end %>
       <% end %>
-      <% if current_community.discussions.for_category('nil').count > 0 %>
+      <% if current_community.discussions.for_theme('nil').count > 0 %>
         <% content_tag(:li, :class => current_class_uncategorized) do %>
-          <%= link_to "Uncategorized", discussions_url(:category => 'nil') %>
+          <%= link_to "Uncategorized", discussions_url(:theme => 'nil') %>
         <% end %>
       <% end %>
       <% content_tag(:li, :class => current_class_all_tasks) do %>

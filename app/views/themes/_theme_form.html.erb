@@ -1,0 +1,13 @@
+<% form_for @theme do | f | %>
+
+  <%= f.error_messages %>
+
+  <p>
+    <%= f.label :name, "Theme" %>
+    <%= f.text_field :name %>
+    <%= f.label :description, "Theme description" %>
+    <%= f.text_area :description, :rows=>5 %>
+
+	  <%= submit_tag submit_text, :disable_with => "Saving theme..." %>
+	</p>  
+<% end %>

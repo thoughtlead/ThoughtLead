@@ -6,7 +6,7 @@ ActionController::Routing::Routes.draw do |map|
   map.signup '/signup', :controller => 'users', :action => 'signup', :conditions => { :subdomain => /./ }
   map.status '/status', :controller => 'home', :action => 'status', :conditions => { :subdomain => '' }
 
-  map.resources :categories, :conditions => { :subdomain => /./ }
+  map.resources :themes, :conditions => { :subdomain => /./ }
   map.resources :sessions, :conditions => { :subdomain => /./ }
   map.resources :users, :member => { :email => :any, :edit_password => :any }, :conditions => { :subdomain => /./ }
   map.resources :discussions, :conditions => { :subdomain => /./ } do | discussions |
@@ -28,7 +28,7 @@ ActionController::Routing::Routes.draw do |map|
   map.community_need_to_activate '/need_to_activate', :controller => "communities", :action => 'need_to_activate', :conditions => { :subdomain => /./ }
   map.upgrade '/upgrade', :controller => "users", :action => 'upgrade', :conditions => { :subdomain => /./ }
   map.users_changed_on_spreedly '/changed_on_spreedly', :controller => "users", :action => 'changed_on_spreedly', :method => :post, :conditions => { :subdomain => /./ }
-  map.discussions_for_category '/discussions/category/:id', :controller => "discussions", :action => "for_category", :conditions => { :subdomain => /./ }
+  map.discussions_for_theme '/discussions/theme/:id', :controller => "discussions", :action => "for_theme", :conditions => { :subdomain => /./ }
 
   map.edit_community '/community/edit', :controller => 'admin', :action => 'edit_community', :conditions => { :subdomain => /./ }
   map.access_rights '/community/access', :controller => 'admin', :action => 'access_rights', :conditions => { :subdomain => /./ }
