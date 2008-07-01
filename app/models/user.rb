@@ -15,6 +15,8 @@ class User < ActiveRecord::Base
   has_many    :courses
   has_one     :avatar, :dependent => :destroy
 
+  is_indexed :fields => ['about', 'interests', 'display_name', 'location', 'zipcode', 'community_id']
+
   def self.encrypt(password, salt)
     Digest::SHA1.hexdigest("--#{salt}--#{password}--")
   end

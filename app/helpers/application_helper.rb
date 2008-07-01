@@ -25,6 +25,10 @@ module ApplicationHelper
     themed_file("images/logo.gif")
   end
   
+  def link_to_lesson(lesson, link_text=lesson.title)
+    link_to link_text, course_chapter_lesson_path(lesson.chapter.course, lesson.chapter, lesson)
+  end
+  
   private
     def themed_file(path, default_path = path) 
       default_file = "/themes/default/#{default_path}"

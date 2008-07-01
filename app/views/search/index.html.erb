@@ -2,18 +2,9 @@
   Search results:<br/>
   <br/>	
   
-  <h3><%= @courses.size %> Courses found:</h3>
-  <% @courses.each do |course| %>
-    <%= course.title %> <br/>
-  <% end %>
-  
-  <h3><%= @lessons.size %> Lessons found:</h3>
-  <% @lessons.each do |lesson| %>
-    <%= lesson.title %> <br/>
-  <% end %>
-  
-  <h3><%= @discussions.size %> Discussions found:</h3>
-  <% @discussions.each do |discussion| %>
-    <%= discussion.title %> <br/>
-  <% end %>
+  <div id="resultset">
+	  <%= render :partial=>"course_search_results" %>
+	  <%= render :partial=>"discussion_search_results" %>
+	  <%= render :partial=>"user_search_results" %>
+  </div>
 </div>
