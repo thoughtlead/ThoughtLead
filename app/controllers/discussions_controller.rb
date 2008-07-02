@@ -2,23 +2,13 @@ class DiscussionsController < ApplicationController
   
   before_filter :login_required, :except => [ :index, :show]
   before_filter :community_is_active
-  before_filter :user_has_correct_privileges
-
-  def user_has_correct_privileges
-    return true if !params[:id]
-    discussion = Discussion.find_by_id(params[:id])
-    if !discussion.accessible_to(current_user)
-      access_denied
-    end
-  end
-  
-
+  before_filter :user_has_correct_privileges, :except => [ :index ]
   
   def index
     @discussions = current_community.discussions.for_theme(params[:theme])
     @theme = Theme.find_by_id(params[:theme]) if params[:theme] && params[:theme] != 'nil'
   end
-
+  
   def new
     @discussion = Discussion.new
   end
@@ -32,7 +22,7 @@ class DiscussionsController < ApplicationController
     flash[:notice] = "Successfully created"
     redirect_to @discussion
   end
-
+  
   def update
     @discussion = current_community.discussions.find(params[:id])
     
@@ -45,7 +35,7 @@ class DiscussionsController < ApplicationController
   def edit
     @discussion = current_community.discussions.find(params[:id])
   end
-
+  
   def show
     @discussion = current_community.discussions.find(params[:id])
   end
@@ -56,6 +46,17 @@ class DiscussionsController < ApplicationController
     
     flash[:notice] = "Successfully deleted the discussion post."
     redirect_to discussions_url
+  end
+
+  private
+  
+  def user_has_correct_privileges
+    return true if !params[:id]
+    discussion = Discussion.find_by_id(params[:id])
+    if !discussion.accessible_to(current_user)
+      access_denied
+    end
+    return true
   end
   
 end

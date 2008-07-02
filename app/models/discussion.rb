@@ -16,8 +16,9 @@ class Discussion < ActiveRecord::Base
   
   def accessible_to(user)
     if self.community.discussion_accessibility > 0
-      #TODO stuff
-      return false
+      #authenticated system uses :false for non-users
+      return false if user == :false
+      return user.active?
     end
     return true
   end
