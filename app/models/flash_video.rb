@@ -1,6 +1,6 @@
 class FlashVideo < ActiveRecord::Base
   belongs_to      :user
-  belongs_to      :lesson
+  belongs_to      :content
   has_attachment  :storage => :s3, :max_size => 25.megabytes, :s3_access => :authenticated_read
   validates_as_attachment
 

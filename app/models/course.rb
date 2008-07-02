@@ -13,6 +13,7 @@ class Course < ActiveRecord::Base
     return self.draft?
   end
   
+  #returns true if this is a draft
   def contains_drafts
     for chapter in chapters
       return true if chapter.draft || chapter.contains_drafts
@@ -23,7 +24,7 @@ class Course < ActiveRecord::Base
   def contains_premium
     for chapter in chapters
       for lesson in chapter.lessons
-        return true if lesson.premium
+        return true if lesson.content.premium
       end
     end
     return false
@@ -32,7 +33,7 @@ class Course < ActiveRecord::Base
   def contains_registered
     for chapter in chapters
       for lesson in chapter.lessons
-        return true if lesson.registered
+        return true if lesson.content.registered
       end
     end    
     return false

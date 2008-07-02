@@ -4,42 +4,7 @@
     <div id="primary">
       <div id="lesson">
             <p><%= link_to "&#8592; Return to Course Overview", @lesson.chapter.course %></p>
-            <h1 class="grouped"><%=h @lesson %></h1>
-        <div id="lesson_body">
-          <div class="lesson_info">
-            <p>by <strong><%= link_to h(@lesson.user), @lesson.user %></strong> | <%= @lesson.created_at.to_s(:month_year) %></p>
-          </div>
-
-          <div class="course_description">
-            <p><%= teaser_format(@lesson.teaser) %></p>
-          </div>        
-          
-          <% if !@lesson.premium || logged_in_as_active? %>
-            <% if @lesson.flash_video %>
-				<% flash_video_url = @lesson.flash_video.authenticated_s3_url(:expires_in => 2.hours) %>
-				<p>Video: <%= @lesson.flash_video.filename %> </P>
-				<div id="player<%=@lesson.flash_video.id%>">This text will be replaced</div>
-				<p>
-					<script type="text/javascript">
-			          var so = new SWFObject('/mediaplayer.swf','mpl','500','500','8');
-			          so.addParam('allowfullscreen','true');
-			          so.addParam('allowscriptaccess','true');
-			          so.addVariable('width','500');
-			          so.addVariable('height','500');
-			          so.addVariable('file', encodeURIComponent(encodeURIComponent('<%= flash_video_url %>')));
-					  so.addVariable('type','flv');
-					  so.addVariable('autostart','false');
-					  so.write('player<%= @lesson.flash_video.id%>');
-			        </script>
-				</p>
-			<% end %>
-            <%= auto_link(@lesson.body) %>
-          <% elsif !logged_in? %>  
-            <p>You must <%= link_to "login", login_url %> to see this lesson because it is premium content.</p>
-          <% else %>
-            <p><strong><%= link_to "Upgrade your account", upgrade_url %> to see the entire lesson!</strong></p>
-          <% end %>
-
+  		<%= render :partial => '/contents/show_content', :locals => { :content => @lesson.content } %>
           <div class="lesson_navigation">
             <% if @lesson.higher_item %>   
               <p><small>PREVIOUS LESSON</small> &mdash; <%= link_to h(@lesson.higher_item), [@lesson.chapter.course, @lesson.chapter, @lesson.higher_item] %> </p>
@@ -50,9 +15,8 @@
             <p><%= link_to "&#8592; Return to Course Overview", @lesson.chapter.course %></p>
           </div>
         </div>
-      </div>
-    </div>
-    </div> <!-- Remove -->
+	  </div>
+	</div>
     
     <div id="secondary">
       <ul class="actions first">
@@ -64,7 +28,7 @@
         </li>
       </ul>
 
-      	<% if !(s = lesson_notes(@lesson)).blank? %>
+      	<% if !(s = @lesson.lesson_notes).blank? %>
 			<p class="premium">
 				This lesson is: <%= s %>
 			</p>
@@ -90,18 +54,6 @@
           </ol>
         </div>
       </div>
-
-      <% if @lesson.attachments %>
-        <strong>Attachments</strong>
-      <% for attachment in @lesson.attachments %>
-        <p>
-          <%= link_to attachment.filename, attachment.authenticated_s3_url(:expires_in => 2.hours) %> 
-          <% if logged_in_as_owner? %>
-            [ <%= link_to("Delete", course_chapter_lesson_attachment_url(@course, @chapter, @lesson, attachment), :method => :delete, :confirm => "Are you sure you'd like to delete this attachment?") %>]
-          <% end %>
-        </p>
-      <% end end %>
-      
-
+      <%= render :partial => '/contents/show_attachments', :locals => { :content => @lesson.content } %>
     </div>
     

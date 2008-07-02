@@ -1,23 +1,9 @@
 module ApplicationHelper
   
-    def display_lesson(lesson)
-    !lesson.draft || current_user == lesson.chapter.course.community.owner
+  def display_lesson(lesson)
+    !lesson.draft_to_users? || current_user == lesson.chapter.course.community.owner
   end
-  
-  def lesson_notes(lesson)
-    s = []
-    if lesson.premium
-      s << "Premium"
-    end
-    if lesson.registered
-      s << "Registered"
-    end
-    if lesson.draft
-      s << "Draft"
-    end
-    return s * "; "
-  end
-  
+    
   def course_index_notes(course)
     s = []
     if course.draft
@@ -42,12 +28,13 @@ module ApplicationHelper
     end
   end
   
+
   def define_js_function(function_name, &block)
     parens = function_name.kind_of?(Symbol) ? "()" : ""
     update_page_tag do | page |
-    	page << "function #{function_name}#{parens} {"
+      page << "function #{function_name}#{parens} {"
       yield page
-    	page << "}"
+      page << "}"
     end	
   end
   
@@ -67,16 +54,12 @@ module ApplicationHelper
     themed_file("images/logo.gif")
   end
   
-  def link_to_lesson(lesson, link_text=lesson.title)
-    link_to link_text, course_chapter_lesson_path(lesson.chapter.course, lesson.chapter, lesson)
+  private
+  def themed_file(path, default_path = path) 
+    default_file = "/themes/default/#{default_path}"
+    return default_file unless current_community
+    return default_file unless File.exist?(File.expand_path(File.dirname(__FILE__) + "/../../public/themes/#{current_community.subdomain}/#{path}"))
+      "/themes/#{current_community.subdomain}/#{path}"
   end
   
-  private
-    def themed_file(path, default_path = path) 
-      default_file = "/themes/default/#{default_path}"
-      return default_file unless current_community
-      return default_file unless File.exist?(File.expand_path(File.dirname(__FILE__) + "/../../public/themes/#{current_community.subdomain}/#{path}"))
-      "/themes/#{current_community.subdomain}/#{path}"
-    end
-    
 end

@@ -18,8 +18,8 @@
 		  	<% if display_lesson(lesson) %>
 	        <li>
 	          <h2><%= link_to_lesson(lesson) %></h2>
-			  <span style="color:red"><%= lesson_notes(lesson) %></span><br/> 
-	          <p><%= teaser_format(lesson.teaser) %></p>
+			  <span style="color:red"><%= lesson.lesson_notes %></span><br/> 
+	          <p><%= teaser_format(lesson.content.teaser) %></p>
 	        </li>
 			<% end %>
 	      <% end %>

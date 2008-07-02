@@ -9,9 +9,10 @@ class Chapter < ActiveRecord::Base
     return self.draft? || self.course.draft_to_users?
   end
   
+  #returns true if this is a draft
   def contains_drafts
     for lesson in lessons
-      return true if lesson.draft
+      return true if lesson.draft_to_users?
     end
     return false
   end
