@@ -25,7 +25,8 @@ module CommunityLocation
 
     def community_domain
       community_domain = ""
-      start_index = (Rails.env == 'staging') ? 0 : 1
+      #start_index = (Rails.env == 'staging') ? 0 : 1
+      start_index = 1
       community_domain << request.subdomains[start_index..-1].join(".") + "." if request.subdomains.size > 1
       community_domain << request.domain + request.port_string
     end
