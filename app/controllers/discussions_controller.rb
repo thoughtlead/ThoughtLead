@@ -3,7 +3,6 @@ class DiscussionsController < ApplicationController
   before_filter :login_required, :except => [ :index, :show]
   before_filter :community_is_active
   
-  
   def index
     @discussions = current_community.discussions.for_category(params[:category])
     @category = Category.find_by_id(params[:category]) if params[:category] && params[:category] != 'nil'

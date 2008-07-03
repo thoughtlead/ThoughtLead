@@ -1,5 +1,4 @@
 <% @current_tab = :Discussions %>
-
 <div id="primary">
   <p>    <%= link_to "&#8592; Return to Discussions", discussions_url, :class => 'discussions' %></p>
   <h1 class="grouped"><%=h @discussion %></h1>
@@ -25,6 +24,7 @@
           <%= avatar_for(response.user, :small) %>
         </span>
         <%= link_to h(response.user), response.user %>&nbsp;|&nbsp;<%= response.created_at.to_s(:day_month_year) %>
+      	<%= link_to("Delete this Response", response, :controller => :responses, :method => :delete, :confirm => "Are you sure you'd like to delete this response?") if logged_in_as_owner?  %></span>
       </span>
       <div class="comment_body">
         <%= textilize(response.body) %>

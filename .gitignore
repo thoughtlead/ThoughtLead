@@ -9,3 +9,4 @@ db/schema.rb
 public/.integration_test_output_for_browser.html
 public/avatars
 tmp/*
+.loadpath
