@@ -1,12 +1,10 @@
 
 class Community < ActiveRecord::Base
   
-  attr_accessor :junk #TODO REMOVE THIS POST-HASTE (but not before dependancies)
-  
   has_many :users
   has_many :courses, :dependent => :destroy
   has_many :discussions, :dependent => :destroy
-  has_many :categories, :dependent => :destroy
+  has_many :themes, :dependent => :destroy
   belongs_to :owner, :class_name => "User"
   
   validates_presence_of :subdomain, :name

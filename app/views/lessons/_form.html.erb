@@ -1,75 +1,11 @@
-<script>
-/*
- * This gets copied for each iteration of form_for... not a good practice
- * however, neccessary because we use f.file_field in the ruby of addAttachment
- * if we could find a way to pass that information in we could not copy
- * pass it in as a string?  since we use it as a string anyway...
- */
-removeAttachment = function(removeButton) {
-	removeButton.up().remove();
-}
-
-addAttachment = function() {
-    //need to change so that there is no bottom margin for GUI goodness
-	var host = $('attachments');
-    var editor = document.createElement('span');
-	editor.innerHTML =
-	    '<%= file_field_tag "lesson[lesson_attachments][]", :class => "formField" %>' +
-    	'<input type="button" value="Remove" onclick="removeAttachment(this)" />';
-	host.appendChild(editor);
-}
-//*/
-</script>
-
 <div>
     <strong>Course:</strong>
     <%=h @course %>
     <strong>Chapter:</strong>
     <%=h @chapter %>
 </div>
-<% form_for [@course, @chapter, @lesson], :html => { :multipart => true } do | f | %>
-<%= error_messages_for(:lesson, :object => @lesson.attachments ? [@lesson.attachments, @lesson] : @lesson) %>
-<div class="lesson">
-    <%= f.label(:title, 'Lesson Title') %>
-    <%= f.text_field :title, :class => "text single" %>
-    <%= f.label(:teaser, "Lesson Teaser") %>
-    <%= f.text_area(:teaser, :rows => 7, :cols => 70, :class => "text medium") %>
-    <%= f.label(:body, 'Lesson Body') %>
-    <%= f.text_area(:body, :rows => 25, :cols => 82, :mce_editable => "true", :class => "text large") %>
-</div>
-
-
-<%= f.label(:lesson_attachment, "Attachments") %>
-<span id="attachments">
-</span><br/>
-
-<input type="button" value="Add Attachment" onclick="addAttachment()">
-
-<%= f.label(:lesson_flash_video, "Video") %>
-<%= f.file_field :lesson_flash_video %>
-
-<div>
-    <span class="draft plus_label"><%= f.check_box :draft %>
-        <%= f.label :draft, 'Draft?' %>
-    </span>
-	
-    <span class="draft plus_label">
-    	<%= f.radio_button(:access_level, "Public") %>
-        <%= f.label :access_level, 'Public' %>
-    </span>
-	<span class="draft plus_label">
-		<%= f.radio_button :access_level, "Registered" %>
-        <%= f.label :access_level, 'Registered' %>
-    </span>
-    <span class="draft plus_label">
-    	<%= f.radio_button :access_level, "Premium" %>
-        <%= f.label :access_level, 'Premium' %>
-    </span>	
-	
-    <span class="premium plus_label"><%= f.check_box :premium %>
-        <%= f.label :premium, 'Only paid subscribers can access this lesson' %>
-    </span>
-</div>
+<% form_for [@course, @chapter, @lesson], :html => { :multipart => true } do | l | %>
+<%= render :partial => '/contents/edit_content', :locals => { :content => @lesson.content } %>
 <% if mode == :new %>
 <%= submit_tag "Create this lesson" %>or <%= link_to "Cancel", @course %>
 <% else %>

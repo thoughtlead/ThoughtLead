@@ -1,41 +1,21 @@
 # Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
 
 public_lesson:
-    title: Public Lesson
-    body: Now you know all you need to know about Sasquatch.
     chapter: first_chapter
-    user: sam
-    draft: false
-    premium: false
-    registered: false
     chapter_position: 1
+    content: public_content
 
 registered_lesson:
-    title: Registered Lesson
-    body: Wop bop she doo-wop
     chapter: first_chapter
-    user: sam
-    draft: false
-    premium: false
-    registered: true
     chapter_position: 2
+    content: registered_content
 
 premium_lesson:
-    title: Premium Lesson
-    body: No riff raff in here
     chapter: first_chapter
-    user: sam
-    draft: false
-    premium: true
-    registered: false
     chapter_position: 3
+    content: premium_content
 
 premium_draft_lesson:
-    title: Premium Draft Lesson
-    body: Yeungling
     chapter: first_chapter
-    user: sam
-    draft: true
-    premium: true
-    registered: false
     chapter_position: 4
+    content: premium_draft_content

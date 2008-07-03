@@ -191,7 +191,19 @@ form input.single, form textarea.single {font-size:18px; line-height:20px;}
 form input.medium, form textarea.medium {height:75px;}
 form input.large, form textarea.large {height:250px;}
 
+/*	SEARCH RESULTS --------------- */
+#resultset ul
+{
+	display:block; 
+	overflow:hidden; 
+	list-style-type: disc;
+}
 
+/* nested search results should be indented */
+#resultset ul ul
+{
+	margin-left: 25px;
+}
 
 
 /*	===================

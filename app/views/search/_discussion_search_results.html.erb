@@ -1,0 +1,10 @@
+<h3>Discussions: Showing <%= @discussions.size %> Results</h3>
+<ul>
+<% @discussions.each do |discussion| %>
+  <li>
+	  Discussion: <%= link_to discussion.title, discussion %> <br/>
+	  Description: <%= discussion.body -%> <br/>
+	  <%= discussion_url(discussion) %>
+  </li>
+<% end # @discussions.each -%>
+</ul>

@@ -7,34 +7,29 @@ class LessonsController < ApplicationController
   
   uses_tiny_mce(tiny_mce_options)
   
-  def user_has_correct_privileges
-    return true if !params[:id]
-    lesson = Lesson.find_by_id(params[:id])
-    if !lesson.accessible_to(current_user)
-      flash[:notice] = "You do not have permission to access the lesson \"#{lesson.title}\"."
-      return redirect_to lesson.chapter.course
-    end
-  end
-  
   def new
     @lesson = Lesson.new
   end
   
   def create
     @lesson = @chapter.lessons.build(params[:lesson])
+    @content = @lesson.content.build(params[:content])
     @lesson.user = current_user
     
-    return render(:action => :new) unless @lesson.save
+    return render(:action => :new) unless @lesson.save && @lesson.content.save
     
     flash[:notice] = "Successfully created"
     redirect_to [@course, @chapter, @lesson]
   end
   
   def update
-    @lesson = @chapter.lessons.find(params[:id])
-    @lesson.attributes = params[:lesson]
     
-    return render(:action => :edit) unless @lesson.save
+    @lesson = @chapter.lessons.find(params[:id])
+
+    @lesson.attributes = params[:lesson]
+    @lesson.content.attributes = params[:content]
+        
+    return render(:action => :edit) unless @lesson.save && @lesson.content.save
     
     flash[:notice] = "Successfully saved"
     redirect_to [@course, @chapter, @lesson]
@@ -46,7 +41,7 @@ class LessonsController < ApplicationController
   
   def show
     @lesson = @chapter.lessons.find(params[:id])
-    owner_login_required if(@lesson.draft || @lesson.chapter.draft || @lesson.chapter.course.draft) #is there a better home for me?
+    owner_login_required if @lesson.draft_to_users? #is there a better home for me?
   end
   
   def destroy
@@ -62,6 +57,13 @@ class LessonsController < ApplicationController
     @course = current_community.courses.find(params[:course_id])
     @chapter = @course.chapters.find(params[:chapter_id])
   end
-  
+  def user_has_correct_privileges
+    return true if !params[:id]
+    lesson = Lesson.find_by_id(params[:id])
+    if !lesson.accessible_to(current_user)
+      access_denied
+    end
+    return true
+  end  
   
 end

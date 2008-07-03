@@ -9,9 +9,12 @@ c2:
   name: C2
   owner: daniel
   active: true
+  discussion_accessibility: 0
 
 c3:
   subdomain: c3
   name: C3
   owner: sam
   active: true
+  discussion_accessibility: 1
+ 

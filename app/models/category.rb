@@ -1,8 +1,4 @@
 class Category < ActiveRecord::Base
-  belongs_to :community
-  validates_presence_of :name, :description
-  has_many :discussions, :dependent => :nullify
-  
-  alias_attribute :to_s, :name
-  
+  has_and_belongs_to_many :lessons
+  validates_presence_of :name
 end

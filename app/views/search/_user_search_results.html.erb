@@ -1,0 +1,13 @@
+<h3>User Profiles: Showing <%= @users.size %> Results</h3>
+<ul>
+<% @users.each do |user| %>
+  <li>
+	  Name: <%= link_to user.display_name, user %> <br/>
+	  About: <%= user.about -%> <br/>
+	  Interests: <%= user.interests -%> <br/>
+	  Location: <%= user.location -%> <br/>
+	  Zip Code: <%= user.zipcode -%> <br/>
+	  <%= user_url(user) %>
+  </li>
+<% end # @user.each -%>
+</ul>

@@ -49,9 +49,6 @@ addAttachment = function() {
     <span class="draft plus_label"><%= check_box_tag :draft %>
         <%= label_tag :draft, 'Draft?' %>
     </span>
-    <span class="premium plus_label"><%= check_box_tag :premium %>
-        <%= label_tag :premium, 'Only paid subscribers can access this lesson' %>
-    </span>
 </div>
 <% if mode == :new %>
 <%= link_to "Create This Article", "/library" %> or <%= link_to "Cancel", "/library" %>

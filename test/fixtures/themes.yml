@@ -1,0 +1,12 @@
+# Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
+
+tuesday:
+    community: C2
+    name: Tuesday
+    description: Did you bring your coat?
+    
+monkeys:
+    community: C3
+    name: Monkeys
+    description: Discussions concerning the tail-bearing primates
+    
