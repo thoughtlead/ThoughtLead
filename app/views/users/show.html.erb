@@ -33,7 +33,14 @@
         </ul>
       </div>
     </div>
-
+	<% if current_user == current_community.owner %>
+    <div class="reason">
+      <h3 class="">Reason For Joining</h3>
+      <div class="section_body">
+        <%= details_format(@user.reason)  %>
+      </div>
+    </div>
+   <% end %>
    </div>
 </div>
 
