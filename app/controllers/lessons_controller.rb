@@ -9,12 +9,13 @@ class LessonsController < ApplicationController
   
   def new
     @lesson = Lesson.new
+    @lesson.content = Content.new
   end
   
   def create
     @lesson = @chapter.lessons.build(params[:lesson])
-    @content = @lesson.content.build(params[:content])
-    @lesson.user = current_user
+    @lesson.content = Content.new(params[:content])
+    @lesson.content.user = current_user
     
     return render(:action => :new) unless @lesson.save && @lesson.content.save
     

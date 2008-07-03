@@ -1,0 +1,21 @@
+
+<div id="primary">
+
+  <p><%= link_to "&#8592; Return to Library", library_url %></p>
+  <h1>Categories</h1>
+
+  <ul>
+    <% current_community.categories.each do |category| %>
+      <li>
+        <%=h category %>
+        <%= link_to "Delete", category, :method => :delete, :confirm => "Are you sure you'd like to delete this category?  It's posts will no longer be categorized.", :class => "delete" %>
+        <%= link_to "Edit", edit_category_url(category), :class => "edit" %>
+      </li>
+    <% end %>
+  </ul>
+
+  <%= render :partial => 'form', :locals=>{:submit_text=>'Create'} %>
+
+</div>
+
+<%= set_focus_to :category_name %>

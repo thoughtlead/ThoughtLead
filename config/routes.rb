@@ -1,11 +1,11 @@
 ActionController::Routing::Routes.draw do |map|
   map.resources :communities, :conditions => { :subdomain => '' }
-
+  
   map.login '/login', :controller => "sessions", :action => 'new', :conditions => { :subdomain => /./ }
   map.logout '/logout', :controller => 'sessions', :action => 'destroy', :conditions => { :subdomain => /./ }
   map.signup '/signup', :controller => 'users', :action => 'signup', :conditions => { :subdomain => /./ }
   map.status '/status', :controller => 'home', :action => 'status', :conditions => { :subdomain => '' }
-
+  
   map.resources :themes, :conditions => { :subdomain => /./ }
   map.resources :sessions, :conditions => { :subdomain => /./ }
   map.resources :users, :member => { :email => :any, :edit_password => :any }, :conditions => { :subdomain => /./ }
@@ -20,7 +20,7 @@ ActionController::Routing::Routes.draw do |map|
       end
     end
   end
-
+  
   map.resources :attachments, :conditions => { :subdomain => /./ } 
   
   map.search '/search', :controller=>"search", :action=>"index", :conditions => { :subdomain => /./ }
@@ -31,16 +31,14 @@ ActionController::Routing::Routes.draw do |map|
   map.upgrade '/upgrade', :controller => "users", :action => 'upgrade', :conditions => { :subdomain => /./ }
   map.users_changed_on_spreedly '/changed_on_spreedly', :controller => "users", :action => 'changed_on_spreedly', :method => :post, :conditions => { :subdomain => /./ }
   map.discussions_for_theme '/discussions/theme/:id', :controller => "discussions", :action => "for_theme", :conditions => { :subdomain => /./ }
-
+  
   map.edit_community '/community/edit', :controller => 'admin', :action => 'edit_community', :conditions => { :subdomain => /./ }
   map.access_rights '/community/access', :controller => 'admin', :action => 'access_rights', :conditions => { :subdomain => /./ }
   map.communities_changed_on_spreedly '/changed_on_spreedly', :controller => 'communities', :action => 'changed_on_spreedly', :method => :post, :conditions => { :subdomain => '' }
   map.community_choose_plan '/choose_plan', :controller => 'communities', :action => 'choose_plan', :conditions => { :subdomain => '' }
   
-  map.library_index '/library', :controller => 'library', :action => 'show'
-  map.library_index '/library/show', :controller => 'library', :action => 'show'
-  map.library_index '/library/edit', :controller => 'library', :action => 'edit'
-  map.library_index '/library/new', :controller => 'library', :action => 'new'  
-  map.library_index '/library/article/new', :controller => 'library', :action => 'new_article'  
+  map.library '/library', :controller => 'articles', :action => 'index'
+  map.resources :articles, :conditions => { :subdomain => /./ }
+  map.resources :categories, :conditions => { :subdomain => /./ }
   
 end

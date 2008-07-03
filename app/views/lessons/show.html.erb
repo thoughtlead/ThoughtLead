@@ -28,7 +28,7 @@
         </li>
       </ul>
 
-      	<% if !(s = @lesson.lesson_notes).blank? %>
+      	<% if !(s = @lesson.notes).blank? %>
 			<p class="premium">
 				This lesson is: <%= s %>
 			</p>
@@ -46,8 +46,8 @@
               <% if lesson == @lesson %>
               <li class="current"><%=h lesson %></li>
             
-              <% else %>
-                  <li><%= link_to h(lesson), [lesson.chapter.course, lesson.chapter, lesson] %></li>
+              <% elsif lesson.visible_to(current_user) %>
+                  <li><%= link_to_lesson(lesson) %></li>
               <% end %>    
             
             <% end %>

@@ -1,9 +1,5 @@
 module ApplicationHelper
-  
-  def display_lesson(lesson)
-    !lesson.draft_to_users? || current_user == lesson.chapter.course.community.owner
-  end
-    
+      
   def course_index_notes(course)
     s = []
     if course.draft
@@ -27,7 +23,15 @@ module ApplicationHelper
       return h(lesson)
     end
   end
-  
+
+  def link_to_article(article)
+    if(article.accessible_to(current_user))
+      return link_to(h(article), article)
+    else
+      return h(article)
+    end
+  end
+
 
   def define_js_function(function_name, &block)
     parens = function_name.kind_of?(Symbol) ? "()" : ""

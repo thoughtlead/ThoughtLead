@@ -23,11 +23,11 @@ addAttachment = function() {
 <% fields_for content do |f| %>  
 <%= error_messages_for(:content, :object => content.attachments ? [content.attachments, content] : content) %>
 <div class="lesson">
-    <%= f.label(:title, 'Lesson Title') %>
+    <%= f.label(:title, 'Title') %>
     <%= f.text_field :title, :class => "text single" %>
-    <%= f.label(:teaser, "Lesson Teaser") %>
+    <%= f.label(:teaser, "Teaser") %>
     <%= f.text_area(:teaser, :rows => 7, :cols => 70, :class => "text medium") %>
-    <%= f.label(:body, 'Lesson Body') %>
+    <%= f.label(:body, 'Body') %>
     <%= f.text_area(:body, :rows => 25, :cols => 82, :mce_editable => "true", :class => "text large") %>
 </div>
 

@@ -1,0 +1,55 @@
+<% @current_tab = :Discussions %>
+
+<div id="primary">
+  <% if @category %>
+	<h2><%= @category.name %></h2>
+  <% end %>
+  <div class="discussions">
+    
+    <% @articles.each do |article| %>
+		  	<% if article.visible_to(current_user) %>
+	        <li>
+	          <h2><%= link_to_article(article) %><% if article.content.flash_video %>&nbsp<img src="/images/video.png"/><% end %><% if !article.content.attachments.blank?%>&nbsp <%= article.content.attachments.length %><img src="/images/attachment.png"/><% end %></h2>
+              <img src="/images/calendar.png"/> <%= article.content.updated_at.strftime("%m/%d/%Y") %> | <img src="/images/dude.png"/> <%= article.content.user %>
+			  <span style="color:red"><%= article.notes %></span><br/> 
+	          <p><%= teaser_format(article.content.teaser) %></p>
+	        </li>
+			<% end %>
+    <% end %>
+
+  </div>
+</div>
+<div id="secondary">
+  <ul class="actions first">
+    <% if logged_in? && current_user.owner? %>
+      <li class="action add">
+        <span><%= link_to "Add an Article", new_article_url, :category => @category %></span>
+      </li>	
+      <li class="action edit">
+        <span><%= link_to "Edit Categories", categories_url %></span>
+      </li>
+    <% end %>
+  </ul>
+  
+  <% if !current_community.categories.empty? %>
+    <ul class="themes">
+      <h2>Categories</h2>
+      <% current_community.categories.each do |category| %>
+	  	<% unless category.articles.blank? %>
+        <li>
+          <%= link_to category, library_url(:category => category) %>
+        </li>
+		<% end %>
+      <% end %>
+      <% if current_community.articles.for_category('nil').count > 0 %>
+		<li>
+          <%= link_to "General", library_url(:category => 'nil') %>
+        </li>
+      <% end %>
+	  <li>
+      	<%= link_to "Full Library", library_url %>
+      </li>
+    </ul>
+  <% end %>
+  
+</div>

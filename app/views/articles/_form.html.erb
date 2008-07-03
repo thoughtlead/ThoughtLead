@@ -1,0 +1,64 @@
+<script>
+/*
+ * This gets copied for each iteration of form_for... not a good practice
+ * however, neccessary because we use f.file_field in the ruby of addAttachment
+ * if we could find a way to pass that information in we could not copy
+ * pass it in as a string?  since we use it as a string anyway...
+ */
+removeCategory = function(removeButton) {
+	removeButton.up().remove();
+}
+
+addCategory = function() {
+    //need to change so that there is no bottom margin for GUI goodness
+	var host = $('categories');
+    var editor = document.createElement('span');
+	editor.innerHTML =
+		'<select name="article[article_categories][]">' +
+		<% current_community.categories.each do |category| %>
+			'<option value="<%=category.id%>"><%= category %></option>' +
+		<% end %>
+		'</select>' +
+    	'<input type="button" value="Remove" onclick="removeCategory(this)" style="margin-bottom: 0px" /><br/>';
+	host.appendChild(editor);
+}
+
+addNewCategory = function() {
+    //need to change so that there is no bottom margin for GUI goodness
+	var host = $('new_categories');
+    var editor = document.createElement('span');
+	editor.innerHTML =
+		'<%= text_field_tag "article[article_new_categories][]" %>' +
+    	'<input type="button" value="Remove" onclick="removeCategory(this)" /><br/>';
+	host.appendChild(editor);
+}
+//*/
+</script>
+<% form_for @article, :html => { :multipart => true } do | a | %>
+<%= render :partial => '/contents/edit_content', :locals => { :content => @article.content } %>
+
+<%= label_tag(:lesson_attachment, "Categories") %>
+<% @article.categories.each do |selected_category| %>
+<span>
+	<select name="article[article_categories][]">
+	<% current_community.categories.each do |category| %>
+		<option value="<%=category.id%>" <%= 'selected' if category == selected_category %>><%= category %></option>
+	<% end %>
+	</select>
+    <input type="button" value="Remove" onclick="removeCategory(this)" style="margin-bottom: 0px" /><br/>
+</span>
+<% end %>
+<span id="categories">
+</span><br/>
+<input type="button" value="Add Existing Category" onclick="addCategory()"><br/>
+
+<span id="new_categories">	
+</span><br/>
+<input type="button" value="Add New Category" onclick = "addNewCategory()"><br/>
+
+<% if mode == :new %>
+<%= submit_tag "Create this article" %>or <%= link_to "Cancel", library_url, :category => @category %>
+<% else %>
+<%= submit_tag "Save changes" %>or <%= link_to "Cancel", library_url, :category => @category %>
+<% end %>
+<% end %>

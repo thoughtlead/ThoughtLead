@@ -15,10 +15,10 @@
 	    </div>
 	    <ul>
 	      <% for lesson in chapter.lessons  %>
-		  	<% if display_lesson(lesson) %>
+		  	<% if lesson.visible_to(current_user) %>
 	        <li>
 	          <h2><%= link_to_lesson(lesson) %></h2>
-			  <span style="color:red"><%= lesson.lesson_notes %></span><br/> 
+			  <span style="color:red"><%= lesson.notes %></span><br/> 
 	          <p><%= teaser_format(lesson.content.teaser) %></p>
 	        </li>
 			<% end %>
