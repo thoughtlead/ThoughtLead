@@ -25,6 +25,11 @@
     </p>
 	
     <p>
+      <%= f.label :"Why are you interested in joining this community?" %>
+      <%= f.text_area :reason, :class => 'text medium' %>
+    </p>
+	
+    <p>
   	  <%= submit_tag 'Sign Up!' %>
     </p>
   <% end -%>
