@@ -1,8 +1,12 @@
 <% @current_tab = :Courses %>
 
-<div id="primary">
-  <h1>Add a New Course</h1>
-
-  <%= render :partial => 'form' %>
+<div id="primary" class="<%= @current_tab.to_s.downcase %>">
+	<div class="primary_title">
+		<h2><%= @current_tab %></h2>
+	</div>
+	<div class="primary_content">
+	  <h3>Add a New Course</h3>
+	  <%= render :partial => 'form' %>
+	</div>
 </div>
 

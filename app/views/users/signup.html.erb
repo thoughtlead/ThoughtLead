@@ -1,31 +1,33 @@
-<div id="primary">
-  <h1><%= @page_title = "Signup" %></h1>
+<div id="primary" class="<%= @current_tab.to_s.downcase %>">
+	<div class="primary_content">
+	  <h1><%= @page_title = "Signup" %></h1>
 
-  <% form_for :user, @user, :url => signup_url do | f | -%>
-    <%= f.error_messages %>
+	  <% form_for :user, @user, :url => signup_url do | f | -%>
+	    <%= f.error_messages %>
     
-    <p>
-      <%= f.label :"Select a Username" %>
-      <%= f.text_field :login, :class => 'text single' %>
-    </p>
+	    <p>
+	      <%= f.label :"Select a Username" %>
+	      <%= f.text_field :login, :class => 'text single' %>
+	    </p>
 
-    <p>
-      <%= f.label :"Your Email Address" %>
-      <%= f.text_field :email, :class => 'text single' %>
-    </p>
+	    <p>
+	      <%= f.label :"Your Email Address" %>
+	      <%= f.text_field :email, :class => 'text single' %>
+	    </p>
 
-    <p>
-      <%= f.label :"Choose a Password" %>
-      <%= f.password_field :password, :class => 'text single' %>
-    </p>
+	    <p>
+	      <%= f.label :"Choose a Password" %>
+	      <%= f.password_field :password, :class => 'text single' %>
+	    </p>
   
-    <p>
-      <%= f.label :password_confirmation %>
-      <%= f.password_field :password_confirmation, :class => 'text single' %>
-    </p>
+	    <p>
+	      <%= f.label :password_confirmation %>
+	      <%= f.password_field :password_confirmation, :class => 'text single' %>
+	    </p>
 	
-    <p>
-  	  <%= submit_tag 'Sign Up!' %>
-    </p>
-  <% end -%>
+	    <p>
+	  	  <%= submit_tag 'Sign Up!' %>
+	    </p>
+	  <% end -%>
+	</div>
 </div>

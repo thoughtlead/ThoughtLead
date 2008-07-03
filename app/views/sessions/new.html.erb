@@ -1,22 +1,26 @@
 <% @current_tab = :'Log In' %>
 
-<div id="small">
+<div id="primary" class="<%= @current_tab.to_s.downcase %>">
+	<div class="primary_title">
+		<h2><%= @current_tab %></h2>
+	</div>
+	<div class="primary_content">
+	  <% form_tag sessions_path do  %>
+	    <%= label :user, :login %>
+	    <%= text_field_tag 'login', params[:login], :class => 'text single' %>
 
-  <% form_tag sessions_path do  %>
-    <%= label :user, :login %>
-    <%= text_field_tag 'login', params[:login], :class => 'text single' %>
+	    <%= label :user, :password %>
+	  	<%= password_field_tag 'password', params[:password], :class => 'text single grouped' %>
 
-    <%= label :user, :password %>
-  	<%= password_field_tag 'password', params[:password], :class => 'text single grouped' %>
-
-    <div class="draft plus_label">
-      <%= check_box_tag 'remember_me', "1", params[:remember_me] %> 
-      <label>Remember me on this computer</label>
-    </div>
+	    <div class="draft plus_label">
+	      <%= check_box_tag 'remember_me', "1", params[:remember_me] %> 
+	      <label>Remember me on this computer</label>
+	    </div>
     
-  	<%= submit_tag 'Log in' %>
-  <% end -%>
+	  	<%= submit_tag 'Log in' %>
+	  <% end -%>
 
 
-  <%= link_to "Create a New Account", signup_url, :class => 'divider' %>
+	  <%= link_to "Create a New Account", signup_url, :class => 'divider' %>
+	</div>
 </div>

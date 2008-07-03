@@ -1,0 +1,78 @@
+/*
+-----------------------------------------------
+Site:	ThoughtLead
+Name:	Default Override
+Desc:	Temporarily override "default" styles
+		until GUI fully developed
+----------------------------------------------- */
+
+
+/* Global
+----------------------------------------------- */
+#content #flash {
+	margin: 0 20px; padding: 5px 10px;
+	width: 510px;
+	font-size: 1.2em;
+	float: left;
+}
+	#content #flash p {margin: 0; padding: 0;}
+
+
+/* Primary
+----------------------------------------------- */
+#primary {}
+
+
+/* Sidebar
+----------------------------------------------- */
+#secondary {}
+	#secondary .action_nav {}
+		#content #secondary .action_nav ul.actions {
+			margin: 0 0 10px 0;
+			list-style-type: none;
+			font-size: 1.2em;
+		}
+			#secondary .action_nav ul.actions li {margin: 10px 0 0 0; padding: 0;}
+				#secondary .action_nav ul.actions li a {
+					margin: 0 ! important;
+					padding-top: 6px; padding-bottom: 4px;
+					display: block;
+					background-color: #99C903;
+					color: #fff;
+					text-decoration: none;
+				}
+				#secondary .action_nav ul.actions li a:hover {
+					background-color: #8dba00;
+					text-decoration: underline;
+				}
+
+	#content #secondary ul.themes {
+		margin: 1em 0; padding: 0 0 0 20px;
+		font-size: 1.2em;
+	}
+		#content #secondary ul.themes li.current {}
+			#content #secondary ul.themes li.current a {
+				font-weight: bold;
+				text-decoration: none;
+				color: #999;
+			}
+
+
+/* Courses
+----------------------------------------------- */
+#primary ol.courses {
+	margin: 1em 0; padding: 0;
+	list-style-type: none;
+}
+	#primary ol.courses li {background-position: 0 5px;}
+		#primary ol.courses li h3 {}
+		#primary ol.courses li .meta_info {color: #666;}
+
+
+/* People
+----------------------------------------------- */
+#primary ul.user_list {
+	margin: 0; padding: 0;
+	width: auto;
+	float: none;
+}

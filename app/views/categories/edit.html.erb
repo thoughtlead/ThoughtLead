@@ -1,4 +1,8 @@
-<div id="primary">
-  <%= render :partial => 'categories/category_form', :locals=>{:submit_text=>'Rename'} %>
-  
+<div id="primary" class="<%= @current_tab.to_s.downcase %>">
+	<div class="primary_title">
+		<h2><%= @current_tab %></h2>
+	</div>
+	<div class="primary_content">
+		<%= render :partial => 'categories/category_form', :locals=>{:submit_text=>'Rename'} %>
+	</div>
 </div>

@@ -1,28 +1,27 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
-	<head>
-		<title><%=h @page_title ? "#{@page_title} | #{current_community}" : "#{current_community}" %></title>
-	  <meta http-equiv="Content-type" content="text/html; charset=utf-8" />
-	  
-    <%= javascript_include_tiny_mce_if_used %>
-    <%= tiny_mce if using_tiny_mce? %>
-    
-		<%= javascript_include_tag :defaults %>
-	  <%=	stylesheet_link_tag :all %>
-	  <%= stylesheet_link_tag community_stylesheet %>
-	</head>
-  
-  <body class="<%= @current_tab.to_s.downcase %>">
-    <div id="page" class="lesson"> <!-- TODO @Duff, change based on page type/name -->
-  	  <%= render(:partial => '/layouts/header') %>
-      <div id="content">
-  		  <%= render(:partial => '/layouts/flash_details') %>
-  		  <%= yield %>
-  		</div>
-  	</div>  		
-  	<%= render(:partial => '/layouts/footer') %>
-  		
+<head>
+	<title><%=h @page_title ? "#{@page_title} | #{current_community}" : "#{current_community}" %></title>
+	<meta http-equiv="Content-type" content="text/html; charset=utf-8" />
+	<%= javascript_include_tiny_mce_if_used %>
+	<%= tiny_mce if using_tiny_mce? %>
 
-	</body>
+	<%= javascript_include_tag 'jquery' %>
+	<%= javascript_include_tag :defaults %>
+	<%= stylesheet_link_tag community_stylesheet %>
+	<%= stylesheet_link_tag 'base' %>
+	<%= stylesheet_link_tag 'rails' %>
+	<!--[if lte IE 7]><%= stylesheet_link_tag 'ie' %><![endif]-->
+	<!--[if IE 6]><%= stylesheet_link_tag 'ie6' %><![endif]-->
+</head>
+<body class="<%= @current_tab.to_s.downcase %>">
+	<div id="page" class="lesson"> <!-- TODO @Duff, change based on page type/name -->
+		<%= render(:partial => '/layouts/header') %>
+		<div id="content" class="content_area">
+			<%= render(:partial => '/layouts/flash_details') %>
+			<%= yield %>
+		</div>
+	</div>
+	<%= render(:partial => '/layouts/footer') %>
+</body>
 </html>
-

@@ -1,34 +1,38 @@
 <% @current_tab = :Courses %>
 
-<div id="primary">
-  <p><%= link_to "&#8592; Return to Course Overview", @course %></p>
-  <h1 class="grouped"><%=h "Edit chapters for #{@course}" %></h1>
-  <br />
-  <% for chapter in @course.chapters %>
-    <div class="chapter">
-      <span class="chapter_title"><%=h chapter %></span>
-      <span class="chapter_actions">
-      	<% if chapter.draft %>Draft<% end %>
-        <%= link_to "Edit", edit_course_chapter_url(@course, chapter), :class => 'chapter_rename' %> | 
-        <%= link_to "Delete", course_chapter_url(@course, chapter), :method => :delete, :class => 'chapter_delete', :confirm => "Are you sure you would like to delete this chapter?  It's lessons will also be deleted." %>
-      </span>
-    </div>
+<div id="primary" class="<%= @current_tab.to_s.downcase %>">
+	<div class="primary_title">
+		<h2><%= @current_tab %></h2>
+	</div>
+	<div class="primary_content">
+	  <p><%= link_to "&#8592; Return to Course Overview", @course %></p>
+	  <h1 class="grouped"><%=h "Edit chapters for #{@course}" %></h1>
+	  <br />
+	  <% for chapter in @course.chapters %>
+	    <div class="chapter">
+	      <span class="chapter_title"><%=h chapter %></span>
+	      <span class="chapter_actions">
+	      	<% if chapter.draft %>Draft<% end %>
+	        <%= link_to "Edit", edit_course_chapter_url(@course, chapter), :class => 'chapter_rename' %> | 
+	        <%= link_to "Delete", course_chapter_url(@course, chapter), :method => :delete, :class => 'chapter_delete', :confirm => "Are you sure you would like to delete this chapter?  It's lessons will also be deleted." %>
+	      </span>
+	    </div>
   
-  <% end %>
+	  <% end %>
   
-  <div class="add_chapter">
-    Add a New Chapter
+	  <div class="add_chapter">
+	    Add a New Chapter
 
-    <% form_for [@course, Chapter.new] do | f | %>
-      <%= f.error_messages %>
+	    <% form_for [@course, Chapter.new] do | f | %>
+	      <%= f.error_messages %>
 
-      <span class="draft plus_label"><%= f.check_box :draft %>
-        <%= f.label :draft, 'Draft?' %>
-      </span>
-      <%= f.text_field :name, :class => "text single"  %>
+	      <span class="draft plus_label"><%= f.check_box :draft %>
+	        <%= f.label :draft, 'Draft?' %>
+	      </span>
+	      <%= f.text_field :name, :class => "text single"  %>
       
-      <%= submit_tag "Add" %>
-    <% end %>
-  </div>
+	      <%= submit_tag "Add" %>
+	    <% end %>
+	  </div>
+	</div>
 </div>
-
