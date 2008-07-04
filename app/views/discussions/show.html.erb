@@ -10,8 +10,8 @@
 	  <div class="discussion_info meta_info">
 	    <span class="author">by <%= link_to h(@discussion.user), @discussion.user %></span>
 	    <span class="date_posted">&nbsp;|&nbsp;Posted on <%= @discussion.created_at.to_s(:month_day) %> 
-	      <% if !current_community.categories.empty? %>
-	        in <%= link_to @discussion.category ? @discussion.category.to_s : "Uncategorized" %>
+	      <% if !current_community.themes.empty? %>
+	        in <%= link_to @discussion.theme ? @discussion.theme.to_s : "Uncategorized" %>
 	      <% end %>
 	    </span>
 	    <span class="responses">&nbsp;|&nbsp;<%= pluralize(@discussion.responses.count, "Response") %></span>
@@ -19,8 +19,8 @@
 	  <div class="discussion_body">
 	    <%= textilize(@discussion.body) %>
 	  </div>
-  
-	  <h3><%= pluralize(@discussion.responses.count, "Response") %> so far</h3>
+
+	  <h2><%= pluralize(@discussion.responses.count, "Response") %> so far</h2>
 	  <ol class="comments">
 	    <% for response in @discussion.responses %>
 	    <li class="comments">      
@@ -29,6 +29,7 @@
 	          <%= avatar_for(response.user, :small) %>
 	        </span>
 	        <%= link_to h(response.user), response.user %>&nbsp;|&nbsp;<%= response.created_at.to_s(:day_month_year) %>
+	      	<%= link_to("Delete this Response", response, :controller => :responses, :method => :delete, :confirm => "Are you sure you'd like to delete this response?") if logged_in_as_owner?  %></span>
 	      </span>
 	      <div class="comment_body">
 	        <%= textilize(response.body) %>

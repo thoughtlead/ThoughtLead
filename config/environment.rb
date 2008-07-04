@@ -32,6 +32,8 @@ Rails::Initializer.run do |config|
   config.gem "aws-s3", :lib => "aws/s3" 
   config.gem "colored"
   config.gem "map_by_method"
+  config.gem "random_data"
+  config.gem "chronic"
   
   # Only load the plugins named here, in the order given. By default, all plugins 
   # in vendor/plugins are loaded in alphabetical order.
@@ -75,3 +77,12 @@ Rails::Initializer.run do |config|
 end
 
 require RAILS_ROOT + '/lib/attachment_fu_windows_bug_fixes'
+
+ Ultrasphinx::Search.excerpting_options = HashWithIndifferentAccess.new({
+    :before_match => '<strong>',
+    :after_match => '</strong>',
+    :chunk_separator => "...",
+    :limit => 256,
+    :around => 3,
+    :content_methods => [['title', 'display_name'], ['body', 'description', 'content', 'about'], ['interests'], ['location'], ['zipcode']] # The first responding method in each group for each record will be excerpted.
+  })

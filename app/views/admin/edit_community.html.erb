@@ -6,7 +6,7 @@
 	</div>
 	<div class="primary_content">
 	  <% form_for @community, :url => edit_community_url do | f | %>
-  
+
 	    <%= f.error_messages %>
   
 	    <p>
@@ -39,4 +39,7 @@
 	    </p>
 	  <% end %>
 	</div>
+</div>
+<div id="secondary">
+  <%= render :partial => "menu", :locals => { :mode => :edit }  %>
 </div>

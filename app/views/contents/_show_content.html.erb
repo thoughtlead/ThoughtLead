@@ -1,0 +1,35 @@
+            <h1 class="grouped"><%=h content %></h1>
+        <div id="lesson_body">
+          <div class="lesson_info">
+            <p>by <strong><%= link_to h(content.user), content.user %></strong> | <%= content.created_at.to_s(:month_year) %></p>
+          </div>
+
+          <div class="course_description">
+            <p><%= teaser_format(content.teaser) %></p>
+          </div>        
+          
+          <% if !content.premium || logged_in_as_active? %>
+            <% if content.flash_video %>
+				<% flash_video_url = content.flash_video.authenticated_s3_url(:expires_in => 2.hours) %>
+				<p>Video: <%= content.flash_video.filename %> </P>
+				<div id="player<%=content.flash_video.id%>">This text will be replaced</div>
+				<p>
+					<script type="text/javascript">
+			          var so = new SWFObject('/mediaplayer.swf','mpl','500','500','8');
+			          so.addParam('allowfullscreen','true');
+			          so.addParam('allowscriptaccess','true');
+			          so.addVariable('width','500');
+			          so.addVariable('height','500');
+			          so.addVariable('file', encodeURIComponent(encodeURIComponent('<%= flash_video_url %>')));
+					  so.addVariable('type','flv');
+					  so.addVariable('autostart','false');
+					  so.write('player<%= content.flash_video.id%>');
+			        </script>
+				</p>
+			<% end %>
+            <%= auto_link(content.body) %>
+          <% elsif !logged_in? %>  
+            <p>You must <%= link_to "login", login_url %> to see this content because it is premium content.</p>
+          <% else %>
+            <p><strong><%= link_to "Upgrade your account", upgrade_url %> to see the entire content!</strong></p>
+          <% end %>

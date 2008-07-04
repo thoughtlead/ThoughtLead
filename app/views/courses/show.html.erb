@@ -1,5 +1,6 @@
 <% @current_tab = :Courses %>
 
+<<<<<<< HEAD:app/views/courses/show.html.erb
 <div id="primary" class="<%= @current_tab.to_s.downcase %>">
 	<div class="primary_title">
 		<h2><%= @current_tab %></h2>
@@ -19,21 +20,20 @@
 		    </div>
 		    <ul>
 		      <% for lesson in chapter.lessons  %>
-			  	<% if !lesson.draft || current_user == @course.community.owner %>
+			  	<% if display_lesson(lesson) %>
 		        <li>
-		          <h4><%= link_to h(lesson), [@course, chapter, lesson] %></h4>
-				  <% if lesson.draft %><span style="color:red">Draft</span><br/><% end %> 
-		          <p><%= teaser_format(lesson.teaser) %></p>
+		          <h2><%= link_to_lesson(lesson) %></h2>
+				  <span style="color:red"><%= lesson.lesson_notes %></span><br/> 
+		          <p><%= teaser_format(lesson.content.teaser) %></p>
 		        </li>
 				<% end %>
 		      <% end %>
 		  <% end %>
 	    </ul>
-  
+
 	  <div class="add_lesson">
 	    <%= link_to "+ Add a Lesson", new_course_chapter_lesson_url(@course, chapter), :class => 'action_sm' if logged_in_as_owner? %>
 	  </div>
-  
 	  <% end %>
 	</div>
 </div>

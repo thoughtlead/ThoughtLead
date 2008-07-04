@@ -161,7 +161,7 @@ ol.comments li {margin-bottom:20px; border-bottom:1px solid #e5e5e5;}
 li.user {line-height:48px;}
 
 /*	PROFILE --------------- */
-#user_profile .about, #user_profile .interests, #user_profile .websites {border-top:1px solid #e5e5e5; padding:10px 0 0; margin:0 !important; overflow:hidden;}
+#user_profile .about, #user_profile .interests, #user_profile .websites, #user_profile .reason {border-top:1px solid #e5e5e5; padding:10px 0 0; margin:0 !important; overflow:hidden;}
 #user_profile h3 {display:block; width:100px; float:left; margin:0 10px 20px 0; font:normal normal normal 14px/20px arial, sans-serif; text-align:right; text-transform:uppercase;}
 #user_profile div.section_body p {margin-top:0;}
 #user_profile div.section_body {width:400px; float:right; padding:0; margin:0;}
@@ -191,7 +191,19 @@ form input.single, form textarea.single {font-size:18px; line-height:20px;}
 form input.medium, form textarea.medium {height:75px;}
 form input.large, form textarea.large {height:250px;}
 
+/*	SEARCH RESULTS --------------- */
+#resultset ul
+{
+	display:block; 
+	overflow:hidden; 
+	list-style-type: disc;
+}
 
+/* nested search results should be indented */
+#resultset ul ul
+{
+	margin-left: 25px;
+}
 
 
 /*	===================

@@ -44,7 +44,7 @@ module AuthenticatedSystem
       respond_to do |accepts|
         accepts.html {
           store_location
-          flash[:warning] = "You must login to access that part of the site."
+          flash[:warning] = "You do not have permission to access that part of the site."
           redirect_to login_url
         }
         accepts.xml {

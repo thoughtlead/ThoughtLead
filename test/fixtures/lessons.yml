@@ -1,7 +1,21 @@
 # Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
 
-# one:
-#   column: value
-#
-# two:
-#   column: value
+public_lesson:
+    chapter: first_chapter
+    chapter_position: 1
+    content: public_content
+
+registered_lesson:
+    chapter: first_chapter
+    chapter_position: 2
+    content: registered_content
+
+premium_lesson:
+    chapter: first_chapter
+    chapter_position: 3
+    content: premium_content
+
+premium_draft_lesson:
+    chapter: first_chapter
+    chapter_position: 4
+    content: premium_draft_content

@@ -1,0 +1,33 @@
+# Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
+
+public_content:
+    title: Public Lesson
+    body: Now you know all you need to know about Sasquatch.
+    user: sam
+    draft: false
+    premium: false
+    registered: false
+
+registered_content:
+    title: Registered Lesson
+    body: Wop bop she doo-wop
+    user: sam
+    draft: false
+    premium: false
+    registered: true
+
+premium_content:
+    title: Premium Lesson
+    body: No riff raff in here
+    user: sam
+    draft: false
+    premium: true
+    registered: false
+
+premium_draft_content:
+    title: Premium Draft Lesson
+    body: Yeungling
+    user: sam
+    draft: true
+    premium: true
+    registered: false
