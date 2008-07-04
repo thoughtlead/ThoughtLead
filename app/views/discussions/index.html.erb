@@ -51,7 +51,7 @@
 				<% end %>
 				<% if current_community.discussions.for_theme('nil').count > 0 %>
 					<% content_tag(:li, :class => current_class_uncategorized) do %>
-						<%= link_to "Uncategorized", discussions_url(:theme => 'nil') %>
+						<%= link_to "General", discussions_url(:theme => 'nil') %>
 					<% end %>
 				<% end %>
 				<% content_tag(:li, :class => current_class_all_tasks) do %>

@@ -1,6 +1,7 @@
 
 <div id="primary">
 
+  <p>    <%= link_to "&#8592; Return to Discussions", discussions_url, :class => 'discussions' %></p>
   <h1>Themes</h1>
 
   <ul>
@@ -13,7 +14,7 @@
     <% end %>
   </ul>
 
-  <%= render :partial => 'themes/theme_form', :locals=>{:submit_text=>'Create'} %>
+  <%= render :partial => 'form', :locals=>{:submit_text=>'Create'} %>
 
 </div>
 

@@ -5,20 +5,20 @@ class Lesson < ActiveRecord::Base
   acts_as_list :scope => :chapter, :column => :chapter_position
   
   def to_s
-    content.title
+    (content && content.title) || ""
   end
   
   def draft_to_users?
     return self.content.draft? || self.chapter.draft_to_users?
   end
   
+  def visible_to(user)
+    !self.draft_to_users? || user == self.chapter.course.community.owner
+  end
+  
   def accessible_to(user)
-    if self.draft_to_users? && user != self.chapter.course.community.owner
-      return false
-    end
-    if user == self.chapter.course.community.owner
-      return true
-    end
+    return false unless visible_to(user)
+    return true if user == self.chapter.course.community.owner
     #Authenticated System uses :false when there is no current_user
     if (user == :false) && (self.content.premium? || self.content.registered?)
       return false
@@ -32,7 +32,7 @@ class Lesson < ActiveRecord::Base
     return true    
   end
   
-  def lesson_notes
+  def notes
     s = []
     if self.content.premium
       s << "Premium"

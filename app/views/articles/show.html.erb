@@ -1,0 +1,45 @@
+<% @current_tab = :Courses %>
+	<script src="/javascripts/swfobject.js"></script>
+    <div id="lesson_placeholder"> <!-- FIXME - Remove after there is the ability to target just lesson pages -->
+      <div id="primary">
+        <div id="lesson">
+          <p><%= link_to "&#8592; Return to Library", library_url, :category => @category %></p>
+  		  <%= render :partial => '/contents/show_content', :locals => { :content => @article.content } %>
+        </div>
+	  </div>
+	</div>
+    
+    <div id="secondary">
+      <ul class="actions first">
+        <li class="action edit">
+          <span><%= link_to "Edit this Article", edit_article_url(@article)  if logged_in_as_owner? %></span>
+        </li>
+        <li class="action delete">
+          <span><%= link_to("Delete this Article", article_url(@article), :method => :delete, :confirm =>  "Are you sure you would like to delete this article?")  if logged_in_as_owner? %></span>
+        </li>
+      </ul>
+
+      	<% if !(s = @article.notes).blank? %>
+			<p class="premium">
+				This article is: <%= s %>
+			</p>
+		<% end %>
+      
+      <div class="course">
+        <div class="course_title">
+          <span>Categories</span>
+        </div>
+        <div class="lessons">
+          <ol>
+            <li class="current"><%= link_to h(@category), library_url, :category => @category %></li>
+            <% @article.categories.each do |category| %>
+			  <% unless category == @category %>
+                <li><%= link_to h(category), library_url, :category => category %></li>
+			  <% end %>
+            <% end %>
+          </ol>
+        </div>
+      </div>
+      <%= render :partial => '/contents/show_attachments', :locals => { :content => @article.content } %>
+    </div>
+    

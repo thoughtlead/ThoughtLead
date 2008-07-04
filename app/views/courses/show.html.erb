@@ -1,6 +1,5 @@
 <% @current_tab = :Courses %>
 
-<<<<<<< HEAD:app/views/courses/show.html.erb
 <div id="primary" class="<%= @current_tab.to_s.downcase %>">
 	<div class="primary_title">
 		<h2><%= @current_tab %></h2>
@@ -20,10 +19,10 @@
 		    </div>
 		    <ul>
 		      <% for lesson in chapter.lessons  %>
-			  	<% if display_lesson(lesson) %>
+			  	<% if lesson.visible_to(current_user) %>
 		        <li>
 		          <h2><%= link_to_lesson(lesson) %></h2>
-				  <span style="color:red"><%= lesson.lesson_notes %></span><br/> 
+				  <span style="color:red"><%= lesson.notes %></span><br/> 
 		          <p><%= teaser_format(lesson.content.teaser) %></p>
 		        </li>
 				<% end %>
@@ -34,6 +33,7 @@
 	  <div class="add_lesson">
 	    <%= link_to "+ Add a Lesson", new_course_chapter_lesson_url(@course, chapter), :class => 'action_sm' if logged_in_as_owner? %>
 	  </div>
+
 	  <% end %>
 	</div>
 </div>
