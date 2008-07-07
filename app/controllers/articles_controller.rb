@@ -5,7 +5,7 @@ class ArticlesController < ApplicationController
   before_filter :user_has_correct_privileges
   
   uses_tiny_mce(tiny_mce_options)
-
+  
   def index
     @articles = current_community.articles.for_category(params[:category])
     @category = Category.find_by_id(params[:category]) if params[:category] && params[:category] != 'nil'
@@ -42,10 +42,18 @@ class ArticlesController < ApplicationController
     @article.content = Content.new(params[:content])
     @article.content.user = current_user
     
-    return render(:action => :new) unless @article.save && @article.content.save
+    return render(:action => :new) unless @article.content.save && @article.save
     
     flash[:notice] = "Successfully created"
     redirect_to library_url, :category => @category
+  end
+  
+  def destroy
+    @article = Article.find(params[:id])
+    @article.destroy
+    
+    flash[:notice] = "Deleted the article named '#{@article}'"
+    redirect_to library_url
   end
   
   private

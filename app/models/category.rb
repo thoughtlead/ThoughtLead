@@ -4,4 +4,11 @@ class Category < ActiveRecord::Base
   validates_presence_of :name
   alias_attribute :to_s, :name
   
+  def  contains_articles_visible_to(user)
+    articles.to_a.each do |article|
+      return false unless article.visible_to(user)
+    end
+    return true
+  end
+  
 end
