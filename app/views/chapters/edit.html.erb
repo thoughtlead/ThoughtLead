@@ -1,23 +1,19 @@
 <% @current_tab = :Courses %>
 
-<div id="primary" class="<%= @current_tab.to_s.downcase %>">
-	<div class="primary_title">
-		<h2><%= @current_tab %></h2>
-	</div>
-	<div class="primary_content">
-	  <p><%= link_to "&#8592; Return to Course Overview", @course %></p>
-	  <h1 class="grouped">Rename chapter</h1>
-	  <br />
-	    <% form_for [@course, @chapter] do | f | %>
-	      <%= f.error_messages %>
+<div id="primary">
+  <p><%= link_to "&#8592; Return to Course Overview", @course %></p>
+  <h1 class="grouped">Edit chapter</h1>
+  <br />
 
-	      <%= f.text_field :name, :class => "text single"  %>
-	      <span class="draft plus_label"><%= f.check_box :draft %>
-	        <%= f.label :draft, 'Draft?' %>
-	      </span>
+    <% form_for [@course, @chapter] do | f | %>
+      <%= f.error_messages %>
 
-	      <%= submit_tag "Rename" %> or <%= link_to "Cancel", course_chapters_url(@course) %>
-	    <% end %>
-	</div>
+      <%= f.text_field :name, :class => "text single"  %>
+      <span class="draft plus_label"><%= f.check_box :draft %>
+        <%= f.label :draft, 'Draft?' %>
+      </span>
+
+      <%= submit_tag "Save" %> or <%= link_to "Cancel", course_chapters_url(@course) %>
+    <% end %>
 </div>
 

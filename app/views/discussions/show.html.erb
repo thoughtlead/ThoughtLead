@@ -1,62 +1,56 @@
 <% @current_tab = :Discussions %>
+<div id="primary">
+  <p>    <%= link_to "&#8592; Return to Discussions", discussions_url, :class => 'discussions' %></p>
+  <h1 class="grouped"><%=h @discussion %></h1>
+  <div class="discussion_info meta_info">
+    <span class="author">by <%= link_to h(@discussion.user), @discussion.user %></span>
+    <span class="date_posted">&nbsp;|&nbsp;Posted on <%= @discussion.created_at.to_s(:month_day) %> 
+      <% if !current_community.themes.empty? %>
+        in <%= link_to @discussion.theme ? @discussion.theme.to_s : "Uncategorized" %>
+      <% end %>
+    </span>
+    <span class="responses">&nbsp;|&nbsp;<%= pluralize(@discussion.responses.count, "Response") %></span>
+  </div>
+  <div class="discussion_body">
+    <%= textilize(@discussion.body) %>
+  </div>
+  
+  <h2><%= pluralize(@discussion.responses.count, "Response") %> so far</h2>
+  <ol class="comments">
+    <% for response in @discussion.responses %>
+    <li class="comments">      
+      <span class="comment_info meta_info">
+        <span class="avatar">
+          <%= avatar_for(response.user, :small) %>
+        </span>
+        <%= link_to h(response.user), response.user %>&nbsp;|&nbsp;<%= response.created_at.to_s(:day_month_year) %>
+      	<%= link_to("Delete this Response", response, :controller => :responses, :method => :delete, :confirm => "Are you sure you'd like to delete this response?") if logged_in_as_owner?  %></span>
+      </span>
+      <div class="comment_body">
+        <%= textilize(response.body) %>
+      </div>
+    </li>
+    <% end %>
+  </ol>
 
-<div id="primary" class="<%= @current_tab.to_s.downcase %>">
-	<div class="primary_title">
-		<h2><%= @current_tab %></h2>
-	</div>
-	<div class="primary_content">
-	  <p>    <%= link_to "&#8592; Return to Discussions", discussions_url, :class => 'discussions' %></p>
-	  <h3 class="grouped"><%=h @discussion %></h3>
-	  <div class="discussion_info meta_info">
-	    <span class="author">by <%= link_to h(@discussion.user), @discussion.user %></span>
-	    <span class="date_posted">&nbsp;|&nbsp;Posted on <%= @discussion.created_at.to_s(:month_day) %> 
-	      <% if !current_community.themes.empty? %>
-	        in <%= link_to @discussion.theme ? @discussion.theme.to_s : "Uncategorized" %>
-	      <% end %>
-	    </span>
-	    <span class="responses">&nbsp;|&nbsp;<%= pluralize(@discussion.responses.count, "Response") %></span>
-	  </div>
-	  <div class="discussion_body">
-	    <%= textilize(@discussion.body) %>
-	  </div>
-
-	  <h2><%= pluralize(@discussion.responses.count, "Response") %> so far</h2>
-	  <ol class="comments">
-	    <% for response in @discussion.responses %>
-	    <li class="comments">      
-	      <span class="comment_info meta_info">
-	        <span class="avatar">
-	          <%= avatar_for(response.user, :small) %>
-	        </span>
-	        <%= link_to h(response.user), response.user %>&nbsp;|&nbsp;<%= response.created_at.to_s(:day_month_year) %>
-	      	<%= link_to("Delete this Response", response, :controller => :responses, :method => :delete, :confirm => "Are you sure you'd like to delete this response?") if logged_in_as_owner?  %></span>
-	      </span>
-	      <div class="comment_body">
-	        <%= textilize(response.body) %>
-	      </div>
-	    </li>
-	    <% end %>
-	  </ol>
-
-	  <h3>Post a response</h3>
-	  <% if logged_in? %>
-	    <% form_for [@discussion, Response.new] do | f | %>
-	      <%= f.text_area :body, :rows => 6 %>
+  <h3>Post a response</h3>
+  <% if logged_in? %>
+    <% form_for [@discussion, Response.new] do | f | %>
+      <%= f.text_area :body, :rows => 6 %>
     
-	      <%= submit_tag "Post this response" %>
-	    <% end %>
-	  <% else %>
-	    <%= link_to "Login to respond", login_url %>
-	  <% end %>
-	</div>
+      <%= submit_tag "Post this response" %>
+    <% end %>
+  <% else %>
+    <%= link_to "Login to respond", login_url %>
+  <% end %>
 </div>
 <div id="secondary">
-	<ul class="modules">
-		<li class="action_nav">
-			<ul class="actions">
-				<li class="edit"><%= link_to("Edit this Discussion", edit_discussion_url(@discussion)) if current_user == @discussion.user %></li>
-				<li class="delete"><%= link_to("Delete this Discussion", @discussion, :method => :delete, :confirm => "Are you sure you'd like to delete this discussion?  All of the responses to this discussion will also be deleted.") if logged_in_as_owner?  %></li>
-			</ul>
-		</li>
-	</ul>
+  <ul class="actions first">
+    <li class="action edit">
+      <span><%= link_to("Edit this Discussion", edit_discussion_url(@discussion)) if current_user == @discussion.user %></span>
+    </li>
+    <li class="action delete">
+      <span><%= link_to("Delete this Discussion", @discussion, :method => :delete, :confirm => "Are you sure you'd like to delete this discussion?  All of the responses to this discussion will also be deleted.") if logged_in_as_owner?  %></span>
+    </li>
+  </ul>
 </div>

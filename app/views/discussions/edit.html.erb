@@ -1,12 +1,7 @@
 <% @current_tab = :Discussions %>
 
-<div id="primary" class="<%= @current_tab.to_s.downcase %>">
-	<div class="primary_title">
-		<h2><%= @current_tab %></h2>
-	</div>
-	<div class="primary_content">
-	  <h1>Edit Discussion</h1>
+<div id="primary">
+  <h1>Edit Discussion</h1>
 
-	  <%= render :partial => 'form' %>
-	</div>
+  <%= render :partial => 'form' %>
 </div>

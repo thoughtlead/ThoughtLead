@@ -1,64 +1,59 @@
 <% @current_tab = :Discussions %>
 
-<div id="primary" class="<%= @current_tab.to_s.downcase %>">
-	<div class="primary_title">
-		<% if @theme %>
-			<h2><%= @theme.name %></h2>
-			<h3><%= @theme.description %></h3>
-		<% else %>
-			<h2><%= @current_tab %></h2>
-		<% end %>
-	</div>
-	<div class="primary_content">
- 	 <div class="discussions">
+<div id="primary">
+  <% if @theme %>
+	<h2><%= @theme.name %></h2>
+	<h3><%= @theme.description %></h3>
+  <% end %>
+  <div class="discussions">
     
-	    <% for discussion in @discussions %>
-	    <div class="discussion">
-	      <span class="avatar">
-	        <%= avatar_for(discussion.user, :small) %>
-	      </span>
-	      <h3 class="grouped"><%= link_to h(discussion), discussion %></h3> 
-	      <p><%=h truncate(discussion.body, 500) %> <%= link_to  'Continue reading &hellip;', discussion %></a></p>
-	      <div class="discussion_info meta_info">
-	        <span class="author">by <%= link_to h(discussion.user), discussion.user %></span>
-	        <span class="date_posted">&nbsp;|&nbsp;<%= discussion.created_at.to_s(:month_day) %></span>
-	        <span class="responses">&nbsp;|&nbsp;<%= link_to pluralize(discussion.responses.count, "Response"), discussion %></span>
-	      </div>
-	    </div>
-	    <% end %>
+    <% for discussion in @discussions %>
+    <div class="discussion">
+      <span class="avatar">
+        <%= avatar_for(discussion.user, :small) %>
+      </span>
+      <h2 class="grouped"><%= link_to h(discussion), discussion %></h2> 
+      <p><%=h truncate(discussion.body, 500) %> <%= link_to  'Continue reading &hellip;', discussion %></a></p>
+      <div class="discussion_info meta_info">
+        <span class="author">by <%= link_to h(discussion.user), discussion.user %></span>
+        <span class="date_posted">&nbsp;|&nbsp;<%= discussion.created_at.to_s(:month_day) %></span>
+        <span class="responses">&nbsp;|&nbsp;<%= link_to pluralize(discussion.responses.count, "Response"), discussion %></span>
+      </div>
+    </div>
+    <% end %>
 
-	  </div>
-	</div>
+  </div>
 </div>
 <div id="secondary">
-	<ul class="modules">
-		<li class="action_nav">
-			<ul class="actions">
-				<li class="add"><%= link_to "Add a Discussion Topic", new_discussion_url %></li>
-				<% if logged_in? && current_user.owner? %>
-				<li class="edit"><%= link_to "Edit Themes", themes_url %></li>
-				<% end %>
-			</ul>
-		</li>
-		<% if !current_community.themes.empty? %>
-		<li>
-			<h3>Themes</h3>
-		    <ul class="themes">
-				<% for theme in current_community.themes %>
-					<% content_tag(:li, :class => current_class_for_theme(theme)) do %>
-						<%= link_to theme, discussions_url(:theme => theme) %>
-					<% end %>
-				<% end %>
-				<% if current_community.discussions.for_theme('nil').count > 0 %>
-					<% content_tag(:li, :class => current_class_uncategorized) do %>
-						<%= link_to "General", discussions_url(:theme => 'nil') %>
-					<% end %>
-				<% end %>
-				<% content_tag(:li, :class => current_class_all_tasks) do %>
-					<%= link_to "All Discussions", discussions_url %>
-				<% end %>
-		    </ul>
-		</li>
-		<% end %>
-	</ul>  
+  <ul class="actions first">
+    <li class="action add">
+      <span><%= link_to "Add a Discussion Topic", new_discussion_url %></span>
+    </li>
+    <% if logged_in? && current_user.owner? %>
+      <li class="action edit">
+        <span><%= link_to "Edit Themes", themes_url %></span>
+      </li>
+    <% end %>
+  </ul>
+  
+  <% if !current_community.themes.empty? %>
+    <ul class="themes">
+      <h2>Themes</h2>
+      <% for theme in current_community.themes %>
+        <% content_tag(:li, :class => current_class_for_theme(theme)) do %>
+          <%= link_to theme, discussions_url(:theme => theme) %>
+        <% end %>
+      <% end %>
+      <% if current_community.discussions.for_theme('nil').count > 0 %>
+        <% content_tag(:li, :class => current_class_uncategorized) do %>
+          <%= link_to "General", discussions_url(:theme => 'nil') %>
+        <% end %>
+      <% end %>
+      <% content_tag(:li, :class => current_class_all_tasks) do %>
+        <%= link_to "All Discussions", discussions_url %>
+      <% end %>
+    
+    </ul>
+  <% end %>
+  
 </div>

@@ -2,6 +2,26 @@
 	BASIC ELEMENTS
 	===================*/
 
+body {background:#0082bb url(images/body_bg.gif) top left repeat-x; text-align:center; color:#555;}
+
+abbr {}
+acronym {}
+address {}
+area {}
+b {}
+blockquote {}
+
+/* HEADINGS*/
+h1 {margin-bottom:20px; color:#3a3a3a; font: normal normal bolder 25px/30px arial, sans-serif; letter-spacing:-.03em; word-spacing:-.03em;}
+.grouped {margin-bottom:0;}
+h2 {margin:0; padding:0; font: normal normal bolder 18px/25px arial, sans-serif; letter-spacing:-.03em; word-spacing:-.03em;}
+h3 {margin:10px 0 10px 0; padding:0; font: normal normal normal 17px/20px arial, sans-serif; letter-spacing:-.03em; word-spacing:-.03em;}
+
+/* LINKS */
+a, a:active, a:link {color:#096cb1; text-decoration:none;}
+a:hover {text-decoration:underline; background:none;}
+body a:visited {color:#096cb1;}
+	
 /* ACTION LINKS */
 #secondary ul.actions li {background:#99c903 url(images/action_bottom.gif) bottom left no-repeat;}
 #secondary ul.actions li.action span {display:block; background:url(images/action_top.gif) top left no-repeat;}
@@ -13,6 +33,80 @@ li.action a:hover, li.action a:focus {color:#fff;}
 #secondary ul.actions li.add a {padding-left:32px; background:url(images/action_add.gif) 8px center no-repeat;}
 #secondary ul.actions li.delete a {padding-left:32px; background:url(images/action_delete.gif) 8px center no-repeat;}
 #secondary ul.actions li.email a {padding-left:32px; background:url(images/action_email.gif) 8px center no-repeat;}
+
+
+/*	===================
+	LAYOUT
+	===================*/
+
+
+/* Constraining Primary Divs*/
+#header, #section, #content, #footer {position:relative;}
+
+/* PAGE --------------- */
+#page {background: url(images/page_bg.png) top left repeat-y; width:930px; margin:0 auto; text-align:left;}
+.head {padding:0 10px;}
+
+/* HEADER --------------- */
+.head {background: url(images/header_bg.gif) repeat-x top left;}
+#header {background:url() top left no-repeat; text-align:right; min-height:110px; padding:0 20px;}
+
+	/* COMMUNITY TITLE */
+		/*Hide header text*/
+	 	#header h1 a {display:none;}
+	.community_title {position:absolute; left:-16px;}
+		
+	/* USER CONTROLS */
+	.user_controls {font-size:12px; line-height:33px;}
+	.user_controls, .user_controls a, .user_controls a:visited {color:#fff;}
+
+	/* TOP NAVIGATION */
+	ul.navigation_top {float:right; width:320px; font: normal normal normal 16px/40px arial, sans-serif;}
+	.navigation_top li {display:block; float:left; text-align:center; border-left:1px solid #E5E5E5;}
+	.navigation_top li a.people {}
+	.navigation_top a, .navigation_top a:visited, .navigation_top a:hover {display:block; width:104px; height:45px; padding-top:40px; line-height:40px; text-decoration:none; color:#555; }
+	.navigation_top a.discussions, .navigation_top a.discussions:visited, .navigation_top a.discussions:hover {width:108px;}
+	.navigation_top li.current {background:url(images/tab_active.gif) top left repeat-x;}
+	.navigation_top li.current a, .navigation_top li.current a:visited {color:#fff; }
+	.navigation_top li a.courses:hover, .navigation_top li a.discussions:hover, .navigation_top li a.people:hover {color:#2E74A5;}
+	
+		/* Icons */
+		.navigation_top li a.courses {background:url(images/courses_icon_inactive.gif) center 20px no-repeat;}
+		.navigation_top li.current a.courses {background:url(images/courses_icon.gif) center 20px no-repeat;}
+
+		.navigation_top li a.discussions {background:url(images/discussions_icon_inactive.gif) center 20px no-repeat;}
+		.navigation_top li.current a.discussions {background:url(images/discussions_icon.gif) center 20px no-repeat;}
+		
+		.navigation_top li a.people {background:url(images/people_icon_inactive.gif) center 20px no-repeat; border-right:1px solid #E5E5E5;}
+		.navigation_top li.current a.people {background:url(images/people_icon.gif) center 20px no-repeat;}
+
+/* SECTION --------------- */
+#section {margin:0 10px; padding-bottom:2px; border-bottom:4px solid #99c903;}
+#section h2 {margin:0; padding:10px 20px; background:#27648F; color:#E8701E; color:#fff; font: normal normal normal 16px/25px arial, sans-serif; letter-spacing:-.03em; word-spacing:-.03em;}		
+
+/* CONTENT --------------- */
+#content {overflow:hidden;}
+
+	/* PRIMARY */
+	#content #primary {position:relative; float:left; margin:0 -50px 0 10px; padding:30px 30px 50px 20px; width:510px;}
+	#content #primary div {margin-bottom:20px;}
+		/* FONTS */
+		#primary p {margin:5px 0 20px; font: normal normal normal 14px/18px georgia, serif; letter-spacing:.05em; word-spacing:-.07em; color:#555;}
+		#primary h2 a {color:#096cb1;}	
+	
+	/* SECONDARY */
+	#content #secondary {position:relative; float:right; margin-right:10px; padding:30px 20px 30px 10px; overflow:hidden; width:320px;}
+	#secondary div {padding-bottom:20px;}
+	#secondary ul div, #secondary ol div {padding-bottom:0;}
+	
+	/* Small */
+	#small {position:relative; width:430px; padding:50px 0px 150px; margin:0 auto; background:#fff; text-align:left;}
+	#small div {margin-bottom:20px;}
+
+
+/* FOOTER --------------- */
+#footer {padding:20px 30px 40px; color:#fff; background: #0083bd url(images/footer_endcap.gif) top center no-repeat;}
+#footer p {display:block; width:880px; margin:0 auto; padding:10px 40px 40px; text-align:left;}
 
 
 

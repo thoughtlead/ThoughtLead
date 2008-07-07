@@ -1,73 +1,68 @@
 <% @current_tab = :People %>
 
-<div id="primary" class="<%= @current_tab.to_s.downcase %>">
-	<div class="primary_title">
-		<h2><%= @current_tab %></h2>
-	</div>
-	<div class="primary_content">
-	  <h3><%= @page_title = "Edit Profile" %></h3>
+<div id="small">
+  <h1><%= @page_title = "Edit Profile" %></h1>
 
-	  <% form_for(@user, :html => { :method => :put, :multipart => true } ) do | f | -%>
-	    <%= error_messages_for(:user, :object => @user.avatar ? [@user.avatar, @user] : @user ) %>
+  <% form_for(@user, :html => { :method => :put, :multipart => true } ) do | f | -%>
+    <%= error_messages_for(:user, :object => @user.avatar ? [@user.avatar, @user] : @user ) %>
     
-	    <p>
-	      <%= f.label :login %>
-	      <%= f.text_field :login, :class => 'text single' %>
-	    </p>
+    <p>
+      <%= f.label :login %>
+      <%= f.text_field :login, :class => 'text single' %>
+    </p>
 
-	    <p>
-	      <%= f.label :display_name %>
-	      <%= f.text_field :display_name, :class => 'text single' %>
-	    </p>
+    <p>
+      <%= f.label :display_name %>
+      <%= f.text_field :display_name, :class => 'text single' %>
+    </p>
 
-	    <p>
-	      <%= f.label :email %>
-	      <%= f.text_field :email, :class => 'text single' %>
-	    </p>
+    <p>
+      <%= f.label :email %>
+      <%= f.text_field :email, :class => 'text single' %>
+    </p>
 
-	    <p>
-	      <%= f.label :location %>
-	      <%= f.text_field :location, :class => 'text single' %>
-	    </p>
+    <p>
+      <%= f.label :location %>
+      <%= f.text_field :location, :class => 'text single' %>
+    </p>
 
-	    <p>
-	      <%= f.label :zipcode, "Zip Code" %>
-	      <%= f.text_field :zipcode, :class => 'text single' %>
-	    </p>
+    <p>
+      <%= f.label :zipcode, "Zip Code" %>
+      <%= f.text_field :zipcode, :class => 'text single' %>
+    </p>
 
-	    <p>
-	      <%= f.label :website_1, "Website" %>
-	      <%= f.text_field :website_1, :class => 'text single' %>
-	    </p>
+    <p>
+      <%= f.label :website_1, "Website" %>
+      <%= f.text_field :website_1, :class => 'text single' %>
+    </p>
 
-	    <p>
-	      <%= f.label :website_2, "Website" %>
-	      <%= f.text_field :website_2, :class => 'text single' %>
-	    </p>
+    <p>
+      <%= f.label :website_2, "Website" %>
+      <%= f.text_field :website_2, :class => 'text single' %>
+    </p>
 
-	    <p>
-	      <%= f.label :about %>
-	      <%= f.text_area :about, :rows => 4 %>
-	    </p>
+    <p>
+      <%= f.label :about %>
+      <%= f.text_area :about, :rows => 4 %>
+    </p>
 
-	    <p>
-	      <%= f.label :interests %>
-	      <%= f.text_area :interests, :rows => 4 %>
-	    </p>
+    <p>
+      <%= f.label :interests %>
+      <%= f.text_area :interests, :rows => 4 %>
+    </p>
 
-	    <p>
-	      <%= link_to "Change your password", edit_password_user_url(@user) %>
-	    </p>
+    <p>
+      <%= link_to "Change your password", edit_password_user_url(@user) %>
+    </p>
     
-	    <p>
-	      <%= f.label :avatar %> 
-	      <%= avatar_for(@user) %>
-	      <%= f.file_field :user_avatar %> 
-	    </p>
+    <p>
+      <%= f.label :avatar %> 
+      <%= avatar_for(@user) %>
+      <%= f.file_field :user_avatar %> 
+    </p>
     
-	    <p>
-	  	  <%= submit_tag 'Save' %> or <%= link_to "Cancel", @user %>
-	    </p>
-	  <% end -%>
-	</div>
+    <p>
+  	  <%= submit_tag 'Save' %> or <%= link_to "Cancel", @user %>
+    </p>
+  <% end -%>
 </div>

@@ -1,60 +1,57 @@
 <% @current_tab = :'Your Profile' %> <!-- TODO  Should only display if current user, otherwise show something like "_____'s Profile"  -->
 
-<div id="primary" class="<%= @current_tab.to_s.downcase %>">
-	<div class="primary_title">
-		<h2><%= @current_tab %></h2>
-	</div>
-	<div class="primary_content">
-	  <div class="user_info">
-	    <%= avatar_for(@user, :large) %>
-	    <h1 class="grouped"><%=h @user %></h1>
-	    <p><%=h @user.location %>  <%= "<br/>" + h(@user.zipcode) unless @user.zipcode.blank?%></p>
-	  </div>
-	  <div id="user_profile">
-	    <div class="about">
-	      <h3 class="">About</h3>
-	      <div class="section_body">
-	        <%= details_format(@user.about) %>
-	      </div>
-	    </div>
+<div id="primary">
+  <div class="user_info">
+    <%= avatar_for(@user, :large) %>
+    <h1 class="grouped"><%=h @user %></h1>
+    <p><%=h @user.location %>  <%= "<br/>" + h(@user.zipcode) unless @user.zipcode.blank?%></p>
+  </div>
+  <div id="user_profile">
+    <div class="about">
+      <h3 class="">About</h3>
+      <div class="section_body">
+        <%= details_format(@user.about) %>
+      </div>
+    </div>
       
-	    <div class="interests">
-	      <h3 class="">Interests</h3>
-	      <div class="section_body">
-	        <%= details_format(@user.interests)  %>
-	      </div>
-	    </div>
-	    <div class="websites">          
-	      <h3 class="">Websites</h3>
-	      <div class="section_body">
-	        <ul>
-	          <% unless @user.website_1.blank? %>
-	            <li><%= link_to @user.website_1, @user.website_1 %></li>
-	          <% end %>
-	          <% unless @user.website_2.blank? %>
-	            <li><%= link_to @user.website_2, @user.website_2 %></li>
-	          <% end %>
-	        </ul>
-	      </div>
-	    </div>
-		<% if current_user == current_community.owner %>
-	    <div class="reason">
-	      <h3 class="">Reason For Joining</h3>
-	      <div class="section_body">
-	        <%= details_format(@user.reason)  %>
-	      </div>
-	    </div>
-	   <% end %>
-	   </div>
+    <div class="interests">
+      <h3 class="">Interests</h3>
+      <div class="section_body">
+        <%= details_format(@user.interests)  %>
+      </div>
+    </div>
+    <div class="websites">          
+      <h3 class="">Websites</h3>
+      <div class="section_body">
+        <ul>
+          <% unless @user.website_1.blank? %>
+            <li><%= link_to @user.website_1, @user.website_1 %></li>
+          <% end %>
+          <% unless @user.website_2.blank? %>
+            <li><%= link_to @user.website_2, @user.website_2 %></li>
+          <% end %>
+        </ul>
+      </div>
+    </div>
+	<% if current_user == current_community.owner %>
+    <div class="reason">
+      <h3 class="">Reason For Joining</h3>
+      <div class="section_body">
+        <%= details_format(@user.reason)  %>
+      </div>
+    </div>
+   <% end %>
+   </div>
 </div>
 
 <div id="secondary">
-	<ul class="modules">
-		<li class="action_nav">
-			<ul class="actions">
-				<li class="edit"><%= link_to "Edit Your Profile", edit_user_url(@user), :class => 'action' if current_user == @user %></li>
-				<li class="email"><%= link_to "Email #{h(@user)} &rarr;", email_user_url(@user), :class => 'action' %></li>
-			</ul>
-		</li>
-	</ul>
+  <ul class="actions first">
+    <li class="action edit">
+      <span><%= link_to "Edit Your Profile", edit_user_url(@user), :class => 'action' if current_user == @user %></span>
+    </li>
+    <li class="action email">
+      <span><%= link_to "Email #{h(@user)} &rarr;", email_user_url(@user), :class => 'action' %></span>
+    </li>
+
+  </ul>
 </div>

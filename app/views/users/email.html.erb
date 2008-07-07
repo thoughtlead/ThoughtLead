@@ -1,23 +1,21 @@
-<div id="primary" class="<%= @current_tab.to_s.downcase %>">
-	<div class="primary_content">
-	  <h2><%= @page_title = "Email #{@send_to_user}" %></h2>
+<div id="primary">
+  <h1><%= @page_title = "Email #{@send_to_user}" %></h1>
 
-	  <% form_for @email, :url =>  email_user_url(@send_to_user) do | f | %>
-	    <%= f.error_messages %>
+  <% form_for @email, :url =>  email_user_url(@send_to_user) do | f | %>
+    <%= f.error_messages %>
 
-	    <p>
-	      <%= f.label :subject %>
-	      <%= f.text_field :subject, :class => "text single"  %>
-	    </p>
+    <p>
+      <%= f.label :subject %>
+      <%= f.text_field :subject, :class => "text single"  %>
+    </p>
 
-	    <p>
-	      <%= f.label :body, 'Email' %>
-	      <%= f.text_area :body, :rows => 10, :class => "text large"  %>
-	    </p>
+    <p>
+      <%= f.label :body, 'Email' %>
+      <%= f.text_area :body, :rows => 10, :class => "text large"  %>
+    </p>
 	
-	  	<p>
-	  	  <%= submit_tag 'Send email' %> or <%= link_to "Cancel", @send_to_user %>
-	  	</p>
-	  <% end %>
-	</div>
+  	<p>
+  	  <%= submit_tag 'Send email' %> or <%= link_to "Cancel", @send_to_user %>
+  	</p>
+  <% end %>
 </div>
