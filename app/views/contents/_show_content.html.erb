@@ -1,7 +1,7 @@
             <h1 class="grouped"><%=h content %></h1>
         <div id="lesson_body">
           <div class="lesson_info">
-            <p>by <strong><%= link_to h(content.user), content.user %></strong> | <%= content.created_at.to_s(:month_year) %></p>
+            <% unless content.author.blank? %><p>by <strong><%= content.author %></strong> | <% end %><%= content.updated_at.to_s(:day_month_year) %></p>
           </div>
 
           <div class="course_description">

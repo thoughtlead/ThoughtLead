@@ -10,7 +10,9 @@
 		  	<% if article.visible_to(current_user) %>
 	        <li>
 	          <h2><%= link_to_article(article) %><% if article.content.flash_video %>&nbsp<img src="/images/video.png"/><% end %></h2>
-              <img src="/images/calendar.png"/> <%= article.content.updated_at.strftime("%m/%d/%Y") %> | <img src="/images/dude.png"/> <%= article.content.user %>
+	          <span class="meta_info">
+    	        <% unless article.content.author.blank? %>by <strong><%= article.content.author %></strong> | <% end %><%= article.content.updated_at.to_s(:day_month_year) %>
+        	  </span>
 			  <span style="color:red"><%= article.notes %></span><br/> 
 	          <p><%= teaser_format(article.content.teaser) %></p><br/>
 			  <% if !article.content.attachments.blank?%>Attachments: <%= article.content.display_attachments %><% end %>

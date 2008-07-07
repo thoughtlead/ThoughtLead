@@ -25,6 +25,8 @@ addAttachment = function() {
 <div class="lesson">
     <%= f.label(:title, 'Title') %>
     <%= f.text_field :title, :class => "text single" %>
+    <%= f.label(:author, 'Author') %>
+    <%= f.text_field :author, :class => "text single" %>
     <%= f.label(:teaser, "Teaser") %>
     <%= f.text_area(:teaser, :rows => 7, :cols => 70, :class => "text medium") %>
     <%= f.label(:body, 'Body') %>

@@ -1,6 +1,6 @@
 class Content < ActiveRecord::Base
   attr_accessor :uploaded_attachment_data
-  validates_presence_of :title, :body, :teaser
+  validates_presence_of :title, :body, :teaser, :author
   
   has_one :lesson
   has_one :article
