@@ -21,7 +21,7 @@ addAttachment = function() {
 //*/
 </script>
 <% fields_for content do |f| %>  
-<%= error_messages_for(:content, :object => content.attachments ? [content.attachments, content] : content) %>
+<%= error_messages_for(:content, :object => [content, content.attachments, content.flash_video]) %>
 <div class="lesson">
     <%= f.label(:title, 'Title') %>
     <%= f.text_field :title, :class => "text single" %>
