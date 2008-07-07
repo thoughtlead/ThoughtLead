@@ -21,14 +21,14 @@ class UsersController < ApplicationController
 
   def edit
     @user = current_community.users.find(params[:id])
-    if @user != current_user
+    unless @user == current_user || current_user == current_community.owner
       flash[:warning] = "You do not have the privileges to reach that part of the site"
       redirect_to login_url
     end
   end
 
   def update
-    @user = current_user
+    @user = User.find(params[:id])
     @user.attributes = params[:user]
     return render(:action => :edit) unless @user.save
     

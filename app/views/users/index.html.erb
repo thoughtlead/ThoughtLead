@@ -6,6 +6,7 @@
     <% for user in @users %>
       <li class="user">
         <%= avatar_for(user, :small) %>
+		<% if user.expert? %><img src="/images/star_small.png" />&nbsp;<% end %>
         <%= link_to h(user), user %>
       </li>
     <% end %>

@@ -6,6 +6,13 @@
   <% form_for(@user, :html => { :method => :put, :multipart => true } ) do | f | -%>
     <%= error_messages_for(:user, :object => @user.avatar ? [@user.avatar, @user] : @user ) %>
     
+	<% if current_user == current_community.owner%>
+    <p>
+      <%= f.label :expert %>
+      <%= f.check_box :expert %>
+    </p>
+	<% end %>
+
     <p>
       <%= f.label :login %>
       <%= f.text_field :login, :class => 'text single' %>

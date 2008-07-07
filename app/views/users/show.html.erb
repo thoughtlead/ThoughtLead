@@ -3,7 +3,7 @@
 <div id="primary">
   <div class="user_info">
     <%= avatar_for(@user, :large) %>
-    <h1 class="grouped"><%=h @user %></h1>
+    <h1 class="grouped"><% if @user.expert? %><img src="/images/star.png" />&nbsp;<% end %><%=h @user %></h1>
     <p><%=h @user.location %>  <%= "<br/>" + h(@user.zipcode) unless @user.zipcode.blank?%></p>
   </div>
   <div id="user_profile">
@@ -47,11 +47,10 @@
 <div id="secondary">
   <ul class="actions first">
     <li class="action edit">
-      <span><%= link_to "Edit Your Profile", edit_user_url(@user), :class => 'action' if current_user == @user %></span>
+      <span><%= link_to "Edit Profile", edit_user_url(@user), :class => 'action' if current_user == @user || current_user == current_community.owner %></span>
     </li>
     <li class="action email">
       <span><%= link_to "Email #{h(@user)} &rarr;", email_user_url(@user), :class => 'action' %></span>
     </li>
-
   </ul>
 </div>
