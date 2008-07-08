@@ -19,7 +19,7 @@ class Community < ActiveRecord::Base
 
   def authenticate(login, password)
     u = users.find_by_login(login) 
-    u && u.authenticated?(password) ? u : nil
+    u && !u.disabled && u.authenticated?(password) ? u : nil
   end
   
   def refresh_from_spreedly
