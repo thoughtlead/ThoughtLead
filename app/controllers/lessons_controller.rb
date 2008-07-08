@@ -17,7 +17,7 @@ class LessonsController < ApplicationController
     @lesson.content = Content.new(params[:content])
     @lesson.content.user = current_user
     
-    return render(:action => :new) unless @lesson.save && @lesson.content.save
+    return render(:action => :new) unless @lesson.content.save && @lesson.save
     
     flash[:notice] = "Successfully created"
     redirect_to [@course, @chapter, @lesson]
