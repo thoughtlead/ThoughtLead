@@ -23,6 +23,12 @@ class SpiderTest < ActionController::IntegrationTest
     :verbose => true,
     :ignore_urls => ['/login', %r{^.+logout}, %r{^.+delete.?}, %r{^.+/destroy.?}], 
     :ignore_forms => [])
+
+    # because right now there are no links into the library
+    spider(@response.body, '/library', 
+    :verbose => true,
+    :ignore_urls => ['/login', %r{^.+logout}, %r{^.+delete.?}, %r{^.+/destroy.?}], 
+    :ignore_forms => [])
   end
   
 end
