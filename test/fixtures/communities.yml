@@ -18,3 +18,10 @@ c3:
   active: true
   discussion_accessibility: 1
  
+testing:
+  subdomain: testing
+  name: Test
+  owner: test
+  active: true
+  discussion_accessibility: 1
+ 
