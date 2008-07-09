@@ -3,7 +3,7 @@ require 'digest/sha1'
 class User < ActiveRecord::Base
   attr_accessor :password, :uploaded_avatar_data
   attr_writer   :password_required
-
+  
   validates_presence_of     :login, :email
   validates_presence_of     :password, :password_confirmation, :if => :password_required?
   validates_confirmation_of :password, :if => :password_required?
@@ -14,41 +14,42 @@ class User < ActiveRecord::Base
   belongs_to  :community
   has_many    :courses
   has_one     :avatar, :dependent => :destroy
-
+  
   is_indexed :fields => ['about', 'interests', 'display_name', 'location', 'zipcode', 'community_id']
-
+  
   def self.encrypt(password, salt)
     Digest::SHA1.hexdigest("--#{salt}--#{password}--")
   end
-
+  
   def encrypt(password)
     self.class.encrypt(password, salt)
   end
-
+  
   def authenticated?(password)
     crypted_password == encrypt(password)
   end
-
+  
   def remember_token?
     remember_token_expires_at && Time.now.utc < remember_token_expires_at 
   end
-
+  
   def remember_me
     self.remember_token_expires_at = Time.mktime(2035)
     self.remember_token            = encrypt("#{email}--#{remember_token_expires_at}")
     save(false)
   end
-
+  
   def forget_me
     self.remember_token_expires_at = nil
     self.remember_token            = nil
     save(false)
   end
-
+  
+  #eww, html tags in the model... clean it up if there is a problem
   def to_s
     display_name
   end
-  
+    
   def display_name
     return super unless super.blank?
     login
@@ -82,16 +83,16 @@ class User < ActiveRecord::Base
   end
   
   private
-    def encrypt_password
-      return if password.blank?
-      self.salt = Digest::SHA1.hexdigest("--#{Time.now.to_s}--#{login}--") if new_record?
-      self.crypted_password = encrypt(password)
-    end
-    
-    def password_required?
-      @password_required || crypted_password.blank? || !@password.blank? || !@password_confirmation.blank?
-    end
-
+  def encrypt_password
+    return if password.blank?
+    self.salt = Digest::SHA1.hexdigest("--#{Time.now.to_s}--#{login}--") if new_record?
+    self.crypted_password = encrypt(password)
+  end
+  
+  def password_required?
+    @password_required || crypted_password.blank? || !@password.blank? || !@password_confirmation.blank?
+  end
+  
 end
 
 

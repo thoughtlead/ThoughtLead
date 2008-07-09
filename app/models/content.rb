@@ -41,4 +41,22 @@ class Content < ActiveRecord::Base
     self.flash_video = the_flash_video unless it.to_s.blank?  
   end
   
+  def display_attachments
+    extensions = {}
+    attachments.to_a.each do |attachment|
+      extension = attachment.filename.split(".").last
+      if extensions[extension].blank?
+        extensions[extension] = 1
+      elsif
+        extensions[extension] += 1
+      end
+    end
+    strings = []
+    extensions.keys.each do |extension|
+      num = extensions[extension]  
+      strings << ((num > 1) ? num.to_s + "-" : "") + extension
+    end
+    return strings * ", "
+  end
+  
 end

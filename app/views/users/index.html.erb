@@ -1,13 +1,14 @@
 <% @current_tab = :People %>
-
 <div id="primary">
-  <h1>Connect with Other Users</h1>
-  <ul class="user_list">
-    <% for user in @users %>
-      <li class="user">
-        <%= avatar_for(user, :small) %>
-        <%= link_to h(user), user %>
-      </li>
-    <% end %>
-  </ul>
+    <h1>Connect with Other Users</h1>
+    <ul class="user_list">
+        <% for user in @users %>
+        <% unless (user.disabled? && !logged_in_as_owner?) %>
+        <li class="user">
+            <%= avatar_for(user, :small) %>
+            <% if user.expert? %><img src="/images/star_small.png" />&nbsp;<% end %>
+            <%= link_to (user.disabled? ? "<strike>" : "") + h(user) + (user.disabled? ? "</strike>" : ""), user %>
+        </li><% end %>
+        <% end %>
+    </ul>
 </div>

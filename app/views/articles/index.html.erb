@@ -1,4 +1,4 @@
-<% @current_tab = :Discussions %>
+<% @current_tab = :'Library' %>
 
 <div id="primary">
   <% if @category %>
@@ -9,10 +9,13 @@
     <% @articles.each do |article| %>
 		  	<% if article.visible_to(current_user) %>
 	        <li>
-	          <h2><%= link_to_article(article) %><% if article.content.flash_video %>&nbsp<img src="/images/video.png"/><% end %><% if !article.content.attachments.blank?%>&nbsp <%= article.content.attachments.length %><img src="/images/attachment.png"/><% end %></h2>
-              <img src="/images/calendar.png"/> <%= article.content.updated_at.strftime("%m/%d/%Y") %> | <img src="/images/dude.png"/> <%= article.content.user %>
+	          <h2><%= link_to_article(article) %><% if article.content.flash_video %>&nbsp<img src="/images/video.png"/><% end %></h2>
+	          <span class="meta_info">
+    	        <% unless article.content.author.blank? %>by <strong><%= article.content.author %></strong> | <% end %><%= article.content.updated_at.to_s(:day_month_year) %>
+        	  </span>
 			  <span style="color:red"><%= article.notes %></span><br/> 
-	          <p><%= teaser_format(article.content.teaser) %></p>
+	          <p><%= teaser_format(article.content.teaser) %></p><br/>
+			  <% if !article.content.attachments.blank?%>Attachments: <%= article.content.display_attachments %><% end %>
 	        </li>
 			<% end %>
     <% end %>
@@ -35,7 +38,7 @@
     <ul class="themes">
       <h2>Categories</h2>
       <% current_community.categories.each do |category| %>
-	  	<% unless category.articles.blank? %>
+	  	<% if category.contains_articles_visible_to(current_user) %>
         <li>
           <%= link_to category, library_url(:category => category) %>
         </li>

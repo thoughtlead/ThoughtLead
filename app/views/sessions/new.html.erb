@@ -1,22 +1,18 @@
 <% @current_tab = :'Log In' %>
-
 <div id="small">
-
-  <% form_tag sessions_path do  %>
+    <% form_tag sessions_path do %>
     <%= label :user, :login %>
     <%= text_field_tag 'login', params[:login], :class => 'text single' %>
-
     <%= label :user, :password %>
-  	<%= password_field_tag 'password', params[:password], :class => 'text single grouped' %>
-
+    <%= password_field_tag 'password', params[:password], :class => 'text single grouped' %>
     <div class="draft plus_label">
-      <%= check_box_tag 'remember_me', "1", params[:remember_me] %> 
-      <label>Remember me on this computer</label>
+        <%= check_box_tag 'remember_me', "1", params[:remember_me] %>
+        <label>
+            Remember me on this computer
+        </label>
+    <%= link_to "Forgot Password?", forgot_password_url, :class => "button" %>
     </div>
-    
-  	<%= submit_tag 'Log in' %>
-  <% end -%>
-
-
-  <%= link_to "Create a New Account", signup_url, :class => 'divider' %>
+    <%= submit_tag 'Log in' %>
+    <% end -%>
+    <%= link_to "Create a New Account", signup_url, :class => 'divider' %>
 </div>

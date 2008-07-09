@@ -4,7 +4,6 @@
   <p><%= link_to "&#8592; Return to Courses", courses_url %></p>
   <h1 class="grouped"><%=h @course %></h1>
   <% if @course.draft %><span style="color:red">Draft: course contents are hidden.</span><br/><% end %>
-  <span class="meta_info author">by <%= link_to h(@course.user), @course.user %></span>
   <div class="course_description">
     <p><%=h @course.description %></p>
   </div>
@@ -18,6 +17,9 @@
 		  	<% if lesson.visible_to(current_user) %>
 	        <li>
 	          <h2><%= link_to_lesson(lesson) %></h2>
+	          <span class="meta_info">
+    	        <% unless lesson.content.author.blank? %>by <strong><%= lesson.content.author %></strong> | <% end %><%= lesson.content.updated_at.to_s(:day_month_year) %>
+        	  </span>
 			  <span style="color:red"><%= lesson.notes %></span><br/> 
 	          <p><%= teaser_format(lesson.content.teaser) %></p>
 	        </li>

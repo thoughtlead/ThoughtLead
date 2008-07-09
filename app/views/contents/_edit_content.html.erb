@@ -21,10 +21,18 @@ addAttachment = function() {
 //*/
 </script>
 <% fields_for content do |f| %>  
-<%= error_messages_for(:content, :object => content.attachments ? [content.attachments, content] : content) %>
+<% 	#create a list of objects if they aren't null to do error_messages_for on
+	objects = []
+	objects << content if content
+	objects << content.attachments if content.attachments
+	objects << content.flash_video if content.flash_video 
+%>
+<%= error_messages_for(:content, :object => objects) %>
 <div class="lesson">
     <%= f.label(:title, 'Title') %>
     <%= f.text_field :title, :class => "text single" %>
+    <%= f.label(:author, 'Author') %>
+    <%= f.text_field :author, :class => "text single" %>
     <%= f.label(:teaser, "Teaser") %>
     <%= f.text_area(:teaser, :rows => 7, :cols => 70, :class => "text medium") %>
     <%= f.label(:body, 'Body') %>
