@@ -1,4 +1,4 @@
-<h3>Content Library: Showing <%= @articles.size %> Articles</h3>
+<h3>Content Library: Showing <%= pluralize(@articles.size, 'Result' ) %></h3>
 <ul>
 <% @articles.each do |article| -%>
   <li>

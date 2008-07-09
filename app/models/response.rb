@@ -4,4 +4,6 @@ class Response < ActiveRecord::Base
   belongs_to :discussion
   belongs_to :user
   
+  is_indexed :fields => ['body'], :include => [{:association_name => 'discussion', :field => 'community_id'}]
+  
 end

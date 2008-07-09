@@ -1,10 +1,21 @@
-<h3>Discussions: Showing <%= @discussions.size %> Results</h3>
+<h3>Discussions: Showing <%= pluralize(@responses_by_discussion_id.size + @discussions.size, 'Result') -%></h3>
 <ul>
 <% @discussions.each do |discussion| %>
   <li>
-	  Discussion: <%= link_to discussion.title, discussion %> <br/>
-	  Description: <%= discussion.body -%> <br/>
-	  <%= discussion_url(discussion) %>
+	  Discussion: <%= link_to discussion.title, discussion_path(discussion) %> <br/>
+	  <%= discussion.body -%> <br/>
+	  <% if @responses_by_discussion_id[discussion.id] -%>
+	  	<ul>
+		    <%= render :partial=>"response_search_results", :locals=>{:responses=>@responses_by_discussion_id[discussion.id]} %>
+		    <% @responses_by_discussion_id.delete(discussion.id) -%>
+	    </ul>
+	  <% end  # if -%>
   </li>
 <% end # @discussions.each -%>
+
+<%
+# by now, all the responses associated with discussions have been displayed/removed. show what's left
+@responses_by_discussion_id.each do |discussion_id, responses| -%>
+  <%= render :partial=>"response_search_results", :locals=>{:responses=>responses} %>
+<% end -%>
 </ul>

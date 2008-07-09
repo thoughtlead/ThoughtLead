@@ -1,0 +1,7 @@
+<% responses.each do |response| -%>
+  <li>
+	  <em>in Discussion:</em> <%= link_to response.discussion%> <br/>
+	  Response Body: <%= response.body %> <br/>
+	  <%= discussion_url(response.discussion)%>
+  </li>
+<% end %>

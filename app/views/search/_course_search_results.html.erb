@@ -1,4 +1,4 @@
-<h3>Courses: Showing <%= @lessons_by_course_id.size + @courses.size -%> Results</h3>
+<h3>Courses: Showing <%= pluralize(@lessons_by_course_id.size + @courses.size, 'Result' )-%></h3>
 <ul>
 <% @courses.each do |course| %>
   <li>
