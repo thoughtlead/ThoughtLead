@@ -8,7 +8,8 @@ class SearchController < ApplicationController
     @results = @search.results
   
     @courses = @results.find_all{|result| result.class == Course }
-    @lessons = @results.find_all{|result| result.class == Lesson }
+    @lessons = @results.find_all{|result| result.class == Content && !result.lesson.nil? }.collect(&:lesson)
+    @articles= @results.find_all{|result| result.class == Content && !result.article.nil? }.collect(&:article)
     @discussions = @results.find_all{|result| result.class == Discussion }
     @users = @results.find_all{|result| result.class == User }
     

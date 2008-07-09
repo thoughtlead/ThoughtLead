@@ -5,7 +5,7 @@ class Lesson < ActiveRecord::Base
   acts_as_list :scope => :chapter, :column => :chapter_position
   
   def to_s
-    (content && content.title) || ""
+   (content && content.title) || ""
   end
   
   def draft_to_users?
@@ -45,6 +45,6 @@ class Lesson < ActiveRecord::Base
     end
     return s * "; "
   end
-
+  
   
 end

@@ -1,0 +1,11 @@
+<h3>Content Library: Showing <%= @articles.size %> Articles</h3>
+<ul>
+<% @articles.each do |article| -%>
+  <li>
+	  Article: <%= link_to_article article %>
+	  Article Teaser: <%= article.content.teaser %> <br/>
+	  Article Body: <%= article.content.body %> <br/>
+	  <%= article_url article %>
+  </li>
+<% end %>
+</ul>

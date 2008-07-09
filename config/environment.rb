@@ -86,3 +86,15 @@ require RAILS_ROOT + '/lib/attachment_fu_windows_bug_fixes'
     :around => 3,
     :content_methods => [['title', 'display_name'], ['body', 'description', 'content', 'about'], ['interests'], ['location'], ['zipcode']] # The first responding method in each group for each record will be excerpted.
   })
+  
+  Ultrasphinx::Search.query_defaults = HashWithIndifferentAccess.new({
+    :query => nil,
+    :page => 1,
+    :per_page => 100,
+    :sort_by => nil,
+    :sort_mode => 'relevance',
+    :weights => {},
+    :class_names => [],
+    :filters => {},
+    :facets => []
+  })
