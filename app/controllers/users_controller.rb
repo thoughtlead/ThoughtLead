@@ -1,6 +1,6 @@
 class UsersController < ApplicationController
   
-  before_filter :login_required, :except => [ :signup, :changed_on_spreedly, :index ]
+  before_filter :login_required, :except => [ :signup, :changed_on_spreedly, :index, :forgot_password ]
   before_filter :community_is_active
   before_filter :logged_in_as_owner?, :only => [ :disable, :reactivate]
   skip_before_filter :verify_authenticity_token, :only => :changed_on_spreedly
@@ -12,9 +12,12 @@ class UsersController < ApplicationController
     
     return unless request.post? && @user.save
     
+    Mailer.deliver_new_user_welcome(@user)
+    Mailer.deliver_new_user_notice_to_owner(@user)
+    
     self.current_user = @user
     redirect_back_or_default(root_url)
-    flash[:notice] = "Thanks for signing up!  You have been logged in."
+    flash[:notice] = "Thanks for signing up!  You have been logged in and a welcome e-mail has been sent."
   end
   
   def show
@@ -52,11 +55,28 @@ class UsersController < ApplicationController
     return if request.get?
     
     @user.password_required = true
-    return unless @user.update_attributes(params[:user])
+    return unless @user.update_attributes(params[:user]) && @user.save
     
     flash[:notice] = "Password saved."
     redirect_to edit_user_url(@user)
   end  
+  
+  def forgot_password
+    return if request.get?
+
+      if user = User.find_by_login(params[:login])
+        @new_password = random_password
+        user.password = user.password_confirmation = @new_password
+        user.save!
+        Mailer.deliver_new_password(user, @new_password)
+        
+        flash[:notice] = "We sent a new password to the email address registered to #{user.login}."
+        redirect_to community_home_url
+      else
+        flash[:notice] =  "We can't find that account.  Try again."
+        redirect_to forgot_password_url
+      end
+  end
   
   def email
     @send_to_user = current_community.users.find(params[:id])
@@ -132,6 +152,11 @@ class UsersController < ApplicationController
       return false
     end
     return true
+  end
+  
+  def random_password( len = 20 )
+    chars = (("a".."z").to_a + ("1".."9").to_a )- %w(i o 0 1 l 0)
+    newpass = Array.new(len, '').collect{chars[rand(chars.size)]}.join
   end
   
 end

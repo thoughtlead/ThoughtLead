@@ -78,11 +78,11 @@ end
 
 require RAILS_ROOT + '/lib/attachment_fu_windows_bug_fixes'
 
- Ultrasphinx::Search.excerpting_options = HashWithIndifferentAccess.new({
-    :before_match => '<strong>',
-    :after_match => '</strong>',
-    :chunk_separator => "...",
-    :limit => 256,
-    :around => 3,
-    :content_methods => [['title', 'display_name'], ['body', 'description', 'content', 'about'], ['interests'], ['location'], ['zipcode']] # The first responding method in each group for each record will be excerpted.
-  })
+Ultrasphinx::Search.excerpting_options = HashWithIndifferentAccess.new({
+  :before_match => '<strong>',
+  :after_match => '</strong>',
+  :chunk_separator => "...",
+  :limit => 256,
+  :around => 3,
+  :content_methods => [['title', 'display_name'], ['body', 'description', 'content', 'about'], ['interests'], ['location'], ['zipcode']] # The first responding method in each group for each record will be excerpted.
+})

@@ -18,4 +18,29 @@ class Mailer < ActionMailer::Base
     @headers["reply-to"] = from.email
   end
   
+  def new_password(user, password)
+    @recipients = user.email
+    @subject = "Your New Password"
+    @from = "#{user} <do-not-reply@#{APP_DOMAIN}>"
+    @body[:name] = user.login
+    @body[:password] = password
+  end
+  
+  def new_user_welcome(user,message="If you have any questions or feedback, we'd love to hear from you.")
+    @from = "#{user.community.name} <do-not-reply@#{APP_DOMAIN}>"
+    @subject = "Welcome to #{user.community.name}"
+    @sent_on = Time.now
+    @body[:user] = user
+    @body[:message] = message
+    @recipients = user.email
+  end
+  
+  def new_user_notice_to_owner(user)
+    @from = "#{user.community.name} <do-not-reply@#{APP_DOMAIN}>"
+    @subject = "#{user.community.name} has a new user"
+    @sent_on = Time.now
+    @body[:user] = user
+    @recipients = user.community.owner.email
+  end
+  
 end

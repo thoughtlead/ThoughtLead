@@ -9,7 +9,7 @@ module AuthenticatedSystem
     end  
 
     def logged_in_as_active?
-      logged_in? && current_user.active
+      logged_in? && current_user.active?
     end  
     
     def current_user

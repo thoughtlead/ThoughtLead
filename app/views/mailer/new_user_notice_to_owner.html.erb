@@ -1,0 +1,12 @@
+Hello <%= @user.community.owner.login %>,
+
+A new user has joined the community <%= @user.community.name %> with the login <%= @user.login %>.
+
+<% unless @user.reason.blank? %>
+Reason for joining:
+<%= @user.reason %>
+<% end %>
+
+--------------------------------------
+The <%= APP_NAME %> Team
+

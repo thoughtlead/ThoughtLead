@@ -9,6 +9,7 @@ ActionController::Routing::Routes.draw do |map|
   map.resources :themes, :conditions => { :subdomain => /./ }
   map.resources :sessions, :conditions => { :subdomain => /./ }
   map.resources :users, :member => { :email => :any, :edit_password => :any, :disable => :any, :reactivate => :any }, :conditions => { :subdomain => /./ }
+  map.forgot_password '/forgot_password', :controller => 'users', :action => 'forgot_password', :conditions => { :subdomain => /./ }
   map.resources :discussions, :conditions => { :subdomain => /./ } do | discussions |
     discussions.resources :responses, :conditions => { :subdomain => /./ } 
   end
