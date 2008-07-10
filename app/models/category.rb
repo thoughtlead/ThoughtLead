@@ -5,7 +5,8 @@ class Category < ActiveRecord::Base
   alias_attribute :to_s, :name
   
   def  contains_articles_visible_to(user)
-    articles.to_a.each do |article|
+    return false if articles.to_a.blank?
+    articles.each do |article|
       return false unless article.visible_to(user)
     end
     return true
