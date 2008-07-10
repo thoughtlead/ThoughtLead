@@ -1,4 +1,4 @@
-task :cruise => %w(testing db:migrate:reset test cap_staging_deploy ultrasphinx:configure ultrasphinx:index ultrasphinx:daemon:restart)
+task :cruise => %w(testing db:migrate:reset test cap_staging_deploy staging ultrasphinx:configure staging ultrasphinx:index staging ultrasphinx:daemon:restart)
 
 task :cap_staging_deploy => :environment  do
   `cap staging deploy`
