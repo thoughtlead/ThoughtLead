@@ -1,10 +1,20 @@
-      <% if content.attachments %>
-        <strong>Attachments</strong>
-      <% for attachment in content.attachments %>
-        <p>
-          <%= link_to attachment.filename, attachment.authenticated_s3_url(:expires_in => 2.hours) %> 
-          <% if logged_in_as_owner? %>
-            [ <%= link_to("Delete", attachment, :method => :delete, :confirm => "Are you sure you'd like to delete this attachment?", :return_to=> request.request_uri ) %>]
-          <% end %>
-        </p>
-      <% end end %>
+<% unless content.attachments.find_all_by_embedded(false).blank? %>
+<strong>Attachments</strong>
+<% content.attachments.find_all_by_embedded(false).each do |attachment| %>
+<p>
+    <%= link_to attachment.filename, attachment.authenticated_s3_url(:expires_in => 2.hours) %>
+    <% if logged_in_as_owner? %>
+    <%= link_to("Delete", attachment, :method => :delete, :confirm => "Are you sure you'd like to delete this attachment?", :return_to=> request.request_uri ) %>
+    <% end %>
+</p>
+<% end %>
+<% end %>
+<% unless content.attachments.find_all_by_embedded(true).blank? || !logged_in_as_owner? %>
+<strong>Embedded Media</strong>
+<% content.attachments.find_all_by_embedded(true).each do |attachment| %>
+<p>
+    <%= link_to attachment.filename, attachment.authenticated_s3_url(:expires_in => 2.hours) %>
+    <%= link_to("Delete", attachment, :method => :delete, :confirm => "Are you sure you'd like to delete this attachment?", :return_to=> request.request_uri ) %>
+</p>
+<% end %>
+<% end %>

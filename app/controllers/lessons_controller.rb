@@ -30,7 +30,7 @@ class LessonsController < ApplicationController
     @lesson.attributes = params[:lesson]
     @lesson.content.attributes = params[:content]
         
-    return render(:action => :edit) unless @lesson.save && @lesson.content.save
+    return render(:action => :edit) unless @lesson.content.save && @lesson.save
     
     flash[:notice] = "Successfully saved"
     redirect_to [@course, @chapter, @lesson]

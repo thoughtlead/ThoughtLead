@@ -8,3 +8,8 @@
 #   inflect.irregular 'person', 'people'
 #   inflect.uncountable %w( fish sheep )
 # end
+
+#Inflector.inflections do |inflect| 
+#  inflect.plural /(m)edia$/i, '\1edia'
+#  inflect.singular /(m)edia$/i, '\1edia'
+#end

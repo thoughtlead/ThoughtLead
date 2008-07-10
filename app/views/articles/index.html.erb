@@ -9,13 +9,22 @@
     <% @articles.each do |article| %>
 		  	<% if article.visible_to(current_user) %>
 	        <li>
-	          <h2><%= link_to_article(article) %><% if article.content.flash_video %>&nbsp<img src="/images/video.png"/><% end %></h2>
+	          <h2><%= link_to_article(article) %>
+			  <% embedded_media = article.content.attachments.find_by_embedded(true) %>
+			  <% if embedded_media.content_type.include?("image") %>
+			  <img src="/images/image.png"/>
+			  <% elsif embedded_media.content_type.include?("audio") %>
+			  <img src="/images/audio.png"/>
+			  <% elsif embedded_media.content_type.include?("video") %>
+			  <img src="/images/video.png"/>
+			  <% end %></h2>
 	          <span class="meta_info">
     	        <% unless article.content.author.blank? %>by <strong><%= article.content.author %></strong> | <% end %><%= article.content.updated_at.to_s(:day_month_year) %>
         	  </span>
 			  <span style="color:red"><%= article.notes %></span><br/> 
 	          <p><%= teaser_format(article.content.teaser) %></p><br/>
-			  <% if !article.content.attachments.blank?%>Attachments: <%= article.content.display_attachments %><% end %>
+			  <% attachments_string = article.content.display_attachments %>
+			  <% unless attachments_string.blank? %>Attachments:&nbsp;<%= attachments_string %><% end %>
 	        </li>
 			<% end %>
     <% end %>

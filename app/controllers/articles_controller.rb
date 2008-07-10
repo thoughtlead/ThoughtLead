@@ -20,7 +20,7 @@ class ArticlesController < ApplicationController
     @article.attributes = params[:article]
     @article.content.attributes = params[:content]
     
-    return render(:action => :edit) unless @article.save && @article.content.save
+    return render(:action => :edit) unless @article.content.save && @article.save
     
     flash[:notice] = "Successfully saved"
     redirect_to @article

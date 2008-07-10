@@ -7,9 +7,10 @@ class Content < ActiveRecord::Base
   
   belongs_to :user
   has_many :attachments, :dependent => :destroy
-  has_one :flash_video, :dependent => :destroy
   
   alias_attribute :to_s, :title
+  after_save :remove_old_embedded_media
+  before_save :remove_bad_embedded_media
   
   # Adding an association with the user's community so that we can filter on community
   is_indexed :fields => ['title', 'body', 'teaser', 'draft'], :include => [{:association_name => 'user', :field => 'community_id'}]
@@ -35,20 +36,28 @@ class Content < ActiveRecord::Base
     end
   end
   
-  def content_flash_video=(it)  
-    the_flash_video = self.flash_video || FlashVideo.new
-    the_flash_video.uploaded_data = it
-    self.flash_video = the_flash_video unless it.to_s.blank?  
+  def embedded_media=(file)
+    unless file.to_s.blank?
+      @old_embedded_media = self.attachments.find_by_embedded(true) unless @old_embedded_media
+      #not sure if bad is neccessary
+      @bad_embedded_media = @new_embedded_media if @new_embedded_media
+      @new_embedded_media = Attachment.new
+      @new_embedded_media.uploaded_data = file
+      @new_embedded_media.embedded = true
+      self.attachments << @new_embedded_media 
+    end
   end
   
   def display_attachments
     extensions = {}
     attachments.to_a.each do |attachment|
-      extension = attachment.filename.split(".").last
-      if extensions[extension].blank?
-        extensions[extension] = 1
-      elsif
-        extensions[extension] += 1
+      unless attachment.embedded?
+        extension = attachment.filename.split(".").last
+        if extensions[extension].blank?
+          extensions[extension] = 1
+        elsif
+          extensions[extension] += 1
+        end
       end
     end
     strings = []
@@ -57,6 +66,17 @@ class Content < ActiveRecord::Base
       strings << ((num > 1) ? num.to_s + "-" : "") + extension
     end
     return strings * ", "
+  end
+  
+  private
+  
+  def remove_old_embedded_media
+    @old_embedded_media.destroy if @old_embedded_media
+  end
+  
+  def remove_bad_embedded_media
+    #not sure if bad is neccessary
+    @bad_embedded_media.destroy if @bad_embedded_media
   end
   
 end

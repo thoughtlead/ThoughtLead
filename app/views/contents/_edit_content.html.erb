@@ -25,7 +25,6 @@ addAttachment = function() {
 	objects = []
 	objects << content if content
 	objects << content.attachments if content.attachments
-	objects << content.flash_video if content.flash_video 
 %>
 <%= error_messages_for(:content, :object => objects) %>
 <div class="lesson">
@@ -46,8 +45,8 @@ addAttachment = function() {
 
 <input type="button" value="Add Attachment" onclick="addAttachment()">
 
-<%= f.label(:content_flash_video, "Video") %>
-<%= f.file_field :content_flash_video %>
+<%= f.label(:embedded_media, "Embedded Media") %>
+<%= f.file_field :embedded_media %>
 
 <div>
     <span class="draft plus_label"><%= f.check_box :draft %>
