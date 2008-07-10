@@ -1,5 +1,3 @@
-# Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
-
 its_coming:
     title: Are you ready?
     body: Tuesday is just rand(7) days away! Make sure you lay out your coats.

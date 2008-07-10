@@ -1,5 +1,3 @@
-# Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
-
 public_lesson:
     chapter: first_chapter
     chapter_position: 1

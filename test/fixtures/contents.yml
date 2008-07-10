@@ -31,3 +31,19 @@ premium_draft_content:
     draft: true
     premium: true
     registered: false
+
+cats:
+    title: All about cats
+    body: Cats smell nice but they like houses more than they like people.
+    user: test
+    draft: false
+    premium: false
+    registered: false
+    
+dogs:
+    title: All about dogs
+    body: Dogs love you profoundly and also slobber on your floor.
+    user: test
+    draft: false
+    premium: false
+    registered: false
