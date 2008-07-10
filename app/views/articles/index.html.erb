@@ -10,14 +10,14 @@
 		  	<% if article.visible_to(current_user) %>
 	        <li>
 	          <h2><%= link_to_article(article) %>
-			  <% embedded_media = article.content.attachments.find_by_embedded(true) %>
+			  <% if (embedded_media = article.content.attachments.find_by_embedded(true)) %>
 			  <% if embedded_media.content_type.include?("image") %>
 			  <img src="/images/image.png"/>
 			  <% elsif embedded_media.content_type.include?("audio") %>
 			  <img src="/images/audio.png"/>
 			  <% elsif embedded_media.content_type.include?("video") %>
 			  <img src="/images/video.png"/>
-			  <% end %></h2>
+			  <% end %><% end %></h2>
 	          <span class="meta_info">
     	        <% unless article.content.author.blank? %>by <strong><%= article.content.author %></strong> | <% end %><%= article.content.updated_at.to_s(:day_month_year) %>
         	  </span>
