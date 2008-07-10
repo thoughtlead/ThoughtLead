@@ -7,13 +7,15 @@ class SpiderTest < ActionController::IntegrationTest
   def test_spider_no_login
     get '/'
     assert_response :success
-    spider(@response.body, '/', {})
+    spider(@response.body, '/',     :verbose => true,
+    :ignore_urls => ['/login', %r{^.+logout}, %r{^.+delete.?}, %r{^.+/destroy.?}], 
+    :ignore_forms => [])
   end
   
   def test_spider_with_login
-    get '/login'
+    get 'http://testing.localhost.com/login'
     assert_response :success
-    post '/sessions', :login => 'sam', :password => 'test'
+    post 'http://testing.localhost.com/sessions', :login => 'test', :password => 'test'
     assert session[:user]
     assert_response :redirect
     assert_redirected_to '/'
@@ -23,12 +25,5 @@ class SpiderTest < ActionController::IntegrationTest
     :verbose => true,
     :ignore_urls => ['/login', %r{^.+logout}, %r{^.+delete.?}, %r{^.+/destroy.?}], 
     :ignore_forms => [])
-
-    # because right now there are no links into the library
-    spider(@response.body, '/library', 
-    :verbose => true,
-    :ignore_urls => ['/login', %r{^.+logout}, %r{^.+delete.?}, %r{^.+/destroy.?}], 
-    :ignore_forms => [])
   end
-  
 end
