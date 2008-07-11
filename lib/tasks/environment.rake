@@ -1,6 +1,6 @@
 # from http://errtheblog.com/posts/31-rake-around-the-rosie
 
-%w[development production staging test].each do |environment|
+%w[development production staging].each do |environment|
   desc "Runs the following task in the #{environment} environment"
   task environment do
     RAILS_ENV = ENV['RAILS_ENV'] = environment
@@ -8,7 +8,7 @@
 end
 
 task :testing do
-  Rake::Task["test"].invoke
+  RAILS_ENV = ENV['RAILS_ENV'] = 'test'
 end
 
 task :dev do
