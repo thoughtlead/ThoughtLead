@@ -11,7 +11,6 @@ module Ultrasphinx
   end
 
   # Internal file paths
-  
   SUBDIR = "config/ultrasphinx"
   
   DIR = "#{RAILS_ROOT}/#{SUBDIR}"
