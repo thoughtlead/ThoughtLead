@@ -11,7 +11,6 @@ module Ultrasphinx
   end
 
   # Internal file paths
-  puts "\n\n--------------loaded ultrasphinx---------------------\n\n"
   SUBDIR = "config/ultrasphinx"
   
   DIR = "#{RAILS_ROOT}/#{SUBDIR}"
@@ -19,7 +18,6 @@ module Ultrasphinx
   THIS_DIR = File.expand_path(File.dirname(__FILE__))
 
   CONF_PATH = "#{DIR}/#{RAILS_ENV}.conf"
-  puts "CONF_PATH = #{CONF_PATH}"
   
   ENV_BASE_PATH = "#{DIR}/#{RAILS_ENV}.base" 
   

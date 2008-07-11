@@ -10,6 +10,7 @@ namespace :ultrasphinx do
   task :default do
     configure
     index
+    deploy:restart
   end
   
   desc <<-DESC
