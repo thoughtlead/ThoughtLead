@@ -7,10 +7,10 @@ class SearchController < ApplicationController
     
     @results = @search.results
   
-    @courses = @results.find_all{|result| result.class == Course }
-    @lessons = @results.find_all{|result| result.class == Content && !result.lesson.nil? }.collect(&:lesson)
-    @articles= @results.find_all{|result| result.class == Content && !result.article.nil? }.collect(&:article)
-    @discussions = @results.find_all{|result| result.class == Discussion }
+    @courses = @results.find_all{|result| result.class == Course && result.visible_to(current_user)}
+    @lessons = @results.find_all{|result| result.class == Content && !result.lesson.nil? && result.lesson.visible_to(current_user)}.collect(&:lesson)
+    @articles= @results.find_all{|result| result.class == Content && !result.article.nil? && result.article.visible_to(current_user) }.collect(&:article)
+    @discussions = @results.find_all{|result| result.class == Discussion}
     @responses = @results.find_all{|result| result.class == Response }
     @users = @results.find_all{|result| result.class == User }
     

@@ -13,6 +13,10 @@ class Course < ActiveRecord::Base
     return self.draft?
   end
   
+  def visible_to(user)
+    return !self.draft_to_users? || user == self.community.owner
+  end
+  
   #returns true if this is a draft
   def contains_drafts
     for chapter in chapters

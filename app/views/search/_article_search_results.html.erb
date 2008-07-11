@@ -2,7 +2,7 @@
 <ul>
 <% @articles.each do |article| -%>
   <li>
-	  Article: <%= link_to_article article %>
+	  Article: <%= access_controlled_link article %>
 	  Article Teaser: <%= article.content.teaser %> <br/>
 	  Article Body: <%= article.content.body %> <br/>
 	  <%= article_url article %>

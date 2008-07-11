@@ -1,6 +1,6 @@
 <% lessons.each do |lesson| -%>
   <li>
-	  Lesson: <%= link_to_lesson lesson %>
+	  Lesson: <%= access_controlled_link lesson %>
 		<em>in course:</em> <%= link_to lesson.chapter.course.title, :controller=>:courses, :action=>:show, :id=>lesson.chapter.course.id %> <br/>
 	  Lesson Teaser: <%= lesson.content.teaser %> <br/>
 	  Lesson Body: <%= lesson.content.body %> <br/>
