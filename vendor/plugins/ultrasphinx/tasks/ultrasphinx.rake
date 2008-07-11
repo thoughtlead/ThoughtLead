@@ -9,6 +9,18 @@ namespace :ultrasphinx do
     Ultrasphinx.with_rake = true
   end
   
+  desc "Display UltraSphinx Configuration Settings"
+  task :display_configuration => [:_environment] do
+    say "Display UltraSphinx Configuration"
+    say "SUBDIR = #{Ultrasphinx::SUBDIR}"
+    say "DIR = #{Ultrasphinx::DIR}"
+    say "THIS_DIR = #{Ultrasphinx::THIS_DIR}"
+    say "CONF_PATH = #{Ultrasphinx::CONF_PATH}"
+    say "ENV_BASE_PATH = #{Ultrasphinx::ENV_BASE_PATH}"
+    say "GENERIC_BASE_PATH = #{Ultrasphinx::GENERIC_BASE_PATH}"
+    say "BASE_PATH = #{Ultrasphinx::BASE_PATH}"
+  end
+  
   desc "Bootstrap a full Sphinx environment"
   task :bootstrap => [:_environment, :configure, :index, :"daemon:restart"] do
     say "done"
