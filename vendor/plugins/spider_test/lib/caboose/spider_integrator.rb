@@ -303,9 +303,12 @@ module Caboose::SpiderIntegrator
     dest = (tag.attributes['onclick'] =~ /^new Ajax.Updater\(['"].*?['"], ['"](.*?)['"]/i) ? $1 : tag.attributes['href']
     return if dest.nil?
     dest.gsub!(/([?]\d+)$/, '') # fix asset caching
-    unless dest =~ %r{^(http://|mailto:|#|&#)} 
+    #We have modified spider test to follow external "http://" links 'cause in this app they're not 
+    # really external, but specifying which community's data to view.
+    unless dest =~ %r{^(mailto:|#|&#)} 
       dest = dest.split('#')[0] if dest.index("#") # don't want page anchors
       @links_to_visit << Caboose::SpiderIntegrator::Link.new( dest, source ) if dest.any? # could be empty, make sure there's no empty links queueing
+      puts ("visiting #{dest}")
     end
   end
 
