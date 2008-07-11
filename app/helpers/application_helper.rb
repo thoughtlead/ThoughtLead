@@ -4,13 +4,13 @@ module ApplicationHelper
     s = []
     if course.draft
       s << "Draft"
-    elsif course.contains_drafts && current_user == course.community.owner
+    elsif course.contains_drafts && logged_in_as_owner?
       s << "Has Draft Content"
     end
-    if course.contains_premium
+    if course.contains_premium_visible_to(current_user)
       s << "Has Premium Content"
     end
-    if course.contains_registered
+    if course.contains_registered_visible_to(current_user)
       s << "Has Registered Content"
     end
     return s * "; "
@@ -19,15 +19,15 @@ module ApplicationHelper
   def access_controlled_link(ac_object,text=h(ac_object))
     if ac_object.is_premium? && !logged_in_as_active?
       if logged_in?
-        link_to text, upgrade_url(:notice => "You need to upgrade your account to view that content.")
+        link_to text, intermediate_url(:redirect_to => upgrade_url, :notice => "You need to upgrade your account to view that content.")
       else
         session[:return_to] = upgrade_url
-        link_to text, login_url(:notice => "You must login to a premium account or create a new premium account to view that content.<br/>" + 
+        link_to text, intermediate_url(:redirect_to => login_url, :notice => "You must login to a premium account or create a new premium account to view that content.<br/>" + 
           "To create a new premium acount you must first register or login as a free member.<br/>" +
           "Once you are logged in simply click the \"Upgrade Membership\" link and you'll be able to access premium content in no time.")
       end
     elsif ac_object.is_registered? && !logged_in?
-      link_to text, login_url(:notice => "You must login or create an account to view that content.")
+      link_to text, intermediate_url(:redirect_to => login_url, :notice => "You must login or create an account to view that content.")
     else
       if ac_object.class == Lesson
         link_to text, [ac_object.chapter.course, ac_object.chapter, ac_object]

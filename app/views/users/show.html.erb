@@ -55,7 +55,7 @@
         <li class="action email">
             <span><%= link_to "Email #{h(@user)} &rarr;", email_user_url(@user), :class => 'action' %></span>
         </li>
-        <% if logged_in_as_owner? %>
+        <% if logged_in_as_owner? && !@user.owner? %>
         <% if @user.disabled? %>
         <li class="action add">
             <span><%= link_to "Reactivate this User", reactivate_user_url(@user), :class => 'action', :confirm =>  "Are you sure you would like to reactivate this user?" %></span>

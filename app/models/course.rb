@@ -25,19 +25,19 @@ class Course < ActiveRecord::Base
     return false
   end
   
-  def contains_premium
+  def contains_premium_visible_to(user)
     for chapter in chapters
       for lesson in chapter.lessons
-        return true if lesson.content.premium
+        return true if lesson.content.premium && lesson.visible_to(user)
       end
     end
     return false
   end
   
-  def contains_registered
+  def contains_registered_visible_to(user)
     for chapter in chapters
       for lesson in chapter.lessons
-        return true if lesson.content.registered
+        return true if lesson.content.registered && lesson.visible_to(user)
       end
     end    
     return false

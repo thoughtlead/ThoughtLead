@@ -63,19 +63,19 @@ class UsersController < ApplicationController
   
   def forgot_password
     return if request.get?
-
-      if user = User.find_by_login(params[:login])
-        @new_password = random_password
-        user.password = user.password_confirmation = @new_password
-        user.save!
-        Mailer.deliver_new_password(user, @new_password)
-        
-        flash[:notice] = "We sent a new password to the email address registered to #{user.login}."
-        redirect_to community_home_url
-      else
-        flash[:notice] =  "We can't find that account.  Try again."
-        redirect_to forgot_password_url
-      end
+    
+    if user = User.find_by_login(params[:login])
+      @new_password = random_password
+      user.password = user.password_confirmation = @new_password
+      user.save!
+      Mailer.deliver_new_password(user, @new_password)
+      
+      flash[:notice] = "We sent a new password to the email address registered to #{user.login}."
+      redirect_to community_home_url
+    else
+      flash[:notice] =  "We can't find that account.  Try again."
+      redirect_to forgot_password_url
+    end
   end
   
   def email
@@ -90,7 +90,6 @@ class UsersController < ApplicationController
   end
   
   def upgrade
-    flash[:notice] = params[:notice] if params[:notice]
     return if current_community.spreedly_api_key.blank?
     
     Spreedly::SubscriptionPlan.configure(current_community)
@@ -116,8 +115,10 @@ class UsersController < ApplicationController
   
   def disable
     @user = User.find(params[:id])
-    @user.disabled = true
-    @user.save
+    unless @user.owner?
+      @user.disabled = true
+      @user.save
+    end
     redirect_to @user
   end
   

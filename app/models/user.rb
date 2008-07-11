@@ -17,6 +17,14 @@ class User < ActiveRecord::Base
   
   is_indexed :fields => ['about', 'interests', 'display_name', 'location', 'zipcode', 'community_id']
   
+  def is_premium?
+    return false
+  end
+  
+  def is_registered?
+    return true
+  end
+  
   def self.encrypt(password, salt)
     Digest::SHA1.hexdigest("--#{salt}--#{password}--")
   end
