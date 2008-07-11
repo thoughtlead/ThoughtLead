@@ -14,6 +14,14 @@ class Discussion < ActiveRecord::Base
     { :conditions => ({ :theme_id => (theme_id == 'nil' || theme_id == '') ? nil : theme_id } if theme_id) } 
   }
   
+  def is_premium?
+    self.community.discussion_accessibility == 1
+  end
+  
+  def is_registered?
+    return false
+  end
+  
   def accessible_to(user)
     if self.community.discussion_accessibility > 0
       #authenticated system uses :false for non-users

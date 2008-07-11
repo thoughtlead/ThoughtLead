@@ -7,10 +7,10 @@
   		<%= render :partial => '/contents/show_content', :locals => { :content => @lesson.content } %>
           <div class="lesson_navigation">
             <% if @lesson.higher_item %>   
-              <p><small>PREVIOUS LESSON</small> &mdash; <%= link_to h(@lesson.higher_item), [@lesson.chapter.course, @lesson.chapter, @lesson.higher_item] %> </p>
+              <p><small>PREVIOUS LESSON</small> &mdash; <%= access_controlled_link(@lesson.higher_item) %> </p>
             <% end %>
             <% if @lesson.lower_item %>   
-              <p><small>NEXT LESSON</small> &mdash; <%= link_to h(@lesson.lower_item), [@lesson.chapter.course, @lesson.chapter, @lesson.lower_item] %> </p>
+              <p><small>NEXT LESSON</small> &mdash; <%= access_controlled_link(@lesson.lower_item) %> </p>
             <% end %>
             <p><%= link_to "&#8592; Return to Course Overview", @lesson.chapter.course %></p>
           </div>
@@ -47,7 +47,7 @@
               <li class="current"><%=h lesson %></li>
             
               <% elsif lesson.visible_to(current_user) %>
-                  <li><%= link_to_lesson(lesson) %></li>
+                  <li><%= access_controlled_link(lesson) %></li>
               <% end %>    
             
             <% end %>

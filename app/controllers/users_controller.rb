@@ -90,6 +90,7 @@ class UsersController < ApplicationController
   end
   
   def upgrade
+    flash[:notice] = params[:notice] if params[:notice]
     return if current_community.spreedly_api_key.blank?
     
     Spreedly::SubscriptionPlan.configure(current_community)

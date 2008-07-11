@@ -22,6 +22,14 @@ class Article < ActiveRecord::Base
     @new_category_names = it.uniq
   end
   
+  def is_premium?
+    self.content.premium?
+  end
+  
+  def is_registered?
+    self.content.registered?
+  end
+  
   def visible_to(user)
     !self.content.draft? || user == self.community.owner
   end
