@@ -12,6 +12,14 @@ class Lesson < ActiveRecord::Base
     return self.content.draft? || self.chapter.draft_to_users?
   end
   
+  def is_premium?
+    self.content.premium?
+  end
+  
+  def is_registered?
+    self.content.registered?
+  end
+  
   def visible_to(user)
     !self.draft_to_users? || user == self.chapter.course.community.owner
   end

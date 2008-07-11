@@ -5,7 +5,7 @@
   <div class="courses">
     <ol class="courses">
       <% for course in @courses %>
-		  <% if !course.draft || current_user == course.community.owner  %>
+		  <% if !course.draft || logged_in_as_owner?  %>
 	
 	      <li class="course">
 	        <h3 class="course_title grouped"><%= link_to h(course), course %></h3><%= link_to "Edit", edit_course_url(course), :class => 'action_sm' if logged_in_as_owner? %> 
