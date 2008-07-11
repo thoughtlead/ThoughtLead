@@ -11,7 +11,7 @@ module Ultrasphinx
   end
 
   # Internal file paths
-  
+  puts "\n\n--------------loaded ultrasphinx---------------------\n\n"
   SUBDIR = "config/ultrasphinx"
   
   DIR = "#{RAILS_ROOT}/#{SUBDIR}"
