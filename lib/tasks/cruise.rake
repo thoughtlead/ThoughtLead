@@ -5,5 +5,6 @@ task :cap_staging_deploy => :environment  do
   raise "Error deploying to staging" if $?.exitstatus == 1
   `cap staging deploy:migrate`
   raise "Error migrating staging database" if $?.exitstatus == 1
-  `rake ultrasphinx:display_configuration`
+  `cap staging ultrasphinx`
+  raise "Error configuring and indexing staging sphinx" if $?.exitstatus == 1
 end
