@@ -2,7 +2,7 @@ class DiscussionsController < ApplicationController
   
   before_filter :login_required, :except => [ :index, :show]
   before_filter :community_is_active
-  before_filter :user_has_correct_privileges, :except => [ :index ]
+  skip_before_filter :control_access, :only => [ :index ]
   
   def index
     @discussions = current_community.discussions.for_theme(params[:theme])
@@ -49,14 +49,9 @@ class DiscussionsController < ApplicationController
   end
 
   private
-  
-  def user_has_correct_privileges
-    return true if !params[:id]
-    discussion = Discussion.find_by_id(params[:id])
-    if !discussion.accessible_to(current_user)
-      access_denied
-    end
-    return true
+  #bogus warning, this function is called by a method obtained from application.rb (ruby craziness!)
+  def get_access_controlled_object
+    Discussion.find(params[:id]) if params[:id]
   end
-  
+    
 end

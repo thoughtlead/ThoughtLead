@@ -3,7 +3,7 @@
   <p>    <%= link_to "&#8592; Return to Discussions", discussions_url, :class => 'discussions' %></p>
   <h1 class="grouped"><%=h @discussion %></h1>
   <div class="discussion_info meta_info">
-    <span class="author">by <%= access_controlled_link(@discussion.user,(@discussion.user.expert? ? "<img src=\"/images/star_small.png\" />&nbsp;" : "") + h(@discussion.user)) %></span>
+    <span class="author">by <%= link_to((@discussion.user.expert? ? "<img src=\"/images/star_small.png\" />&nbsp;" : "") + h(@discussion.user),@discussion.user) %></span>
     <span class="date_posted">&nbsp;|&nbsp;Posted on <%= @discussion.created_at.to_s(:month_day) %> 
       <% if !current_community.themes.empty? %>
         in <%= link_to @discussion.theme ? @discussion.theme.to_s : "Uncategorized" %>
@@ -23,7 +23,7 @@
         <span class="avatar">
           <%= avatar_for(response.user, :small) %>
         </span>
-        <%= access_controlled_link(response.user,(response.user.expert? ? "<img src=\"/images/star_small.png\" />&nbsp;" : "") + h(response.user)) %>&nbsp;|&nbsp;<%= response.created_at.to_s(:day_month_year) %>
+        <%= link_to((response.user.expert? ? "<img src=\"/images/star_small.png\" />&nbsp;" : "") + h(response.user),response.user) %>&nbsp;|&nbsp;<%= response.created_at.to_s(:day_month_year) %>
       	<%= link_to("Delete this Response", response, :controller => :responses, :method => :delete, :confirm => "Are you sure you'd like to delete this response?") if logged_in_as_owner?  %></span>
       </span>
       <div class="comment_body">

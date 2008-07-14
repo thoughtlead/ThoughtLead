@@ -16,7 +16,7 @@
 	      <% for lesson in chapter.lessons  %>
 		  	<% if lesson.visible_to(current_user) %>
 	        <li>
-	          <h2><%= access_controlled_link(lesson) %></h2>
+	          <h2><%= link_to(h(lesson),[@course,chapter,lesson]) %></h2>
 	          <span class="meta_info">
     	        <% unless lesson.content.author.blank? %>by <strong><%= lesson.content.author %></strong> | <% end %><%= lesson.content.updated_at.to_s(:day_month_year) %>
         	  </span>

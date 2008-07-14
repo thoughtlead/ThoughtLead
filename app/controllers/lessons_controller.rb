@@ -3,7 +3,6 @@ class LessonsController < ApplicationController
   before_filter :load_course_and_chapter
   before_filter :owner_login_required, :except => [ :show ]
   before_filter :community_is_active
-  before_filter :user_has_correct_privileges
   
   uses_tiny_mce(tiny_mce_options)
   
@@ -54,17 +53,14 @@ class LessonsController < ApplicationController
   end
   
   private
+  #bogus warning, this function is called by a method obtained from application.rb (ruby craziness!)
+  def get_access_controlled_object
+    Lesson.find(params[:id]) if params[:id]
+  end
+
   def load_course_and_chapter
     @course = current_community.courses.find(params[:course_id])
     @chapter = @course.chapters.find(params[:chapter_id])
   end
-  def user_has_correct_privileges
-    return true if !params[:id]
-    lesson = Lesson.find_by_id(params[:id])
-    if !lesson.accessible_to(current_user)
-      access_denied
-    end
-    return true
-  end  
   
 end

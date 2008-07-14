@@ -9,14 +9,14 @@
         <div class="discussion">
             <span class="avatar"><%= avatar_for(discussion.user, :small) %>
             </span>
-            <h2 class="grouped"><%= access_controlled_link(discussion) %></h2>
+            <h2 class="grouped"><%= link_to(h(discussion),discussion) %></h2>
             <p>
-            <%=h truncate(discussion.body, 500) %><%= access_controlled_link(discussion,'Continue reading &hellip;') %></a>
+            <%=h truncate(discussion.body, 500) %><%= link_to('Continue reading &hellip;',discussion) %></a>
         </p>
         <div class="discussion_info meta_info">
-            <span class="author">by <%= access_controlled_link(discussion.user,(discussion.user.expert? ? "<img src=\"/images/star_small.png\" />&nbsp;" : "") + h(discussion.user)) %></span>
+            <span class="author">by <%= link_to((discussion.user.expert? ? "<img src=\"/images/star_small.png\" />&nbsp;" : "") + h(discussion.user),discussion.user) %></span>
             <span class="date_posted">&nbsp;|&nbsp;<%= discussion.created_at.to_s(:month_day) %></span>
-            <span class="responses">&nbsp;|&nbsp;<%= access_controlled_link(discussion,pluralize(discussion.responses.count, "Response")) %></span>
+            <span class="responses">&nbsp;|&nbsp;<%= link_to(pluralize(discussion.responses.count, "Response"),discussion) %></span>
         </div>
     </div>
     <% end %>
