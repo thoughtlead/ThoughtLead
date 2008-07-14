@@ -24,7 +24,7 @@ $BASE_URL = 'http://localhost:3003/'
 
 def start_test_webrick
     options = {
-      :port        => 3003,
+      :port        => 3021,
       :ip          => "0.0.0.0",
       :environment => "test",
       :server_root => File.expand_path(RAILS_ROOT + "/public/"),

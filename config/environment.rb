@@ -34,6 +34,7 @@ Rails::Initializer.run do |config|
   config.gem "map_by_method"
   config.gem "random_data"
   config.gem "chronic"
+  config.gem "watir"
   
   # Only load the plugins named here, in the order given. By default, all plugins 
   # in vendor/plugins are loaded in alphabetical order.
