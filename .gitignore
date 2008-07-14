@@ -1,7 +1,6 @@
 *.tmproj
 log/*.log
 config/database.yml
-config/ultrasphinx/*.conf
 vendor/rails
 .tm_last_run_ruby*
 db/schema.rb
@@ -11,3 +10,7 @@ public/.integration_test_output_for_browser.html
 public/avatars
 tmp/*
 .loadpath
+db/development_snapshot*
+.mysql
+deploy_history.txt
+config/ultrasphinx/*.conf
