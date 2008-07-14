@@ -1,0 +1,9 @@
+= Restful Transactions
+
+Restful Transactions is a plugin that ensures that any action executed within
+a POST, PUT or DELETE request is wrapped in a transaction.
+
+=== License
+
+This plugin is copyright 2008 by RedHill Consulting, Pty. Ltd. and is released
+under the MIT license.
