@@ -1,11 +1,20 @@
-<h3>Content Library: Showing <%= pluralize(@articles.size, 'Result' ) %></h3>
+<h3>Content Library:&nbsp;<%= pluralize(@articles.size, 'Result' ) %>&nbsp;found</h3>
 <ul>
-<% @articles.each do |article| -%>
-  <li>
-	  Article: <%= link_to h(article), article %>
-	  Article Teaser: <%= article.content.teaser %> <br/>
-	  Article Body: <%= article.content.body %> <br/>
-	  <%= article_url article %>
-  </li>
-<% end %>
+    <% @articles.each do |article| -%>
+    <li>
+        Article: <%= link_to h(article), article %>
+        <br/>
+        Article Teaser: <%= article.content.teaser %>
+        <br/>
+        <% if article.is_premium? && !logged_in_as_active? %>
+        Article content is restricted to&nbsp;<%= link_to "premium members", upgrade_url %>.
+		<% elsif article.is_registered? && !logged_in? %>
+        You must&nbsp;<%= link_to "log in", login_url %>&nbsp;to view the article contents.
+		<% else %>
+        Article Body: <%= article.content.body %>
+        <% end %>
+        <br/>
+        <%= article_url article %>
+    </li>
+    <% end %>
 </ul>

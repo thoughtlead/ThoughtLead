@@ -1,9 +1,19 @@
 <% lessons.each do |lesson| -%>
-  <li>
-	  Lesson: <%= link_to h(lesson), [lesson.chapter.course, lesson.chapter, lesson] %>
-		<em>in course:</em> <%= link_to lesson.chapter.course.title, :controller=>:courses, :action=>:show, :id=>lesson.chapter.course.id %> <br/>
-	  Lesson Teaser: <%= lesson.content.teaser %> <br/>
-	  Lesson Body: <%= lesson.content.body %> <br/>
-	  <%= course_chapter_lesson_url(lesson.chapter.course, lesson.chapter, lesson)%>
-  </li>
+<li>
+    Lesson: <%= link_to h(lesson), [lesson.chapter.course, lesson.chapter, lesson] %>
+    <em>in course:</em>
+    <%= link_to lesson.chapter.course.title, :controller=>:courses, :action=>:show, :id=>lesson.chapter.course.id %>
+    <br/>
+    Lesson Teaser: <%= lesson.content.teaser %>
+    <br/>
+    <% if lesson.is_premium? && !logged_in_as_active? %>
+    Lesson content is restricted to&nbsp;<%= link_to "premium members", upgrade_url %>.
+	<% elsif lesson.is_registered? && !logged_in? %>
+    You must&nbsp;<%= link_to "log in", login_url %>&nbsp;to view the lesson contents.
+	<% else %>
+    Lesson Body: <%= lesson.content.body %>
+    <% end %>
+    <br/>
+    <%= course_chapter_lesson_url(lesson.chapter.course, lesson.chapter, lesson) %>
+</li>
 <% end %>

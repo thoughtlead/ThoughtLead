@@ -1,10 +1,11 @@
 class UsersController < ApplicationController
   
-  before_filter :login_required, :except => [ :signup, :changed_on_spreedly, :index, :forgot_password ]
+  before_filter :login_required, :except => [ :signup, :changed_on_spreedly, :index, :forgot_password, :upgrade ]
   before_filter :community_is_active
   before_filter :logged_in_as_owner?, :only => [ :disable, :reactivate]
   skip_before_filter :verify_authenticity_token, :only => :changed_on_spreedly
   before_filter :check_disabled
+  before_filter :upgrade_login_check, :only => [:upgrade]
   
   def signup
     @user = User.new(params[:user])
@@ -143,6 +144,13 @@ class UsersController < ApplicationController
       when 'quarterly' then '59'
       when 'yearly' then '60'
     end
+  end
+  
+  def upgrade_login_check
+    return if logged_in?
+    store_location
+    flash[:notice] = "You must log in before you upgrade."
+    redirect_to login_url
   end
   
   def check_disabled

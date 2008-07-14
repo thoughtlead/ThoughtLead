@@ -1,8 +1,7 @@
 class ResponsesController < ApplicationController
   
-  before_filter :login_required
   before_filter :community_is_active
-
+  
   def create
     @discussion = current_community.discussions.find(params[:discussion_id])
     @discussion_response = Response.new(params[:response])
@@ -23,6 +22,13 @@ class ResponsesController < ApplicationController
     
     flash[:notice] = "Successfully deleted the response."
     redirect_to @discussion
+  end
+  
+  private
+  
+  #bogus warning, this function is called by a method obtained from application.rb (ruby craziness!)
+  def get_access_controlled_object
+    Response.find(params[:id]) if params[:id]
   end
   
 end

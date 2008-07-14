@@ -30,6 +30,9 @@ class Community < ActiveRecord::Base
     save
   end
   
+  def discussions_are_premium?
+    return self.discussion_accessibility > 0
+  end
   
   private
     def owner_becomes_user

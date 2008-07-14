@@ -6,4 +6,12 @@ class Response < ActiveRecord::Base
   
   is_indexed :fields => ['body'], :include => [{:association_name => 'discussion', :field => 'community_id'}]
   
+  def is_premium?
+    return discussion.is_premium?
+  end
+  
+  def is_registered?
+    return discussion.is_registered?
+  end
+  
 end

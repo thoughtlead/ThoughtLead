@@ -24,22 +24,6 @@ class Lesson < ActiveRecord::Base
     !self.draft_to_users? || user == self.chapter.course.community.owner
   end
   
-  def accessible_to(user)
-    return false unless visible_to(user)
-    return true if user == self.chapter.course.community.owner
-    #Authenticated System uses :false when there is no current_user
-    if (user == :false) && (self.content.premium? || self.content.registered?)
-      return false
-    end
-    if self.content.premium?
-      return user.active?
-    end
-    if self.content.registered? 
-      return !user.nil?
-    end
-    return true    
-  end
-  
   def notes
     s = []
     if self.content.premium

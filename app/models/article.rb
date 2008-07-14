@@ -34,22 +34,6 @@ class Article < ActiveRecord::Base
     !self.content.draft? || user == self.community.owner
   end
   
-  def accessible_to(user)
-    return false unless visible_to(user)
-    return true if user == self.community.owner
-    #Authenticated System uses :false when there is no current_user
-    if (user == :false) && (self.content.premium? || self.content.registered?)
-      return false
-    end
-    if self.content.premium?
-      return user.active?
-    end
-    if self.content.registered? 
-      return !user.nil?
-    end
-    return true    
-  end
-  
   #  named_scope :for_category, lambda { | category_id | 
   #    { :conditions => ({ :category_id => (category_id == 'nil' || category_id == '') ? nil : category_id } if category_id) } 
   #  }
