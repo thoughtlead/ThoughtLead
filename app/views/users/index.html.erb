@@ -7,7 +7,7 @@
         <li class="user">
             <%= avatar_for(user, :small) %>
             <% if user.expert? %><img src="/images/star_small.png" />&nbsp;<% end %>
-            <%= access_controlled_link(user,(user.disabled? ? "<strike>" : "") + h(user) + (user.disabled? ? "</strike>" : "")) %>
+            <%= link_to((user.disabled? ? "<strike>" : "") + h(user) + (user.disabled? ? "</strike>" : ""),user) %>
         </li><% end %>
         <% end %>
     </ul>

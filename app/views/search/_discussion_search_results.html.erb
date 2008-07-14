@@ -2,7 +2,7 @@
 <ul>
 <% @discussions.each do |discussion| %>
   <li>
-	  Discussion: <%= access_controlled_link discussion %> <br/>
+	  Discussion: <%= link_to h(discussion), discussion %> <br/>
 	  <%= discussion.body -%> <br/>
 	  <% if @responses_by_discussion_id[discussion.id] -%>
 	  	<ul>

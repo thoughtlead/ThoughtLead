@@ -15,28 +15,7 @@ module ApplicationHelper
     end
     return s * "; "
   end
-  
-  def access_controlled_link(ac_object,text=h(ac_object))
-    if ac_object.is_premium? && !logged_in_as_active?
-      if logged_in?
-        link_to text, intermediate_url(:redirect_to => upgrade_url, :notice => "You need to upgrade your account to view that content.")
-      else
-        session[:return_to] = upgrade_url
-        link_to text, intermediate_url(:redirect_to => login_url, :notice => "You must login to a premium account or create a new premium account to view that content.<br/>" + 
-          "To create a new premium acount you must first register or login as a free member.<br/>" +
-          "Once you are logged in simply click the \"Upgrade Membership\" link and you'll be able to access premium content in no time.")
-      end
-    elsif ac_object.is_registered? && !logged_in?
-      link_to text, intermediate_url(:redirect_to => login_url, :notice => "You must login or create an account to view that content.")
-    else
-      if ac_object.class == Lesson
-        link_to text, [ac_object.chapter.course, ac_object.chapter, ac_object]
-      else
-        link_to text, ac_object
-      end
-    end
-  end
-  
+    
   def define_js_function(function_name, &block)
     parens = function_name.kind_of?(Symbol) ? "()" : ""
     update_page_tag do | page |

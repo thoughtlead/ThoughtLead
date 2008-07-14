@@ -131,15 +131,19 @@ class UsersController < ApplicationController
   
   private
   
-  #what is this doing here?
-  #TODO remove
-  #  def plan_id
-  #    case params[:selected_plan]
-  #      when 'monthly' then '58'
-  #      when 'quarterly' then '59'
-  #      when 'yearly' then '60'
-  #    end
-  #  end
+  #bogus warning, this function is called by a method obtained from application.rb (ruby craziness!)
+  def get_access_controlled_object
+    User.find(params[:id]) if params[:id]
+  end
+  
+  #this may be a bogus warning, not sure?
+  def plan_id
+    case params[:selected_plan]
+      when 'monthly' then '58'
+      when 'quarterly' then '59'
+      when 'yearly' then '60'
+    end
+  end
   
   def check_disabled
     return true if !params[:id]

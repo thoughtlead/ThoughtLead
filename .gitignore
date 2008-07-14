@@ -1,6 +1,7 @@
 *.tmproj
 log/*.log
 config/database.yml
+config/ultrasphinx/*.conf
 vendor/rails
 .tm_last_run_ruby*
 db/schema.rb

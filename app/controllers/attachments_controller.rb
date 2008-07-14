@@ -4,9 +4,14 @@ class AttachmentsController < ApplicationController
   before_filter :community_is_active
   
   def destroy
-    Attachment.find_by_id(params[:id]).destroy
+    a = Attachment.find_by_id(params[:id])
+    if a.content.lesson
+      return_to = [a.content.lesson.chapter.course,a.content.lesson.chapter,a.content.lesson] 
+    elsif a.content.article     
+      return_to = a.content.article 
+    end
+    a.destroy
     flash[:notice] = "Deleted the attachment"
-    redirect_to request.referer # send them back where they came from (possibly lessons or articles)
+    redirect_back_or_default(return_to)
   end
-    
 end

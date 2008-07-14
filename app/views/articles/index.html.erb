@@ -9,7 +9,7 @@
     <% @articles.each do |article| %>
 		  	<% if article.visible_to(current_user) %>
 	        <li>
-	          <h2><%= access_controlled_link(article) %>
+	          <h2><%= link_to(h(article),article) %>
 			  <% if (embedded_media = article.content.attachments.find_by_embedded(true)) %>
 			  <% if embedded_media.content_type.include?("image") %>
 			  <img src="/images/image.png"/>
