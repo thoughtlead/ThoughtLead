@@ -1,5 +1,13 @@
 first_chapter:
     course: happiness
     draft: false
+
+#===== WATIRTEST =====
     
+tagged_1:
+    course: tagged
+    draft: false
     
+antitagged_1:
+    course: antitagged
+    draft: true

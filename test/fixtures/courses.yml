@@ -11,3 +11,24 @@ happiness:
   user: sam
   community: c3
   draft: false
+
+#===== WATIRTEST =====
+
+draft:
+  title: draft course
+  description: draft course description
+  community: watirtest
+  draft: true
+
+tagged:
+  title: a tagged course
+  description: tagged course description
+  community: watirtest
+  draft: false
+  
+antitagged:
+    title: an antitagged course
+    description: antitagged course description
+    community: watirtest
+    draft: false
+  
