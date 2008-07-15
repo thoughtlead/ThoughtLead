@@ -1,5 +1,4 @@
 class CreateCategoriesCategorizationsContentsAndArticles < ActiveRecord::Migration
-  # TODO handle chapter_position
   
   def self.up
     #contents

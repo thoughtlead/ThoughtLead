@@ -101,7 +101,7 @@ class UsersController < ApplicationController
     Spreedly::Site.configure(current_community)
     site = Spreedly::Site.find(:one, :from => current_community.use_spreedly_production_site ? :production : :test)
     
-    redirect_to "https://spreedly.com/#{site.url_suffix}/subscribers/#{current_user.id}/subscribe/#{params[:selected_plan]}/#{current_user.login}"
+    redirect_to "https://spreedly.com/#{site.url_suffix}/subscribers/#{current_user.id}/subscribe/#{params[:selected_plan]}/#{current_user.login}?return_url=#{session[:return_to]}"
   end
   
   def changed_on_spreedly
