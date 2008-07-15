@@ -1,8 +1,6 @@
 ActionController::Routing::Routes.draw do |map|
   map.resources :communities, :conditions => { :subdomain => '' }
 
-  map.intermediate '/intermediate', :controller => "intermediate", :action => "redirect", :conditions => { :subdomain => /./ }
-  
   map.login '/login', :controller => "sessions", :action => 'new', :conditions => { :subdomain => /./ }
   map.logout '/logout', :controller => 'sessions', :action => 'destroy', :conditions => { :subdomain => /./ }
   map.signup '/signup', :controller => 'users', :action => 'signup', :conditions => { :subdomain => /./ }
