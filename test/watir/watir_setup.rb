@@ -9,7 +9,9 @@ require 'watir'
 require 'webrick'
 require 'webrick_server'
 
-$BASE_URL = 'http://localhost:3003/'
+$PORT = '3021'
+$BASE_URL = 'http://localhost:' + $PORT + '/'
+$COMMUNITY_URL = 'http://watirtest.localhost.com:' + $PORT + '/'
 #$USER_PASSWORD = 'xxx'
 #$USER = User.new {|u|
 #      u.username = 'myuser'
@@ -24,7 +26,7 @@ $BASE_URL = 'http://localhost:3003/'
 
 def start_test_webrick
     options = {
-      :port        => 3021,
+      :port        => $PORT,
       :ip          => "0.0.0.0",
       :environment => "test",
       :server_root => File.expand_path(RAILS_ROOT + "/public/"),

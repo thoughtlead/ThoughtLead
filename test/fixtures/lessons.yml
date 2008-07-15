@@ -17,3 +17,35 @@ premium_draft_lesson:
     chapter: first_chapter
     chapter_position: 4
     content: premium_draft_content
+    
+#===== WATIRTEST =====
+
+tagged_1_draft:
+    chapter: tagged_1
+    chapter_position: 1
+    content: tagged_1_draft
+
+tagged_1_premium:
+    chapter: tagged_1
+    chapter_position: 1
+    content: tagged_1_premium
+    
+tagged_1_registered:
+    chapter: tagged_1
+    chapter_position: 1
+    content: tagged_1_registered
+    
+antitagged_1_draft:
+    chapter: antitagged_1
+    chapter_position: 1
+    content: antitagged_1_draft
+
+antitagged_1_premium:
+    chapter: antitagged_1
+    chapter_position: 1
+    content: antitagged_1_premium
+    
+antitagged_1_registered:
+    chapter: antitagged_1
+    chapter_position: 1
+    content: antitagged_1_registered

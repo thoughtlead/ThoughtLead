@@ -47,3 +47,48 @@ dogs:
     draft: false
     premium: false
     registered: false
+    
+#===== WATIRTEST =====
+
+tagged_1_draft:
+    title: tagged 1 draft title
+    body: tagged 1 draft body
+    draft: true
+    premium: false
+    registered: false
+
+tagged_1_premium:
+    title: tagged 1 draft title
+    body: tagged 1 draft body
+    draft: false
+    premium: true
+    registered: false
+
+tagged_1_registered:
+    title: tagged 1 draft title
+    body: tagged 1 draft body
+    draft: false
+    premium: false
+    registered: true
+    
+antitagged_1_draft:
+    title: tagged 1 draft title
+    body: tagged 1 draft body
+    draft: true
+    premium: false
+    registered: false
+
+antitagged_1_premium:
+    title: tagged 1 draft title
+    body: tagged 1 draft body
+    draft: false
+    premium: true
+    registered: false
+
+antitagged_1_registered:
+    title: tagged 1 draft title
+    body: tagged 1 draft body
+    draft: false
+    premium: false
+    registered: true
+    
