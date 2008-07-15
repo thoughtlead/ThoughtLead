@@ -2,8 +2,8 @@ module ActionController
   module Routing
     class Route
       
-      TESTABLE_REQUEST_METHODS = [:subdomain, :domain, :method, :port, :remote_ip, 
-                                  :content_type, :accepts, :request_uri, :protocol]
+      TESTABLE_REQUEST_METHODS = [:is_client_domain, :subdomain, :domain, :method, :port, :remote_ip, 
+      :content_type, :accepts, :request_uri, :protocol]
       
       def recognition_conditions
         result = ["(match = #{Regexp.new(recognition_pattern).inspect}.match(path))"]
@@ -23,12 +23,11 @@ module ActionController
     end
     
     class RouteSet
-      include SubdomainHelper
-      
       def extract_request_environment(request)        
         { 
+          :is_client_domain => request.domain != $app_domain,
           :method => request.method,
-          :subdomain => subdomain_from(request), 
+          :subdomain => request.subdomains * ".", 
           :domain => request.domain, 
           :port => request.port, 
           :remote_ip => request.remote_ip, 
@@ -38,7 +37,6 @@ module ActionController
           :protocol => request.protocol
         }
       end
-      
     end
   end
 end

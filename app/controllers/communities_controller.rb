@@ -58,7 +58,7 @@ class CommunitiesController < ApplicationController
   
   private
     def upgrade_url(plan_id)
-      "https://spreedly.com/thoughtlead-test/subscribers/#{current_community.id}/subscribe/#{plan_id}/#{current_community.subdomain}?return_url=#{community_dashboard_url(current_community)}"
+      "https://spreedly.com/thoughtlead-test/subscribers/#{current_community.id}/subscribe/#{plan_id}/#{current_community.host}?return_url=#{community_dashboard_url(current_community)}"
     end
   
     def community_layout

@@ -1,12 +1,12 @@
 c1:
-  subdomain: c1
+  host: c1
   name: C1
   owner: duff
   active: true
   spreedly_api_key: 
 
 c2:
-  subdomain: c2
+  host: c2
   name: C2
   owner: daniel
   active: true
@@ -14,7 +14,7 @@ c2:
   spreedly_api_key: 
 
 c3:
-  subdomain: c3
+  host: c3
   name: C3
   owner: sam
   active: true
@@ -22,7 +22,7 @@ c3:
   spreedly_api_key: 
  
 testing:
-  subdomain: testing
+  host: testing
   name: Test
   owner: test
   active: true

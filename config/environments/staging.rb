@@ -22,3 +22,5 @@ config.action_controller.perform_caching             = false
 config.action_mailer.raise_delivery_errors = false
 
 ENV['INLINEDIR'] = Rails.root + "/tmp" 
+
+$app_domain = 'thoughtlead.intranet.ternarysoftware.com'

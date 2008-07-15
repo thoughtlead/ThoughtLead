@@ -9,9 +9,9 @@ class Community < ActiveRecord::Base
   has_many :articles, :dependent => :destroy
   belongs_to :owner, :class_name => "User"
   
-  validates_presence_of :subdomain, :name
-  validates_uniqueness_of :subdomain
-  validate :validate_subdomain_restrictions
+  validates_presence_of :host, :name
+  validates_uniqueness_of :host
+  validate :validate_host_restrictions
   
   before_create :owner_becomes_user
 
@@ -39,9 +39,9 @@ class Community < ActiveRecord::Base
       self.users << self.owner unless self.users.include?(self.owner)
     end
   
-    def validate_subdomain_restrictions
-      errors.add :subdomain, "is reserved" if  /(www|db|app|server|test|staging|web|ftp|mail|files)[0-9]*$/.match(self.subdomain)
-      errors.add :subdomain if /[^a-zA-Z0-9\-]+/.match(self.subdomain)
+    def validate_host_restrictions
+      errors.add :host, "is reserved" if  /(db|app|server|test|staging|web|ftp|mail|files)[0-9]*$/.match(self.host.split(".").first)
+      errors.add :host if /[^a-zA-Z0-9\-]+/.match(self.host.split(".").first)
     end
   
   

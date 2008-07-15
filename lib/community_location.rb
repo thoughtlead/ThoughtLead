@@ -1,5 +1,5 @@
 module CommunityLocation
-  include SubdomainHelper
+  include HostHelper
   attr_reader :current_community
   
   def self.included(controller)
@@ -18,9 +18,7 @@ module CommunityLocation
     end
 
     def community_host(community)
-      community_host = ""
-      community_host << community.subdomain + "." if community
-      community_host << community_domain
+      community.host
     end
 
     def community_domain
@@ -32,11 +30,12 @@ module CommunityLocation
     end
     
     def find_community
-      subdomain = subdomain_from(request)
-      if subdomain.blank?
+      host = host_from(request)
+      
+      if host.blank? || host == $app_domain 
         @current_community = nil
       else
-        @current_community = Community.find_by_subdomain(subdomain)
+        @current_community = Community.find_by_host(host)
         render_404 unless @current_community
       end
     end

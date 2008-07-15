@@ -49,11 +49,11 @@ end
 
 class ActionController::IntegrationTest
 
-  def new_session(subdomain, &block) 
+  def new_session(host, &block) 
     open_session do | session | 
       session.extend(BasicsDsl)
       session.extend(ThoughtLeadDsl)
-      session.host!("#{subdomain}.nokahuna.dev")
+      session.host!("#{host}.nokahuna.dev")
       session.instance_eval(&block) if block
       session
     end 
@@ -61,7 +61,7 @@ class ActionController::IntegrationTest
   
   def new_session_as(user_symbol, &block)
     user = users(user_symbol)
-    session = new_session(user.community.subdomain)
+    session = new_session(user.community.host)
     session.login(user_symbol)
     session.instance_eval(&block) if block
     session

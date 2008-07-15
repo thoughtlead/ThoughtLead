@@ -34,7 +34,7 @@ module ApplicationHelper
   end
   
   def community_stylesheet
-    themed_file(current_community ? "#{current_community.subdomain}.css" : nil, "default.css")
+    themed_file(current_community ? "#{current_community.host}.css" : nil, "default.css")
   end
   
   def community_logo
@@ -45,8 +45,8 @@ module ApplicationHelper
   def themed_file(path, default_path = path) 
     default_file = "/themes/default/#{default_path}"
     return default_file unless current_community
-    return default_file unless File.exist?(File.expand_path(File.dirname(__FILE__) + "/../../public/themes/#{current_community.subdomain}/#{path}"))
-      "/themes/#{current_community.subdomain}/#{path}"
+    return default_file unless File.exist?(File.expand_path(File.dirname(__FILE__) + "/../../public/themes/#{current_community.host}/#{path}"))
+      "/themes/#{current_community.host}/#{path}"
   end
   
 end

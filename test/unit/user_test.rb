@@ -69,7 +69,7 @@ class UserTest < ActiveSupport::TestCase
   
   should "ensure owners are always active" do
     user = users(:duff)
-    community = Community.new(:name => "Whatever", :subdomain => "whatever")
+    community = Community.new(:name => "Whatever", :host => "whatever")
     user.community = community
     
     assert !user.active
