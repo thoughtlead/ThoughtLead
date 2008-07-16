@@ -29,3 +29,5 @@ ActionMailer::Base.smtp_settings = {
   :domain  => "tsi.local",
 }
 
+$app_host = 'thoughtleaddev.com'
+

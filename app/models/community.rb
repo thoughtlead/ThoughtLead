@@ -40,18 +40,22 @@ class Community < ActiveRecord::Base
   end
   
   def validate_host_restrictions
-    subdomain = self.host.split(".").first
-    if /[^a-zA-Z0-9\-]+/.match(subdomain)
+    # Disallow host name of $app_host, (a list of things).$app_domain, and empty.
+    reserved = %w(db app server test staging web ftp mail files www)
+    reserved.each do | each |
+      if(host == "#{each}.#{$app_host}")
+        errors.add :host, "is reserved"
+      end
+    end
+    
+    if /[^a-zA-Z0-9\-\.]+/.match(host)
       errors.add :host
-    elsif  /(db|app|server|test|staging|web|ftp|mail|files)[0-9]*$/.match(subdomain)
-      errors.add :host, "is reserved"
     elsif $app_host == host
       errors.add :host, "is reserved"
-    elsif "www." + $app_host == host
-      errors.add :host, "is reserved"
-    elsif /[0-9]+$/.match(subdomain)
+    elsif /[0-9]+$/.match(host)
       errors.add :host, "is reserved"
     end
+    
   end
   
 end
