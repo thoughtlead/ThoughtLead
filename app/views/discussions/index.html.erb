@@ -24,9 +24,11 @@
 </div>
 <div id="secondary">
     <ul class="actions first">
+        <% if logged_in? && (!current_community.discussions_are_premium? || logged_in_as_active?) %>
         <li class="action add">
             <span><%= link_to "Add a Discussion Topic", new_discussion_url %></span>
         </li>
+        <% end %>
         <% if logged_in_as_owner? %>
         <li class="action edit">
             <span><%= link_to "Edit Themes", themes_url %></span>
