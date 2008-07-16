@@ -77,6 +77,7 @@ Rails::Initializer.run do |config|
 end
 
 require RAILS_ROOT + '/lib/attachment_fu_windows_bug_fixes'
+require RAILS_ROOT + '/lib/strip_whitespace'
 
 Ultrasphinx::Search.excerpting_options = HashWithIndifferentAccess.new({
   :before_match => '<strong>',
