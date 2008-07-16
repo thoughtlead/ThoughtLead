@@ -1,5 +1,6 @@
 class DiscussionsController < ApplicationController
   
+  #TODO this could be incorporated into a refactored control_access where the controllers are responsible for is_premium and is_registered
   before_filter :login_required, :except => [ :index, :show]
   before_filter :community_is_active
   skip_before_filter :control_access, :only => [ :index ]
@@ -51,7 +52,10 @@ class DiscussionsController < ApplicationController
   private
   #bogus warning, this function is called by a method obtained from application.rb (ruby craziness!)
   def get_access_controlled_object
-    Discussion.find(params[:id]) if params[:id]
+    return Discussion.find(params[:id]) if params[:id]
+    #TODO this is bad, replace it with a refactored control_access function where the controller is responsible for is_premium and is_registered 
+    #(possibly using those functions from their models where appropriate)
+    return Discussion.new(:title => "", :body => "", :community => current_community) #make sure all other functions are access controlled as well (except skipped ones of course)
   end
     
 end
