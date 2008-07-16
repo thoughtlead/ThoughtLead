@@ -44,7 +44,7 @@ class DiscussionsControllerTest < ActionController::TestCase
   def new_request(discussion,user=nil)
     raise "The user isn't a User object" if user && user.class != User
     @request = ActionController::TestRequest.new
-    @request.host = discussion.community.host + ".test.com"
+    @request.host = discussion.community.host
     @request.session[:user] = user.nil? ? nil : user.id
   end
 end

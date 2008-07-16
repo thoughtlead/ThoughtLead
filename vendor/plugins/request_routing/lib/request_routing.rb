@@ -2,7 +2,7 @@ module ActionController
   module Routing
     class Route
       
-      TESTABLE_REQUEST_METHODS = [:is_client_domain, :subdomain, :domain, :method, :port, :remote_ip, 
+      TESTABLE_REQUEST_METHODS = [:is_client_domain, :domain, :method, :port, :remote_ip, 
       :content_type, :accepts, :request_uri, :protocol]
       
       def recognition_conditions
@@ -25,9 +25,8 @@ module ActionController
     class RouteSet
       def extract_request_environment(request)        
         { 
-          :is_client_domain => request.domain != $app_domain,
+          :is_client_domain => request.host != $app_host,
           :method => request.method,
-          :subdomain => request.subdomains * ".", 
           :domain => request.domain, 
           :port => request.port, 
           :remote_ip => request.remote_ip, 

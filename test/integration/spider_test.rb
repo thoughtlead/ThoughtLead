@@ -16,34 +16,34 @@ class SpiderTest < ActionController::IntegrationTest
     :ignore_forms => exclude_form_patterns)
     
     # testing community page, no login
-    get 'http://testing.whatever.com'
+    get 'http://testing.dev'
     assert_response :success
     spider(@response.body, '/',     :verbose => true,
     :ignore_urls => ['/login', %r{^.+logout}, %r{^.+delete.?}, %r{^.+/destroy.?}], 
     :ignore_forms => exclude_form_patterns)
     
     # testing community, registered user
-    get 'http://testing.whatever.com/login'
+    get 'http://testing.dev/login'
     assert_response :success
-    post 'http://testing.whatever.com/sessions', :login => 'test', :password => 'test'
+    post 'http://testing.dev/sessions', :login => 'test', :password => 'test'
     assert session[:user]
     assert_response :redirect
     follow_redirect!
-    get 'http://testing.whatever.com/'
-    spider(@response.body, 'http://testing.whatever.com/',
+    get 'http://testing.dev/'
+    spider(@response.body, 'http://testing.dev/',
     :verbose => true,
     :ignore_urls => ['/login', %r{^.*/categories/[0-9]+}, %r{^.+logout}, %r{^.+delete.?}, %r{^.+/destroy.?}], 
     :ignore_forms => exclude_form_patterns)
     
     # testing community, premium user
-    get 'http://testing.whatever.com/login'
+    get 'http://testing.dev/login'
     assert_response :success
-    post 'http://testing.whatever.com/sessions', :login => 'premium', :password => 'test'
+    post 'http://testing.dev/sessions', :login => 'premium', :password => 'test'
     assert session[:user]
     assert_response :redirect
     follow_redirect!
-    get 'http://testing.whatever.com/'
-    spider(@response.body, 'http://testing.whatever.com/',
+    get 'http://testing.dev/'
+    spider(@response.body, 'http://testing.dev/',
     :verbose => true,
     :ignore_urls => ['/login', %r{^.*/categories/[0-9]+}, %r{^.+logout}, %r{^.+delete.?}, %r{^.+/destroy.?}], 
     :ignore_forms => exclude_form_patterns)

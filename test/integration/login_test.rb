@@ -22,13 +22,13 @@ class LoginTest < ActionController::IntegrationTest
   end
   
   def test_unable_to_login_to_another_site
-    new_session('c1') do
+    new_session('c1.nokahuna.dev') do
       assert(login(:duff))
       assert(login(:alex))
       assert(!login(:daniel))
     end
     
-    new_session('c2') do
+    new_session('c2.nokahuna.dev') do
       assert(!login(:duff))
       assert(!login(:alex))
       assert(login(:daniel))

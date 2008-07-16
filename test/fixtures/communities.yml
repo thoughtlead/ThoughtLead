@@ -1,12 +1,12 @@
 c1:
-  host: c1
+  host: c1.nokahuna.dev
   name: C1
   owner: duff
   active: true
   spreedly_api_key: 
 
 c2:
-  host: c2
+  host: c2.nokahuna.dev
   name: C2
   owner: daniel
   active: true
@@ -14,7 +14,7 @@ c2:
   spreedly_api_key: 
 
 c3:
-  host: c3
+  host: c3.nokahuna.dev
   name: C3
   owner: sam
   active: true
@@ -22,7 +22,7 @@ c3:
   spreedly_api_key: 
  
 testing:
-  host: testing
+  host: testing.dev
   name: Test
   owner: test
   active: true
@@ -30,7 +30,7 @@ testing:
   spreedly_api_key: 
 
 watirtest:
-  host: watirtest
+  host: watirtest.localhost.com
   name: Test
   owner: admin
   active: true

@@ -53,7 +53,7 @@ class ActionController::IntegrationTest
     open_session do | session | 
       session.extend(BasicsDsl)
       session.extend(ThoughtLeadDsl)
-      session.host!("#{host}.nokahuna.dev")
+      session.host!(host)
       session.instance_eval(&block) if block
       session
     end 
@@ -78,7 +78,7 @@ module ActionController
   module Integration
     module Runner
       def reset!
-        @integration_session = new_session("c1")
+        @integration_session = new_session("c1.nokahuna.dev")
       end
     end
   end

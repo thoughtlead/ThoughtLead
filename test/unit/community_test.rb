@@ -22,7 +22,7 @@ class CommunityTest < ActiveSupport::TestCase
     reserved.each do | each |
       community.host = each
       assert !community.valid?, "#{each} should be reserved"
-      assert_equal(["Subdomain is reserved"], community.errors.full_messages, "#{each} message should be right")
+      assert_equal(["Host is reserved"], community.errors.full_messages, "#{each} message should be right")
     end
   
     unreserved = %w(wwwfine db34a www3123a app1233ba server112ab test12a staging12a web12a with-dash mail3a news3a ftp3a files3a)
@@ -31,11 +31,11 @@ class CommunityTest < ActiveSupport::TestCase
       assert community.valid?, "#{each} should be valid"
     end
   
-    with_invalid_chars = %w(ab% 32.21 `32` #212 aa_1b)
+    with_invalid_chars = %w(ab% `32` #212 aa_1b)
     with_invalid_chars.each do | each |
       community.host = each
       assert !community.valid?, "#{each} should be invalid"
-      assert_equal(["Subdomain is invalid"], community.errors.full_messages)
+      assert_equal(["Host is invalid"], community.errors.full_messages)
     end
   end
   

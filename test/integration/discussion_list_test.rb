@@ -11,7 +11,7 @@ class DiscussionListTest < ActionController::IntegrationTest
   end
   
   def test_discussion_for_all_themes
-    get "/discussions"
+    get "http://c1.nokahuna.dev/discussions"
     assert_response :success
     
     # Ensure no Theme name and description appear at the top of the list
@@ -20,7 +20,7 @@ class DiscussionListTest < ActionController::IntegrationTest
   end
   
   def test_discussion_for_one_theme
-    get "/discussions?theme=#{@c.id}"
+    get "http://c1.nokahuna.dev/discussions?theme=#{@c.id}"
     assert_response :success
    
     

@@ -23,4 +23,4 @@ config.action_mailer.raise_delivery_errors = false
 
 ENV['INLINEDIR'] = Rails.root + "/tmp" 
 
-$app_domain = 'thoughtlead.intranet.ternarysoftware.com'
+$app_host = 'thoughtlead.intranet.ternarysoftware.com'
