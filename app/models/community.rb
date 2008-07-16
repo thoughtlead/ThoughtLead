@@ -43,7 +43,11 @@ class Community < ActiveRecord::Base
     subdomain = self.host.split(".").first
     if /[^a-zA-Z0-9\-]+/.match(subdomain)
       errors.add :host
-    elsif  /(www|db|app|server|test|staging|web|ftp|mail|files)[0-9]*$/.match(subdomain)
+    elsif  /(db|app|server|test|staging|web|ftp|mail|files)[0-9]*$/.match(subdomain)
+      errors.add :host, "is reserved"
+    elsif $app_host == host
+      errors.add :host, "is reserved"
+    elsif "www." + $app_host == host
       errors.add :host, "is reserved"
     elsif /[0-9]+$/.match(subdomain)
       errors.add :host, "is reserved"
