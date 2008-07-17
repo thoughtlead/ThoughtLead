@@ -11,11 +11,11 @@ class ArticlesController < ApplicationController
   end
   
   def edit
-    @article = Article.find(params[:id])
+    @article = current_community.articles.find(params[:id])
   end
   
   def update
-    @article = Article.find_by_id(params[:id])
+    @article = current_community.articles.find_by_id(params[:id])
     @article.attributes = params[:article]
     @article.content.attributes = params[:content]
     
@@ -26,7 +26,7 @@ class ArticlesController < ApplicationController
   end
   
   def show
-    @article = Article.find(params[:id])
+    @article = current_community.articles.find(params[:id])
     owner_login_required if @article.content.draft? #is there a better home for me?
   end
   
@@ -48,7 +48,7 @@ class ArticlesController < ApplicationController
   end
   
   def destroy
-    @article = Article.find(params[:id])
+    @article = current_community.articles.find(params[:id])
     @article.destroy
     
     flash[:notice] = "Deleted the article named '#{@article}'"

@@ -5,3 +5,17 @@ about_cats:
 about_dogs:
     community: testing
     content: dogs
+
+#===== WATIRTEST =====
+
+premium:
+    community: watirtest
+    content: premium
+    
+registered:
+    community: watirtest
+    content: registered
+    
+public:
+    community: watirtest
+    content: public

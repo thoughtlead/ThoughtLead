@@ -27,13 +27,18 @@ tagged_1_draft:
 
 tagged_1_premium:
     chapter: tagged_1
-    chapter_position: 1
+    chapter_position: 2
     content: tagged_1_premium
     
 tagged_1_registered:
     chapter: tagged_1
-    chapter_position: 1
+    chapter_position: 3
     content: tagged_1_registered
+    
+tagged_1_public:
+    chapter: tagged_1
+    chapter_position: 4
+    content: tagged_1_public
     
 antitagged_1_draft:
     chapter: antitagged_1
@@ -42,10 +47,10 @@ antitagged_1_draft:
 
 antitagged_1_premium:
     chapter: antitagged_1
-    chapter_position: 1
+    chapter_position: 2
     content: antitagged_1_premium
     
 antitagged_1_registered:
     chapter: antitagged_1
-    chapter_position: 1
+    chapter_position: 3
     content: antitagged_1_registered

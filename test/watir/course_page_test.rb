@@ -8,7 +8,7 @@ class CoursesTabTest < WatirTestCase
 #    assert false
 #  end
   
-  def test_can_edit_course
+  def test_edit_course
     li = $ie.li(:text, /#{(courses :draft).title}/)
     #puts "\n\n" + li.text + "\n\n"
     assert li.text.include?((courses :draft).description) && li.text.include?("Draft") && !li.text.include?("Has Draft Content")
@@ -30,7 +30,7 @@ class CoursesTabTest < WatirTestCase
     assert li.text.include?("the edited course description") && (!li.text.include?("Draft") || li.text.include?("Has Draft Content"))
   end
   
-  def test_can_edit_chapters
+  def test_edit_chapters
     $ie.link(:text, (courses :draft).title).click
     $ie.link(:text, "Edit Chapters").click
     
@@ -66,6 +66,26 @@ class CoursesTabTest < WatirTestCase
     assert !($ie.span(:text, /AN EDITED CHAPTER/i).exist?)
     $ie.link(:text, /Return to Course Overview/).click
     assert !($ie.div(:id, "primary").div(:text, /AN EDITED CHAPTER/i).exist?)
+  end
+  
+  def test_delete_a_course
+    $ie.link(:text, (courses :draft).title).click
+    $ie.link(:text, "Delete this Course").click
+    assert !($ie.link(:text, (courses :draft).title).exist?)
+  end
+
+  def test_add_a_lesson
+    $ie.link(:text, (courses :draft).title).click
+    $ie.link(:text, /Add a Lesson/).click
+    $ie.text_field(:id, "content_title").set("a new lesson")
+    $ie.text_field(:id, "content_teaser").set("the new lesson teaser")
+    $ie.text_field(:id, "content_body").set("the new lesson body")
+    $ie.form(:id, "new_lesson").submit
+    assert $ie.h1(:text, "a new lesson").exist?
+    assert $ie.p(:text, "the new lesson teaser").exist?
+    assert $ie.div(:id, "lesson_body").text.include?("the new lesson body")
+    $ie.link(:text, /Return to Course Overview/).click
+    assert $ie.h2(:text, "a new lesson").exist?
   end
   
   private

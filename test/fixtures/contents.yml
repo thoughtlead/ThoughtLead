@@ -52,43 +52,80 @@ dogs:
 
 tagged_1_draft:
     title: tagged 1 draft title
+    teaser: tagged 1 draft teaser
     body: tagged 1 draft body
     draft: true
     premium: false
     registered: false
 
 tagged_1_premium:
-    title: tagged 1 draft title
-    body: tagged 1 draft body
+    title: tagged 1 premium title
+    teaser: tagged 1 premium teaser
+    body: tagged 1 premium body
     draft: false
     premium: true
     registered: false
 
 tagged_1_registered:
-    title: tagged 1 draft title
-    body: tagged 1 draft body
+    title: tagged 1 registered title
+    teaser: tagged 1 registered teaser
+    body: tagged 1 registered body
     draft: false
     premium: false
     registered: true
     
+tagged_1_public:
+    title: tagged 1 public title
+    teaser: tagged 1 public teaser
+    body: tagged 1 public body
+    draft: false
+    premium: false
+    registered: false
+
 antitagged_1_draft:
-    title: tagged 1 draft title
-    body: tagged 1 draft body
+    title: antitagged 1 draft title
+    teaser: antitagged 1 draft teaser
+    body: antitagged 1 draft body
     draft: true
     premium: false
     registered: false
 
 antitagged_1_premium:
-    title: tagged 1 draft title
-    body: tagged 1 draft body
+    title: antitagged 1 premium title
+    teaser: antitagged 1 premium teaser
+    body: antitagged 1 premium body
     draft: false
     premium: true
     registered: false
 
 antitagged_1_registered:
-    title: tagged 1 draft title
-    body: tagged 1 draft body
+    title: antitagged 1 registered title
+    teaser: antitagged 1 registered teaser
+    body: antitagged 1 registered body
     draft: false
     premium: false
     registered: true
     
+premium:
+    title: premium title
+    teaser: premium teaser
+    body: premium body
+    draft: false
+    premium: true
+    registered: false
+
+registered:
+    title: registered title
+    teaser: registered teaser
+    body: registered body
+    draft: false
+    premium: false
+    registered: true
+    
+public:
+    title: public title
+    teaser: public teaser
+    body: public body
+    draft: false
+    premium: false
+    registered: false
