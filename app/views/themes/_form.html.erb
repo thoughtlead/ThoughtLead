@@ -8,6 +8,6 @@
     <%= f.label :description, "Theme description" %>
     <%= f.text_area :description, :rows=>5 %>
 
-	  <%= submit_tag submit_text, :disable_with => "Saving theme..." %>
+	  <%= submit_tag submit_text, :disable_with => "Saving theme..." %><% unless submit_text == "Create" %>&nbsp;or&nbsp;<%= link_to "Cancel", themes_url %><% end %>
 	</p>  
 <% end %>

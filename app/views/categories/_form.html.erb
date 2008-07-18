@@ -5,6 +5,6 @@
   <p>
     <%= f.label :name, "Category" %>
     <%= f.text_field :name %>
-	<%= submit_tag submit_text, :disable_with => "Saving category..." %>
+	<%= submit_tag submit_text, :disable_with => "Saving category..." %><% unless submit_text == "Create" %>&nbsp;or&nbsp;<%= link_to "Cancel", categories_url %><% end %>
   </p>  
 <% end %>

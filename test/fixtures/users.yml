@@ -89,4 +89,11 @@ disabled:
   community: watirtest
   disabled: true
   
+expert:
+  login: expert
+  email: expert@example.com
+  salt: 9fb6693c00a354e88a1515f20cb76c3ff89c02a8
+  crypted_password: 734f71d1a4baa7f843817de1531293161f9ae0f2 #test
+  community: watirtest
+  expert: true    
   

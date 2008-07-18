@@ -11,3 +11,31 @@ lost_my_monkey:
     user: sam
     community: c3
     theme: monkeys
+    
+#===== WATIRTEST =====
+
+theme_1_discussion_1:
+    community: watirtest
+    title: title for discussion one for theme one
+    body: body for discussion one for theme one
+    theme: theme_1
+    user: admin
+    
+theme_2_discussion_1:
+    community: watirtest
+    title: title for discussion one for theme two
+    body: body for discussion one for theme two
+    theme: theme_2
+    user: admin
+    
+theme_none_discussion_1:
+    community: watirtest
+    title: title for discussion one for no theme
+    body: body for discussion one for no theme
+    user: admin
+    
+expert_discussion:
+    community: watirtest
+    title: title for expert discussion
+    body: body for expert discussion
+    user: expert

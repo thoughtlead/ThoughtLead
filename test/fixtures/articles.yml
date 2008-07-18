@@ -19,3 +19,22 @@ registered:
 public:
     community: watirtest
     content: public
+    
+category_1_2_article_1:
+    community: watirtest
+    content: category_1_2_article_1
+    categories: [category_1, category_2]
+    
+category_1_article_1:
+    community: watirtest
+    content: category_1_article_1
+    categories: [category_1]
+    
+category_2_article_1:
+    community: watirtest
+    content: category_2_article_1
+    categories: [category_2]
+    
+category_none_article_1:
+    community: watirtest
+    content: category_none_article_1

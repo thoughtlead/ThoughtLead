@@ -83,7 +83,7 @@ class CoursesTabTest < WatirTestCase
     $ie.form(:id, "new_lesson").submit
     assert $ie.h1(:text, "a new lesson").exist?
     assert $ie.p(:text, "the new lesson teaser").exist?
-    assert $ie.div(:id, "lesson_body").text.include?("the new lesson body")
+    assert $ie.div(:id, "content_body").text.include?("the new lesson body")
     $ie.link(:text, /Return to Course Overview/).click
     assert $ie.h2(:text, "a new lesson").exist?
   end

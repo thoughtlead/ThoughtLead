@@ -6,7 +6,7 @@
     <span class="author">by <%= link_to((@discussion.user.expert? ? "<img src=\"/images/star_small.png\" />&nbsp;" : "") + h(@discussion.user),@discussion.user) %></span>
     <span class="date_posted">&nbsp;|&nbsp;Posted on <%= @discussion.created_at.to_s(:month_day) %> 
       <% if !current_community.themes.empty? %>
-        in <%= link_to @discussion.theme ? @discussion.theme.to_s : "Uncategorized" %>
+        in <%= link_to (@discussion.theme ? @discussion.theme.to_s : "General"), (@discussion.theme ? discussions_url(:theme => @discussion.theme.id) : discussions_url) %>
       <% end %>
     </span>
     <span class="responses">&nbsp;|&nbsp;<%= pluralize(@discussion.responses.count, "Response") %></span>

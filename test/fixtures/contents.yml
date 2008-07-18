@@ -129,3 +129,23 @@ public:
     draft: false
     premium: false
     registered: false
+
+category_1_2_article_1:
+    title: title for article one for category one and two
+    teaser: teaser for article one for category one and two
+    body: body for article one for category one and two
+    
+category_1_article_1:
+    title: title for article one for category one
+    teaser: teaser for article one for category one
+    body: body for article one for category one
+    
+category_2_article_1:
+    title: title for article one for category two
+    teaser: teaser for article one for category two
+    body: body for article one for category two
+    
+category_none_article_1:
+    title: title for article one for no category
+    teaser: teaser for article one for no category
+    body: body for article one for no category
