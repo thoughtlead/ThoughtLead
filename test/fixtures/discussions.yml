@@ -39,3 +39,9 @@ expert_discussion:
     title: title for expert discussion
     body: body for expert discussion
     user: expert
+    
+disabled_user_discussion:
+    community: watirtest
+    title: title for disabled user discussion
+    body: body for disabled user discussion
+    user: disabled

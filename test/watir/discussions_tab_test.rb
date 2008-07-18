@@ -68,9 +68,19 @@ class DiscussionsTabTest < WatirTestCase
     assert $ie.link(:text, (discussions :theme_2_discussion_1).title).exist?
   end
   
-  def test_expert_status_display
+  def test_user_links
     link = $ie.link(:text, (users :expert).login)
     assert link.image(:src, /star/).exist?
+    link.click
+    assert $ie.h1(:text, /#{(users :expert).login}/).exist?
+    $ie.link(:text, "Logout").click
+    $ie.text_field(:id, "login").set((users :nonadmin).login)
+    $ie.text_field(:id, "password").set("test")    
+    $ie.form(:action, "/sessions").submit
+    $ie.link(:text, "Discussions").click
+    2.times do $ie.link(:text, (users :disabled).login).click end #It doesn't seem to click it once unless you tell it to click it twice???
+    $ie.wait #and why does it need a wait here???
+    assert_equal "The user \"#{(users :disabled).login}\" has been disabled.", $ie.div(:id, "flash").text
   end
 
 #  def test_theme_visibility
