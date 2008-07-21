@@ -41,8 +41,8 @@ class CoursesController < ApplicationController
   
   def destroy
     @course = current_community.courses.find(params[:id])
-    @course.destroy
     flash[:notice] = "Successfully deleted the course named '#{@course}'"
+    @course.destroy
     redirect_to courses_url
   end
   

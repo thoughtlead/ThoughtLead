@@ -43,9 +43,8 @@ class DiscussionsController < ApplicationController
   
   def destroy
     @discussion = current_community.discussions.find(params[:id])
-    @discussion.destroy
-    
     flash[:notice] = "Successfully deleted the discussion post."
+    @discussion.destroy    
     redirect_to discussions_url
   end
 

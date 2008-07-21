@@ -15,6 +15,7 @@ class LessonsController < ApplicationController
     @lesson = @chapter.lessons.build(params[:lesson])
     @lesson.content = Content.new(params[:content])
     @lesson.content.user = current_user
+    @lesson.content.lesson = @lesson
     
     return render(:action => :new) unless @lesson.content.save && @lesson.save
     
@@ -46,9 +47,8 @@ class LessonsController < ApplicationController
   
   def destroy
     @lesson = @chapter.lessons.find(params[:id])
-    @lesson.destroy
-    
     flash[:notice] = "Deleted the lesson named '#{@lesson}'"
+    @lesson.destroy    
     redirect_to @course
   end
   

@@ -30,10 +30,9 @@ class ThemesController < ApplicationController
   end
   
   def destroy
-    @theme = current_community.themes.find(params[:id])
-    
-    @theme.destroy
+    @theme = current_community.themes.find(params[:id])    
     flash[:notice] = "Successfully deleted the theme named '#{@theme}'"
+    @theme.destroy
     redirect_to themes_url
   end
   

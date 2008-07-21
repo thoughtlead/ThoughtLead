@@ -40,6 +40,7 @@ class ArticlesController < ApplicationController
     @article = current_community.articles.build(params[:article])
     @article.content = Content.new(params[:content])
     @article.content.user = current_user
+    @article.content.article = @article
     
     return render(:action => :new) unless @article.content.save && @article.save
     
@@ -49,9 +50,8 @@ class ArticlesController < ApplicationController
   
   def destroy
     @article = current_community.articles.find(params[:id])
-    @article.destroy
-    
     flash[:notice] = "Deleted the article named '#{@article}'"
+    @article.destroy    
     redirect_to library_url
   end
   

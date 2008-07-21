@@ -59,6 +59,6 @@ addNewCategory = function() {
 <% if mode == :new %>
 <%= submit_tag "Create this article" %>or <%= link_to "Cancel", library_url, :category => @category %>
 <% else %>
-<%= submit_tag "Save changes" %>or <%= link_to "Cancel", library_url, :category => @category %>
+<%= submit_tag "Save changes" %>or <%= link_to "Cancel", @article, :category => @category %>
 <% end %>
 <% end %>
