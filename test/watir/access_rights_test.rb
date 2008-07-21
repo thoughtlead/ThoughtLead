@@ -52,7 +52,7 @@ class AccessRightsTest < WatirTestCase
   end
   
   def test_article_access_rights
-    $ie.text_field(:id, "login").set((users :premium).login)
+    $ie.text_field(:id, "login").set((users :watir_premium).login)
     $ie.text_field(:id, "password").set("test")    
     $ie.form(:action, "/sessions").submit
     $ie.goto($COMMUNITY_URL + "library")

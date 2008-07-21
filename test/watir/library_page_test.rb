@@ -30,7 +30,7 @@ class LibraryPageTest < WatirTestCase
     
     li.link(:text,"Edit").click
     $ie.text_field(:id, "category_name").set("an edited category")
-    $ie.form(:id, "edit_category").submit
+    $ie.form(:id, /edit_category/).submit
 
     assert !($ie.li(:text, /a new category/).exist?)
     li = $ie.li(:text, /an edited category/)
