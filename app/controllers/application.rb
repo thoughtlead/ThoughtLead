@@ -8,6 +8,7 @@ class ApplicationController < ActionController::Base
   
   before_filter :login_from_cookie
   before_filter :control_access
+  before_filter :invalidate_return_to
   protect_from_forgery
   
   private

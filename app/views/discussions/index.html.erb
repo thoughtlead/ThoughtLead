@@ -39,8 +39,10 @@
     <ul class="themes">
         <h2>Themes</h2>
         <% current_community.themes.each do |theme| %>
+        <% if theme.discussions.count > 0 %>
         <% content_tag(:li, :class => current_class_for_theme(theme)) do %>
         <%= link_to theme, discussions_url(:theme => theme) %>
+        <% end %>
         <% end %>
         <% end %>
         <% if current_community.discussions.for_theme('nil').count > 0 %>

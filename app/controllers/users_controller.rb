@@ -4,10 +4,11 @@ class UsersController < ApplicationController
   before_filter :community_is_active
   before_filter :logged_in_as_owner?, :only => [ :disable, :reactivate]
   skip_before_filter :verify_authenticity_token, :only => :changed_on_spreedly
+  skip_before_filter :invalidate_return_to, :only => [:signup,:upgrade]
   before_filter :check_disabled
   before_filter :upgrade_login_check, :only => [:upgrade]
   
-  def signup
+  def signup    
     @user = User.new(params[:user])
     @user.community = current_community
     
@@ -101,7 +102,9 @@ class UsersController < ApplicationController
     Spreedly::Site.configure(current_community)
     site = Spreedly::Site.find(:one, :from => current_community.use_spreedly_production_site ? :production : :test)
     
-    redirect_to "https://spreedly.com/#{site.url_suffix}/subscribers/#{current_user.id}/subscribe/#{params[:selected_plan]}/#{current_user.login}?return_url=http:/#{request.host_with_port()}#{session[:return_to]}"
+    return_to = session[:return_to] ? session[:return_to] : community_home_url
+    session[:return_to] = nil
+    redirect_to "https://spreedly.com/#{site.url_suffix}/subscribers/#{current_user.id}/subscribe/#{params[:selected_plan]}/#{current_user.login}?return_url=http:/#{request.host_with_port()}#{return_to}"
   end
   
   def changed_on_spreedly
