@@ -5,6 +5,10 @@ class Chapter < ActiveRecord::Base
   has_many :lessons, :order => :chapter_position, :dependent => :destroy
   alias_attribute :to_s, :name
 
+  def community
+    course.community  
+  end
+  
   def draft_to_users?
     return self.draft? || self.course.draft_to_users?
   end

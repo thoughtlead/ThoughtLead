@@ -15,6 +15,12 @@ class Content < ActiveRecord::Base
   # Adding an association with the user's community so that we can filter on community
   is_indexed :fields => ['title', 'body', 'teaser', 'draft'], :include => [{:association_name => 'user', :field => 'community_id'}]
   
+  def community
+    return article.community unless article.nil?
+    return lesson.community unless lesson.nil?
+    return nil
+  end
+  
   def access_level
     return "Premium" if self.premium?
     return "Registered" if self.registered?

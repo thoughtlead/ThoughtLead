@@ -7,7 +7,7 @@ class User < ActiveRecord::Base
   validates_presence_of     :login, :email
   validates_presence_of     :password, :password_confirmation, :if => :password_required?
   validates_confirmation_of :password, :if => :password_required?
-  validates_uniqueness_of   :login, :email, :case_sensitive => false
+  validates_uniqueness_of   :login, :email, :case_sensitive => false, :scope => :community_id
   
   before_save :encrypt_password
   

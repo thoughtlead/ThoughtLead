@@ -84,4 +84,9 @@ module ActionController
   end
 end
 
-
+#TODO make this more test specific, it should work normally for watir tests for example
+class ActiveRecord::Base
+  def valid_community?  
+    true
+  end
+end

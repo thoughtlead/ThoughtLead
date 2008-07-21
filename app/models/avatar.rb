@@ -2,7 +2,10 @@ class Avatar < ActiveRecord::Base
   belongs_to      :user
   has_attachment  :content_type => :image, :storage => :file_system, :thumbnails => { :small => '48x48>', :medium => '64x64>', :large => '100x100>' }, :max_size => 1.megabytes, :processor => (Rails.env == 'staging') ? 'MiniMagick' : 'ImageScience'
   validates_as_attachment
-
+  
+  def community
+    user.community
+  end
 
   def attachment_attributes_valid?
     errors.add_to_base("Uploaded file is too large (25MB max).") if attachment_options[:size] && !attachment_options[:size].include?(send(:size))

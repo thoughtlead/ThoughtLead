@@ -4,6 +4,10 @@ class Lesson < ActiveRecord::Base
   
   acts_as_list :scope => :chapter, :column => :chapter_position
   
+  def community
+    chapter.community
+  end
+  
   def to_s
    (content && content.title) || ""
   end
