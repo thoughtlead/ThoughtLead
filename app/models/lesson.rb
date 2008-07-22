@@ -4,6 +4,22 @@ class Lesson < ActiveRecord::Base
   
   acts_as_list :scope => :chapter, :column => :chapter_position
   
+  def higher_item_visible_to(user)
+    lesson = self.higher_item
+    while lesson && !lesson.visible_to(user) do
+      lesson = lesson.higher_item
+    end
+    return lesson
+  end
+  
+  def lower_item_visible_to(user)
+    lesson = self.lower_item
+    while lesson && !lesson.visible_to(user) do
+      lesson = lesson.lower_item
+    end
+    return lesson
+  end
+  
   def community
     chapter.community
   end

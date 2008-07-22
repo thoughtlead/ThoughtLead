@@ -26,12 +26,12 @@
                 <ul>
                     <% unless @user.website_1.blank? %>
                     <li>
-                        <%= link_to @user.website_1, @user.website_1 %>
+                        <%= link_to @user.website_1, "http://" + @user.website_1 %>
                     </li>
                     <% end %>
                     <% unless @user.website_2.blank? %>
                     <li>
-                        <%= link_to @user.website_2, @user.website_2 %>
+                        <%= link_to @user.website_2, "http://" + @user.website_2 %>
                     </li>
                     <% end %>
                 </ul>

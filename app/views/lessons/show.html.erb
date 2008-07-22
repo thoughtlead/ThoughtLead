@@ -6,11 +6,11 @@
             <p><%= link_to "&#8592; Return to Course Overview", @lesson.chapter.course %></p>
   		<%= render :partial => '/contents/show_content', :locals => { :content => @lesson.content } %>
           <div class="lesson_navigation">
-            <% if @lesson.higher_item %>   
-              <p><small>PREVIOUS LESSON</small> &mdash; <%= link_to(h(@lesson.higher_item),[@lesson.higher_item.chapter.course,@lesson.higher_item.chapter,@lesson.higher_item]) %> </p>
+            <% if (lesson_higher_item = @lesson.higher_item_visible_to(current_user)) %>   
+              <p><small>PREVIOUS LESSON</small> &mdash; <%= link_to(h(lesson_higher_item),[lesson_higher_item.chapter.course,lesson_higher_item.chapter,lesson_higher_item]) %> </p>
             <% end %>
-            <% if @lesson.lower_item %>   
-              <p><small>NEXT LESSON</small> &mdash; <%= link_to(h(@lesson_lower_item),[@lesson.lower_item.chapter.course,@lesson.lower_item.chapter,@lesson.lower_item]) %> </p>
+            <% if (lesson_lower_item = @lesson.lower_item_visible_to(current_user)) %>   
+              <p><small>NEXT LESSON</small> &mdash; <%= link_to(h(lesson_lower_item),[lesson_lower_item.chapter.course,lesson_lower_item.chapter,lesson_lower_item]) %> </p>
             <% end %>
             <p><%= link_to "&#8592; Return to Course Overview", @lesson.chapter.course %></p>
           </div>
