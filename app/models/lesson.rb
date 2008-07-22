@@ -44,19 +44,4 @@ class Lesson < ActiveRecord::Base
     !self.draft_to_users? || user == self.chapter.course.community.owner
   end
   
-  def notes
-    s = []
-    if self.content.premium
-      s << "Premium"
-    end
-    if self.content.registered
-      s << "Registered"
-    end
-    if self.content.draft
-      s << "Draft"
-    end
-    return s * "; "
-  end
-  
-  
 end

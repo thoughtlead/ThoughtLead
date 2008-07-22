@@ -28,7 +28,7 @@
         </li>
       </ul>
 
-      	<% if !(s = @lesson.notes).blank? %>
+      	<% if !(s = content_notes(@lesson.content)).blank? %>
 			<p class="premium">
 				This lesson is: <%= s %>
 			</p>

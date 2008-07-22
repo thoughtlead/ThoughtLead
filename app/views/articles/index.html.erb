@@ -21,7 +21,7 @@
 	          <span class="meta_info">
     	        <% unless article.content.author.blank? %>by <strong><%= article.content.author %></strong> | <% end %><%= article.content.updated_at.to_s(:day_month_year) %>
         	  </span>
-			  <span style="color:red"><%= article.notes %></span><br/> 
+			  <span style="color:red"><%= content_notes(article.content) %></span><br/> 
 	          <p><%= teaser_format(article.content.teaser) %></p><br/>
 			  <% attachments_string = article.content.display_attachments %>
 			  <% unless attachments_string.blank? %>Attachments:&nbsp;<%= attachments_string %><% end %>

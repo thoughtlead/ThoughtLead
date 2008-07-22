@@ -20,7 +20,7 @@
 	          <span class="meta_info">
     	        <% unless lesson.content.author.blank? %>by <strong><%= lesson.content.author %></strong> | <% end %><%= lesson.content.updated_at.to_s(:day_month_year) %>
         	  </span>
-			  <span style="color:red"><%= lesson.notes %></span><br/> 
+			  <span style="color:red"><%= content_notes(lesson.content) %></span><br/> 
 	          <p><%= teaser_format(lesson.content.teaser) %></p>
 	        </li>
 			<% end %>

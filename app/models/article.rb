@@ -43,20 +43,6 @@ class Article < ActiveRecord::Base
     { :include=>:categories, :conditions => ({ 'categories.id' => (category_id == 'nil' || category_id == '') ? nil : category_id } if category_id) } 
   }
   
-  def notes
-    s = []
-    if self.content.premium
-      s << "Premium"
-    end
-    if self.content.registered
-      s << "Registered"
-    end
-    if self.content.draft
-      s << "Draft"
-    end
-    return s * "; "
-  end
-  
   private
   
   def update_new_categories()

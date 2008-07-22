@@ -15,7 +15,7 @@ class User < ActiveRecord::Base
   has_many    :courses
   has_one     :avatar, :dependent => :destroy
   
-  is_indexed :fields => ['about', 'interests', 'display_name', 'location', 'zipcode', 'community_id']
+  is_indexed :fields => ['login','about', 'interests', 'display_name', 'location', 'zipcode', 'community_id']
   
   def is_premium?
     return false
@@ -53,7 +53,6 @@ class User < ActiveRecord::Base
     save(false)
   end
   
-  #eww, html tags in the model... clean it up if there is a problem
   def to_s
     display_name
   end

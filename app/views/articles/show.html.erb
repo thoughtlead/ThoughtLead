@@ -19,7 +19,7 @@
         </li>
       </ul>
 
-      	<% if !(s = @article.notes).blank? %>
+      	<% if !(s = content_notes(@article.content)).blank? %>
 			<p class="premium">
 				This article is: <%= s %>
 			</p>

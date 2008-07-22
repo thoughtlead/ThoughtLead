@@ -10,10 +10,24 @@ module ApplicationHelper
     if course.contains_premium_visible_to(current_user)
       s << "Has Premium Content"
     end
-    if course.contains_registered_visible_to(current_user)
+    if logged_in_as_owner? && course.contains_registered_visible_to(current_user)
       s << "Has Registered Content"
     end
     return s * "; "
+  end
+  
+  def content_notes(content)
+    s = []
+    if content.premium
+      s << "Premium"
+    end
+    if logged_in_as_owner? && content.registered
+      s << "Registered"
+    end
+    if content.draft
+      s << "Draft"
+    end
+    return s * "; "    
   end
     
   def define_js_function(function_name, &block)
