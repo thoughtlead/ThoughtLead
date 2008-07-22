@@ -44,4 +44,8 @@ class Lesson < ActiveRecord::Base
     !self.draft_to_users? || user == self.chapter.course.community.owner
   end
   
+  def teaser_text
+    self.content.teaser_text
+  end
+  
 end

@@ -43,6 +43,10 @@ class Article < ActiveRecord::Base
     { :include=>:categories, :conditions => ({ 'categories.id' => (category_id == 'nil' || category_id == '') ? nil : category_id } if category_id) } 
   }
   
+  def teaser_text
+    self.content.teaser_text
+  end  
+  
   private
   
   def update_new_categories()
@@ -58,6 +62,5 @@ class Article < ActiveRecord::Base
       end
     end
   end
-  
   
 end
