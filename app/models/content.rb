@@ -75,7 +75,7 @@ class Content < ActiveRecord::Base
   end
   
   def teaser_text
-    self.teaser + "<br/>" + self.body.slice(0,100);
+    self.teaser + "<br/>" + self.body.slice(0,300) + "...";
   end
   
   private
