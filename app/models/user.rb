@@ -73,7 +73,7 @@ class User < ActiveRecord::Base
   
   def user_avatar=(it)  
     the_avatar = self.avatar || Avatar.new
-    the_avatar.user = self;
+    the_avatar.user = self
     the_avatar.uploaded_data = it
     self.avatar = the_avatar unless it.to_s.blank?  
   end
