@@ -1,10 +1,16 @@
 class Avatar < ActiveRecord::Base
   belongs_to      :user
-  has_attachment  :content_type => :image, :storage => :file_system, :thumbnails => { :small => '48x48>', :medium => '64x64>', :large => '100x100>' }, :max_size => 1.megabytes, :processor => (Rails.env == 'staging') ? 'MiniMagick' : 'ImageScience'
+  has_attachment  :content_type => :image, :storage => :file_system, :thumbnails => { :small => '48x48>', :medium => '64x64>', :large => '100x100>' }, :max_size => 1.megabytes, :processor => (Rails.env == 'staging' || Rails.env == 'development') ? 'MiniMagick' : 'ImageScience'
   validates_as_attachment
   
+  def after_initialize
+    if new_record? && !parent_id.nil?
+      self.user = Avatar.find_by_id(parent_id).user      
+    end
+  end
+  
   def community
-    user.community
+    user.community if user
   end
 
   def attachment_attributes_valid?
