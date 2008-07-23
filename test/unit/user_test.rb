@@ -86,13 +86,13 @@ class UserTest < ActiveSupport::TestCase
     assert user.active, "Owners should be active"
   end
   
-  should "display name" do
+  should "have the correct name displayed" do
     user = User.new
     assert_nil(user.display_name)
     user.login = "Freddy"
-    assert_equal("Freddy", user.display_name)
+    assert_equal("Freddy", user.to_s)
     user.display_name = "MySuper Display Name"
-    assert_equal("MySuper Display Name", user.display_name)
+    assert_equal("MySuper Display Name", user.to_s)
   end
   
   
