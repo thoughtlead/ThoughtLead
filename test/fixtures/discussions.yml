@@ -40,6 +40,12 @@ expert_discussion:
     body: body for expert discussion
     user: expert
     
+premium_user_discussion:
+    community: watirtest
+    title: title for premium user discussion
+    body: body for premium user discussion
+    user: watir_premium
+
 disabled_user_discussion:
     community: watirtest
     title: title for disabled user discussion

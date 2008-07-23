@@ -8,15 +8,33 @@ class DiscussionsTabTest < WatirTestCase
 #    assert false
 #  end
   
-  def test_add_a_discussion_topic
+  def test_add_a_discussion_topic_to_general_theme
     $ie.link(:text, /Add a Discussion Topic/).click
     $ie.text_field(:id, "discussion_title").set("a new discussion")
     $ie.text_field(:id, "discussion_body").set("the new discussion body")
     $ie.form(:id, "new_discussion").submit
     assert $ie.h1(:text, "a new discussion").exist?
     assert $ie.p(:text, "the new discussion body").exist?
+    assert $ie.link(:text, "General").exist?
     $ie.link(:text, /Return to Discussions/).click
     assert $ie.link(:text, "a new discussion").exist?
+    $ie.link(:text, "General").click
+    assert $ie.link(:text, "a new discussion").exist?    
+  end
+  
+  def test_add_a_discussion_topic_to_a_theme
+    $ie.link(:text, /Add a Discussion Topic/).click
+    $ie.text_field(:id, "discussion_title").set("a new discussion")
+    $ie.text_field(:id, "discussion_body").set("the new discussion body")
+    $ie.select_list(:id, "discussion_theme_id").select((themes :empty).name)
+    $ie.form(:id, "new_discussion").submit
+    assert $ie.h1(:text, "a new discussion").exist?
+    assert $ie.p(:text, "the new discussion body").exist?
+    assert $ie.link(:text, (themes :empty).name).exist?
+    $ie.link(:text, /Return to Discussions/).click
+    assert $ie.link(:text, "a new discussion").exist?
+    $ie.link(:text, (themes :empty).name).click
+    assert $ie.link(:text, "a new discussion").exist?    
   end
   
   def test_edit_themes
@@ -83,11 +101,11 @@ class DiscussionsTabTest < WatirTestCase
     assert_equal "The user \"#{(users :disabled).login}\" has been disabled.", $ie.div(:id, "flash").text
   end
 
-#  def test_theme_visibility
-#    assert !($ie.link(:text,(themes :empty).name).exist?)
-#    $ie.link(:text,"Edit Categories").click
-#    assert $ie.li(:text, /#{(themes :empty).name}/).exist?
-#  end
+  def test_theme_visibility
+    assert !($ie.link(:text,(themes :empty).name).exist?)
+    $ie.link(:text,"Edit Themes").click
+    assert $ie.li(:text, /#{(themes :empty).name}/).exist?
+  end
   
 
   private
