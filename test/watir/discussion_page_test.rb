@@ -1,6 +1,6 @@
 require File.dirname(__FILE__) + '/watir_test_case'
 
-class DiscussionsTabTest < WatirTestCase
+class DiscussionPageTest < WatirTestCase
   self.use_transactional_fixtures = false
   fixtures :users, :communities, :discussions, :themes, :responses
 
