@@ -1,12 +1,17 @@
 class ActiveRecord::Base
-  before_save :valid_community?
+  before_validation :valid_community?
   
   class << self
     def current_community= (cc)
+      return if defined? @@always_valid && @@always_valid
       @@current_community = cc
     end
     def current_community
       @@current_community if defined? @@current_community
+    end
+    def current_community_always_valid(bool)
+      @@always_valid = bool
+      @@current_community = (bool ? :valid : nil)
     end
   end
   
@@ -24,6 +29,7 @@ class ActiveRecord::Base
   private
   
   def valid_community?
+    return true if self.class.current_community == :valid
     #TODO Should e-mail really be exluded from this?  Why is e-mail even an active record model? Does it ever get saved?
     return true if self.class == Community || self.class == Mailer || self.class == Email
     return self.class.current_community == self.community if defined? self.community unless self.class.current_community.nil?

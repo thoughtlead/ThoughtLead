@@ -74,6 +74,10 @@ class Content < ActiveRecord::Base
     return strings * ", "
   end
   
+  def teaser_text
+    self.teaser + "<br/>" + self.body.slice(0,300) + "...";
+  end
+  
   private
   
   def remove_old_embedded_media

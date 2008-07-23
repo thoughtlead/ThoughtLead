@@ -33,6 +33,7 @@ class CommunityHostNameTest < WatirTestCase
     $ie.text_field(:id, "user_password_confirmation").set("admin password")    
     $ie.text_field(:id, "community_host").set("newcommunity.com")
     $ie.form(:id, "new_community").submit
+    #TODO assert gone to spreedly???
     c = Community.find_by_host("newcommunity.com")
     c.active = true
     c.save

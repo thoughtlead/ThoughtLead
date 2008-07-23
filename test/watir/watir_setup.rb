@@ -10,7 +10,7 @@ require 'webrick'
 require 'webrick_server'
 
 $PORT = '3021'
-$BASE_URL = 'http://localhost:' + $PORT + '/'
+$BASE_URL = 'http://localhost.com:' + $PORT + '/'
 $COMMUNITY_URL = 'http://watirtest.localhost.com:' + $PORT + '/'
 #$USER_PASSWORD = 'xxx'
 #$USER = User.new {|u|

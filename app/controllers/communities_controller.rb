@@ -19,6 +19,7 @@ class CommunitiesController < ApplicationController
   end
   
   def create
+    ActiveRecord::Base.current_community = :valid
     @user = User.new(params[:user])
     @community = Community.new(params[:community])
 
@@ -32,6 +33,8 @@ class CommunitiesController < ApplicationController
     Mailer.deliver_community_created(@community, community_dashboard_url(@community))
     
     flash[:notice] = "Successfully created your community."
+    ActiveRecord::Base.current_community = @community    
+    #TODO this is broken for local machines as it does not include the port
     redirect_to community_login_url(@community)
   end
   
