@@ -16,7 +16,7 @@
     <div class="discussion_body">
         <%= textilize(@discussion.body) %>
     </div>
-    <h2><%= pluralize(@discussion.responses.count, "Response") %>so far</h2>
+    <h2><%= pluralize(@discussion.responses.count, "Response") %></h2>
     <ol class="comments">
         <% for response in @discussion.responses %>
         <li class="comments">

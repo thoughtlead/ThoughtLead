@@ -6,6 +6,7 @@ class ResponsesController < ApplicationController
     @discussion = current_community.discussions.find(params[:discussion_id])
     @discussion_response = Response.new(params[:response])
     @discussion_response.user = current_user
+    @discussion_response.discussion = @discussion
     
     return render(:template => 'discussions/show') unless @discussion_response.valid?
     

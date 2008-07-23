@@ -7,7 +7,7 @@ class Response < ActiveRecord::Base
   is_indexed :fields => ['body'], :include => [{:association_name => 'discussion', :field => 'community_id'}]
   
   def community
-    discussion.community
+    discussion.community if discussion
   end
   
   def is_premium?
