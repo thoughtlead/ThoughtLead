@@ -5,7 +5,7 @@
     <li>
         Discussion: <%= link_to h(discussion), discussion %>
         <br/>
-        <%= discussion.body -%>
+        <%=h(discussion.body)-%>
         <br/>
         <% if @responses_by_discussion_id[discussion.id] -%>
         <ul>

@@ -1,6 +1,6 @@
 class Lesson < ActiveRecord::Base
   belongs_to :chapter
-  belongs_to :content
+  belongs_to :content, :dependent => :destroy
   
   acts_as_list :scope => :chapter, :column => :chapter_position
   

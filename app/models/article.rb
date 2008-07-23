@@ -1,6 +1,6 @@
 class Article < ActiveRecord::Base
   has_and_belongs_to_many :categories, :join_table=>'categorizations'
-  belongs_to :content
+  belongs_to :content, :dependent => :destroy
   belongs_to :community
   before_save :update_new_categories
   

@@ -85,9 +85,9 @@ Ultrasphinx::Search.excerpting_options = HashWithIndifferentAccess.new({
   :before_match => '<strong>',
   :after_match => '</strong>',
   :chunk_separator => "...",
-  :limit => 256,
+  :limit => 128,
   :around => 3,
-  :content_methods => [['title', 'display_name'], ['body', 'description', 'content', 'about'], ['interests'], ['location'], ['zipcode']] # The first responding method in each group for each record will be excerpted.
+  :content_methods => [['title', 'display_name'], ['login'], ['body', 'description', 'content', 'about'], ['teaser'], ['interests'], ['location'], ['zipcode']] # The first responding method in each group for each record will be excerpted.
 })
   
 Ultrasphinx::Search.query_defaults = HashWithIndifferentAccess.new({
