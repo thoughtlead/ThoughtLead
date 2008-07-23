@@ -22,7 +22,9 @@ class DisabledUserTest < WatirTestCase
     # ... and reactivate dude
     $ie.link(:text, "People").click
     $ie.link(:text, (users :disabled).login).click
+    assert !$ie.link(:text, "Disable this User").exist?
     $ie.link(:text, "Reactivate this User").click
+    assert $ie.link(:text, "Disable this User").exist?
     $ie.link(:text, "Logout").click
     
     #Try again as now un-disabled dude
@@ -40,7 +42,9 @@ class DisabledUserTest < WatirTestCase
     # ... and redisable dude
     $ie.link(:text, "People").click
     $ie.link(:text, (users :disabled).login ).click
+    assert !$ie.link(:text, "Reactivate this User").exist?
     $ie.link(:text, "Disable this User").click
+    assert $ie.link(:text, "Reactivate this User").exist?
     $ie.link(:text, "Logout").click
     
     # Try to log in as disabled dude

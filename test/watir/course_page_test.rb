@@ -1,6 +1,6 @@
 require File.dirname(__FILE__) + '/watir_test_case'
 
-class CoursesTabTest < WatirTestCase
+class CoursePageTest < WatirTestCase
   self.use_transactional_fixtures = false
   fixtures :users, :courses, :communities, :lessons, :chapters
 
