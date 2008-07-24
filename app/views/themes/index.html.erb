@@ -8,7 +8,7 @@
     <% for theme in current_community.themes %>
       <li>
         <%=h theme %>
-        <%= link_to "Delete", theme, :method => :delete, :confirm => "Are you sure you'd like to delete this theme?  It's posts will no longer be categorized.", :class => "delete" %>
+        <%= link_to "Delete", theme, :method => :delete, :confirm => "Are you sure you'd like to delete this theme?  Its posts will no longer be categorized.", :class => "delete" %>
         <%= link_to "Edit", edit_theme_url(theme), :class => "edit" %>
       </li>
     <% end %>
