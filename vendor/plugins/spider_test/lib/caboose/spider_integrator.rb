@@ -308,7 +308,6 @@ module Caboose::SpiderIntegrator
     unless dest =~ %r{^(mailto:|#|&#)} 
       dest = dest.split('#')[0] if dest.index("#") # don't want page anchors
       @links_to_visit << Caboose::SpiderIntegrator::Link.new( dest, source ) if dest.any? # could be empty, make sure there's no empty links queueing
-      puts ("visiting #{dest}")
     end
   end
 

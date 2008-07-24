@@ -5,7 +5,7 @@ class Attachment < ActiveRecord::Base
   validates_as_attachment
   
   def community
-    content.community  
+    content.community if content
   end
   
   def attachment_attributes_valid?

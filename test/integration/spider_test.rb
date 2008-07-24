@@ -11,14 +11,16 @@ class SpiderTest < ActionController::IntegrationTest
     # splash page, no login
     get '/'
     assert_response :success
-    spider(@response.body, '/',     :verbose => true,
+    spider(@response.body, '/',     
+    :verbose => false,
     :ignore_urls => ['/login', %r{^.+logout}, %r{^.+delete.?}, %r{^.+/destroy.?}], 
     :ignore_forms => exclude_form_patterns)
     
     # testing community page, no login
     get 'http://testing.dev'
     assert_response :success
-    spider(@response.body, '/',     :verbose => true,
+    spider(@response.body, '/',     
+    :verbose => false,
     :ignore_urls => ['/login', %r{^.+logout}, %r{^.+delete.?}, %r{^.+/destroy.?}], 
     :ignore_forms => exclude_form_patterns)
     
@@ -31,7 +33,7 @@ class SpiderTest < ActionController::IntegrationTest
     follow_redirect!
     get 'http://testing.dev/'
     spider(@response.body, 'http://testing.dev/',
-    :verbose => true,
+    :verbose => false,
     :ignore_urls => ['/login', %r{^.*/categories/[0-9]+}, %r{^.+logout}, %r{^.+delete.?}, %r{^.+/destroy.?}], 
     :ignore_forms => exclude_form_patterns)
     
@@ -44,7 +46,7 @@ class SpiderTest < ActionController::IntegrationTest
     follow_redirect!
     get 'http://testing.dev/'
     spider(@response.body, 'http://testing.dev/',
-    :verbose => true,
+    :verbose => false,
     :ignore_urls => ['/login', %r{^.*/categories/[0-9]+}, %r{^.+logout}, %r{^.+delete.?}, %r{^.+/destroy.?}], 
     :ignore_forms => exclude_form_patterns)
   end

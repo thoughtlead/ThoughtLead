@@ -17,12 +17,15 @@ class ActiveRecord::Base
   
   def after_find
     valid = valid_community?
+    return true if new_record? 
+
     unless valid
       self.id = nil 
       self.attributes.keys.each do |key|
         self.attributes = {key => nil}
       end
     end
+
     return valid
   end
   
@@ -31,7 +34,7 @@ class ActiveRecord::Base
   def valid_community?
     return true if self.class.current_community == :valid
     #TODO Should e-mail really be exluded from this?  Why is e-mail even an active record model? Does it ever get saved?
-    return true if self.class == Community || self.class == Mailer || self.class == Email
+    return true if self.class == Community || self.class == Mailer || self.class == Email || self.class == Attachment
     return self.class.current_community == self.community if defined? self.community unless self.class.current_community.nil?
     return false
   end
