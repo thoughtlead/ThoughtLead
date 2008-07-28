@@ -11,7 +11,7 @@
             </span>
             <h2 class="grouped"><%= link_to(h(discussion),discussion) %></h2>
             <p>
-            <%=h truncate(discussion.body, 500) %><%= link_to('Continue reading &hellip;',discussion) %></a>
+            <%=h truncate(discussion.body, 500) %>&nbsp;<%= link_to('Continue reading &hellip;',discussion) %></a>
         </p>
         <div class="discussion_info meta_info">
             <span class="author">by <%= link_to((discussion.user.expert? ? "<img src=\"/images/star_small.png\" />&nbsp;" : "") + h(discussion.user),discussion.user) %></span>
@@ -24,7 +24,7 @@
 </div>
 <div id="secondary">
     <ul class="actions first">
-        <% if logged_in? && (!current_community.discussions_are_premium? || logged_in_as_active?) %>
+        <% if current_user_can_post? %>
         <li class="action add">
             <span><%= link_to "Add a Discussion Topic", new_discussion_url %></span>
         </li>

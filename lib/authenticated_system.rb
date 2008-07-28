@@ -12,6 +12,10 @@ module AuthenticatedSystem
     logged_in? && current_user.active?
   end  
   
+  def current_user_can_post?
+    return logged_in? && (!current_community.discussions_are_premium? || logged_in_as_active? || logged_in_as_owner?)
+  end
+
   def current_user
     @current_user ||= (session[:user] && User.find_by_id(session[:user])) || :false
   end
@@ -71,7 +75,7 @@ module AuthenticatedSystem
   end
   
   def self.included(base)
-    base.send :helper_method, :current_user, :logged_in?, :logged_in_as_owner?, :logged_in_as_active?
+    base.send :helper_method, :current_user, :logged_in?, :logged_in_as_owner?, :logged_in_as_active?, :current_user_can_post?
   end
   
   def login_from_cookie
