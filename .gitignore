@@ -14,3 +14,4 @@ db/development_snapshot*
 .mysql
 deploy_history.txt
 config/ultrasphinx/*.conf
+watir_test_results

@@ -1,4 +1,5 @@
 require File.dirname(__FILE__) + '/watir_test_case'
+require 'watir\contrib\enabled_popup'
 
 class CoursePageTest < WatirTestCase
   self.use_transactional_fixtures = false
@@ -62,7 +63,9 @@ class CoursePageTest < WatirTestCase
     assert !($ie.span(:text, /A NEW CHAPTER/i).exist?)
     div = $ie.span(:text, /AN EDITED CHAPTER/i).parent
     #puts "\n\n" + div.text + "\n\n"
-    div.link(:text,"Delete").click
+    div.link(:text,"Delete").click_no_wait
+    startClicker("OK", 7)
+    
     assert !($ie.span(:text, /AN EDITED CHAPTER/i).exist?)
     $ie.link(:text, /Return to Course Overview/).click
     assert !($ie.div(:id, "primary").div(:text, /AN EDITED CHAPTER/i).exist?)
@@ -70,7 +73,9 @@ class CoursePageTest < WatirTestCase
   
   def test_delete_a_course
     $ie.link(:text, (courses :draft).title).click
-    $ie.link(:text, "Delete this Course").click
+    $ie.link(:text, "Delete this Course").click_no_wait
+    startClicker("OK", 7)    
+    
     assert !($ie.link(:text, (courses :draft).title).exist?)
   end
 

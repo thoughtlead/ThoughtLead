@@ -23,7 +23,8 @@ class DisabledUserTest < WatirTestCase
     $ie.link(:text, "People").click
     $ie.link(:text, (users :disabled).login).click
     assert !$ie.link(:text, "Disable this User").exist?
-    $ie.link(:text, "Reactivate this User").click
+    $ie.link(:text, "Reactivate this User").click_no_wait
+    startClicker("OK", 7)
     assert $ie.link(:text, "Disable this User").exist?
     $ie.link(:text, "Logout").click
     
@@ -43,7 +44,8 @@ class DisabledUserTest < WatirTestCase
     $ie.link(:text, "People").click
     $ie.link(:text, (users :disabled).login ).click
     assert !$ie.link(:text, "Reactivate this User").exist?
-    $ie.link(:text, "Disable this User").click
+    $ie.link(:text, "Disable this User").click_no_wait
+    startClicker("OK", 7)
     assert $ie.link(:text, "Reactivate this User").exist?
     $ie.link(:text, "Logout").click
     

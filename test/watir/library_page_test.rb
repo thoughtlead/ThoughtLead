@@ -36,7 +36,8 @@ class LibraryPageTest < WatirTestCase
     li = $ie.li(:text, /an edited category/)
     #puts "\n\n" + li.text + "\n\n"
 
-    li.link(:text,"Delete").click
+    li.link(:text,"Delete").click_no_wait
+    startClicker("OK", 7)
     assert !($ie.li(:text, /an edited category/).exist?)
   end
 

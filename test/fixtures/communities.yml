@@ -34,4 +34,5 @@ watirtest:
   name: Test
   owner: admin
   active: true
+  discussion_accessibility: 1
   spreedly_api_key: 

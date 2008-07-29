@@ -50,13 +50,16 @@ class DiscussionPageTest < WatirTestCase
   
   def test_responses_added_in_correct_order
     response_text = "This is a new response!"
-    $ie.link(:text, (discussions :expert_discussion).title).click
+    $ie.link(:text, (discussions :response_order_discussion).title).click
     $ie.text_field(:id, "response_body").set("#{response_text}1")    
     $ie.button(:value, /Post this response/).click
     $ie.text_field(:id, "response_body").set("#{response_text}2")    
     $ie.button(:value, /Post this response/).click
+    responses = $ie.divs.find_all{|div| div.class_name == 'comment_body'}
     
-    responses = $ie.divs().length.find_all()
+    assert_equal 2, responses.length
+    assert_equal "#{response_text}1", responses[0].text
+    assert_equal "#{response_text}2", responses[1].text
   end  
   
   private

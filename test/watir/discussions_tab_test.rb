@@ -55,7 +55,8 @@ class DiscussionsTabTest < WatirTestCase
     li = $ie.li(:text, /an edited theme/)
     #puts "\n\n" + li.text + "\n\n"
 
-    li.link(:text,"Delete").click
+    li.link(:text,"Delete").click_no_wait
+    startClicker("OK", 7)
     assert !($ie.li(:text, /an edited theme/).exist?)
   end
 

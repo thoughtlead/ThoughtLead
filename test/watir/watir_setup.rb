@@ -6,6 +6,7 @@ END {
 require File.dirname(__FILE__) + '/../test_helper'
 require 'dispatcher'
 require 'watir'
+require 'mongrel'
 require 'webrick'
 require 'webrick_server'
 
@@ -25,33 +26,33 @@ $COMMUNITY_URL = 'http://watirtest.localhost.com:' + $PORT + '/'
 #end
 
 def start_test_webrick
-    options = {
-      :port        => $PORT,
-      :ip          => "0.0.0.0",
-      :environment => "test",
-      :server_root => File.expand_path(RAILS_ROOT + "/public/"),
-      :working_directory => File.expand_path(RAILS_ROOT),
-      :server_type => WEBrick::SimpleServer
-    }
-
-    params = { :Port        => options[:port].to_i,
-               :ServerType  => options[:server_type],
-               :BindAddress => options[:ip],
-               :AccessLog   => [] }
-
-    $test_server = WEBrick::HTTPServer.new(params)
-    $test_server.mount('/', DispatchServlet, options)
-
-    trap("INT") { $test_server.shutdown }
-
-    Thread.new do
-      $test_server.start
-    end
+  options = {
+    :port        => $PORT,
+    :ip          => "0.0.0.0",
+    :environment => "test",
+    :server_root => File.expand_path(RAILS_ROOT + "/public/"),
+    :working_directory => File.expand_path(RAILS_ROOT),
+    :server_type => WEBrick::SimpleServer
+  }
+  
+  params = { :Port        => options[:port].to_i,
+    :ServerType  => options[:server_type],
+    :BindAddress => options[:ip],
+    :AccessLog   => [] }
+  
+  $test_server = WEBrick::HTTPServer.new(params)
+  $test_server.mount('/', DispatchServlet, options)
+  
+  trap("INT") { $test_server.shutdown }
+  
+  Thread.new do
+    $test_server.start
+  end
 end
 
 def start_and_setup_ie
   $ie = Watir::IE.new
-  $ie.set_fast_speed
+  $ie.speed = :fast
   # login
   # english_locale      
 end

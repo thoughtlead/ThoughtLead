@@ -60,7 +60,7 @@ class CoursesTabTest < WatirTestCase
     $ie.link(:text, "Courses").click    
     li = $ie.li(:text, /#{(courses :tagged).title}/)
     #puts "\n\n" + li.text + "\n\n"
-    assert li.text.include?("Has Premium Content") && li.text.include?("Has Registered Content") && !li.text.include?("Has Draft Content")
+    assert li.text.include?("Has Premium Content") && !li.text.include?("Has Registered Content") && !li.text.include?("Has Draft Content")
   end
   
   private

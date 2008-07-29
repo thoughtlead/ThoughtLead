@@ -51,3 +51,9 @@ disabled_user_discussion:
     title: title for disabled user discussion
     body: body for disabled user discussion
     user: disabled
+    
+response_order_discussion:
+    community: watirtest
+    title: title for response_order_discussion
+    body: body for response_order_discussion
+    user: admin
