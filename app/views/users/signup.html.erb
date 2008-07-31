@@ -1,39 +1,49 @@
-<div id="primary">
-  <h1><%= @page_title = "Signup" %></h1>
+<% @current_tab = :People %>
+<div id="main_content">
+	<div class="content_bar" id="top">
+		<div class="breadcrumbs">
+			<p>Jump to:</p>
+			<ul>
+				<li class="first"><a href="#">People</a></li>
+			</ul>
+		</div>
+	</div>
+	<h2><%= @page_title = "Signup" %></h2>
 
-  <% form_for :user, @user, :url => signup_url do | f | -%>
-    <%= f.error_messages %>
-    
-    <p>
-      <%= f.label :"Select a Username" %>
-      <%= f.text_field :login, :class => 'text single' %>
-    </p>
+	<% form_for :user, @user, :url => signup_url, :html => {:class => 'edit'} do | f | -%>
+		<%= f.error_messages %>
 
-    <p>
-      <%= f.label :"Your Email Address" %>
-      <%= f.text_field :email, :class => 'text single' %>
-    </p>
+		<fieldset class="input">
+			<div class="inp group">
+				<%= f.label :"Select a Username" %>
+				<%= f.text_field :login, :class => 'inp_text' %>
+			</div>
 
-    <p>
-      <%= f.label :"Choose a Password" %>
-      <%= f.password_field :password, :class => 'text single' %>
-    </p>
-  
-    <p>
-      <%= f.label :password_confirmation %>
-      <%= f.password_field :password_confirmation, :class => 'text single' %>
-    </p>
-	
-    <p>
-      <%= f.label :"Why are you interested in joining this community?" %>
-      <%= f.text_area :reason, :class => 'text medium' %>
-    </p>
-	
-	<p>
-		By signing up you agree to the <a href="/terms.html" target="_blank">terms of use</a> for this site.
-	</p>
-    <p>
-  	  <%= submit_tag 'Sign Up!' %>
-    </p>
-  <% end -%>
+			<div class="inp group">
+				<%= f.label :"Your Email Address" %>
+				<%= f.text_field :email, :class => 'inp_text' %>
+			</div>
+
+			<div class="inp group">
+				<%= f.label :"Choose a Password" %>
+				<%= f.password_field :password, :class => 'inp_text' %>
+			</div>
+
+			<div class="inp group">
+				<%= f.label :password_confirmation %>
+				<%= f.password_field :password_confirmation, :class => 'inp_text' %>
+			</div>
+
+			<div class="inp group">
+				<%= f.label :"Why are you interested in joining this community?" %>
+				<%= f.text_area :reason, :class => 'inp_area' %>
+			</div>
+
+			<p>By signing up you agree to the <a href="/terms.html" target="_blank">terms of use</a> for this site.</p>
+
+		</fieldset>
+		<fieldset class="submit">
+			<%= submit_tag 'Sign Up!' %>
+		</fieldset>
+	<% end -%>
 </div>

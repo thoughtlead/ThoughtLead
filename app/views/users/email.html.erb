@@ -1,21 +1,32 @@
-<div id="primary">
-  <h1><%= @page_title = "Email #{@send_to_user}" %></h1>
+<% @current_tab = :'People' %>
+<div id="main_content">
+	<div class="content_bar" id="top">
+		<div class="breadcrumbs">
+			<p>Jump to:</p>
+			<ul>
+				<li class="first"><a href="#">People</a></li>
+			</ul>
+		</div>
+	</div>
+	<h2><%= @page_title = "Email #{@send_to_user}" %></h2>
 
-  <% form_for @email, :url =>  email_user_url(@send_to_user) do | f | %>
-    <%= f.error_messages %>
+	<% form_for @email, :url =>  email_user_url(@send_to_user) do | f | %>
+		<%= f.error_messages %>
+		<fieldset class="input">
 
-    <p>
-      <%= f.label :subject %>
-      <%= f.text_field :subject, :class => "text single"  %>
-    </p>
+			<div class="inp group">
+				<%= f.label :subject %>
+				<%= f.text_field :subject, :class => "inp_text"  %>
+			</div>
 
-    <p>
-      <%= f.label :body, 'Email' %>
-      <%= f.text_area :body, :rows => 10, :class => "text large"  %>
-    </p>
-	
-  	<p>
-  	  <%= submit_tag 'Send email' %> or <%= link_to "Cancel", @send_to_user %>
-  	</p>
-  <% end %>
+			<div class="inp group">
+				<%= f.label :body %>
+				<%= f.text_area :body, :rows => 10 %>
+			</div>
+		</fieldset>
+
+		<fieldset class="submit">
+			<%= submit_tag 'Send email' %> or <%= link_to "Cancel", @send_to_user %>
+		</fieldset>
+	<% end %>
 </div>

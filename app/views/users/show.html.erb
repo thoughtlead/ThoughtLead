@@ -1,70 +1,87 @@
-<% @current_tab = :'Your Profile' %><!-- TODO  Should only display if current user, otherwise show something like "_____'s Profile"  -->
-<div id="primary">
-    <div class="user_info">
-        <%= avatar_for(@user, :large) %>
-        <h1 class="grouped"><% if @user.expert? %><img src="/images/star.png" />&nbsp;<% end %><%= (@user.disabled? ? "<strike>" : "") + h(@user) + (@user.disabled? ? "</strike>" : "") %></h1>
-        <p>
-            <%=h @user.location %><%= "<br/>" + h(@user.zipcode) unless @user.zipcode.blank? %>
-        </p>
-    </div>
-    <div id="user_profile">
-        <div class="about">
-            <h3 class="">About</h3>
-            <div class="section_body">
-                <%= details_format(@user.about) %>
-            </div>
-        </div>
-        <div class="interests">
-            <h3 class="">Interests</h3>
-            <div class="section_body">
-                <%= details_format(@user.interests) %>
-            </div>
-        </div>
-        <div class="websites">
-            <h3 class="">Websites</h3>
-            <div class="section_body">
-                <ul>
-                    <% unless @user.website_1.blank? %>
-                    <li>
-                        <%= link_to @user.website_1, "http://" + @user.website_1 %>
-                    </li>
-                    <% end %>
-                    <% unless @user.website_2.blank? %>
-                    <li>
-                        <%= link_to @user.website_2, "http://" + @user.website_2 %>
-                    </li>
-                    <% end %>
-                </ul>
-            </div>
-        </div>
-        <% if logged_in_as_owner? %>
-        <div class="reason">
-            <h3 class="">Reason For Joining</h3>
-            <div class="section_body">
-                <%= details_format(@user.reason) %>
-            </div>
-        </div>
-        <% end %>
-    </div>
+<% @current_tab = :'People' %><!-- TODO  Should only display if current user, otherwise show something like "_____'s Profile"  -->
+<div id="main_content">
+	<div class="content_bar" id="top">
+		<div class="breadcrumbs">
+			<p>Jump to:</p>
+			<ul>
+				<li class="first"><a href="#">People</a></li>
+			</ul>
+		</div>
+	</div>
+	<h2>Your Profile</h2>
+	<div class="module actions profile_overlay">
+		<div class="content">
+			<h4>Profile Actions</h4>
+			<ul class="action_nav">
+				<li class="edit"><%= link_to "Edit Profile", edit_user_url(@user), :class => 'action' if current_user == @user || logged_in_as_owner? %></li>
+				<% if logged_in_as_owner? && !@user.owner? %>
+				<% if @user.disabled? %>
+				<li class="add"><%= link_to "Reactivate this User", reactivate_user_url(@user), :class => 'action', :confirm =>  "Are you sure you would like to reactivate this user?" %></li>
+				<% else %>
+				<li class="delete"><%= link_to "Disable this User", disable_user_url(@user), :class => 'action', :confirm =>  "Are you sure you would like to disable this user?" %></li>
+				<% end %>
+				<% end %>
+			</ul>
+		</div>
+	</div>
+	<table class="profile people" summary="User details">
+		<thead>
+			<tr>
+				<th scope="row">
+					<div class="item_image module image">
+						<%= avatar_for(@user, :large) %>
+						<% if @user.expert? %><span class="marker expert replace">Expert</span><% end %>
+					</div>
+				</td>
+				<td>
+					<dl class="profile_header">
+						<dt><%= (@user.disabled? ? "<strike>" : "") + h(@user) + (@user.disabled? ? "</strike>" : "") %></dt>
+						<dd><%=h @user.location %></dd>
+						<% unless @user.zipcode.blank? %><dd><%=h @user.zipcode %></dd><% end %>
+					</dl>
+					<div class="button clear"><a href="<%= email_user_url(@user) %>"><span class="icon email">Email <%= h(@user) %></span></a></div>
+				</td>
+			</tr>
+		</thead>
+		<tbody>
+			<tr>
+				<th scope="row">About</th>
+				<td><%= details_format(@user.about) %></td>
+			</tr>
+			<tr>
+				<th scope="row">Interests</th>
+				<td><%= details_format(@user.interests) %></td>
+			</tr>
+			<tr>
+				<th scope="row">Websites</th>
+				<td>
+					<ul>
+						<% unless @user.website_1.blank? %>
+						<li><%= link_to @user.website_1, "http://" + @user.website_1 %></li>
+						<% end %>
+						<% unless @user.website_2.blank? %>
+						<li><%= link_to @user.website_2, "http://" + @user.website_2 %></li>
+						<% end %>
+					</ul>
+				</td>
+			</tr>
+			<% if logged_in_as_owner? %>
+			<tr>
+				<th scope="row">Reason for Joining</th>
+				<td><%= details_format(@user.reason) %></td>
+			</tr>
+			<% end %>
+		</tbody>
+	</table>
 </div>
-<div id="secondary">
-    <ul class="actions first">
-        <li class="action edit">
-            <span><%= link_to "Edit Profile", edit_user_url(@user), :class => 'action' if current_user == @user || logged_in_as_owner? %></span>
-        </li>
-        <li class="action email">
-            <span><%= link_to "Email #{h(@user)} &rarr;", email_user_url(@user), :class => 'action' %></span>
-        </li>
-        <% if logged_in_as_owner? && !@user.owner? %>
-        <% if @user.disabled? %>
-        <li class="action add">
-            <span><%= link_to "Reactivate this User", reactivate_user_url(@user), :class => 'action', :confirm =>  "Are you sure you would like to reactivate this user?" %></span>
-        </li>
-        <% else %>
-        <li class="action delete">
-            <span><%= link_to "Disable this User", disable_user_url(@user), :class => 'action', :confirm =>  "Are you sure you would like to disable this user?" %></span>
-        </li>
-        <% end %>
-        <% end %>
-    </ul>
+<div id="sidebar">
+	<ul class="modules">
+		<li>
+			<h3>Icon Legend</h3>
+			<ul class="legend">
+				<li class="expert"><strong>Expert</strong> These are power users endowed with superpowers.</li>
+				<li class="admin"><strong>Administrator</strong> Basically, god.</li>
+			</ul>
+		</li>
+	</ul>
 </div>

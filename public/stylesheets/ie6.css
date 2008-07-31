@@ -1,0 +1,36 @@
+/*
+-----------------------------------------------
+Site: ThoughtLead
+Name: IE6
+----------------------------------------------- */
+
+/* hasLayout
+----------------------------------------------- */
+div, p, li, dl, dt, dd {zoom: 1;}
+
+#page #content {height: 580px;}
+
+/* PNG Transparency
+----------------------------------------------- */
+.corner,
+#content {background: none;}
+
+.corner {}
+	.top_left {filter: progid:DXImageTransform.Microsoft.AlphaImageLoader(src='images/template/corners/content_r5/top_left.png', sizingMethod='crop');}
+	.top_right {filter: progid:DXImageTransform.Microsoft.AlphaImageLoader(src='images/template/corners/content_r5/top_right.png', sizingMethod='crop');}
+	.bottom_left {filter: progid:DXImageTransform.Microsoft.AlphaImageLoader(src='images/template/corners/content_r5/bottom_left.png', sizingMethod='crop');}
+	.bottom_right {filter: progid:DXImageTransform.Microsoft.AlphaImageLoader(src='images/template/corners/content_r5/bottom_right.png', sizingMethod='crop');}
+
+#content {filter: progid:DXImageTransform.Microsoft.AlphaImageLoader(src='images/template/content_bg.png', sizingMethod='crop');}
+
+/* Corners
+----------------------------------------------- */
+.top {}
+.right {right: expression(-this.parentNode.offsetWidth%2+"px");}
+.bottom {bottom: expression(-this.parentNode.offsetHeight%2+"px");}
+.left {}
+
+.stroke .top {}
+.stroke .right {right: expression(-1-this.parentNode.offsetWidth%2+"px");}
+.stroke .bottom {bottom: expression(-1-this.parentNode.offsetHeight%2+"px");}
+.stroke .left {}
