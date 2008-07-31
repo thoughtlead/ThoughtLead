@@ -22,18 +22,15 @@ class ApplicationController < ActionController::Base
     store_location
     if ac_object.is_premium? && !logged_in_as_active?
       if logged_in?
-        flash[:teaser] = "Teaser:<hr/>" + ac_object.teaser_text + "<hr/><br/>" if defined? ac_object.teaser_text
         flash[:notice] = "You need to upgrade your account if you wish to view premium content."
         redirect_to upgrade_url
       else
-        flash[:teaser] = "Teaser:<hr/>" + ac_object.teaser_text + "<hr/><br/>" if defined? ac_object.teaser_text
         flash[:notice] = "You must login to a premium account or create a new premium account to view this content.<br/>" + 
           "To create a new premium account, first register or login as a free member.<br/>" + 
           "Once you are logged in simply follow the on-screen instructions to access premium content in no time."
         redirect_to login_url
       end
     elsif ac_object.is_registered? && !logged_in?
-      flash[:teaser] = "Teaser:<hr/>" + ac_object.teaser_text + "<hr/><br/>" if defined? ac_object.teaser_text
       flash[:notice] = "You must login or create an account to view that content."
       redirect_to login_url
     end
