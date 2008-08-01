@@ -4,6 +4,8 @@ class SpiderTest < ActionController::IntegrationTest
   fixtures :articles, :attachments, :categories, :categorizations,
   :chapters, :communities, :contents, :courses, :discussions, :emails,
   :lessons, :themes, :users
+
+  IgnoreURLs = ['/login', %r{^javascript:.*}, %r{^.*/categories/[0-9]+}, %r{^.+logout}, %r{^.+delete.?}, %r{^.+/destroy.?}]
   
   include Caboose::SpiderIntegrator
   
@@ -13,7 +15,7 @@ class SpiderTest < ActionController::IntegrationTest
     assert_response :success
     spider(@response.body, '/',     
     :verbose => false,
-    :ignore_urls => ['/login', %r{^.+logout}, %r{^.+delete.?}, %r{^.+/destroy.?}], 
+    :ignore_urls => IgnoreURLs, 
     :ignore_forms => exclude_form_patterns)
     
     # testing community page, no login
@@ -21,7 +23,7 @@ class SpiderTest < ActionController::IntegrationTest
     assert_response :success
     spider(@response.body, '/',     
     :verbose => false,
-    :ignore_urls => ['/login', %r{^.+logout}, %r{^.+delete.?}, %r{^.+/destroy.?}], 
+    :ignore_urls => IgnoreURLs, 
     :ignore_forms => exclude_form_patterns)
     
     # testing community, registered user
@@ -34,7 +36,7 @@ class SpiderTest < ActionController::IntegrationTest
     get 'http://testing.dev/'
     spider(@response.body, 'http://testing.dev/',
     :verbose => false,
-    :ignore_urls => ['/login', %r{^.*/categories/[0-9]+}, %r{^.+logout}, %r{^.+delete.?}, %r{^.+/destroy.?}], 
+    :ignore_urls => IgnoreURLs, 
     :ignore_forms => exclude_form_patterns)
     
     # testing community, premium user
@@ -47,17 +49,13 @@ class SpiderTest < ActionController::IntegrationTest
     get 'http://testing.dev/'
     spider(@response.body, 'http://testing.dev/',
     :verbose => false,
-    :ignore_urls => ['/login', %r{^.*/categories/[0-9]+}, %r{^.+logout}, %r{^.+delete.?}, %r{^.+/destroy.?}], 
+    :ignore_urls => IgnoreURLs, 
     :ignore_forms => exclude_form_patterns)
   end
   
-#  def test_spider_site_no_search
-#    spiderize([%r{^.*/search}])
-#  end
-#  
-#  def test_spider_site_with_search
-#    spiderize([])
-#  end
+  def test_spider_site_no_search
+    spiderize([%r{^.*/search}])
+  end
   
   def test_truth
     assert true
