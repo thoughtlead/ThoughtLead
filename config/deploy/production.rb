@@ -1,6 +1,6 @@
 
 role :web, "74.201.254.36:8118" # thoughtlead [mongrel] [mysql50-6-master,mysql50-staging-1]
-role :app, "74.201.254.36:8118", :mongrel => true
+role :app, "74.201.254.36:8118", :mongrel => true, :sphinx => true
 role :db , "74.201.254.36:8118", :primary => true
 set :rails_env, "production"
 
