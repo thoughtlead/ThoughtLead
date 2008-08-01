@@ -20,7 +20,7 @@ class ApplicationController < ActionController::Base
     ac_object = get_access_controlled_object if defined? get_access_controlled_object
     return if ac_object.nil?
     store_location
-    if ac_object.is_premium? && !logged_in_as_active?
+    if ac_object.is_premium? && !logged_in_as_active? && !logged_in_as_owner?
       if logged_in?
         flash[:notice] = "You need to upgrade your account if you wish to view premium content."
         redirect_to upgrade_url
