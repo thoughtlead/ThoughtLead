@@ -10,13 +10,10 @@
 		<p class="tagline">Do more with your ideas.</p>
 	</div>
 	<div id="search">
-		<form action="search" method="get">
-			<fieldset>
-				<label for="txt_search">Search:</label>
-				<input type="text" id="txt_search" class="inp_text" value="Search..." />
-				<input type="image" class="btn_image" src="/images/template/search_btn.gif" alt="Go" />
-			</fieldset>
-		</form>
+		<% form_tag :controller=>'search', :action=>'index' do %>
+	  		<%= text_field( :search_string, {}, :class=>"inp_text", :value=>"Search...") %>
+			<%= image_submit_tag("/images/template/search_btn.gif", :class => "btn_image") %>
+  		<% end %>
 	</div>
 	<ul id="account_nav">
 		<% if logged_in? %>

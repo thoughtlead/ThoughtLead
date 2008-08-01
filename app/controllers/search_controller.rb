@@ -2,6 +2,11 @@ class SearchController < ApplicationController
   
   def index
     processed_search_string = "#{params[:search_string]}"
+    
+    if (processed_search_string.blank? || processed_search_string == "Search...")
+      redirect_to :back
+    end
+    
     @results = execute_search(processed_search_string)
     
     if(@results.blank?)
