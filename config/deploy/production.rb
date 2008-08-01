@@ -17,3 +17,15 @@ set :dbuser,              "verticality_db"
 set :dbpass,              "2b1i2h1v"
 set :password,            "be2k1v12"
 set :domain,              "thoughtlead.com"
+
+after "deploy", "deploy:cleanup"
+after "deploy:migrations" , "deploy:cleanup"
+after "deploy:update_code", "deploy:symlink_configs"
+
+#
+# ADDED FOR SPHINX:
+#
+after "deploy:symlink_configs", "sphinx:symlink"
+after "deploy:symlink", "sphinx:configure"
+after "sphinx:configure", "sphinx:reindex"
+after "sphinx:reindex", "sphinx:restart"
