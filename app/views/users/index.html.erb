@@ -17,8 +17,7 @@
 		<% unless (user.disabled? && !logged_in_as_owner?) %>
 		<li>
 			<div class="item_image module image">
-				<img src="images/content/profile_index1.jpg" alt="Profile Image" />
-				<%= link_to(avatar_for(user, :small),user) %>
+				<%= link_to(avatar_for(user, :medium),user) %>
 				<% if user.expert? %><span class="marker expert replace">Expert</span><% end %>
 			</div>
 			<dl class="profile_header">
