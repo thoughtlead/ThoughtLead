@@ -1,28 +1,23 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml">
-	<head>
-		<title><%=h @page_title ? "#{@page_title} | #{current_community}" : "#{current_community}" %></title>
-	  <meta http-equiv="Content-type" content="text/html; charset=utf-8" />
-	  
-    <%= javascript_include_tiny_mce_if_used %>
-    <%= tiny_mce if using_tiny_mce? %>
-    
-		<%= javascript_include_tag :defaults %>
-	  <%=	stylesheet_link_tag :all %>
-	  <%= stylesheet_link_tag community_stylesheet %>
-	</head>
-  
-  <body class="<%= @current_tab.to_s.downcase %>">
-    <div id="page" class="lesson"> <!-- TODO @Duff, change based on page type/name -->
-  	  <%= render(:partial => '/layouts/header') %>
-      <div id="content">
-  		  <%= render(:partial => '/layouts/flash_details') %>
-  		  <%= yield %>
-  		</div>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<%= javascript_include_tiny_mce_if_used %>
+	<%= tiny_mce if using_tiny_mce? %>
+	<%= javascript_include_tag :defaults, 'jquery' %>
+	<%=	stylesheet_link_tag 'base' %>
+	<!--[if lte IE 7]><%=	stylesheet_link_tag 'ie' %><![endif]-->
+	<!--[if IE 6]><%=	stylesheet_link_tag 'ie6' %><![endif]-->
+	<title><%=h @page_title ? "#{@page_title} | #{current_community}" : "#{current_community}" %></title>
+</head>
+<body class="<%= @current_tab.to_s.downcase %>">
+	<div id="page" class="lesson"> <!-- TODO @Duff, change based on page type/name -->
+		<%= render(:partial => '/layouts/header') %>
+		<div id="content" class="content_area">
+			<%= render(:partial => '/layouts/flash_details') %>
+			<%= yield %>
+		</div>
+		<%= render(:partial => '/layouts/footer') %>
   	</div>  		
-  	<%= render(:partial => '/layouts/footer') %>
-  		
-
-	</body>
+</body>
 </html>
-

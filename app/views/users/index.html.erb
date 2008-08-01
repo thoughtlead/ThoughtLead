@@ -1,14 +1,43 @@
 <% @current_tab = :People %>
-<div id="primary">
-    <h1>Connect with Other Users</h1>
-    <ul class="user_list">
-        <% for user in @users %>
-        <% unless (user.disabled? && !logged_in_as_owner?) %>
-        <li class="user">
-            <%= avatar_for(user, :small) %>
-            <% if user.expert? %><img src="/images/star_small.png" />&nbsp;<% end %>
-            <%= link_to((user.disabled? ? "<strike>" : "") + h(user) + (user.disabled? ? "</strike>" : ""),user) %>
-        </li><% end %>
-        <% end %>
-    </ul>
+<div id="main_content">
+	<div class="content_bar" id="top">
+		<div class="breadcrumbs">
+			<p>Jump to:</p>
+			<ul>
+				<li class="first"><a href="#">People</a></li>
+			</ul>
+		</div>
+	</div>
+	<div class="title">
+		<h2>People List</h2>
+		<p class="subtitle">Connect with other users</p>
+	</div>
+	<ul class="people_list people">
+		<% for user in @users %>
+		<% unless (user.disabled? && !logged_in_as_owner?) %>
+		<li>
+			<div class="item_image module image">
+				<img src="images/content/profile_index1.jpg" alt="Profile Image" />
+				<%= link_to(avatar_for(user, :small),user) %>
+				<% if user.expert? %><span class="marker expert replace">Expert</span><% end %>
+			</div>
+			<dl class="profile_header">
+				<dt><%= user %></dt>
+				<dd><%= user.location %></dd>
+			</dl>
+		</li>
+		<% end %>
+		<% end %>
+	</ul>
+</div>
+<div id="sidebar">
+	<ul class="modules">
+		<li>
+			<h3>Icon Legend</h3>
+			<ul class="legend">
+				<li class="expert"><strong>Expert</strong> These are power users endowed with superpowers.</li>
+				<li class="admin"><strong>Administrator</strong> Basically, god.</li>
+			</ul>
+		</li>
+	</ul>
 </div>

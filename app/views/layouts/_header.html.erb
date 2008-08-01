@@ -1,50 +1,59 @@
-<div class="head">
-  <div id="header">
-    <div class="community_title">
-      
-      <% if logged_in? %>
-      <%= link_to(image_tag(community_logo), courses_url) %>
-    	
-    	<% else %>
-      <%= link_to(image_tag(community_logo), community_home_url) %>
-      
-      <% end %>
-      
-    </div>
-
-    <div class="user_controls">
-      <% if logged_in? %>
-        <em>Welcome,</em> <%= link_to current_user, user_url(current_user), :class => 'user' %> &nbsp;|&nbsp;
-    	
-      	<% if logged_in_as_owner? %>
-      	  <%= link_to "Community Setup", edit_community_url %> &nbsp;|&nbsp;
-      	<% end %>
-    	
-        <%= link_to('Logout', logout_url) %>
-      
-        <% else %>
-      	  <%= link_to('Login', login_url) %> | 
-      	  <%= link_to "Signup", signup_url %>
-      <% end %>
-    </div>
-
-    <ul class="navigation_top">
-      <% current_tag(:li, @current_tab == :Courses) do %>
-        <%= link_to "Courses", courses_url, :class => 'courses' %>
-      <% end %>
-
-      <% current_tag(:li, @current_tab == :Discussions) do %>
-        <%= link_to "Discussions", discussions_url, :class => 'discussions' %>
-      <% end %>
-
-      <% current_tag(:li, @current_tab == :People) do %>
-        <%= link_to "People", users_url, :class => 'people' %>
-      <% end %>
-    </ul>
-
-  </div>
+<div id="header" class="content_area">
+	<div id="logo">
+		<h1>
+			<% if logged_in? %>
+				<%= link_to(current_community.name, courses_url) %>
+			<% else %>
+				<%= link_to(current_community.name, community_home_url) %>
+			<% end %>
+		</h1>
+		<p class="tagline">Do more with your ideas.</p>
+	</div>
+	<div id="search">
+		<form action="search" method="get">
+			<fieldset>
+				<label for="txt_search">Search:</label>
+				<input type="text" id="txt_search" class="inp_text" value="Search..." />
+				<input type="image" class="btn_image" src="/images/template/search_btn.gif" alt="Go" />
+			</fieldset>
+		</form>
+	</div>
+	<ul id="account_nav">
+		<% if logged_in? %>
+		<li class="profile"><em>Welcome,</em> <%= link_to current_user, user_url(current_user), :class => 'user' %></li>
+		<li class="edit_profile replace"><%= link_to "Edit", edit_user_url(current_user), :class => 'action' %></li>
+		<% if logged_in_as_owner? %>
+			<li class="community_setup"><%= link_to "Community Setup", edit_community_url %></li>
+		<% end %>		
+		<li><%= link_to('Logout', logout_url) %></li>
+		<% else %>
+		<li class="login"><%= link_to('Login', login_url) %></li>
+		<li><%= link_to "Signup", signup_url %></li>
+		<% end %>
+	</ul>
 </div>
-
-<div id="section" class="<%= @current_tab.to_s.downcase %>">
-  <h2><%= @current_tab %></h2>
+<hr />
+<div id="navigation">
+	<div id="navigation_bar" class="content_area">
+		<ul id="content_nav">
+			<li class="home_link"><a href="./">Home</a></li>
+			<% current_tag(:li, @current_tab == :Article) do %>
+				<%= link_to "Library", articles_url, :class => 'library_link' %>
+			<% end %>
+			<% current_tag(:li, @current_tab == :Courses) do %>
+				<%= link_to "Courses", courses_url, :class => 'courses_link' %>
+			<% end %>
+			<% current_tag(:li, @current_tab == :Discussions) do %>
+				<%= link_to "Discussions", discussions_url, :class => 'discussions_link' %>
+			<% end %>
+			<% current_tag(:li, @current_tab == :People) do %>
+				<%= link_to "People", users_url, :class => 'people_link' %>
+			<% end %>
+		</ul>
+		<ul id="global_nav">
+			<li class="about_link"><a href="about">About</a></li>
+			<li class="contact_link"><a href="contact">Contact</a></li>
+		</ul>
+	</div>
 </div>
+<hr />

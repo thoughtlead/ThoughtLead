@@ -1,0 +1,142 @@
+/*
+-----------------------------------------------
+Site: ThoughtLead
+Name: Layout
+----------------------------------------------- */
+
+
+/* Layout
+----------------------------------------------- */
+body {
+	margin: 0; padding: 11px 0 0 0;
+	border: 0;
+}
+#page {}
+	.content_area {
+		margin: 0 auto;
+		width: 800px;
+	}
+	#header {
+		padding: 15px 0 45px 0;
+		position: relative;
+	}
+		#logo {
+			width: 570px;
+			float: left;
+		}
+		#search {
+			margin: 45px 0 0 0; padding: 8px 4px 7px 9px;
+			width: 214px;
+			float: right;
+		}
+		#account_nav {
+			margin: 0; padding: 4px 10px;
+			position: absolute;
+			top: -3px; right: 0;
+		}
+	#navigation {
+		width: 100%; height: 75px;
+		margin-bottom: -70px;
+		clear: both;
+	}
+		#navigation #navigation_art {
+			width: 100%; height: 75px;
+			background-position: bottom center;
+			background-repeat: no-repeat;
+		}
+		#navigation_bar {
+			position: relative;
+			top: -25px;
+		}
+			#content_nav {
+				width: 700px;
+				float: left;
+			}
+			#global_nav {
+				float: right;
+			}
+	#content {
+		padding: 22px 18px 0 20px;
+		width: 800px; min-height: 580px;
+		background: url(../images/template/content_bg.png) no-repeat;
+	}
+		#main_content {
+			margin: 5px 0 0 0; padding: 6px 19px 0 19px;
+			width: 530px;
+			float: left;
+			position: relative;
+			border: 1px solid #f2f2f2;
+			border-width: 0 1px;
+		}
+			.content_bar {
+				margin: 0 -20px;
+				width: 570px;
+				position: relative;
+				border-bottom-width: 1px;
+				border-bottom-style: solid;
+				background-position: bottom;
+				background-repeat: repeat-x;
+			}
+			.content_bar#top {top: -11px; margin-bottom: -8px;}
+			.content_bar#bottom {clear: both;}
+			#main_content .columns {}
+				#main_content .column {
+					margin-right: 20px;
+					width: 255px;
+					float: left;
+				}
+				#main_content .column.one {}
+				#main_content .column.two {margin-right: 0;}
+		#sidebar {
+			padding-top: 52px;
+			position: relative;
+			width: 230px;
+			float: left;
+		}
+	#footer {
+		padding: 40px 0 8px 0;
+		clear: both;
+	}
+
+
+.eclear {clear: both;}
+
+.clear:after,
+.clearsub li:after,
+.columns:after,
+#header:after,
+#navigation:after,
+#content:after,
+.content_bar:after {
+	content: "."; 
+	display: block; 
+	height: 0; 
+	clear: both; 
+	visibility: hidden;
+}
+
+.clear,
+.clearsub li,
+.columns,
+#header,
+#navigation,
+#content,
+.content_bar {display: inline-block;}
+
+/* Hides from IE-mac \*/
+* html .clear,
+* html .clearsub li,
+* html .columns,
+* html #header,
+* html #navigation,
+* html #content,
+* html .content_bar {height: 1%;}
+
+.clear,
+.clearsub li,
+.columns,
+#header,
+#navigation,
+#content,
+.content_bar {display: block;}
+/* End hide from IE-mac */

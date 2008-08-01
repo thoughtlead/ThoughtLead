@@ -1,75 +1,87 @@
 <% @current_tab = :People %>
+<div id="main_content">
+	<div class="content_bar" id="top">
+		<div class="breadcrumbs">
+			<p>Jump to:</p>
+			<ul>
+				<li class="first"><a href="#">People</a></li>
+				<li><a href="#">Your Profile</a></li>
+			</ul>
+		</div>
+	</div>
+	<h2><%= @page_title = "Edit Profile" %></h2>
 
-<div id="small">
-  <h1><%= @page_title = "Edit Profile" %></h1>
+	<% form_for(@user, :html => { :method => :put, :multipart => true, :class => 'edit' } ) do | f | -%>
+		<%= error_messages_for(:user, :object => @user.avatar ? [@user.avatar, @user] : @user ) %>
+		<fieldset class="input">
+			<% if logged_in_as_owner? %>
+			<div class="checkbox group">
+				<%= f.check_box :expert %>
+				<%= f.label :expert %>
+			</div>
+			<% end %>
 
-  <% form_for(@user, :html => { :method => :put, :multipart => true } ) do | f | -%>
-    <%= error_messages_for(:user, :object => @user.avatar ? [@user.avatar, @user] : @user ) %>
-    
-	<% if logged_in_as_owner? %>
-    <p>
-      <%= f.label :expert %>
-      <%= f.check_box :expert %>
-    </p>
-	<% end %>
+			<div class="inp group">
+				<%= f.label :login %>
+				<%= f.text_field :login, :class => 'inp_text' %>
+			</div>
 
-    <p>
-      <%= f.label :login %>
-      <%= f.text_field :login, :class => 'text single' %>
-    </p>
+			<div class="inp group">
+				<%= f.label :display_name %>
+				<%= f.text_field :display_name, :class => 'inp_text' %>
+			</div>
 
-    <p>
-      <%= f.label :display_name %>
-      <%= f.text_field :display_name, :class => 'text single' %>
-    </p>
+			<div class="inp group">
+				<%= f.label :email %>
+				<%= f.text_field :email, :class => 'inp_text' %>
+			</div>
 
-    <p>
-      <%= f.label :email %>
-      <%= f.text_field :email, :class => 'text single' %>
-    </p>
+			<div class="inp group">
+				<%= f.label :location %>
+				<%= f.text_field :location, :class => 'inp_text' %>
+			</div>
 
-    <p>
-      <%= f.label :location %>
-      <%= f.text_field :location, :class => 'text single' %>
-    </p>
+			<div class="inp group">
+				<%= f.label :zipcode, "Zip Code" %>
+				<%= f.text_field :zipcode, :class => 'inp_text' %>
+			</div>
 
-    <p>
-      <%= f.label :zipcode, "Zip Code" %>
-      <%= f.text_field :zipcode, :class => 'text single' %>
-    </p>
+			<div class="inp group">
+				<%= f.label :website_1, "Website" %>
+				http://<%= f.text_field :website_1, :class => 'inp_text' %>
+			</div>
 
-    <p>
-      <%= f.label :website_1, "Website" %>
-      http://<%= f.text_field :website_1, :class => 'text single' %>
-    </p>
+			<div class="inp group">
+				<%= f.label :website_2, "Website" %>
+				http://<%= f.text_field :website_2, :class => 'inp_text' %>
+			</div>
 
-    <p>
-      <%= f.label :website_2, "Website" %>
-      http://<%= f.text_field :website_2, :class => 'text single' %>
-    </p>
+			<div class="inp group">
+				<%= f.label :about %>
+				<%= f.text_area :about, :rows => 4 %>
+			</div>
 
-    <p>
-      <%= f.label :about %>
-      <%= f.text_area :about, :rows => 4 %>
-    </p>
+			<div class="inp group">
+				<%= f.label :interests %>
+				<%= f.text_area :interests, :rows => 4 %>
+			</div>
 
-    <p>
-      <%= f.label :interests %>
-      <%= f.text_area :interests, :rows => 4 %>
-    </p>
+			<p><strong><%= link_to "Change your password", edit_password_user_url(@user) %></strong></p>
 
-    <p>
-      <%= link_to "Change your password", edit_password_user_url(@user) %>
-    </p>
-    
-    <p>
-      <%= f.label :avatar %> 
-      <%= avatar_for(@user) %>
-      <%= f.file_field :user_avatar %> 
-    </p>
-    
-    <p>
-  	  <%= submit_tag 'Save' %> or <%= link_to "Cancel", @user %>
-    </p>
-  <% end -%>
+			<div class="update_avatar">
+				<%= f.label :avatar %> 
+				<div class="module image avatar">
+					<%= avatar_for(@user) %>
+				</div>
+				<%= f.file_field :user_avatar %> 
+			</div>
+		</fieldset>
+		<fieldset class="submit">
+			<ul class="submit_opts">
+				<li><div class="button clear"><a href="#"><span class="icon save">Save Changes</span></a></div></li>
+				<li><%= submit_tag 'Save' %></li>
+				<li class="text">or <%= link_to "Cancel", @user %></li>
+			</ul>
+		</fieldset>
+	<% end -%>
 </div>
