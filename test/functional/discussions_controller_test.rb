@@ -25,7 +25,7 @@ class DiscussionsControllerTest < ActionController::TestCase
     assert_response :success
     new_request(premium,registered_user)
     get :show, {:id=> premium.id}
-    assert_response :redirect
+    assert_response :success
   end
     
   def test_accessibility_premium_user
