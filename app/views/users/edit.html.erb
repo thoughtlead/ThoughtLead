@@ -78,8 +78,7 @@
 		</fieldset>
 		<fieldset class="submit">
 			<ul class="submit_opts">
-				<li><div class="button clear"><a href="#"><span class="icon save">Save Changes</span></a></div></li>
-				<li><%= submit_tag 'Save' %></li>
+				<li><div class="button clear"><a href='javascript:document.getElementById("edit_user_<%=@user.id%>").submit()'><span class="icon save">Save Changes</span></a></div></li>
 				<li class="text">or <%= link_to "Cancel", @user %></li>
 			</ul>
 		</fieldset>
