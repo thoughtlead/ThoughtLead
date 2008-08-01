@@ -63,7 +63,7 @@ required_rubygems_version: !ruby/object:Gem::Requirement
 requirements: []
 
 rubyforge_project: redcloth
-rubygems_version: 1.1.1
+rubygems_version: 1.2.0
 signing_key: 
 specification_version: 1
 summary: RedCloth is a module for using Textile and Markdown in Ruby. Textile and Markdown are text formats.  A very simple text format. Another stab at making readable text that can be converted to HTML.
