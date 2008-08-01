@@ -722,6 +722,7 @@ h1, h2, h3, h4, h5, h6 {margin: 0.5em 0;}
 					z-index: 1;
 				}
 				#main_content .people .item_image .marker.expert {background-image: url(../images/template/icon_expert.gif);}
+				#main_content .people .item_image .marker.admin {background-image: url(../images/template/icon_admin.gif);}
 
 			#main_content ul.people_list li dl.profile_header {
 				padding: 4px 0 0 0;

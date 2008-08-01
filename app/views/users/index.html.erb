@@ -18,6 +18,7 @@
 		<li>
 			<div class="item_image module image">
 				<%= link_to(avatar_for(user, :medium),user) %>
+				<% if user.owner? %><span class="marker admin replace">Administrator</span><% end %>
 				<% if user.expert? %><span class="marker expert replace">Expert</span><% end %>
 			</div>
 			<dl class="profile_header">
@@ -34,8 +35,8 @@
 		<li>
 			<h3>Icon Legend</h3>
 			<ul class="legend">
-				<li class="expert"><strong>Expert</strong> These are power users endowed with superpowers.</li>
-				<li class="admin"><strong>Administrator</strong> Basically, god.</li>
+				<li class="expert"><strong>Expert</strong></li>
+				<li class="admin"><strong>Administrator</strong></li>
 			</ul>
 		</li>
 	</ul>
