@@ -58,7 +58,7 @@ h1, h2, h3, h4, h5, h6 {margin: 0.5em 0;}
 		margin: 0; padding: 10px 0 6px 20px;
 	}
 		#sidebar .navigation h3 span {
-			padding-right: 20px;
+			padding-right: 15px;
 			background-position: center right;
 			background-repeat: no-repeat;
 		}
@@ -109,6 +109,7 @@ h1, h2, h3, h4, h5, h6 {margin: 0.5em 0;}
 			ul#account_nav li a {}
 
 		ul#account_nav li.profile {background: none;}
+		ul#account_nav li.profile,
 		ul#account_nav li.edit_profile {padding-left: 0;}
 			ul#account_nav li.edit_profile a {
 				width: 9px; height: 15px;
@@ -362,6 +363,9 @@ h1, h2, h3, h4, h5, h6 {margin: 0.5em 0;}
 				#main_content .meta_info li.first {border-left: 0; background-position: 2px 0; padding-left: 16px;}
 				#main_content .meta_info li.date {background-image: url(../images/template/icon_date.gif);}
 				#main_content .meta_info li.author {background-image: url(../images/template/icon_author.gif);}
+					#main_content li.author .marker {padding: 8px 6px 1px 0;}
+						#main_content li.author .marker span {visibility: hidden;}
+					#main_content li.author .marker.expert {background-image: url(../images/template/icon_expert_sm.gif);}
 				#main_content .meta_info li.theme {background-image: url(../images/template/icon_themes.gif);}
 				#main_content .meta_info li.comments {background-image: url(../images/template/icon_comments.gif);}
 
@@ -536,6 +540,7 @@ h1, h2, h3, h4, h5, h6 {margin: 0.5em 0;}
 			top: 2px; left: 5px;
 			font-size: 1px;
 			background: url(../images/template/button_edit_bg.gif) top left no-repeat;
+			text-decoration: none;
 		}
 		a.button.edit span {visibility: hidden;}
 
@@ -682,6 +687,7 @@ h1, h2, h3, h4, h5, h6 {margin: 0.5em 0;}
 
 	#main_content div.comment.post {padding: 15px 0;}
 		#main_content div.comment.post .item_content .module {}
+			#main_content div.comment.post form {margin: 0;}
 			#main_content div.comment.post textarea {height: 60px;}
 			#main_content div.comment.post .submit {margin: 0 0 5px 0;}
 
@@ -721,8 +727,8 @@ h1, h2, h3, h4, h5, h6 {margin: 0.5em 0;}
 					top: -5px; right: -5px;
 					z-index: 1;
 				}
-				#main_content .people .item_image .marker.expert {background-image: url(../images/template/icon_expert.gif);}
-				#main_content .people .item_image .marker.admin {background-image: url(../images/template/icon_admin.gif);}
+				#main_content .marker.expert {background-image: url(../images/template/icon_expert.gif);}
+				#main_content .marker.admin {background-image: url(../images/template/icon_admin.gif);}
 
 			#main_content ul.people_list li dl.profile_header {
 				padding: 4px 0 0 0;
@@ -901,6 +907,7 @@ h1, h2, h3, h4, h5, h6 {margin: 0.5em 0;}
 				border-width: 1px 0;
 				font-size: 1.1em;
 			}
+			#sidebar ul.modules li.navigation .button.edit {left: 15px;}
 
 		#sidebar ul.modules li.nav_sep {}
 			#sidebar ul.modules li.nav_sep ul {}
@@ -963,15 +970,15 @@ h1, h2, h3, h4, h5, h6 {margin: 0.5em 0;}
 					}
 					#sidebar ul.modules li.themes ul li a:hover {}
 
-				#sidebar ul.modules li.themes ul li.show_all {padding-bottom: 0; background: none;}
-				#sidebar ul.modules li.themes ul li.active {
+				#sidebar ul.modules li.themes ul li#show_all {padding-bottom: 0; background: none;}
+				#sidebar ul.modules li.themes ul li.current {
 					margin: -2px 0 -9px -1px; padding: 2px 0 0 0;
 					position: relative;
 					width: 231px; height: 36px;
 					background-position: 0 0;
 					background-repeat: no-repeat;
 				}
-					#sidebar ul.modules li.themes ul li.active a {
+					#sidebar ul.modules li.themes ul li.current a {
 						font-weight: bold;
 						text-decoration: none;
 					}

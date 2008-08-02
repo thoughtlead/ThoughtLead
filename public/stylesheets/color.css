@@ -85,6 +85,7 @@ a,
 		.content_bar .breadcrumbs p {color: #999;}
 		.content_bar .breadcrumbs ul {}
 			.content_bar .breadcrumbs ul li {background-image: url(../images/template/content_bar_arrow_right_bg.gif);}
+			.content_bar .breadcrumbs ul li {color: #628700;}
 			.discussions .content_bar .breadcrumbs ul li.first {background-image: url(../images/template/bc_discussions_icon.gif);}
 
 	.content_bar .lesson_nav {background-image: url(../images/template/content_bar_bottom_action_bg.gif);}
@@ -220,8 +221,9 @@ a,
 		#sidebar ul.modules li.themes {}
 			#sidebar ul.modules li.themes ul {}
 				#sidebar ul.modules li.themes ul li {background-image: url(../images/template/mod_nav_sep_bg.gif);}
-				#sidebar ul.modules li.themes ul li.active {background-image: url(../images/template/mod_nav_active_bg.gif);}
-					#sidebar ul.modules li.themes ul li.active a {color: #333;}
+				#sidebar ul.modules li.themes ul li.current {background-image: url(../images/template/mod_nav_active_bg.gif);}
+				#sidebar ul.modules li.themes ul li#show_all.current {background-image: url(../images/template/mod_nav_showall_active_bg.gif);}
+					#sidebar ul.modules li.themes ul li.current a {color: #333;}
 
 
 /* Footer

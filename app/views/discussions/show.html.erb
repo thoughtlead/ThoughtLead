@@ -1,56 +1,145 @@
 <% @current_tab = :Discussions %>
-<div id="primary">
-    <p>
-        <%= link_to "&#8592; Return to Discussions", discussions_url, :class => 'discussions' %>
-    </p>
-    <h1 class="grouped"><%=h @discussion %></h1>
-    <div class="discussion_info meta_info">
-        <span class="author">by <%= link_to((@discussion.user.expert? ? "<img src=\"/images/star_small.png\" />&nbsp;" : "") + h(@discussion.user),@discussion.user) %></span>
-        <span class="date_posted">&nbsp;|&nbsp;Posted on <%= @discussion.created_at.to_s(:month_day) %>
-            <% if !current_community.themes.empty? %>
-            in <%= link_to (@discussion.theme ? @discussion.theme.to_s : "General"), (@discussion.theme ? discussions_url(:theme => @discussion.theme.id) : discussions_url) %>
-            <% end %>
-        </span>
-        <span class="responses">&nbsp;|&nbsp;<%= pluralize(@discussion.responses.count, "Response") %></span>
-    </div>
-    <div class="discussion_body">
-        <%= textilize(@discussion.body) %>
-    </div>
-    <h2><%= pluralize(@discussion.responses.count, "Response") %></h2>
-    <ol class="comments">
-        <% for response in @discussion.responses %>
-        <li class="comments">
-        <span class="comment_info meta_info"><span class="avatar"><%= avatar_for(response.user, :small) %>
-            </span><%= link_to((response.user.expert? ? "<img src=\"/images/star_small.png\" />&nbsp;" : "") + h(response.user),response.user) %>&nbsp;|&nbsp;<%= response.created_at.to_s(:day_month_year) %>
-            <%= link_to("Delete this Response", response, :controller => :responses, :method => :delete, :confirm => "Are you sure you'd like to delete this response?") if logged_in_as_owner? %></span>
-        </span>
-        <div class="comment_body">
-            <%= textilize(response.body) %>
-        </div>
-    </li>
-    <% end %>
-    </ol>
-    <h3>Post a response</h3>
-    <% if logged_in? %>
-    <% form_for [@discussion, Response.new] do | f | %>
-    <%= f.text_area :body, :rows => 6 %>
-    <%= submit_tag "Post this response" %>
-    <% end %>
-    <% else %>
-    <%= link_to "Login to respond", login_url %>
-    <% end %>
+<div id="main_content">
+	<div class="content_bar" id="top">
+		<div class="breadcrumbs">
+			<p>Jump to:</p>
+			<ul>
+				<li class="first"><%= link_to "Discussions", discussions_path %></li>
+				<% if @theme %>
+				<li><%= @theme.name %></li>
+				<% end %>
+			</ul>
+		</div>
+		<% if current_user_can_post? %>
+		<div class="action">
+			<span class="button_left">&nbsp;</span><a href="<%= new_discussion_url %>" class="button"><span class="icon create">+</span><span class="text">Create a Discussion</span></a>
+		</div>
+	    <% end %>
+	</div>
+
+	<div class="item_image module image">
+		<%= link_to(avatar_for(@discussion.user, :small),@discussion.user) %>
+	</div>
+	<div class="item_content">
+		<div class="title">
+			<h2><%=h @discussion %></h2>
+			<ul class="meta_info clear">
+				<li class="author first">
+					<%= link_to(h(@discussion.user),@discussion.user) %>
+					<% if @discussion.user.expert? %>
+					<span class="marker expert replace" /><span>Expert</span></span>
+					<% end %>
+				</li>
+				<li class="date"><%= @discussion.created_at.to_s(:month_day) %></li>
+				<li class="theme">
+					<% if !current_community.themes.empty? %>
+						<%= link_to (@discussion.theme ? @discussion.theme.to_s : "General"), (@discussion.theme ? discussions_url(:theme => @discussion.theme.id) : discussions_url) %>
+					<% end %>
+				</li>
+				<li class="comments"><%= pluralize(@discussion.responses.count, "Response") %></li>
+			</ul>
+		</div>
+		<div class="module actions">
+			<div class="content">
+				<h4>Discussion Actions</h4>
+				<ul class="action_nav">
+					<% if current_user == @discussion.user || logged_in_as_owner? %>
+					<li class="edit"><%= link_to("Edit Discussion", edit_discussion_url(@discussion)) %></li>
+					<% end %>
+					<% if logged_in_as_owner? %>
+					<li class="delete"><%= link_to("Delete Discussion", @discussion, :method => :delete, :confirm => "Are you sure you'd like to delete this discussion?  All of the responses to this discussion will also be deleted.") %></li>
+					<% end %>
+				</ul>
+			</div>
+		</div>
+		<%= textilize(@discussion.body) %>
+	</div>
+
+	<% if @discussion.responses.size > 0 %>
+	<h2 class="eclear"><%= pluralize(@discussion.responses.count, "Response") %></h2>
+	<ol class="comments_list comment clearsub">
+		<% for response in @discussion.responses %>
+		<li>
+			<div class="item_image module image">
+				<%= link_to(avatar_for(response.user, :small), response.user) %>
+			</div>
+			<div class="item_content">
+				<div class="module">
+					<div class="content">
+						<ul class="comment_meta">
+							<li class="author">
+								<%= link_to(h(response.user),response.user) %>
+								<% if response.user.expert? %>
+								<span class="marker expert replace" /><span>Expert</span></span>
+								<% end %>
+								says:
+							</li>
+							<li class="time"><%= response.created_at.to_s(:day_month_year) %></li>
+							<li class="delete"><%= link_to("Delete this Response", response, :controller => :responses, :method => :delete, :confirm => "Are you sure you'd like to delete this response?") if logged_in_as_owner? %></li>
+						</ul>
+						<div class="comment_body">
+							<%= textilize(response.body) %>
+						</div>
+					</div>
+				</div>
+			</div>
+		</li>
+		<% end %>
+	</ol>
+	<% end %>
+
+	<h2>Post a response</h2>
+	<div class="comment post clear">
+		<div class="item_image module image">
+			<img src="/images/content/profile3.jpg" alt="Profile Image" />
+		</div>
+		<div class="item_content">
+			<div class="module">
+				<div class="content">
+					<ul class="comment_meta">
+						<li class="time">Just now</li>
+					</ul>
+					<% if logged_in? %>
+					<% form_for [@discussion, Response.new] do | f | %>
+					<fieldset class="input">
+						<label for="area_comment">Enter your response:</label>
+						<%= f.text_area :body, :rows => 6 %>
+					</fieldset>
+					<fieldset class="submit">
+						<%= submit_tag "Post this response" %>
+					</fieldset>
+					<% end %>
+					<% else %>
+						<%= link_to "Login to respond", login_url %>
+					<% end %>
+				</div>
+			</div>
+		</div>
+	</div>
 </div>
-<div id="secondary">
-    <ul class="actions first">
-        <% if current_user == @discussion.user || logged_in_as_owner? %>
-        <li class="action edit">
-            <span><%= link_to("Edit this Discussion", edit_discussion_url(@discussion)) %></span>
-        </li>
-        <% end %>
-        <% if logged_in_as_owner? %>
-        <li class="action delete">
-            <span><%= link_to("Delete this Discussion", @discussion, :method => :delete, :confirm => "Are you sure you'd like to delete this discussion?  All of the responses to this discussion will also be deleted.") %></span>
-        </li>
-        <% end %>
-    </ul>
+<div id="sidebar">
+	<ul class="modules">
+		<% if !current_community.themes.empty? %>
+		<li class="navigation themes">
+			<h3><span>Themes</span> <a href="<%= url_for(themes_url) %>" class="button edit"><span>Edit</span></a></h3>
+			<ul class="content">
+				<% current_community.themes.each do |theme| %>
+					<% if theme.discussions.count > 0 %>
+						<% content_tag(:li, :class => current_class_for_theme(theme)) do %>
+							<%= link_to theme, discussions_url(:theme => theme) %>
+						<% end %>
+					<% end %>
+				<% end %>
+				<% if current_community.discussions.for_theme('nil').count > 0 %>
+					<% content_tag(:li, :class => current_class_uncategorized) do %>
+						<%= link_to "General", discussions_url(:theme => 'nil') %>
+					<% end %>
+				<% end %>
+				<% content_tag(:li, :class => current_class_all_tasks, :id => "show_all") do %>
+					<%= link_to "All Discussions", discussions_url %>
+				<% end %>
+			</ul>
+		</li>
+		<% end %>
+	</ul>
 </div>

@@ -1,20 +1,33 @@
-<% form_for @discussion do | f | %>
-<%= f.error_messages %>
-<%= f.label(:title) %>
-<%= f.text_field :title, :class => "text single" %>
-<%= f.label(:body) %>
-<%= f.text_area(:body, :rows => 18, :class => "text large") %>
-<% if !current_community.themes.empty? %>
-<p>
-    <%= f.label :theme_id, 'Theme' %>
-    <%= f.select(:theme_id, [[ "General", nil ]] + current_community.themes.map { | each | [ each.name, each.id ] } ) %>
-</p>
-<% end %>
-<p>
-    <% if mode == :new %>
-    <%= submit_tag "Create" %>or <%= link_to "Cancel", discussions_url %>
-    <% else %>
-    <%= submit_tag "Save" %>or <%= link_to "Cancel", @discussion %>
-    <% end %>
-</p>
+<% form_for @discussion, :html => { :class => 'edit' } do | f | %>
+	<%= f.error_messages %>
+
+	<fieldset class="input">
+
+		<div class="inp group">
+			<%= f.label(:title) %>
+			<%= f.text_field :title, :class => "inp_text" %>
+		</div>
+
+		<div class="inp group">
+			<%= f.label(:body) %>
+			<%= f.text_area(:body, :rows => 8) %>
+		</div>
+
+		<% if !current_community.themes.empty? %>
+		<div class="inp group">
+		    <%= f.label :theme_id, 'Theme' %>
+		    <%= f.select(:theme_id, [[ "General", nil ]] + current_community.themes.map { | each | [ each.name, each.id ] } ) %>
+		</div>
+		<% end %>
+	</fieldset>
+	<fieldset class="submit">
+		<ul class="submit_opts">
+			<% if mode == :new %>
+			<li><div class="button clear"><a href='javascript:document.getElementById("new_discussion").submit()'><span class="icon create">Create Discussion</span></a></div></li>
+			<% else %>
+			<li><div class="button clear"><a href='javascript:document.getElementById("new_discussion").submit()'><span class="icon save">Save Changes</span></a></div></li>
+			<% end %>
+			<li class="text">or <%= link_to "Cancel", @discussion %></li>
+		</ul>
+	</fieldset>
 <% end %>
