@@ -108,7 +108,9 @@ h1, h2, h3, h4, h5, h6 {margin: 0.5em 0;}
 		}
 			ul#account_nav li a {}
 
+		ul#account_nav li.login,
 		ul#account_nav li.profile {background: none;}
+		ul#account_nav li.login,
 		ul#account_nav li.profile,
 		ul#account_nav li.edit_profile {padding-left: 0;}
 			ul#account_nav li.edit_profile a {
@@ -434,6 +436,7 @@ h1, h2, h3, h4, h5, h6 {margin: 0.5em 0;}
 			#main_content ul.lesson_list li {padding: 0 0 12px 0;}
 				#main_content ul.lesson_list li h3 {
 					font-size: 1.2em;
+					position: relative;
 					text-transform: uppercase;
 					letter-spacing: 0.5px;
 					background-repeat: repeat-x;
@@ -458,6 +461,40 @@ h1, h2, h3, h4, h5, h6 {margin: 0.5em 0;}
 							float: left;
 						}
 							#main_content ul.lesson_list li ul li .meta_info .meta_tags {position: static;}
+
+		#main_content ul.chapter_list {
+			margin: 1em 0; padding: 0;
+			list-style-type: none;
+		}
+			#main_content ul.chapter_list li {
+				padding: 0 0 5px 0;
+				clear: both;
+			}
+				#main_content ul.chapter_list h3 {
+					margin: 0; padding: 0;
+					color: #333;
+					font-size: 1.2em;
+					float: left;
+				}
+				#main_content ul.chapter_list .meta_info {
+					margin: 4px 0 0 8px; padding: 0;
+					float: left;
+				}
+				#main_content ul.chapter_list .meta_info ul {margin: 0; padding: 0;}
+				#main_content ul.chapter_list .meta_info .meta_tags {
+					margin: 0; padding: 0;
+					position: static;
+				}
+				#main_content ul.chapter_list .chapter_actions {
+					margin: 0; padding: 0;
+					list-style-type: none;
+					clear: both;
+					font-size: 1em;
+					font-weight: bold;
+				}
+					#main_content ul.chapter_list .chapter_actions li {
+						display: inline;
+					}
 
 
 		/* edit page styles */
@@ -1152,7 +1189,11 @@ form {
 			background: url(../images/template/input_bg.png);
 		}
 		#main_content form .input textarea.inp_area {height: 80px;}
+		#main_content form .input textarea.large {height: 200px;}
 		#main_content form .input input.inp_file {margin: 0; padding: 4px;}
+
+		#main_content form .input .mceEditor {margin: 0 0 12px 0;}
+
 	#main_content form .submit {margin: 1em 0;}
 		#main_content form .submit input {
 			font-size: 1.2em;
@@ -1176,6 +1217,15 @@ form {
 				float: left;
 			}
 
+		#main_content form .group.inline_submit {}
+			#main_content form .group.inline_submit input {
+				float: left;
+			}
+			#main_content form .group.inline_submit input.btn_submit {
+				margin: 6px 0 0 5px;
+				font-size: 1.2em;
+			}
+
 	#main_content form.edit {}
 		#main_content form.edit label {}
 		#main_content form.edit .input input,
@@ -1191,6 +1241,13 @@ form {
 
 		#main_content form.edit .attachments_add {}
 			#main_content form.edit .attachments_add input.inp_file {}
+
+	#main_content .add_chapter form.edit {
+		margin: 1em 0;
+	}
+		#main_content .add_chapter form.edit .group.checkbox {padding-bottom: 2px;}
+		#main_content .add_chapter form.edit fieldset.submit {margin: 0;}
+		#main_content .add_chapter form.edit input.inp_text {width: 200px;}
 
 
 /* Miscellaneous

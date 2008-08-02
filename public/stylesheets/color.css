@@ -92,6 +92,7 @@ a,
 		.content_bar .lesson_nav li {border-right-color: #628700;}
 		.content_bar .lesson_nav li.previous a {background-image: url(../images/template/content_bar_arrow_left_bg.gif);}
 		.content_bar .lesson_nav li.next a {background-image: url(../images/template/content_bar_arrow_right_bg.gif);}
+		.content_bar .lesson_nav li.inactive a {opacity: 0.5;}
 
 	.content_bar .action {background-image: url(../images/template/content_bar_top_action_bg.gif);}
 		.content_bar .action span.button_left {background-image: url(../images/template/bar_button_left_bg.gif);}

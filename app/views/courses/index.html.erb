@@ -1,38 +1,53 @@
 <% @current_tab = :Courses %>
 <% @page_class = :courses_index %>
-
-<div id="primary">
-  <div class="courses">
-    <ol class="courses">
-      <% for course in @courses %>
-		  <% if !course.draft || logged_in_as_owner?  %>
-	
-	      <li class="course">
-	        <h3 class="course_title grouped"><%= link_to h(course), course %></h3><%= link_to "Edit", edit_course_url(course), :class => 'action_sm' if logged_in_as_owner? %> 
-			<br/>
-	        <span class="meta_info">
-	          <%= course.created_at.to_s(:day_month_year) %>
-	        </span>
-			<span style="color:red">
-			<%= course_index_notes(course) %>
-			</span>
-	        <p class="course_description">
-	          <%=h course.description %>
-	        </p>
-	      </li>
-		  
-		  <% end %>
-      <% end %>
-    </ol>
-  </div>
+<div id="main_content">
+	<div class="content_bar" id="top">
+		<div class="breadcrumbs">
+			<p>Jump to:</p>
+			<ul>
+				<li class="first"><%= link_to "Courses", courses_path %></li>
+			</ul>
+		</div>
+		<% if logged_in_as_owner? %>
+		<div class="action">
+			<span class="button_left">&nbsp;</span><a href="<%= new_course_url %>" class="button"><span class="icon create">+</span><span class="text">Create a Course</span></a>
+		</div>
+	    <% end %>
+	</div>
+	<div class="page_title">
+		<h2><%= "#{current_community} #{@current_tab}" %></h2>
+		<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+	</div>
+	<ul class="article_list courses">
+	<% for course in @courses %>
+		<% if !course.draft || logged_in_as_owner?  %>
+		<li>
+			<div class="title">
+				<h2>
+					<%= link_to h(course), course %> 
+					<% if logged_in_as_owner? %>
+					<a class="button edit" href="<%= edit_course_url(course) %>"><span>Edit</span></a>
+					<% end %>
+				</h2>
+				<ul class="meta_info clear">
+					<li class="date first"><%= course.created_at.to_s(:day_month_year) %></li>
+					<li class="meta_tags">
+						<ul>
+							<%= course_index_notes(course) %>
+						</ul>
+					</li>
+				</ul>
+			</div>
+			<div class="content">
+				<p><%=h course.description %> <a class="more" href="<%= url_for(course) %>">Keep Reading</a><span class="arrow">&nbsp;</span></p>
+			</div>
+		</li>
+		<% end %>
+	<% end %>
+	</ul>
 </div>
-<div id="secondary">
-  <%= @themed_courses_sidebar %>
-
-  <ul class = "actions first">
-    <li class="action add">
-      <span><%= link_to "Add a Course", new_course_url, :class => 'action' if logged_in_as_owner? %></span>
-    </li>
-  </ul>
+<div id="sidebar">
+	<ul class="modules">
+		<%= @themed_courses_sidebar %>
+	</ul>
 </div>
-

@@ -1,54 +1,64 @@
-<h1 class="grouped"><%=h content %></h1>
-<div id="content_body">
-    <div class="lesson_info">
-        <p>
-            <% unless content.author.blank? %>
-            by <strong><%= content.author %></strong>&nbsp;|&nbsp;<% end %>
-            <%= content.updated_at.to_s(:day_month_year) %>
-        </p>
-    </div>
-    <div class="lesson_info">
-        <p>
-            <%= teaser_format(content.teaser) %>
-        </p>
-    </div>
-    <% if (embedded_media = content.attachments.find_by_embedded(true)) %>
-    <% embedded_media_url = embedded_media.authenticated_s3_url(:expires_in => 2.hours) %>
-    <p>
-        <%= embedded_media.filename %>
-    </p>
-    <% if embedded_media.content_type.include?("image") %>
-    <img src="<%= embedded_media_url %>" />
-    <p>
-    </p>
-    <% elsif embedded_media.content_type.include?("video") %>
-    <div id="player<%=embedded_media.id%>">
-        This text will be replaced
-    </div>
-    <script type="text/javascript">
-        var so = new SWFObject('/mediaplayer.swf', 'mpl', '500', '500', '8');
-        so.addParam('allowfullscreen', 'true');
-        so.addParam('allowscriptaccess', 'true');
-        so.addVariable('width', '500');
-        so.addVariable('height', '500');
-        so.addVariable('file', encodeURIComponent(encodeURIComponent('<%= embedded_media_url %>')));
-        so.addVariable('type', 'flv');
-        so.addVariable('autostart', 'false');
-        so.write('player<%= embedded_media.id%>');
-    </script>
-    <% elsif embedded_media.content_type.include?("audio") %>
-    <div id="player<%=embedded_media.id%>">
-        This text will be replaced
-    </div>
-    <script type="text/javascript">
-        var so = new SWFObject('/mediaplayer.swf', 'mpl', '500', '20', '8');
-        so.addParam('allowfullscreen', 'false');
-        so.addParam('allowscriptaccess', 'true');
-        so.addVariable('file', encodeURIComponent(encodeURIComponent('<%= embedded_media_url %>')));
-        so.addVariable('type', 'mp3');
-        so.addVariable('autostart', 'false');
-        so.write('player<%= embedded_media.id%>');
-    </script>
-    <% end %>
-    <% end %>
-    <%= auto_link(content.body) %>
+<div class="title">
+	<h2><%=h content %></h2>
+	<ul class="meta_info clear">
+		<li class="date first"><%= content.updated_at.to_s(:day_month_year) %></li>
+		<% unless content.author.blank? %>
+		<li class="author"><%= content.author %></li>
+		<% end %>
+		<li class="meta_tags">
+			<ul>
+				<%= content_notes(@lesson.content) %>
+			</ul>
+		</li>
+	</ul>
+</div>
+<div class="module actions">
+	<div class="content">
+		<h4>Lesson Actions</h4>
+		<ul class="action_nav">
+			<li class="edit"><%= link_to "Edit Lesson", edit_course_chapter_lesson_url(@course, @chapter, @lesson)  if logged_in_as_owner? %></li>
+			<li class="delete"><%= link_to("Delete Lesson", course_chapter_lesson_url(@course, @chapter, @lesson), :method => :delete, :confirm =>  "Are you sure you would like to delete this lesson?")  if logged_in_as_owner? %></li>
+		</ul>
+	</div>
+</div>
+<div class="intro">
+	<p><%= teaser_format(content.teaser) %></p>
+</div>
+<% if (embedded_media = content.attachments.find_by_embedded(true)) %>
+	<% embedded_media_url = embedded_media.authenticated_s3_url(:expires_in => 2.hours) %>
+	<div class="module video">
+		<h4><%= embedded_media.filename %></h4>
+		<% if embedded_media.content_type.include?("image") %>
+		<img src="<%= embedded_media_url %>" />
+		<% elsif embedded_media.content_type.include?("video") %>
+		<div id="player<%=embedded_media.id%>">
+			This text will be replaced
+		</div>
+		<script type="text/javascript">
+			var so = new SWFObject('/mediaplayer.swf', 'mpl', '500', '500', '8');
+			so.addParam('allowfullscreen', 'true');
+			so.addParam('allowscriptaccess', 'true');
+			so.addVariable('width', '500');
+			so.addVariable('height', '500');
+			so.addVariable('file', encodeURIComponent(encodeURIComponent('<%= embedded_media_url %>')));
+			so.addVariable('type', 'flv');
+			so.addVariable('autostart', 'false');
+			so.write('player<%= embedded_media.id%>');
+		</script>
+		<% elsif embedded_media.content_type.include?("audio") %>
+		<div id="player<%=embedded_media.id%>">
+		This text will be replaced
+		</div>
+		<script type="text/javascript">
+			var so = new SWFObject('/mediaplayer.swf', 'mpl', '500', '20', '8');
+			so.addParam('allowfullscreen', 'false');
+			so.addParam('allowscriptaccess', 'true');
+			so.addVariable('file', encodeURIComponent(encodeURIComponent('<%= embedded_media_url %>')));
+			so.addVariable('type', 'mp3');
+			so.addVariable('autostart', 'false');
+			so.write('player<%= embedded_media.id%>');
+		</script>
+		<% end %>
+	</div>
+<% end %>
+<p><%= auto_link(content.body) %></p>

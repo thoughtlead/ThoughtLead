@@ -1,20 +1,32 @@
+<% form_for @course, :html => { :class => 'edit' } do | f | %>
+	<%= f.error_messages %>
 
-<% form_for @course do | f | %>
-  <%= f.error_messages %>
+	<fieldset class="input">
 
-  <%= f.label(:title) %>
-  <%= f.text_field :title, :class => "text single" %>
-  
-  <%= f.label(:description) %>
-  <%= f.text_area(:description, :class => "text medium") %>
-  <span class="draft plus_label"><%= f.check_box :draft %>
-    <%= f.label :draft, 'Draft?' %>
-  </span>
-  
-<% if mode == :new %>
-<%= submit_tag "Create" %>or <%= link_to "Cancel", courses_url %>
-<% else %>
-<%= submit_tag "Save" %>or <%= link_to "Cancel", @course %>
-<% end %>
-  
+		<div class="inp group">
+			<%= f.label(:title) %>
+			<%= f.text_field :title, :class => "inp_text" %>
+		</div>
+
+		<div class="inp group">
+			<%= f.label(:description) %>
+			<%= f.text_area(:description, :class => "inp_area")	 %>
+		</div>
+
+		<div class="checkbox group">
+		    <%= f.check_box :draft %>
+		    <%= f.label :draft, 'Draft?' %>
+		</div>
+
+	</fieldset>
+	<fieldset class="submit">
+		<ul class="submit_opts">
+			<% if mode == :new %>
+			<li><div class="button clear"><a href='javascript:document.getElementById("new_course").submit()'><span class="icon create">Create Course</span></a></div></li>
+			<% else %>
+			<li><div class="button clear"><a href='javascript:document.getElementById("edit_course_<%=@course.id%>").submit()'><span class="icon save">Save Changes</span></a></div></li>
+			<% end %>
+			<li class="text">or <%= link_to "Cancel", @course %></li>
+		</ul>
+	</fieldset>
 <% end %>

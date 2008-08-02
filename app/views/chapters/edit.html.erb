@@ -1,19 +1,43 @@
 <% @current_tab = :Courses %>
+<div id="main_content">
+	<div class="content_bar" id="top">
+		<div class="breadcrumbs">
+			<p>Jump to:</p>
+			<ul>
+				<li class="first"><%= link_to "Courses", courses_path %></li>
+				<li><%= link_to @course, @course %></li>
+			</ul>
+		</div>
+		<% if logged_in_as_owner? %>
+		<div class="action">
+			<span class="button_left">&nbsp;</span><a href="<%= new_course_url %>" class="button"><span class="icon create">+</span><span class="text">Create a Course</span></a>
+		</div>
+	    <% end %>
+	</div>
 
-<div id="primary">
-  <p><%= link_to "&#8592; Return to Course Overview", @course %></p>
-  <h1 class="grouped">Edit chapter</h1>
-  <br />
+	<div class="add_chapter">
+		<h2>Edit chapter</h2>
+		<% form_for([@course, @chapter], :html => {:class => 'edit'}) do | f | %>
+			<%= f.error_messages %>
 
-    <% form_for [@course, @chapter] do | f | %>
-      <%= f.error_messages %>
+			<fieldset class="input">
 
-      <%= f.text_field :name, :class => "text single"  %>
-      <span class="draft plus_label"><%= f.check_box :draft %>
-        <%= f.label :draft, 'Draft?' %>
-      </span>
+				<div class="checkbox group">
+					<%= f.check_box :draft %>
+					<%= f.label :draft, 'Draft?' %>
+				</div>
 
-      <%= submit_tag "Save" %> or <%= link_to "Cancel", course_chapters_url(@course) %>
-    <% end %>
+				<div class="inp group">
+					<%= f.text_field :name, :class => "inp_text"  %>
+				</div>
+
+			</fieldset>
+			<fieldset class="submit">
+				<ul class="submit_opts">
+					<li><div class="button clear"><a href='javascript:document.getElementById("edit_chapter_<%=@chapter.id%>").submit()'><span class="icon save">Save Changes</span></a></div></li>
+					<li class="text">or <%= link_to "Cancel", course_chapters_url(@course) %></li>
+				</ul>
+			</fieldset>
+		<% end %>
+	</div>
 </div>
-

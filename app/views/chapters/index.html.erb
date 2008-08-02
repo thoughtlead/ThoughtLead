@@ -1,34 +1,57 @@
 <% @current_tab = :Courses %>
+<div id="main_content">
+	<div class="content_bar" id="top">
+		<div class="breadcrumbs">
+			<p>Jump to:</p>
+			<ul>
+				<li class="first"><%= link_to "Courses", courses_path %></li>
+				<li><%= link_to @course, @course %></li>
+			</ul>
+		</div>
+		<% if logged_in_as_owner? %>
+		<div class="action">
+			<span class="button_left">&nbsp;</span><a href="<%= new_course_url %>" class="button"><span class="icon create">+</span><span class="text">Create a Course</span></a>
+		</div>
+	    <% end %>
+	</div>
+	<h2><%=h "Edit chapters for #{@course}" %></h2>
+	<ul class="chapter_list">
+		<% for chapter in @course.chapters %>
+		<li>
+			<h3><%=h chapter %></h3>
+			<ul class="meta_info">
+				<li class="meta_tags">
+					<ul>
+						<% if chapter.draft %><li class="draft">Draft</li><% end %>
+					</ul>
+				</li>
+			</ul>
+			<ul class="chapter_actions">
+				<li><%= link_to "Edit", edit_course_chapter_url(@course, chapter), :class => 'chapter_rename' %></li>
+				<li><%= link_to "Delete", course_chapter_url(@course, chapter), :method => :delete, :class => 'chapter_delete', :confirm => "Are you sure you would like to delete this chapter?  Its lessons will also be deleted." %></li>
+			</ul>
+		</li>
+		<% end %>
+	</ul>
 
-<div id="primary">
-  <p><%= link_to "&#8592; Return to Course Overview", @course %></p>
-  <h1 class="grouped"><%=h "Edit chapters for #{@course}" %></h1>
-  <br />
-  <% for chapter in @course.chapters %>
-    <div class="chapter">
-      <span class="chapter_title"><%=h chapter %></span>
-      <span class="chapter_actions">
-      	<% if chapter.draft %>Draft<% end %>
-        <%= link_to "Edit", edit_course_chapter_url(@course, chapter), :class => 'chapter_rename' %> | 
-        <%= link_to "Delete", course_chapter_url(@course, chapter), :method => :delete, :class => 'chapter_delete', :confirm => "Are you sure you would like to delete this chapter?  Its lessons will also be deleted." %>
-      </span>
-    </div>
-  
-  <% end %>
-  
-  <div class="add_chapter">
-    Add a New Chapter
+	<div class="add_chapter">
+		<h2>Add a New Chapter</h2>
+		<% form_for([@course, Chapter.new], :html => {:class => 'edit'}) do | f | %>
+			<%= f.error_messages %>
 
-    <% form_for [@course, Chapter.new] do | f | %>
-      <%= f.error_messages %>
+			<fieldset class="input">
 
-      <span class="draft plus_label"><%= f.check_box :draft %>
-        <%= f.label :draft, 'Draft?' %>
-      </span>
-      <%= f.text_field :name, :class => "text single"  %>
-      
-      <%= submit_tag "Add" %>
-    <% end %>
-  </div>
+				<div class="checkbox group">
+					<%= f.check_box :draft %>
+					<%= f.label :draft, 'Draft?' %>
+				</div>
+
+				<div class="inp group inline_submit">
+					<%= f.text_field :name, :class => "inp_text"  %>
+					<%= submit_tag "Add", :class => "btn_submit" %>
+				</div>
+
+			</fieldset>
+		<% end %>
+	</div>
 </div>
-

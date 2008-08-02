@@ -1,59 +1,78 @@
 <% @current_tab = :Courses %>
-	<script src="/javascripts/swfobject.js"></script>
-    <div id="lesson_placeholder"> <!-- FIXME - Remove after there is the ability to target just lesson pages -->
-    <div id="primary">
-      <div id="lesson">
-            <p><%= link_to "&#8592; Return to Course Overview", @lesson.chapter.course %></p>
-  		<%= render :partial => '/contents/show_content', :locals => { :content => @lesson.content } %>
-          <div class="lesson_navigation">
-            <% if (lesson_higher_item = @lesson.higher_item_visible_to(current_user)) %>   
-              <p><small>PREVIOUS LESSON</small> &mdash; <%= link_to(h(lesson_higher_item),[lesson_higher_item.chapter.course,lesson_higher_item.chapter,lesson_higher_item]) %> </p>
-            <% end %>
-            <% if (lesson_lower_item = @lesson.lower_item_visible_to(current_user)) %>   
-              <p><small>NEXT LESSON</small> &mdash; <%= link_to(h(lesson_lower_item),[lesson_lower_item.chapter.course,lesson_lower_item.chapter,lesson_lower_item]) %> </p>
-            <% end %>
-            <p><%= link_to "&#8592; Return to Course Overview", @lesson.chapter.course %></p>
-          </div>
-        </div>
-	  </div>
+<script src="/javascripts/swfobject.js"></script>
+<div id="main_content">
+	<div class="content_bar" id="top">
+		<div class="breadcrumbs">
+			<p>Jump to:</p>
+			<ul>
+				<li class="first"><%= link_to "Courses", courses_path %></li>
+				<li><%= link_to h(@course), @course %></li>
+			</ul>
+		</div>
+		<% if logged_in_as_owner? %>
+		<div class="action">
+			<span class="button_left">&nbsp;</span><a href="<%= new_course_url %>" class="button"><span class="icon create">+</span><span class="text">Create a Course</span></a>
+		</div>
+	    <% end %>
 	</div>
-    
-    <div id="secondary">
-      <ul class="actions first">
-        <li class="action edit">
-          <span><%= link_to "Edit this Lesson", edit_course_chapter_lesson_url(@course, @chapter, @lesson)  if logged_in_as_owner? %></span>
-        </li>
-        <li class="action delete">
-          <span><%= link_to("Delete this Lesson", course_chapter_lesson_url(@course, @chapter, @lesson), :method => :delete, :confirm =>  "Are you sure you would like to delete this lesson?")  if logged_in_as_owner? %></span>
-        </li>
-      </ul>
 
-      	<% if !(s = content_notes(@lesson.content)).blank? %>
-			<p class="premium">
-				This lesson is: <%= s %>
-			</p>
-		<% end %>
-      
-      <div class="course">
-        <div class="course_title">
-          <span>Course</span>
-          <p><%= link_to h(@course), @course %></p>
-        </div>
-        <div class="lessons">
-          <ol>
-            <% for lesson in @lesson.chapter.lessons %>
-
-              <% if lesson == @lesson %>
-              <li class="current"><%=h lesson %></li>
-            
-              <% elsif lesson.visible_to(current_user) %>
-                  <li><%= link_to(h(lesson),[lesson.chapter.course,lesson.chapter,lesson]) %></li>
-              <% end %>    
-            
-            <% end %>
-          </ol>
-        </div>
-      </div>
-      <%= render :partial => '/contents/show_attachments', :locals => { :content => @lesson.content } %>
-    </div>
-    
+	<%= render :partial => '/contents/show_content', :locals => { :content => @lesson.content } %>
+	<%= render :partial => '/contents/show_attachments', :locals => { :content => @lesson.content } %>
+	<div class="content_bar" id="bottom">
+		<div class="breadcrumbs">
+			<p>Jump to:</p>
+			<ul>
+				<li class="first"><%= link_to "Courses", courses_path %></li>
+				<li><%= link_to h(@course), @course %></li>
+			</ul>
+		</div>
+		<ul class="lesson_nav">
+			<% if (lesson_higher_item = @lesson.higher_item_visible_to(current_user)) %>
+			<li class="previous"><%= link_to("Previous Lesson",[lesson_higher_item.chapter.course,lesson_higher_item.chapter,lesson_higher_item]) %></li>
+			<% end %>
+			<% if (lesson_lower_item = @lesson.lower_item_visible_to(current_user)) %>
+			<li class="next inactive"><%= link_to("Next Lesson",[lesson_lower_item.chapter.course,lesson_lower_item.chapter,lesson_lower_item]) %></li>
+			<% end %>
+		</ul>
+	</div>
+</div>
+<div id="sidebar">
+	<ul class="modules">
+		<li class="navigation nav_sep outline">
+			<h3><span>Outline: <a href="#">draft course</a></span></h3>
+			<ul class="content">
+				<li class="active">
+					<h4>This chapter has a video</h4>
+					<ul>
+						<li><a href="#">Lesson with a Video</a></li>
+						<li><a class="active" href="#"><span>Sample Lesson</span></a></li>
+						<li><a href="#">Lesson with a Video</a></li>
+						<li><a href="#">Demo Lesson</a></li>
+					</ul>
+				</li>
+				<li>
+					<h4>Another chapter title</h4>
+					<ul>
+						<li><a href="#">Lesson with a Video</a></li>
+						<li><a href="#">Demo Lesson</a></li>
+					</ul>
+				</li>
+				<li>
+					<h4>More collapsed stuff</h4>
+					<ul>
+						<li><a href="#">Lesson with a Video</a></li>
+						<li><a href="#">Demo Lesson</a></li>
+					</ul>
+				</li>
+				<li class="last">
+					<h4>Lorem ipsum dolor sit amet consectetuer ad.</h4>
+					<ul>
+						<li><a href="#">Lesson with a Video</a></li>
+						<li><a href="#">Demo Lesson</a></li>
+					</ul>
+				</li>
+			</ul>
+		</li>
+		<%= @themed_courses_sidebar %>
+	</ul>
+</div>

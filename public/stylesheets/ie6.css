@@ -14,6 +14,7 @@ div, p, li, dl, dt, dd {zoom: 1;}
 ----------------------------------------------- */
 .corner,
 #content {background: none;}
+.content_bar .lesson_nav li.inactive a {filter:alpha(opacity=50);}
 
 .corner {}
 	.top_left {filter: progid:DXImageTransform.Microsoft.AlphaImageLoader(src='images/template/corners/content_r5/top_left.png', sizingMethod='crop');}

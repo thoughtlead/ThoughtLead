@@ -1,4 +1,22 @@
-<div id="primary">
-  <h1 class="grouped">Edit Lesson</h1>
-  <%= render :partial => 'form', :locals => { :mode => :edit }  %>
+<% @current_tab = :Courses %>
+<div id="main_content">
+	<div class="content_bar" id="top">
+		<div class="breadcrumbs">
+			<p>Jump to:</p>
+			<ul>
+				<li class="first"><%= link_to "Courses", courses_path %></li>
+				<li></li>
+			</ul>
+		</div>
+		<% if logged_in_as_owner? %>
+		<div class="action">
+			<span class="button_left">&nbsp;</span><a href="<%= new_course_url %>" class="button"><span class="icon create">+</span><span class="text">Create a Course</span></a>
+		</div>
+	    <% end %>
+	</div>
+	<div class="title">
+		<h2>Edit Lesson</h2>
+		<p class="subtitle">In Course: "<%=h @course %>" | In Chapter: "<%=h @chapter %>"</p>
+	</div>
+	<%= render :partial => 'form', :locals => { :mode => :edit }  %>
 </div>

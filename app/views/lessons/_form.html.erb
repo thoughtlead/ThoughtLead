@@ -1,14 +1,14 @@
-<div>
-    <strong>Course:</strong>
-    <%=h @course %>
-    <strong>Chapter:</strong>
-    <%=h @chapter %>
-</div>
-<% form_for [@course, @chapter, @lesson], :html => { :multipart => true } do | l | %>
-<%= render :partial => '/contents/edit_content', :locals => { :content => @lesson.content } %>
-<% if mode == :new %>
-<%= submit_tag "Create this lesson" %>or <%= link_to "Cancel", @course %>
-<% else %>
-<%= submit_tag "Save changes" %>or <%= link_to "Cancel", [@course, @chapter, @lesson] %>
-<% end %>
+<% form_for [@course, @chapter, @lesson], :html => { :multipart => true, :class => "edit" } do | l | %>
+	<%= render :partial => '/contents/edit_content', :locals => { :content => @lesson.content } %>
+
+	<fieldset class="submit">
+		<ul class="submit_opts">
+			<% if mode == :new %>
+			<li><div class="button clear"><a href='javascript:document.getElementById("new_lesson").submit()'><span class="icon create">Create Lesson</span></a></div></li>
+			<% else %>
+			<li><div class="button clear"><a href='javascript:document.getElementById("edit_lesson_<%= @lesson.id %>").submit()'><span class="icon save">Save Changes</span></a></div></li>
+			<% end %>
+			<li class="text">or <%= link_to "Cancel", @course %></li>
+		</ul>
+	</fieldset>
 <% end %>

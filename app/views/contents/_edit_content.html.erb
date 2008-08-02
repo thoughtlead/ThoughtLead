@@ -27,44 +27,69 @@ addAttachment = function() {
 	objects << content.attachments if content.attachments
 %>
 <%= error_messages_for(:content, :object => objects) %>
-<div class="lesson">
-    <%= f.label(:title, 'Title') %>
-    <%= f.text_field :title, :class => "text single" %>
-    <%= f.label(:author, 'Author') %>
-    <%= f.text_field :author, :class => "text single" %>
-    <%= f.label(:teaser, "Teaser") %>
-    <%= f.text_area(:teaser, :rows => 7, :cols => 70, :class => "text medium") %>
-    <%= f.label(:body, 'Body') %>
-    <%= f.text_area(:body, :rows => 25, :cols => 82, :mce_editable => "true", :class => "text large") %>
-</div>
 
+<fildset class="input">
 
-<%= f.label(:content_attachment, "Attachments") %>
-<span id="attachments">
-</span><br/>
+	<div class="inp group">
+		<%= f.label(:title, 'Title') %>
+		<%= f.text_field :title, :class => "inp_text" %>		
+	</div>
 
-<input type="button" value="Add Attachment" onclick="addAttachment()">
+	<div class="inp group">
+		<%= f.label(:author, 'Author') %>
+		<%= f.text_field :author, :class => "inp_text" %>
+	</div>
 
-<%= f.label(:embedded_media, "Embedded Media") %>
-<%= f.file_field :embedded_media %>
+	<div class="inp group">
+		<%= f.label(:teaser, "Teaser") %>
+		<%= f.text_area(:teaser, :rows => 7, :cols => 70, :class => "inp_area") %>
+	</div>
 
-<div>
-    <span class="draft plus_label"><%= f.check_box :draft %>
-        <%= f.label :draft, 'Draft?' %>
-    </span>
-	
-    <span class="draft plus_label">
-    	<%= f.radio_button(:access_level, "Public") %>
-        <%= f.label :access_level, 'Public' %>
-    </span>
-	<span class="draft plus_label">
+	<div class="inp group">
+		<%= f.label(:body, 'Body') %>
+		<%= f.text_area(:body, :rows => 25, :cols => 82, :mce_editable => "true", :class => "inp_area large") %>
+	</div>
+
+	<div class="columns">
+		<div class="column one">
+			<h3 class="separator">Attachments</h3>
+			<ul class="attachments_list attachment">
+				<li class="image"><a href="#">catch_kitten.jpeg</a> <a class="action delete" href="#">Delete</a></li>
+				<li class="image"><a href="#">PeanutButter.jpeg</a> <a class="action delete" href="#">Delete</a></li>
+			</ul>
+			<ul class="attachments_add attachment clearsub">
+				<li class="create">
+					<%= file_field_tag "content[content_attachments][]", :size => 17, :class => "inp_file" %>
+				</li>
+			</ul>
+		</div>
+		<div class="column two">
+			<h3 class="separator">Embedded Media</h3>
+			<p>Media (video/audio) uploaded here will be embedded in the lesson.</p>
+			<%= f.file_field :embedded_media, :size => 17, :class => "inp_file" %>
+		</div>
+	</div>
+
+	<h3 class="separator">Lesson Publishing</h3>
+	<div class="checkbox group">
+		<%= f.check_box :draft %>
+		<%= f.label :draft, 'Draft?' %>
+	</div>
+
+	<div class="checkbox group">
+		<%= f.radio_button(:access_level, "Public") %>
+		<%= f.label :access_level, 'Public' %>
+	</div>
+
+	<div class="checkbox group">
 		<%= f.radio_button :access_level, "Registered" %>
-        <%= f.label :access_level, 'Registered' %>
-    </span>
-    <span class="draft plus_label">
-    	<%= f.radio_button :access_level, "Premium" %>
-        <%= f.label :access_level, 'Premium' %>
-    </span>	
-	
-</div>
-<% end %>      
+		<%= f.label :access_level, 'Registered' %>
+	</div>
+
+	<div class="checkbox group">
+		<%= f.radio_button :access_level, "Premium" %>
+		<%= f.label :access_level, 'Premium' %>
+	</div>
+
+</fieldset>
+<% end %>
