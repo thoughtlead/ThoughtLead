@@ -7,20 +7,22 @@
 		<% end %>
 		<li class="meta_tags">
 			<ul>
-				<%= content_notes(@lesson.content) %>
+				<%= content_notes(content) %>
 			</ul>
 		</li>
 	</ul>
 </div>
-<div class="module actions">
-	<div class="content">
-		<h4>Lesson Actions</h4>
-		<ul class="action_nav">
-			<li class="edit"><%= link_to "Edit Lesson", edit_course_chapter_lesson_url(@course, @chapter, @lesson)  if logged_in_as_owner? %></li>
-			<li class="delete"><%= link_to("Delete Lesson", course_chapter_lesson_url(@course, @chapter, @lesson), :method => :delete, :confirm =>  "Are you sure you would like to delete this lesson?")  if logged_in_as_owner? %></li>
-		</ul>
+<%if content.lesson %>
+	<div class="module actions">
+		<div class="content">
+			<h4>Lesson Actions</h4>
+			<ul class="action_nav">
+				<li class="edit"><%= link_to "Edit Lesson", edit_course_chapter_lesson_url(@course, @chapter, @lesson)  if logged_in_as_owner? %></li>
+				<li class="delete"><%= link_to("Delete Lesson", course_chapter_lesson_url(@course, @chapter, @lesson), :method => :delete, :confirm =>  "Are you sure you would like to delete this lesson?")  if logged_in_as_owner? %></li>
+			</ul>
+		</div>
 	</div>
-</div>
+<%end%>
 <div class="intro">
 	<p><%= teaser_format(content.teaser) %></p>
 </div>

@@ -15,3 +15,4 @@ db/development_snapshot*
 deploy_history.txt
 config/ultrasphinx/*.conf
 watir_test_results
+extras

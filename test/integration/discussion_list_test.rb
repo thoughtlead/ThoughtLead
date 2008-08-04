@@ -25,8 +25,8 @@ class DiscussionListTest < ActionController::IntegrationTest
    
     
     # Ensure the Theme name and description appear at the top of the list
-    assert_select "div[id=primary] h2", @c.name
-    assert_select "div[id=primary] h3", @c.description
+    assert_select "div.page_title h2", "Theme: #{@c.name}"
+    assert_select "div.page_title p", @c.description
   end
   
 end
