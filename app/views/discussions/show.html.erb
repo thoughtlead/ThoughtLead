@@ -59,7 +59,7 @@
 
 	<% if !@discussion.responses.blank? %>
 	<h2 class="eclear"><%= pluralize(@discussion.responses.count, "Response") %></h2>
-	<ol id="comments" class="comments_list comment clearsub">
+	<ol id="responses" class="comments_list comment clearsub">
 		<% for response in @discussion.responses %>
 		<li>
 			<div class="item_image module image">
