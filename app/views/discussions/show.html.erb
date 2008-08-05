@@ -45,10 +45,10 @@
 				<h4>Discussion Actions</h4>
 				<ul class="action_nav">
 					<% if current_user == @discussion.user || logged_in_as_owner? %>
-					<li class="edit"><%= link_to("Edit Discussion", edit_discussion_url(@discussion)) %></li>
+					<li class="edit"><%= link_to("Edit <span class='action_target'>Discussion</span>", edit_discussion_url(@discussion)) %></li>
 					<% end %>
 					<% if logged_in_as_owner? %>
-					<li class="delete"><%= link_to("Delete Discussion", @discussion, :method => :delete, :confirm => "Are you sure you'd like to delete this discussion?  All of the responses to this discussion will also be deleted.") %></li>
+					<li class="delete"><%= link_to("Delete <span class='action_target'>Discussion</span>", @discussion, :method => :delete, :confirm => "Are you sure you'd like to delete this discussion?  All of the responses to this discussion will also be deleted.") %></li>
 					<% end %>
 				</ul>
 			</div>
