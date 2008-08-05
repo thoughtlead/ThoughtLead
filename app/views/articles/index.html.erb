@@ -1,67 +1,84 @@
-<% @current_tab = :'Library' %>
-
-<div id="primary">
-  <% if @category %>
+<% @current_tab = :Article %>
+<div id="main_content">
+	<div class="content_bar" id="top">
+		<div class="breadcrumbs">
+			<p>Jump to:</p>
+			<ul>
+				<li class="first"><%= link_to "Library", articles_path %></li>
+			</ul>
+		</div>
+		<% if logged_in? && current_user.owner? %>
+		<div class="action">
+			<span class="button_left">&nbsp;</span><a href="<%= new_article_url %>" class="button"><span class="icon create">+</span><span class="text">Create an Article</span></a>
+		</div>
+	    <% end %>
+	</div>
+	<% if @category %>
 	<h2><%= @category.name %></h2>
-  <% end %>
-  <div class="discussions">
-    
-    <% @articles.each do |article| %>
-		  	<% if article.visible_to(current_user) %>
-	        <li>
-	          <h2><%= link_to(h(article),article) %>
-			  <% if (embedded_media = article.content.attachments.find_by_embedded(true)) %>
-			  <% if embedded_media.content_type.include?("image") %>
-			  <img src="/images/image.png"/>
-			  <% elsif embedded_media.content_type.include?("audio") %>
-			  <img src="/images/audio.png"/>
-			  <% elsif embedded_media.content_type.include?("video") %>
-			  <img src="/images/video.png"/>
-			  <% end %><% end %></h2>
-	          <span class="meta_info">
-    	        <% unless article.content.author.blank? %>by <strong><%= article.content.author %></strong> | <% end %><%= article.content.updated_at.to_s(:day_month_year) %>
-        	  </span>
-			  <span style="color:red"><%= content_notes(article.content) %></span><br/> 
-	          <p><%= teaser_format(article.content.teaser) %></p><br/>
-			  <% attachments_string = article.content.display_attachments %>
-			  <% unless attachments_string.blank? %>Attachments:&nbsp;<%= attachments_string %><% end %>
-	        </li>
+	<% else %>
+	<div class="page_title">
+		<h2><%= "#{current_community} #{@current_tab}" %></h2>
+		<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+	</div>
+	<% end %>
+	<ul class="article_list library">
+		<% @articles.each do |article| %>
+			<% if article.visible_to(current_user) %>
+			<li>
+				<div class="title">
+					<h2>
+						<%= link_to(h(article),article) %> 
+						<% if (embedded_media = article.content.attachments.find_by_embedded(true)) %>
+							<% if embedded_media.content_type.include?("image") %>
+							<span class="media image"><span>Image</span></span>
+							<% elsif embedded_media.content_type.include?("audio") %>
+							<span class="media audio"><span>Audio</span></span>
+							<% elsif embedded_media.content_type.include?("video") %>
+							<span class="media video"><span>Video</span></span>
+							<% end %>
+						<% end %>
+					</h2>
+					<ul class="meta_info clear">
+						<li class="date first"><%= article.content.updated_at.to_s(:day_month_year) %></li>
+						<li class="theme"><a href="#">Category</a>, <a href="#">Category 2</a></li>
+						<% unless article.content.author.blank? %>
+							<li class="author"><%= article.content.author %></li>
+						<% end %>
+						<li class="meta_tags">
+							<ul>
+								<%= content_notes(article.content) %>
+							</ul>
+						</li>
+					</ul>
+				</div>
+				<div class="content">
+					<p>
+						<%= teaser_format(article.content.teaser) %> 
+						<a class="more" href="<%= url_for(article) %>">Keep Reading</a><span class="arrow">&nbsp;</span>
+					</p>
+				</div>
+			</li>
 			<% end %>
-    <% end %>
-
-  </div>
-</div>
-<div id="secondary">
-  <ul class="actions first">
-    <% if logged_in? && current_user.owner? %>
-      <li class="action add">
-        <span><%= link_to "Add an Article", new_article_url, :category => @category %></span>
-      </li>	
-      <li class="action edit">
-        <span><%= link_to "Edit Categories", categories_url %></span>
-      </li>
-    <% end %>
-  </ul>
-  
-  <% if !current_community.categories.empty? %>
-    <ul class="themes">
-      <h2>Categories</h2>
-      <% current_community.categories.each do |category| %>
-	  	<% if category.contains_articles_visible_to(current_user) %>
-        <li>
-          <%= link_to category, library_url(:category => category) %>
-        </li>
 		<% end %>
-      <% end %>
-      <% if current_community.articles.for_category('nil').count > 0 %>
-		<li>
-          <%= link_to "General", library_url(:category => 'nil') %>
-        </li>
-      <% end %>
-	  <li>
-      	<%= link_to "Full Library", library_url %>
-      </li>
-    </ul>
-  <% end %>
-  
+	</ul>
+</div>
+<div id="sidebar">
+	<ul class="modules">
+		<% if !current_community.categories.empty? %>
+		<li class="navigation themes">
+			<h3><span>Categories</span> <a href="<%= url_for(categories_url) %>" class="button edit"><span>Edit</span></a></h3>
+			<ul class="content">
+				<% current_community.categories.each do |category| %>
+					<% if category.contains_articles_visible_to(current_user) %>
+						<li><%= link_to category, library_url(:category => category) %></li>
+					<% end %>
+				<% end %>
+				<% if current_community.articles.for_category('nil').count > 0 %>
+					<li><%= link_to "General", library_url(:category => 'nil') %></li>
+				<% end %>
+				<li id="show_all"><%= link_to "Full Library", library_url %></li>
+			</ul>
+		</li>
+		<% end %>
+	</ul>
 </div>

@@ -34,31 +34,35 @@ addNewCategory = function() {
 }
 //*/
 </script>
-<% form_for @article, :html => { :multipart => true } do | a | %>
+<% form_for @article, :html => { :multipart => true, :class => "edit" } do | a | %>
 <%= render :partial => '/contents/edit_content', :locals => { :content => @article.content } %>
 
-<%= label_tag(:lesson_attachment, "Categories") %>
-<% @article.categories.each do |selected_category| %>
-<span>
-	<select name="article[article_categories][]">
-	<% current_community.categories.each do |category| %>
-		<option value="<%=category.id%>" <%= 'selected' if category == selected_category %>><%= category %></option>
+<div class="edit_categories">
+	<h3 class="separator">Categories</h3>
+	<% @article.categories.each do |selected_category| %>
+		<select name="article[article_categories][]">
+			<% current_community.categories.each do |category| %>
+			<option value="<%=category.id%>" <%= 'selected' if category == selected_category %>><%= category %></option>
+			<% end %>
+		</select>
+		<input type="button" value="Remove" onclick="removeCategory(this)" />
 	<% end %>
-	</select>
-    <input type="button" value="Remove" onclick="removeCategory(this)" style="margin-bottom: 0px" /><br/>
-</span>
-<% end %>
-<span id="categories">
-</span><br/>
-<input type="button" value="Add Existing Category" onclick="addCategory()"><br/>
 
-<span id="new_categories">	
-</span><br/>
-<input type="button" value="Add New Category" onclick = "addNewCategory()"><br/>
+	<div id="categories" class="category_fields"></div>
+	<button onclick="addCategory(); return false;">Add Existing Category</button>
 
-<% if mode == :new %>
-<%= submit_tag "Create this article" %>or <%= link_to "Cancel", library_url, :category => @category %>
-<% else %>
-<%= submit_tag "Save changes" %>or <%= link_to "Cancel", @article, :category => @category %>
-<% end %>
+	<div id="new_categories" class="category_fields"></div>
+	<button onclick="addNewCategory(); return false;">Add New Category</button>
+</div>
+
+<fieldset class="submit">
+	<ul class="submit_opts">
+		<% if mode == :new %>
+		<li><div class="button clear"><a href='javascript:document.getElementById("new_article").submit()'><span class="icon create">Create Article</span></a></div></li>
+		<% else %>
+		<li><div class="button clear"><a href='javascript:document.getElementById("edit_article_<%= @article.id %>").submit()'><span class="icon save">Save Changes</span></a></div></li>
+		<% end %>
+		<li class="text">or <%= link_to "Cancel", @article %></li>
+	</ul>
+</fieldset>
 <% end %>

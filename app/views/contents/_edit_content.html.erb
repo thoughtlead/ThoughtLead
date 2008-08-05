@@ -71,25 +71,26 @@ addAttachment = function() {
 	</div>
 
 	<h3 class="separator">Lesson Publishing</h3>
-	<div class="checkbox group">
-		<%= f.check_box :draft %>
-		<%= f.label :draft, 'Draft?' %>
-	</div>
-
-	<div class="checkbox group">
-		<%= f.radio_button(:access_level, "Public") %>
-		<%= f.label :access_level, 'Public' %>
-	</div>
-
-	<div class="checkbox group">
-		<%= f.radio_button :access_level, "Registered" %>
-		<%= f.label :access_level, 'Registered' %>
-	</div>
-
-	<div class="checkbox group">
-		<%= f.radio_button :access_level, "Premium" %>
-		<%= f.label :access_level, 'Premium' %>
-	</div>
+	<ul class="checkbox group">
+		<li>
+			<%= f.check_box :draft %>
+			<%= f.label :draft, 'Draft?' %>
+		</li>
+	</ul>
+	<ul class="checkbox group">
+		<li>
+			<%= f.radio_button(:access_level, "Public") %>
+			<%= f.label :access_level, 'Public' %>
+		</li>
+		<li>
+			<%= f.radio_button :access_level, "Registered" %>
+			<%= f.label :access_level, 'Registered' %>
+		</li>
+		<li>
+			<%= f.radio_button :access_level, "Premium" %>
+			<%= f.label :access_level, 'Premium' %>
+		</li>
+	</ul>
 
 </fieldset>
 <% end %>

@@ -1,6 +1,19 @@
-<% @current_tab = :'Library' %>
+<% @current_tab = :Article %>
+<div id="main_content">
+	<div class="content_bar" id="top">
+		<div class="breadcrumbs">
+			<p>Jump to:</p>
+			<ul>
+				<li class="first"><%= link_to "Library", library_url(:category => @category) %></li>
+			</ul>
+		</div>
+		<% if logged_in? && current_user.owner? %>
+		<div class="action">
+			<span class="button_left">&nbsp;</span><a href="<%= new_article_url %>" class="button"><span class="icon create">+</span><span class="text">Create an Article</span></a>
+		</div>
+	    <% end %>
+	</div>
 
-<div id="primary">
-  <h1 class="grouped">Edit Article</h1>
-  <%= render :partial => 'form', :locals => { :mode => :edit }  %>
+	<h2>Edit Article</h2>
+	<%= render :partial => 'form', :locals => { :mode => :edit }  %>
 </div>

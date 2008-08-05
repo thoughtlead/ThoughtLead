@@ -45,7 +45,7 @@
 							<% end %>
 						</li>
 						<li class="date"><%= discussion.created_at.to_s(:month_day) %></li>
-						<li class="comments"><%= link_to(pluralize(discussion.responses.count, "Response"),discussion) %></li>
+						<li class="comments"><a href="<%= url_for(discussion) %>#responses"><%= pluralize(discussion.responses.count, "Response") %></a></li>
 					</ul>
 				</div>
 				<div class="content">

@@ -202,7 +202,7 @@ h1, h2, h3, h4, h5, h6 {margin: 0.5em 0;}
 				}
 				.content_bar .breadcrumbs ul li.first {padding-left: 19px;}
 				.home .content_bar .breadcrumbs ul li.first {background-image: url(../images/template/bc_home_icon.gif);}
-				.library .content_bar .breadcrumbs ul li.first {background-image: url(../images/template/bc_library_icon.gif);}
+				.article .content_bar .breadcrumbs ul li.first {background-image: url(../images/template/bc_library_icon.gif);}
 				.courses .content_bar .breadcrumbs ul li.first {background-image: url(../images/template/bc_courses_icon.gif);}
 				.discussions .content_bar .breadcrumbs ul li.first {background-image: url(../images/template/bc_discussions_icon.gif);}
 				.people .content_bar .breadcrumbs ul li.first {background-image: url(../images/template/bc_people_icon.gif);}
@@ -242,6 +242,8 @@ h1, h2, h3, h4, h5, h6 {margin: 0.5em 0;}
 				font-weight: bold;
 				background-position: right;
 				background-repeat: no-repeat;
+				border-left-width: 1px;
+				border-left-style: solid;
 			}
 				.content_bar .action span.button_left {
 					padding: 5px 0 5px 1px;
@@ -433,6 +435,7 @@ h1, h2, h3, h4, h5, h6 {margin: 0.5em 0;}
 			list-style-type: none;
 			font-size: 1em;
 		}
+		#main_content ul.lesson_list {clear: both;}
 			#main_content ul.lesson_list li {padding: 0 0 12px 0;}
 				#main_content ul.lesson_list li h3 {
 					font-size: 1.2em;
@@ -843,8 +846,8 @@ h1, h2, h3, h4, h5, h6 {margin: 0.5em 0;}
 
 /* Library
 ----------------------------------------------- */
-.library {}
-	#main_content ul.article_list.library {}
+.article {}
+	#main_content ul.article_list.article {}
 
 	#main_content .title .media {
 		margin: 0 0 0 5px; padding: 0 8px;
@@ -1152,6 +1155,8 @@ form {
 		margin: 0.5em 0;
 	}
 	#main_content form .input .fieldWithErrors label {color: #c01a1a;}
+	#main_content form .input .fieldWithErrors input.inp_text,
+	#main_content form .input .fieldWithErrors textarea {border-color: #c01a1a;}
 
 #search form {}
 	#search form label {display: none;}
@@ -1211,7 +1216,12 @@ form {
 
 
 	#main_content form .group {}
-		#main_content form .group.checkbox {padding: 0 0 10px 0;}
+		#main_content form .group.checkbox {
+			margin: 0; padding: 0 0 10px 0;
+			list-style-type: none;
+			font-size: 1em;
+		}
+			#main_content form .group.checkbox li {padding: 0 0 3px 0;}
 			#main_content form .group.checkbox input {
 				margin: 0 5px 0 0; 
 				float: left;
@@ -1242,6 +1252,13 @@ form {
 		#main_content form.edit .attachments_add {}
 			#main_content form.edit .attachments_add input.inp_file {}
 
+		#main_content form.edit .edit_categories {}
+			#main_content form.edit .edit_categories button {
+				margin: 0 0 10px 0;
+			}
+			#main_content form.edit .edit_categories .category_fields span {padding: 0 0 4px 0; display: block;}
+			#main_content form.edit .edit_categories #new_categories input {padding: 2px 4px;}
+
 	#main_content .add_chapter form.edit {
 		margin: 1em 0;
 	}
@@ -1252,3 +1269,17 @@ form {
 
 /* Miscellaneous
 ----------------------------------------------- */
+#flash {
+	margin: 0; padding: 0;
+	width: 250px;
+	background-color: #333;
+	color: #fff;
+	position: absolute;
+	top: 40px; left: 180px;
+	z-index: 10;
+}
+	#flash p {
+		margin: 0; padding: 10px 15px 8px 15px;
+		font-size: 1.1em;
+		font-weight: bold;
+	}

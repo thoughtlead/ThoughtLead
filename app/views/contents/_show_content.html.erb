@@ -12,7 +12,7 @@
 		</li>
 	</ul>
 </div>
-<%if content.lesson && logged_in_as_owner? %>
+<% if content.lesson && logged_in_as_owner? %>
 	<div class="module actions">
 		<div class="content">
 			<h4>Lesson Actions</h4>
@@ -22,7 +22,18 @@
 			</ul>
 		</div>
 	</div>
-<%end%>
+<% end %>
+<% if content.article && logged_in_as_owner? %>
+	<div class="module actions">
+		<div class="content">
+			<h4>Lesson Actions</h4>
+			<ul class="action_nav">
+				<li class="edit"><%= link_to "Edit Article", edit_article_url(@article)  if logged_in_as_owner? %></li>
+				<li class="delete"><%= link_to("Delete Article", article_url(@article), :method => :delete, :confirm =>  "Are you sure you would like to delete this article?")  if logged_in_as_owner? %></li>
+			</ul>
+		</div>
+	</div>
+<% end %>
 <div class="intro">
 	<p><%= teaser_format(content.teaser) %></p>
 </div>

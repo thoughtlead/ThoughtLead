@@ -147,6 +147,16 @@ jQuery(function($) {
 					$(this).removeClass('inactive').attr('value', '');
 				});
 		},
+		prepareFlashNotice : function() {
+			var flash_delay = 1000;
+			var flash = $e.content.find('#flash');
+
+			if (!flash.children().length) {
+				flash.remove();
+			} else {
+				setTimeout(function() {flash.fadeOut('fast')}, flash_delay);
+			}
+		},
 		markupCorners : function(e, o) {
 			if (typeof o == 'undefined') {o = ['tl', 'tr', 'bl', 'br']}
 			var corner = $('<div class="corner"><!-- --></div>');
@@ -163,6 +173,7 @@ jQuery(function($) {
 		},
 		applyCorners : function() {
 			thoughtlead.markupCorners($e.header.find("#search"));
+			thoughtlead.markupCorners($e.content.find('#flash'));
 			thoughtlead.markupCorners($e.main_content.find('.meta_tags li'));
 			thoughtlead.markupCorners($e.main_content.find('.module'));
 			thoughtlead.markupCorners($e.header.find('#account_nav'), ['bl', 'br']);
@@ -174,6 +185,7 @@ jQuery(function($) {
 		},
 		init : function() {
 			$e = thoughtlead.elements;
+			thoughtlead.prepareFlashNotice();
 			thoughtlead.applyCorners();
 			thoughtlead.prepareInputs($('#search'));
 			thoughtlead.prepareOutline();

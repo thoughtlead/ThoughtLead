@@ -1,45 +1,41 @@
-<% @current_tab = :'Library' %>
-	<script src="/javascripts/swfobject.js"></script>
-    <div id="lesson_placeholder"> <!-- FIXME - Remove after there is the ability to target just lesson pages -->
-      <div id="primary">
-        <div id="article">
-          <p><%= link_to "&#8592; Return to Library", library_url(:category => @category) %></p>
-  		  <%= render :partial => '/contents/show_content', :locals => { :content => @article.content } %>
-        </div>
-	  </div>
+<% @current_tab = :Article %>
+<script src="/javascripts/swfobject.js"></script>
+<div id="main_content">
+	<div class="content_bar" id="top">
+		<div class="breadcrumbs">
+			<p>Jump to:</p>
+			<ul>
+				<li class="first"><%= link_to "Library", library_url(:category => @category) %></li>
+				<li><%= link_to h(@article), @article %></li>
+			</ul>
+		</div>
+		<% if logged_in? && current_user.owner? %>
+		<div class="action">
+			<span class="button_left">&nbsp;</span><a href="<%= new_article_url %>" class="button"><span class="icon create">+</span><span class="text">Create an Article</span></a>
+		</div>
+	    <% end %>
 	</div>
-    
-    <div id="secondary">
-      <ul class="actions first">
-        <li class="action edit">
-          <span><%= link_to "Edit this Article", edit_article_url(@article)  if logged_in_as_owner? %></span>
-        </li>
-        <li class="action delete">
-          <span><%= link_to("Delete this Article", article_url(@article), :method => :delete, :confirm =>  "Are you sure you would like to delete this article?")  if logged_in_as_owner? %></span>
-        </li>
-      </ul>
 
-      	<% if !(s = content_notes(@article.content)).blank? %>
-			<p class="premium">
-				This article is: <%= s %>
-			</p>
+	<%= render :partial => '/contents/show_content', :locals => { :content => @article.content } %>
+	<%= render :partial => '/contents/show_attachments', :locals => { :content => @article.content } %>
+</div>
+<div id="sidebar">
+	<ul class="modules">
+		<% if !current_community.categories.empty? %>
+		<li class="navigation themes">
+			<h3><span>Categories</span> <a href="<%= url_for(categories_url) %>" class="button edit"><span>Edit</span></a></h3>
+			<ul class="content">
+				<% current_community.categories.each do |category| %>
+					<% if category.contains_articles_visible_to(current_user) %>
+						<li><%= link_to category, library_url(:category => category) %></li>
+					<% end %>
+				<% end %>
+				<% if current_community.articles.for_category('nil').count > 0 %>
+					<li><%= link_to "General", library_url(:category => 'nil') %></li>
+				<% end %>
+				<li id="show_all"><%= link_to "Full Library", library_url %></li>
+			</ul>
+		</li>
 		<% end %>
-      
-      <div class="course">
-        <div class="course_title">
-          <span>Categories</span>
-        </div>
-        <div class="lessons">
-          <ol>
-            <li class="current"><%= link_to h(@category), library_url(:category => @category) %></li>
-            <% @article.categories.each do |category| %>
-			  <% unless category == @category %>
-                <li><%= link_to h(category), library_url(:category => category) %></li>
-			  <% end %>
-            <% end %>
-          </ol>
-        </div>
-      </div>
-      <%= render :partial => '/contents/show_attachments', :locals => { :content => @article.content } %>
-    </div>
-    
+	</ul>
+</div>

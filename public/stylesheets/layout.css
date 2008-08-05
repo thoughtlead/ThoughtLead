@@ -59,6 +59,7 @@ body {
 		padding: 22px 18px 0 20px;
 		width: 800px; min-height: 580px;
 		background: url(../images/template/content_bg.png) no-repeat;
+		position: relative;
 	}
 		#main_content {
 			margin: 5px 0 0 0; padding: 6px 19px 0 19px;
