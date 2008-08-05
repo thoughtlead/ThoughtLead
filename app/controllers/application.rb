@@ -11,7 +11,16 @@ class ApplicationController < ActionController::Base
   before_filter :invalidate_return_to
   protect_from_forgery
   
+  
+  protected
+   
+  def redirect_back(redirect_opts = nil)
+    redirect_opts ||= {:controller => 'home'}
+    request.env["HTTP_REFERER"] ? redirect_to(request.env["HTTP_REFERER"]) : redirect_to(redirect_opts)
+  end
+  
   private
+  
   def community_is_active
     return redirect_to(community_need_to_activate_url) unless current_community.active
   end

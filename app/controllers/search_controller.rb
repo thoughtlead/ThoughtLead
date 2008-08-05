@@ -4,7 +4,12 @@ class SearchController < ApplicationController
     processed_search_string = "#{params[:search_string]}"
     
     if (processed_search_string.blank? || processed_search_string == "Search...")
-      redirect_to :back
+      if(request.env["HTTP_REFERER"].to_s.ends_with?("search"))
+        redirect_to(:controller => 'home')
+      else
+        redirect_back
+      end
+      return
     end
     
     @results = execute_search(processed_search_string)

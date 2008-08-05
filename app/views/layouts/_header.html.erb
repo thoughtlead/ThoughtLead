@@ -1,3 +1,12 @@
+<script>
+  function isGoodSearch(searchString) 
+  {
+  	processedSearchString = searchString.strip();
+  	return processedSearchString != '' && processedSearchString != 'Search...';
+  }
+	
+</script>
+
 <div id="header" class="content_area">
 	<div id="logo">
 		<h1>
@@ -12,7 +21,7 @@
 	<div id="search">
 		<% form_tag :controller=>'search', :action=>'index' do %>
 	  		<%= text_field( :search_string, {}, :class=>"inp_text", :value=>"Search...") %>
-			<%= image_submit_tag("/images/template/search_btn.gif", :class => "btn_image") %>
+			<%= image_submit_tag("/images/template/search_btn.gif", :class => "btn_image", :onclick => "return isGoodSearch(document.getElementById('search_string_').value);") %>
   		<% end %>
 	</div>
 	<ul id="account_nav">
@@ -33,7 +42,7 @@
 <div id="navigation">
 	<div id="navigation_bar" class="content_area">
 		<ul id="content_nav">
-			<li class="home_link"><a href="./">Home</a></li>
+			<li class="home_link"><a href="/">Home</a></li>
 			<% current_tag(:li, @current_tab == :Article) do %>
 				<%= link_to "Library", articles_url, :class => 'library_link' %>
 			<% end %>
