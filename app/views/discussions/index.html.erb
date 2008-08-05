@@ -74,7 +74,7 @@
 						<%= link_to "General", discussions_url(:theme => 'nil') %>
 					<% end %>
 				<% end %>
-				<% content_tag(:li, :class => current_class_all_tasks, :id => "show_all") do %>
+				<% content_tag(:li, :class => current_class_all_tasks(), :id => "show_all") do %>
 					<%= link_to "All Discussions", discussions_url %>
 				<% end %>
 			</ul>

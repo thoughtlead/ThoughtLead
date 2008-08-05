@@ -39,6 +39,7 @@
 				<li class="comments"><%= pluralize(@discussion.responses.count, "Response") %></li>
 			</ul>
 		</div>
+		<% if current_user == @discussion.user || logged_in_as_owner? %>
 		<div class="module actions">
 			<div class="content">
 				<h4>Discussion Actions</h4>
@@ -52,10 +53,11 @@
 				</ul>
 			</div>
 		</div>
+		<% end %>
 		<%= textilize(@discussion.body) %>
 	</div>
 
-	<% if @discussion.responses.size > 0 %>
+	<% if !@discussion.responses.blank? %>
 	<h2 class="eclear"><%= pluralize(@discussion.responses.count, "Response") %></h2>
 	<ol class="comments_list comment clearsub">
 		<% for response in @discussion.responses %>
@@ -74,7 +76,7 @@
 								<% end %>
 								says:
 							</li>
-							<li class="time"><%= response.created_at.to_s(:day_month_year) %></li>
+							<li class="time"><%= timeago(response.created_at, {:date_format => :day_month_year}) %></li>
 							<li class="delete"><%= link_to("Delete this Response", response, :controller => :responses, :method => :delete, :confirm => "Are you sure you'd like to delete this response?") if logged_in_as_owner? %></li>
 						</ul>
 						<div class="comment_body">
@@ -125,17 +127,17 @@
 			<ul class="content">
 				<% current_community.themes.each do |theme| %>
 					<% if theme.discussions.count > 0 %>
-						<% content_tag(:li, :class => current_class_for_theme(theme)) do %>
+						<% content_tag(:li, :class => current_class_for_discussion_theme(@discussion, theme)) do %>
 							<%= link_to theme, discussions_url(:theme => theme) %>
 						<% end %>
 					<% end %>
 				<% end %>
 				<% if current_community.discussions.for_theme('nil').count > 0 %>
-					<% content_tag(:li, :class => current_class_uncategorized) do %>
+					<% content_tag(:li, :class => current_class_for_discussion_uncategorized(@discussion) ) do %>
 						<%= link_to "General", discussions_url(:theme => 'nil') %>
 					<% end %>
 				<% end %>
-				<% content_tag(:li, :class => current_class_all_tasks, :id => "show_all") do %>
+				<% content_tag(:li, :id => "show_all") do %>
 					<%= link_to "All Discussions", discussions_url %>
 				<% end %>
 			</ul>
