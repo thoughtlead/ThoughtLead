@@ -18,8 +18,8 @@ config.action_view.cache_template_loading            = true
 # Enable serving of images, stylesheets, and javascripts from an asset server
 # config.action_controller.asset_host                  = "http://assets.example.com"
 
-# Disable delivery errors, bad email addresses will be ignored
-config.action_mailer.raise_delivery_errors = false
+# Disable delivery errors, bad email addresses will be ignored < changed this to raise delivery errors for a test
+config.action_mailer.raise_delivery_errors = true
 
 $app_host = 'thoughtlead.com'
 
