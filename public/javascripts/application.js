@@ -4,6 +4,7 @@ Site: ThoughtLead
 Name: Application
 ----------------------------------------------- */
 
+jQuery.noConflict();
 jQuery(function($) {
 	var thoughtlead = {
 		elements : {
