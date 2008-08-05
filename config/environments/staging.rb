@@ -24,3 +24,10 @@ config.action_mailer.raise_delivery_errors = false
 ENV['INLINEDIR'] = Rails.root + "/tmp" 
 
 $app_host = 'thoughtlead.intranet.ternarysoftware.com'
+
+ActionMailer::Base.delivery_method = :smtp
+ActionMailer::Base.smtp_settings = {
+  :address => "wren.tsi.local",
+  :port => 25,
+  :domain  => "tsi.local",
+}
