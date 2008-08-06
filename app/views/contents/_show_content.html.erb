@@ -26,10 +26,10 @@
 <% if content.article && logged_in_as_owner? %>
 	<div class="module actions">
 		<div class="content">
-			<h4>Lesson Actions</h4>
+			<h4>Article Actions</h4>
 			<ul class="action_nav">
-				<li class="edit"><%= link_to "Edit Article", edit_article_url(@article)  if logged_in_as_owner? %></li>
-				<li class="delete"><%= link_to("Delete Article", article_url(@article), :method => :delete, :confirm =>  "Are you sure you would like to delete this article?")  if logged_in_as_owner? %></li>
+				<li class="edit"><%= link_to "Edit <span class='action_target'>Article</span>", edit_article_url(@article)  if logged_in_as_owner? %></li>
+				<li class="delete"><%= link_to("Delete <span class='action_target'>Article</span>", article_url(@article), :method => :delete, :confirm =>  "Are you sure you would like to delete this article?")  if logged_in_as_owner? %></li>
 			</ul>
 		</div>
 	</div>

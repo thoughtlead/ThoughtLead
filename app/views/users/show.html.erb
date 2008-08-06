@@ -13,12 +13,12 @@
 		<div class="content">
 			<h4>Profile Actions</h4>
 			<ul class="action_nav">
-				<li class="edit"><%= link_to "Edit Profile", edit_user_url(@user), :class => 'action' if current_user == @user || logged_in_as_owner? %></li>
+				<li class="edit"><%= link_to "Edit <span class='action_target'>Profile</span>", edit_user_url(@user), :class => 'action' if current_user == @user || logged_in_as_owner? %></li>
 				<% if logged_in_as_owner? && !@user.owner? %>
 				<% if @user.disabled? %>
-				<li class="add"><%= link_to "Reactivate this User", reactivate_user_url(@user), :class => 'action', :confirm =>  "Are you sure you would like to reactivate this user?" %></li>
+				<li class="add"><%= link_to "Reactivate <span class='action_target'>User</span>", reactivate_user_url(@user), :class => 'action', :confirm =>  "Are you sure you would like to reactivate this user?" %></li>
 				<% else %>
-				<li class="delete"><%= link_to "Disable this User", disable_user_url(@user), :class => 'action', :confirm =>  "Are you sure you would like to disable this user?" %></li>
+				<li class="delete"><%= link_to "Disable <span class='action_target'>User</span>", disable_user_url(@user), :class => 'action', :confirm =>  "Are you sure you would like to disable this user?" %></li>
 				<% end %>
 				<% end %>
 			</ul>
