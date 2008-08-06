@@ -8,14 +8,14 @@ class Article < ActiveRecord::Base
    (content && content.title) || ""
   end
   
-  def article_categories=(it)
-    self.categories = []
-    for category_id in it.uniq
-      unless category_id.blank?
-        self.categories << Category.find_by_id(category_id)
-      end
-    end
-  end
+#  def article_categories=(it)
+#    self.categories = []
+#    for category_id in it.uniq
+#      unless category_id.blank?
+#        self.categories << Category.find_by_id(category_id)
+#      end
+#    end
+#  end
   
   def article_new_categories=(it)
     #to be completed before save, so that we know all other work (which may be inter-dependent) is completed
@@ -34,12 +34,7 @@ class Article < ActiveRecord::Base
     !self.content.draft? || user == self.community.owner
   end
   
-  #  named_scope :for_category, lambda { | category_id | 
-  #    { :conditions => ({ :category_id => (category_id == 'nil' || category_id == '') ? nil : category_id } if category_id) } 
-  #  }
-  
   named_scope :for_category, lambda { | category_id | 
-    
     { :include=>:categories, :conditions => ({ 'categories.id' => (category_id == 'nil' || category_id == '') ? nil : category_id } if category_id) } 
   }
   
