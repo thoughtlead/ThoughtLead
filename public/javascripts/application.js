@@ -151,7 +151,7 @@ jQuery(function($) {
 				});
 		},
 		prepareFlashNotice : function() {
-			var flash_delay = 1000;
+			var flash_delay = 2000;
 			var flash = $e.content.find('#flash');
 
 			if (!flash.children().length) {
