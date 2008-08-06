@@ -17,12 +17,12 @@ div, p, li, dl, dt, dd {zoom: 1;}
 .content_bar .lesson_nav li.inactive a {filter:alpha(opacity=50);}
 
 .corner {}
-	.top_left {filter: progid:DXImageTransform.Microsoft.AlphaImageLoader(src='images/template/corners/content_r5/top_left.png', sizingMethod='crop');}
-	.top_right {filter: progid:DXImageTransform.Microsoft.AlphaImageLoader(src='images/template/corners/content_r5/top_right.png', sizingMethod='crop');}
-	.bottom_left {filter: progid:DXImageTransform.Microsoft.AlphaImageLoader(src='images/template/corners/content_r5/bottom_left.png', sizingMethod='crop');}
-	.bottom_right {filter: progid:DXImageTransform.Microsoft.AlphaImageLoader(src='images/template/corners/content_r5/bottom_right.png', sizingMethod='crop');}
+	.top_left {filter: progid:DXImageTransform.Microsoft.AlphaImageLoader(src='/images/template/corners/content_r5/top_left.png', sizingMethod='crop');}
+	.top_right {filter: progid:DXImageTransform.Microsoft.AlphaImageLoader(src='/images/template/corners/content_r5/top_right.png', sizingMethod='crop');}
+	.bottom_left {filter: progid:DXImageTransform.Microsoft.AlphaImageLoader(src='/images/template/corners/content_r5/bottom_left.png', sizingMethod='crop');}
+	.bottom_right {filter: progid:DXImageTransform.Microsoft.AlphaImageLoader(src='/images/template/corners/content_r5/bottom_right.png', sizingMethod='crop');}
 
-#content {filter: progid:DXImageTransform.Microsoft.AlphaImageLoader(src='images/template/content_bg.png', sizingMethod='crop');}
+#content {filter: progid:DXImageTransform.Microsoft.AlphaImageLoader(src='/images/template/content_bg.png', sizingMethod='crop');}
 
 /* Corners
 ----------------------------------------------- */

@@ -201,6 +201,7 @@ h1, h2, h3, h4, h5, h6 {margin: 0.5em 0;}
 					background: url(../images/template/breadcrumbs_arrow_bg.gif) 2px 50% no-repeat;
 				}
 				.content_bar .breadcrumbs ul li.first {padding-left: 19px;}
+				.content_bar .breadcrumbs ul li.no_tab {padding-left: 0; background: none;}
 				.home .content_bar .breadcrumbs ul li.first {background-image: url(../images/template/bc_home_icon.gif);}
 				.article .content_bar .breadcrumbs ul li.first {background-image: url(../images/template/bc_library_icon.gif);}
 				.courses .content_bar .breadcrumbs ul li.first {background-image: url(../images/template/bc_courses_icon.gif);}
@@ -856,7 +857,6 @@ h1, h2, h3, h4, h5, h6 {margin: 0.5em 0;}
 		float: none;
 	}
 		#main_content .title .media span {
-			letter-spacing: -1em;
 			visibility: hidden;
 		}
 	#main_content .title .media.video {background-image: url(../images/template/icon_media_video.gif);}
@@ -872,7 +872,7 @@ h1, h2, h3, h4, h5, h6 {margin: 0.5em 0;}
 		.login #main_content .column.one {width: 310px;}
 		.login #main_content .column.two {width: 200px;}
 
-	.login #main_content form {}
+	.login #main_content form {margin: 0;}
 		.login #main_content form .input {}
 			.login #main_content form .input .inp_text {
 				padding: 7px 8px 4px 8px;

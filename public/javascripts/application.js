@@ -19,8 +19,11 @@ jQuery(function($) {
 		},
 		preparePage : function() {
 			// add markup: clouds
-			var clouds = $('<div id="navigation_art" class="clouds"></div>');
+			var clouds = $('<div id="navigation_art" class="clouds clear"></div>');
 			$e.navigation.wrapInner(clouds);
+
+			// ie background flickering
+			try {document.execCommand("BackgroundImageCache", false, true);} catch(err) {}
 
 			// add markup: comment bubble
 			$('ol.comment li, div.comment').each(function() {
