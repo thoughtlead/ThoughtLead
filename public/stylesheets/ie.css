@@ -8,4 +8,5 @@ Name: IE
 /* Global
 ----------------------------------------------- */
 div, form, label,
+h1, h2, h3, h4, h5, h6,
 #sidebar ul.modules li.navigation * {zoom: 1;}

@@ -1,18 +1,44 @@
-<% @current_tab = :'Log In' %>
-<div id="small">
-    <% form_tag sessions_path do %>
-    <%= label :user, :login %>
-    <%= text_field_tag 'login', params[:login], :class => 'text single' %>
-    <%= label :user, :password %>
-    <%= password_field_tag 'password', params[:password], :class => 'text single grouped' %>
-    <div class="draft plus_label">
-        <%= check_box_tag 'remember_me', "1", params[:remember_me] %>
-        <label>
-            Remember me on this computer
-        </label>
-        <%= link_to "Forgot Password?", forgot_password_url, :class => "button" %>
-    </div>
-    <%= submit_tag 'Log in' %>
-    <% end -%>
-    <%= link_to "Create a New Account", signup_url, :class => 'divider' %>
+<% @current_tab = :'Login' %>
+<div id="main_content">
+	<div class="title bar">
+		<h2>Log In</h2>
+	</div>
+	<div class="columns login">
+		<div class="column one">
+			<% form_tag sessions_path do %>
+				<fieldset class="input">
+
+					<div class="inp group">
+					    <%= label :user, :login %>
+					    <%= text_field_tag 'login', params[:login], :class => 'inp_text' %>
+					</div>
+				
+					<div class="inp group">
+						<%= link_to "Forgot Password?", forgot_password_url, :class => "forgot_password" %>
+					    <%= label :user, :password %>
+					    <%= password_field_tag 'password', params[:password], :class => 'inp_text' %>
+					</div>
+
+					<div class="checkbox group">
+				        <label class="checkbox">
+							<%= check_box_tag 'remember_me', "1", params[:remember_me] %> 
+							Remember me on this computer
+						</label>
+					</div>
+
+				</fieldset>
+				<fieldset class="submit">
+					<%= submit_tag 'Log in' %>
+				</fieldset>
+		    <% end -%>
+		</div>
+		<div class="column two">
+			<div class="module signup">
+				<h4>Don’t have an account yet?</h4>
+				<p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit.</p>
+				<p class="signup replace"><%= link_to "Sign up today", signup_url %></p>
+			</div>
+		</div>
+	</div>
+	
 </div>
