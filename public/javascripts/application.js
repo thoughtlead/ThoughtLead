@@ -153,6 +153,16 @@ jQuery(function($) {
 					$(this).removeClass('inactive').attr('value', '');
 				});
 		},
+		validSearchTest : function() {
+			$e.page.find('.search').each(function() {
+				var $form = $(this);
+				$(this).find('.btn_image').click(function() {
+					var value = $form.find('.inp_text').attr('value');
+					processedSearchString = value.strip();
+					return processedSearchString != '' && processedSearchString != 'Search...';
+				});
+			});
+		},
 		prepareFlashNotice : function() {
 			var flash_delay = 2000;
 			var flash = $e.content.find('#flash');
@@ -212,6 +222,7 @@ jQuery(function($) {
 			thoughtlead.prepareButtons();
 			thoughtlead.applyCorners();
 			thoughtlead.prepareInputs($('#search'));
+			thoughtlead.validSearchTest();
 			thoughtlead.prepareOutline();
 			thoughtlead.preparePage();
 			thoughtlead.repeatAttachments();
