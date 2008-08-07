@@ -43,14 +43,14 @@
 					</h2>
 					<ul class="meta_info clear">
 						<li class="date first"><%= article.content.updated_at.to_s(:day_month_year) %></li>
+						<% if article.categories.size > 0 %>
 						<li class="theme">
-						<% if article.categories %>
 							<% article.reload%>
 							<% article.categories.each do |article_category| %>
 							  <%= link_to article_category, library_url(:category => article_category) %>
 							<% end %>
-						<% end %>
 						</li>
+						<% end %>
 						<% unless article.content.author.blank? %>
 							<li class="author"><%= article.content.author %></li>
 						<% end %>
