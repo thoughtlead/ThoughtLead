@@ -1,11 +1,22 @@
-<div id="primary">
-  Search results:<br/>
-  <br/>	
-  
-  <div id="resultset">
-	  <%= render :partial=>"course_search_results" %>
-	  <%= render :partial=>"article_search_results" %>
-	  <%= render :partial=>"discussion_search_results" %>
-	  <%= render :partial=>"user_search_results" %>
-  </div>
+<% @current_tab = :Search %>
+<div id="main_content">
+	<div class="title bar">
+		<h2>Search</h2>
+	</div>
+	<h2>Search Results</h2>
+	<div class="results_nav module clear">
+		<h3>Results from:</h3>
+		<ul>
+			<li><a href="#course_results">Courses</a></li>
+			<li><a href="#library_results">Library</a></li>
+			<li><a href="#discussion_results">Discussions</a></li>
+			<li class="last"><a href="#people_results">People</a></li>
+		</ul>
+	</div>
+	<ul class="search_results">
+		<li id="course_results" class="module"><%= render :partial=>"course_search_results" %></li>
+		<li id="library_results" class="module"><%= render :partial=>"article_search_results" %></li>
+		<li id="discussion_results" class="module"><%= render :partial=>"discussion_search_results" %></li>
+		<li id="people_results" class="module"><%= render :partial=>"user_search_results" %></li>
+	</div>
 </div>

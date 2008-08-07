@@ -1,20 +1,19 @@
-<h3>Content Library:&nbsp;<%= pluralize(@articles.size, 'Result' ) %>&nbsp;found</h3>
-<ul>
-    <% @articles.each do |content| -%>
-    <li>
-        Article: <%= link_to content.title, content.article %>
-        <br/>
-        Article Teaser: <%= content.teaser %>
-        <br/>
-        <% if content.article.is_premium? && !logged_in_as_active? %>
-        Article content is restricted to&nbsp;<%= link_to "premium members", upgrade_url %>.
-		<% elsif content.article.is_registered? && !logged_in? %>
-        You must&nbsp;<%= link_to "log in", login_url %>&nbsp;to view the article contents.
-		<% else %>
-        Article Body: <%= content.body %>
-        <% end %>
-        <br/>
-        <%= article_url content.article %>
-    </li>
-    <% end %>
+<h3>Library:&nbsp;<%= pluralize(@articles.size, 'result' ) %>&nbsp;found</h3>
+<ul class="content">
+	<% @articles.each do |content| -%>
+		<li>
+			<dl>
+				<dt><span class="result_type">Article:</span> <%= link_to content.title, content.article %></dt>
+				<dd class="description"><%= content.teaser %></dd>
+			<% if content.article.is_premium? && !logged_in_as_active? %>
+				Article content is restricted to&nbsp;<%= link_to "premium members", upgrade_url %>.
+			<% elsif content.article.is_registered? && !logged_in? %>
+				You must&nbsp;<%= link_to "log in", login_url %>&nbsp;to view the article contents.
+			<% else %>
+				<dd class="description"><%= content.body %></dd>
+			<% end %>
+				<dd class="url"><%= article_url content.article %></dd>
+			</dl>
+		</li>
+	<% end %>
 </ul>

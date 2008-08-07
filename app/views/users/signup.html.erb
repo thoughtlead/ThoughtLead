@@ -1,14 +1,8 @@
-<% @current_tab = :People %>
+<% @current_tab = :"Sign up" %>
 <div id="main_content">
-	<div class="content_bar" id="top">
-		<div class="breadcrumbs">
-			<p>Jump to:</p>
-			<ul>
-				<li class="first"><%= link_to "People", users_path %></li>
-			</ul>
-		</div>
+	<div class="title bar">
+		<h2><%= @page_title = "Signup" %></h2>
 	</div>
-	<h2><%= @page_title = "Signup" %></h2>
 
 	<% form_for :user, @user, :url => signup_url, :html => {:class => 'edit'} do | f | -%>
 		<%= f.error_messages %>

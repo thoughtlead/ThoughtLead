@@ -1,10 +1,9 @@
 <% responses.each do |response| -%>
 <li>
-    <em>in Discussion:</em>
-    <%= link_to h(response.discussion), response.discussion %>
-    <br/>
-    Response Body: <%= h(response.body) %>
-    <br/>
-    <%= discussion_url(response.discussion) %>
+	<dl>
+		<dt><span class="result_type">Response to:</span> <%= link_to h(response.discussion), response.discussion %></dt>
+		<dd class="description"><%= h(response.body) %></dd>
+		<dd class="url"><a href="<%= discussion_url(response.discussion) %>"><%= discussion_url(response.discussion) %></a></dd>
+	</dl>
 </li>
 <% end %>

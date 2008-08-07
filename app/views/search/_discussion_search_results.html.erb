@@ -1,27 +1,26 @@
-<h3>Discussions:&nbsp;<%= pluralize(@responses.size + @discussions.size, 'Result') -%>&nbsp;found</h3>
-<ul>
-    <% unless current_community.discussions_are_premium? && !logged_in_as_active? %>
-    <% @discussions.each do |discussion| %>
-    <li>
-        Discussion: <%= link_to h(discussion), discussion %>
-        <br/>
-        <%=h(discussion.body)-%>
-        <br/>
-        <% if @responses_by_discussion_id[discussion.id] -%>
-        <ul>
-            <%= render :partial=>"response_search_results", :locals=>{:responses=>@responses_by_discussion_id[discussion.id]} %>
-            <% @responses_by_discussion_id.delete(discussion.id) -%>
-        </ul>
-        <% end  # if -%>
-    </li>
-    <% end # @discussions.each -%>
-    <%    # by now, all the responses associated with discussions have been displayed/removed. show what's left
-    @responses_by_discussion_id.each do |discussion_id, responses| -%>
-    <%= render :partial=>"response_search_results", :locals=>{:responses=>responses} %>
-    <% end -%>
-    <% else %>
-    <li>
-        There are&nbsp;<%= @discussions.length %>&nbsp;discussions with a total of&nbsp;<%= @responses.length %>&nbsp;responses, which are only accessible to&nbsp;<%= link_to "premium members", upgrade_url %>.
-    </li>
-    <% end %>
+<h3>Discussions:&nbsp;<%= pluralize(@responses.size + @discussions.size, 'result') -%>&nbsp;found</h3>
+<ul class="content">
+	<% unless current_community.discussions_are_premium? && !logged_in_as_active? %>
+		<% @discussions.each do |discussion| %>
+			<li>
+				<dl>
+					<dt><span class="result_type">Discussion:</span> <%= link_to h(discussion), discussion %></dt>
+					<dd class="description"><%=h(discussion.body)-%></dd>
+				</dl>
+				<% if @responses_by_discussion_id[discussion.id] -%>
+				<ul>
+					<%= render :partial=>"response_search_results", :locals=>{:responses=>@responses_by_discussion_id[discussion.id]} %>
+					<% @responses_by_discussion_id.delete(discussion.id) -%>
+				</ul>
+				<% end  # if -%>
+			</li>
+		<% end # @discussions.each -%>
+		<%
+		# by now, all the responses associated with discussions have been displayed/removed. show what's left
+		@responses_by_discussion_id.each do |discussion_id, responses| -%>
+			<%= render :partial=>"response_search_results", :locals=>{:responses=>responses} %>
+		<% end -%>
+		<% else %>
+		<li>There are&nbsp;<%= @discussions.length %>&nbsp;discussions with a total of&nbsp;<%= @responses.length %>&nbsp;responses, which are only accessible to&nbsp;<%= link_to "premium members", upgrade_url %>.</li>
+	<% end %>
 </ul>

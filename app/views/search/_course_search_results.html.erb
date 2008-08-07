@@ -1,21 +1,22 @@
-<h3>Courses:&nbsp;<%= pluralize(@lessons.size + @courses.size, 'Result' ) -%>&nbsp;found</h3>
-<ul>
+<h3>Courses:&nbsp;<%= pluralize(@lessons.size + @courses.size, 'result' ) -%>&nbsp;found</h3>
+<ul class="content">
     <% @courses.each do |course| %>
     <li>
-        Course: <%= link_to course.title, course_path(course) %>
-        <br/>
-        Description: <%= course.description -%>
-        <br/>
-        <% if @lessons_by_course_id[course.id] -%>
-        <ul>
-            <%= render :partial=>"lesson_search_results", :locals=>{:lessons=>@lessons_by_course_id[course.id]} %>
-            <% @lessons_by_course_id.delete(course.id) -%>
-        </ul>
-        <% end  # if -%>
-    </li>
-    <% end # @courses.each -%>
-    <%    # by now, all the lessons associated with courses have been displayed/removed. show what's left
-    @lessons_by_course_id.each do |course_id, lessons| -%>
-    <%= render :partial=>"lesson_search_results", :locals=>{:lessons=>lessons} %>
+		<dl>
+			<dt><span class="result_type">Course:</span> <%= link_to course.title, course_path(course) %></dt>
+			<dd class="description"><%= course.description -%></dd>
+		</dl>
+		<% if @lessons_by_course_id[course.id] -%>
+		<ul>
+			<%= render :partial=>"lesson_search_results", :locals=>{:lessons=>@lessons_by_course_id[course.id]} %>
+			<% @lessons_by_course_id.delete(course.id) -%>
+		</ul>
+		<% end  # if -%>
+	</li>
+	<% end # @courses.each -%>
+	<%
+	# by now, all the lessons associated with courses have been displayed/removed. show what's left
+	@lessons_by_course_id.each do |course_id, lessons| -%>
+		<%= render :partial=>"lesson_search_results", :locals=>{:lessons=>lessons} %>
     <% end -%>
 </ul>
