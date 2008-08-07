@@ -70,7 +70,6 @@ body {
 			width: 530px;
 			float: left;
 			position: relative;
-			z-index: 10;
 			border: 1px solid #f2f2f2;
 			border-width: 0 1px;
 		}

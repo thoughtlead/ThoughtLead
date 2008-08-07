@@ -80,19 +80,19 @@
 			<ul class="content">
 				<% current_community.categories.each do |category| %>
 					<% if category.contains_articles_visible_to(current_user) %>
-					    <% content_tag(:li, :class => current_class_for_category(category)) do %>
+						<% content_tag(:li, :class => current_class_for_category(category)) do %>
 							<%= link_to category, library_url(:category => category) %>
-						<%end%>
+						<% end %>
 					<% end %>
 				<% end %>
 				<% if current_community.articles.for_category('nil').count > 0 %>
 					<% content_tag(:li, :class => current_class_general) do %>
 						<%= link_to "General", library_url(:category => 'nil') %>
-					<%end%>
+					<% end %>
 				<% end %>
-					<% content_tag(:li, :class => current_class_all_categories) do %>
-						<%= link_to "Full Library", library_url %>
-					<%end%>
+				<% content_tag(:li, :class => current_class_all_categories, :id => 'show_all') do %>
+					<%= link_to "Full Library", library_url %>
+				<% end %>
 			</ul>
 		</li>
 		<% end %>

@@ -883,7 +883,8 @@ h1, h2, h3, h4, h5, h6 {margin: 0.5em 0;}
 			.login #main_content form .input span.label {float: left;}
 			.login #main_content form .input a.forgot_password {
 				float: right;
-				font-size: 0.916em;
+				font-size: 1.1em;
+				font-weight: bold;
 			}
 			.login #main_content form .input label.checkbox {font-weight: normal;}
 
