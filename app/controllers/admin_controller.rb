@@ -1,5 +1,6 @@
 class AdminController < ApplicationController
-  
+
+  before_filter :owner_login_required
   
   def edit_community
     @community = current_community
@@ -22,4 +23,5 @@ class AdminController < ApplicationController
     flash[:notice] = "Access Rights Saved"
     redirect_to community_home_url
   end
+  
 end
