@@ -22,6 +22,9 @@ jQuery(function($) {
 			var clouds = $('<div id="navigation_art" class="clouds clear"></div>');
 			$e.navigation.wrapInner(clouds);
 
+			// add markup: content wrapper
+			$e.content.wrap('<div id="content_wrap" class="content_area"></div>');
+
 			// ie background flickering
 			try {document.execCommand("BackgroundImageCache", false, true);} catch(err) {}
 
@@ -160,6 +163,23 @@ jQuery(function($) {
 				setTimeout(function() {flash.fadeOut('fast')}, flash_delay);
 			}
 		},
+		prepareButtons : function() {
+			$('.make_button').each(function() {
+				var button = $('<div class="button clear"><a href="#submit"><span class="icon"></span></a></div>');
+				button
+					.find('span')
+						.addClass($(this).attr('id'))
+						.text($(this).attr('value'))
+					.end()
+					.click(function() {
+						$(this).parents('form').submit();
+						return false;
+					});
+				$(this)
+					.hide()
+					.after(button);
+			});
+		},
 		markupCorners : function(e, o) {
 			if (typeof o == 'undefined') {o = ['tl', 'tr', 'bl', 'br']}
 			var corner = $('<div class="corner"><!-- --></div>');
@@ -189,6 +209,7 @@ jQuery(function($) {
 		init : function() {
 			$e = thoughtlead.elements;
 			thoughtlead.prepareFlashNotice();
+			thoughtlead.prepareButtons();
 			thoughtlead.applyCorners();
 			thoughtlead.prepareInputs($('#search'));
 			thoughtlead.prepareOutline();

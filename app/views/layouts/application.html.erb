@@ -13,10 +13,10 @@
 <body class="<%= @current_tab.to_s.downcase %>">
 	<div id="page" class="lesson"> <!-- TODO @Duff, change based on page type/name -->
 		<%= render(:partial => '/layouts/header') %>
-		<div id="content_wrap" class="content_area"><div id="content">
+		<div id="content" class="content_area">
 			<%= render(:partial => '/layouts/flash_details') %>
 			<%= yield %>
-		</div></div>
+		</div>
 		<%= render(:partial => '/layouts/footer') %>
   	</div>  		
 </body>

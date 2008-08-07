@@ -22,9 +22,9 @@
 	<fieldset class="submit">
 		<ul class="submit_opts">
 			<% if mode == :new %>
-			<li><div class="button clear"><a href='javascript:document.getElementById("new_course").submit()'><span class="icon create">Create Course</span></a></div></li>
+			<li><%= submit_tag "Create Course", :class => "make_button", :id => "create" %></li>
 			<% else %>
-			<li><div class="button clear"><a href='javascript:document.getElementById("edit_course_<%=@course.id%>").submit()'><span class="icon save">Save Changes</span></a></div></li>
+			<li><%= submit_tag "Save Changes", :class => "make_button", :id => "save" %></li>
 			<% end %>
 			<li class="text">or <%= link_to "Cancel", @course %></li>
 		</ul>
