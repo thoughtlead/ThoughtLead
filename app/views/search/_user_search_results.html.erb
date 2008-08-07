@@ -5,7 +5,7 @@
 			<li>
 				<dl class="profile_result clear">
 					<dt>Name:</dt>
-					<dd><%= link_to sanitize(user.display_name), user %></dd>
+					<dd><%= link_to sanitize(user.to_s), user %></dd>
 					<dt>About:</dt>
 					<dd><%= sanitize user.about -%></dd>
 					<dt>Interests:</dt>
