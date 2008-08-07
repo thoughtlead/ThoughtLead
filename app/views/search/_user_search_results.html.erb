@@ -5,17 +5,15 @@
 			<li>
 				<dl class="profile_result clear">
 					<dt>Name:</dt>
-					<dd><%= link_to h(user), user %></dd>
+					<dd><%= link_to sanitize(user), user %></dd>
 					<dt>About:</dt>
-					<dd><%= h(user.about) -%></dd>
+					<dd><%= sanitize user.about -%></dd>
 					<dt>Interests:</dt>
-					<dd><%= h(user.interests) -%></dd>
+					<dd><%= sanitize user.interests -%></dd>
 					<dt>Location:</dt>
-					<dd><%= h(user.location) -%></dd>
+					<dd><%= sanitize user.location -%></dd>
 					<dt>Zip Code:</dt>
-					<dd><%= h(user.zipcode) -%></dd>
-					<dt>URL:</dt>
-					<dd class="url"><%= user_url(user) %></dd>
+					<dd><%= sanitize user.zipcode -%></dd>
 				</dl>
 			</li>
 		<% end # @user.each -%>

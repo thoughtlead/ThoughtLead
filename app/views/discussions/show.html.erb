@@ -54,7 +54,7 @@
 			</div>
 		</div>
 		<% end %>
-		<%= textilize(@discussion.body) %>
+		<%= textilize(sanitize(@discussion.body)) %>
 	</div>
 
 	<% if !@discussion.responses.blank? %>
@@ -80,7 +80,7 @@
 							<li class="delete"><%= link_to("Delete this Response", response, :controller => :responses, :method => :delete, :confirm => "Are you sure you'd like to delete this response?") if logged_in_as_owner? %></li>
 						</ul>
 						<div class="comment_body">
-							<%= textilize(response.body) %>
+							<%= textilize(sanitize(response.body)) %>
 						</div>
 					</div>
 				</div>
