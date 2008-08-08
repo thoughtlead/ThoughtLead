@@ -5,8 +5,9 @@ Name: Application
 ----------------------------------------------- */
 
 jQuery.noConflict();
+var thoughtlead;
 jQuery(function($) {
-	var thoughtlead = {
+	thoughtlead = {
 		elements : {
 			page: $('#page'),
 				header: $('#header'),
@@ -96,56 +97,6 @@ jQuery(function($) {
 				$e.content.css('font-size', thoughtlead.fontSizer.levels[t-1]);
 			}
 		},
-		repeatAttachments : function() {
-			var att = $e.main_content.find('.attachments_add');
-			var inp = att.children('li').clone();
-
-			var btn = $('<button>Add another attachment</button>');
-
-			function removeButton(e) {
-				$('<a href="#" class="remove replace">Remove</a>')
-					.appendTo(e)
-					.click(function() {
-						e.slideUp('fast', function() {$(this).remove()});
-						return false;
-					});
-			}
-			btn
-				.appendTo(att)
-				.click(function() {
-					// clone(1) to store state before user
-					// action and clone(2) to replicate.
-					var this_inp = inp.clone().hide();
-					this_inp.insertBefore($(this)).slideDown('fast');
-					removeButton(this_inp);
-					return false;
-				});
-		},
-		peopleListHooks : function() {
-			var classes = ['one','two','three','four','five'];
-			$('.people_list li').each(function(i) {
-				$(this).addClass(classes[i%5]);
-				if ($(this).is(':last-child')) $(this).addClass('last');
-			});
-		},
-		prepareOutline : function() {
-			$e.sidebar.find('.outline > ul > li').each(function() {
-				var $this = $(this);
-				var header = $(this).find('h4');
-				var list = $(this).find('ul');
-
-				if (!$this.is('.active')) {
-					$this.addClass('closed');
-				}
-
-				header
-					.wrapInner('<a href="#"></a>')
-					.click(function() {
-						$this.toggleClass('closed');
-						return false;
-					});
-			});
-		},
 		prepareInputs : function(e) {
 			e.find('input[type=text]')
 				.addClass('inactive')
@@ -223,10 +174,7 @@ jQuery(function($) {
 			thoughtlead.applyCorners();
 			thoughtlead.prepareInputs($('.search'));
 			thoughtlead.validSearchTest();
-			thoughtlead.prepareOutline();
 			thoughtlead.preparePage();
-			thoughtlead.repeatAttachments();
-			thoughtlead.peopleListHooks();
 			thoughtlead.fontSizer.prepareFontSizer();
 		}
 	};

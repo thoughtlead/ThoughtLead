@@ -1203,6 +1203,14 @@ h1, h2, h3, h4, h5, h6 {margin: 0.5em 0;}
 		font-size: 1.2em;
 	}
 
+	dl.contact {
+		margin: 1em 0; padding: 0;
+		font-size: 1.2em;
+	}
+		dl.contact dt,
+		dl.contact dd {margin: 0; padding: 0;}
+		dl.contact dt {font-weight: bold;}
+
 #sidebar {}
 	#sidebar ul.modules ul {
 		margin: 1em 0; padding: 0 0 0 20px;
