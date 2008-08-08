@@ -6,6 +6,7 @@
 	<%= tiny_mce if using_tiny_mce? %>
 	<%= javascript_include_tag :defaults, 'jquery' %>
 	<%=	stylesheet_link_tag 'base' %>
+	<%= stylesheet_link_tag community_stylesheet %>
 	<!--[if lte IE 7]><%=	stylesheet_link_tag 'ie' %><![endif]-->
 	<!--[if IE 6]><%=	stylesheet_link_tag 'ie6' %><![endif]-->
 	<%= yield(:head) %>
