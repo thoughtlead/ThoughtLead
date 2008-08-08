@@ -58,4 +58,11 @@
 
 	<% end %>
 </div>
-<%= render :partial => "menu", :locals => { :mode => :edit }  %>
+<div id="sidebar">
+	<ul class="modules">
+		<li class="navigation themes">
+			<h3>Community Setup</h3>
+			<%= render :partial => "menu", :locals => { :mode => :edit }  %>
+		</li>
+	</ul>
+</div>

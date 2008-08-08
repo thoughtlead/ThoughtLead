@@ -83,7 +83,7 @@ require RAILS_ROOT + '/lib/strip_whitespace'
 require RAILS_ROOT + '/lib/community_specific'
 
 Ultrasphinx::Search.excerpting_options = HashWithIndifferentAccess.new({
-  :before_match => '<strong>',
+  :before_match => '<strong class="match">',
   :after_match => '</strong>',
   :chunk_separator => "...",
   :limit => 128,

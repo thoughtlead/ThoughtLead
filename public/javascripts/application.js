@@ -221,7 +221,7 @@ jQuery(function($) {
 			thoughtlead.prepareFlashNotice();
 			thoughtlead.prepareButtons();
 			thoughtlead.applyCorners();
-			thoughtlead.prepareInputs($('#search'));
+			thoughtlead.prepareInputs($('.search'));
 			thoughtlead.validSearchTest();
 			thoughtlead.prepareOutline();
 			thoughtlead.preparePage();

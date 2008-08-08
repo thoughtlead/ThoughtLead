@@ -190,6 +190,31 @@ a,
 		#main_content .module.signup p.signup {background-image: url(../images/template/signup_button_bg.gif);}
 
 
+/* Search
+----------------------------------------------- */
+.search {}
+	.search #main_content .title.bar {}
+		.search #main_content .title.bar .search.again {background: #f1f1f1;}
+			.search #main_content .search.again form label {color: #666;}
+	.search #main_content .results_nav {background: #8fc400;}
+		.search #main_content .results_nav a {color: #fff;}
+		.search #main_content .results_nav h3 {color: #e9f3cc;}
+
+	.search #main_content .search_results {}
+		.search #main_content .search_results a {color: #0174b0;}
+			.search #main_content .search_results h3 {background-color: #f4f9e5;}
+				.search #main_content .search_results ul li ul {background-image: url(../images/template/search_subarrow_bg.gif);}
+
+			.search #main_content .search_results .match {background-color: #ff6;}
+				.search #main_content .search_results ul li dl dt span {color: #999;}
+
+			.search #main_content .search_results dl.profile_result {}
+				.search #main_content .search_results dl.profile_result dt {color: #999;}
+
+
+
+
+
 
 /* Sidebar
 ----------------------------------------------- */
@@ -238,8 +263,8 @@ a,
 
 /* Forms
 ----------------------------------------------- */
-#search form {}
-	#search form input.inp_text {
+.search form {}
+	.search form input.inp_text {
 		background-color: #fff;
 		background-image: url(../images/template/search_inp_bg.gif);
 	}

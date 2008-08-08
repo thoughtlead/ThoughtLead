@@ -281,6 +281,7 @@ h1, h2, h3, h4, h5, h6 {margin: 0.5em 0;}
 			top: 40px; right: 19px;
 			z-index: 1;
 		}
+		.search #main_content .font_sizer {top: 90px;}
 			#main_content .font_sizer .label {
 				padding: 0 5px 0 18px;
 				font-weight: bold;
@@ -343,6 +344,7 @@ h1, h2, h3, h4, h5, h6 {margin: 0.5em 0;}
 		#main_content .title.bar {
 			margin: 0 -20px; padding: 13px 20px 18px 20px;
 			border-bottom: 1px solid;
+			width: 100%;
 		}
 			#main_content .title.bar h2 {
 				margin: 0; padding: 0;
@@ -666,6 +668,7 @@ h1, h2, h3, h4, h5, h6 {margin: 0.5em 0;}
 			.discussions #main_content .item_image {
 				margin: 12px 15px 0 0;
 				float: left;
+				clear: both;
 			}
 			.discussions #main_content .item_content {
 				width: 458px;
@@ -908,20 +911,38 @@ h1, h2, h3, h4, h5, h6 {margin: 0.5em 0;}
 /* Search
 ----------------------------------------------- */
 .search {}
+
+	.search #main_content .title.bar {}
+		.search #main_content .title.bar h2 {}
+		.search #main_content .title.bar .search.again {
+			margin: 0; padding: 8px 5px 8px 10px;
+			width: 214px;
+			float: none;
+			position: absolute;
+			top: 0; right: 20px;
+		}
+			.search #main_content .search.again form {margin: 0;}
+			.search #main_content .search.again form label {
+				margin: 0; padding: 0;
+				font-weight: bold;
+				font-size: 1.1em;
+			}
+			.search #main_content .search.again form input {
+				padding-bottom: 2px;
+				float: left;
+			}
+
 	.search #main_content .results_nav {
 		margin: 15px 0; padding: 9px 20px 7px 20px;
 		float: none;
 		line-height: 1.1;
 		font-weight: bold;
-		background: #8fc400;
 	}
-		.search #main_content .results_nav a {color: #fff;}
 		.search #main_content .results_nav h3 {
 			margin: 0; padding: 0;
 			float: left;
 			letter-spacing: 0;
 			font-size: 1.1em;
-			color: #e9f3cc;
 		}
 		.search #main_content .results_nav ul {
 			margin: 0; padding: 0 0 0 6px;
@@ -942,7 +963,6 @@ h1, h2, h3, h4, h5, h6 {margin: 0.5em 0;}
 		font-size: 1em;
 		list-style-type: none;
 	}
-		.search #main_content .search_results a {color: #0174b0;}
 		.search #main_content .search_results li.module {
 			margin: 15px 0;
 			float: none;
@@ -956,15 +976,15 @@ h1, h2, h3, h4, h5, h6 {margin: 0.5em 0;}
 			}
 			.search #main_content .search_results h3 {
 				padding-top: 9px; padding-bottom: 8px;
-				background-color: #f4f9e5;
 				line-height: 1.1;
 			}
 				.search #main_content .search_results ul li ul {
 					padding-top: 5px;
-					background: url(../images/template/search_subarrow_bg.gif) 2px 14px no-repeat;
+					background-position: 2px 14px;
+					background-repeat: no-repeat;
 				}
 
-			.search #main_content .search_results .match {background-color: #ff6; padding: 2px 2px 1px 2px;}
+			.search #main_content .search_results .match {padding: 2px 2px 1px 2px;}
 				.search #main_content .search_results ul li {}
 					.search #main_content .search_results ul li dl {
 						margin: 0; padding: 0;
@@ -999,7 +1019,6 @@ h1, h2, h3, h4, h5, h6 {margin: 0.5em 0;}
 				.search #main_content .search_results dl.profile_result dt {
 					padding-right: 5px;
 					width: 65px;
-					color: #999;
 					clear: left;
 				}
 				.search #main_content .search_results dl.profile_result dd {width: 420px;}
@@ -1263,10 +1282,11 @@ form {
 	#main_content form .input .fieldWithErrors input.inp_text,
 	#main_content form .input .fieldWithErrors textarea {border-color: #c01a1a;}
 
-#search form {}
-	#search form label {display: none;}
-	#search form input {margin: 0; padding: 0;}
-	#search form input.inp_text {
+.search form {}
+	.search form label {display: none;}
+	.search.again form label {display: block;}
+	.search form input {margin: 0; padding: 0;}
+	.search form input.inp_text {
 		padding: 6px 2px 0 20px;
 		border: 1px solid #fff;
 		width: 153px; height: 12px;
@@ -1274,7 +1294,7 @@ form {
 		background-repeat: no-repeat;
 		font-size: 1.1em; line-height: 1;
 	}
-	#search form input.btn_image {
+	.search form input.btn_image {
 		margin-left: 4px;
 		float: left;
 	}
