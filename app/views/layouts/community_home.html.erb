@@ -1,21 +1,23 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
- 
-<html xmlns="http://www.w3.org/1999/xhtml">
-  <head>
-    <title><%=h @page_title ? "#{@page_title} | #{APP_NAME}" : "#{APP_NAME}" %></title>
-   <meta http-equiv="Content-type" content="text/html; charset=utf-8" />
- 
-    <%= javascript_include_tag :defaults %>
-    <%= stylesheet_link_tag :all %>
-   <%= stylesheet_link_tag community_stylesheet %>
-  </head>
-    
-  <%= body_tag %>
-    <div id="page" class="home">
-      <div id="small">
-     <%= render(:partial => '/layouts/flash_details') %>
-        <%= yield %>
-      </div>
-    </div>
-  </body>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<%= javascript_include_tiny_mce_if_used %>
+	<%= tiny_mce if using_tiny_mce? %>
+	<%= javascript_include_tag :defaults, 'jquery' %>
+	<%=	stylesheet_link_tag 'base' %>
+	<!--[if lte IE 7]><%=	stylesheet_link_tag 'ie' %><![endif]-->
+	<!--[if IE 6]><%=	stylesheet_link_tag 'ie6' %><![endif]-->
+	<title><%=h @page_title ? "#{@page_title} | #{APP_NAME}" : "#{APP_NAME}" %></title>
+</head>
+<%= body_tag %>
+	<div id="page">
+		<%= render(:partial => '/layouts/community_header') %>
+		<div id="content" class="content_area">
+			<%= render(:partial => '/layouts/flash_details') %>
+			<%= yield %>
+		</div>
+		<%= render(:partial => '/layouts/footer') %>
+  	</div>  		
+</body>
 </html>

@@ -1,40 +1,56 @@
-<div id="primary">
-  <h1><%= @page_title = "Create a community" %></h1>
+<div id="main_content">
+	<div class="content_bar" id="top">
+		<div class="breadcrumbs">
+			<p>Jump to:</p>
+			<ul>
+				<li class="first no_tab"><%= link_to "Home", root_url %></li>
+			</ul>
+		</div>
+	</div>
 
-  <%= error_messages_for :user, :community %>
-  <% form_for @community do | f | -%>
+	<h2><%= @page_title = "Create a community" %></h2>
 
-    <%= f.label :community_name %>
-    <%= f.text_field :name, :class => 'text single'  %>
+	<% form_for @community, :html => {:class => "edit"} do | f | -%>
 
-  
+		<%= error_messages_for :user, :community %>
 
-    <%= label :user, :login %>
-    <%= text_field :user, :login, :class => 'text single'  %>
-  
-  
+		<fieldset class="input">
+			<div class="inp group">
+				<%= f.label :community_name %>
+				<%= f.text_field :name, :class => 'inp_text'  %>
+			</div>
 
-    <%= label :user, :email %>
-    <%= text_field :user, :email, :class => 'text single'  %>
+			<div class="inp group">
+				<%= label :user, :login %>
+				<%= text_field :user, :login, :class => 'inp_text'  %>
+			</div>
 
-  
-  
-    <%= label :user, :password %>
-    <%= password_field :user, :password, :class => 'text single'  %>
+			<div class="inp group">
+				<%= label :user, :email %>
+				<%= text_field :user, :email, :class => 'inp_text'  %>
+			</div>
 
-  
-  
-    <%= label :user, :password_confirmation %>
-    <%= password_field :user, :password_confirmation, :class => 'text single'  %>
-	
-	
-	  <div class="subdomain">
-      <%= f.label :host %>
-      (Hostname only, without http://)<%= f.text_field :host, :class => 'text single half'  %>
-	  </div>
-  	
-  	<div>
-  	  <%= submit_tag 'Sign up' %> or <%= link_to "Cancel", root_url %>
-  	</div>
-  <% end -%>
+			<div class="inp group">
+				<%= label :user, :password %>
+				<%= password_field :user, :password, :class => 'inp_text'  %>
+			</div>
+
+			<div class="inp group">
+				<%= label :user, :password_confirmation %>
+				<%= password_field :user, :password_confirmation, :class => 'inp_text'  %>
+			</div>
+
+			<div class="inp group">
+				<%= f.label :host %>
+				(Hostname only, without http://)<%= f.text_field :host, :class => 'inp_text'  %>
+			</div>
+
+		</fieldset>
+		<fieldset class="submit">
+			<ul class="submit_opts">
+				<li><%= submit_tag 'Sign up' %></li>
+				<li class="text">or <%= link_to "Cancel", root_url %></li>
+			</ul>
+		</fieldset>
+	<% end -%>
 </div>

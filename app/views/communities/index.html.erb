@@ -1,10 +1,16 @@
-<div id="primary">
-  <%= link_to "Home", root_url %>
-  <h1>Communities</h1>
-
-
-  <% for community in @communities %>
-    <%= link_to h(community), community %>
-  
-  <% end %>
+<div id="main_content">
+	<div class="content_bar" id="top">
+		<div class="breadcrumbs">
+			<p>Jump to:</p>
+			<ul>
+				<li class="first no_tab"><%= link_to "Home", root_url %></li>
+			</ul>
+		</div>
+	</div>
+	<h2>Communities</h2>
+	<ul>
+	<% for community in @communities %>
+		<li><%= link_to h(community), community %></li>
+	<% end %>
+	</ul>
 </div>
