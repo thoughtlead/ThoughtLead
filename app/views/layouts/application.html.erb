@@ -8,6 +8,7 @@
 	<%=	stylesheet_link_tag 'base' %>
 	<!--[if lte IE 7]><%=	stylesheet_link_tag 'ie' %><![endif]-->
 	<!--[if IE 6]><%=	stylesheet_link_tag 'ie6' %><![endif]-->
+	<%= yield(:head) %>
 	<title><%=h @page_title ? "#{@page_title} | #{current_community}" : "#{current_community}" %></title>
 </head>
 <body class="<%= @current_tab.to_s.downcase %>">
