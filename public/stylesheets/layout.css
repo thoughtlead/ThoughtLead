@@ -34,7 +34,7 @@ body {
 			position: absolute;
 			top: -3px; right: 0;
 		}
-	#navigation {
+	#page #navigation {
 		width: 100%; height: 75px;
 		margin-bottom: -70px;
 		clear: both;
