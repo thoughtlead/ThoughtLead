@@ -11,7 +11,6 @@ class ApplicationController < ActionController::Base
   before_filter :invalidate_return_to
   protect_from_forgery
   
-  
   protected
    
   def redirect_back(redirect_opts = nil)
@@ -66,6 +65,7 @@ class ApplicationController < ActionController::Base
     default_file = "#{themes_dir}/default/#{filename}"
     return default_file unless current_community
     return default_file unless File.exist?("#{themes_dir}/#{current_community.host}/#{filename}")
-      "/#{themes_dir}/#{current_community.host}/#{filename}"
+      "#{themes_dir}/#{current_community.host}/#{filename}"
   end
+  
 end

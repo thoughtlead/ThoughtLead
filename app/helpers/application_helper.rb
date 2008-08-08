@@ -39,6 +39,17 @@ module ApplicationHelper
     end	
   end
   
+  def themed_public_file(filename)
+    themes_absolute_dir = File.expand_path(File.dirname(__FILE__) + "/../../public/themes")
+    
+    themes_public_dir = "/themes"
+    default_public_file = "#{themes_public_dir}/default/#{filename}"
+    
+    return default_public_file unless current_community
+    return default_public_file unless File.exist?("#{themes_absolute_dir}/#{current_community.host}/#{filename}")
+      "#{themes_public_dir}/#{current_community.host}/#{filename}"
+  end
+  
   def current_tag(tag_name, class_is_current_if, &block)
     content_tag(tag_name, { :class => (:current if class_is_current_if) }, &block)
   end
