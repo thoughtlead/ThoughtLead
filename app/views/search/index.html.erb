@@ -5,7 +5,7 @@
 		<div class="search again module clear">
 			<% form_tag :controller=>'search', :action=>'index' do %>
 				<%= label(:search_string, nil, "Search again:") %>
-		  		<%= text_field( :search_string, {}, :class=>"inp_text", :value=>"Search...") %>
+		  		<%= text_field( :search_string, {}, :class=>"inp_text", :value=>"Search...", :id => "search_again") %>
 				<%= image_submit_tag("/images/template/search_btn.gif", :class => "btn_image") %>
 	  		<% end %>
 		</div>
