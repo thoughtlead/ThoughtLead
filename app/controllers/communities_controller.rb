@@ -13,6 +13,14 @@ class CommunitiesController < ApplicationController
     render :file => themed_file("community_home.html.erb"), :layout => true
   end
   
+  def current_community_about
+    render :file => themed_file("community_about.html.erb"), :layout => true
+  end
+  
+  def current_community_contact
+    render :file => themed_file("community_contact.html.erb"), :layout => true
+  end
+  
   def new
     @community = Community.new
     @user = User.new
