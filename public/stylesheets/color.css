@@ -238,8 +238,8 @@ a,
 
 /* Forms
 ----------------------------------------------- */
-#search form {}
-	#search form input.inp_text {
+.search form {}
+	.search form input.inp_text {
 		background-color: #fff;
 		background-image: url(../images/template/search_inp_bg.gif);
 	}

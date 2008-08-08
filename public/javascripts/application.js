@@ -49,6 +49,9 @@ jQuery(function($) {
 			prepareFontSizer : function() {
 				var fs = $('<div class="font_sizer"><span class="label">Font size: </span><ul class="size_nav replace"><li class="smaller"><a href="#0">Smaller</a></li><li class="larger"><a href="#2">Larger</a></li></ul></div>')
 				// place font sizer
+				if ($e.main_content.find('.title').is('.bar')) {
+					fs.addClass('bar_clear');
+				}
 				$e.main_content.prepend(fs);
 				thoughtlead.fontSizer.fontSizeChanger(fs);
 			},
@@ -221,7 +224,7 @@ jQuery(function($) {
 			thoughtlead.prepareFlashNotice();
 			thoughtlead.prepareButtons();
 			thoughtlead.applyCorners();
-			thoughtlead.prepareInputs($('#search'));
+			thoughtlead.prepareInputs($('.search'));
 			thoughtlead.validSearchTest();
 			thoughtlead.prepareOutline();
 			thoughtlead.preparePage();
