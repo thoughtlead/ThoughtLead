@@ -28,7 +28,6 @@ h1, h2, h3, h4, h5, h6 {margin: 0.5em 0;}
 #header {}
 	#logo h1 {
 		width: 373px; height: 88px;
-		background-image: url(../images/headlines/h1_logo_bg.gif);
 	}
 		#logo h1 a {width: 373px; height: 88px;}
 
@@ -198,16 +197,9 @@ h1, h2, h3, h4, h5, h6 {margin: 0.5em 0;}
 					float: left;
 					background-position: 2px 50%;
 					background-repeat: no-repeat;
-					background: url(../images/template/breadcrumbs_arrow_bg.gif) 2px 50% no-repeat;
 				}
 				.content_bar .breadcrumbs ul li.first {padding-left: 19px;}
 				.content_bar .breadcrumbs ul li.no_tab {padding-left: 0; background: none;}
-				.home .content_bar .breadcrumbs ul li.first {background-image: url(../images/template/bc_home_icon.gif);}
-				.article .content_bar .breadcrumbs ul li.first {background-image: url(../images/template/bc_library_icon.gif);}
-				.courses .content_bar .breadcrumbs ul li.first {background-image: url(../images/template/bc_courses_icon.gif);}
-				.discussions .content_bar .breadcrumbs ul li.first {background-image: url(../images/template/bc_discussions_icon.gif);}
-				.people .content_bar .breadcrumbs ul li.first {background-image: url(../images/template/bc_people_icon.gif);}
-				.search .content_bar .breadcrumbs ul li.first {background-image: url(../images/template/bc_search_icon.gif);}
 
 	.content_bar#top {}
 	.content_bar#bottom {}
@@ -300,7 +292,7 @@ h1, h2, h3, h4, h5, h6 {margin: 0.5em 0;}
 						width: 20px; height: 15px;
 						display: block;
 						float: left;
-						background: url(../images/template/font_sprite_bg.gif);
+						background-image: url(../images/template/font_sprite_bg.gif);
 					}
 
 					#main_content .font_sizer ul li a.inactive {cursor: default;}
@@ -551,39 +543,42 @@ h1, h2, h3, h4, h5, h6 {margin: 0.5em 0;}
 		}
 		#main_content .arrow {
 			padding-left: 3px;
-			background: url(../images/template/content_arrow_bg.gif) center right no-repeat;
+			background-position: center right;
+			background-repeat: no-repeat;
+			background-image: url(../images/template/content_arrow_bg.gif);
 		}
 		.button {
 			padding: 0 0 0 4px;
 			line-height: 1;
-			background: url(../images/template/button_left_bg.gif) no-repeat;
+			background-repeat: no-repeat;
 		}
 			.button a {
 				padding: 5px 12px 0 6px;
 				height: 15px;
 				display: block;
 				float: left;
-				color: #fff;
 				text-decoration: none;
 				font-size: 11px;
 				font-weight: bold;
-				background: url(../images/template/button_right_bg.gif) right no-repeat;
+				background-position: right;
+				background-repeat: no-repeat;
 			}
 				.button a span.icon {
 					padding-left: 14px;
 					background-position: center left;
 					background-repeat: no-repeat;
 				}
-				.button a span.icon.create {background-image: url(../images/template/icon_create_button.gif);}
-				.button a span.icon.save {background-image: url(../images/template/icon_save_button.gif);}
-				.button a span.icon.email {background-image: url(../images/template/icon_email_button.gif);}
+				.button a span.icon.create {}
+				.button a span.icon.save {}
+				.button a span.icon.email {}
 
 		a.button.edit {
 			margin: 0; padding: 16px 47px 0 0;
 			position: relative;
 			top: 2px; left: 5px;
 			font-size: 1px;
-			background: url(../images/template/button_edit_bg.gif) top left no-repeat;
+			background-position: top left;
+			background-repeat: no-repeat;
 			text-decoration: none;
 		}
 		a.button.edit span {visibility: hidden;}
@@ -761,8 +756,6 @@ h1, h2, h3, h4, h5, h6 {margin: 0.5em 0;}
 			#main_content ul.people_list li .item_image {
 				margin: 0;
 				float: left;
-				background-color: #deecb5;
-				background-image: url(../images/template/people_list_profile_bg.gif);
 				background-position: bottom;
 				background-repeat: repeat-x;
 			}
