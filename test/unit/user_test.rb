@@ -99,7 +99,7 @@ class UserTest < ActiveSupport::TestCase
 
   private
     def new_valid_user(options = {})
-      User.new({ :login => 'quire', :email => 'quire@example.com', :password => 'quire', :password_confirmation => 'quire' }.merge(options))
+      User.new({ :login => 'quire', :first_name => 'Quire', :last_name => 'Quireson', :email => 'quire@example.com', :password => 'quire', :password_confirmation => 'quire' }.merge(options))
     end
 
 end

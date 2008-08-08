@@ -1,5 +1,7 @@
 duff:
   login: duff
+  first_name: duff
+  last_name: dufferson
   email: duff@codora.com
   salt: 7e3041ebc2fc05a40c60028e2c4901a81035d3cd
   crypted_password: 00742970dc9e6319f8019fd54864d3ea740f04b1 # test
@@ -7,6 +9,8 @@ duff:
   
 daniel:
   login: daniel
+  first_name: daniel
+  last_name: danielerson
   email: daniel@example.com
   salt: 7e3041ebc2fc05a40c60028e2c4901a81035d3cd
   crypted_password: 00742970dc9e6319f8019fd54864d3ea740f04b1 # test
@@ -15,6 +19,8 @@ daniel:
   
 alex:
   login: alex
+  first_name: alex
+  last_name: alexerson
   email: alex@example.com
   salt: 7e3041ebc2fc05a40c60028e2c4901a81035d3cd
   crypted_password: 00742970dc9e6319f8019fd54864d3ea740f04b1 # test
@@ -22,6 +28,8 @@ alex:
   
 sam:
   login: sam
+  first_name: sam
+  last_name: rosen
   email: sam@example.com
   salt: 7e3041ebc2fc05a40c60028e2c4901a81035d3cd
   crypted_password: 00742970dc9e6319f8019fd54864d3ea740f04b1 # test
@@ -29,6 +37,8 @@ sam:
 
 test:
   login: test
+  first_name: test
+  last_name: testerson
   email: eric@ternarysoftware.com
   salt: 9fb6693c00a354e88a1515f20cb76c3ff89c02a8
   crypted_password: 734f71d1a4baa7f843817de1531293161f9ae0f2 #test
@@ -37,6 +47,8 @@ test:
 premium:
   login: premium
   email: eric@ternarysoftware.com
+  first_name: premium
+  last_name: premiumerson
   salt: 9fb6693c00a354e88a1515f20cb76c3ff89c02a8
   crypted_password: 734f71d1a4baa7f843817de1531293161f9ae0f2 #test
   community: testing
@@ -47,6 +59,8 @@ premium:
 admin:
   login: admin
   email: admin@dot.dot
+  first_name: admin
+  last_name: adminerson
   salt: 9fb6693c00a354e88a1515f20cb76c3ff89c02a8
   crypted_password: 734f71d1a4baa7f843817de1531293161f9ae0f2 #test
   community: watirtest
@@ -56,6 +70,8 @@ admin:
 #give highest non-admin privileges to test non-admin/admin boundaries
 nonadmin:
   login: nonadmin
+  first_name: nonadmin
+  last_name: nonadminerson
   email: nonadmin@dot.dot
   salt: 9fb6693c00a354e88a1515f20cb76c3ff89c02a8
   crypted_password: 734f71d1a4baa7f843817de1531293161f9ae0f2 #test
@@ -65,6 +81,8 @@ nonadmin:
 
 watir_premium:
   login: watir_premium
+  first_name: watir_premium
+  last_name: watir_premiumerson
   email: watir_premium@dot.dot
   salt: 9fb6693c00a354e88a1515f20cb76c3ff89c02a8
   crypted_password: 734f71d1a4baa7f843817de1531293161f9ae0f2 #test
@@ -74,6 +92,8 @@ watir_premium:
 
 registered:
   login: registered
+  first_name: registered
+  last_name: registerederson
   email: registered@dot.dot
   salt: 9fb6693c00a354e88a1515f20cb76c3ff89c02a8
   crypted_password: 734f71d1a4baa7f843817de1531293161f9ae0f2 #test
@@ -83,6 +103,8 @@ registered:
 
 disabled:
   login: disabled
+  first_name: disabled
+  last_name: disablederson
   email: disabled@example.com
   salt: 9fb6693c00a354e88a1515f20cb76c3ff89c02a8
   crypted_password: 734f71d1a4baa7f843817de1531293161f9ae0f2 #test
@@ -91,6 +113,8 @@ disabled:
   
 expert:
   login: expert
+  first_name: expert
+  last_name: experterson 
   email: expert@example.com
   salt: 9fb6693c00a354e88a1515f20cb76c3ff89c02a8
   crypted_password: 734f71d1a4baa7f843817de1531293161f9ae0f2 #test
