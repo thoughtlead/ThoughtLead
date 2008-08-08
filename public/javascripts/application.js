@@ -115,13 +115,15 @@ jQuery(function($) {
 			});
 		},
 		prepareFlashNotice : function() {
-			var flash_delay = 2000;
+			var min_delay = 2000;
 			var flash = $e.content.find('#flash');
+			var char_count = flash.text().length;
+			min_delay = min_delay + (char_count*6);
 
 			if (!flash.children().length) {
 				flash.remove();
 			} else {
-				setTimeout(function() {flash.fadeOut('fast')}, flash_delay);
+				setTimeout(function() {flash.fadeOut('fast')}, min_delay);
 			}
 		},
 		prepareButtons : function() {
