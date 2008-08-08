@@ -4,7 +4,7 @@ class User < ActiveRecord::Base
   attr_accessor :password, :uploaded_avatar_data
   attr_writer   :password_required
   
-  validates_presence_of     :login, :email
+  validates_presence_of     :login, :email, :first_name, :last_name
   validates_presence_of     :password, :password_confirmation, :if => :password_required?
   validates_confirmation_of :password, :if => :password_required?
   validates_uniqueness_of   :login, :email, :case_sensitive => false, :scope => :community_id

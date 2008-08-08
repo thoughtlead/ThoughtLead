@@ -70,6 +70,14 @@
 				<th scope="row">Reason for Joining</th>
 				<td><%= details_format(@user.reason) %></td>
 			</tr>
+			<tr>
+				<th scope="row">First Name</th>
+				<td><%= details_format(@user.first_name) %></td>
+			</tr>
+			<tr>
+				<th scope="row">Last Name</th>
+				<td><%= details_format(@user.last_name) %></td>
+			</tr>
 			<% end %>
 		</tbody>
 	</table>
