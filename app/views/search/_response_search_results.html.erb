@@ -1,9 +1,8 @@
 <% responses.each do |response| -%>
 <li>
 	<dl>
-		<dt><span class="result_type">Response to:</span> <%= link_to h(response.discussion), response.discussion %></dt>
-		<dd class="description"><%= h(response.body) %></dd>
-		<dd class="url"><a href="<%= discussion_url(response.discussion) %>"><%= discussion_url(response.discussion) %></a></dd>
+		<dt><span class="result_type">Response to:</span> <%= link_to response.discussion, response.discussion %></dt>
+		<dd class="description"><%=sanitize response.body %></dd>
 	</dl>
 </li>
 <% end %>

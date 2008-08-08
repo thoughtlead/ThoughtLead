@@ -4,8 +4,8 @@
 		<% @discussions.each do |discussion| %>
 			<li>
 				<dl>
-					<dt><span class="result_type">Discussion:</span> <%= link_to h(discussion), discussion %></dt>
-					<dd class="description"><%=h(discussion.body)-%></dd>
+					<dt><span class="result_type">Discussion:</span> <%= link_to sanitize(discussion.title), discussion %></dt>
+					<dd class="description"><%=sanitize discussion.body-%></dd>
 				</dl>
 				<% if @responses_by_discussion_id[discussion.id] -%>
 				<ul>

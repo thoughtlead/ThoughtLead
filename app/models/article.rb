@@ -8,14 +8,14 @@ class Article < ActiveRecord::Base
    (content && content.title) || ""
   end
   
-#  def article_categories=(it)
-#    self.categories = []
-#    for category_id in it.uniq
-#      unless category_id.blank?
-#        self.categories << Category.find_by_id(category_id)
-#      end
-#    end
-#  end
+  def article_categories=(it)
+    self.categories = []
+    for category_id in it.uniq
+      unless category_id.blank?
+        self.categories << Category.find_by_id(category_id)
+      end
+    end
+  end
   
   def article_new_categories=(it)
     #to be completed before save, so that we know all other work (which may be inter-dependent) is completed

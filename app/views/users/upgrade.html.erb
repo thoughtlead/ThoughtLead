@@ -12,19 +12,22 @@
 
 	<% if @subscription_plans %>
 
-	<% form_tag(upgrade_url) do  %>
-		<div id="priceTable">
-			<% for subscription_plan in @subscription_plans %>
-				<% if subscription_plan.enabled %>
-					<p class="plus_label">
-					<%= radio_button_tag(:selected_plan, subscription_plan.id) %> <%= label :selected_plan, subscription_plan.id, "#{subscription_plan.name} ($#{subscription_plan.price} for #{subscription_plan.terms})" %>
-					</p>
+		<% form_tag(upgrade_url) do  %>
+			<div id="priceTable">
+				<% for subscription_plan in @subscription_plans %>
+					<% if subscription_plan.enabled %>
+						<p class="plus_label">
+						<%= radio_button_tag(:selected_plan, subscription_plan.id) %> <%= label :selected_plan, subscription_plan.id, "#{subscription_plan.name} ($#{subscription_plan.price} for #{subscription_plan.terms})" %>
+						</p>
+					<% end %>
 				<% end %>
-			<% end %>
-		</div>                
+			</div>                
+		<p><%= submit_tag "Purchase selected plan" %> or <%= link_to "Cancel", community_home_url %></p>
+		<% end %>	
+		
+	<% elsif current_community.premium_link %>
 
-	<p><%= submit_tag "Purchase selected plan" %> or <%= link_to "Cancel", community_home_url %></p>
+		<%= link_to current_community.premium_text, current_community.premium_link %>	
 
-	<% end %>
 	<% end %>
 </div>

@@ -7,6 +7,7 @@ ActionController::Routing::Routes.draw do |map|
   map.signup '/signup', :controller => 'users', :action => 'signup', :conditions => { :is_client_domain => true }
   map.status '/status', :controller => 'home', :action => 'status', :conditions => { :is_client_domain => false }
   
+
   map.resources :themes, :conditions => { :is_client_domain => true }
   map.resources :sessions, :conditions => { :is_client_domain => true }
   map.resources :users, :member => { :email => :any, :edit_password => :any, :disable => :any, :reactivate => :any }, :conditions => { :is_client_domain => true }
@@ -35,6 +36,9 @@ ActionController::Routing::Routes.draw do |map|
   map.users_changed_on_spreedly '/changed_on_spreedly', :controller => "users", :action => 'changed_on_spreedly', :method => :post, :conditions => { :is_client_domain => true }
   map.discussions_for_theme '/discussions/theme/:id', :controller => "discussions", :action => "for_theme", :conditions => { :is_client_domain => true }
   
+  map.report '/community/report', :controller => 'report', :action => 'index', :conditions => { :is_client_domain => true }
+  map.report '/community/report/export', :controller => 'report', :action => 'export_users', :conditions => { :is_client_domain => true }
+ 
   map.edit_community '/community/edit', :controller => 'admin', :action => 'edit_community', :conditions => { :is_client_domain => true }
   map.access_rights '/community/access', :controller => 'admin', :action => 'access_rights', :conditions => { :is_client_domain => true }
   map.communities_changed_on_spreedly '/changed_on_spreedly', :controller => 'communities', :action => 'changed_on_spreedly', :method => :post, :conditions => { :is_client_domain => false }
