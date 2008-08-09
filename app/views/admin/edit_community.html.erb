@@ -36,12 +36,14 @@
 
 			<div class="inp group">
 				<%= f.label "Link to purchase premium access" %>
-				(Full URL including http://)<%= f.text_field :premium_link, :class => "inp_text"  %>
+				<span class="hint">(Full URL including http://)</span>
+				<%= f.text_field :premium_link, :class => "inp_text"  %>
 			</div>
 
 			<div class="inp group">
 				<%= f.label "Text for link to purchase premium access" %>
-				(i.e. "Click to purchase premium access for just $19.95 per month")<%= f.text_field :premium_text, :class => "inp_text"  %>
+				<span class="hint">(i.e. "Click to purchase premium access for just $19.95 per month")</span>
+				<%= f.text_field :premium_text, :class => "inp_text"  %>
 			</div>
 
 
