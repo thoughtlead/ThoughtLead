@@ -66,7 +66,7 @@
 			<div class="item_content">
 				<div class="module">
 					<div class="content">
-						<ul class="comment_meta">
+						<ul class="comment_meta clear">
 							<li class="author">
 								<%= link_to(h(response.user),response.user) %>
 								<% if response.user.expert? %>
@@ -75,7 +75,7 @@
 								says:
 							</li>
 							<li class="time"><%= timeago(response.created_at, {:date_format => :day_month_year}) %></li>
-							<li class="delete"><%= link_to("Delete this Response", response, :controller => :responses, :method => :delete, :confirm => "Are you sure you'd like to delete this response?") if logged_in_as_owner? %></li>
+							<li class="delete"><%= link_to("Delete", response, :controller => :responses, :method => :delete, :confirm => "Are you sure you'd like to delete this response?") if logged_in_as_owner? %></li>
 						</ul>
 						<div class="comment_body">
 							<%= textilize(sanitize(response.body)) %>
@@ -97,7 +97,7 @@
 			<div class="module">
 				<div class="content">
 					<ul class="comment_meta">
-						<li class="time">Just now</li>
+						<li class="time">less than a minute ago</li>
 					</ul>
 					<% if logged_in? %>
 					<% form_for [@discussion, Response.new] do | f | %>

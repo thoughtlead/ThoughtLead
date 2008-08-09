@@ -725,13 +725,27 @@ h1, h2, h3, h4, h5, h6 {margin: 0.5em 0;}
 					font-weight: bold;
 				}
 					#main_content .comment ul.comment_meta li {}
-					#main_content .comment ul.comment_meta li.author {}
+					#main_content .comment ul.comment_meta li.author {
+						float: left;
+					}
 					#main_content .comment ul.comment_meta li.time {
-						position: absolute;
-						top: 15px; right: 19px;
+						float: right;
 						color: #999;
 						font-size: 0.833em;
 					}
+					#main_content .comment ul.comment_meta li.delete {
+						padding: 0 8px 0 0;
+						float: right;
+						font-size: 0.833em;
+					}
+						#main_content .comment ul.comment_meta li.delete a {
+							padding: 2px 0 2px 13px;
+							color: #c40000;
+							background: url(../images/template/icon_action_delete_content.gif) no-repeat;
+							text-decoration: none;
+						}
+						#main_content .comment ul.comment_meta li.delete a:hover {text-decoration: underline;}
+
 				#main_content .comment p {margin: 0.5em 0;}
 				#main_content .comment blockquote {
 					margin: 0; padding: 0 0 0 20px;
