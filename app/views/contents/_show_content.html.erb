@@ -2,6 +2,14 @@
 	<h2><%=h content %></h2>
 	<ul class="meta_info clear">
 		<li class="date first"><%= content.updated_at.to_s(:day_month_year) %></li>
+		<% if content.article && content.article.categories.size > 0 %>
+		<li class="theme">
+			<% content.article.reload%>
+			<% content.article.categories.each do |article_category| %>
+			  <%= link_to article_category, library_url(:category => article_category) %>
+			<% end %>
+		</li>
+		<% end %>
 		<% unless content.author.blank? %>
 		<li class="author"><%= content.author %></li>
 		<% end %>

@@ -362,7 +362,7 @@ h1, h2, h3, h4, h5, h6 {margin: 0.5em 0;}
 
 				#main_content .meta_info li.first {border-left: 0; background-position: 2px 0; padding-left: 16px;}
 				#main_content .meta_info li.date {background-image: url(../images/template/icon_date.gif);}
-				#main_content .meta_info li.author {background-image: url(../images/template/icon_author.gif);}
+				#main_content .meta_info li.author {background-image: url(../images/template/icon_author.gif); padding-left: 17px;}
 					#main_content li.author .marker {padding: 8px 6px 1px 0;}
 						#main_content li.author .marker span {visibility: hidden;}
 					#main_content li.author .marker.expert {background-image: url(../images/template/icon_expert_sm.gif);}
