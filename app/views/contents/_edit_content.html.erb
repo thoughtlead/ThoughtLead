@@ -1,4 +1,7 @@
-<% content_for :head, javascript_include_tag('edit') %>
+<% content_for :head do %>
+	<%= javascript_include_tag('jquery.livequery') %>
+	<%= javascript_include_tag('edit') %>
+<% end %>
 
 <script>
 /*
@@ -59,7 +62,7 @@ addAttachment = function() {
 				<li class="image"><a href="#">catch_kitten.jpeg</a></li>
 				<li class="image"><a href="#">PeanutButter.jpeg</a></li>
 			</ul>
-			<ul class="attachments_add attachment clearsub">
+			<ul class="attachments_add attachment repeatable clearsub">
 				<li class="create">
 					<%= file_field_tag "content[content_attachments][]", :size => 17, :class => "inp_file" %>
 				</li>

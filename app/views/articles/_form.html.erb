@@ -39,20 +39,18 @@ addNewCategory = function() {
 
 <div class="edit_categories">
 	<h3 class="separator">Categories</h3>
-	<% @article.categories.each do |selected_category| %>
-		<select name="article[article_categories][]">
-			<% current_community.categories.each do |category| %>
-			<option value="<%=category.id%>" <%= 'selected' if category == selected_category %>><%= category %></option>
-			<% end %>
-		</select>
-		<input type="button" value="Remove" onclick="removeCategory(this)" />
-	<% end %>
-
-	<div id="categories" class="category_fields"></div>
-	<button onclick="addCategory(); return false;">Add Existing Category</button>
-
-	<div id="new_categories" class="category_fields"></div>
-	<button onclick="addNewCategory(); return false;">Add New Category</button>
+	<ul class="categories_add repeatable clearsub">
+		<% @article.categories.each do |selected_category| %>
+		<li>
+			<select name="article[article_categories][]">
+				<% current_community.categories.each do |category| %>
+				<option value="<%=category.id%>" <%= 'selected' if category == selected_category %>><%= category %></option>
+				<% end %>
+			</select>
+		</li>
+		<% end %>
+	</ul>
+	<div id="new_category"><%= text_field_tag "article[article_new_categories][]", nil, :class => "inp_text" %></div>
 </div>
 
 <fieldset class="submit">

@@ -522,15 +522,36 @@ h1, h2, h3, h4, h5, h6 {margin: 0.5em 0;}
 				#main_content .attachment .action:hover {text-decoration: underline;}
 				#main_content .attachment .delete {color: #c40000; background-image: url(../images/template/icon_action_delete_content.gif);}
 
-			#main_content .attachments_add {margin: 10px 0; font-size: 1em;}
-				#main_content .attachments_add li {}
-					#main_content .attachments_add li .remove {
+
+			#main_content .repeatable {
+				margin: 0; padding: 0;
+				list-style-type: none;
+			}
+				#main_content .repeatable li {}
+					#main_content .repeatable li .remove {
 						margin: 4px 0 0 8px;
 						display: block;
 						float: left;
 						width: 14px; height: 14px;
 						background: url(../images/template/attachment_remove_bg.gif);
 					}
+				#main_content .repeatable button {}
+
+			#main_content .attachments_add {margin: 10px 0; font-size: 1em;}
+				#main_content .attachments_add li {}
+
+			#main_content .edit_categories {}
+				#main_content ul.categories_add {}
+					#main_content ul.categories_add li {
+						padding: 2px 0 5px 20px;
+						background: url(../images/template/icon_themes.gif) 2px 40% no-repeat;
+					}
+					#main_content ul.categories_add select,
+					#main_content ul.categories_add .inp_text {float: left;}
+					#main_content ul.categories_add select {width: 160px;}
+					#main_content ul.categories_add .inp_text {width: 146px;}
+					#main_content ul.categories_add button {margin-top: 4px;}
+				
 
 			#main_content .edit .submit_opts {}
 				#main_content .edit .submit_opts .button {float: left;}
@@ -1379,11 +1400,8 @@ form {
 			#main_content form.edit .attachments_add input.inp_file {}
 
 		#main_content form.edit .edit_categories {}
-			#main_content form.edit .edit_categories button {
-				margin: 0 0 10px 0;
-			}
-			#main_content form.edit .edit_categories .category_fields span {padding: 0 0 4px 0; display: block;}
-			#main_content form.edit .edit_categories #new_categories input {padding: 2px 4px;}
+			#main_content form.edit .edit_categories label {}
+			#main_content form.edit .edit_categories input.inp_text {padding: 2px 4px;}
 
 	#main_content .add_chapter form.edit {
 		margin: 1em 0;
