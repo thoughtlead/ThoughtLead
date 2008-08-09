@@ -6,7 +6,7 @@
 			<p>Jump to:</p>
 			<ul>
 				<li class="first"><%= link_to "Library", library_url(:category => @category) %></li>
-				<li><%= link_to h(@article), @article %></li>
+				<li><%= h(@article) %></li>
 			</ul>
 		</div>
 		<% if logged_in? && current_user.owner? %>

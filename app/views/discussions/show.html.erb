@@ -5,9 +5,7 @@
 			<p>Jump to:</p>
 			<ul>
 				<li class="first"><%= link_to "Discussions", discussions_path %></li>
-				<% if @theme %>
-				<li><%= @theme.name %></li>
-				<% end %>
+				<li><%= @discussion %></li>
 			</ul>
 		</div>
 		<% if current_user_can_post? %>

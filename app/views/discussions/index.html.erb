@@ -6,7 +6,7 @@
 			<ul>
 				<li class="first"><%= link_to "Discussions", discussions_path %></li>
 				<% if @theme %>
-				<li><%= @theme.name %></li>
+				<li><%= link_to @theme, discussions_url(:theme => @theme) %></li>
 				<% end %>
 			</ul>
 		</div>

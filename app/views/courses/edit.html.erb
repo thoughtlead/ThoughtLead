@@ -5,6 +5,7 @@
 			<p>Jump to:</p>
 			<ul>
 				<li class="first"><%= link_to "Courses", courses_path %></li>
+				<li><%= link_to h(@course), @course %></li>
 			</ul>
 		</div>
 		<% if logged_in_as_owner? %>
