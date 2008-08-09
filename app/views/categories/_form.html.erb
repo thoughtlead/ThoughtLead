@@ -1,10 +1,23 @@
-<% form_for @category do | f | %>
+<% form_for @category, :html => {:class => "edit"} do | f | %>
+	<%= f.error_messages %>
 
-  <%= f.error_messages %>
+	<fieldset class="input">
 
-  <p>
-    <%= f.label :name, "Category" %>
-    <%= f.text_field :name %>
-	<%= submit_tag submit_text, :disable_with => "Saving category..." %><% unless submit_text == "Create" %>&nbsp;or&nbsp;<%= link_to "Cancel", categories_url %><% end %>
-  </p>  
+		<div class="inp group inline_submit">
+			<%= f.text_field :name, :class => "inp_text" %>
+		</div>
+
+	</fieldset>
+
+	<fieldset class="submit">
+		<ul class="submit_opts">
+			<% if mode == :new %>
+			<li><%= submit_tag "Create Category", :class => "make_button", :id => "create" %></li>
+			<% else %>
+			<li><%= submit_tag "Save Changes", :class => "make_button", :id => "save" %></li>
+			<li class="text">or <%= link_to "Cancel", categories_url %></li>
+			<% end %>
+		</ul>
+	</fieldset>
+
 <% end %>

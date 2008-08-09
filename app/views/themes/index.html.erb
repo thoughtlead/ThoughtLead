@@ -1,22 +1,36 @@
-
-<div id="primary">
-
-  <p>    <%= link_to "&#8592; Return to Discussions", discussions_url, :class => 'discussions' %></p>
-  <h1>Themes</h1>
-
-  <ul>
-    <% for theme in current_community.themes %>
-      <li>
-        <%=h theme %>
-        <%= link_to "Delete", theme, :method => :delete, :confirm => "Are you sure you'd like to delete this theme?  Its posts will no longer be categorized.", :class => "delete" %>
-        <%= link_to "Edit", edit_theme_url(theme), :class => "edit" %>
-      </li>
-    <% end %>
-  </ul>
-<p></p>
-<h2>New Theme</h2>
-  <%= render :partial => 'form', :locals=>{:submit_text=>'Create'} %>
-
+<% @current_tab = :Discussions %>
+<div id="main_content">
+	<div class="content_bar" id="top">
+		<div class="breadcrumbs">
+			<p>Jump to:</p>
+			<ul>
+				<li class="first"><%= link_to "Discussions", discussions_path %></li>
+				<% if @theme %>
+				<li><%= @theme.name %></li>
+				<% end %>
+			</ul>
+		</div>
+		<% if current_user_can_post? %>
+		<div class="action">
+			<span class="button_left">&nbsp;</span><a href="<%= new_discussion_url %>" class="button"><span class="icon create">+</span><span class="text">Create a Discussion</span></a>
+		</div>
+	    <% end %>
+	</div>
+	<h2>Themes</h2>
+	<ul class="sep_item_list categories">
+		<% for theme in current_community.themes %>
+		<li>
+			<h3><%=h theme %></h3>
+			<ul class="item_actions">
+				<li><%= link_to "Edit", edit_theme_url(theme) %></li>
+				<li><%= link_to "Delete", theme, :method => :delete, :confirm => "Are you sure you'd like to delete this theme?  Its posts will no longer be categorized.", :class => "delete" %></li>
+			</ul>
+		</li>
+		<% end %>
+	</ul>
+	<div class="add_sep_item">
+		<h2>Add a New Theme</h2>
+		<%= render :partial => 'form', :locals => { :mode => :new } %>
+	</div>
 </div>
-
 <%= set_focus_to :theme_name %>

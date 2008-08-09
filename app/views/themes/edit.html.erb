@@ -1,4 +1,23 @@
-<div id="primary">
-  <%= render :partial => 'themes/form', :locals=>{:submit_text=>'Rename'} %>
-  
+<% @current_tab = :Discussions %>
+<div id="main_content">
+	<div class="content_bar" id="top">
+		<div class="breadcrumbs">
+			<p>Jump to:</p>
+			<ul>
+				<li class="first"><%= link_to "Discussions", discussions_path %></li>
+				<% if @theme %>
+				<li><%= @theme.name %></li>
+				<% end %>
+			</ul>
+		</div>
+		<% if current_user_can_post? %>
+		<div class="action">
+			<span class="button_left">&nbsp;</span><a href="<%= new_discussion_url %>" class="button"><span class="icon create">+</span><span class="text">Create a Discussion</span></a>
+		</div>
+	    <% end %>
+	</div>
+	<div class="add_sep_item">
+		<h2>Edit Theme</h2>
+		<%= render :partial => 'form', :locals => { :mode => :edit } %>
+	</div>
 </div>

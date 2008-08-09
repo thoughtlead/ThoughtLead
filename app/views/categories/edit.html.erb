@@ -1,4 +1,20 @@
-<div id="primary">
-  <%= render :partial => 'form', :locals=>{:submit_text=>'Rename'} %>
-  
+<% @current_tab = :Article %>
+<div id="main_content">
+	<div class="content_bar" id="top">
+		<div class="breadcrumbs">
+			<p>Jump to:</p>
+			<ul>
+				<li class="first"><%= link_to "Library", articles_path %></li>
+			</ul>
+		</div>
+		<% if logged_in? && current_user.owner? %>
+		<div class="action">
+			<span class="button_left">&nbsp;</span><a href="<%= new_article_url %>" class="button"><span class="icon create">+</span><span class="text">Create an Article</span></a>
+		</div>
+	    <% end %>
+	</div>
+	<div class="add_sep_item">
+		<h2>Edit Category</h2>
+		<%= render :partial => 'form', :locals => { :mode => :edit } %>
+	</div>
 </div>

@@ -461,37 +461,38 @@ h1, h2, h3, h4, h5, h6 {margin: 0.5em 0;}
 						}
 							#main_content ul.lesson_list li ul li .meta_info .meta_tags {position: static;}
 
-		#main_content ul.chapter_list {
+		#main_content ul.sep_item_list {
 			margin: 1em 0; padding: 0;
 			list-style-type: none;
 		}
-			#main_content ul.chapter_list li {
+			#main_content ul.sep_item_list li {
 				padding: 0 0 5px 0;
 				clear: both;
 			}
-				#main_content ul.chapter_list h3 {
+				#main_content ul.sep_item_list h3 {
 					margin: 0; padding: 0;
 					color: #333;
 					font-size: 1.2em;
 					float: left;
 				}
-				#main_content ul.chapter_list .meta_info {
+				#main_content ul.sep_item_list .meta_info {
 					margin: 4px 0 0 8px; padding: 0;
 					float: left;
 				}
-				#main_content ul.chapter_list .meta_info ul {margin: 0; padding: 0;}
-				#main_content ul.chapter_list .meta_info .meta_tags {
+				#main_content ul.sep_item_list .meta_info ul {margin: 0; padding: 0;}
+				#main_content ul.sep_item_list .meta_info .meta_tags {
 					margin: 0; padding: 0;
 					position: static;
 				}
-				#main_content ul.chapter_list .chapter_actions {
+				#main_content ul.sep_item_list .item_actions {
 					margin: 0; padding: 0;
 					list-style-type: none;
 					clear: both;
 					font-size: 1em;
 					font-weight: bold;
 				}
-					#main_content ul.chapter_list .chapter_actions li {
+					#main_content ul.sep_item_list .item_actions li {
+						padding: 0 5px 0 0;
 						display: inline;
 					}
 
@@ -1403,12 +1404,12 @@ form {
 			#main_content form.edit .edit_categories label {}
 			#main_content form.edit .edit_categories input.inp_text {padding: 2px 4px;}
 
-	#main_content .add_chapter form.edit {
+	#main_content .add_sep_item form.edit {
 		margin: 1em 0;
 	}
-		#main_content .add_chapter form.edit .group.checkbox {padding-bottom: 2px;}
-		#main_content .add_chapter form.edit fieldset.submit {margin: 0;}
-		#main_content .add_chapter form.edit input.inp_text {width: 200px;}
+		#main_content .add_sep_item form.edit .group.checkbox {padding-bottom: 2px;}
+		#main_content .add_sep_item form.edit fieldset.submit {margin: 0;}
+		#main_content .add_sep_item form.edit input.inp_text {width: 200px;}
 
 
 /* Miscellaneous

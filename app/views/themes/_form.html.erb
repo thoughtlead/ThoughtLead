@@ -1,13 +1,29 @@
-<% form_for @theme do | f | %>
+<% form_for @theme, :html => {:class => "edit"} do | f | %>
+	<%= f.error_messages %>
 
-  <%= f.error_messages %>
+	<fieldset class="input">
 
-  <p>
-    <%= f.label :name, "Theme" %>
-    <%= f.text_field :name %>
-    <%= f.label :description, "Theme description" %>
-    <%= f.text_area :description, :rows=>5 %>
+		<div class="inp group">
+			<%= f.label :name, "Theme" %>
+			<%= f.text_field :name, :class => "inp_text" %>
+		</div>
 
-	  <%= submit_tag submit_text, :disable_with => "Saving theme..." %><% unless submit_text == "Create" %>&nbsp;or&nbsp;<%= link_to "Cancel", themes_url %><% end %>
-	</p>  
+		<div class="inp group">
+			<%= f.label :description, "Theme description" %>
+			<%= f.text_area :description, :rows=>5, :class => "inp_area" %>
+		</div>
+
+	</fieldset>
+
+	<fieldset class="submit">
+		<ul class="submit_opts">
+			<% if mode == :new %>
+			<li><%= submit_tag "Create Theme", :class => "make_button", :id => "create" %></li>
+			<% else %>
+			<li><%= submit_tag "Save Changes", :class => "make_button", :id => "save" %></li>
+			<li class="text">or <%= link_to "Cancel", themes_url %></li>
+			<% end %>
+		</ul>
+	</fieldset>
+
 <% end %>
