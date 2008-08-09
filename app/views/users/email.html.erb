@@ -27,7 +27,10 @@
 		</fieldset>
 
 		<fieldset class="submit">
-			<%= submit_tag 'Send email' %> or <%= link_to "Cancel", @send_to_user %>
+			<ul class="submit_opts">
+				<li><%= submit_tag "Send email", :class => "make_button", :id => "email" %></li>
+				<li class="text">or <%= link_to "Cancel", @send_to_user %></li>
+			</ul>
 		</fieldset>
 	<% end %>
 </div>
