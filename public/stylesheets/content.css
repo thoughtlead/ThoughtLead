@@ -1347,6 +1347,12 @@ form {
 			font-size: 1.2em;
 			font-weight: bold;
 		}
+		#main_content form .input .hint {
+			margin: -0.2em 0 0 0;
+			display: block;
+			font-size: 1.1em;
+			color: #666;
+		}
 		#main_content form .input input.inp_text,
 		#main_content form .input textarea {
 			margin: 2px 0 12px 0; padding: 4px 5px;
@@ -1355,6 +1361,8 @@ form {
 			border: 1px solid #fff;
 			background: url(../images/template/input_bg.png);
 		}
+		#main_content form .input .column input.inp_text,
+		#main_content form .input .column textarea {width: 89%;}
 		#main_content form .input textarea.inp_area {height: 80px;}
 		#main_content form .input textarea.large {height: 200px;}
 		#main_content form .input input.inp_file {margin: 0; padding: 4px;}

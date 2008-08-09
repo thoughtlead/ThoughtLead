@@ -56,14 +56,21 @@
 				<%= f.text_field :zipcode, :class => 'inp_text' %>
 			</div>
 
-			<div class="inp group">
-				<%= f.label :website_1, "Website" %>
-				http://<%= f.text_field :website_1, :class => 'inp_text' %>
-			</div>
-
-			<div class="inp group">
-				<%= f.label :website_2, "Website" %>
-				http://<%= f.text_field :website_2, :class => 'inp_text' %>
+			<div class="columns">
+				<div class="column one">
+					<div class="inp group">
+						<%= f.label :website_1, "Website 1" %>
+						<span class="hint">http://</span>
+						<%= f.text_field :website_1, :class => 'inp_text' %>
+					</div>
+				</div>
+				<div class="column two">
+					<div class="inp group">
+						<%= f.label :website_2, "Website 2" %>
+						<span class="hint">http://</span>
+						<%= f.text_field :website_2, :class => 'inp_text' %>
+					</div>
+				</div>
 			</div>
 
 			<div class="inp group">
