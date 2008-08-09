@@ -746,6 +746,11 @@ h1, h2, h3, h4, h5, h6 {margin: 0.5em 0;}
 						}
 						#main_content .comment ul.comment_meta li.delete a:hover {text-decoration: underline;}
 
+					#main_content .comment.post ul.comment_meta li.time {
+						position: absolute;
+						top: 15px; right: 19px;
+					}
+
 				#main_content .comment p {margin: 0.5em 0;}
 				#main_content .comment blockquote {
 					margin: 0; padding: 0 0 0 20px;
