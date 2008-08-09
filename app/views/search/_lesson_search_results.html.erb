@@ -1,11 +1,4 @@
-<% responses.each do |response| -%>
-<li>
-	<dl>
-		<dt><span class="result_type">Response to:</span> <%= link_to response.discussion, response.discussion %></dt>
-		<dd class="description"><%=sanitize response.body %></dd>
-	</dl>
-</li>
-<% end %><% lessons.each do |content| -%>
+<% lessons.each do |content| -%>
 <li>
 	<dl>
 		<dt><span class="result_type">Lesson:</span> <%= link_to content.title, [content.lesson.chapter.course, content.lesson.chapter, content.lesson] %></dt>
