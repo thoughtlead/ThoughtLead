@@ -288,6 +288,12 @@ h1, h2, h3, h4, h5, h6 {margin: 0.5em 0;}
 				float: left;
 			}
 				#main_content .font_sizer ul li {float: left; width: 20px;}
+				#main_content .font_sizer ul li.current {
+					/* display: none doesn't work in ie 6 */
+					position: absolute;
+					top: 0; left: 0;
+					visibility: hidden;
+				}
 					#main_content .font_sizer ul li a {
 						width: 20px; height: 15px;
 						display: block;

@@ -47,54 +47,69 @@ jQuery(function($) {
 				'1.15em',
 				'1.3em'
 			],
-			prepareFontSizer : function() {
-				var fs = $('<div class="font_sizer"><span class="label">Font size: </span><ul class="size_nav replace"><li class="smaller"><a href="#0">Smaller</a></li><li class="larger"><a href="#2">Larger</a></li></ul></div>')
+			buildChanger : function() {
+				var fs = $('<div class="font_sizer"><span class="label">Font size: </span><ul class="size_nav replace"><li class="smaller"><a href="#smaller">0</a></li><li class="current"><a>1</a></li><li class="larger"><a href="#larger">2</a></li></ul></div>')
 				// place font sizer
 				$e.main_content.prepend(fs);
-				thoughtlead.fontSizer.fontSizeChanger(fs);
+				thoughtlead.fontSizer.prepareChanger(fs);
 			},
-			fontSizeChanger : function(e) {
-				var links = e.find('a');
-				
-				disableLinks();
+			prepareChanger : function(e) {
+				var links = e.find('li');
+				var changer = {
+					smaller: e.find('.smaller a'),
+					current: e.find('.current a'),
+					larger: e.find('.larger a')
+				};
 
-				links.click(function() {
-					var target = getLinkTarget($(this));
-					thoughtlead.fontSizer.applyFontSize(target);
-					updateLinks($(this));
-					disableLinks();
-				});
-				function getLinkTarget(e) {
-					var href = e.attr('href');
-					var target = parseInt(href.substr(href.length-1, href.length));
-					return target;
-				}
-				function updateLinks(e) {
-					if (e.parent('li').is('.larger')) {
-						links.each(function() {
-							var target = getLinkTarget($(this));
-							$(this).attr('href', '#'+(target+1));
-						});
-					} else if (e.parent('li').is('.smaller')) {
-						links.each(function() {
-							var target = getLinkTarget($(this));
-							$(this).attr('href', '#'+(target-1));
-						});
+				function checkPrefs() {
+					if ($.cookie('fontSizer')) {
+						setCount($.cookie('fontSizer'));
 					}
+				}
+				function setPrefs(target) {
+					$.cookie('fontSizer', target, { expires: 31 });
+				}
+				function getCount(e) {
+					return e.text();
+				}
+				function setCount(current) {
+					var i = current - 1;
+					$.each(changer, function() {
+						$(this).text(i);
+						i++;
+					});
 				}
 				function disableLinks() {
 					links.each(function() {
-						var target = getLinkTarget($(this));
-						if (target == 0 || target == thoughtlead.fontSizer.levels.length+1) {
-							$(this).addClass('inactive');
+						var target = getCount($(this));
+						var link = $(this).children('a');
+						if (target <= 0 || target >= thoughtlead.fontSizer.levels.length+1) {
+							link.addClass('inactive');
 						} else {
-							$(this).removeClass('inactive');
-						}
-					});
+							link.removeClass('inactive');
+						}	
+					});					
 				}
+				function applySize(target) {
+					$e.content.css('font-size', thoughtlead.fontSizer.levels[target-1]);
+				}
+				function changeSize(e) {
+					var target = getCount(e);
+					applySize(target);
+					setCount(target);
+					setPrefs(target);
+					disableLinks();
+				}
+
+				checkPrefs();
+				changeSize(changer.current);
+				links.click(function() {
+					changeSize($(this));
+					return false;
+				});
 			},
-			applyFontSize : function(t) {
-				$e.content.css('font-size', thoughtlead.fontSizer.levels[t-1]);
+			init : function() {
+				thoughtlead.fontSizer.buildChanger();
 			}
 		},
 		prepareInputs : function(e) {
@@ -177,7 +192,7 @@ jQuery(function($) {
 			thoughtlead.prepareInputs($('.search'));
 			thoughtlead.validSearchTest();
 			thoughtlead.preparePage();
-			thoughtlead.fontSizer.prepareFontSizer();
+			thoughtlead.fontSizer.init();
 		}
 	};
 	thoughtlead.init();
