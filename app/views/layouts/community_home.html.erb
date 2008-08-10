@@ -4,10 +4,12 @@
 	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 	<%= javascript_include_tiny_mce_if_used %>
 	<%= tiny_mce if using_tiny_mce? %>
-	<%= javascript_include_tag :defaults, 'jquery' %>
+	<%= javascript_include_tag :defaults, 'jquery', 'jquery.cookie' %>
 	<%=	stylesheet_link_tag 'base' %>
+	<%= stylesheet_link_tag community_stylesheet %>
 	<!--[if lte IE 7]><%=	stylesheet_link_tag 'ie' %><![endif]-->
 	<!--[if IE 6]><%=	stylesheet_link_tag 'ie6' %><![endif]-->
+	<%= yield(:head) %>
 	<title><%=h @page_title ? "#{@page_title} | #{APP_NAME}" : "#{APP_NAME}" %></title>
 </head>
 <%= body_tag %>

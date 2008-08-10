@@ -42,13 +42,14 @@
 
 			<div class="inp group">
 				<%= f.label :host %>
-				(Hostname only, without http://)<%= f.text_field :host, :class => 'inp_text'  %>
+				<span class="hint">(Hostname only, without http://)</span>
+				<%= f.text_field :host, :class => 'inp_text'  %>
 			</div>
 
 		</fieldset>
 		<fieldset class="submit">
 			<ul class="submit_opts">
-				<li><%= submit_tag 'Sign up' %></li>
+				<li><%= submit_tag 'Sign up', :class => "make_button", :id => "create" %></li>
 				<li class="text">or <%= link_to "Cancel", root_url %></li>
 			</ul>
 		</fieldset>
