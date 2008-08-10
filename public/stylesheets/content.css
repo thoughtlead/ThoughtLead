@@ -1372,13 +1372,18 @@ form {
 			border: 1px solid #fff;
 			background: url(../images/template/input_bg.png);
 		}
-		#main_content form .input .column input.inp_text,
-		#main_content form .input .column textarea {width: 89%;}
 		#main_content form .input textarea.inp_area {height: 80px;}
 		#main_content form .input textarea.large {height: 200px;}
 		#main_content form .input input.inp_file {margin: 0; padding: 4px;}
 
 		#main_content form .input .mceEditor {margin: 0 0 12px 0;}
+
+
+		/* profile edit form */
+		.people #main_content form.edit .input .website .hint {float: left;}
+		.people #main_content form.edit .input .website .test_link {float: right;}
+		.people #main_content form.edit .input .column input.inp_text,
+		.peopel #main_content form.edit .input .column textarea {width: 90%;}
 
 	#main_content form .submit {margin: 1em 0;}
 		#main_content form .submit input {

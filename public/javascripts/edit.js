@@ -53,10 +53,33 @@ jQuery(function($) {
 				}
 			});
 		},
+		profileTestLinks : function() {
+			$e.main_content.find('.website').each(function() {
+				var input = $(this).find('input');
+				var test_link = $('<span class="hint test_link"><a target="_blank">Test link</a></span>');
+
+				function makeLink() {
+					var val = input.attr('value');
+					input.before(test_link);
+					if (val.length) {
+						test_link.find('a').attr('href', 'http://'+val);
+					} else {
+						test_link.remove();
+					}
+				}
+
+				makeLink();
+				input.blur(makeLink);
+			});
+		},
 		init : function() {
-			edit.newCategoryHelper();
-			edit.repeatInput($e.main_content.find('.categories_add'), 'category');
-			edit.repeatInput($e.main_content.find('.attachments_add'), 'attachment');
+			if ($('body').is('.people')) {
+				edit.profileTestLinks();
+			} else {
+				edit.newCategoryHelper();
+				edit.repeatInput($e.main_content.find('.categories_add'), 'category');
+				edit.repeatInput($e.main_content.find('.attachments_add'), 'attachment');
+			}
 		}
 	};
 	edit.init();

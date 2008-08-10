@@ -1,3 +1,4 @@
+<% content_for :head, javascript_include_tag('edit') %>
 <% @current_tab = :People %>
 <div id="main_content">
 	<div class="content_bar" id="top">
@@ -58,14 +59,14 @@
 
 			<div class="columns">
 				<div class="column one">
-					<div class="inp group">
+					<div class="inp group website">
 						<%= f.label :website_1, "Website 1" %>
 						<span class="hint">http://</span>
 						<%= f.text_field :website_1, :class => 'inp_text' %>
 					</div>
 				</div>
 				<div class="column two">
-					<div class="inp group">
+					<div class="inp group website">
 						<%= f.label :website_2, "Website 2" %>
 						<span class="hint">http://</span>
 						<%= f.text_field :website_2, :class => 'inp_text' %>
