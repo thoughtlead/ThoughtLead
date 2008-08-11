@@ -74,4 +74,8 @@ module ApplicationHelper
       "/themes/#{current_community.host}/#{path}"
   end
   
+  def snippet(thought, wordcount = 4)
+    thought.split[0..(wordcount-1)].join(' ') + (thought.split.size > wordcount ? '...' : '')
+  end
+
 end

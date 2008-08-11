@@ -6,7 +6,7 @@
 			<ul>
 				<li class="first"><%= link_to "Library", articles_path %></li>
 				<% if @category %>
-				<li><%= link_to @category, library_url(:category => @category) %></li>
+				<li><%= link_to h(snippet(@category.to_s)), library_url(:category => @category) %></li>
 				<% end  %>
 			</ul>
 		</div>
@@ -47,7 +47,7 @@
 						<li class="theme">
 							<% article.reload%>
 							<% article.categories.each do |article_category| %>
-							  <%= link_to article_category, library_url(:category => article_category) %>
+							  <%= link_to article_category, library_url(:category => article_category) %><%= ", " if article_category != article.categories.last %>
 							<% end %>
 						</li>
 						<% end %>

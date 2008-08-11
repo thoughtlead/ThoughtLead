@@ -7,7 +7,7 @@
 			<p>Jump to:</p>
 			<ul>
 				<li class="first"><%= link_to "Courses", courses_path %></li>
-				<li><%= h(@course) %></li>
+				<li><%= h(snippet(@course.to_s)) %></li>
 			</ul>
 		</div>
 		<% if logged_in_as_owner? %>

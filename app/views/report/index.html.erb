@@ -10,5 +10,10 @@
 		<h2>Report Page</h2>
 		<p class="subtitle">Download CSV files for users</p>
 	</div>
-	<%= link_to "Export user list", report_url %>	
+	<div id="export_users" class="export_users">
+		<% form_tag :controller=>'report', :action=>'export_users' do %>
+	  		<%= text_field( :before_date, {}, :class=>"inp_text") %>
+			<%= submit_tag("Export user list") %>
+  		<% end %>
+	</div>
 </div>

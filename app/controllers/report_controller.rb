@@ -9,9 +9,9 @@ class ReportController < ApplicationController
   def export_users
     users = User.find(:all)
     csv_string = FasterCSV.generate do |csv| 
-      csv << ["login","display_name","email"]
+      csv << ["first_name","last_name","email"]
       users.each do |u|
-        csv << [u.login, u.display_name, u.email]
+        csv << [u.first_name, u.last_name, u.email]
       end
     end
     send_data csv_string, :type => "text/plain", 

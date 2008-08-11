@@ -5,11 +5,11 @@
 			<p>Jump to:</p>
 			<ul>
 				<li class="first"><%= link_to "People", users_path %></li>
-				<li>Your Profile</li>
+				<li><%= current_user == @user ? "Your Profile" : @user.to_s  %></li>
 			</ul>
 		</div>
 	</div>
-	<h2>Your Profile</h2>
+	<h2><%= current_user == @user ? "Your Profile" : @user.to_s  %></h2>
 	<div class="module actions profile_overlay">
 		<div class="content">
 			<h4>Profile Actions</h4>

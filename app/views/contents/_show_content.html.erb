@@ -6,7 +6,7 @@
 		<li class="theme">
 			<% content.article.reload%>
 			<% content.article.categories.each do |article_category| %>
-			  <%= link_to article_category, library_url(:category => article_category) %>
+			  <%= link_to article_category, library_url(:category => article_category) %><%= ", " if article_category != content.article.categories.last %>
 			<% end %>
 		</li>
 		<% end %>
