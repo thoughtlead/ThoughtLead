@@ -1,6 +1,16 @@
 ActionController::Routing::Routes.draw do |map|
   
   map.resources :communities, :conditions => { :is_client_domain => false }
+  map.communities '/communities', :controller => "communities", :action => 'index', :conditions => { :is_client_domain => true }
+  map.communities_activate '/communities/toggle_activation/:id', :controller => "communities", :action => 'toggle_activation', :conditions => { :is_client_domain => true }
+
+  map.community_home '', :controller => "communities", :action => 'current_community_home', :conditions => { :is_client_domain => true }
+  map.community_about '/about', :controller => "communities", :action => 'current_community_about', :conditions => { :is_client_domain => true }
+  map.community_contact '/contact', :controller => "communities", :action => 'current_community_contact', :conditions => { :is_client_domain => true }
+  map.community_need_to_activate '/need_to_activate', :controller => "communities", :action => 'need_to_activate', :conditions => { :is_client_domain => true }
+  
+  map.report '/community/report', :controller => 'report', :action => 'index', :conditions => { :is_client_domain => true }
+  map.report '/community/report/export', :controller => 'report', :action => 'export_users', :conditions => { :is_client_domain => true }
 
   map.login '/login', :controller => "sessions", :action => 'new', :conditions => { :is_client_domain => true }
   map.logout '/logout', :controller => 'sessions', :action => 'destroy', :conditions => { :is_client_domain => true }
@@ -28,20 +38,13 @@ ActionController::Routing::Routes.draw do |map|
   map.resources :attachments, :conditions => { :is_client_domain => true } 
   
   map.search '/search', :controller=>"search", :action=>"index", :conditions => { :is_client_domain => true }
-  
+ 
   map.root :controller => "home", :conditions => { :is_client_domain => false }
-  
-  map.community_home '', :controller => "communities", :action => 'current_community_home', :conditions => { :is_client_domain => true }
-  map.community_about '/about', :controller => "communities", :action => 'current_community_about', :conditions => { :is_client_domain => true }
-  map.community_contact '/contact', :controller => "communities", :action => 'current_community_contact', :conditions => { :is_client_domain => true }
-  map.community_need_to_activate '/need_to_activate', :controller => "communities", :action => 'need_to_activate', :conditions => { :is_client_domain => true }
   
   map.upgrade '/upgrade', :controller => "users", :action => 'upgrade', :conditions => { :is_client_domain => true }
   map.users_changed_on_spreedly '/changed_on_spreedly', :controller => "users", :action => 'changed_on_spreedly', :method => :post, :conditions => { :is_client_domain => true }
   map.discussions_for_theme '/discussions/theme/:id', :controller => "discussions", :action => "for_theme", :conditions => { :is_client_domain => true }
   
-  map.report '/community/report', :controller => 'report', :action => 'index', :conditions => { :is_client_domain => true }
-  map.report '/community/report/export', :controller => 'report', :action => 'export_users', :conditions => { :is_client_domain => true }
  
   map.edit_community '/community/edit', :controller => 'admin', :action => 'edit_community', :conditions => { :is_client_domain => true }
   map.access_rights '/community/access', :controller => 'admin', :action => 'access_rights', :conditions => { :is_client_domain => true }

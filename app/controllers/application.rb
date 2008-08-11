@@ -21,7 +21,9 @@ class ApplicationController < ActionController::Base
   private
   
   def community_is_active
-    return redirect_to(community_need_to_activate_url) unless current_community.active
+    if current_community && !current_community.active
+      redirect_to(community_need_to_activate_url)
+    end
   end
   
   def control_access

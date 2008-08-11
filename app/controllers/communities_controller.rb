@@ -3,6 +3,7 @@ class CommunitiesController < ApplicationController
   layout :community_layout
 
   before_filter :community_is_active, :except => [ :need_to_activate, :new, :create, :changed_on_spreedly, :choose_plan, :index ]
+  before_filter :super_admin_login_required, :only => [ :index, :toggle_community_activation ]
   skip_before_filter :verify_authenticity_token, :only => :changed_on_spreedly
   
   def index
@@ -66,6 +67,17 @@ class CommunitiesController < ApplicationController
     @free_trial_url = upgrade_url(55)
     @upgrade_url = upgrade_url(56)
   end
+  
+  def toggle_activation
+    id = params[:id]
+    community = Community.find_by_id(id)
+    if (community != current_community)
+      community.active = !community.active
+      community.save
+    end
+    redirect_to communities_url
+  end
+  
   
   private
     def upgrade_url(plan_id)

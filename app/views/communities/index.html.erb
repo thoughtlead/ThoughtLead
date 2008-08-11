@@ -8,9 +8,17 @@
 		</div>
 	</div>
 	<h2>Communities</h2>
-	<ul>
-	<% for community in @communities %>
-		<li><%= link_to h(community), community %></li>
-	<% end %>
-	</ul>
+	<table>
+		<% for community in @communities %>
+			<tr>
+				<td><%= link_to h(community), "http://#{community.host}" %></td>
+				<td><%= community.active ? "Active" : "Inactive" %></td>
+				<% if community != current_community %>
+					<td><%= link_to community.active ? "Deactivate" : "Activate", :action => :toggle_activation, :id => community.id %></td>
+				<% else %>
+					<td>Your Community</td>
+				<% end %>
+			</tr>
+		<% end %>
+	</table>
 </div>
