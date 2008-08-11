@@ -62,12 +62,14 @@ jQuery(function($) {
 				};
 
 				function checkPrefs() {
-					if ($.cookie('fontSizer')) {
-						setCount($.cookie('fontSizer'));
+					if ($.cookie('fontPref')) {
+						setCount($.cookie('fontPref'));
+					} else {
+						$.cookie('fontPref', 1, {expires: 31})
 					}
 				}
 				function setPrefs(target) {
-					$.cookie('fontSizer', target, { expires: 31 });
+					$.cookie('fontPref', target);
 				}
 				function getCount(e) {
 					return e.text();
