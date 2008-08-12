@@ -42,7 +42,7 @@ jQuery(function($) {
 			new_category.remove();
 
 			select.each(function() {
-				var new_option = $('<option>---------------------</option><option class="new_option">New category</option>')
+				var new_option = $('<option>---------------------</option><option class="new_option">New Category</option>')
 				$(this).append(new_option);
 			});
 
