@@ -50,6 +50,7 @@ a,
 	color: #fff;
 }
 	#account_nav li {background-image: url(images/template/account_nav_sep_bg.gif);}
+		#account_nav li.login {background-image: url(images/template/icon_registered.gif);}
 		#account_nav li a {color: #fff;}
 		#account_nav li.edit_profile a {background-image: url(images/template/account_nav_gear_icon.gif);}
 
@@ -153,6 +154,10 @@ a,
 		#main_content .meta_tags {}
 			#main_content .meta_tags li {color: #fff;}
 				#main_content .meta_tags li.draft {background-color: #cc1f1f;}
+				#main_content .meta_tags li.registered {
+					background-color: #4cade0;
+					background-image: url(images/template/icon_registered.gif);
+				}
 				#main_content .meta_tags li.premium {
 					background-color: #2797d1;
 					background-image: url(images/template/icon_premium.gif);

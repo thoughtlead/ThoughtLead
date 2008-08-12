@@ -107,9 +107,12 @@ h1, h2, h3, h4, h5, h6 {margin: 0.5em 0;}
 		}
 			ul#account_nav li a {}
 
-		ul#account_nav li.login,
+		ul#account_nav li.login {
+			padding-left: 13px;
+			background-position: center left;
+			background-repeat: no-repeat;
+		}
 		ul#account_nav li.profile {background: none;}
-		ul#account_nav li.login,
 		ul#account_nav li.profile,
 		ul#account_nav li.edit_profile {padding-left: 0;}
 			ul#account_nav li.edit_profile a {
@@ -383,20 +386,30 @@ h1, h2, h3, h4, h5, h6 {margin: 0.5em 0;}
 					position: absolute;
 					bottom: 0; right: 0;
 					font-size: 8px;
+					font-weight: bold;
 				}
 					#main_content .meta_info .meta_tags ul {font-size: 1em; list-style-type: none;}
 						#main_content .meta_info .meta_tags li {
 							margin: 0 5px 0 0; padding: 3px 6px;
 						}
 						#main_content .meta_info .meta_tags li.last {margin-right: 0;}
+
+						#main_content .meta_info .meta_tags li.registered,
 						#main_content .meta_info .meta_tags li.premium {
-							padding-right: 10px;
 							height: 8px;
 							background-position: 3px 2px;
 							background-repeat: no-repeat;
 						}
-							#main_content .meta_info .meta_tags li.premium span {display: none;}
+							#main_content .meta_info .meta_tags li span.icon {
+								visibility: hidden;
+								display: block;
+								float: left;
+								overflow: hidden;
+							}
+								#main_content .meta_info .meta_tags li.premium span.icon {width: 4px;}
+								#main_content .meta_info .meta_tags li.registered span.icon {width: 5px;}
 
+								#main_content .meta_info .meta_tags li span.content {padding-left: 5px;}
 
 
 		#main_content .intro {
