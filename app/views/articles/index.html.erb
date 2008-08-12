@@ -6,7 +6,7 @@
 			<ul>
 				<li class="first"><%= link_to "Library", articles_path %></li>
 				<% if @category %>
-				<li><%= link_to h(snippet(@category.to_s)), library_url(:category => @category) %></li>
+				<li><%= h(snippet(@category.to_s)) %></li>
 				<% end  %>
 			</ul>
 		</div>
