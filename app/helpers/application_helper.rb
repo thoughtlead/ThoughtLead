@@ -3,17 +3,18 @@ module ApplicationHelper
   def course_index_notes(course)
     s = []
     if course.draft
-      s << "Draft"
+      s << '<li class="draft"><span>Draft</span></li>'
     elsif course.contains_drafts && logged_in_as_owner?
-      s << "Has Draft Content"
+      s << '<li class="hasdraft"><span>Has Draft Content</span></li>'
     end
     if course.contains_premium_visible_to(current_user)
-      s << "Has Premium Content"
+      s << '<li class="haspremium"><span>Has Premium Content</span></li>'
     end
     if logged_in_as_owner? && course.contains_registered_visible_to(current_user)
-      s << "Has Registered Content"
+      s << '<li class="hasregistered"><span>Has Registered Content</span></li>'
     end
-    return s * "; "
+    s.last.gsub!(/\">/, ' last">')
+    return s * "\n"
   end
   
   def content_notes(content)
