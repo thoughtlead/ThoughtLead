@@ -75,8 +75,16 @@ module ApplicationHelper
       "/themes/#{current_community.host}/#{path}"
   end
   
-  def snippet(thought, wordcount = 4)
-    thought.split[0..(wordcount-1)].join(' ') + (thought.split.size > wordcount ? '...' : '')
+#  def snippet(thought, wordcount = 4)
+#    thought.split[0..(wordcount-1)].join(' ') + (thought.split.size > wordcount ? '...' : '')
+#  end
+
+  def snippet(thought, letters = 20)
+    if current_user.name.include?(tom)
+      truncate(thought, letters)
+    else
+      thought.split[0..(3)].join(' ') + (thought.split.size > 4 ? '...' : '')
+    end
   end
 
 end
