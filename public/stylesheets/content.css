@@ -599,6 +599,7 @@ h1, h2, h3, h4, h5, h6 {margin: 0.5em 0;}
 				.button a span.icon.create {}
 				.button a span.icon.save {}
 				.button a span.icon.email {}
+				.button a span.icon.signup {padding-left: 16px;}
 
 		a.button.edit {
 			margin: 0; padding: 16px 47px 0 0;
@@ -853,6 +854,7 @@ h1, h2, h3, h4, h5, h6 {margin: 0.5em 0;}
 		#main_content .profile thead {}
 			#main_content .profile thead th,
 			#main_content .profile thead td {padding: 20px 5px 10px 5px;}
+			#main_content .profile thead td {padding-left: 20px;}
 			#main_content .profile thead .module {margin: 0; float: left;}
 
 		#main_content .profile tbody {}
@@ -913,8 +915,8 @@ h1, h2, h3, h4, h5, h6 {margin: 0.5em 0;}
 .login {}
 	.login #main_content .columns {}
 		.login #main_content .column {padding-top: 20px;}
-		.login #main_content .column.one {width: 310px;}
-		.login #main_content .column.two {width: 200px;}
+		.login #main_content .column.one {width: 300px;}
+		.login #main_content .column.two {width: 210px;}
 
 	.login #main_content form {margin: 0;}
 		.login #main_content form .input {}
@@ -932,19 +934,18 @@ h1, h2, h3, h4, h5, h6 {margin: 0.5em 0;}
 			}
 			.login #main_content form .input label.checkbox {font-weight: normal;}
 
-	#main_content .module.signup {
-		padding: 10px 15px;
-	}
-		#main_content .module.signup h4 {}
+	#main_content .module.signup {}
+		#main_content .module.signup h4 {
+			margin: 0.4em 0 0.2em 0; padding: 0;
+			font-size: 1.4em;
+		}
 		#main_content .module.signup p {
 			margin: 0; padding: 0;
-			line-height: 1.2;
+			line-height: 1.1;
+			font-size: 1.1em;
+			color: #444;
 		}
-		#main_content .module.signup p.signup {
-			margin: 1em 0 0 0;
-			width: 153px; height: 30px;
-		}
-			#main_content .module.signup p.signup a {width: 153px; height: 30px;}
+		#main_content .module.signup .button {margin: 0.7em 0;}
 
 
 

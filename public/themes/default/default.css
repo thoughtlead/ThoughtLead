@@ -189,14 +189,14 @@ a,
 	#main_content .more {}
 	#main_content .arrow {background-image: url(images/template/content_arrow_bg.gif);}
 	.button {background-image: url(images/template/button_left_bg.gif);}
-		.button a {
-			color: #fff;
-			background-image: url(images/template/button_right_bg.gif);
-		}
+		.button a,
+		#main_content .button a {color: #fff;}
+		.button a {background-image: url(images/template/button_right_bg.gif);}
 			.button a span.icon {}
 			.button a span.icon.create {background-image: url(images/template/icon_create_button.gif);}
 			.button a span.icon.save {background-image: url(images/template/icon_save_button.gif);}
 			.button a span.icon.email {background-image: url(images/template/icon_email_button.gif);}
+			.button a span.icon.signup {background-image: url(images/template/icon_signup_button.gif);}
 
 	a.button.edit {background-image: url(images/template/button_edit_bg.gif);}
 
@@ -226,8 +226,7 @@ a,
 ----------------------------------------------- */
 .login {}
 	#main_content .module.signup {}
-		#main_content .module.signup h4 {color: #628700;}
-		#main_content .module.signup p.signup {background-image: url(images/template/signup_button_bg.gif);}
+		#main_content .module.signup h4 {}
 
 
 /* Search
