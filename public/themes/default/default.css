@@ -50,7 +50,7 @@ a,
 	color: #fff;
 }
 	#account_nav li {background-image: url(images/template/account_nav_sep_bg.gif);}
-		#account_nav li.login {background-image: url(images/template/icon_registered.gif);}
+		#account_nav li.login {background-image: url(images/template/account_nav_lock_icon.gif);}
 		#account_nav li a {color: #fff;}
 		#account_nav li.edit_profile a {background-image: url(images/template/account_nav_gear_icon.gif);}
 

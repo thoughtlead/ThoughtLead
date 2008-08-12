@@ -108,7 +108,7 @@ h1, h2, h3, h4, h5, h6 {margin: 0.5em 0;}
 			ul#account_nav li a {}
 
 		ul#account_nav li.login {
-			padding-left: 13px;
+			padding-left: 11px;
 			background-position: center left;
 			background-repeat: no-repeat;
 		}
