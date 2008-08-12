@@ -931,7 +931,7 @@ h1, h2, h3, h4, h5, h6 {margin: 0.5em 0;}
 		.login #main_content .column.one {width: 300px;}
 		.login #main_content .column.two {width: 210px;}
 
-	.login #main_content form {margin: 0;}
+	.login #main_content form.login {margin: 0;}
 		.login #main_content form .input {}
 			.login #main_content form .input .inp_text {
 				padding: 7px 8px 4px 8px;
