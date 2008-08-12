@@ -32,13 +32,7 @@
 					<h2>
 						<%= link_to(h(article),article) %> 
 						<% if (embedded_media = article.content.attachments.find_by_embedded(true)) %>
-							<% if embedded_media.content_type.include?("image") %>
-							<span class="media image"><span>Image</span></span>
-							<% elsif embedded_media.content_type.include?("audio") %>
-							<span class="media audio"><span>Audio</span></span>
-							<% elsif embedded_media.content_type.include?("video") %>
-							<span class="media video"><span>Video</span></span>
-							<% end %>
+							<span class="media <%= embedded_media.type %>"><span>Image</span></span>
 						<% end %>
 					</h2>
 					<ul class="meta_info clear">

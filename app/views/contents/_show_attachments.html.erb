@@ -4,7 +4,7 @@
 		<h4><span>Attachments</span></h4>
 		<ul class="attachments_list attachment">
 			<% content.attachments.find_all_by_embedded(false).each do |attachment| %>
-			<li>
+			<li class="media <%= attachment.type %>">
 			    <%= link_to attachment.filename, attachment.authenticated_s3_url(:expires_in => 2.hours) %>
 			    <% if logged_in_as_owner? %>
 			    <%= link_to("Delete", attachment, :method => :delete, :confirm => "Are you sure you'd like to delete this attachment?", :return_to=> request.request_uri ) %>
@@ -18,7 +18,7 @@
 		<h4>Embedded Media</h4>
 		<ul class="attachments_list attachment">
 			<% content.attachments.find_all_by_embedded(true).each do |attachment| %>
-			<li>
+			<li class="media <%= attachment.type %>">
 			    <%= link_to attachment.filename, attachment.authenticated_s3_url(:expires_in => 2.hours) %>
 			    <%= link_to("Delete", attachment, :method => :delete, :confirm => "Are you sure you'd like to delete this attachment?", :return_to=> request.request_uri ) %>
 			</li>

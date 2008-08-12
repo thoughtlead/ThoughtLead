@@ -14,6 +14,12 @@ class Attachment < ActiveRecord::Base
     errors.add_to_base("Uploaded file #{filename} has invalid content.") if embedded? && attachment_options[:content_type] && !attachment_options[:content_type].include?(send(:content_type))
   end
   
+  def type
+    return 'image' if content_type.include?('image')
+    return 'audio' if content_type.include?('audio')
+    return 'video' if content_type.include?('video')
+  end
+  
   private
   
   def set_type_for_embedded_media
@@ -26,5 +32,4 @@ class Attachment < ActiveRecord::Base
       end
     end
   end
-  
 end
