@@ -52,7 +52,7 @@ class Article < ActiveRecord::Base
           new_category.save
         end
         unless self.categories.to_a.include?(new_category)
-          self.categories << new_category
+          self.categories << new_category if new_category.valid?
         end
       end
     end

@@ -9,30 +9,31 @@ removeCategory = function(removeButton) {
 	$(removeButton).up().remove();
 }
 
-addCategory = function() {
-    //need to change so that there is no bottom margin for GUI goodness
-	var host = $('categories');
-    var editor = document.createElement('span');
-	editor.innerHTML =
-		'<select name="article[article_categories][]">' +
-		<% current_community.categories.each do |category| %>
-			'<option value="<%=category.id%>"><%= category %></option>' +
-		<% end %>
-		'</select>' +
-    	'<input type="button" value="Remove" onclick="removeCategory(this)" style="margin-bottom: 0px" /><br/>';
-	host.appendChild(editor);
-}
-
-addNewCategory = function() {
-    //need to change so that there is no bottom margin for GUI goodness
-	var host = $('new_categories');
-    var editor = document.createElement('span');
-	editor.innerHTML =
-		'<%= text_field_tag "article[article_new_categories][]" %>' +
-    	'<input type="button" value="Remove" onclick="removeCategory(this)" /><br/>';
-	host.appendChild(editor);
-}
-//*/
+//addCategory = function() {
+//    //need to change so that there is no bottom margin for GUI goodness
+//	var host = $('categories');
+//    var editor = document.createElement('span');
+//	editor.innerHTML =
+//		'<select name="article[article_categories][]">' +
+//		<% current_community.categories.each do |category| %>
+//			'<option value="<%=category.id%>"><%= category %></option>' +
+//		<% end %>
+//		'</select>' +
+//    	'<input type="button" value="Remove" onclick="removeCategory(this)" style="margin-bottom: 0px" /><br/>';
+//	host.appendChild(editor);
+//}
+//
+//addNewCategory = function() {
+//    //need to change so that there is no bottom margin for GUI goodness
+//	var host = $('new_categories');
+//    var editor = document.createElement('span');
+//	editor.innerHTML =
+//		'<%= text_field_tag "article[article_new_categories][]" %>' +
+//    	'<input type="button" value="Remove" onclick="removeCategory(this)" /><br/>';
+//	host.appendChild(editor);
+//}
+//
+*/
 </script>
 <% form_for @article, :html => { :multipart => true, :class => "edit" } do | a | %>
 <%= render :partial => '/contents/edit_content', :locals => { :content => @article.content } %>
@@ -40,14 +41,22 @@ addNewCategory = function() {
 <div class="edit_categories">
 	<h3 class="separator">Categories</h3>
 	<ul class="categories_add repeatable clearsub">
-		<% @article.categories.each do |selected_category| %>
-		<li>
+		<li id="hidden_category_select" style="display: none">
 			<select name="article[article_categories][]">
+				<option value="">Select Category</option>
 				<% current_community.categories.each do |category| %>
-				<option value="<%=category.id%>" <%= 'selected' if category == selected_category %>><%= category %></option>
+					<option value="<%=category.id%>"><%= category %></option>
 				<% end %>
 			</select>
 		</li>
+		<% @article.categories.each do |selected_category| %>
+			<li>
+				<select name="article[article_categories][]">
+					<% current_community.categories.each do |category| %>
+						</opt-group><option value="<%=category.id%>" <%= 'selected' if category == selected_category %>><%= category %></option>
+					<% end %>
+				</select>
+			</li>
 		<% end %>
 	</ul>
 	<div id="new_category"><%= text_field_tag "article[article_new_categories][]", nil, :class => "inp_text" %></div>

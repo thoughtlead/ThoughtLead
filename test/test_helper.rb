@@ -84,5 +84,3 @@ module ActionController
   end
 end
 
-#TODO make this more test specific, it should work normally for watir tests for example
-ActiveRecord::Base.current_community_always_valid(true)

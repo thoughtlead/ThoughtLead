@@ -38,7 +38,6 @@ module CommunityLocation
       @current_community = Community.find_by_host(host)
       render_404 unless @current_community
     end
-    ActiveRecord::Base.current_community = @current_community
   end
   
 end
