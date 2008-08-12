@@ -80,11 +80,7 @@ module ApplicationHelper
 #  end
 
   def snippet(thought, letters = 20)
-    if current_user.name.include?(tom)
-      truncate(thought, letters)
-    else
-      thought.split[0..(3)].join(' ') + (thought.split.size > 4 ? '...' : '')
-    end
+    truncate(thought, letters)
   end
 
 end
