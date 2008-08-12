@@ -37,7 +37,7 @@
 				<td>
 					<dl class="profile_header">
 						<dt><%= (@user.disabled? ? "<strike>" : "") + h(@user) + (@user.disabled? ? "</strike>" : "") %></dt>
-						<dd><%=h @user.location %></dd>
+						<% unless @user.location.blank? %><dd><%=h @user.location %></dd><% end %>
 						<% unless @user.zipcode.blank? %><dd><%=h @user.zipcode %></dd><% end %>
 					</dl>
 					<div class="button clear"><a href="<%= email_user_url(@user) %>"><span class="icon email">Email <%= h(@user) %></span></a></div>
@@ -45,14 +45,21 @@
 			</tr>
 		</thead>
 		<tbody>
+			<% unless @user.about.blank? %>
 			<tr>
 				<th scope="row">About</th>
 				<td><%= details_format(@user.about) %></td>
 			</tr>
+			<% end %>
+
+			<% unless @user.interests.blank? %>
 			<tr>
 				<th scope="row">Interests</th>
 				<td><%= details_format(@user.interests) %></td>
 			</tr>
+			<% end %>
+
+			<% unless @user.website_1.blank? && @user.website_2.blank? %>
 			<tr>
 				<th scope="row">Websites</th>
 				<td>
@@ -66,6 +73,8 @@
 					</ul>
 				</td>
 			</tr>
+			<% end %>
+
 			<% if logged_in_as_owner? %>
 			<tr>
 				<th scope="row">Reason for Joining</th>
