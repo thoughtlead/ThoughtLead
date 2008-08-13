@@ -529,6 +529,8 @@ h1, h2, h3, h4, h5, h6 {margin: 0.5em 0;}
 				}
 				#main_content .attachment li.image {background-image: url(../images/template/icon_file_image.gif);}
 				#main_content .attachment li.flv {background-image: url(../images/template/icon_file_flv.gif);}
+				#main_content .attachment li.video {background-image: url(../images/template/icon_file_video.gif);}
+				#main_content .attachment li.pdf {background-image: url(../images/template/icon_file_pdf.gif);}
 				#main_content .attachment li.create {background-image: url(../images/template/icon_file_create.gif);}
 
 				#main_content .attachment .action {
