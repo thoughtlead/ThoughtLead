@@ -32,12 +32,12 @@
 			<% if (lesson_higher_item = @lesson.higher_item_visible_to(current_user)) %>
 				<li class="previous"><%= link_to("Previous Lesson",[lesson_higher_item.chapter.course,lesson_higher_item.chapter,lesson_higher_item]) %></li>
 			<% else %>
-				<li class="previous inactive">Previous Lesson</li>
+				<li class="previous inactive"><a>Previous Lesson</a></li>
 			<% end %>
 			<% if (lesson_lower_item = @lesson.lower_item_visible_to(current_user)) %>
 				<li class="next"><%= link_to("Next Lesson",[lesson_lower_item.chapter.course,lesson_lower_item.chapter,lesson_lower_item]) %></li>
 			<% else %>
-				<li class="next inactive">Next Lesson</li>
+				<li class="next inactive"><a>Next Lesson</a></li>
 			<% end %>
 		</ul>
 	</div>
