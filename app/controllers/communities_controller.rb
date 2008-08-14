@@ -28,7 +28,6 @@ class CommunitiesController < ApplicationController
   end
   
   def create
-    ActiveRecord::Base.current_community = :valid
     @user = User.new(params[:user])
     @community = Community.new(params[:community])
 
