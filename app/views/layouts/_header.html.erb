@@ -3,7 +3,7 @@
 		<h1>
 			<% if logged_in? %>
 				<%= link_to(current_community.name, courses_url) %>
-			<% else %>
+			<% elsif current_community %>
 				<%= link_to(current_community.name, community_home_url) %>
 			<% end %>
 		</h1>
