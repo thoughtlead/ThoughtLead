@@ -13,7 +13,7 @@ module ApplicationHelper
     if logged_in_as_owner? && course.contains_registered_visible_to(current_user)
       s << '<li class="registered has_content"><span class="icon">Registered</span> <span class="content">Content</span></li>'
     end
-    s.last.gsub!(/\">/, ' last">')
+    s.last.gsub!(/\">/, ' last">') if s.last
     return s * "\n"
   end
   
