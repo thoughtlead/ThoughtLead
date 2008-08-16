@@ -79,7 +79,7 @@ module ApplicationHelper
 #    thought.split[0..(wordcount-1)].join(' ') + (thought.split.size > wordcount ? '...' : '')
 #  end
 
-  def snippet(thought, letters = 20)
+  def snippet(thought, letters = 15)
     truncate(thought, letters)
   end
 
