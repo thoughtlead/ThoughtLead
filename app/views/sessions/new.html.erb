@@ -10,13 +10,13 @@
 
 					<div class="inp group">
 					    <%= label :user, :login %>
-					    <%= text_field_tag 'login', params[:login], :class => 'inp_text' %>
+					    <%= text_field_tag 'login', params[:login], :class => 'inp_text', :tabindex => 1 %>
 					</div>
 				
 					<div class="inp group">
 						<%= link_to "Forgot Password?", forgot_password_url, :class => "forgot_password" %>
 					    <%= label :user, :password %>
-					    <%= password_field_tag 'password', params[:password], :class => 'inp_text' %>
+					    <%= password_field_tag 'password', params[:password], :class => 'inp_text', :tabindex => 2 %>
 					</div>
 
 					<div class="checkbox group">
