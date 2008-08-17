@@ -20,15 +20,16 @@ module ApplicationHelper
   def content_notes(content)
     s = []
     if content.premium
-      s << "Premium"
+      s << '<li class="premium"><span class="icon">Premium</span></li>'
     end
     if logged_in_as_owner? && content.registered
-      s << "Registered"
+      s << '<li class="registered"><span class="icon">Registered</span></li>'
     end
     if content.draft
-      s << "Draft"
+      s << '<li class="draft">Draft</li>'
     end
-    return s * "; "    
+    s.last.gsub!(/\">/, ' last">') if s.last
+    return s * "\n"
   end
     
   def define_js_function(function_name, &block)
