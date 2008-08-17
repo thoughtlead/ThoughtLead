@@ -296,7 +296,6 @@ a,
 				#sidebar ul.modules li.themes ul li {background-image: url(images/template/mod_nav_sep_bg.gif);}
 				#sidebar ul.modules li.themes ul li.current {background-image: url(images/template/mod_nav_active_bg.gif);}
 				#sidebar ul.modules li.themes ul li#show_all.current {background-image: url(images/template/mod_nav_showall_active_bg.gif);}
-					#sidebar ul.modules li.themes ul li a:hover {background-color: #fff;}
 					#sidebar ul.modules li.themes ul li.current a {color: #333;}
 
 
