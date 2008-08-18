@@ -59,7 +59,9 @@
 <div id="sidebar">
 	<ul class="modules">
 		<li class="navigation themes">
-			<h3><span>Themes</span> <a href="<%= url_for(themes_url) %>" class="button edit"><span>Edit</span></a></h3>
+			<h3><span>Themes</span>
+				<% if logged_in_as_owner? %><a href="<%= url_for(themes_url) %>" class="button edit"><span>Edit</span></a><% end %>
+			</h3>
 			<ul class="content">
 				<% current_community.themes.each do |theme| %>
 					<% if theme.discussions.count > 0 %>
