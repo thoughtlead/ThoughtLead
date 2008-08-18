@@ -48,7 +48,6 @@
 <% if (embedded_media = content.attachments.find_by_embedded(true)) %>
 	<% embedded_media_url = embedded_media.authenticated_s3_url(:expires_in => 2.hours) %>
 	<div class="module video">
-		<h4><%= embedded_media.filename %></h4>
 		<% if embedded_media.content_type.include?("image") %>
 		<img src="<%= embedded_media_url %>" />
 		<% elsif embedded_media.content_type.include?("video") %>
