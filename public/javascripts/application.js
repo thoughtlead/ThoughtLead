@@ -134,13 +134,17 @@ jQuery(function($) {
 		prepareFlashNotice : function() {
 			var min_delay = 2000;
 			var flash = $e.content.find('#flash');
-			var char_count = flash.text().length;
-			min_delay = min_delay + (char_count*6);
+			var close = $('<a class="close replace" href="#">Close</a>');
 
+			close.click(function() {
+				flash.fadeOut('fast');
+				return false;
+			});
 			if (!flash.children().length) {
 				flash.remove();
 			} else {
-				setTimeout(function() {flash.fadeOut('fast')}, min_delay);
+				flash.fadeTo(1, 0.9);
+				flash.prepend(close);
 			}
 		},
 		prepareButtons : function() {
