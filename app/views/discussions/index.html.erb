@@ -58,7 +58,6 @@
 </div>
 <div id="sidebar">
 	<ul class="modules">
-		<% if !current_community.themes.empty? %>
 		<li class="navigation themes">
 			<h3><span>Themes</span> <a href="<%= url_for(themes_url) %>" class="button edit"><span>Edit</span></a></h3>
 			<ul class="content">
@@ -79,6 +78,5 @@
 				<% end %>
 			</ul>
 		</li>
-		<% end %>
 	</ul>
 </div>
