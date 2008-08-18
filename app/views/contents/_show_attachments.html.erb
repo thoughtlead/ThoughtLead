@@ -1,7 +1,10 @@
-<% if !content.attachments.blank?  %>
+<% show_embedded = !content.attachments.find_all_by_embedded(true).blank? && logged_in_as_owner?%>
+<% show_attachments = !content.attachments.find_all_by_embedded(false).blank? %>
+
+<% if show_embedded || show_attachments %>
 	<div class="module attachments eclear">
 		<div class="content">
-			<% unless content.attachments.find_all_by_embedded(false).blank? %>
+			<% if show_attachments %>
 			<h4><span>Attachments</span></h4>
 			<ul class="attachments_list attachment">
 				<% content.attachments.find_all_by_embedded(false).each do |attachment| %>
@@ -15,7 +18,7 @@
 			</ul>
 			<% end %>
 	
-			<% unless content.attachments.find_all_by_embedded(true).blank? || !logged_in_as_owner? %>
+			<% if show_embedded %>
 			<h4>Embedded Media</h4>
 			<ul class="attachments_list attachment">
 				<% content.attachments.find_all_by_embedded(true).each do |attachment| %>
