@@ -183,6 +183,7 @@ jQuery(function($) {
 			thoughtlead.markupCorners($e.content.find('#flash'));
 			thoughtlead.markupCorners($e.main_content.find('.meta_tags li'));
 			thoughtlead.markupCorners($e.main_content.find('.module'));
+			thoughtlead.markupCorners($e.main_content.find(".banner"));
 			thoughtlead.markupCorners($e.header.find('#account_nav'), ['bl', 'br']);
 			thoughtlead.markupCorners($e.navigation.find('#content_nav li'), ['tl', 'tr']);
 
