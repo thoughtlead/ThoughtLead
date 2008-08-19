@@ -37,7 +37,7 @@
 	<div id="navigation_bar" class="content_area">
 		<ul id="content_nav">
 			<% current_tag(:li, @current_tab == :Home) do %>
-				<%= link_to "Home", articles_url, :class => 'home_link' %>
+				<%= link_to "Home", community_home_url, :class => 'home_link' %>
 			<% end %>
 			<% current_tag(:li, @current_tab == :Article) do %>
 				<%= link_to "Library", articles_url, :class => 'library_link' %>
