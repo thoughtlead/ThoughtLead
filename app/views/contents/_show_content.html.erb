@@ -55,10 +55,10 @@
 			This text will be replaced
 		</div>
 		<script type="text/javascript">
-			var so = new SWFObject('/mediaplayer.swf', 'mpl', '500', '500', '8');
+			var so = new SWFObject('/mediaplayer.swf', 'mpl', '510', '500', '8');
 			so.addParam('allowfullscreen', 'true');
 			so.addParam('allowscriptaccess', 'true');
-			so.addVariable('width', '500');
+			so.addVariable('width', '510');
 			so.addVariable('height', '500');
 			so.addVariable('file', encodeURIComponent(encodeURIComponent('<%= embedded_media_url %>')));
 			so.addVariable('type', 'flv');
@@ -70,9 +70,11 @@
 		This text will be replaced
 		</div>
 		<script type="text/javascript">
-			var so = new SWFObject('/mediaplayer.swf', 'mpl', '500', '20', '8');
+			var so = new SWFObject('/mediaplayer.swf', 'mpl', '510', '20', '8');
 			so.addParam('allowfullscreen', 'false');
 			so.addParam('allowscriptaccess', 'true');
+			so.addVariable('width', '510');
+			so.addVariable('height', '20');
 			so.addVariable('file', encodeURIComponent(encodeURIComponent('<%= embedded_media_url %>')));
 			so.addVariable('type', 'mp3');
 			so.addVariable('autostart', 'false');
