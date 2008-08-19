@@ -90,6 +90,7 @@ a,
 }
 .content_bar#bottom {background-image: url(images/template/content_bar_bottom_bg.gif);}
 
+	#main_content .content_bar h4,
 	.content_bar a {color: #628700;}
 		.content_bar .breadcrumbs p {color: #999;}
 		.content_bar .breadcrumbs ul {}
@@ -283,7 +284,8 @@ a,
 			background-image: url(images/template/mod_cta_top_bg.gif);
 		}
 			#sidebar ul.modules li.cta .content {background-image: url(images/template/mod_cta_bottom_bg.gif);}
-				#sidebar ul.modules li.cta .content h4.get_access {background-image: url(images/headlines/h4_getaccess_bg.gif);}
+			#sidebar ul.modules li.cta .content h4.get_free {background-image: url(images/headlines/h4_getfree_bg.gif);}
+			#sidebar ul.modules li.cta .content h4.get_premium {background-image: url(images/headlines/h4_getpremium_bg.gif);}
 
 		#sidebar ul.modules li.outline {}
 			#sidebar ul.modules li.outline ul {}
