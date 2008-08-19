@@ -9,7 +9,7 @@ class DiscussionsController < ApplicationController
     @discussions = current_community.discussions.for_theme(params[:theme])
     @discussions = @discussions.sort_by{ |discussion| discussion.created_at }
     @discussions = @discussions.reverse
-    @theme = Theme.find_by_id(params[:theme]) if params[:theme] && params[:theme] != 'nil'
+    @theme = current_community.themes.find_by_id(params[:theme]) if params[:theme] && params[:theme] != 'nil'
   end
   
   def new
