@@ -180,6 +180,16 @@ h1, h2, h3, h4, h5, h6 {margin: 0.5em 0;}
 		#main_content .content_bar ul,
 		#main_content .content_bar ol {font-size: 1em;}
 		#main_content .content_bar a {}
+		#main_content .content_bar h4 {
+			margin-bottom: 0;
+		}
+
+		#main_content .content_bar .content {padding: 11px 20px;}
+			#main_content .content_bar .content p {
+				margin: 0.3em 0;
+				font-size: 1.1em;
+				line-height: 1.2;
+			}
 		#main_content .content_bar .breadcrumbs {
 			padding: 11px 10px 8px 20px;
 			width: 320px;
