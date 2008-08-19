@@ -1,0 +1,41 @@
+<% @current_tab = :Home %>
+<% content_for :head do %>
+	<%= stylesheet_link_tag('home') %>
+	<%= javascript_include_tag('home') %>
+<% end %>
+<div id="main_content" class="login">
+	<div class="content_bar" id="top">
+		<div class="content">
+			<h4>Thanks for coming back</h4>
+			<p>Check out these areas of the site to see what’s changed since you wer last here. Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Nullam lacus neque, pretium vel, accumsan at, mollis sed, risus.</p>
+		</div>
+	</div>
+	<ul class="section_list">
+		<li class="library">
+			<h4><span>Read Articles</span></h4>
+			<p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Fusce libero nisl, mattis quis, aliquam sed, pharetra in, quam. Fusce aliquam enim. Etiam in quam. <%= link_to "Go to Articles", articles_url, :class => "more" %><span class="arrow">&nbsp;</span></p>
+		</li>
+		<li class="courses">
+			<h4><span>Join Courses</span></h4>
+			<p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Fusce libero nisl, mattis quis, aliquam sed, pharetra in, quam. Fusce aliquam enim. Etiam in quam. <%= link_to "Go to Courses", courses_url, :class => "more" %><span class="arrow">&nbsp;</span></p>
+		</li>
+		<li class="discussions">
+			<h4><span>Join Discussions</span></h4>
+			<p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Fusce libero nisl, mattis quis, aliquam sed, pharetra in, quam. Fusce aliquam enim. Etiam in quam. <%= link_to "Go to Discussions", discussions_url, :class => "more" %><span class="arrow">&nbsp;</span></p>
+		</li>
+		<li class="people">
+			<h4><span>Meet People</span></h4>
+			<p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Fusce libero nisl, mattis quis, aliquam sed, pharetra in, quam. Fusce aliquam enim. Etiam in quam. <%= link_to "Go to People", users_url, :class => "more" %><span class="arrow">&nbsp;</span></p>
+		</li>
+	</ul>
+</div>
+<div id="sidebar">
+	<ul class="modules">
+		<li class="cta register">
+			<div class="content">
+				<h4 class="get_premium replace">Get Premium Access</h4>
+				<p>Interested in joining the ThoughtLead community? You can get free access by signing up today. <%= link_to "Join Today", signup_url, :class => 'more' %><span class="arrow">&nbsp;</span></p>
+			</div>
+		</li>
+	</ul>
+</div>
