@@ -11,7 +11,11 @@ class CommunitiesController < ApplicationController
   end
   
   def current_community_home
-    render :file => themed_file("community_home.html.erb"), :layout => true
+    if logged_in?
+      render :file => themed_file("community_home_login.html.erb"), :layout => true
+    else
+      render :file => themed_file("community_home.html.erb"), :layout => true
+    end
   end
   
   def current_community_about
