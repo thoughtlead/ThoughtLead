@@ -134,13 +134,17 @@ jQuery(function($) {
 		prepareFlashNotice : function() {
 			var min_delay = 2000;
 			var flash = $e.content.find('#flash');
-			var char_count = flash.text().length;
-			min_delay = min_delay + (char_count*6);
+			var close = $('<a class="close replace" href="#">Close</a>');
 
+			close.click(function() {
+				flash.fadeOut('fast');
+				return false;
+			});
 			if (!flash.children().length) {
 				flash.remove();
 			} else {
-				setTimeout(function() {flash.fadeOut('fast')}, min_delay);
+				flash.fadeTo(1, 0.9);
+				flash.prepend(close);
 			}
 		},
 		prepareButtons : function() {
@@ -179,6 +183,7 @@ jQuery(function($) {
 			thoughtlead.markupCorners($e.content.find('#flash'));
 			thoughtlead.markupCorners($e.main_content.find('.meta_tags li'));
 			thoughtlead.markupCorners($e.main_content.find('.module'));
+			thoughtlead.markupCorners($e.main_content.find(".banner"));
 			thoughtlead.markupCorners($e.header.find('#account_nav'), ['bl', 'br']);
 			thoughtlead.markupCorners($e.navigation.find('#content_nav li'), ['tl', 'tr']);
 

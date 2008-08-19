@@ -277,6 +277,14 @@ a,
 		#sidebar ul.modules li.nav_sep {}
 			#sidebar ul.modules li.nav_sep ul {}
 				#sidebar ul.modules li.nav_sep ul li {background-image: url(images/template/mod_nav_sep_bg.gif);}
+
+		#sidebar ul.modules li.cta {
+			color: #fff;
+			background-image: url(images/template/mod_cta_top_bg.gif);
+		}
+			#sidebar ul.modules li.cta .content {background-image: url(images/template/mod_cta_bottom_bg.gif);}
+				#sidebar ul.modules li.cta .content h4.get_access {background-image: url(images/headlines/h4_getaccess_bg.gif);}
+
 		#sidebar ul.modules li.outline {}
 			#sidebar ul.modules li.outline ul {}
 				#sidebar ul.modules li.outline ul li.active {background-image: url(images/template/mod_out_active_bg.gif);}
@@ -312,3 +320,34 @@ a,
 		background-color: #fff;
 		background-image: url(images/template/search_inp_bg.gif);
 	}
+
+
+/* Miscellaneous
+----------------------------------------------- */
+#flash {background-color: #2797d1;}
+	#flash .close {background-image: url(images/template/flash_close_bg.gif);}
+
+
+
+/* Home
+----------------------------------------------- */
+#main_content .banner {
+	background-color: #f4f9e5;
+	background-image: url(images/template/home_banner_bg.gif);
+}
+#main_content .banner_wrap {
+	border-top-color: #eaf4ce;
+	border-bottom-color: #e0eeb7;
+}
+	#main_content .banner h2 {background-image: url(images/headlines/h2_domore_bg.gif);}
+	#main_content .banner .register {background-image: url(images/template/button_register_bg.gif);}
+
+
+	#main_content .section_list h4 {}
+		#main_content .section_list .library h4 span {background-image: url(images/template/home_library_icon.gif);}
+		#main_content .section_list .courses h4 span {background-image: url(images/template/home_courses_icon.gif);}
+		#main_content .section_list .discussions h4 span {background-image: url(images/template/home_discussions_icon.gif);}
+		#main_content .section_list .people h4 span {background-image: url(images/template/home_people_icon.gif);}
+
+	#main_content .section_list .arrow {background-image: url(images/template/home_arrow_bg.gif);}
+	#sidebar .cta .arrow {background-image: url(images/template/cta_arrow_bg.gif);}
