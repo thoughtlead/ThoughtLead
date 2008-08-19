@@ -10,21 +10,31 @@
 		</div>
 	</div>
 	<h2><%= current_user == @user ? "Your Profile" : @user.to_s  %></h2>
-	<div class="module actions profile_overlay">
-		<div class="content">
-			<h4>Profile Actions</h4>
-			<ul class="action_nav">
-				<li class="edit"><%= link_to "Edit <span class='action_target'>Profile</span>", edit_user_url(@user), :class => 'action' if current_user == @user || logged_in_as_owner? %></li>
-				<% if logged_in_as_owner? && !@user.owner? %>
-				<% if @user.disabled? %>
-				<li class="add"><%= link_to "Reactivate <span class='action_target'>User</span>", reactivate_user_url(@user), :class => 'action', :confirm =>  "Are you sure you would like to reactivate this user?" %></li>
-				<% else %>
-				<li class="delete"><%= link_to "Disable <span class='action_target'>User</span>", disable_user_url(@user), :class => 'action', :confirm =>  "Are you sure you would like to disable this user?" %></li>
-				<% end %>
-				<% end %>
-			</ul>
+
+
+	<% show_edit = current_user == @user || logged_in_as_owner? %>
+	<% show_disable = logged_in_as_owner? && !@user.owner? %>
+	<% if show_edit || show_disable %>
+		<div class="module actions profile_overlay">
+			<div class="content">
+				<h4>Profile Actions</h4>
+				<ul class="action_nav">
+					<% if show_edit %>
+					<li class="edit"><%= link_to "Edit <span class='action_target'>Profile</span>", edit_user_url(@user), :class => 'action' %></li>
+					<% end %>
+					<% if show_disable %>
+						<% if @user.disabled? %>
+							<li class="add"><%= link_to "Reactivate <span class='action_target'>User</span>", reactivate_user_url(@user), :class => 'action', :confirm =>  "Are you sure you would like to reactivate this user?" %></li>
+						<% else %>
+							<li class="delete"><%= link_to "Disable <span class='action_target'>User</span>", disable_user_url(@user), :class => 'action', :confirm =>  "Are you sure you would like to disable this user?" %></li>
+						<% end %>
+					<% end %>
+				</ul>
+			</div>
 		</div>
-	</div>
+	<% end %>
+
+
 	<table class="profile people" summary="User details">
 		<thead>
 			<tr>
