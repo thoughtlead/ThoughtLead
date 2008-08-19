@@ -14,6 +14,10 @@ Name: Home
 }
 	#main_content .font_sizer {display: none;}
 
+
+
+/* Banner
+----------------------------------------------- */
 #main_content .banner {
 	width: 560px;
 	position: relative;
@@ -50,6 +54,9 @@ Name: Home
 	}
 
 
+
+/* Content
+----------------------------------------------- */
 #main_content .page_content {
 	padding: 0 15px;
 }
@@ -80,3 +87,10 @@ Name: Home
 	}
 
 	#main_content .section_list .more {}
+
+
+
+/* Sidebar
+----------------------------------------------- */
+#sidebar {}
+	#sidebar ul.modules li.cta {margin-top: 20px;}
