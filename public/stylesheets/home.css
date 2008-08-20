@@ -7,8 +7,8 @@ Name: Home
 
 /* Home
 ----------------------------------------------- */
-#main_content.login {}
-#main_content.marketing {
+#content .login {}
+#content .marketing {
 	padding: 0 4px;
 	width: 560px;
 }
