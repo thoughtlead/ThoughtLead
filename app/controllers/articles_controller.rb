@@ -7,7 +7,7 @@ class ArticlesController < ApplicationController
   
   def index
     @articles = current_community.articles.for_category(params[:category])
-    @articles = @articles.sort_by{ |article| article.created_at }
+    @articles = @articles.sort_by{ |article| article.updated_at }
     @articles = @articles.reverse
     @category = current_community.categories.find_by_id(params[:category]) if params[:category] && params[:category] != 'nil'
   end
