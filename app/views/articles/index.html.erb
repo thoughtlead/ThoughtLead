@@ -68,17 +68,20 @@
 </div>
 <div id="sidebar">
 	<ul class="modules">
-		<% if !current_community.categories.empty? %>
 		<li class="navigation themes">
 			<h3>
 				<span>Categories</span> 
-				<% if logged_in_as_owner? %><a href="<%= url_for(categories_url) %>" class="button edit"><span>Edit</span></a><% end %>
+				<% if logged_in_as_owner? %>
+					<a href="<%= url_for(categories_url) %>" class="button edit"><span>Edit</span></a>
+				<% end %>
 			</h3>
 			<ul class="content">
-				<% current_community.categories.each do |category| %>
-					<% if category.contains_articles_visible_to(current_user) %>
-						<% content_tag(:li, :class => current_class_for_category(category)) do %>
-							<%= link_to category, library_url(:category => category) %>
+				<% if !current_community.categories.empty? %>
+					<% current_community.categories.each do |category| %>
+						<% if category.contains_articles_visible_to(current_user) %>
+							<% content_tag(:li, :class => current_class_for_category(category)) do %>
+								<%= link_to category, library_url(:category => category) %>
+							<% end %>
 						<% end %>
 					<% end %>
 				<% end %>
@@ -92,6 +95,5 @@
 				<% end %>
 			</ul>
 		</li>
-		<% end %>
 	</ul>
 </div>
