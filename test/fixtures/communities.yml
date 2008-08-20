@@ -27,7 +27,6 @@ testing:
   owner: test
   active: true
   discussion_accessibility: 1
-  spreedly_api_key: 
 
 watirtest:
   host: watirtest.localhost.com
