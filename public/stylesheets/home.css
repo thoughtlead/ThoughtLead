@@ -75,6 +75,7 @@ Name: Home
 
 	#main_content .section_list h4 {
 		margin: 1em 0 0.3em 0;
+		font-size: 1.4em;
 	}
 		#main_content .section_list h4 span {
 			padding-right: 23px;
@@ -83,7 +84,8 @@ Name: Home
 		}
 	#main_content .section_list p {
 		margin: 0; padding: 0;
-		font-size: 1.1em;
+		font-size: 1.2em;
+		line-height: 1.4;
 	}
 
 	#main_content .section_list .more {}
