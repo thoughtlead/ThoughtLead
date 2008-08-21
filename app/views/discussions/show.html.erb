@@ -5,7 +5,7 @@
 			<p>Jump to:</p>
 			<ul>
 				<li class="first"><%= link_to "Discussions", discussions_path %></li>
-				<li><%= @discussion %></li>
+				<li><%= h(snippet(@discussion.to_s)) %></li>
 			</ul>
 		</div>
 		<% if current_user_can_post? %>

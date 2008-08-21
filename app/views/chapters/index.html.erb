@@ -5,7 +5,7 @@
 			<p>Jump to:</p>
 			<ul>
 				<li class="first"><%= link_to "Courses", courses_path %></li>
-				<li><%= link_to @course, @course %></li>
+				<li><%= link_to h(snippet(@course.to_s)), @course %></li>
 			</ul>
 		</div>
 		<% if logged_in_as_owner? %>
@@ -17,8 +17,9 @@
 	<h2><%=h "Edit chapters for #{@course}" %></h2>
 	<ul class="sep_item_list chapters">
 		<% for chapter in @course.chapters %>
+		<% chapter_number = chapter_number ? chapter_number + 1 : 1 %>
 		<li>
-			<h3><%=h chapter %></h3>
+			<h3><%=h "#{chapter_number.to_s_roman}. #{chapter.to_s}" %></h3>
 			<ul class="meta_info">
 				<li class="meta_tags">
 					<ul>

@@ -44,13 +44,14 @@
 	<ul class="lesson_list">
 		<% for chapter in @course.chapters %>
 		<% unless chapter.draft && !logged_in_as_owner? %>
+		<% chapter_number = chapter_number ? chapter_number + 1 : 1 %>
 		<li>
 			<h3>
-				<%=h chapter %> 
+				<%=h "#{chapter_number.to_s_roman}. #{chapter.to_s}" %> 
 				<ul class="meta_info">
 					<li class="meta_tags">
 						<ul>
-							<% if chapter.draft %><br/><span style="text-transform:capitalize; color:red">Draft: chapter contents are hidden.</span><% end %>
+							<% if chapter.draft %><li class="draft last">Draft</li><% end %>
 						</ul>
 					</li>
 				</ul>

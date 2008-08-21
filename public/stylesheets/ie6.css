@@ -14,6 +14,7 @@ div, p, li, dl, dt, dd {zoom: 1;}
 ----------------------------------------------- */
 .corner,
 #content {background: none;}
+#main_content .banner .image img {visibility: hidden;}
 .content_bar .lesson_nav li.inactive a {filter:alpha(opacity=50);}
 
 .corner {}
@@ -23,6 +24,8 @@ div, p, li, dl, dt, dd {zoom: 1;}
 	.bottom_right {filter: progid:DXImageTransform.Microsoft.AlphaImageLoader(src='/images/template/corners/content_r5/bottom_right.png', sizingMethod='crop');}
 
 #content {filter: progid:DXImageTransform.Microsoft.AlphaImageLoader(src='/images/template/content_bg.png', sizingMethod='crop');}
+
+#main_content .banner .image {filter: progid:DXImageTransform.Microsoft.AlphaImageLoader(src='/images/content/home_screenshot.png', sizingMethod='image');}
 
 /* Corners
 ----------------------------------------------- */

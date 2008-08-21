@@ -1,10 +1,10 @@
 require File.dirname(__FILE__) + '/../test_helper' 
 
 class DiscussionListTest < ActionController::IntegrationTest
-  # fixtures :your, :models
+  fixtures :communities
   
   def setup
-    @c = Theme.new(:name=>"Japan", :description=>"Discussions about the land of the rising sun.")
+    @c = Theme.new(:name=>"Japan", :description=>"Discussions about the land of the rising sun.", :community_id => communities(:c1).id)
     @c.save!
     @d = Discussion.new(:title=>"Ninjas", :body=>"Ninjas are ultra powerful", :theme=>@c)
     @d.save!
@@ -22,7 +22,6 @@ class DiscussionListTest < ActionController::IntegrationTest
   def test_discussion_for_one_theme
     get "http://c1.nokahuna.dev/discussions?theme=#{@c.id}"
     assert_response :success
-   
     
     # Ensure the Theme name and description appear at the top of the list
     assert_select "div.page_title h2", "Theme: #{@c.name}"

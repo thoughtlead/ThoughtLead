@@ -6,7 +6,7 @@
 			<ul>
 				<li class="first"><%= link_to "Library", articles_path %></li>
 				<% if @category %>
-				<li><%= link_to h(snippet(@category.to_s)), library_url(:category => @category) %></li>
+				<li><%= h(snippet(@category.to_s)) %></li>
 				<% end  %>
 			</ul>
 		</div>
@@ -20,8 +20,8 @@
 	<h2><%= @category.name %></h2>
 	<% else %>
 	<div class="page_title">
-		<h2><%= "#{current_community} #{@current_tab}" %></h2>
-		<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+		<h2><%= "#{current_community}" %> Library</h2>
+		<p>Post additional resources that don't fit into a course. The library can contain articles, audios, videos, pictures, and attach downloadable files. Resources are organized by categories.</p>
 	</div>
 	<% end %>
 	<ul class="article_list library">
@@ -32,13 +32,7 @@
 					<h2>
 						<%= link_to(h(article),article) %> 
 						<% if (embedded_media = article.content.attachments.find_by_embedded(true)) %>
-							<% if embedded_media.content_type.include?("image") %>
-							<span class="media image"><span>Image</span></span>
-							<% elsif embedded_media.content_type.include?("audio") %>
-							<span class="media audio"><span>Audio</span></span>
-							<% elsif embedded_media.content_type.include?("video") %>
-							<span class="media video"><span>Video</span></span>
-							<% end %>
+							<span class="media <%= embedded_media.type %>"><span>Image</span></span>
 						<% end %>
 					</h2>
 					<ul class="meta_info clear">
@@ -74,14 +68,20 @@
 </div>
 <div id="sidebar">
 	<ul class="modules">
-		<% if !current_community.categories.empty? %>
 		<li class="navigation themes">
-			<h3><span>Categories</span> <a href="<%= url_for(categories_url) %>" class="button edit"><span>Edit</span></a></h3>
+			<h3>
+				<span>Categories</span> 
+				<% if logged_in_as_owner? %>
+					<a href="<%= url_for(categories_url) %>" class="button edit"><span>Edit</span></a>
+				<% end %>
+			</h3>
 			<ul class="content">
-				<% current_community.categories.each do |category| %>
-					<% if category.contains_articles_visible_to(current_user) %>
-						<% content_tag(:li, :class => current_class_for_category(category)) do %>
-							<%= link_to category, library_url(:category => category) %>
+				<% if !current_community.categories.empty? %>
+					<% current_community.categories.each do |category| %>
+						<% if category.contains_articles_visible_to(current_user) %>
+							<% content_tag(:li, :class => current_class_for_category(category)) do %>
+								<%= link_to category, library_url(:category => category) %>
+							<% end %>
 						<% end %>
 					<% end %>
 				<% end %>
@@ -95,6 +95,5 @@
 				<% end %>
 			</ul>
 		</li>
-		<% end %>
 	</ul>
 </div>

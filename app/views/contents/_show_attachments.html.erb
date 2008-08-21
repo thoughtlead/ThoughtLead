@@ -1,29 +1,34 @@
-<div class="module attachments eclear">
-	<div class="content">
-		<% unless content.attachments.find_all_by_embedded(false).blank? %>
-		<h4><span>Attachments</span></h4>
-		<ul class="attachments_list attachment">
-			<% content.attachments.find_all_by_embedded(false).each do |attachment| %>
-			<li>
-			    <%= link_to attachment.filename, attachment.authenticated_s3_url(:expires_in => 2.hours) %>
-			    <% if logged_in_as_owner? %>
-			    <%= link_to("Delete", attachment, :method => :delete, :confirm => "Are you sure you'd like to delete this attachment?", :return_to=> request.request_uri ) %>
-			    <% end %>
-			</li>
-			<% end %>	
-		</ul>
-		<% end %>
+<% show_embedded = !content.attachments.find_all_by_embedded(true).blank? && logged_in_as_owner?%>
+<% show_attachments = !content.attachments.find_all_by_embedded(false).blank? %>
 
-		<% unless content.attachments.find_all_by_embedded(true).blank? || !logged_in_as_owner? %>
-		<h4>Embedded Media</h4>
-		<ul class="attachments_list attachment">
-			<% content.attachments.find_all_by_embedded(true).each do |attachment| %>
-			<li>
-			    <%= link_to attachment.filename, attachment.authenticated_s3_url(:expires_in => 2.hours) %>
-			    <%= link_to("Delete", attachment, :method => :delete, :confirm => "Are you sure you'd like to delete this attachment?", :return_to=> request.request_uri ) %>
-			</li>
+<% if show_embedded || show_attachments %>
+	<div class="module attachments eclear">
+		<div class="content">
+			<% if show_attachments %>
+			<h4><span>Attachments</span></h4>
+			<ul class="attachments_list attachment">
+				<% content.attachments.find_all_by_embedded(false).each do |attachment| %>
+				<li class="media <%= attachment.type %>">
+				    <%= link_to attachment.filename, attachment.authenticated_s3_url(:expires_in => 2.hours) %>
+				    <% if logged_in_as_owner? %>
+				    <%= link_to("Delete", attachment, :method => :delete, :confirm => "Are you sure you'd like to delete this attachment?", :return_to=> request.request_uri ) %>
+				    <% end %>
+				</li>
+				<% end %>	
+			</ul>
 			<% end %>
-		</ul>
-		<% end %>
+	
+			<% if show_embedded %>
+			<h4>Embedded Media</h4>
+			<ul class="attachments_list attachment">
+				<% content.attachments.find_all_by_embedded(true).each do |attachment| %>
+				<li class="media <%= attachment.type %>">
+				    <%= link_to attachment.filename, attachment.authenticated_s3_url(:expires_in => 2.hours) %>
+				    <%= link_to("Delete", attachment, :method => :delete, :confirm => "Are you sure you'd like to delete this attachment?", :return_to=> request.request_uri ) %>
+				</li>
+				<% end %>
+			</ul>
+			<% end %>
+		</div>
 	</div>
-</div>
+<% end %>

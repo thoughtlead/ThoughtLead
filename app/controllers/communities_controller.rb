@@ -11,7 +11,11 @@ class CommunitiesController < ApplicationController
   end
   
   def current_community_home
-    render :file => themed_file("community_home.html.erb"), :layout => true
+    if logged_in?
+      render :file => themed_file("community_home_login.html.erb"), :layout => true
+    else
+      render :file => themed_file("community_home.html.erb"), :layout => true
+    end
   end
   
   def current_community_about
@@ -28,12 +32,14 @@ class CommunitiesController < ApplicationController
   end
   
   def create
-    ActiveRecord::Base.current_community = :valid
     @user = User.new(params[:user])
     @community = Community.new(params[:community])
 
     @community.valid?
-    return render(:action => :new) unless @user.valid? && @community.valid?
+    if !@user.valid? || !@community.valid?
+      render(:action => :new)
+      return
+    end
     
     @user.save
     @community.owner = @user
@@ -42,7 +48,7 @@ class CommunitiesController < ApplicationController
     Mailer.deliver_community_created(@community, community_dashboard_url(@community))
     
     flash[:notice] = "Successfully created your community."
-    ActiveRecord::Base.current_community = @community    
+
     #TODO this is broken for local machines as it does not include the port
     redirect_to community_login_url(@community)
   end
@@ -85,7 +91,7 @@ class CommunitiesController < ApplicationController
     end
   
     def community_layout
-      ['new', 'choose_plan', 'index'].include?(params[:action]) ? 'community_home' : 'application'
+      ['new', 'choose_plan', 'index', 'create'].include?(params[:action]) ? 'community_home' : 'application'
     end
   
     def plan_id

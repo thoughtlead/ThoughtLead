@@ -50,6 +50,7 @@ a,
 	color: #fff;
 }
 	#account_nav li {background-image: url(images/template/account_nav_sep_bg.gif);}
+		#account_nav li.login {background-image: url(images/template/account_nav_lock_icon.gif);}
 		#account_nav li a {color: #fff;}
 		#account_nav li.edit_profile a {background-image: url(images/template/account_nav_gear_icon.gif);}
 
@@ -89,6 +90,7 @@ a,
 }
 .content_bar#bottom {background-image: url(images/template/content_bar_bottom_bg.gif);}
 
+	#main_content .content_bar h4,
 	.content_bar a {color: #628700;}
 		.content_bar .breadcrumbs p {color: #999;}
 		.content_bar .breadcrumbs ul {}
@@ -153,6 +155,10 @@ a,
 		#main_content .meta_tags {}
 			#main_content .meta_tags li {color: #fff;}
 				#main_content .meta_tags li.draft {background-color: #cc1f1f;}
+				#main_content .meta_tags li.registered {
+					background-color: #4cade0;
+					background-image: url(images/template/icon_registered.gif);
+				}
 				#main_content .meta_tags li.premium {
 					background-color: #2797d1;
 					background-image: url(images/template/icon_premium.gif);
@@ -189,14 +195,14 @@ a,
 	#main_content .more {}
 	#main_content .arrow {background-image: url(images/template/content_arrow_bg.gif);}
 	.button {background-image: url(images/template/button_left_bg.gif);}
-		.button a {
-			color: #fff;
-			background-image: url(images/template/button_right_bg.gif);
-		}
+		.button a,
+		#main_content .button a {color: #fff;}
+		.button a {background-image: url(images/template/button_right_bg.gif);}
 			.button a span.icon {}
 			.button a span.icon.create {background-image: url(images/template/icon_create_button.gif);}
 			.button a span.icon.save {background-image: url(images/template/icon_save_button.gif);}
 			.button a span.icon.email {background-image: url(images/template/icon_email_button.gif);}
+			.button a span.icon.signup {background-image: url(images/template/icon_signup_button.gif);}
 
 	a.button.edit {background-image: url(images/template/button_edit_bg.gif);}
 
@@ -226,8 +232,7 @@ a,
 ----------------------------------------------- */
 .login {}
 	#main_content .module.signup {}
-		#main_content .module.signup h4 {color: #628700;}
-		#main_content .module.signup p.signup {background-image: url(images/template/signup_button_bg.gif);}
+		#main_content .module.signup h4 {}
 
 
 /* Search
@@ -273,6 +278,15 @@ a,
 		#sidebar ul.modules li.nav_sep {}
 			#sidebar ul.modules li.nav_sep ul {}
 				#sidebar ul.modules li.nav_sep ul li {background-image: url(images/template/mod_nav_sep_bg.gif);}
+
+		#sidebar ul.modules li.cta {
+			color: #fff;
+			background-image: url(images/template/mod_cta_top_bg.gif);
+		}
+			#sidebar ul.modules li.cta .content {background-image: url(images/template/mod_cta_bottom_bg.gif);}
+			#sidebar ul.modules li.cta .content h4.get_free {background-image: url(images/headlines/h4_getfree_bg.gif);}
+			#sidebar ul.modules li.cta .content h4.get_premium {background-image: url(images/headlines/h4_getpremium_bg.gif);}
+
 		#sidebar ul.modules li.outline {}
 			#sidebar ul.modules li.outline ul {}
 				#sidebar ul.modules li.outline ul li.active {background-image: url(images/template/mod_out_active_bg.gif);}
@@ -308,3 +322,34 @@ a,
 		background-color: #fff;
 		background-image: url(images/template/search_inp_bg.gif);
 	}
+
+
+/* Miscellaneous
+----------------------------------------------- */
+#flash {background-color: #2797d1;}
+	#flash .close {background-image: url(images/template/flash_close_bg.gif);}
+
+
+
+/* Home
+----------------------------------------------- */
+#main_content .banner {
+	background-color: #f4f9e5;
+	background-image: url(images/template/home_banner_bg.gif);
+}
+#main_content .banner_wrap {
+	border-top-color: #eaf4ce;
+	border-bottom-color: #e0eeb7;
+}
+	#main_content .banner h2 {background-image: url(images/headlines/h2_domore_bg.gif);}
+	#main_content .banner .register {background-image: url(images/template/button_register_bg.gif);}
+
+
+	#main_content .section_list h4 {}
+		#main_content .section_list .library h4 span {background-image: url(images/template/home_library_icon.gif);}
+		#main_content .section_list .courses h4 span {background-image: url(images/template/home_courses_icon.gif);}
+		#main_content .section_list .discussions h4 span {background-image: url(images/template/home_discussions_icon.gif);}
+		#main_content .section_list .people h4 span {background-image: url(images/template/home_people_icon.gif);}
+
+	#main_content .section_list .arrow {background-image: url(images/template/home_arrow_bg.gif);}
+	#sidebar .cta .arrow {background-image: url(images/template/cta_arrow_bg.gif);}

@@ -3,31 +3,33 @@ module ApplicationHelper
   def course_index_notes(course)
     s = []
     if course.draft
-      s << "Draft"
+      s << '<li class="draft">Draft</li>'
     elsif course.contains_drafts && logged_in_as_owner?
-      s << "Has Draft Content"
+      s << '<li class="draft has_content">Draft Content</li>'
     end
     if course.contains_premium_visible_to(current_user)
-      s << "Has Premium Content"
+      s << '<li class="premium has_content"><span class="icon">Premium</span> <span class="content">Content</span></li>'
     end
     if logged_in_as_owner? && course.contains_registered_visible_to(current_user)
-      s << "Has Registered Content"
+      s << '<li class="registered has_content"><span class="icon">Registered</span> <span class="content">Content</span></li>'
     end
-    return s * "; "
+    s.last.gsub!(/\">/, ' last">') if s.last
+    return s * "\n"
   end
   
   def content_notes(content)
     s = []
     if content.premium
-      s << "Premium"
+      s << '<li class="premium"><span class="icon">Premium</span></li>'
     end
     if logged_in_as_owner? && content.registered
-      s << "Registered"
+      s << '<li class="registered"><span class="icon">Registered</span></li>'
     end
     if content.draft
-      s << "Draft"
+      s << '<li class="draft">Draft</li>'
     end
-    return s * "; "    
+    s.last.gsub!(/\">/, ' last">') if s.last
+    return s * "\n"
   end
     
   def define_js_function(function_name, &block)
@@ -74,8 +76,12 @@ module ApplicationHelper
       "/themes/#{current_community.host}/#{path}"
   end
   
-  def snippet(thought, wordcount = 4)
-    thought.split[0..(wordcount-1)].join(' ') + (thought.split.size > wordcount ? '...' : '')
+#  def snippet(thought, wordcount = 4)
+#    thought.split[0..(wordcount-1)].join(' ') + (thought.split.size > wordcount ? '...' : '')
+#  end
+
+  def snippet(thought, letters = 15)
+    truncate(thought, letters)
   end
 
 end

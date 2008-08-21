@@ -1,0 +1,98 @@
+/*
+-----------------------------------------------
+Site: ThoughtLead
+Name: Home
+----------------------------------------------- */
+
+
+/* Home
+----------------------------------------------- */
+#content .login {}
+#content .marketing {
+	padding: 0 4px;
+	width: 560px;
+}
+	#main_content .font_sizer {display: none;}
+
+
+
+/* Banner
+----------------------------------------------- */
+#main_content .banner {
+	width: 560px;
+	position: relative;
+	background-color: #f4f9e5;
+	background-position: bottom;
+	background-repeat: repeat-x;
+}
+#main_content .banner_wrap {
+	border-width: 1px 0;
+	border-style: solid;
+	border-top-color: #eaf4ce;
+	border-bottom-color: #e0eeb7;
+}
+	#main_content .banner h2 {
+		margin: 0; padding: 0;
+		height: 23px;
+		background-repeat: no-repeat;
+		background-position: top left;
+	}
+	#main_content .banner .register {
+		margin: 0;
+	}
+		#main_content .banner .register a {
+			width: 177px; height: 26px;
+		}
+
+	#main_content .banner .content {
+		padding: 19px;
+		width: 250px;
+	}
+	#main_content .banner .image {
+		position: absolute;
+		top: -25px; right: -20px;
+	}
+
+
+
+/* Content
+----------------------------------------------- */
+#main_content .page_content {
+	padding: 0 15px;
+}
+
+#main_content .section_list {
+	margin: 0; padding: 0;
+	list-style-type: none;
+	font-size: 1em;
+}
+	#main_content .section_list li {
+		padding: 0 20px 5px 0;
+		width: 255px;
+		float: left;
+	}
+	#main_content .section_list li.row_end {padding-right: 0;}
+
+	#main_content .section_list h4 {
+		margin: 1em 0 0.3em 0;
+		font-size: 1.4em;
+	}
+		#main_content .section_list h4 span {
+			padding-right: 23px;
+			background-position: center right;
+			background-repeat: no-repeat;
+		}
+	#main_content .section_list p {
+		margin: 0; padding: 0;
+		font-size: 1.2em;
+		line-height: 1.4;
+	}
+
+	#main_content .section_list .more {}
+
+
+
+/* Sidebar
+----------------------------------------------- */
+#sidebar {}
+	#sidebar ul.modules li.cta {margin-top: 20px;}

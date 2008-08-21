@@ -1,16 +1,6 @@
 
 <div id="primary">
 
-  <% if current_community.eligible_for_free_trial %>
-    <h1>Your community is ready to go.</h1>
-    <%= link_to "Start your free trial to ThoughtLead!", @free_trial_url %>
-    
-  <% else %>
-    <h1><%= current_community %> is no longer active</h1>
-    <% if logged_in_as_owner? %>
-      <%= link_to "Upgrade your account to make it active", @upgrade_url %>
-    <% end %>
-  <% end %>
-
+    <h1>Your community has not yet been activated.</h1>
 
 </div>

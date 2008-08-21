@@ -1,12 +1,6 @@
 <div id="header" class="content_area">
 	<div id="logo">
-		<h1>
-			<% if logged_in? %>
-				<%= link_to(current_community.name, courses_url) %>
-			<% else %>
-				<%= link_to(current_community.name, community_home_url) %>
-			<% end %>
-		</h1>
+		<h1><%= link_to(current_community.name, community_home_url) %></h1>
 		<p class="tagline">Do more with your ideas.</p>
 	</div>
 	<div id="search" class="search">
@@ -36,7 +30,9 @@
 <div id="navigation">
 	<div id="navigation_bar" class="content_area">
 		<ul id="content_nav">
-			<li class="home_link"><a href="/">Home</a></li>
+			<% current_tag(:li, @current_tab == :Home) do %>
+				<%= link_to "Home", community_home_url, :class => 'home_link' %>
+			<% end %>
 			<% current_tag(:li, @current_tab == :Article) do %>
 				<%= link_to "Library", articles_url, :class => 'library_link' %>
 			<% end %>

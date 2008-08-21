@@ -5,8 +5,8 @@
 			<p>Jump to:</p>
 			<ul>
 				<li class="first"><%= link_to "Courses", courses_path %></li>
-				<li><%= link_to h(@course), @course %></li>
-				<li><%= link_to(h(@lesson),[@course,@chapter,@lesson]) %></li>
+				<li><%= link_to h(snippet(@course.to_s)), @course %></li>
+				<li><%= link_to(h(snippet(@lesson.to_s)),[@course,@chapter,@lesson]) %></li>
 			</ul>
 		</div>
 		<% if logged_in_as_owner? %>
