@@ -341,10 +341,12 @@ h1, h2, h3, h4, h5, h6 {margin: 0.5em 0;}
 			background-position: bottom;
 		}
 			#main_content h2 {
-				margin: 0.6em 0 -0.1em 0; padding: 0;
+				margin: 0.6em 0 0 0; padding: 0;
+				line-height: 1.2;
 				background-repeat: repeat-x;
 				background-position: bottom;
 			}
+			#main_content h2.font_sizer_clear {padding-right: 120px;}
 			#main_content .title h2 {background: none;}
 				#main_content h2 a {text-decoration: none;}
 				#main_content h2 a:hover {text-decoration: underline;}

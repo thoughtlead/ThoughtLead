@@ -51,6 +51,7 @@ jQuery(function($) {
 				var fs = $('<div class="font_sizer"><span class="label">Font size: </span><ul class="size_nav replace"><li class="smaller"><a href="#smaller">0</a></li><li class="current"><a>1</a></li><li class="larger"><a href="#larger">2</a></li></ul></div>')
 				// place font sizer
 				$e.main_content.prepend(fs);
+				$e.main_content.find('h2:first').addClass('font_sizer_clear');
 				thoughtlead.fontSizer.prepareChanger(fs);
 			},
 			prepareChanger : function(e) {
