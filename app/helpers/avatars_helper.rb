@@ -4,7 +4,7 @@ module AvatarsHelper
   end 
 
   def avatar_for(user, size = :medium) 
-    image_tag(avatar_filename(user, size), :id => "profile_avatar", :size => IMAGE_DIMENSIONS[size])
+    image_tag(avatar_filename(user, size), :id => "profile_avatar")
   end
   
   def avatar_filename(user, size = :medium) 
