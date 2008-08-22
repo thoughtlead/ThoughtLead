@@ -25,7 +25,8 @@
 			<p>Jump to:</p>
 			<ul>
 				<li class="first"><%= link_to "Courses", courses_path %></li>
-				<li><%= link_to h(@course), @course %></li>
+				<li><%= link_to h(snippet(@course.to_s)), @course %></li>
+				<li><%= h(snippet(@lesson.to_s)) %></li>
 			</ul>
 		</div>
 		<ul class="lesson_nav">
