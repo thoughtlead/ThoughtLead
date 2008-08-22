@@ -18,7 +18,7 @@
 		<% unless (user.disabled? && !logged_in_as_owner?) %>
 		<li>
 			<div class="item_image module image">
-				<%= link_to(avatar_for(user, :medium),user) %>
+				<div class="image_wrap"><%= link_to(avatar_for(user, :medium),user) %></div>
 				<% if user.owner? %><span class="marker admin replace">Administrator</span><% end %>
 				<% if user.expert? %><span class="marker expert replace">Expert</span><% end %>
 			</div>

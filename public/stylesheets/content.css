@@ -723,6 +723,8 @@ h1, h2, h3, h4, h5, h6 {margin: 0.5em 0;}
 				float: left;
 				clear: both;
 			}
+				.discussions #main_content .item_image .image_wrap,
+				#main_content .comment .item_image .image_wrap {width: 48px; height: 48px;}
 			.discussions #main_content .item_content {
 				width: 458px;
 				float: left;
@@ -733,6 +735,15 @@ h1, h2, h3, h4, h5, h6 {margin: 0.5em 0;}
 	#main_content .comment {}
 		#main_content .comment .module {margin: 0;}
 		#main_content .comment .item_image {float: left;}
+
+		#main_content .item_image .image_wrap {
+			position: relative;
+			overflow: hidden;
+		}
+			#main_content .item_image .image_wrap img {
+				margin: 0 auto;
+			}
+
 		#main_content .comment .item_content {
 			width: 474px;
 			float: left;
@@ -836,6 +847,7 @@ h1, h2, h3, h4, h5, h6 {margin: 0.5em 0;}
 				background-position: bottom;
 				background-repeat: repeat-x;
 			}
+				#main_content .people_list .item_image .image_wrap {width: 64px; height: 64px;}
 				#main_content .people .item_image .marker {
 					width: 16px; height: 15px;
 					position: absolute;

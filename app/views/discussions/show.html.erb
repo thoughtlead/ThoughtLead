@@ -16,7 +16,7 @@
 	</div>
 
 	<div class="item_image module image">
-		<%= link_to(avatar_for(@discussion.user, :small),@discussion.user) %>
+		<div class="image_wrap"><%= link_to(avatar_for(@discussion.user, :small),@discussion.user) %></div>
 	</div>
 	<div class="item_content">
 		<div class="title">
@@ -61,7 +61,7 @@
 		<% for response in @discussion.responses %>
 		<li>
 			<div class="item_image module image">
-				<%= link_to(avatar_for(response.user, :small), response.user) %>
+				<div class="image_wrap"><%= link_to(avatar_for(response.user, :small), response.user) %></div>
 			</div>
 			<div class="item_content">
 				<div class="module">

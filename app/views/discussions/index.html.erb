@@ -32,7 +32,7 @@
 		<% for discussion in @discussions %>
 		<li>
 			<div class="item_image module image">
-				<%= avatar_for(discussion.user, :small) %>
+				<div class="image_wrap"><%= avatar_for(discussion.user, :small) %></div>
 			</div>
 			<div class="item_content">
 				<div class="title">
