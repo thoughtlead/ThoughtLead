@@ -555,6 +555,7 @@ h1, h2, h3, h4, h5, h6 {margin: 0.5em 0;}
 					background-repeat: no-repeat;
 				}
 				#main_content .attachment .action:hover {text-decoration: underline;}
+				#main_content .module.attachments .content a.delete,
 				#main_content .attachment .delete {color: #c40000; background-image: url(../images/template/icon_action_delete_content.gif);}
 
 
