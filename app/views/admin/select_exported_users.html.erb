@@ -1,0 +1,38 @@
+<div id="main_content">
+	<div class="content_bar" id="top">
+		<div class="breadcrumbs">
+			<p>Jump to:</p>
+			<ul>
+				<li class="first no_tab"><%= link_to "Community Setup", edit_community_url %></li>
+			</ul>
+		</div>
+	</div>
+    <div class="title">
+        <h2>Export Users</h2>
+        <p class="subtitle">
+            Download CSV files for users
+        </p>
+    </div>
+    <div id="export_users" class="export_users">
+        <% form_tag :controller=>'admin', :action=>'export_users' do %>
+        <label>
+            Users joining since date: <%= unobtrusive_date_picker_tags %>
+        </label>
+        <br/>
+        <p>
+            <%= radio_button_tag 'premium', 'true', true %><%= label_tag 'premium_true', 'Premium Users', :style => 'display:inline' %>
+            <br/>
+            <%= radio_button_tag 'premium', 'false' %><%= label_tag 'premium_false', 'Registered Users', :style => 'display:inline' %>
+        </p>
+        <%= submit_tag("Export user list") %>
+        <% end %>
+    </div>
+</div>
+<div id="sidebar">
+    <ul class="modules">
+        <li class="navigation themes">
+            <h3>Community Setup</h3>
+            <%= render :partial => "menu", :locals => { :mode => :edit } %>
+        </li>
+    </ul>
+</div>

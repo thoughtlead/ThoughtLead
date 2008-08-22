@@ -5,4 +5,7 @@
 	<% content_tag(:li, :id => "show_all", :class => current_class_for_action("access_rights")) do %>
 		<%= link_to "Access Rights", access_rights_url %>
 	<% end %>
+	<% content_tag(:li, :class => current_class_for_action("select_exported_users")) do %>
+		<%= link_to "Export Users", select_exported_users_url %>
+	<% end %>
 </ul>
