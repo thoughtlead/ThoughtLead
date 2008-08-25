@@ -725,7 +725,7 @@ h1, h2, h3, h4, h5, h6 {margin: 0.5em 0;}
 				clear: both;
 			}
 				.discussions #main_content .item_image .image_wrap,
-				#main_content .comment .item_image .image_wrap {width: 48px; height: 48px;}
+				#main_content .comment .item_image .image_wrap {width: 48px;}
 			.discussions #main_content .item_content {
 				width: 458px;
 				float: left;
