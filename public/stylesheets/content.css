@@ -1295,10 +1295,17 @@ h1, h2, h3, h4, h5, h6 {margin: 0.5em 0;}
 	background-position: bottom;
 	background-repeat: repeat-x;
 }
+	#footer .content_area {
+		padding-right: 230px;
+		width: 570px;
+	}
 	#footer p {
+		margin: 0; padding: 6px 0 2px 0;
 		font-size: 1.1em;
 		color: #999;
 	}
+	#footer .copyright {float: left;}
+	#footer .credit {text-align: right;}
 
 
 /* Lists
