@@ -5,7 +5,7 @@ class SpiderTest < ActionController::IntegrationTest
   :chapters, :communities, :contents, :courses, :discussions, :emails,
   :lessons, :themes, :users
 
-  IgnoreURLs = ['/login', 'http://www.onemillionmarketers.com', %r{^javascript:.*}, %r{^.*/categories/[0-9]+}, %r{^.+logout}, %r{^.+delete.?}, %r{^.+/destroy.?}]
+  IgnoreURLs = ['/login', 'http://www.onemillionmarketers.com', 'http://thoughtlead.com/', %r{^javascript:.*}, %r{^.*/categories/[0-9]+}, %r{^.+logout}, %r{^.+delete.?}, %r{^.+/destroy.?}]
   
   include Caboose::SpiderIntegrator
   
