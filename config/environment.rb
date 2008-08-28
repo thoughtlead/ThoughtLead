@@ -36,6 +36,7 @@ Rails::Initializer.run do |config|
   config.gem "chronic"
   config.gem "mini_magick"
   config.gem "fastercsv"
+  config.gem "rexml-expansion-fix"
   
   # Only load the plugins named here, in the order given. By default, all plugins 
   # in vendor/plugins are loaded in alphabetical order.
