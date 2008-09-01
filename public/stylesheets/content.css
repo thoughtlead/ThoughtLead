@@ -706,9 +706,6 @@ h1, h2, h3, h4, h5, h6 {margin: 0.5em 0;}
 						background-position: 0 1px;
 						background-repeat: no-repeat;
 					}
-					#main_content .module.actions ul li.edit {background-image: url(../images/template/icon_action_edit.gif);}
-					#main_content .module.actions ul li.delete {background-image: url(../images/template/icon_action_delete.gif);}
-					#main_content .module.actions ul li.add {background-image: url(../images/template/icon_action_add.gif);}
 						#main_content .module.actions ul li a {}
 						#main_content .module.actions ul li a .action_target {color: #333;}
 
@@ -1286,7 +1283,6 @@ h1, h2, h3, h4, h5, h6 {margin: 0.5em 0;}
 					background-position: center right;
 					background-repeat: no-repeat;
 				}
-				#sidebar ul.modules li.publishing .icon.premium {background-image: url(../images/template/icon_premium_mod_pub.gif);}
 
 
 /* Footer
