@@ -19,9 +19,9 @@ jQuery(function($) {
 				footer: $('#footer')
 		},
 		preparePage : function() {
-			// add markup: clouds
-			var clouds = $('<div id="navigation_art" class="clouds clear"></div>');
-			$e.navigation.wrapInner(clouds);
+			// add markup: nav_art
+			var nav_art = $('<div id="navigation_art" class="clear"></div>');
+			$e.navigation.wrapInner(nav_art);
 
 			// add markup: content wrapper
 			$e.content.wrap('<div id="content_wrap" class="content_area"></div>');
