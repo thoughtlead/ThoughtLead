@@ -1,0 +1,1 @@
+ssh verticality@74.201.254.36 -p 8118 -L 3307:mysql50-6-master:3306

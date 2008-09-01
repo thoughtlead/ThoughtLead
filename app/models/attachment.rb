@@ -1,7 +1,7 @@
 class Attachment < ActiveRecord::Base
   belongs_to      :user
   belongs_to      :content
-  has_attachment  :storage => :s3, :max_size => 25.megabytes, :s3_access => :authenticated_read, :content_type => [:image,"video/x-flv","audio/x-mp3"]
+  has_attachment  :storage => :s3, :max_size => 150.megabytes, :s3_access => :authenticated_read, :content_type => [:image,"video/x-flv","audio/x-mp3"]
   validates_as_attachment
   
   def community
@@ -10,7 +10,7 @@ class Attachment < ActiveRecord::Base
   
   def attachment_attributes_valid?
     set_type_for_embedded_media
-    errors.add_to_base("Uploaded file #{filename} is too large (25MB max).") if attachment_options[:size] && !attachment_options[:size].include?(send(:size))
+    errors.add_to_base("Uploaded file #{filename} is too large (150MB max).") if attachment_options[:size] && !attachment_options[:size].include?(send(:size))
     errors.add_to_base("Uploaded file #{filename} has invalid content.") if embedded? && attachment_options[:content_type] && !attachment_options[:content_type].include?(send(:content_type))
   end
   
