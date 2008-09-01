@@ -63,7 +63,7 @@ a,
 	background-color: #2797d1;
 	background-image: url(images/template/nav_bg.gif);
 }
-	#navigation #navigation_art {background-image: url(images/template/clouds_bg.gif);}
+	#navigation #navigation_art {background-image: url(images/template/clouds_bg.gif);} 
 
 	#content_nav {}
 		#content_nav li a {
