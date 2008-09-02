@@ -6,7 +6,7 @@
 	<div id="search" class="search">
 		<% form_tag :controller=>'search', :action=>'index' do %>
 	  		<%= text_field( :search_string, {}, :class=>"inp_text", :value=>"Search...") %>
-			<%= image_submit_tag("/images/template/search_btn.gif", :class => "btn_image") %>
+			<%= image_submit_tag("#{themed_file('images/template/search_btn.gif')}", :class => "btn_image") %>
   		<% end %>
 	</div>
 	<ul id="account_nav">

@@ -63,7 +63,7 @@ a,
 	background-color: #2797d1;
 	background-image: url(images/template/nav_bg.gif);
 }
-	#navigation #navigation_art.clouds {background-image: url(images/template/clouds_bg.gif);}
+	#navigation #navigation_art {background-image: url(images/template/clouds_bg.gif);}
 
 	#content_nav {}
 		#content_nav li a {
@@ -184,6 +184,9 @@ a,
 			background-image: url(images/template/content_mod_content_bg.gif);
 			border-color: #daebaa;
 		}
+		#main_content .module.actions ul li.edit {background-image: url(images/template/icon_action_edit.gif);}
+		#main_content .module.actions ul li.delete {background-image: url(images/template/icon_action_delete.gif);}
+		#main_content .module.actions ul li.add {background-image: url(images/template/icon_action_add.gif);}
 
 	#main_content .module.attachments {}
 		#main_content .module.attachments .content a {color: #0174b0;}
@@ -307,6 +310,10 @@ a,
 				#sidebar ul.modules li.themes ul li.current {background-image: url(images/template/mod_nav_active_bg.gif);}
 				#sidebar ul.modules li.themes ul li#show_all.current {background-image: url(images/template/mod_nav_showall_active_bg.gif);}
 					#sidebar ul.modules li.themes ul li.current a {color: #333;}
+
+		#sidebar ul.modules li.publishing {}
+			#sidebar ul.modules li.publishing .icon.premium {background-image: url(images/template/icon_premium_mod_pub.gif);}
+
 
 
 /* Footer
