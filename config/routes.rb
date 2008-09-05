@@ -18,7 +18,9 @@ ActionController::Routing::Routes.draw do |map|
   
   map.resources :themes, :conditions => { :is_client_domain => true }
   map.resources :sessions, :conditions => { :is_client_domain => true }
-  map.resources :users, :member => { :email => :any, :edit_password => :any, :disable => :any, :reactivate => :any }, :conditions => { :is_client_domain => true }
+  
+  map.resources :users, :as => 'members', :member => { :email => :any, :edit_password => :any, :disable => :any, :reactivate => :any }, :conditions => { :is_client_domain => true }
+  
   map.forgot_password '/forgot_password', :controller => 'users', :action => 'forgot_password', :conditions => { :is_client_domain => true }
   map.resources :discussions, :conditions => { :is_client_domain => true } do | discussions |
     discussions.resources :responses, :conditions => { :is_client_domain => true } 
