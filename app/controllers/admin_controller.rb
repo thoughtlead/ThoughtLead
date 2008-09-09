@@ -25,7 +25,14 @@ class AdminController < ApplicationController
   end
   
   def export_users
-    since = Date.new(params[:date][:year].to_i, params[:date][:month].to_i, params[:date][:day].to_i)
+    begin
+      since = Date.new(params[:date][:year].to_i, params[:date][:month].to_i, params[:date][:day].to_i)
+    rescue ArgumentError
+      flash[:notice] = "You have entered an invalid date."
+      redirect_to select_exported_users_url
+      return
+    end
+  
     active = params[:premium] == 'true'
     users = User.find(:all, :conditions => ["created_at >= ? and community_id = ? and active = ?", since, current_community.id, active])
     csv_string = FasterCSV.generate do |csv| 
