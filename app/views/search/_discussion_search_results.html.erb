@@ -1,6 +1,6 @@
 <h3>Discussions:&nbsp;<%= pluralize(@responses.size + @discussions.size, 'result') -%>&nbsp;found</h3>
 <ul class="content">
-	<% unless current_community.discussions_are_premium? && !logged_in_as_active? %>
+	<% if !current_community.discussions_are_premium? || logged_in_as_active? || logged_in_as_owner?%>
 		<% @discussions.each do |discussion| %>
 			<li>
 				<dl>
