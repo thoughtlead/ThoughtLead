@@ -353,6 +353,8 @@ a,
 	border-top-color: #f6f0df;
 	border-bottom-color: #ebd9ab;
 }
+#content #main_content .banner_wrap .content {width: 340px;}
+#content #main_content .banner_wrap .image {top: -40px; right: 5px;}
 	#main_content .banner h2 {background-image: url(images/headlines/h2_intro_bg.gif);}
 	#main_content .banner .register {background-image: url(images/template/button_register_bg.gif);}
 
