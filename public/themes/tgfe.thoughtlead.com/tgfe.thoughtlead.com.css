@@ -292,6 +292,7 @@ a,
 			background-image: url(images/template/mod_cta_top_bg.gif);
 		}
 			#sidebar ul.modules li.cta .content {background-image: url(images/template/mod_cta_bottom_bg.gif);}
+			#sidebar ul.modules li.cta .content h4 {height: 15px;}
 			#sidebar ul.modules li.cta .content h4.get_free {background-image: url(images/headlines/h4_getfree_bg.gif);}
 			#sidebar ul.modules li.cta .content h4.get_premium {background-image: url(images/headlines/h4_getpremium_bg.gif);}
 
@@ -354,7 +355,7 @@ a,
 	border-bottom-color: #ebd9ab;
 }
 #content #main_content .banner_wrap .content {width: 340px;}
-#content #main_content .banner_wrap .image {top: -40px; right: 5px;}
+#content #main_content .banner_wrap .image {top: -10px; right: 5px;}
 	#main_content .banner h2 {background-image: url(images/headlines/h2_intro_bg.gif);}
 	#main_content .banner .register {background-image: url(images/template/button_register_bg.gif);}
 
