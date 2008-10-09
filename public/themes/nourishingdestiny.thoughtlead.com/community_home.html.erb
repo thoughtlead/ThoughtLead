@@ -1,0 +1,50 @@
+<% @current_tab = :Home %>
+<% content_for :head do %>
+	<%= stylesheet_link_tag('home') %>
+	<%= javascript_include_tag('home') %>
+<% end %>
+<div id="main_content" class="marketing">
+	<div class="banner">
+		<div class="banner_wrap">
+		<div class="content">
+			<h2 class="do_more replace">Creating the future of medicine NOW!</h2>
+			<p>The Nourishing Destiny site offers students and practitioners of Chinese medicine a vibrant online community in which to discuss ideas, present cases, learn, and advance the medicine. Our business is creating the future of medicine through the evolution of its practitioners.</p>
+			<p class="register replace"><%= link_to "Register for Free Access", signup_url %></p>
+		</div>
+		<div class="image">
+			<img src="<%= themed_file('images/content/home_screenshot.png') %>" alt="Screenshot" />
+		</div>
+		</div>
+	</div>
+	<div class="page_content">
+		<h2>What can you do?</h2>
+		<ul class="section_list">
+			<li class="library">
+				<h4><span>Browse Library</span></h4>
+				<p>The library contains articles, audio, and video teachings by the most innovative practitioners and authors in the field of Chinese medicine. The library will continue to grow. Much of this content is free to registered users. <%= link_to "Join Today", signup_url, :class => "more" %><span class="arrow">&nbsp;</span></p>
+			</li>
+			<li class="courses">
+				<h4><span>Join Courses</span></h4>
+				<p>Online courses are certified by the NCCAOM! These include PDA courses by many of the most highly regarded teachers in the field of Chinese medicine. Here we offer a new and engaging format for continuing education. <%= link_to "Join Today", signup_url, :class => "more" %><span class="arrow">&nbsp;</span></p>
+			</li>
+			<li class="discussions">
+				<h4><span>Join Discussions</span></h4>
+				<p>Start conversations in organized themes, and respond to the posts of both fellow practitioners, and community experts. Part blog, part forum, the Nourishing Destiny discussion area gives you the benefit of collective wisdom and a focused inquiry.  <%= link_to "Join Today", signup_url, :class => "more" %><span class="arrow">&nbsp;</span></p>
+			</li>
+			<li class="people">
+				<h4><span>Meet People</span></h4>
+				<p>Members can create profiles and safely network with each other. Search the member database by interests, names, locations, or any key word. The membership database will grow to serve as a great referral source and as a dynamic way to meet practitioners with similar interests. <%= link_to "Join Today", signup_url, :class => "more" %><span class="arrow">&nbsp;</span></p>
+			</li>
+		</ul>
+	</div>
+</div>
+<div id="sidebar">
+	<ul class="modules">
+		<li class="cta register">
+			<div class="content">
+				<h4 class="get_free replace">Get Free Access</h4>
+				<p>Interested in joining the Nourishing Destiny community? You can get free access by signing up today. <%= link_to "Join Today", signup_url, :class => 'more' %><span class="arrow">&nbsp;</span></p>
+			</div>
+		</li>
+	</ul>
+</div>
