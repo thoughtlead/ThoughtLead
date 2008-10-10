@@ -6,37 +6,28 @@
 <div id="main_content" class="login">
 	<div class="content_bar" id="top">
 		<div class="content">
-			<h4>Welcome to the <%= h(current_community) %></h4>
-			<p>In the next release, this section will include dynamic content updates and more. For now, the home page will guide members through the different parts of your community.</p>
+			<h4>Welcome to <%= h(current_community) %></h4>
+			<p>Take a moment to look around, and when you’re ready, come take a course, check out the new articles, respond to a discussion, or meet fellow site members.</p>
 		</div>
 	</div>
 	<ul class="section_list">
 		<li class="library">
 			<h4><span>Browse Library</span></h4>
-			<p>As a community founder, you can create a multimedia resource base for your community. Add essays, videos, audio interviews, pictures and charts, downloadable files, and more. <%= link_to "Go to Library", articles_url, :class => "more" %><span class="arrow">&nbsp;</span></p>
+			<p>Explore our multimedia library to find the entrepreneurial resources you need. Browse the whole library or sort by topic. <%= link_to "Go to Library", articles_url, :class => "more" %><span class="arrow">&nbsp;</span></p>
 		</li>
 		<li class="courses">
-			<h4><span>Join Courses</span></h4>
-			<p>Structured information (a course) from an expert (you) is more valuable to people (your members) than all the web surfing in the world. We provide an easy format to create multimedia courses from your ideas and expertise. <%= link_to "Go to Courses", courses_url, :class => "more" %><span class="arrow">&nbsp;</span></p>
+			<h4><span>Take Courses</span></h4>
+			<p>Learn from our expert contributors by taking a WeHabitat course. We'll teach you the skills and techniques you need to succeed with your business. <%= link_to "Go to Courses", courses_url, :class => "more" %><span class="arrow">&nbsp;</span></p>
 		</li>
 		<li class="discussions">
 			<h4><span>Join Discussions</span></h4>
-			<p>Start conversations, organize them into themes, read your community members' responses, and engage. Part blog, part forum, the ThoughtLead discussion area gives you the benefit of collective contribution and the flexibility to keep the inquiry focused. <%= link_to "Go to Discussions", discussions_url, :class => "more" %><span class="arrow">&nbsp;</span></p>
+			<p>Take your understanding further, contribute your expertise, find answers to your questions, and engage with other inspired women in our discussion area. <%= link_to "Go to Discussions", discussions_url, :class => "more" %><span class="arrow">&nbsp;</span></p>
 		</li>
 		<li class="people">
 			<h4><span>Meet People</span></h4>
-			<p>Members can create simple profiles and safely network with each other. Invite colleagues to become "expert" members. Search the member database by interests, names, or locations. <%= link_to "Go to People", users_url, :class => "more" %><span class="arrow">&nbsp;</span></p>
+			<p>Create a profile and get to know your friendly community members by browsing or searching for similar interests, locations, or needed skills. <%= link_to "Go to People", users_url, :class => "more" %><span class="arrow">&nbsp;</span></p>
 		</li>
 	</ul>
 </div>
 <div id="sidebar">
-	<ul class="modules">
-		<li class="cta register">
-			<div class="content">
-				<h4 class="get_premium replace">Get Premium Access</h4>
-				<p>You can make money by charging for your premium content, either with monthly subscriptions or on a per-item basis. You choose what works best!</p>
-				<p>Thoughtlead integrates simply with any shopping cart, or you can use our built-in subscription software. <a class="more" href="/contact">Give us a call to get started today</a><span class="arrow">&nbsp;</span></p>
-			</div>
-		</li>
-	</ul>
 </div>

@@ -24,7 +24,7 @@ h1, h2, h3, h4, h5, h6 {margin: 0.5em 0;}
 		background-position: 0 35px;
 	}
 		#logo h1,
-		#logo h1 a {width: 390px;}
+		#logo h1 a {width: 511px;}
 
 
 /* Typography
@@ -359,15 +359,31 @@ a,
 	border-top-color: #fae1f0;
 	border-bottom-color: #f5bedd;
 }
+#content #main_content .banner_wrap .content {width: 330px;}
+#content #main_content .banner_wrap .image {right: -30px;}
 	#main_content .banner h2 {background-image: url(images/headlines/h2_tagline_bg.gif);}
+		#main_content .banner h2.helping {height: 39px;}
 	#main_content .banner .register {background-image: url(images/template/button_register_bg.gif);}
 
 
 	#main_content .section_list h4 {}
+	#main_content ul.simple li {padding-top: 10px; padding-bottom: 0;}
 		#main_content .section_list .library h4 span {background-image: url(images/template/home_library_icon.gif);}
 		#main_content .section_list .courses h4 span {background-image: url(images/template/home_courses_icon.gif);}
 		#main_content .section_list .discussions h4 span {background-image: url(images/template/home_discussions_icon.gif);}
 		#main_content .section_list .people h4 span {background-image: url(images/template/home_people_icon.gif);}
+
+
+	#main_content .feature_list {
+		margin: 0; padding: 0;
+		list-style-type: none;
+		font-size: 1em;
+	}
+		#main_content .feature_list li {
+			margin: 12px 0 4px 0; padding: 0 0 0 23px;
+			background: url(images/template/bullet_flower.gif) 0 4px no-repeat;
+		}
+			#main_content .feature_list li p {margin: 0; padding: 0;}
 
 	#main_content .section_list .arrow {background-image: url(images/template/home_arrow_bg.gif);}
 	#sidebar .cta .arrow {background-image: url(images/template/cta_arrow_bg.gif);}
