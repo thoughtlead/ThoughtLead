@@ -7,6 +7,7 @@ ActionController::Routing::Routes.draw do |map|
   map.community_home '', :controller => "communities", :action => 'current_community_home', :conditions => { :is_client_domain => true }
   map.community_about '/about', :controller => "communities", :action => 'current_community_about', :conditions => { :is_client_domain => true }
   map.community_contact '/contact', :controller => "communities", :action => 'current_community_contact', :conditions => { :is_client_domain => true }
+  map.community_tos '/tos', :controller => "communities", :action => 'current_community_tos', :conditions => { :is_client_domain => true }
   map.community_need_to_activate '/need_to_activate', :controller => "communities", :action => 'need_to_activate', :conditions => { :is_client_domain => true }
   
   
