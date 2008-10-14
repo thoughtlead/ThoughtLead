@@ -1,0 +1,50 @@
+<% @current_tab = :Home %>
+<% content_for :head do %>
+	<%= stylesheet_link_tag('home') %>
+	<%= javascript_include_tag('home') %>
+<% end %>
+<div id="main_content" class="marketing">
+	<div class="banner">
+		<div class="banner_wrap">
+		<div class="content">
+			<h2 class="welcome replace">Welcome to the Know Your Purpose Community!</h2>
+			<p>This is where you will download audio recordings and homework assignments during the Know Your Purpose Teleseminar. You will also be able to use this site to post questions, successes and requests for support, and to communicate with other participants and staff in the Teleseminar! Go ahead and create a profile for yourself now.</p>
+			<p class="register replace"><%= link_to "Register for Free Access", signup_url %></p>
+		</div>
+		<div class="image">
+			<img src="<%= themed_file('images/content/home_screenshot.png') %>" alt="Screenshot" />
+		</div>
+		</div>
+	</div>
+	<div class="page_content">
+		<h2>What can you do?</h2>
+		<ul class="section_list">
+			<li class="library">
+				<h4><span>Browse Library</span></h4>
+				<p>Explore our multimedia library of articles, videos, audios, and more. <%= link_to "Join Today", signup_url, :class => "more" %><span class="arrow">&nbsp;</span></p>
+			</li>
+			<li class="courses">
+				<h4><span>Join Courses</span></h4>
+				<p>Take your understanding further with our courses. <%= link_to "Join Today", signup_url, :class => "more" %><span class="arrow">&nbsp;</span></p>
+			</li>
+			<li class="discussions">
+				<h4><span>Join Discussions</span></h4>
+				<p>Ask questions, contribute your expertise, and engage with other members. <%= link_to "Join Today", signup_url, :class => "more" %><span class="arrow">&nbsp;</span></p>
+			</li>
+			<li class="people">
+				<h4><span>Meet People</span></h4>
+				<p>Create a profile and get to know your fellow community members by browsing or searching for similar interests, location, or skills. <%= link_to "Join Today", signup_url, :class => "more" %><span class="arrow">&nbsp;</span></p>
+			</li>
+		</ul>
+	</div>
+</div>
+<div id="sidebar">
+	<ul class="modules">
+		<li class="cta register">
+			<div class="content">
+				<h4 class="get_free replace">Get Free Access</h4>
+				<p>Interested in joining the Know Your Purpose community? You can get free access by signing up today. <%= link_to "Join Today", signup_url, :class => 'more' %><span class="arrow">&nbsp;</span></p>
+			</div>
+		</li>
+	</ul>
+</div>
