@@ -1,0 +1,367 @@
+/*
+-----------------------------------------------
+Site: ThoughtLead
+Name: Theme
+----------------------------------------------- */
+
+
+/* Global
+----------------------------------------------- */
+body {
+	background-color: #fff;
+	background-image: url(images/template/body_bg.gif);
+}
+
+
+/* Headlines
+----------------------------------------------- */
+h1, h2, h3, h4, h5, h6 {margin: 0.5em 0;}
+
+#header {}
+	#logo h1 {
+		background-image: url(images/headlines/h1_logo_bg.gif);
+		background-position: 0 5px;
+		width: 220px;
+	}
+	#logo h1 a {width: 220px;}
+
+
+/* Typography
+----------------------------------------------- */
+body {color: #111;}
+
+a,
+#main_content h2,
+#main_content h3,
+#main_content h4 {color: #0174b0;}
+
+#main_content .separator {background-image: url(images/template/border_bg.gif);}
+
+#main_content .separator,
+#sidebar h3,
+#sidebar h4 {color: #333;}
+
+
+/* Header
+----------------------------------------------- */
+#search {
+	background-color: #f4f9e5;
+	background-image: url(images/template/search_bg.gif);
+}
+
+#account_nav {
+	background-color: #4cade0;
+	background-image: url(images/template/account_nav_bg.gif);
+	color: #fff;
+}
+	#account_nav li {background-image: url(images/template/account_nav_sep_bg.gif);}
+		#account_nav li.login {background-image: url(images/template/account_nav_lock_icon.gif);}
+		#account_nav li a {color: #fff;}
+		#account_nav li.edit_profile a {background-image: url(images/template/account_nav_gear_icon.gif);}
+
+
+
+
+/* Navigation
+----------------------------------------------- */
+#navigation {
+	background-color: #2797d1;
+	background-image: url(images/template/nav_bg.gif);
+}
+	#navigation #navigation_art {background-image: url(images/template/waves_bg.gif);}
+
+	#content_nav {}
+		#content_nav li a {
+			color: #fff;
+			background-color: #4cade0;
+			border-color: #fff;
+		}
+		#content_nav li a:hover,
+		#content_nav li.current a {background-color: #2797d1;}
+		#content_nav li.current a {border-bottom-color: #2797d1;}
+
+		#content_nav li.current a.home_link {background-image: url(images/template/nav_home_icon.gif);}
+		#content_nav li.current a.library_link {background-image: url(images/template/nav_library_icon.gif);}
+		#content_nav li.current a.courses_link {background-image: url(images/template/nav_courses_icon.gif);}
+		#content_nav li.current a.discussions_link {background-image: url(images/template/nav_discussions_icon.gif);}
+		#content_nav li.current a.people_link {background-image: url(images/template/nav_people_icon.gif);}
+
+
+/* Content
+----------------------------------------------- */
+.content_bar {
+	border-bottom-color: #d8e9a6;
+	background-image: url(images/template/content_bar_top_bg.gif);
+}
+.content_bar#bottom {background-image: url(images/template/content_bar_bottom_bg.gif);}
+
+	#main_content .content_bar h4,
+	.content_bar a {color: #628700;}
+		.content_bar .breadcrumbs p {color: #999;}
+		.content_bar .breadcrumbs ul {}
+			.content_bar .breadcrumbs ul li {background-image: url(images/template/content_bar_arrow_right_bg.gif);}
+			.content_bar .breadcrumbs ul li {color: #628700;}
+			.home .content_bar .breadcrumbs ul li.first {background-image: url(images/template/bc_home_icon.gif);}
+			.article .content_bar .breadcrumbs ul li.first {background-image: url(images/template/bc_library_icon.gif);}
+			.courses .content_bar .breadcrumbs ul li.first {background-image: url(images/template/bc_courses_icon.gif);}
+			.discussions .content_bar .breadcrumbs ul li.first {background-image: url(images/template/bc_discussions_icon.gif);}
+			.people .content_bar .breadcrumbs ul li.first {background-image: url(images/template/bc_people_icon.gif);}
+			.search .content_bar .breadcrumbs ul li.first {background-image: url(images/template/bc_search_icon.gif);}
+
+	.content_bar .lesson_nav {background-image: url(images/template/content_bar_bottom_action_bg.gif);}
+		.content_bar .lesson_nav li {border-right-color: #628700;}
+		.content_bar .lesson_nav li.previous a {background-image: url(images/template/content_bar_arrow_left_bg.gif);}
+		.content_bar .lesson_nav li.next a {background-image: url(images/template/content_bar_arrow_right_bg.gif);}
+		.content_bar .lesson_nav li.inactive a {opacity: 0.5;}
+
+	.content_bar .action {
+		background-image: url(images/template/content_bar_top_action_bg.gif);
+		border-left-color: #d8e9a6;
+	}
+		.content_bar .action span.button_left {background-image: url(images/template/bar_button_left_bg.gif);}
+		.content_bar .action a.button {
+			color: #8fc400;
+			background-image: url(images/template/bar_button_right_bg.gif);
+		}
+
+
+	#main_content .font_sizer {}
+		#main_content .font_sizer ul li a {background-image: url(images/template/font_sprite_bg.gif);}
+
+#main_content {}
+
+
+	#main_content h2,
+	#main_content .page_title h2,
+	#main_content .title,
+	#main_content .intro {background-image: url(images/template/border_bg.gif);}
+		#main_content h2 {color: #333;}
+
+	#main_content ul.full_width {}
+		#main_content ul.full_width li.odd {background-color: #f6f9ed;}
+
+
+	#main_content .page_title {}
+		#main_content .page_title p {color: #666;}
+
+
+	#main_content .title.bar {
+		background-image: url(images/template/title_bar_bg.gif);
+		border-bottom-color: #ccc;
+	}
+		#main_content .title.bar h2 {color: #0174b0;}
+
+
+		#main_content .meta_info li {
+			color: #666;
+			border-right-color: #999;
+		}
+
+		#main_content .meta_tags {}
+			#main_content .meta_tags li {color: #fff;}
+				#main_content .meta_tags li.draft {background-color: #cc1f1f;}
+				#main_content .meta_tags li.registered {
+					background-color: #4cade0;
+					background-image: url(images/template/icon_registered.gif);
+				}
+				#main_content .meta_tags li.premium {
+					background-color: #2797d1;
+					background-image: url(images/template/icon_premium.gif);
+				}
+
+
+		#main_content ul.lesson_list {}
+			#main_content ul.lesson_list li h3 {
+				color: #333;
+				background-image: url(images/template/border_bg.gif);
+			}
+
+
+	#main_content .module {
+		background-color: #f4f9e5;
+		background-image: url(images/template/content_mod_bg.gif);
+	}
+		#main_content .module a {color: #8b0;}
+
+	#main_content .module.actions {}
+		#main_content .module.actions .content {
+			background-color: #fff;
+			background-image: url(images/template/content_mod_content_bg.gif);
+			border-color: #daebaa;
+		}
+		#main_content .module.actions ul li.edit {background-image: url(images/template/icon_action_edit.gif);}
+		#main_content .module.actions ul li.delete {background-image: url(images/template/icon_action_delete.gif);}
+		#main_content .module.actions ul li.add {background-image: url(images/template/icon_action_add.gif);}
+
+	#main_content .module.attachments {}
+		#main_content .module.attachments .content a {color: #0174b0;}
+		#main_content .module.attachments .content h4 {color: #333;}
+			#main_content .module.attachments .content h4 span {background-image: url(images/template/icon_attachments.gif);}
+
+
+	/* special link/button styles */
+	#main_content .more {}
+	#main_content .arrow {background-image: url(images/template/content_arrow_bg.gif);}
+	.button {background-image: url(images/template/button_left_bg.gif);}
+		.button a,
+		#main_content .button a {color: #fff;}
+		.button a {background-image: url(images/template/button_right_bg.gif);}
+			.button a span.icon {}
+			.button a span.icon.create {background-image: url(images/template/icon_create_button.gif);}
+			.button a span.icon.save {background-image: url(images/template/icon_save_button.gif);}
+			.button a span.icon.email {background-image: url(images/template/icon_email_button.gif);}
+			.button a span.icon.signup {background-image: url(images/template/icon_signup_button.gif);}
+
+	a.button.edit {background-image: url(images/template/button_edit_bg.gif);}
+
+
+
+/* Discussions
+----------------------------------------------- */
+#main_content .comment {}
+	#main_content .comment a {color: #0174b0;}
+	#main_content .comment .item_content .bubble {background-image: url(images/template/comment_bubble_bg.gif);}
+		#main_content .comment .item_content .module .content {background-color: #fff;}
+
+	#main_content div.comment.post .item_content .bubble {background-image: url(images/template/comment_post_bubble_bg.gif);}
+		#main_content div.comment.post .item_content .module .content {background-color: transparent;}
+
+
+/* People
+----------------------------------------------- */
+.people {}
+	#main_content ul.people_list li .item_image {
+		background-color: #deecb5;
+		background-image: url(images/template/people_list_profile_bg.gif);
+	}
+
+
+/* Login
+----------------------------------------------- */
+.login {}
+	#main_content .module.signup {}
+		#main_content .module.signup h4 {}
+
+
+/* Search
+----------------------------------------------- */
+.search {}
+	.search #main_content .title.bar {}
+		.search #main_content .title.bar .search.again {background: #f1f1f1;}
+			.search #main_content .search.again form label {color: #666;}
+	.search #main_content .results_nav {background: #8fc400;}
+		.search #main_content .results_nav a {color: #fff;}
+		.search #main_content .results_nav h3 {color: #e9f3cc;}
+
+	.search #main_content .search_results {}
+		.search #main_content .search_results a {color: #0174b0;}
+			.search #main_content .search_results h3 {background-color: #f4f9e5;}
+				.search #main_content .search_results ul li ul {background-image: url(images/template/search_subarrow_bg.gif);}
+
+			.search #main_content .search_results .match {background-color: #ff6;}
+				.search #main_content .search_results ul li dl dt span {color: #999;}
+
+			.search #main_content .search_results dl.profile_result {}
+				.search #main_content .search_results dl.profile_result dt {color: #999;}
+
+
+
+
+
+
+/* Sidebar
+----------------------------------------------- */
+#sidebar {}
+	#sidebar ul.modules {}
+		#sidebar ul.modules li {background-image: url(images/template/module_sep_bg.gif);}
+
+		#sidebar ul.modules li.navigation {}
+			#sidebar ul.modules li.navigation ul {
+				background-color: #f4f9e5;
+				background-image: url(images/template/mod_nav_bg.gif);
+				border-color: #d6e9a0;
+			}
+				#sidebar ul.modules li.navigation .content a {color: #628700;}
+
+		#sidebar ul.modules li.nav_sep {}
+			#sidebar ul.modules li.nav_sep ul {}
+				#sidebar ul.modules li.nav_sep ul li {background-image: url(images/template/mod_nav_sep_bg.gif);}
+
+		#sidebar ul.modules li.cta {
+			color: #fff;
+			background-image: url(images/template/mod_cta_top_bg.gif);
+		}
+			#sidebar ul.modules li.cta .content {background-image: url(images/template/mod_cta_bottom_bg.gif);}
+			#sidebar ul.modules li.cta .content h4.get_free {background-image: url(images/headlines/h4_getfree_bg.gif);}
+			#sidebar ul.modules li.cta .content h4.get_premium {background-image: url(images/headlines/h4_getpremium_bg.gif);}
+
+		#sidebar ul.modules li.outline {}
+			#sidebar ul.modules li.outline ul {}
+				#sidebar ul.modules li.outline ul li.active {background-image: url(images/template/mod_out_active_bg.gif);}
+					#sidebar ul.modules li.outline ul li h4 {background-image: url(images/template/mod_out_show_sprite_bg.gif);}
+						#sidebar ul.modules li.outline .content h4 a {color: #666;}
+						#sidebar ul.modules li.outline .content .active  h4 a {color: #333;}
+
+						#sidebar ul.modules li.outline ul li ul li,
+						#sidebar ul.modules li.outline ul li ul li.active {background-image: url(images/template/mod_out_subitem_bg.gif);}
+							#sidebar ul.modules li.outline ul li ul li a.active span {
+								color: #fff;
+								background-color: #8fc400;
+							}
+
+		#sidebar ul.modules li.themes {}
+			#sidebar ul.modules li.themes ul {}
+				#sidebar ul.modules li.themes ul li {background-image: url(images/template/mod_nav_sep_bg.gif);}
+				#sidebar ul.modules li.themes ul li.current {background-image: url(images/template/mod_nav_active_bg.gif);}
+				#sidebar ul.modules li.themes ul li#show_all.current {background-image: url(images/template/mod_nav_showall_active_bg.gif);}
+					#sidebar ul.modules li.themes ul li.current a {color: #333;}
+
+		#sidebar ul.modules li.publishing {}
+			#sidebar ul.modules li.publishing .icon.premium {background-image: url(images/template/icon_premium_mod_pub.gif);}
+
+
+
+/* Footer
+----------------------------------------------- */
+#footer {background-image: url(images/template/footer_bg.gif);}
+
+
+
+/* Forms
+----------------------------------------------- */
+.search form {}
+	.search form input.inp_text {
+		background-color: #fff;
+		background-image: url(images/template/search_inp_bg.gif);
+	}
+
+
+/* Miscellaneous
+----------------------------------------------- */
+#flash {background-color: #2797d1;}
+	#flash .close {background-image: url(images/template/flash_close_bg.gif);}
+
+
+
+/* Home
+----------------------------------------------- */
+#main_content .banner {
+	background-color: #f4f9e5;
+	background-image: url(images/template/home_banner_bg.gif);
+}
+#main_content .banner_wrap {
+	border-top-color: #eaf4ce;
+	border-bottom-color: #e0eeb7;
+}
+	#main_content .banner h2.welcome {background-image: url(images/headlines/h2_welcome_bg.gif); height: 45px;}
+	#main_content .banner .register {background-image: url(images/template/button_register_bg.gif);}
+
+
+	#main_content .section_list h4 {}
+		#main_content .section_list .library h4 span {background-image: url(images/template/home_library_icon.gif);}
+		#main_content .section_list .courses h4 span {background-image: url(images/template/home_courses_icon.gif);}
+		#main_content .section_list .discussions h4 span {background-image: url(images/template/home_discussions_icon.gif);}
+		#main_content .section_list .people h4 span {background-image: url(images/template/home_people_icon.gif);}
+
+	#main_content .section_list .arrow {background-image: url(images/template/home_arrow_bg.gif);}
+	#sidebar .cta .arrow {background-image: url(images/template/cta_arrow_bg.gif);}
