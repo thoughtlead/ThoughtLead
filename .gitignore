@@ -16,3 +16,5 @@ deploy_history.txt
 config/ultrasphinx/*.conf
 watir_test_results
 extras
+donotsubmit
+public/themes/ternary.localhost.com
