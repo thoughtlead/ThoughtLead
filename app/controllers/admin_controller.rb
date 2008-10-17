@@ -10,7 +10,7 @@ class AdminController < ApplicationController
     return unless @community.update_attributes(params[:community])
     
     flash[:notice] = "Community Settings Saved"
-    redirect_to community_dashboard_url
+    redirect_to edit_community_url
   end
   
   def access_rights
@@ -21,7 +21,7 @@ class AdminController < ApplicationController
     return unless @community.update_attributes(params[:community])
     
     flash[:notice] = "Access Rights Saved"
-    redirect_to community_home_url
+    redirect_to access_rights_url
   end
   
   def export_users
