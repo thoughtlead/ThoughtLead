@@ -1,0 +1,42 @@
+<% @current_tab = :Home %>
+<% content_for :head do %>
+	<%= stylesheet_link_tag('home') %>
+	<%= javascript_include_tag('home') %>
+<% end %>
+<div id="main_content" class="login">
+	<div class="content_bar" id="top">
+		<div class="content">
+			<h4>Welcome to <%= h(current_community) %>, A Community of Idealists</h4>
+			<p>Idealists, unite! SimpleBig is where the rubber meets the road--that is, where your ideals get turned into real vehicles for change. To get the full benefit of what this site has to offer, make sure to visit each section below. Learn, participate, connect... and create a better future.</p>
+		</div>
+	</div>
+	<ul class="section_list">
+		<li class="library">
+			<h4><span>Browse Library</span></h4>
+			<p>Explore our multimedia library to find the keys to making a big impact. Browse articles, videos, audios and more. <%= link_to "Go to Library", articles_url, :class => "more" %><span class="arrow">&nbsp;</span></p>
+		</li>
+		<li class="courses">
+			<h4><span>Join Courses</span></h4>
+			<p>Learn from the experts by taking a SimpleBig marketing course. We'll teach you the skills and techniques you need to turn your good idea into an engine for change and innovation. <%= link_to "Go to Courses", courses_url, :class => "more" %><span class="arrow">&nbsp;</span></p>
+		</li>
+		<li class="discussions">
+			<h4><span>Join Discussions</span></h4>
+			<p>Take your understanding further, contribute your expertise, find answers to your questions, and engage with other inspired idealists by joining a discussion. <%= link_to "Go to Discussions", discussions_url, :class => "more" %><span class="arrow">&nbsp;</span></p>
+		</li>
+		<li class="people">
+			<h4><span>Meet People</span></h4>
+			<p>Create a profile and get to know your fellow community members by browsing or searching for similar interests, location, or skills. <%= link_to "Go to People", users_url, :class => "more" %><span class="arrow">&nbsp;</span></p>
+		</li>
+	</ul>
+</div>
+<div id="sidebar">
+	<ul class="modules">
+		<li class="cta register">
+			<div class="content">
+				<h4 class="get_premium replace">Get Premium Access</h4>
+				<p>Join SimpleBig Pro to get our premium content, including special resources from top experts and professional marketing courses for the entrepreneur. You will also have exclusive access to our weekly "Hot Seat" calls, where we work with real live projects, and help them get to the next level. Who knows, it might be your project in the spotlight!</p>
+				<a class="more" href="/upgrade">Click Here For Premium Access</a><span class="arrow">&nbsp;</span></p>
+			</div>
+		</li>
+	</ul>
+</div>
