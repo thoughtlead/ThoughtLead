@@ -26,12 +26,13 @@ class Mailer < ActionMailer::Base
     @body[:password] = password
   end
   
-  def new_user_welcome(user,message="If you have any questions or feedback, we'd love to hear from you.")
-    @from = "#{user.community.name} <do-not-reply@#{APP_DOMAIN}>"
+  def new_user_welcome(user)
+    # FROM: (Community Name) (admin's email address)
+    # Subject: Welcome to (Community Name) 
+    @from = "#{user.community.name} <#{user.community.owner.email}>"
     @subject = "Welcome to #{user.community.name}"
     @sent_on = Time.now
     @body[:user] = user
-    @body[:message] = message
     @recipients = user.email
   end
   

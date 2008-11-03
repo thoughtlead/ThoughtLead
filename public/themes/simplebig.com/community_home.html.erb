@@ -1,0 +1,42 @@
+<% @current_tab = :Home %>
+<% content_for :head do %>
+	<%= stylesheet_link_tag('home') %>
+	<%= javascript_include_tag('home') %>
+<% end %>
+<div id="main_content" class="marketing">
+	<div class="banner">
+		<div class="banner_wrap">
+		<div class="content">
+			<h2 class="do_more replace">If You Want to Change the World, Start Here</h2>
+			<p>You're an idealist. That means you want to make a big difference in the world. For real. Starting...now. But you've discovered that getting your idea out there--especially online--is tough. That's where we come in: we teach you simple marketing tools and strategies for creating a big impact. Click the button below to get started (it's FREE).</p>
+			<p class="register replace"><%= link_to "Register for Free Access", signup_url %></p>
+		</div>
+		<div class="image">
+			<img src="<%= themed_file('images/content/home_screenshot.png') %>" alt="Screenshot" />
+		</div>
+		</div>
+	</div>
+	<div class="page_content">
+		<h2>Here’s a sample of what you’ll learn when you join SimpleBig...</h2>
+		<ul class="section_list">
+			<ul>
+				<li>Gary Vaynerchuk documents his rise to becoming a major force for change in the wine world—and tells you what you need to understand about social media </li>
+				<li>Tellman Knudson, list-builder extraordinaire, tells us what strategies he would use today if he had to start all over again</li>
+				<li>Jay Conrad Levinson, legendary originator of “guerilla marketing,” describes myriad ways anyone can make a big splash on a shoestring budget</li>
+				<li>Matt Flannery, co-founder of Kiva.org, reveals the suprisingly humble backstory of how he created an industry-changing website</li>
+				<li>Dan Pink, best-selling author of <i>A Whole New Mind</i>, pinpoints, with his usual wit and humor, what makes some ideas stick and others slip</li>
+				<li>Rand Fishkin, bonafide SEO celebrity, demystifies the principles of search engine optimization and compares it to Pac-Man</li>
+			</ul>
+		</ul>
+	</div>
+</div>
+<div id="sidebar">
+	<ul class="modules">
+		<li class="cta register">
+			<div class="content">
+				<h4 class="get_free replace">Get Free Access</h4>
+				<p>Getting started with SimpleBig is easy and free--and will enable you to start getting bigger results immediately.<%= link_to "Join Today", signup_url, :class => 'more' %><span class="arrow">&nbsp;</span></p>
+			</div>
+		</li>
+	</ul>
+</div>

@@ -25,9 +25,9 @@ class Attachment < ActiveRecord::Base
   def set_type_for_embedded_media
     parts = self.filename.split(".")
     if parts.length > 1
-      if parts.last == "flv"
+      if parts.last.downcase == "flv"
         self.content_type = "video/x-flv"
-      elsif parts.last == "mp3"
+      elsif parts.last.downcase == "mp3"
         self.content_type = "audio/x-mp3"
       end
     end
