@@ -18,7 +18,10 @@ body {
 h1, h2, h3, h4, h5, h6 {margin: 0.5em 0;}
 
 #header {}
-	#logo h1 {background-image: url(images/headlines/h1_logo_bg.gif);}
+	#logo h1 {
+		background-image: url(images/headlines/h1_logo_bg.gif);
+		background-position: 0 25px;
+	}
 
 
 /* Typography
@@ -348,10 +351,17 @@ a,
 	border-top-color: #eaf4ce;
 	border-bottom-color: #e0eeb7;
 }
-#content #main_content .banner_wrap .image {top: 0; right: 0;}
-	#main_content .banner h2 {background-image: url(images/headlines/h2_domore_bg.gif);}
+#content #main_content .banner_wrap .content {width: auto;}
+#content #main_content .banner_wrap .image {position: static;}
+	#main_content .banner h2 {background-image: url(images/headlines/h2_change_bg.gif);}
 	#main_content .banner .register {background-image: url(images/template/button_register_bg.gif);}
 
+	#main_content .feature_list {
+		margin: 1em 0; padding: 0 0 0 15px;
+	}
+		#main_content .feature_list li {
+			padding: 0 0 5px 0;
+		} * html #main_content .feature_list li {zoom: normal;}
 
 	#main_content .section_list h4 {}
 		#main_content .section_list .library h4 span {background-image: url(images/template/home_library_icon.gif);}
