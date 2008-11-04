@@ -66,7 +66,7 @@ class UsersController < ApplicationController
   def forgot_password
     return if request.get?
     
-    if user = User.find_by_login(params[:login])
+    if user = current_community.users.find_by_login(params[:login])
       @new_password = random_password
       user.password = user.password_confirmation = @new_password
       user.save!
@@ -78,6 +78,7 @@ class UsersController < ApplicationController
       flash[:notice] =  "We can't find that account.  Try again."
       redirect_to forgot_password_url
     end
+    
   end
   
   def email
