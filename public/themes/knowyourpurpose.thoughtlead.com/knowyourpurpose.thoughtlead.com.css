@@ -20,8 +20,10 @@ h1, h2, h3, h4, h5, h6 {margin: 0.5em 0;}
 #header {}
 	#logo h1 {
 		background-image: url(images/headlines/h1_logo_bg.gif);
-		background-position: 0 25px;
+		background-position: 0 5px;
+		width: 220px;
 	}
+	#logo h1 a {width: 220px;}
 
 
 /* Typography
@@ -66,7 +68,7 @@ a,
 	background-color: #2797d1;
 	background-image: url(images/template/nav_bg.gif);
 }
-	#navigation #navigation_art {background-image: url(images/template/clouds_bg.gif);}
+	#navigation #navigation_art {background-image: url(images/template/waves_bg.gif);}
 
 	#content_nav {}
 		#content_nav li a {
@@ -351,17 +353,9 @@ a,
 	border-top-color: #eaf4ce;
 	border-bottom-color: #e0eeb7;
 }
-#content #main_content .banner_wrap .content {width: auto;}
-#content #main_content .banner_wrap .image {position: static;}
-	#main_content .banner h2 {background-image: url(images/headlines/h2_change_bg.gif);}
+	#main_content .banner h2.welcome {background-image: url(images/headlines/h2_welcome_bg.gif); height: 45px;}
 	#main_content .banner .register {background-image: url(images/template/button_register_bg.gif);}
 
-	#main_content .feature_list {
-		margin: 1em 0; padding: 0 0 0 15px;
-	}
-		#main_content .feature_list li {
-			padding: 0 0 5px 0;
-		} * html #main_content .feature_list li {zoom: normal;}
 
 	#main_content .section_list h4 {}
 		#main_content .section_list .library h4 span {background-image: url(images/template/home_library_icon.gif);}
