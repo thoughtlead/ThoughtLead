@@ -49,7 +49,7 @@ class UsersController < ApplicationController
   
   def edit_password
     @user = current_community.users.find(params[:id])
-    if @user != current_user
+    if @user != current_user && !logged_in_as_owner?
       flash[:warning] = "You do not have the privileges to reach that part of the site"
       redirect_to login_url
     end
