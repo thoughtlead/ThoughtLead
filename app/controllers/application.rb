@@ -12,6 +12,8 @@ class ApplicationController < ActionController::Base
   before_filter :invalidate_return_to
   protect_from_forgery
   
+  filter_parameter_logging :password, :password_confirmation
+  
   protected
    
   def redirect_back(redirect_opts = nil)
