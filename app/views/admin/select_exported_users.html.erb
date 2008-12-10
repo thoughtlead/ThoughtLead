@@ -16,7 +16,8 @@
     <div id="export_users" class="export_users">
         <% form_tag :controller=>'admin', :action=>'export_users' do %>
         <label>
-            Users joining since date: <%= unobtrusive_date_picker_tags %>
+            Users joining since date: <%= select_date %>
+
         </label>
         <br/>
         <p>

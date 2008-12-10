@@ -1,0 +1,57 @@
+--- !ruby/object:Gem::Specification 
+name: rexml-expansion-fix
+version: !ruby/object:Gem::Version 
+  version: 1.0.1
+platform: ruby
+authors: 
+- Michael Koziarski
+autorequire: 
+bindir: bin
+cert_chain: []
+
+date: 2008-08-30 00:00:00 -04:00
+default_executable: 
+dependencies: []
+
+description: Prevents DoS attacks using the billion-laughs or entity-explosion techniques.
+email: michael@koziarski.com
+executables: []
+
+extensions: []
+
+extra_rdoc_files: []
+
+files: 
+- README.textile
+- LICENSE
+- example.xml
+- rexml-expansion-fix.gemspec
+- lib/rexml-expansion-fix.rb
+has_rdoc: false
+homepage: http://github.com/NZKoz/rexml-expansion-fix
+post_install_message: 
+rdoc_options: []
+
+require_paths: 
+- lib
+required_ruby_version: !ruby/object:Gem::Requirement 
+  requirements: 
+  - - ">="
+    - !ruby/object:Gem::Version 
+      version: "0"
+  version: 
+required_rubygems_version: !ruby/object:Gem::Requirement 
+  requirements: 
+  - - ">="
+    - !ruby/object:Gem::Version 
+      version: "0"
+  version: 
+requirements: []
+
+rubyforge_project: 
+rubygems_version: 1.3.1
+signing_key: 
+specification_version: 2
+summary: Prevents potentitial DoS attacks to rexml
+test_files: []
+
