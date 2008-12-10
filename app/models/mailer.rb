@@ -7,6 +7,7 @@ class Mailer < ActionMailer::Base
     @body[:community] = community
     @body[:url] = url
     @recipients = community.owner.email
+    @headers["x-custom-ip-tag"] = "thoughtlead"
   end  
   
   def user_to_user_email(from, to, email)
@@ -16,6 +17,7 @@ class Mailer < ActionMailer::Base
     @body[:email] = email
     @recipients = to.email
     @headers["reply-to"] = from.email
+    @headers["x-custom-ip-tag"] = "thoughtlead"
   end
   
   def new_password(user, password)
@@ -24,6 +26,7 @@ class Mailer < ActionMailer::Base
     @from = "#{user} <do-not-reply@#{APP_DOMAIN}>"
     @body[:name] = user.login
     @body[:password] = password
+    @headers["x-custom-ip-tag"] = "thoughtlead"
   end
   
   def new_user_welcome(user)
@@ -34,6 +37,7 @@ class Mailer < ActionMailer::Base
     @sent_on = Time.now
     @body[:user] = user
     @recipients = user.email
+    @headers["x-custom-ip-tag"] = "thoughtlead"
   end
   
   def new_user_notice_to_owner(user)
@@ -42,6 +46,7 @@ class Mailer < ActionMailer::Base
     @sent_on = Time.now
     @body[:user] = user
     @recipients = user.community.owner.email
+    @headers["x-custom-ip-tag"] = "thoughtlead"
   end
   
 end
