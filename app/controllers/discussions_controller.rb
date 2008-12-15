@@ -7,7 +7,13 @@ class DiscussionsController < ApplicationController
   
   def index
     @discussions = current_community.discussions.for_theme(params[:theme])
-    @discussions = @discussions.sort_by{ |discussion| discussion.created_at }
+    @discussions = @discussions.sort_by{ |discussion| 
+    	if discussion.responses.empty?
+    		discussion.created_at
+		else 
+			discussion.responses.find(:last).created_at 
+		end
+	}
     @discussions = @discussions.reverse
     @theme = current_community.themes.find_by_id(params[:theme]) if params[:theme] && params[:theme] != 'nil'
   end
