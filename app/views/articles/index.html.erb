@@ -26,7 +26,6 @@
 	<% end %>
 	<ul class="article_list library">
 		<% @articles.each do |article| %>
-			<% if article.visible_to(current_user) %>
 			<li>
 				<div class="title">
 					<h2>
@@ -62,9 +61,13 @@
 					</p>
 				</div>
 			</li>
-			<% end %>
 		<% end %>
 	</ul>
+	<% if @articles.total_pages > 1 %>
+	<div class="apple_pagination">
+		<%= will_paginate @articles %>
+	</div>
+	<% end %>
 </div>
 <div id="sidebar">
 	<ul class="modules">

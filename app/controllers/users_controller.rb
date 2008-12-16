@@ -45,6 +45,7 @@ class UsersController < ApplicationController
   
   def index
     @users = current_community.users
+    @users = @users.paginate :page => params[:page], :per_page => 15
   end
   
   def edit_password

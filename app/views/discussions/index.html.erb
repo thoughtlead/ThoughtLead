@@ -57,9 +57,11 @@
 		<% end %>
 		
 	</ul>
+	<% if @discussions.total_pages > 1 %>
 	<div class="apple_pagination">
 		<%= will_paginate @discussions %>
 	</div>
+	<% end %>
 </div>
 <div id="sidebar">
 	<ul class="modules">

@@ -13,6 +13,7 @@
 		<h2>Member Directory</h2>
 		<p class="subtitle">You can search by name, interest, and location using the search box above.</p>
 	</div>
+
 	<ul class="people_list people">
 		<% for user in @users %>
 		<% unless (user.disabled? && !logged_in_as_owner?) %>
@@ -30,7 +31,14 @@
 		<% end %>
 		<% end %>
 	</ul>
+	
+	<% if @users.total_pages > 1 %>
+	<div class="apple_pagination" style="clear:both">
+		<%= will_paginate @users %>
+	</div>
+	<% end %>
 </div>
+
 <div id="sidebar">
 	<ul class="modules">
 		<li>

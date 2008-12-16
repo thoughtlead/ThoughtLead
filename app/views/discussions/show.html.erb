@@ -87,9 +87,11 @@
 		<% end %>
 	</ol>
 	<% end %>
+	<% if @responses.total_pages > 1 %>
 	<div class="apple_pagination">
 		<%= will_paginate @responses %>
 	</div>
+	<% end %>
 	<h2 class="eclear">Post a response</h2>
 	<div class="comment post clear">
 		<div class="item_image module image">

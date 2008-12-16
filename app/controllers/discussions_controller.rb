@@ -15,7 +15,7 @@ class DiscussionsController < ApplicationController
 		end
 	end
     @discussions = @discussions.reverse
-    @discussions = @discussions.paginate :page => params[:page], :per_page => 5
+    @discussions = @discussions.paginate :page => params[:page], :per_page => 20
     @theme = current_community.themes.find_by_id(params[:theme]) if params[:theme] && params[:theme] != 'nil'
   end
   
