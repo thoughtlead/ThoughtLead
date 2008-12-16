@@ -1,5 +1,5 @@
 class DiscussionsController < ApplicationController
-  
+    
   #TODO this could be incorporated into a refactored control_access where the controllers are responsible for is_premium and is_registered
   before_filter :login_required, :except => [ :index, :show]
   before_filter :community_is_active
@@ -7,14 +7,15 @@ class DiscussionsController < ApplicationController
   
   def index
     @discussions = current_community.discussions.for_theme(params[:theme])
-    @discussions = @discussions.sort_by{ |discussion| 
-    	if discussion.responses.empty?
+    @discussions = @discussions.sort_by do |discussion| 
+		if discussion.responses.empty?
     		discussion.created_at
-		else 
+    	else 
 			discussion.responses.find(:last).created_at 
 		end
-	}
+	end
     @discussions = @discussions.reverse
+    @discussions = @discussions.paginate :page => params[:page], :per_page => 5
     @theme = current_community.themes.find_by_id(params[:theme]) if params[:theme] && params[:theme] != 'nil'
   end
   
@@ -47,6 +48,8 @@ class DiscussionsController < ApplicationController
   
   def show
     @discussion = current_community.discussions.find(params[:id])
+    @responses = @discussion.responses.reverse
+    @responses = @responses.paginate :page => params[:page], :per_page => 5
   end
   
   def destroy

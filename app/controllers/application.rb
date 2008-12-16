@@ -6,6 +6,7 @@ class ApplicationController < ActionController::Base
   include ExceptionNotifiable
   include CommunityLocation
   include RomanNumerals
+  include WillPaginate
   
   before_filter :login_from_cookie
   before_filter :control_access

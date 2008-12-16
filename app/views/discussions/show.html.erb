@@ -58,7 +58,7 @@
 	<% if !@discussion.responses.blank? %>
 	<h2 class="eclear"><%= pluralize(@discussion.responses.count, "Response") %></h2>
 	<ol id="responses" class="comments_list comment clearsub">
-		<% for response in @discussion.responses %>
+		<% for response in @responses %>
 		<li>
 			<div class="item_image module image">
 				<div class="image_wrap"><%= link_to(avatar_for(response.user, :small), response.user) %></div>
@@ -87,7 +87,9 @@
 		<% end %>
 	</ol>
 	<% end %>
-
+	<div class="apple_pagination">
+		<%= will_paginate @responses %>
+	</div>
 	<h2 class="eclear">Post a response</h2>
 	<div class="comment post clear">
 		<div class="item_image module image">

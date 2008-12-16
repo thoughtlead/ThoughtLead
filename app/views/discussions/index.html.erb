@@ -29,6 +29,7 @@
 	<% end %>
 
 	<ul class="article_list discussions clearsub">
+
 		<% for discussion in @discussions %>
 		<li>
 			<div class="item_image module image">
@@ -54,7 +55,11 @@
 			</div>
 		</li>
 		<% end %>
+		
 	</ul>
+	<div class="apple_pagination">
+		<%= will_paginate @discussions %>
+	</div>
 </div>
 <div id="sidebar">
 	<ul class="modules">
