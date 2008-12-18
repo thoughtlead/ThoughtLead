@@ -29,13 +29,25 @@ class Mailer < ActionMailer::Base
     @headers["x-custom-ip-tag"] = "thoughtlead"
   end
   
-  def new_user_welcome(user)
+  def new_user_welcome(user, newpassword, login_url)
     # FROM: (Community Name) (admin's email address)
     # Subject: Welcome to (Community Name) 
     @from = "#{user.community.name} <#{user.community.owner.email}>"
     @subject = "Welcome to #{user.community.name}"
     @sent_on = Time.now
     @body[:user] = user
+    @body[:newpassword] = newpassword
+    @body[:login_url] = login_url
+    @recipients = user.email
+    @headers["x-custom-ip-tag"] = "thoughtlead"
+  end
+  
+  def new_user_verify(user, url_to_verify)
+    @from = "#{user.community.name} <#{user.community.owner.email}>"
+    @subject = "Verify your new account at #{user.community.name}"
+    @sent_on = Time.now
+    @body[:user] = user
+    @body[:link] = url_to_verify
     @recipients = user.email
     @headers["x-custom-ip-tag"] = "thoughtlead"
   end

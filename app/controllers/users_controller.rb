@@ -1,6 +1,6 @@
 class UsersController < ApplicationController
   
-  before_filter :login_required, :except => [ :signup, :changed_on_spreedly, :index, :forgot_password, :upgrade ]
+  before_filter :login_required, :except => [ :verify, :signup,  :changed_on_spreedly, :index, :forgot_password, :upgrade ]
   before_filter :community_is_active
   before_filter :logged_in_as_owner?, :only => [ :disable, :reactivate]
   skip_before_filter :verify_authenticity_token, :only => :changed_on_spreedly
@@ -10,16 +10,49 @@ class UsersController < ApplicationController
   
   def signup    
     @user = User.new(params[:user])
-    @user.community = current_community
+	
+    if request.post?
+	    @user.password = Random.alphanumeric 7
+	    @user.password_confirmation = @user.password
+	    @user.login = @user.email
+	    @user.display_name = make_display_name @user
+	    @user.community = current_community
+	    @user.verification_code = Random.alphanumeric 50
+	    @user.disabled = true
+	end
     
     return unless request.post? && @user.save
     
-    Mailer.deliver_new_user_welcome(@user)
-    Mailer.deliver_new_user_notice_to_owner(@user)
+    url_to_verify =  root_url + "verify?code=" + @user.verification_code
     
-    self.current_user = @user
-    redirect_back_or_default(root_url)
-    flash[:notice] = "Thanks for signing up!  You have been logged in and a welcome e-mail has been sent."
+    Mailer.deliver_new_user_verify(@user, url_to_verify)
+    
+	redirect_to login_url
+    flash[:notice] = "Check your email to activate your account. If you do not see the verificaiton email in your inbox within a few minutes check your spam folder."
+  end
+  
+  def verify
+	@user = User.find_by_verification_code(params[:code])
+	if @user.nil?
+		#redirect 
+		redirect_back_or_default(root_url)
+		#flash user
+		flash[:notice] = "We were not able to verify your account. Please check that the url entered matches the link in your email and try again."
+	else
+		@user.disabled = false
+		newpassword = Random.alphanumeric 7
+		@user.password = newpassword
+	    @user.password_confirmation = @user.password
+		@user.save!
+		#send user account information
+		Mailer.deliver_new_user_welcome(@user, newpassword, community_login_url(@user.community))
+		#send the community owner notification
+		Mailer.deliver_new_user_notice_to_owner(@user)
+		#redirect to login page
+    	redirect_to login_url
+		#flash user
+		flash[:notice] = "Your account has been activated. Check your email to retrieve your login information."
+	end
   end
   
   def show
@@ -68,7 +101,7 @@ class UsersController < ApplicationController
     return if request.get?
     
     if user = current_community.users.find_by_login(params[:login])
-      @new_password = random_password
+      @new_password = Random.alphanumeric 20
       user.password = user.password_confirmation = @new_password
       user.save!
       Mailer.deliver_new_password(user, @new_password)
@@ -136,6 +169,36 @@ class UsersController < ApplicationController
   end
   
   private
+  
+  def make_display_name(user)
+  	#first try to set it to "firstname lastname"
+  	tentative_display_name = user.first_name + " " + user.last_name
+  	if current_community.users.find_by_display_name(tentative_display_name).nil?
+  		return tentative_display_name
+  	end
+  	
+  	#then try "flastname""
+  	tentative_display_name = user.first_name.first + user.last_name
+  	if current_community.users.find_by_display_name(tentative_display_name).nil?
+  		return tentative_display_name
+  	end
+  	
+  	#then try "firstnamel"
+  	tentative_display_name = user.first_name + user.last_name.first
+  	if current_community.users.find_by_display_name(tentative_display_name).nil?
+  		return tentative_display_name
+  	end
+  	
+	#then try "firstname lastname number" until one fits  	
+	name = user.first_name + " " + user.last_name
+  	tentative_display_name = name
+  	index = 2
+  	until current_community.users.find_by_display_name(tentative_display_name).nil?
+  		tentative_display_name = name + " " + index.to_s
+  		index = index + 1
+  	end
+  	return tentative_display_name
+  end
   
   #bogus warning, this function is called by a method obtained from application.rb (ruby craziness!)
   def get_access_controlled_object

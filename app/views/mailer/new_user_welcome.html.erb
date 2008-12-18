@@ -1,6 +1,15 @@
 Dear <%= @user.first_name %>,
 
-Welcome to <%= @user.community.name %>! We're thrilled that you've decided to join us, and we hope your experience here is an enriching and fulfilling one. We'll be adding new content and features regularly, so please check back often. 
+Welcome to <%= @user.community.name %>! We're thrilled that you've decided to join us, and we hope your experience here is an enriching and fulfilling one. 
+
+Here is your login information:
+login: <%= @user.login %>
+password: <%= @newpassword %>
+
+In addition we have created a display name for you: <%= @user.display_name %>. 
+You can change this and your login information when you visit us at <%= @login_url %>.
+
+We'll be adding new content and features regularly, so please check back often. 
 
 If you have any questions or comments, don't hesitate to contact us. In fact, your feedback is what will enable this community to grow and thrive over time. We at <%= @user.community.name %> consider it a privilege to count you as a member, and look forward to engaging with you in the months and years to come. 
 

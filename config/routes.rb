@@ -10,12 +10,11 @@ ActionController::Routing::Routes.draw do |map|
   map.community_tos '/tos', :controller => "communities", :action => 'current_community_tos', :conditions => { :is_client_domain => true }
   map.community_need_to_activate '/need_to_activate', :controller => "communities", :action => 'need_to_activate', :conditions => { :is_client_domain => true }
   
-  
   map.login '/login', :controller => "sessions", :action => 'new', :conditions => { :is_client_domain => true }
   map.logout '/logout', :controller => 'sessions', :action => 'destroy', :conditions => { :is_client_domain => true }
   map.signup '/signup', :controller => 'users', :action => 'signup', :conditions => { :is_client_domain => true }
   map.status '/status', :controller => 'home', :action => 'status', :conditions => { :is_client_domain => false }
-  
+  map.verify '/verify', :controller => 'users', :action => 'verify', :conditions => { :is_client_domain => true }
   
   map.resources :themes, :conditions => { :is_client_domain => true }
   map.resources :sessions, :conditions => { :is_client_domain => true }
