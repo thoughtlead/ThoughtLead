@@ -43,7 +43,33 @@
 		<li class="cta register">
 			<div class="content">
 				<h4 class="get_free replace">Get Free Access</h4>
-				<p>Interested in joining the ThoughtLead community? You can get free access by signing up today. <%= link_to "Join Today", signup_url, :class => 'more' %><span class="arrow">&nbsp;</span></p>
+								<p><% form_for :user, @user, :url => signup_url, :html => {:class => 'edit'} do | f | -%>
+		<%= f.error_messages %>
+
+		<fieldset class="input">
+			
+			<div class="inp group">
+				<%= f.label :"Your First Name" %>
+				<%= f.text_field :first_name, :class => 'inp_text', :size => 20 %>
+			</div>
+
+			<div class="inp group">
+				<%= f.label :"Your Last Name" %>
+				<%= f.text_field :last_name, :class => 'inp_text', :size => 20 %>
+			</div>
+
+			<div class="inp group">
+				<%= f.label :"Your Email Address" %>
+				<%= f.text_field :email, :class => 'inp_text', :size => 20 %>
+			</div>
+
+			<p>By signing up you agree to the <a href="/tos" target="_blank">terms of use</a> for this site.</p>
+
+		</fieldset>
+		<fieldset class="submit">
+			<%= submit_tag "Sign Up", :class => "make_button", :id => "signup" %>
+		</fieldset>
+	<% end -%>	<span class="arrow">&nbsp;</span></p>
 			</div>
 		</li>
 	</ul>
