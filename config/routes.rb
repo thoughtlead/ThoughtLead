@@ -14,7 +14,6 @@ ActionController::Routing::Routes.draw do |map|
   map.logout '/logout', :controller => 'sessions', :action => 'destroy', :conditions => { :is_client_domain => true }
   map.signup '/signup', :controller => 'users', :action => 'signup', :conditions => { :is_client_domain => true }
   map.status '/status', :controller => 'home', :action => 'status', :conditions => { :is_client_domain => false }
-  map.verify '/verify', :controller => 'users', :action => 'verify', :conditions => { :is_client_domain => true }
   
   map.resources :themes, :conditions => { :is_client_domain => true }
   map.resources :sessions, :conditions => { :is_client_domain => true }

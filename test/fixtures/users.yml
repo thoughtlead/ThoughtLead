@@ -6,7 +6,6 @@ duff:
   salt: 7e3041ebc2fc05a40c60028e2c4901a81035d3cd
   crypted_password: 00742970dc9e6319f8019fd54864d3ea740f04b1 # test
   community: c1
-  verification_code: blahblahblah54
   
 donnydupe1:
   login: donny
@@ -16,7 +15,6 @@ donnydupe1:
   salt: 7e3041ebc2fc05a40c60028e2c4901a81035d3cd
   crypted_password: 00742970dc9e6319f8019fd54864d3ea740f04b1 # test
   community: c1
-  verification_code: blahblahblah65
   
 donnydupe2:
   login: donny
@@ -26,7 +24,6 @@ donnydupe2:
   salt: 7e3041ebc2fc05a40c60028e2c4901a81035d3cd
   crypted_password: 00742970dc9e6319f8019fd54864d3ea740f04b1 # test
   community: c2
-  verification_code: blahblahblah76
   
 daniel:
   login: daniel
@@ -37,7 +34,6 @@ daniel:
   crypted_password: 00742970dc9e6319f8019fd54864d3ea740f04b1 # test
   active: true
   community: c2
-  verification_code: blahblahblah87
   
 alex:
   login: alex
@@ -47,7 +43,6 @@ alex:
   salt: 7e3041ebc2fc05a40c60028e2c4901a81035d3cd
   crypted_password: 00742970dc9e6319f8019fd54864d3ea740f04b1 # test
   community: c1
-  verification_code: blahblahblah98
   
 sam:
   login: sam
@@ -57,7 +52,6 @@ sam:
   salt: 7e3041ebc2fc05a40c60028e2c4901a81035d3cd
   crypted_password: 00742970dc9e6319f8019fd54864d3ea740f04b1 # test
   community: c1
-  verification_code: blahblahblah9
   
 test:
   login: test
@@ -67,7 +61,6 @@ test:
   salt: 9fb6693c00a354e88a1515f20cb76c3ff89c02a8
   crypted_password: 734f71d1a4baa7f843817de1531293161f9ae0f2 #test
   community: testing
-  verification_code: blahblahblah8
   
 premium:
   login: premium
@@ -78,7 +71,6 @@ premium:
   crypted_password: 734f71d1a4baa7f843817de1531293161f9ae0f2 #test
   community: testing
   active: true
-  verification_code: blahblahblah7
   
 #===== WATIRTEST =====
   
@@ -92,7 +84,6 @@ admin:
   community: watirtest
   active: true
   expert: true
-  verification_code: blahblahblah6
   
 #give highest non-admin privileges to test non-admin/admin boundaries
 nonadmin:
@@ -105,7 +96,6 @@ nonadmin:
   community: watirtest
   active: true
   expert: true
-  verification_code: blahblahblah5
   
 watir_premium:
   login: watir_premium
@@ -117,7 +107,6 @@ watir_premium:
   community: watirtest
   active: true
   expert: false
-  verification_code: blahblahblah4
   
 registered:
   login: registered
@@ -129,7 +118,6 @@ registered:
   community: watirtest
   active: false
   expert: false
-  verification_code: blahblahblah23
   
 disabled:
   login: disabled
@@ -140,7 +128,6 @@ disabled:
   crypted_password: 734f71d1a4baa7f843817de1531293161f9ae0f2 #test
   community: watirtest
   disabled: true
-  verification_code: blahblahblah2
   
 expert:
   login: expert
@@ -150,5 +137,4 @@ expert:
   salt: 9fb6693c00a354e88a1515f20cb76c3ff89c02a8
   crypted_password: 734f71d1a4baa7f843817de1531293161f9ae0f2 #test
   community: watirtest
-  expert: true    
-  verification_code: blahblahblah1
+  expert: true

@@ -42,16 +42,6 @@ class Mailer < ActionMailer::Base
     @headers["x-custom-ip-tag"] = "thoughtlead"
   end
   
-  def new_user_verify(user, url_to_verify)
-    @from = "#{user.community.name} <#{user.community.owner.email}>"
-    @subject = "Verify your new account at #{user.community.name}"
-    @sent_on = Time.now
-    @body[:user] = user
-    @body[:link] = url_to_verify
-    @recipients = user.email
-    @headers["x-custom-ip-tag"] = "thoughtlead"
-  end
-  
   def new_user_notice_to_owner(user)
     @from = "#{user.community.name} <do-not-reply@#{APP_DOMAIN}>"
     @subject = "#{user.community.name} has a new user"

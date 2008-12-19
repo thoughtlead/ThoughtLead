@@ -1,6 +1,6 @@
 class UsersController < ApplicationController
   
-  before_filter :login_required, :except => [ :verify, :signup,  :changed_on_spreedly, :index, :forgot_password, :upgrade ]
+  before_filter :login_required, :except => [ :signup,  :changed_on_spreedly, :index, :forgot_password, :upgrade ]
   before_filter :community_is_active
   before_filter :logged_in_as_owner?, :only => [ :disable, :reactivate]
   skip_before_filter :verify_authenticity_token, :only => :changed_on_spreedly
@@ -14,45 +14,26 @@ class UsersController < ApplicationController
     if request.post?
 	    @user.password = Random.alphanumeric 7
 	    @user.password_confirmation = @user.password
-	    @user.login = @user.email
+	    if User.find_by_login(@user.email).nil?
+	    	@user.login = @user.email
+    	else
+    		@user.login = Random.alphanumeric 10
+		end
 	    @user.display_name = make_display_name @user
 	    @user.community = current_community
-	    @user.verification_code = Random.alphanumeric 50
-	    @user.disabled = true
+		@user.disabled = false
 	end
     
     return unless request.post? && @user.save
     
-    url_to_verify =  root_url + "verify?code=" + @user.verification_code
-    
-    Mailer.deliver_new_user_verify(@user, url_to_verify)
-    
-	redirect_to login_url
-    flash[:notice] = "Check your email to activate your account. If you do not see the verificaiton email in your inbox within a few minutes check your spam folder."
-  end
-  
-  def verify
-	@user = User.find_by_verification_code(params[:code])
-	if @user.nil?
-		#redirect 
-		redirect_back_or_default(root_url)
-		#flash user
-		flash[:notice] = "We were not able to verify your account. Please check that the url entered matches the link in your email and try again."
-	else
-		@user.disabled = false
-		newpassword = Random.alphanumeric 7
-		@user.password = newpassword
-	    @user.password_confirmation = @user.password
-		@user.save!
-		#send user account information
-		Mailer.deliver_new_user_welcome(@user, newpassword, community_login_url(@user.community))
-		#send the community owner notification
-		Mailer.deliver_new_user_notice_to_owner(@user)
-		#redirect to login page
-    	redirect_to login_url
-		#flash user
-		flash[:notice] = "Your account has been activated. Check your email to retrieve your login information."
-	end
+	#send user account information
+	Mailer.deliver_new_user_welcome(@user, @user.password, community_login_url(@user.community))
+	#send the community owner notification
+	Mailer.deliver_new_user_notice_to_owner(@user)
+	#redirect to login page
+    redirect_to login_url
+	#flash user
+	flash[:notice] = "Your account has been created. Check your email to retrieve your login information."
   end
   
   def show
