@@ -1,6 +1,6 @@
 class Discussion < ActiveRecord::Base
   
-  validates_presence_of :title, :body
+  validates_presence_of :title, :body, :theme
   belongs_to :user
   belongs_to :community
   belongs_to :theme
