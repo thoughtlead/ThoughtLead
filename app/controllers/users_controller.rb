@@ -61,6 +61,14 @@ class UsersController < ApplicationController
   
   def edit
     @user = current_community.users.find(params[:id])
+    if @user.display_name.nil?
+    	unless @user.login == @user.email
+			@user.display_name = @user.login
+		else
+			@user.display_name = make_display_name(@user)
+		end
+    end
+	
     unless @user == current_user || logged_in_as_owner?
       flash[:warning] = "You do not have the privileges to reach that part of the site"
       redirect_to login_url
