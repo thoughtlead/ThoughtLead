@@ -45,6 +45,7 @@ class UsersController < ApplicationController
   
   def index
     @users = current_community.users
+    @users = @users.find_all { |user| !user.disabled? } unless logged_in_as_owner?
     @users = @users.paginate :page => params[:page], :per_page => 15
   end
   
