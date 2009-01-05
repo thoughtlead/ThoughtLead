@@ -16,7 +16,6 @@
 
 	<ul class="people_list people">
 		<% for user in @users %>
-		<% unless (user.disabled? && !logged_in_as_owner?) %>
 		<li>
 			<div class="item_image module image">
 				<div class="image_wrap"><%= link_to(avatar_for(user, :medium),user) %></div>
@@ -28,7 +27,6 @@
 				<dd><%= user.location %></dd>
 			</dl>
 		</li>
-		<% end %>
 		<% end %>
 	</ul>
 	
