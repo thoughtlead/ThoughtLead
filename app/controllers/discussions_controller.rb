@@ -43,7 +43,10 @@ class DiscussionsController < ApplicationController
   end
   
   def edit
-    @discussion = current_community.discussions.find(params[:id])
+  	@discussion = current_community.discussions.find(params[:id])
+  	unless current_user == @discussion.user || logged_in_as_owner?
+		redirect_to @discussion
+	end
   end
   
   def show
