@@ -76,6 +76,8 @@ module Caboose::SpiderIntegrator
         when /_id$/:   rand(500)
         when /uploaded_data/: # attachment_fu
           nil
+    	when /website/
+    	  nil
         when nil
           # wtf!
           input['value']

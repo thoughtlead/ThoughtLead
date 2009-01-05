@@ -57,9 +57,5 @@ class SpiderTest < ActionController::IntegrationTest
     spiderize([%r{^.*/search}, %r{^.*/login}, %r{^.*/sessions}, %r{^.*/community/edit}])
   end
   
-  def test_truth
-    assert true
-  end
-  
 end
 
