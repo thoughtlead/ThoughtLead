@@ -1,7 +1,6 @@
 class Discussion < ActiveRecord::Base
   
-  validates_presence_of :title, :body
-  validates_presence_of :theme, :message => "- Please choose a theme for your discussion from the dropdown at the bottom of the form"
+  validates_presence_of :title, :body, :theme
   belongs_to :user
   belongs_to :community
   belongs_to :theme
