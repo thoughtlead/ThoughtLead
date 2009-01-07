@@ -22,8 +22,8 @@ class Discussion < ActiveRecord::Base
     return false
   end
   
-  def membership_level
+  def access_class
     return nil if self.theme.nil?
-    self.theme.membership_level
+    self.theme.access_class
   end
 end
