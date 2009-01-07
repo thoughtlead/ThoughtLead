@@ -67,23 +67,19 @@ class UserTest < ActiveSupport::TestCase
     assert_nil users(:duff).remember_token
   end
   
-  should "ensure owners are always active" do
+  should "ensure owners are always premium members" do
     user = users(:duff)
     community = Community.new(:name => "Whatever", :host => "whatever")
     user.community = community
+    community.membership_levels << MembershipLevel.new(:name => "whatever_premium", :order => 1, :price => 1000.0)
     
-    assert !user.active
+    assert user.membership_level.nil?
     
-    user.active = true
-    assert user.active
-    user.active = false
-    assert !user.active
-
     community.owner = user
-    assert user.active, "Owners should be active"
+    assert !user.membership_level.nil?, "Owners should be premium members"
     
-    user.active = false
-    assert user.active, "Owners should be active"
+    user.membership_level = nil
+    assert !user.membership_level.nil?, "Owners should be premium members"
   end
   
   should "have the correct name displayed" do

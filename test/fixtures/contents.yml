@@ -5,15 +5,14 @@ public_content:
     body: Now you know all you need to know about Sasquatch.
     user: sam
     draft: false
-    premium: false
     registered: false
+    
 
 registered_content:
     title: Registered Lesson
     body: Wop bop she doo-wop
     user: sam
     draft: false
-    premium: false
     registered: true
 
 premium_content:
@@ -21,7 +20,7 @@ premium_content:
     body: No riff raff in here
     user: sam
     draft: false
-    premium: true
+    membership_level: c3_premium
     registered: false
 
 premium_draft_content:
@@ -29,7 +28,7 @@ premium_draft_content:
     body: Yeungling
     user: sam
     draft: true
-    premium: true
+    membership_level: c3_premium
     registered: false
 
 cats:
@@ -37,7 +36,6 @@ cats:
     body: Cats smell nice but they like houses more than they like people.
     user: test
     draft: false
-    premium: false
     registered: false
     
 dogs:
@@ -45,7 +43,6 @@ dogs:
     body: Dogs love you profoundly and also slobber on your floor.
     user: test
     draft: false
-    premium: false
     registered: false
     
 #===== WATIRTEST =====
@@ -55,7 +52,6 @@ tagged_1_draft:
     teaser: tagged 1 draft teaser
     body: tagged 1 draft body
     draft: true
-    premium: false
     registered: false
 
 tagged_1_premium:
@@ -63,7 +59,7 @@ tagged_1_premium:
     teaser: tagged 1 premium teaser
     body: tagged 1 premium body
     draft: false
-    premium: true
+    membership_level: watirtest_premium
     registered: false
 
 tagged_1_registered:
@@ -71,7 +67,6 @@ tagged_1_registered:
     teaser: tagged 1 registered teaser
     body: tagged 1 registered body
     draft: false
-    premium: false
     registered: true
     
 tagged_1_public:
@@ -79,7 +74,6 @@ tagged_1_public:
     teaser: tagged 1 public teaser
     body: tagged 1 public body
     draft: false
-    premium: false
     registered: false
 
 antitagged_1_draft:
@@ -87,7 +81,6 @@ antitagged_1_draft:
     teaser: antitagged 1 draft teaser
     body: antitagged 1 draft body
     draft: true
-    premium: false
     registered: false
 
 antitagged_1_premium:
@@ -95,7 +88,7 @@ antitagged_1_premium:
     teaser: antitagged 1 premium teaser
     body: antitagged 1 premium body
     draft: false
-    premium: true
+    membership_level: watirtest_premium
     registered: false
 
 antitagged_1_registered:
@@ -103,7 +96,6 @@ antitagged_1_registered:
     teaser: antitagged 1 registered teaser
     body: antitagged 1 registered body
     draft: false
-    premium: false
     registered: true
     
 premium:
@@ -111,7 +103,7 @@ premium:
     teaser: premium teaser
     body: premium body
     draft: false
-    premium: true
+    membership_level: watirtest_premium
     registered: false
 
 registered:
@@ -119,7 +111,6 @@ registered:
     teaser: registered teaser
     body: registered body
     draft: false
-    premium: false
     registered: true
     
 public:
@@ -127,7 +118,6 @@ public:
     teaser: public teaser
     body: public body
     draft: false
-    premium: false
     registered: false
 
 category_1_2_article_1:

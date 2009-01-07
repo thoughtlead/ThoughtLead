@@ -15,6 +15,7 @@ class User < ActiveRecord::Base
   belongs_to  :community
   has_many    :courses
   has_one     :avatar, :dependent => :destroy
+  belongs_to  :membership_level
   
   is_indexed :fields => ['login','about', 'interests', 'display_name', 'location', 'zipcode', 'community_id']
   
@@ -66,9 +67,9 @@ class User < ActiveRecord::Base
     community.owner == self
   end
   
-  def active
-    return true if owner?
-    super
+  def membership_level
+    return community.highest_membership_level if owner?
+    read_attribute('membership_level')
   end
   
   def user_avatar=(it)  
@@ -85,7 +86,7 @@ class User < ActiveRecord::Base
     self.spreedly_token = subscriber.token
     save
   end
-  
+
   private
   def encrypt_password
     return if password.blank?

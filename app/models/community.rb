@@ -1,12 +1,12 @@
 
 class Community < ActiveRecord::Base
-  
   has_many :users
   has_many :courses, :dependent => :destroy
   has_many :discussions, :dependent => :destroy
   has_many :themes, :dependent => :destroy
   has_many :categories, :dependent => :destroy
   has_many :articles, :dependent => :destroy
+  has_many :membership_levels
   belongs_to :owner, :class_name => "User"
   
   validates_presence_of :host, :name

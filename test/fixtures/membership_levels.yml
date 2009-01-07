@@ -1,0 +1,35 @@
+c1_premium:
+  community: c1
+  name: Premium
+  price: 10.00
+  order: 1
+  
+c1_superpremium:
+  community: c1
+  name: Super Premium
+  price: 100.00
+  order: 2
+
+c2_premium:
+  community: c2
+  name: Premium
+  price: 10.00
+  order: 1
+
+c3_premium:
+  community: c3
+  name: Premium
+  price: 10.00
+  order: 1
+ 
+testing_premium:
+  community: testing
+  name: Premium
+  price: 10.00
+  order: 1
+
+watirtest_premium:
+  community: watirtest
+  name: Premium
+  price: 10.00
+  order: 1

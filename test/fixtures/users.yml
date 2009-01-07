@@ -32,7 +32,7 @@ daniel:
   email: daniel@example.com
   salt: 7e3041ebc2fc05a40c60028e2c4901a81035d3cd
   crypted_password: 00742970dc9e6319f8019fd54864d3ea740f04b1 # test
-  active: true
+  membership_level: c2_premium
   community: c2
   
 alex:
@@ -70,7 +70,7 @@ premium:
   salt: 9fb6693c00a354e88a1515f20cb76c3ff89c02a8
   crypted_password: 734f71d1a4baa7f843817de1531293161f9ae0f2 #test
   community: testing
-  active: true
+  membership_level: testing_premium
   
 #===== WATIRTEST =====
   
@@ -82,7 +82,7 @@ admin:
   salt: 9fb6693c00a354e88a1515f20cb76c3ff89c02a8
   crypted_password: 734f71d1a4baa7f843817de1531293161f9ae0f2 #test
   community: watirtest
-  active: true
+  membership_level: watir_premium
   expert: true
   
 #give highest non-admin privileges to test non-admin/admin boundaries
@@ -94,7 +94,7 @@ nonadmin:
   salt: 9fb6693c00a354e88a1515f20cb76c3ff89c02a8
   crypted_password: 734f71d1a4baa7f843817de1531293161f9ae0f2 #test
   community: watirtest
-  active: true
+  membership_level: watir_premium
   expert: true
   
 watir_premium:
@@ -105,7 +105,7 @@ watir_premium:
   salt: 9fb6693c00a354e88a1515f20cb76c3ff89c02a8
   crypted_password: 734f71d1a4baa7f843817de1531293161f9ae0f2 #test
   community: watirtest
-  active: true
+  membership_level: watir_premium
   expert: false
   
 registered:
@@ -116,7 +116,6 @@ registered:
   salt: 9fb6693c00a354e88a1515f20cb76c3ff89c02a8
   crypted_password: 734f71d1a4baa7f843817de1531293161f9ae0f2 #test
   community: watirtest
-  active: false
   expert: false
   
 disabled:
