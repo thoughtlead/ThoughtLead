@@ -4,7 +4,7 @@ class Content < ActiveRecord::Base
   
   has_one :lesson
   has_one :article
-  belongs_to :membership_level
+  belongs_to :access_class
   
   belongs_to :user
   has_many :attachments, :dependent => :destroy

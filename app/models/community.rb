@@ -6,7 +6,7 @@ class Community < ActiveRecord::Base
   has_many :themes, :dependent => :destroy
   has_many :categories, :dependent => :destroy
   has_many :articles, :dependent => :destroy
-  has_many :membership_levels
+  has_many :access_classes
   belongs_to :owner, :class_name => "User"
   
   validates_presence_of :host, :name
@@ -28,6 +28,10 @@ class Community < ActiveRecord::Base
     self.spreedly_token = subscriber.token
     self.eligible_for_free_trial = subscriber.eligible_for_free_trial
     save
+  end
+  
+  def highest_access_class
+    return access_classes.sort_by_order.last  
   end
   
   def discussions_are_premium?

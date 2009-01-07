@@ -20,7 +20,7 @@ premium_content:
     body: No riff raff in here
     user: sam
     draft: false
-    membership_level: c3_premium
+    access_class: c3_premium
     registered: false
 
 premium_draft_content:
@@ -28,7 +28,7 @@ premium_draft_content:
     body: Yeungling
     user: sam
     draft: true
-    membership_level: c3_premium
+    access_class: c3_premium
     registered: false
 
 cats:
@@ -59,7 +59,7 @@ tagged_1_premium:
     teaser: tagged 1 premium teaser
     body: tagged 1 premium body
     draft: false
-    membership_level: watirtest_premium
+    access_class: watirtest_premium
     registered: false
 
 tagged_1_registered:
@@ -88,7 +88,7 @@ antitagged_1_premium:
     teaser: antitagged 1 premium teaser
     body: antitagged 1 premium body
     draft: false
-    membership_level: watirtest_premium
+    access_class: watirtest_premium
     registered: false
 
 antitagged_1_registered:
@@ -103,7 +103,7 @@ premium:
     teaser: premium teaser
     body: premium body
     draft: false
-    membership_level: watirtest_premium
+    access_class: watirtest_premium
     registered: false
 
 registered:

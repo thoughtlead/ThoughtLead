@@ -71,15 +71,15 @@ class UserTest < ActiveSupport::TestCase
     user = users(:duff)
     community = Community.new(:name => "Whatever", :host => "whatever")
     user.community = community
-    community.membership_levels << MembershipLevel.new(:name => "whatever_premium", :order => 1, :price => 1000.0)
+    community.access_classes << AccessClass.new(:name => "whatever_premium", :order => 1, :price => 1000.0)
     
-    assert user.membership_level.nil?
+    assert user.access_class.nil?
     
     community.owner = user
-    assert !user.membership_level.nil?, "Owners should be premium members"
+    assert !user.access_class.nil?, "Owners should be premium members"
     
-    user.membership_level = nil
-    assert !user.membership_level.nil?, "Owners should be premium members"
+    user.access_class = nil
+    assert !user.access_class.nil?, "Owners should be premium members"
   end
   
   should "have the correct name displayed" do
