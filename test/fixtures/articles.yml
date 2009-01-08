@@ -6,6 +6,18 @@ about_dogs:
     community: testing
     content: dogs
 
+about_ultrapremium:
+    community: c3
+    content: super_premium_content
+    
+about_premium:
+    community: c3
+    content: premium_content
+
+about_registered:
+    community: c3
+    content: registered_content
+    
 #===== WATIRTEST =====
 
 premium:

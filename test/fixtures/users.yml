@@ -72,6 +72,35 @@ premium:
   community: testing
   access_class: testing_premium
   
+audrey:
+  login: premium
+  email: audrey@ternarysoftware.com
+  first_name: premium
+  last_name: premiumerson
+  salt: 9fb6693c00a354e88a1515f20cb76c3ff89c02a8
+  crypted_password: 734f71d1a4baa7f843817de1531293161f9ae0f2 #test
+  community: c3
+
+premium_audrey:
+  login: premium
+  email: audrey@ternarysoftware.com
+  first_name: premium
+  last_name: premiumerson
+  salt: 9fb6693c00a354e88a1515f20cb76c3ff89c02a8
+  crypted_password: 734f71d1a4baa7f843817de1531293161f9ae0f2 #test
+  community: c3
+  access_class: c3_premium
+  
+ultrapremium_audrey:
+  login: premium
+  email: audrey@ternarysoftware.com
+  first_name: premium
+  last_name: premiumerson
+  salt: 9fb6693c00a354e88a1515f20cb76c3ff89c02a8
+  crypted_password: 734f71d1a4baa7f843817de1531293161f9ae0f2 #test
+  community: c3
+  access_class: c3_ultrapremium
+  
 #===== WATIRTEST =====
   
 admin:

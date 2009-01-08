@@ -23,6 +23,14 @@ premium_content:
     access_class: c3_premium
     registered: false
 
+super_premium_content:
+    title: Premium Lesson
+    body: No riff raff in here
+    user: sam
+    draft: false
+    access_class: c3_ultrapremium
+    registered: false
+
 premium_draft_content:
     title: Premium Draft Lesson
     body: Yeungling

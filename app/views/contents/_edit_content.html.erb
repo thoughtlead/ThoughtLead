@@ -23,7 +23,7 @@ addAttachment = function() {
     	'<input type="button" value="Remove" onclick="removeAttachment(this)" />';
 	host.appendChild(editor);
 }
-//*/
+
 </script>
 <% fields_for content do |f| %>  
 <% 	#create a list of objects if they aren't null to do error_messages_for on
@@ -82,17 +82,19 @@ addAttachment = function() {
 	</ul>
 	<ul class="checkbox group">
 		<li>
-			<%= f.radio_button(:access_level, "Public") %>
+			<%= f.radio_button(:access_level, "false") %>
 			<%= f.label :access_level, 'Public' %>
 		</li>
 		<li>
-			<%= f.radio_button :access_level, "Registered" %>
+			<%= f.radio_button :access_level, "true" %>
 			<%= f.label :access_level, 'Registered' %>
 		</li>
+		<% current_community.access_classes.each do |access_class|%>
 		<li>
-			<%= f.radio_button :access_level, "Premium" %>
-			<%= f.label :access_level, 'Premium' %>
+			<%= f.radio_button :access_level, access_class.id %>
+			<%= f.label :access_level, access_class.name %>
 		</li>
+		<% end %>
 	</ul>
 
 </fieldset>

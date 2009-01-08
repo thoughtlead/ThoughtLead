@@ -19,7 +19,7 @@ module ApplicationHelper
   
   def content_notes(content)
     s = []
-    if content.premium
+    if !content.access_class.nil?
       s << '<li class="premium"><span class="icon">Premium</span></li>'
     end
     if logged_in_as_owner? && content.registered

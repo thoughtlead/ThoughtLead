@@ -22,8 +22,8 @@ class Article < ActiveRecord::Base
     @new_category_names = it.uniq
   end
   
-  def is_premium?
-    self.content.premium?
+  def access_class
+    self.content.access_class
   end
   
   def is_registered?
@@ -31,7 +31,18 @@ class Article < ActiveRecord::Base
   end
   
   def visible_to(user)
-    !self.content.draft? || user == self.community.owner
+    return true if user == self.community.owner
+    unless self.content.draft? 
+      unless self.content.access_class.nil?
+        return self.content.access_class.is_accessible_to_someone_with(user.access_class)
+      end
+      if self.content.registered
+        return !user.nil?
+      else #content is publicly viewable
+        return true
+      end
+    end
+    false
   end
   
   named_scope :for_category, lambda { | category_id | 

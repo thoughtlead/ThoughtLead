@@ -23,16 +23,24 @@ class Content < ActiveRecord::Base
   end
   
   def access_level
-    return "Premium" if self.premium?
+    return self.access_class.id unless self.access_class.nil?
     return "Registered" if self.registered?
     return "Public"
   end
   
-  def access_level= (value)
-    self.premium = (value == "Premium")
-    self.registered = (value == "Registered")
+  def access_level=(value)
+    if value == "true"
+      self.registered = true 
+      self.access_class = nil
+    elsif value == "false"
+      self.registered = false
+      self.access_class = nil
+    else
+      self.registered = true
+      self.access_class = AccessClass.find_by_id(value)
+    end
   end
-  
+      
   def content_attachments=(it)
     for attachment in it
       if(!attachment.blank?)

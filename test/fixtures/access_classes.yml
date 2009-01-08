@@ -22,6 +22,12 @@ c3_premium:
   price: 10.00
   order: 1
  
+c3_ultrapremium:
+  community: c3
+  name: Ultrapremium
+  price: 1000.00
+  order: 2
+  
 testing_premium:
   community: testing
   name: Premium

@@ -19,10 +19,6 @@ class User < ActiveRecord::Base
   
   is_indexed :fields => ['login','about', 'interests', 'display_name', 'location', 'zipcode', 'community_id']
   
-  def is_premium?
-    return false
-  end
-  
   def is_registered?
     return true
   end
@@ -69,7 +65,7 @@ class User < ActiveRecord::Base
   
   def access_class
     return community.highest_access_class if owner?
-    read_attribute('access_class')
+    AccessClass.find_by_id(read_attribute('access_class_id'))
   end
   
   def user_avatar=(it)  
