@@ -7,6 +7,7 @@ monkeys:
     community: C3
     name: Monkeys
     description: Discussions concerning the tail-bearing primates
+    access_class: c3_premium
     
 #===== WATIRTEST =====
 
