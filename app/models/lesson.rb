@@ -48,4 +48,7 @@ class Lesson < ActiveRecord::Base
     self.content.teaser_text
   end
   
+  def access_class
+    self.content.access_class
+  end
 end

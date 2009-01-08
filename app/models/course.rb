@@ -28,7 +28,7 @@ class Course < ActiveRecord::Base
   def contains_premium_visible_to(user)
     for chapter in chapters
       for lesson in chapter.lessons
-        return true if lesson.content.premium && lesson.visible_to(user)
+        return true if !lesson.content.access_level.nil? && lesson.visible_to(user)
       end
     end
     return false

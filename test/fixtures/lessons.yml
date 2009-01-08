@@ -12,6 +12,11 @@ premium_lesson:
     chapter: first_chapter
     chapter_position: 3
     content: premium_content
+   
+ultrapremium_lesson:
+    chapter: first_chapter
+    chapter_position: 4
+    content: ultrapremium_content
 
 premium_draft_lesson:
     chapter: first_chapter
