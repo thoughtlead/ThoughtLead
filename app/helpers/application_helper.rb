@@ -81,7 +81,7 @@ module ApplicationHelper
 #  end
 
   def snippet(thought, letters = 15)
-    truncate(thought, letters)
+    truncate(thought, :length => letters)
   end
 
 end
