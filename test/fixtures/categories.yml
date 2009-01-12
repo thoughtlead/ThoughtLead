@@ -7,11 +7,11 @@ pets:
 empty:
     community: watirtest
     name: empty
-    
+
 category_1:
     community: watirtest
     name: the first category
-    
+
 category_2:
     community: watirtest
     name: the second category

@@ -1,10 +1,10 @@
 liberty:
-  title: Liberty is no more 
+  title: Liberty is no more
   description: Where on the earth does liberty exist anymore?  Nowhere really.
   user: duff
   community: c1
   draft: false
-  
+
 happiness:
   title: Pursuit of Something
   description: Where on the earth does happiness exist? Yay! Cheer up dude!
@@ -25,10 +25,9 @@ tagged:
   description: tagged course description
   community: watirtest
   draft: false
-  
+
 antitagged:
     title: an antitagged course
     description: antitagged course description
     community: watirtest
     draft: false
-  

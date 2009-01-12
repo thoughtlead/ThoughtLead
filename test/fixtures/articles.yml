@@ -1,7 +1,7 @@
 about_cats:
     community: testing
     content: cats
-    
+
 about_dogs:
     community: testing
     content: dogs
@@ -9,7 +9,7 @@ about_dogs:
 about_ultrapremium:
     community: c3
     content: super_premium_content
-    
+
 about_premium:
     community: c3
     content: premium_content
@@ -17,36 +17,36 @@ about_premium:
 about_registered:
     community: c3
     content: registered_content
-    
+
 #===== WATIRTEST =====
 
 premium:
     community: watirtest
     content: premium
-    
+
 registered:
     community: watirtest
     content: registered
-    
+
 public:
     community: watirtest
     content: public
-    
+
 category_1_2_article_1:
     community: watirtest
     content: category_1_2_article_1
     categories: [category_1, category_2]
-    
+
 category_1_article_1:
     community: watirtest
     content: category_1_article_1
     categories: [category_1]
-    
+
 category_2_article_1:
     community: watirtest
     content: category_2_article_1
     categories: [category_2]
-    
+
 category_none_article_1:
     community: watirtest
     content: category_none_article_1

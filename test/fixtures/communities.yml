@@ -3,7 +3,7 @@ c1:
   name: C1
   owner: duff
   active: true
-  spreedly_api_key: 
+  spreedly_api_key:
 
 c2:
   host: c2.nokahuna.dev
@@ -11,7 +11,7 @@ c2:
   owner: daniel
   active: true
   discussion_accessibility: 0
-  spreedly_api_key: 
+  spreedly_api_key:
 
 c3:
   host: c3.nokahuna.dev
@@ -19,8 +19,8 @@ c3:
   owner: sam
   active: true
   discussion_accessibility: 1
-  spreedly_api_key: 
- 
+  spreedly_api_key:
+
 testing:
   host: testing.dev
   name: Test
@@ -34,4 +34,4 @@ watirtest:
   owner: admin
   active: true
   discussion_accessibility: 1
-  spreedly_api_key: 
+  spreedly_api_key:

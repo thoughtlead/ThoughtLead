@@ -1,12 +1,9 @@
-# Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
-
 public_content:
     title: Public Lesson
     body: Now you know all you need to know about Sasquatch.
     user: sam
     draft: false
     registered: false
-    
 
 registered_content:
     title: Registered Lesson
@@ -20,7 +17,6 @@ premium_content:
     body: No riff raff in here
     user: sam
     draft: false
-    access_class: c3_premium
     registered: false
 
 super_premium_content:
@@ -28,15 +24,13 @@ super_premium_content:
     body: No riff raff in here
     user: sam
     draft: false
-    access_class: c3_ultrapremium
     registered: false
-    
+
 ultrapremium_content:
     title: Premium Lesson
     body: No riff raff in here
     user: sam
     draft: false
-    access_class: c3_ultrapremium
     registered: false
 
 premium_draft_content:
@@ -44,7 +38,6 @@ premium_draft_content:
     body: Yeungling
     user: sam
     draft: true
-    access_class: c3_premium
     registered: false
 
 cats:
@@ -53,14 +46,14 @@ cats:
     user: test
     draft: false
     registered: false
-    
+
 dogs:
     title: All about dogs
     body: Dogs love you profoundly and also slobber on your floor.
     user: test
     draft: false
     registered: false
-    
+
 #===== WATIRTEST =====
 
 tagged_1_draft:
@@ -75,7 +68,6 @@ tagged_1_premium:
     teaser: tagged 1 premium teaser
     body: tagged 1 premium body
     draft: false
-    access_class: watirtest_premium
     registered: false
 
 tagged_1_registered:
@@ -84,7 +76,7 @@ tagged_1_registered:
     body: tagged 1 registered body
     draft: false
     registered: true
-    
+
 tagged_1_public:
     title: tagged 1 public title
     teaser: tagged 1 public teaser
@@ -104,7 +96,6 @@ antitagged_1_premium:
     teaser: antitagged 1 premium teaser
     body: antitagged 1 premium body
     draft: false
-    access_class: watirtest_premium
     registered: false
 
 antitagged_1_registered:
@@ -113,13 +104,12 @@ antitagged_1_registered:
     body: antitagged 1 registered body
     draft: false
     registered: true
-    
+
 premium:
     title: premium title
     teaser: premium teaser
     body: premium body
     draft: false
-    access_class: watirtest_premium
     registered: false
 
 registered:
@@ -128,7 +118,7 @@ registered:
     body: registered body
     draft: false
     registered: true
-    
+
 public:
     title: public title
     teaser: public teaser
@@ -140,17 +130,17 @@ category_1_2_article_1:
     title: title for article one for category one and two
     teaser: teaser for article one for category one and two
     body: body for article one for category one and two
-    
+
 category_1_article_1:
     title: title for article one for category one
     teaser: teaser for article one for category one
     body: body for article one for category one
-    
+
 category_2_article_1:
     title: title for article one for category two
     teaser: teaser for article one for category two
     body: body for article one for category two
-    
+
 category_none_article_1:
     title: title for article one for no category
     teaser: teaser for article one for no category

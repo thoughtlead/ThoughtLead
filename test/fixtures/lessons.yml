@@ -12,7 +12,7 @@ premium_lesson:
     chapter: first_chapter
     chapter_position: 3
     content: premium_content
-   
+
 ultrapremium_lesson:
     chapter: first_chapter
     chapter_position: 4
@@ -22,7 +22,7 @@ premium_draft_lesson:
     chapter: first_chapter
     chapter_position: 4
     content: premium_draft_content
-    
+
 #===== WATIRTEST =====
 
 tagged_1_draft:
@@ -34,17 +34,17 @@ tagged_1_premium:
     chapter: tagged_1
     chapter_position: 2
     content: tagged_1_premium
-    
+
 tagged_1_registered:
     chapter: tagged_1
     chapter_position: 3
     content: tagged_1_registered
-    
+
 tagged_1_public:
     chapter: tagged_1
     chapter_position: 4
     content: tagged_1_public
-    
+
 antitagged_1_draft:
     chapter: antitagged_1
     chapter_position: 1
@@ -54,7 +54,7 @@ antitagged_1_premium:
     chapter: antitagged_1
     chapter_position: 2
     content: antitagged_1_premium
-    
+
 antitagged_1_registered:
     chapter: antitagged_1
     chapter_position: 3

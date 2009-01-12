@@ -2,25 +2,24 @@ tuesday:
     community: C2
     name: Tuesday
     description: Did you bring your coat?
-    
+
 monkeys:
     community: C3
     name: Monkeys
     description: Discussions concerning the tail-bearing primates
-    access_class: c3_premium
-    
+
 #===== WATIRTEST =====
 
 empty:
     community: watirtest
     name: an empty theme
     description: the empty theme description
-    
+
 theme_1:
     community: watirtest
     name: the first theme
     description: pertaining to theme one
-    
+
 theme_2:
     community: watirtest
     name: the second theme

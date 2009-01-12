@@ -6,7 +6,7 @@ duff:
   salt: 7e3041ebc2fc05a40c60028e2c4901a81035d3cd
   crypted_password: 00742970dc9e6319f8019fd54864d3ea740f04b1 # test
   community: c1
-  
+
 donnydupe1:
   login: donny
   first_name: donny
@@ -15,7 +15,7 @@ donnydupe1:
   salt: 7e3041ebc2fc05a40c60028e2c4901a81035d3cd
   crypted_password: 00742970dc9e6319f8019fd54864d3ea740f04b1 # test
   community: c1
-  
+
 donnydupe2:
   login: donny
   first_name: donny
@@ -24,7 +24,7 @@ donnydupe2:
   salt: 7e3041ebc2fc05a40c60028e2c4901a81035d3cd
   crypted_password: 00742970dc9e6319f8019fd54864d3ea740f04b1 # test
   community: c2
-  
+
 daniel:
   login: daniel
   first_name: daniel
@@ -34,7 +34,7 @@ daniel:
   crypted_password: 00742970dc9e6319f8019fd54864d3ea740f04b1 # test
   access_class: c2_premium
   community: c2
-  
+
 alex:
   login: alex
   first_name: alex
@@ -43,7 +43,7 @@ alex:
   salt: 7e3041ebc2fc05a40c60028e2c4901a81035d3cd
   crypted_password: 00742970dc9e6319f8019fd54864d3ea740f04b1 # test
   community: c1
-  
+
 sam:
   login: sam
   first_name: sam
@@ -52,7 +52,7 @@ sam:
   salt: 7e3041ebc2fc05a40c60028e2c4901a81035d3cd
   crypted_password: 00742970dc9e6319f8019fd54864d3ea740f04b1 # test
   community: c1
-  
+
 test:
   login: test
   first_name: test
@@ -61,7 +61,7 @@ test:
   salt: 9fb6693c00a354e88a1515f20cb76c3ff89c02a8
   crypted_password: 734f71d1a4baa7f843817de1531293161f9ae0f2 #test
   community: testing
-  
+
 premium:
   login: premium
   email: eric@ternarysoftware.com
@@ -71,7 +71,7 @@ premium:
   crypted_password: 734f71d1a4baa7f843817de1531293161f9ae0f2 #test
   community: testing
   access_class: testing_premium
-  
+
 audrey:
   login: premium
   email: audrey@ternarysoftware.com
@@ -90,7 +90,7 @@ premium_audrey:
   crypted_password: 734f71d1a4baa7f843817de1531293161f9ae0f2 #test
   community: c3
   access_class: c3_premium
-  
+
 ultrapremium_audrey:
   login: premium
   email: audrey@ternarysoftware.com
@@ -100,9 +100,9 @@ ultrapremium_audrey:
   crypted_password: 734f71d1a4baa7f843817de1531293161f9ae0f2 #test
   community: c3
   access_class: c3_ultrapremium
-  
+
 #===== WATIRTEST =====
-  
+
 admin:
   login: admin
   email: admin@dot.dot
@@ -113,7 +113,7 @@ admin:
   community: watirtest
   access_class: watir_premium
   expert: true
-  
+
 #give highest non-admin privileges to test non-admin/admin boundaries
 nonadmin:
   login: nonadmin
@@ -125,7 +125,7 @@ nonadmin:
   community: watirtest
   access_class: watir_premium
   expert: true
-  
+
 watir_premium:
   login: watir_premium
   first_name: watir_premium
@@ -136,7 +136,7 @@ watir_premium:
   community: watirtest
   access_class: watir_premium
   expert: false
-  
+
 registered:
   login: registered
   first_name: registered
@@ -146,7 +146,7 @@ registered:
   crypted_password: 734f71d1a4baa7f843817de1531293161f9ae0f2 #test
   community: watirtest
   expert: false
-  
+
 disabled:
   login: disabled
   first_name: disabled
@@ -156,11 +156,11 @@ disabled:
   crypted_password: 734f71d1a4baa7f843817de1531293161f9ae0f2 #test
   community: watirtest
   disabled: true
-  
+
 expert:
   login: expert
   first_name: expert
-  last_name: experterson 
+  last_name: experterson
   email: expert@example.com
   salt: 9fb6693c00a354e88a1515f20cb76c3ff89c02a8
   crypted_password: 734f71d1a4baa7f843817de1531293161f9ae0f2 #test

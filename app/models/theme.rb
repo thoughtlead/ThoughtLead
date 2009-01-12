@@ -5,6 +5,6 @@ class Theme < ActiveRecord::Base
   has_many :access_classes, :through => :theme_access_classes
 
   validates_presence_of :name, :description
-  
+
   alias_attribute :to_s, :name
 end
