@@ -1,13 +1,13 @@
 class Content < ActiveRecord::Base
-  attr_accessor :uploaded_attachment_data
-  validates_presence_of :title, :body, :teaser
-  
   has_one :lesson
   has_one :article
-  belongs_to :access_class
-  
   belongs_to :user
   has_many :attachments, :dependent => :destroy
+  has_many :content_access_classes, :dependent => :destroy
+  has_many :access_classes, :through => :content_access_classes
+
+  attr_accessor :uploaded_attachment_data
+  validates_presence_of :title, :body, :teaser
   
   alias_attribute :to_s, :title
   after_save :remove_old_embedded_media
@@ -22,25 +22,6 @@ class Content < ActiveRecord::Base
     return nil
   end
   
-  def access_level
-    return self.access_class.id unless self.access_class.nil?
-    return "Registered" if self.registered?
-    return "Public"
-  end
-  
-  def access_level=(value)
-    if value == "true"
-      self.registered = true 
-      self.access_class = nil
-    elsif value == "false"
-      self.registered = false
-      self.access_class = nil
-    else
-      self.registered = true
-      self.access_class = AccessClass.find_by_id(value)
-    end
-  end
-      
   def content_attachments=(it)
     for attachment in it
       if(!attachment.blank?)

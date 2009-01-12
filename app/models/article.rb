@@ -22,14 +22,14 @@ class Article < ActiveRecord::Base
     @new_category_names = it.uniq
   end
   
-  def access_class
-    self.content.access_class
+  def access_classes
+    content.access_classes
   end
   
   def is_registered?
-    self.content.registered?
+    content.registered?
   end
-  
+    
   def visible_to(user)
     return true if user == self.community.owner
     unless self.content.draft? 

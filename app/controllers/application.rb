@@ -40,17 +40,17 @@ class ApplicationController < ActionController::Base
         flash[:notice] = "You must login to a premium account or create a new premium account to view this content.<br/>" + 
           "To create a new premium account, first register or login as a free member.<br/>" + 
           "Once you are logged in simply follow the on-screen instructions to access premium content in no time."
-        redirect_to login_url
+        redirect_to login_url and return
       end
       if logged_in? && !ac_object.access_class.is_accessible_to_someone_with(current_user.access_class)
         flash[:notice] = "You need to upgrade your account if you wish to view premium content."
-        redirect_to upgrade_url  
+        redirect_to upgrade_url and return
       end
     end
     
     if ac_object.is_registered? && !logged_in?
       flash[:notice] = "You must login or create an account to view that content."
-      redirect_to login_url
+      redirect_to login_url and return
     end
   end
   

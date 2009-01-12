@@ -22,8 +22,7 @@ class Discussion < ActiveRecord::Base
     return false
   end
   
-  def access_class
-    return nil if self.theme.nil?
-    self.theme.access_class
+  def access_classes
+    return theme.nil? ? nil : theme.access_classes
   end
 end

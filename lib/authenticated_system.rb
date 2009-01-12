@@ -17,7 +17,7 @@ module AuthenticatedSystem
   end  
   
   def current_user_can_post?
-    return logged_in? && (!current_community.discussions_are_premium? || logged_in_as_active? || logged_in_as_owner?)
+    return logged_in? && (logged_in_as_owner? || current_user.can_post)
   end
 
   def current_user

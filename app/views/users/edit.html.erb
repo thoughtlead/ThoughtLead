@@ -21,8 +21,18 @@
 				<%= f.label :expert %>
 			</div>
 			<div class="checkbox group">
-				<%= f.check_box :active %>
-				<%= f.label :active, :Premium %>
+				
+				<li>
+			    <%= f.radio_button :access_class, "nil" %>
+			    <%= f.label :access_class, 'Registered' %>
+		    </li>
+		    
+		    <% current_community.access_classes.each do |access_class|%>
+	    	<li>
+			    <%= f.radio_button :access_class, access_class.id %>
+			    <%= f.label :access_class, access_class.name %>
+		    </li>
+		    <% end %>
 			</div>
 			<% end %>
 

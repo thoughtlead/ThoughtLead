@@ -64,8 +64,7 @@ class User < ActiveRecord::Base
   end
   
   def access_class
-    return community.highest_access_class if owner?
-    AccessClass.find_by_id(read_attribute('access_class_id'))
+    owner? ? community.highest_access_class : self[:access_class] 
   end
   
   def user_avatar=(it)  

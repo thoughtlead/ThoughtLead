@@ -82,17 +82,20 @@ addAttachment = function() {
 	</ul>
 	<ul class="checkbox group">
 		<li>
-			<%= f.radio_button(:access_level, "false") %>
-			<%= f.label :access_level, 'Public' %>
+			<%= f.radio_button :registered, "false" %>
+			<%= f.label :registered, 'Public' %>
 		</li>
 		<li>
-			<%= f.radio_button :access_level, "true" %>
-			<%= f.label :access_level, 'Registered' %>
+			<%= f.radio_button :registered, "true" %>
+			<%= f.label :registered, 'Registered' %>
 		</li>
+  </ul>
+  <h3 class="separator">Limit Access To:</h3>
+	<ul class="checkbox group">
 		<% current_community.access_classes.each do |access_class|%>
 		<li>
-			<%= f.radio_button :access_level, access_class.id %>
-			<%= f.label :access_level, access_class.name %>
+		  <%= check_box_tag "content[access_class_ids][]", access_class.id, content.access_classes.include?(access_class) %>
+			<%= label_tag "content[access_class_ids][]", access_class.name %>
 		</li>
 		<% end %>
 	</ul>
