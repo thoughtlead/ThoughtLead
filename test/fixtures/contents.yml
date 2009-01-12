@@ -30,6 +30,14 @@ super_premium_content:
     draft: false
     access_class: c3_ultrapremium
     registered: false
+    
+ultrapremium_content:
+    title: Premium Lesson
+    body: No riff raff in here
+    user: sam
+    draft: false
+    access_class: c3_ultrapremium
+    registered: false
 
 premium_draft_content:
     title: Premium Draft Lesson
