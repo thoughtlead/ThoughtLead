@@ -63,8 +63,17 @@ class User < ActiveRecord::Base
     community.owner == self
   end
 
+  alias :real_access_class :access_class
   def access_class
-    owner? ? community.highest_access_class : self[:access_class]
+    owner? ? community.highest_access_class : real_access_class
+  end
+
+  def access_class=(ac)
+    access_class = ac
+  end
+
+  def access_classes
+    [access_class]
   end
 
   def user_avatar=(it)
@@ -80,6 +89,12 @@ class User < ActiveRecord::Base
     self.active = subscriber.active
     self.spreedly_token = subscriber.token
     save
+  end
+
+  def has_access_to(object)
+    return access_class.has_access_to(object.access_classes) if !access_class.nil?
+    #else we know user is only registered
+    return object.access_classes.blank?
   end
 
   private

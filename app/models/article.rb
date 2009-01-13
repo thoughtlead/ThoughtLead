@@ -32,11 +32,11 @@ class Article < ActiveRecord::Base
 
   def visible_to(user)
     return true if user == self.community.owner
-    unless self.content.draft?
-      unless self.content.access_class.nil?
-        return self.content.access_class.is_accessible_to(user.access_class)
+    unless content.draft?
+      unless content.access_classes.blank?
+        return user.has_access_to(content)
       end
-      if self.content.registered
+      if content.registered
         return !user.nil?
       else #content is publicly viewable
         return true
