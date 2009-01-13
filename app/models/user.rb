@@ -63,8 +63,24 @@ class User < ActiveRecord::Base
     community.owner == self
   end
 
+  alias :real_access_class :access_class
   def access_class
-    owner? ? community.highest_access_class : self[:access_class]
+    owner? ? community.highest_access_class : real_access_class
+  end
+
+  def access_class=(ac)
+    access_class = ac
+  end
+
+  def access_classes
+    [access_class]
+  end
+
+  def can_post
+    community.themes.each do |theme|
+      return true if has_access_to(theme)
+    end
+    return false
   end
 
   def user_avatar=(it)
@@ -72,6 +88,12 @@ class User < ActiveRecord::Base
     the_avatar.user = self
     the_avatar.uploaded_data = it
     self.avatar = the_avatar unless it.to_s.blank?
+  end
+
+  def has_access_to(object)
+    return access_class.has_access_to(object.access_classes) if !access_class.nil?
+    #else we know user is only registered
+    return object.access_classes.blank?
   end
 
   private

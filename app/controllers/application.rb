@@ -38,12 +38,13 @@ class ApplicationController < ActionController::Base
     store_location
 
     if logged_in?
-      if current_user.access_class.nil? || !current_user.access_class.has_access_to(ac_object.access_classes)
+      return if ac_object.access_classes.blank?
+      if !ac_object.access_classes.blank? && (current_user.access_class.nil? || !current_user.access_class.has_access_to(ac_object.access_classes))
         flash[:notice] = "You need to upgrade your account if you wish to view premium content."
         redirect_to upgrade_url and return
       end
     else
-      if !ac_object.access_classes.empty?
+      if !ac_object.access_classes.blank?
         flash[:notice] = "You must login to a premium account or create a new premium account to view this content.<br/>" +
           "To create a new premium account, first register or login as a free member.<br/>" +
           "Once you are logged in simply follow the on-screen instructions to access premium content in no time."
