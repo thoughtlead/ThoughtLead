@@ -34,7 +34,7 @@ class Article < ActiveRecord::Base
     return true if user == self.community.owner
     unless self.content.draft?
       unless self.content.access_class.nil?
-        return self.content.access_class.is_accessible_to_someone_with(user.access_class)
+        return self.content.access_class.is_accessible_to(user.access_class)
       end
       if self.content.registered
         return !user.nil?
