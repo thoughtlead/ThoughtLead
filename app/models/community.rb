@@ -21,14 +21,6 @@ class Community < ActiveRecord::Base
     u && !u.disabled? && u.authenticated?(password) ? u : nil
   end
 
-  def refresh_from_spreedly
-    subscriber = Spreedly::Community::Subscriber.find(self.id)
-    self.active = subscriber.active
-    self.spreedly_token = subscriber.token
-    self.eligible_for_free_trial = subscriber.eligible_for_free_trial
-    save
-  end
-
   def highest_access_class
     return access_classes.sort_by_order.last
   end

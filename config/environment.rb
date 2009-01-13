@@ -20,7 +20,7 @@ Rails::Initializer.run do |config|
   # you must remove the Active Record framework.
   # config.frameworks -= [ :active_record, :active_resource, :action_mailer ]
 
-  # Specify gems that this application depends on. 
+  # Specify gems that this application depends on.
   # They can then be installed with "rake gems:install" on new installations.
   # You have to specify the :lib option for libraries, where the Gem name (sqlite3-ruby) differs from the file itself (sqlite3)
   # config.gem "bj"
@@ -31,7 +31,7 @@ Rails::Initializer.run do |config|
   config.gem "mime-types", :lib => "mime/types"
   config.gem "builder"
   config.gem "xml-simple", :lib => "xmlsimple"
-  config.gem "aws-s3", :lib => "aws/s3" 
+  config.gem "aws-s3", :lib => "aws/s3"
   config.gem "colored"
   config.gem "map_by_method"
   config.gem "random_data"
@@ -41,14 +41,13 @@ Rails::Initializer.run do |config|
   config.gem "rexml-expansion-fix"
   config.gem 'mislav-will_paginate', :lib => 'will_paginate', :source => 'http://gems.github.com'
 
-  # Only load the plugins named here, in the order given. By default, all plugins 
+  # Only load the plugins named here, in the order given. By default, all plugins
   # in vendor/plugins are loaded in alphabetical order.
   # :all can be used as a placeholder for all plugins not explicitly named
   # config.plugins = [ :exception_notification, :ssl_requirement, :all ]
 
   # Add additional load paths for your own custom dirs
   # config.load_paths += %W( #{RAILS_ROOT}/extras )
-  config.load_paths << "#{RAILS_ROOT}/app/models/spreedly"
 
   # Force all environments to use the same logger level
   # (by default production uses :info, the others :debug)
@@ -66,13 +65,13 @@ Rails::Initializer.run do |config|
 
   # Your secret key for verifying cookie session data integrity.
   # If you change this key, all old sessions will become invalid!
-  # Make sure the secret is at least 30 characters and all random, 
+  # Make sure the secret is at least 30 characters and all random,
   # no regular words or you'll be exposed to dictionary attacks.
   config.action_controller.session = {
     :session_key => '_thoughtlead_session',
     :secret      => 'd04b52dbb492216963ed017bbb9da3766df2d19cf7f47e9a65e4b23056989d28740ff22f84b00c1d584f393c43e7d7d35f2ab74d0b5b650bc9b9ba0efe51c9d0'
   }
-  
+
   # Use the database for sessions instead of the cookie-based default,
   # which shouldn't be used to store highly confidential information
   # (create the session table with "rake db:sessions:create")
@@ -99,8 +98,9 @@ Ultrasphinx::Search.excerpting_options = HashWithIndifferentAccess.new({
   :limit => 128,
   :around => 3,
   :content_methods => [['title', 'display_name'], ['login'], ['body', 'description', 'content', 'about'], ['teaser'], ['interests'], ['location'], ['zipcode']] # The first responding method in each group for each record will be excerpted.
-})
-  
+}
+)
+
 Ultrasphinx::Search.query_defaults = HashWithIndifferentAccess.new({
   :query => nil,
   :page => 1,
@@ -111,4 +111,5 @@ Ultrasphinx::Search.query_defaults = HashWithIndifferentAccess.new({
   :class_names => [],
   :filters => {},
   :facets => []
-})
+}
+)

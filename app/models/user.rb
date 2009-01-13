@@ -74,14 +74,6 @@ class User < ActiveRecord::Base
     self.avatar = the_avatar unless it.to_s.blank?
   end
 
-  def refresh_from_spreedly
-    Spreedly::User::Subscriber.configure(self.community)
-    subscriber = Spreedly::User::Subscriber.find(self.id)
-    self.active = subscriber.active
-    self.spreedly_token = subscriber.token
-    save
-  end
-
   private
 
   def encrypt_password
