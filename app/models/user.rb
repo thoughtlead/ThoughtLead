@@ -76,6 +76,13 @@ class User < ActiveRecord::Base
     [access_class]
   end
 
+  def can_post
+    community.themes.each do |theme| 
+      return true if has_access_to(theme)  
+    end
+    return false
+  end
+  
   def user_avatar=(it)
     the_avatar = self.avatar || Avatar.new
     the_avatar.user = self

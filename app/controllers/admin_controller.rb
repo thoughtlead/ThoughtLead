@@ -33,8 +33,8 @@ class AdminController < ApplicationController
       return
     end
   
-    premium_status = params[:premium] == 'true' ? "not null" : "null"
-    users = User.find(:all, :conditions => ["created_at >= ? and community_id = ? and access_class_id is ?", since, current_community.id, premium_status])
+    premium_condition = params[:premium] == 'true' ? "access_class_id is not null" : "access_class_id is null"
+    users = User.find(:all, :conditions => ["created_at >= ? and community_id = ? and " + premium_condition, since, current_community.id])
     csv_string = FasterCSV.generate do |csv| 
       csv << ["first_name","last_name","email"]
       users.each do |u|
