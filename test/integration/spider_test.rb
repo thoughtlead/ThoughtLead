@@ -6,56 +6,45 @@ class SpiderTest < ActionController::IntegrationTest
   :lessons, :themes, :users
 
   IgnoreURLs = ['/login', 'http://www.onemillionmarketers.com', 'http://thoughtlead.com/', %r{^javascript:.*}, %r{^.*/categories/[0-9]+}, %r{^.+logout}, %r{^.+delete.?}, %r{^.+/destroy.?}]
-  
+  ExcludeFormPatterns = [%r{^.*/search}, %r{^.*/login}, %r{^.*/sessions}, %r{^.*/community/edit}]
+
   include Caboose::SpiderIntegrator
-  
-  def spiderize(exclude_form_patterns)
+
+  def test_spider_site_no_search
     # splash page, no login
     get '/'
     assert_response :success
-    spider(@response.body, '/',     
-    :verbose => false,
-    :ignore_urls => IgnoreURLs, 
-    :ignore_forms => exclude_form_patterns)
-    
+    run_spider('/')
+
     # testing community page, no login
     get 'http://testing.dev'
     assert_response :success
-    spider(@response.body, '/',     
-    :verbose => false,
-    :ignore_urls => IgnoreURLs, 
-    :ignore_forms => exclude_form_patterns)
-    
+    run_spider('/')
+
     # testing community, registered user
     get 'http://testing.dev/login'
     assert_response :success
     post 'http://testing.dev/sessions', :login => 'test', :password => 'test'
-    assert session[:user]
+    assert_equal users(:test).id, session[:user_id]
     assert_response :redirect
     follow_redirect!
     get 'http://testing.dev/'
-    spider(@response.body, 'http://testing.dev/',
-    :verbose => false,
-    :ignore_urls => IgnoreURLs, 
-    :ignore_forms => exclude_form_patterns)
-    
+    run_spider
+
     # testing community, premium user
     get 'http://testing.dev/login'
     assert_response :success
     post 'http://testing.dev/sessions', :login => 'premium', :password => 'test'
-    assert session[:user]
+    assert_equal users(:premium).id, session[:user_id]
     assert_response :redirect
     follow_redirect!
     get 'http://testing.dev/'
-    spider(@response.body, 'http://testing.dev/',
-    :verbose => false,
-    :ignore_urls => IgnoreURLs, 
-    :ignore_forms => exclude_form_patterns)
+    run_spider
   end
-  
-  def test_spider_site_no_search
-    spiderize([%r{^.*/search}, %r{^.*/login}, %r{^.*/sessions}, %r{^.*/community/edit}])
-  end
-  
-end
 
+  private
+
+  def run_spider(url = 'http://testing.dev/')
+    spider(@response.body, url, :verbose => false, :ignore_urls => IgnoreURLs, :ignore_forms => ExcludeFormPatterns)
+  end
+end

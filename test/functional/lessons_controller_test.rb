@@ -113,6 +113,6 @@ class LessonsControllerTest < ActionController::TestCase
     course = courses :happiness
     chapter = chapters :first_chapter
     @request.host = lesson.chapter.course.community.host
-    @request.session[:user] = user.nil? ? nil : user.id
+    @request.session[:user_id] = user.nil? ? nil : user.id
   end
 end

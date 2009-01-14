@@ -45,11 +45,11 @@ module BasicsDsl
   
   def assert_logged_in(user_or_user_symbol)
     user = user_or_user_symbol.kind_of?(User) ? user_or_user_symbol : users(user_or_user_symbol) 
-    assert_equal(user.id, session[:user], "#{user} should have been logged in.")
+    assert_equal(user.id, session[:user_id], "#{user} should have been logged in.")
   end
 
   def assert_not_logged_in
-    assert_nil(session[:user], "No user should be logged in.")
+    assert_nil(session[:user_id], "No user should be logged in.")
   end
 
 end
