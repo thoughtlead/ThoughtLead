@@ -10,12 +10,12 @@ class UsersController < ApplicationController
     @user = User.new(params[:user])
 
     if request.post?
-      @user.password = Random.alphanumeric 7
+      @user.password = random_password(7)
       @user.password_confirmation = @user.password
       if User.find_by_login(@user.email).nil?
         @user.login = @user.email
       else
-        @user.login = Random.alphanumeric 10
+        @user.login = random_password(10)
       end
       @user.display_name = make_display_name @user
       @user.community = current_community
@@ -92,7 +92,7 @@ class UsersController < ApplicationController
     return if request.get?
 
     if user = current_community.users.find_by_login(params[:login])
-      @new_password = Random.alphanumeric 20
+      @new_password = random_password(20)
       user.password = user.password_confirmation = @new_password
       user.save!
       Mailer.deliver_new_password(user, @new_password)
