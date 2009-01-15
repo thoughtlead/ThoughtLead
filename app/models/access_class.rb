@@ -1,5 +1,6 @@
 class AccessClass < ActiveRecord::Base
   belongs_to :community
+  has_many :subscription_plans
 
   def has_access_to(access_classes)
     access_classes.each do |access_class|

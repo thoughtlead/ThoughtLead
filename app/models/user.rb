@@ -1,10 +1,12 @@
 require 'digest/sha1'
 
 class User < ActiveRecord::Base
-  belongs_to  :community
-  has_many    :courses
-  has_one     :avatar, :dependent => :destroy
-  belongs_to  :access_class
+  belongs_to :community
+  has_many :courses
+  has_one :avatar, :dependent => :destroy
+  belongs_to :access_class
+  has_one :subscription
+  has_many :subscription_payments
 
   attr_accessor :password, :uploaded_avatar_data
   attr_writer   :password_required
