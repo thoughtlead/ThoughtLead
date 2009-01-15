@@ -23,17 +23,6 @@
 				<%= f.text_field :host, :class => "inp_text"  %>
 			</div>
 
-
-			<div class="inp group">
-				<%= f.label :spreedly_api_key %>
-				<%= f.text_field :spreedly_api_key, :class => "inp_text"  %>
-			</div>
-
-			<div class="checkbox group">
-				<%= f.check_box :use_spreedly_production_site  %>
-				<%= f.label :use_spreedly_production_site, "Use Spreedly Production Site", :class => 'plus_label'  %>
-			</div>
-
 			<div class="inp group">
 				<%= f.label :premium_link, "Link to purchase premium access" %>
 				<span class="hint">(Full URL including http://)</span>
@@ -45,9 +34,6 @@
 				<span class="hint">(i.e. "Click to purchase premium access for just $19.95 per month")</span>
 				<%= f.text_field :premium_text, :class => "inp_text"  %>
 			</div>
-
-			<p><%= link_to "Change your payment settings", "https://spreedly.com/thoughtlead-test/subscriber_accounts/#{current_community.spreedly_token}" if current_community.spreedly_api_key && !current_community.spreedly_api_key.blank? %></p>
-
 		</fieldset>
 
 		<fieldset class="submit">

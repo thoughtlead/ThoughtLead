@@ -3,21 +3,18 @@ c1:
   name: C1
   owner: duff
   active: true
-  spreedly_api_key:
 
 c2:
   host: c2.nokahuna.dev
   name: C2
   owner: daniel
   active: true
-  spreedly_api_key:
 
 c3:
   host: c3.nokahuna.dev
   name: C3
   owner: sam
   active: true
-  spreedly_api_key:
 
 testing:
   host: testing.dev
@@ -30,4 +27,3 @@ watirtest:
   name: Test
   owner: admin
   active: true
-  spreedly_api_key:

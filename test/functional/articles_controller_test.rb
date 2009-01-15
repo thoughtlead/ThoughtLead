@@ -101,6 +101,6 @@ class ArticlesControllerTest < ActionController::TestCase
     raise "The user isn't a User object" if user && user.class != User
     @request = ActionController::TestRequest.new
     @request.host = article.community.host
-    @request.session[:user] = user.nil? ? nil : user.id
+    @request.session[:user_id] = user.nil? ? nil : user.id
   end
 end

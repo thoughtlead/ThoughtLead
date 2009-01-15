@@ -1,10 +1,12 @@
 require 'digest/sha1'
 
 class User < ActiveRecord::Base
-  belongs_to  :community
-  has_many    :courses
-  has_one     :avatar, :dependent => :destroy
-  belongs_to  :access_class
+  belongs_to :community
+  has_many :courses
+  has_one :avatar, :dependent => :destroy
+  belongs_to :access_class
+  has_one :subscription
+  has_many :subscription_payments
 
   attr_accessor :password, :uploaded_avatar_data
   attr_writer   :password_required
@@ -77,25 +79,17 @@ class User < ActiveRecord::Base
   end
 
   def can_post
-    community.themes.each do |theme| 
-      return true if has_access_to(theme)  
+    community.themes.each do |theme|
+      return true if has_access_to(theme)
     end
     return false
   end
-  
+
   def user_avatar=(it)
     the_avatar = self.avatar || Avatar.new
     the_avatar.user = self
     the_avatar.uploaded_data = it
     self.avatar = the_avatar unless it.to_s.blank?
-  end
-
-  def refresh_from_spreedly
-    Spreedly::User::Subscriber.configure(self.community)
-    subscriber = Spreedly::User::Subscriber.find(self.id)
-    self.active = subscriber.active
-    self.spreedly_token = subscriber.token
-    save
   end
 
   def has_access_to(object)

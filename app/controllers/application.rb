@@ -1,4 +1,3 @@
-
 class ApplicationController < ActionController::Base
   helper :all
 
@@ -8,7 +7,6 @@ class ApplicationController < ActionController::Base
   include RomanNumerals
   include WillPaginate
 
-  before_filter :login_from_cookie
   before_filter :control_access
   before_filter :invalidate_return_to
   protect_from_forgery
@@ -46,8 +44,8 @@ class ApplicationController < ActionController::Base
     else
       if !ac_object.access_classes.blank?
         flash[:notice] = "You must login to a premium account or create a new premium account to view this content.<br/>" +
-          "To create a new premium account, first register or login as a free member.<br/>" +
-          "Once you are logged in simply follow the on-screen instructions to access premium content in no time."
+        "To create a new premium account, first register or login as a free member.<br/>" +
+        "Once you are logged in simply follow the on-screen instructions to access premium content in no time."
         redirect_to login_url and return
       end
       if ac_object.is_registered?
@@ -78,7 +76,6 @@ class ApplicationController < ActionController::Base
     default_file = "#{themes_dir}/default/#{filename}"
     return default_file unless current_community
     return default_file unless File.exist?("#{themes_dir}/#{current_community.host}/#{filename}")
-      "#{themes_dir}/#{current_community.host}/#{filename}"
+    "#{themes_dir}/#{current_community.host}/#{filename}"
   end
-
 end
