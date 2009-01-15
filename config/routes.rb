@@ -44,8 +44,11 @@ ActionController::Routing::Routes.draw do |map|
 
   map.edit_community '/community/edit', :controller => 'admin', :action => 'edit_community', :conditions => { :is_client_domain => true }
   map.access_rights '/community/access', :controller => 'admin', :action => 'access_rights', :conditions => { :is_client_domain => true }
+  map.create_access_class '/community/create_access', :controller => 'admin', :action => 'create_access_class', :conditions => { :is_client_domain => true }
   map.select_exported_users '/community/select_exported_users', :controller => 'admin', :action => 'select_exported_users', :conditions => { :is_client_domain => true }
   map.export_users '/community/export_users', :controller => 'admin', :action => 'export_users', :conditions => { :is_client_domain => true }
+
+  map.subscription_plans '/community/:access_class_id/plans', :controller => 'subscription_plans', :action => 'index', :conditions => { :is_client_domain => true }
 
   map.library '/library', :controller => 'articles', :action => 'index', :conditions => { :is_client_domain => true }
   map.resources :articles, :conditions => { :is_client_domain => true }

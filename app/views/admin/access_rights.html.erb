@@ -8,25 +8,41 @@
 			</ul>
 		</div>
 	</div>
-	<h2>Edit Access Rights</h2>
-	<% form_for @community, :url => access_rights_url do | f | %>
-		<%= f.error_messages %>
 
-		<fieldset class="input">
-			<div class="inp group">
-				<label>Discussion Accessibility Level</label>
-				<%= f.select :discussion_accessibility, [["Public",0],["Premium",1]] %>
-			</div>
-		</fieldset>
+	<h2>Access Levels</h2>
 
-		<fieldset class="submit">
-			<ul class="submit_opts">
-				<li><%= submit_tag "Save Changes", :class => "make_button", :id => "save" %></li>
-				<li class="text">or <%= link_to "Cancel", community_home_url %></li>
+	<ul class="sep_item_list categories">
+		<% for access_class in @community.access_classes %>
+
+		<li>
+			<h3><%=h access_class.name %></h3>
+			<ul class="item_actions">
+				<li><%= link_to "Edit Subscription Plans", subscription_plans_url(access_class) %></li>
 			</ul>
-		</fieldset>
+		</li>
 
-	<% end %>
+		<% end %>
+	</ul>
+
+	<% form_tag :action => "create_access_class" do %>
+
+	<fieldset class="input">
+
+		<div class="inp group">
+			<%= label_tag :name, "Name" %>
+			<%= text_field_tag :name, '', :class => "inp_text" %>
+		</div>
+
+	</fieldset>
+
+	<fieldset class="submit">
+		<ul class="submit_opts">
+			<li><%= submit_tag "Create Access Level", :class => "make_button", :id => "create" %></li>
+		</ul>
+	</fieldset>
+
+	<% end -%>
+
 </div>
 <div id="sidebar">
 	<ul class="modules">

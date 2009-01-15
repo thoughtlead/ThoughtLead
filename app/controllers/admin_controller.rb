@@ -1,5 +1,4 @@
 class AdminController < ApplicationController
-
   before_filter :owner_login_required
 
   def edit_community
@@ -22,6 +21,10 @@ class AdminController < ApplicationController
 
     flash[:notice] = "Access Rights Saved"
     redirect_to access_rights_url
+  end
+  
+  def create_access_class
+    
   end
 
   def export_users
