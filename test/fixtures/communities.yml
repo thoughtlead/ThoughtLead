@@ -10,7 +10,6 @@ c2:
   name: C2
   owner: daniel
   active: true
-  discussion_accessibility: 0
   spreedly_api_key:
 
 c3:
@@ -18,7 +17,6 @@ c3:
   name: C3
   owner: sam
   active: true
-  discussion_accessibility: 1
   spreedly_api_key:
 
 testing:
@@ -26,12 +24,10 @@ testing:
   name: Test
   owner: test
   active: true
-  discussion_accessibility: 1
 
 watirtest:
   host: watirtest.localhost.com
   name: Test
   owner: admin
   active: true
-  discussion_accessibility: 1
   spreedly_api_key:
