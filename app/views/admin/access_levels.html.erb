@@ -13,17 +13,17 @@
 
 	<ul class="sep_item_list categories">
 		<% for access_class in @community.access_classes %>
-
 		<li>
 			<h3><%=h access_class.name %></h3>
 			<ul class="item_actions">
 				<li><%= link_to "Edit Subscription Plans", access_class_subscription_plans_url(access_class) %></li>
 			</ul>
 		</li>
-
 		<% end %>
 	</ul>
 
+	<br />
+	<h3 class="separator">Create a New Access Level</h3>
 	<% form_tag :action => "create_access_level" do %>
 
 	<fieldset class="input">
@@ -32,6 +32,17 @@
 			<%= label_tag :name, "Name" %>
 			<%= text_field_tag :name, '', :class => "inp_text" %>
 		</div>
+
+    <p>Also grant members with this access level access to content tagged:</p>
+
+	  <ul class="checkbox group">
+		  <% @community.access_classes.each do |access_class| %>
+		  <li>
+        <%= check_box_tag :add_child, access_class, :id => access_class %>
+        <%= label_tag :add_child, access_class.name %>
+		  </li>
+		  <% end %>
+		</ul>
 
 	</fieldset>
 
