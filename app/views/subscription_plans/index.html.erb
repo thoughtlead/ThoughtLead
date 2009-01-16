@@ -42,6 +42,11 @@
 			<%= f.text_field :renewal_period, :size => 3 %>
 			<%= f.select :renewal_units, SubscriptionPlan.units %>
 		</div>
+		<div class="inp group">
+			Give a trial period of:
+			<%= f.text_field :trial_period, :size => 3 %>
+			<%= f.select :trial_units, SubscriptionPlan.units %>
+		</div>
 
 	</fieldset>
 
