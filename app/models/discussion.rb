@@ -19,10 +19,20 @@ class Discussion < ActiveRecord::Base
   end
 
   def is_registered?
-    return false
+    unless theme.nil?
+      return theme.registered
+    end
+    false
   end
 
   def access_classes
     return theme.nil? ? nil : theme.access_classes
+  end
+
+  def is_visible_to(user)
+    unless theme.nil?
+      return theme.is_visible_to(user)
+    end
+    true
   end
 end

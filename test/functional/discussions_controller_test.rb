@@ -1,4 +1,4 @@
-require File.dirname(__FILE__) + '/../test_helper' 
+require File.dirname(__FILE__) + '/../test_helper'
 
 class DiscussionsControllerTest < ActionController::TestCase
   def test_accessibility_rules_no_user
@@ -14,7 +14,7 @@ class DiscussionsControllerTest < ActionController::TestCase
     get :show, {:id=> premium.id}
     assert_response :redirect
   end
-    
+
   def test_accessibility_rules_registered_user
     registered_user = users :duff
     public = discussions :its_coming
@@ -27,7 +27,7 @@ class DiscussionsControllerTest < ActionController::TestCase
     get :show, {:id=> premium.id}
     assert_response :success
   end
-    
+
   def test_accessibility_premium_user
     premium_user = users :daniel
     public = discussions :its_coming
@@ -39,6 +39,54 @@ class DiscussionsControllerTest < ActionController::TestCase
     new_request(premium,premium_user)
     get :show, {:id=> premium.id}
     assert_response :success
+  end
+
+  def test_discussions_you_do_not_have_access_to_do_not_show_up_in_your_list_if_you_are_premium
+    premium_user = users :premium_audrey
+    public = discussions :c3_public_discussion
+
+    new_request(public,premium_user)
+    get :index
+
+    assert_equal 4, assigns(:discussions).size
+    assigns(:discussions).map(&:theme).each do |theme|
+      assert theme.is_visible_to(premium_user)
+    end
+  end
+
+  def test_discussions_you_do_not_have_access_to_do_not_show_up_in_your_list_if_you_are_ultrapremium
+    premium_user = users :ultrapremium_audrey
+    public = discussions :c3_public_discussion
+
+    new_request(public,premium_user)
+    get :index
+    assert_equal 2, assigns(:discussions).size
+    assigns(:discussions).map(&:theme).each do |theme|
+      assert theme.is_visible_to(premium_user)
+    end
+  end
+
+  def test_discussions_you_do_not_have_access_to_do_not_show_up_in_your_list_if_you_are_registered
+    registered_user = users :audrey
+    public = discussions :c3_public_discussion
+
+    new_request(public,registered_user)
+    get :index
+    assert_equal 2, assigns(:discussions).size
+    assigns(:discussions).map(&:theme).each do |theme|
+      assert theme.is_visible_to(registered_user)
+    end
+  end
+
+  def test_discussions_you_do_not_have_access_to_do_not_show_up_in_your_list_if_you_are_not_logged_in
+    public = discussions :c3_public_discussion
+
+    new_request(public)
+    get :index
+    assert_equal 1, assigns(:discussions).size
+    assigns(:discussions).map(&:theme).each do |theme|
+      assert theme.is_visible_to(nil)
+    end
   end
 
   def new_request(discussion,user=nil)

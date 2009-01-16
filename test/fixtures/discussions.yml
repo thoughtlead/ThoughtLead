@@ -7,10 +7,31 @@ its_coming:
 
 lost_my_monkey:
     title: Help! Lost My Monkey!
-    body: If anyone finds him tell him to come home.
+    body: If anyone finds him tell him to come home. Monkey theme is premium
     user: sam
     community: c3
     theme: monkeys
+
+c3_premium_discussion:
+    title: Help! Lost My Monkey!
+    body: If anyone finds him tell him to come home.
+    user: sam
+    community: c3
+    theme: premium_theme
+
+c3_registered_discussion:
+    title: Help! Lost My Monkey!
+    body: If anyone finds him tell him to come home.
+    user: sam
+    community: c3
+    theme: registered_theme
+
+c3_public_discussion:
+    title: Help! Lost My Monkey!
+    body: If anyone finds him tell him to come home.
+    user: sam
+    community: c3
+    theme: public_theme
 
 #===== WATIRTEST =====
 
