@@ -21,6 +21,7 @@
 				<ul class="action_nav">
 					<% if show_edit %>
 					<li class="edit"><%= link_to "Edit <span class='action_target'>Profile</span>", edit_user_url(@user), :class => 'action' %></li>
+					<li class="edit"><%= link_to "Upgrade <span class='action_target'>Subscription</span>", upgrade_url, :class => 'action' %></li>
 					<% end %>
 					<% if show_disable %>
 						<% if @user.disabled? %>
@@ -49,7 +50,7 @@
 						<dt><%= (@user.disabled? ? "<strike>" : "") + h(@user) + (@user.disabled? ? "</strike>" : "") %></dt>
 						<% unless @user.location.blank? %><dd><%=h @user.location %></dd><% end %>
 						<% unless @user.zipcode.blank? %><dd><%=h @user.zipcode %></dd><% end %>
-						<dd><%= @user.access_class.nil? ? 'Non-Premium User' : 'Premium User' %></dd>				
+						<dd><%= @user.access_class.nil? ? 'Non-Premium User' : @user.access_class.name + ' Member' %></dd>
 					</dl>
 					<div class="button clear"><a href="<%= email_user_url(@user) %>"><span class="icon email">Email <%= h(@user) %></span></a></div>
 				</td>
@@ -98,6 +99,13 @@
 			<tr>
 				<th scope="row">Last Name</th>
 				<td><%= details_format(@user.last_name) %></td>
+			</tr>
+			<% end %>
+			<% if show_edit %>
+			<tr>
+				<th scope="row">Subscription Information</th>
+				<td><%= render :partial => '/subscriptions/show_subscription', :locals => { :subscription => @user.subscription } %>
+				</td>
 			</tr>
 			<% end %>
 		</tbody>
