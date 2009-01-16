@@ -19,9 +19,7 @@ class AdminController < ApplicationController
   def create_access_level
     @community = current_community
 
-    highest_order_access_class = @community.access_classes.first(:order => "`order` DESC")
-    new_order = highest_order_access_class.nil? ? "1" : highest_order_access_class.order + 1
-    access_class = @community.access_classes.build(:name => params[:name], :order => new_order)
+    access_class = @community.access_classes.build(:name => params[:name])
     if access_class.save
       flash[:notice] = "Access Level \"#{access_class.name}\" created."
       redirect_to access_levels_url

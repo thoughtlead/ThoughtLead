@@ -5,7 +5,7 @@ class Community < ActiveRecord::Base
   has_many :themes, :dependent => :destroy
   has_many :categories, :dependent => :destroy
   has_many :articles, :dependent => :destroy
-  has_many :access_classes, :dependent => :destroy
+  has_many :access_classes, :order => :position, :dependent => :destroy
   belongs_to :owner, :class_name => "User"
 
   validates_presence_of :host, :name
@@ -19,10 +19,6 @@ class Community < ActiveRecord::Base
   def authenticate(login, password)
     u = users.find_by_login(login)
     u && !u.disabled? && u.authenticated?(password) ? u : nil
-  end
-
-  def highest_access_class
-    return access_classes.sort_by_order.last
   end
 
   def discussions_are_premium?

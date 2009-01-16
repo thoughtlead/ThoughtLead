@@ -71,7 +71,7 @@ class UserTest < ActiveSupport::TestCase
     user = users(:duff)
     community = Community.new(:name => "Whatever", :host => "whatever")
     user.community = community
-    community.access_classes << AccessClass.new(:name => "whatever_premium", :order => 1)
+    community.access_classes << AccessClass.new(:name => "whatever_premium")
     
     assert user.access_class.nil?
     

@@ -1,5 +1,7 @@
 class AccessClass < ActiveRecord::Base
   belongs_to :community
+  acts_as_list :scope => :community
+
   has_many :subscription_plans
   has_many :access_class_relationships
   has_many :children, :class_name => 'AccessClass', :through => :access_class_relationships
