@@ -9,25 +9,21 @@ c2:
   name: C2
   owner: daniel
   active: true
-  discussion_accessibility: 0
 
 c3:
   host: c3.nokahuna.dev
   name: C3
-  owner: sam
+  owner: c3_community_owner
   active: true
-  discussion_accessibility: 1
 
 testing:
   host: testing.dev
   name: Test
   owner: test
   active: true
-  discussion_accessibility: 1
 
 watirtest:
   host: watirtest.localhost.com
   name: Test
   owner: admin
   active: true
-  discussion_accessibility: 1

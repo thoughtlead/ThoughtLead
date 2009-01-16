@@ -1,12 +1,32 @@
 tuesday:
-    community: C2
+    community: c2
     name: Tuesday
     description: Did you bring your coat?
+    registered: true
 
 monkeys:
-    community: C3
+    community: c3
     name: Monkeys
     description: Discussions concerning the tail-bearing primates
+    registered: true
+
+premium_theme:
+    community: c3
+    name: PremTheme
+    description: Discussions on premiosity
+    registered: true
+
+public_theme:
+    community: c3
+    name: PublicTheme
+    description: Discussions on public themes
+    registered: false
+
+registered_theme:
+    community: c3
+    name: RegisteredTheme
+    description: Discussions on public themes
+    registered: true
 
 #===== WATIRTEST =====
 
