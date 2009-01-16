@@ -43,8 +43,8 @@ ActionController::Routing::Routes.draw do |map|
   map.discussions_for_theme '/discussions/theme/:id', :controller => "discussions", :action => "for_theme", :conditions => { :is_client_domain => true }
 
   map.edit_community '/community/edit', :controller => 'admin', :action => 'edit_community', :conditions => { :is_client_domain => true }
-  map.access_rights '/community/access', :controller => 'admin', :action => 'access_rights', :conditions => { :is_client_domain => true }
-  map.create_access_class '/community/create_access', :controller => 'admin', :action => 'create_access_class', :conditions => { :is_client_domain => true }
+  map.access_levels '/community/access', :controller => 'admin', :action => 'access_levels', :conditions => { :is_client_domain => true }
+  map.create_access_level '/community/create_access', :controller => 'admin', :action => 'create_access_level', :conditions => { :is_client_domain => true }
   map.select_exported_users '/community/select_exported_users', :controller => 'admin', :action => 'select_exported_users', :conditions => { :is_client_domain => true }
   map.export_users '/community/export_users', :controller => 'admin', :action => 'export_users', :conditions => { :is_client_domain => true }
 

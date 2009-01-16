@@ -12,19 +12,20 @@ class AdminController < ApplicationController
     redirect_to edit_community_url
   end
 
-  def access_rights
+  def access_levels
+    @community = current_community
+  end
+
+  def create_access_level
     @community = current_community
 
-    return if request.get?
-
-    return unless @community.update_attributes(params[:community])
-
-    flash[:notice] = "Access Rights Saved"
-    redirect_to access_rights_url
-  end
-  
-  def create_access_class
-    
+    highest_order_access_class = @community.access_classes.first(:order => "`order` DESC")
+    new_order = highest_order_access_class.nil? ? "1" : highest_order_access_class.order + 1
+    access_class = @community.access_classes.build(:name => params[:name], :order => new_order)
+    if access_class.save
+      flash[:notice] = "Access Level \"#{access_class.name}\" created."
+      redirect_to access_levels_url
+    end
   end
 
   def export_users
@@ -51,5 +52,4 @@ class AdminController < ApplicationController
 
   def select_exported_users
   end
-
 end
