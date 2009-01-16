@@ -44,7 +44,7 @@
 						<%= avatar_for(@user, :large) %>
 						<% if @user.expert? %><span class="marker expert replace">Expert</span><% end %>
 					</div>
-				</td>
+				</th>
 				<td>
 					<dl class="profile_header">
 						<dt><%= (@user.disabled? ? "<strike>" : "") + h(@user) + (@user.disabled? ? "</strike>" : "") %></dt>

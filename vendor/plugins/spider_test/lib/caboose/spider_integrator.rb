@@ -78,6 +78,7 @@ require 'caboose'
 #   locations, and up until now this has been impossible to test in an automated fashion
 #   or without being strongly coupled to your code.
 # 
+require 'hpricot'
 module Caboose::SpiderIntegrator
 
   # Begin spidering your application.
@@ -95,7 +96,7 @@ module Caboose::SpiderIntegrator
   #    @forms_to_visit : array containing Caboose::SpiderIntegrator::Form.new( method, action, query, source ) objects
   #   
   # You may find it useful to have two spider tests, one logged in and one logged out.
-  def spider( body, uri, options )
+  def spider( body, uri, options = {} )
     @errors, @stacktraces = {}, {}
     setup_spider(options)
     begin
@@ -115,18 +116,18 @@ module Caboose::SpiderIntegrator
   # todo: use hpricot or something else more fun (we will need to validate 
   # the html in this case since HTML::Document does it by default)
   def consume_page( html, url )
-    body = HTML::Document.new html
-    body.find_all(:tag=>'a').each do |tag|
+    body = Hpricot html
+    body.search('a').each do |tag|
       queue_link( tag, url )
     end
-    body.find_all(:tag=>'link').each do |tag|
+    body.search('link').each do |tag|
       # Strip appended browser-caching numbers from asset paths like ?12341234
       queue_link( tag, url )
     end
-    body.find_all(:tag => 'input', :attributes => { :name => nil }) do |input|
+    body.search('input[name=""]') do |input|
       queue_link( tag, url ) if tag['onclick']
     end
-    body.find_all(:tag =>'form').each do |form|
+    body.search('form').each do |form|
       form = SpiderableForm.new form
       queue_form( form, url )
     end
@@ -303,7 +304,7 @@ module Caboose::SpiderIntegrator
     dest = (tag.attributes['onclick'] =~ /^new Ajax.Updater\(['"].*?['"], ['"](.*?)['"]/i) ? $1 : tag.attributes['href']
     return if dest.nil?
     dest.gsub!(/([?]\d+)$/, '') # fix asset caching
-    #We have modified spider test to follow external "http://" links 'cause in this app they're not 
+    # We have modified spider test to follow external "http://" links 'cause in this app they're not 
     # really external, but specifying which community's data to view.
     unless dest =~ %r{^(mailto:|#|&#)} 
       dest = dest.split('#')[0] if dest.index("#") # don't want page anchors
