@@ -1,34 +1,34 @@
 c1_premium:
   community: c1
   name: Premium
-  order: 1
+  position: 1
 
 c1_superpremium:
   community: c1
   name: Super Premium
-  order: 2
+  position: 2
 
 c2_premium:
   community: c2
   name: Premium
-  order: 1
+  position: 1
 
 c3_premium:
   community: c3
   name: Premium
-  order: 1
+  position: 1
 
 c3_ultrapremium:
   community: c3
   name: Ultrapremium
-  order: 2
+  position: 2
 
 testing_premium:
   community: testing
   name: Premium
-  order: 1
+  position: 1
 
 watirtest_premium:
   community: watirtest
   name: Premium
-  order: 1
+  position: 1

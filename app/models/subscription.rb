@@ -1,4 +1,6 @@
 class Subscription < ActiveRecord::Base
+  include RecurringPayment
+
   belongs_to :user
   belongs_to :subscription_plan
   belongs_to :access_class
@@ -9,8 +11,9 @@ class Subscription < ActiveRecord::Base
   attr_accessor :creditcard, :address
   attr_reader :response
 
+  validates_numericality_of :amount, :greater_than => 0
   validates_numericality_of :renewal_period, :only_integer => true, :greater_than => 0
-  validates_inclusion_of :renewal_units, :in => %w( years months days weeks )
+  validates_inclusion_of :renewal_units, :in => units
 
   def plan=(plan)
     @plan = plan

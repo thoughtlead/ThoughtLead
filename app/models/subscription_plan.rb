@@ -1,11 +1,7 @@
 class SubscriptionPlan < ActiveRecord::Base
-  include ActionView::Helpers::NumberHelper
+  include RecurringPayment
 
   belongs_to :access_class
-
-  def self.units
-    %w( years months days weeks )
-  end
 
   validates_presence_of :name
   validates_numericality_of :amount, :greater_than => 0
@@ -18,12 +14,4 @@ class SubscriptionPlan < ActiveRecord::Base
   default_value_for :renewal_units, "months"
   default_value_for :trial_period,  0
   default_value_for :trial_units,  "months"
-
-  def plan_summary
-    "#{number_to_currency(self.amount)} per #{renewal_summary}"
-  end
-
-  def renewal_summary
-    renewal_period == 1 ? renewal_units.singularize : "#{renewal_period} #{renewal_units}"
-  end
 end

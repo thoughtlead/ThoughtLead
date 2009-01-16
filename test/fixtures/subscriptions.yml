@@ -1,0 +1,8 @@
+premium:
+  user: premium
+  amount: 10.00
+  renewal_period: 1
+  renewal_units: months
+  access_class: testing_premium
+  state: active
+  next_renewal_at: <%= 1.month.from_now %>
