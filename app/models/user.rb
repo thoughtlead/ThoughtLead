@@ -75,7 +75,7 @@ class User < ActiveRecord::Base
   end
 
   def access_classes
-    [access_class]
+    [access_class].compact
   end
 
   def can_post
