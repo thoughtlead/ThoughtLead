@@ -27,6 +27,10 @@ class AdminController < ApplicationController
       redirect_to access_levels_url
     end
   end
+  
+  def subscription_plans
+    
+  end
 
   def export_users
     begin

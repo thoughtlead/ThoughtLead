@@ -1,0 +1,64 @@
+<% @current_tab = :'Community Setup' %>
+<div id="main_content">
+	<div class="content_bar" id="top">
+		<div class="breadcrumbs">
+			<p>Jump to:</p>
+			<ul>
+				<li class="first no_tab"><%= link_to "Community Setup", edit_community_url %></li>
+			</ul>
+		</div>
+	</div>
+
+	<h2>Subscription Plans for Access Level <%= h @access_class.name %></h2>
+
+	<ul class="sep_item_list categories">
+		<% for subscription_plan in @subscription_plans %>
+
+		<li>
+			<h3><%=h subscription_plan.name %></h3>
+			<ul class="item_actions">
+				<li>
+					<%= h subscription_plan.plan_summary %>
+				</li>
+			</ul>
+		</li>
+
+		<% end %>
+	</ul>
+
+	<% form_for [@access_class, @subscription_plan] do |f| -%>
+	<%= error_messages_for :subscription_plan %>
+
+	<fieldset class="input">
+
+		<div class="inp group">
+			<%= f.label :name %>
+			<%= f.text_field :name, :class => "inp_text" %>
+		</div>
+		<div class="inp group">
+			Bill 
+			$<%= f.text_field :amount, :size => 5 %>
+			every
+			<%= f.text_field :renewal_period, :size => 3 %>
+			<%= f.select :renewal_units, SubscriptionPlan.units %>
+		</div>
+
+	</fieldset>
+
+	<fieldset class="submit">
+		<ul class="submit_opts">
+			<li><%= f.submit "Create Subscription Plan", :class => "make_button", :id => "create" %></li>
+		</ul>
+	</fieldset>
+
+	<% end -%>
+
+</div>
+<div id="sidebar">
+	<ul class="modules">
+		<li class="navigation themes">
+			<h3>Community Setup</h3>
+			<%= render :partial => "admin/menu", :locals => { :mode => :edit }  %>
+		</li>
+	</ul>
+</div>
