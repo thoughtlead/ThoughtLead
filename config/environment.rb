@@ -27,10 +27,11 @@ Rails::Initializer.run do |config|
   # config.gem "hpricot", :version => '0.6', :source => "http://code.whytheluckystiff.net"
   # config.gem "sqlite3-ruby", :lib => "sqlite3"
   # config.gem "aws-s3", :lib => "aws/s3"
-  config.gem "RedCloth", :version => '3.0.4', :lib => "redcloth"
-  config.gem "mime-types", :lib => "mime/types"
+  config.gem 'hpricot'
   config.gem "builder"
   config.gem "xml-simple", :lib => "xmlsimple"
+  config.gem "RedCloth", :version => '3.0.4', :lib => "redcloth"
+  config.gem "mime-types", :lib => "mime/types"
   config.gem "aws-s3", :lib => "aws/s3"
   config.gem "colored"
   config.gem "map_by_method"
