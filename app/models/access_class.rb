@@ -6,6 +6,8 @@ class AccessClass < ActiveRecord::Base
   has_many :access_class_relationships
   has_many :children, :class_name => 'AccessClass', :through => :access_class_relationships
 
+  validates_uniqueness_of :name, :case_sensitive => false, :scope => :community_id
+
   def has_access_to(access_classes)
     access_classes.each do |access_class|
       return true if access_class == self || children.include?(access_class)

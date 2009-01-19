@@ -3,7 +3,7 @@
 		<%= link_to "Edit Community", edit_community_url %>
 	<% end%>
 	<% content_tag(:li, :id => "show_all", :class => current_class_for_action("access_levels")) do %>
-		<%= link_to "Access Levels", access_levels_url %>
+		<%= link_to "Access Levels", access_classes_url %>
 	<% end %>
 	<% content_tag(:li, :class => current_class_for_action("select_exported_users")) do %>
 		<%= link_to "Export Users", select_exported_users_url %>

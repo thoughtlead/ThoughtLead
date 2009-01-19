@@ -1,0 +1,40 @@
+<% @current_tab = :'Community Setup' %>
+<div id="main_content">
+	<div class="content_bar" id="top">
+		<div class="breadcrumbs">
+			<p>Jump to:</p>
+			<ul>
+				<li class="first no_tab"><%= link_to "Community Setup", :controller => :admin, :action => :edit_community %></li>
+			</ul>
+		</div>
+	</div>
+
+	<h2>Access Levels</h2>
+
+	<ul class="sep_item_list categories">
+		<% for access_class in @community.access_classes %>
+		<li>
+			<h3><%=h access_class.name %>
+			<% unless access_class.children.blank? %> (includes access to<% end %> <%= access_class.children.map(&:name).join(", ") %><% unless access_class.children.blank? %>)<% end %></h3>
+			<ul class="item_actions">
+				<li><%= link_to "Edit", edit_access_class_url(access_class) %></li>
+				<li><%= link_to "Add Subscription Plans", access_class_subscription_plans_url(access_class) %></li>
+			</ul>
+		</li>
+		<% end %>
+	</ul>
+
+	<br />
+	<h3 class="separator">Create a New Access Level</h3>
+
+  <%= render :partial => "form", :locals => { :mode => :edit }%>
+
+</div>
+<div id="sidebar">
+	<ul class="modules">
+		<li class="navigation themes">
+			<h3>Community Setup</h3>
+			<%= render :partial => "admin/menu"  %>
+		</li>
+	</ul>
+</div>
