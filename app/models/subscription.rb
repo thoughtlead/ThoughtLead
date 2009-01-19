@@ -179,11 +179,11 @@ class Subscription < ActiveRecord::Base
   end
 
   def paypal
-    @paypal ||=  ActiveMerchant::Billing::Base.gateway(:paypal_express_reference_nv).new(config_from_file('paypal.yml'))
+    @paypal ||=  ActiveMerchant::Billing::Base.gateway(:paypal_express_reference_nv).new(gateway_config)
   end
 
   def cc
-    @cc ||= ActiveMerchant::Billing::Base.gateway(AppConfig['gateway']).new(config_from_file('gateway.yml'))
+    @cc ||= ActiveMerchant::Billing::Base.gateway(:authorize_net_cim).new(gateway_config)
   end
 
   def destroy_gateway_record(gw = gateway)
@@ -194,7 +194,7 @@ class Subscription < ActiveRecord::Base
     self.billing_id = nil
   end
 
-  def config_from_file(file)
-    YAML.load_file(File.join(RAILS_ROOT, 'config', file))[RAILS_ENV].symbolize_keys
+  def gateway_config
+    {:login => user.community.gateway_login, :password => user.community.gateway_password}
   end
 end
