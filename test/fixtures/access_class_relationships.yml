@@ -1,0 +1,7 @@
+1:
+  access_class: c3_super
+  child: c3_ultrapremium
+
+2:
+  access_class: c3_super
+  child: c3_premium

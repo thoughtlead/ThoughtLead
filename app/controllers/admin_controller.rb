@@ -12,23 +12,6 @@ class AdminController < ApplicationController
     redirect_to edit_community_url
   end
 
-  def access_levels
-    @community = current_community
-  end
-
-  def create_access_level
-    @community = current_community
-
-    access_class = @community.access_classes.build(:name => params[:name])
-    params[:children].each do |child_id|
-      access_class.children << AccessClass.find(child_id) unless child_id.blank?
-    end
-    if access_class.save
-      flash[:notice] = "Access Level \"#{access_class.name}\" created."
-      redirect_to access_levels_url
-    end
-  end
-
   def subscription_plans
 
   end
