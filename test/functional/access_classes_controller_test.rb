@@ -55,11 +55,4 @@ class AccessClassesControllerTest < ActionController::TestCase
     premium.reload
     assert_equal new_name, premium.name
   end
-
-  def new_request(community,user=nil)
-    raise "The user isn't a User object" if user && user.class != User
-    @request = ActionController::TestRequest.new
-    @request.host = community.host
-    @request.session[:user_id] = user.nil? ? nil : user.id
-  end
 end
