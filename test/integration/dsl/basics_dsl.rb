@@ -8,7 +8,7 @@ module BasicsDsl
   end
   
   def login(login, password = "test")
-    post sessions_url, { :login => login, :password => password }
+    post session_url, { :login => login, :password => password }
     result = response.redirect_url == community_home_url
     follow_redirect! while redirect?
     result

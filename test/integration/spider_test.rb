@@ -6,7 +6,7 @@ class SpiderTest < ActionController::IntegrationTest
   :lessons, :themes, :users
 
   IgnoreURLs = ['/login', 'http://www.onemillionmarketers.com', 'http://thoughtlead.com/', %r{^javascript:.*}, %r{^.*/categories/[0-9]+}, %r{^.+logout}, %r{^.+delete.?}, %r{^.+/destroy.?}]
-  ExcludeFormPatterns = [%r{^.*/search}, %r{^.*/login}, %r{^.*/sessions}, %r{^.*/community/edit}]
+  ExcludeFormPatterns = [%r{^.*/search}, %r{^.*/login}, %r{^.*/session}, %r{^.*/community/edit}]
 
   include Caboose::SpiderIntegrator
 
@@ -24,7 +24,7 @@ class SpiderTest < ActionController::IntegrationTest
     # testing community, registered user
     get 'http://testing.dev/login'
     assert_response :success
-    post 'http://testing.dev/sessions', :login => 'test', :password => 'test'
+    post 'http://testing.dev/session', :login => 'test', :password => 'test'
     assert_equal users(:test).id, session[:user_id]
     assert_response :redirect
     follow_redirect!
@@ -34,7 +34,7 @@ class SpiderTest < ActionController::IntegrationTest
     # testing community, premium user
     get 'http://testing.dev/login'
     assert_response :success
-    post 'http://testing.dev/sessions', :login => 'premium', :password => 'test'
+    post 'http://testing.dev/session', :login => 'premium', :password => 'test'
     assert_equal users(:premium).id, session[:user_id]
     assert_response :redirect
     follow_redirect!
