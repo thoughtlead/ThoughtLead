@@ -41,6 +41,7 @@ Rails::Initializer.run do |config|
   config.gem "rexml-expansion-fix"
   config.gem 'mislav-will_paginate', :lib => 'will_paginate', :source => 'http://gems.github.com'
   config.gem 'lockfile'
+  config.gem "thoughtbot-shoulda", :lib => "shoulda", :source => "http://gems.github.com"
 
   # Only load the plugins named here, in the order given. By default, all plugins
   # in vendor/plugins are loaded in alphabetical order.
@@ -94,7 +95,7 @@ require RAILS_ROOT + '/lib/community_specific'
 
 Ultrasphinx::Search.excerpting_options = HashWithIndifferentAccess.new({
   :before_match => '<strong class="match">',
-  :after_match => '</strong>',
+  :after_match => '</strongong>',
   :chunk_separator => "...",
   :limit => 128,
   :around => 3,
