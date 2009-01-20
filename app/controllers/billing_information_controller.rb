@@ -6,8 +6,8 @@ class BillingInformationController < ApplicationController
   before_filter :load_discount, :only => [ :plans, :plan, :new, :create ]
   before_filter :build_plan, :only => [:new, :create]
 
-  ssl_required :billing, :cancel, :edit, :update
-  ssl_allowed :plans, :thanks, :canceled, :paypal
+  #ssl_required :billing, :cancel, :edit, :update
+  #ssl_allowed :plans, :thanks, :canceled, :paypal
 
   def edit
   end
