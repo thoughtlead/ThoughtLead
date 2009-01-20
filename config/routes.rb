@@ -5,6 +5,7 @@ ActionController::Routing::Routes.draw do |map|
   map.logout '/logout', :controller => 'session', :action => 'destroy', :conditions => { :is_client_domain => true }
 
   map.resource :subscription, :controller => 'subscription', :conditions => { :is_client_domain => true }
+  map.resource :billing_information, :controller => 'billing_information', :conditions => { :is_client_domain => true }
 
   map.upgrade '/upgrade', :controller => "subscription", :action => 'edit', :conditions => { :is_client_domain => true }
 

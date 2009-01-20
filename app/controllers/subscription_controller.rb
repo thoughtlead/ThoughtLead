@@ -20,7 +20,6 @@ class SubscriptionController < ApplicationController
       current_user.subscription.save!
     end
 
-
-    redirect_to user_url(current_user)
+    redirect_to :controller => 'billing_information', :action => 'edit'
   end
 end
