@@ -25,6 +25,32 @@ class SubscriptionPlanTest < ActiveSupport::TestCase
     assert_equal("6 months", plan.renewal_summary)
   end
 
+  def test_trial_summary
+    plan = subscription_plans :c1_premium_monthly
+
+    plan.renewal_period = 1
+    plan.renewal_units = "months"
+    plan.trial_period = 3
+    plan.trial_units = "years"
+
+    assert_equal(" with a free trial period of 3 years", plan.trial_summary)
+
+    plan.trial_units = "days"
+    assert_equal(" with a free trial period of 3 days", plan.trial_summary)
+
+    plan.trial_units = "weeks"
+    assert_equal(" with a free trial period of 3 weeks", plan.trial_summary)
+
+    plan.trial_units = "months"
+    assert_equal(" with a free trial period of 3 months", plan.trial_summary)
+
+    plan.trial_period = 1
+    assert_equal(" with a free trial period of 1 month", plan.trial_summary)
+
+    plan.trial_units = "days"
+    assert_equal(" with a free trial period of 1 day", plan.trial_summary)
+  end
+
   def test_summary
     plan = subscription_plans :c1_premium_monthly
 

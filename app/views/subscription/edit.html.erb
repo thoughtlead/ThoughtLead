@@ -1,0 +1,62 @@
+<% @current_tab = :'People' %>
+<div id="main_content">
+	<div class="content_bar" id="top">
+		<div class="breadcrumbs">
+			<p>Jump to:</p>
+			<ul>
+				<li class="first"><%= link_to "People", users_path %></li>
+			</ul>
+		</div>
+	</div>
+	<h2>Edit Subscription to <%= current_community %></h2>
+
+	<% if !current_community.premium_link.blank? %>
+
+		<%= link_to current_community.premium_text, current_community.premium_link %>
+
+	<% elsif !@access_classes.blank? %>
+
+    <% form_for :subscription, :url => subscription_url, :html => { :method => :put } do |f| %>
+  	  <%= f.error_messages %>
+	    <fieldset class="input">
+		    <div id="priceTable">
+
+            <h3>Registered</h3>
+
+            <ul class="checkbox group">
+              <li>
+                <%= f.radio_button(:subscription_plan_id, nil) %>
+                <%= label(:subscription_subscription_plan_id, 'Free', 'Free') %>
+              </li>
+            </ul>
+
+		      <% for access_class in @access_classes %>
+
+            <h3><%= h access_class.name %></h3>
+
+            <ul class="checkbox group">
+
+            <% if access_class.subscription_plans.blank? %>
+              <li><label>No subscriptions defined.</label></li>
+            <% else %>
+			        <% for subscription_plan in access_class.subscription_plans %>
+
+					        <li>
+					          <%= f.radio_button(:subscription_plan_id, subscription_plan.id) %>
+					          <%= label :subscription_subscription_plan_id, subscription_plan.id, subscription_plan.summary %>
+					        </li>
+
+			        <% end %>
+			      <% end %>
+			    <% end %>
+
+		    </div>
+
+	    <p><%= f.submit "Purchase selected plan" %> or <%= link_to "Cancel", community_home_url %></p>
+	    </fieldset>
+	  <% end %>
+
+	<% else %>
+		We're sorry! The community owner has not yet configured a way for members to upgrade to premium access.
+	<% end %>
+</div>

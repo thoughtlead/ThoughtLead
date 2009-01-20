@@ -1,10 +1,9 @@
 class UsersController < ApplicationController
-  before_filter :login_required, :except => [ :signup, :index, :forgot_password, :upgrade ]
+  before_filter :login_required, :except => [ :signup, :index, :forgot_password ]
   before_filter :community_is_active
   before_filter :logged_in_as_owner?, :only => [ :disable, :reactivate]
-  skip_before_filter :invalidate_return_to, :only => [:signup, :upgrade]
+  skip_before_filter :invalidate_return_to, :only => [ :signup ]
   before_filter :check_disabled
-  before_filter :upgrade_login_check, :only => [:upgrade]
 
   def signup
     @user = User.new(params[:user])
@@ -165,16 +164,8 @@ class UsersController < ApplicationController
     return tentative_display_name
   end
 
-  #bogus warning, this function is called by a method obtained from application.rb (ruby craziness!)
   def get_access_controlled_object
     User.find(params[:id]) if params[:id]
-  end
-
-  def upgrade_login_check
-    return if logged_in?
-    store_location
-    flash[:notice] = "You must log in before you upgrade."
-    redirect_to login_url
   end
 
   def check_disabled

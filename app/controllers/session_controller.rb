@@ -1,10 +1,9 @@
-class SessionsController < ApplicationController
-  
+class SessionController < ApplicationController
   skip_before_filter :invalidate_return_to, :only => [:new,:create]
 
   def new
   end
-  
+
   def create
     self.current_user = current_community.authenticate(params[:login], params[:password])
     if logged_in?
@@ -16,7 +15,7 @@ class SessionsController < ApplicationController
       render :action => 'new'
     end
   end
-  
+
   def destroy
     self.current_user.forget_me if logged_in?
     cookies.delete :auth_token
@@ -24,8 +23,9 @@ class SessionsController < ApplicationController
     flash[:notice] = "You have been logged out."
     redirect_to(login_url)
   end
-  
+
   private
+
   def handle_remember_me
     if params[:remember_me] == "1"
       self.current_user.remember_me

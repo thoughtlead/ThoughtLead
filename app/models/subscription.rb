@@ -16,11 +16,13 @@ class Subscription < ActiveRecord::Base
   validates_inclusion_of :renewal_units, :in => units
 
   def plan=(plan)
-    @plan = plan
-    [:amount, :user_limit, :renewal_period].each do |f|
-      self.send("#{f}=", plan.send(f))
+    unless self.subscription_plan == plan
+      [:amount, :renewal_period, :renewal_units, :access_class].each do |f|
+        self.send("#{f}=", plan.send(f))
+      end
+      self.state = "pending"
+      self.subscription_plan = plan
     end
-    self.subscription_plan = plan
   end
 
   def trial_days
@@ -153,25 +155,6 @@ class Subscription < ActiveRecord::Base
   def set_renewal_at
     return if self.subscription_plan.nil? || self.next_renewal_at
     self.next_renewal_at = Time.now.advance(:months => self.renewal_period)
-  end
-
-  def after_initialize
-    if @plan
-      if subscription_plan.amount > 0
-        # Discount the plan with the existing discount (if any)
-        # if the plan doesn't already have a better discount
-        subscription_plan.discount = self.discount if discount && discount > subscription_plan.discount
-        # If the assigned plan has a better discount, though, then
-        # assign the discount to the subscription so it will stick
-        # through future plan changes
-        self.discount = subscription_plan.discount if subscription_plan.discount && subscription_plan.discount > discount
-      else
-        # Free account?  No point in having a trial
-        self.state = 'active'
-      end
-
-      self.amount = subscription_plan.amount
-    end
   end
 
   def gateway
