@@ -1,11 +1,12 @@
 class SubscriptionNotifier < ActionMailer::Base
   include ActionView::Helpers::NumberHelper
   
-  def setup_email(to, subject, from = AppConfig['from_email'])
-    @sent_on = Time.now
+  def setup_email(to, subject)
+    @from = "#{APP_NAME} <do-not-reply@#{APP_DOMAIN}>"
     @subject = subject
+    @sent_on = Time.now
     @recipients = to.respond_to?(:email) ? to.email : to
-    @from = from.respond_to?(:email) ? from.email : from
+    @headers["x-custom-ip-tag"] = "thoughtlead"    
   end
   
   def welcome(account)
@@ -19,8 +20,8 @@ class SubscriptionNotifier < ActionMailer::Base
   end
   
   def charge_receipt(subscription_payment)
-    setup_email(subscription_payment.subscription.account.admin, "Your #{AppConfig['app_name']} invoice")
-    @body = { :subscription => subscription_payment.subscription, :amount => subscription_payment.amount }
+    setup_email(subscription_payment.user, "Your #{subscription_payment.user.community.name} invoice")
+    @body = { :user => subscription_payment.user, :subscription => subscription_payment.user.subscription, :amount => subscription_payment.amount }
   end
   
   def setup_receipt(subscription_payment)

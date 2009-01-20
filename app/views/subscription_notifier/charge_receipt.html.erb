@@ -1,4 +1,4 @@
-Thank you for using <%= AppConfig['app_name'] %>!
+Thank you for using <%= @user.community.name %>!
 
 Your credit card <%= @subscription.card_number %> has been charged 
 <%= number_to_currency(@amount) %> for your <%= @subscription.subscription_plan.name %> plan. This charge covers usage
@@ -10,10 +10,8 @@ The attached invoice is for your records.
 INVOICE
 ----------------------------------------------------------
 
-<%= AppConfig['app_name'] %>
+<%= @subscription.user.community.name %>
 
-Bill to:
-<%= @subscription.account.admin.name %>
 
 Description                                          Price
 ----------------------------------------------------------
@@ -23,7 +21,5 @@ Description                                          Price
                    Credit card billed: <%= @subscription.card_number %>
 
 
-If you have any questions about this invoice, please contact 
-<%= AppConfig['from_email'] %>.
 
 Thank you for your business!

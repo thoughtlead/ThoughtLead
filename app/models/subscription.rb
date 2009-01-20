@@ -8,12 +8,29 @@ class Subscription < ActiveRecord::Base
   before_create :set_renewal_at
   before_destroy :destroy_gateway_record
 
-  attr_accessor :creditcard, :address
-  attr_reader :response
-
   validates_numericality_of :amount, :greater_than => 0
   validates_numericality_of :renewal_period, :only_integer => true, :greater_than => 0
   validates_inclusion_of :renewal_units, :in => units
+  validates_inclusion_of :state, :in => ["pending", "active", "trial"]
+
+  named_scope :trials_expiring_soon, lambda { |*args| { :conditions => { :state => 'trial', :next_renewal_at => (args.first || 7.days.from_now) } } }
+  named_scope :due, lambda { |*args| { :conditions => { :state => 'active', :next_renewal_at => (args.first || Date.today) } } }
+
+  def needs_billing_information?
+    billing_id.blank?
+  end
+
+  def pending?
+    self.state == "pending"
+  end
+
+  def active?
+    self.state == "active"
+  end
+
+  def trial?
+    self.state == "trial"
+  end
 
   def plan=(plan)
     unless self.subscription_plan == plan
@@ -25,30 +42,26 @@ class Subscription < ActiveRecord::Base
     end
   end
 
-  def trial_days
+  def trial_days_left
     (self.next_renewal_at.to_i - Time.now.to_i) / 86400
-  end
-
-  def amount_in_pennies
-    (amount * 100).to_i
   end
 
   def store_card(creditcard, gw_options = {})
     # Clear out payment info if switching to CC from PayPal
     destroy_gateway_record(paypal) if paypal?
 
-    @response = if billing_id.blank?
+    response = if billing_id.blank?
       gateway.store(creditcard, gw_options)
     else
       gateway.update(billing_id, creditcard, gw_options)
     end
 
-    if @response.success?
+    if response.success?
       self.card_number = creditcard.display_number
       self.card_expiration = "%02d-%d" % [creditcard.expiry_date.month, creditcard.expiry_date.year]
-      set_billing
+      update_billing_id(response.token)
     else
-      errors.add_to_base(@response.message)
+      errors.add_to_base(response.message)
       false
     end
   end
@@ -96,60 +109,35 @@ class Subscription < ActiveRecord::Base
     self.card_number.blank? && self.subscription_plan.amount > 0
   end
 
-  def self.find_expiring_trials(renew_at = 7.days.from_now)
-    find(:all, :include => :account, :conditions => { :state => 'trial', :next_renewal_at => (renew_at.beginning_of_day .. renew_at.end_of_day) })
-  end
-
-  def self.find_due_trials(renew_at = Time.now)
-    find(:all, :include => :account, :conditions => { :state => 'trial', :next_renewal_at => (renew_at.beginning_of_day .. renew_at.end_of_day) }).select {|s| !s.card_number.blank? }
-  end
-
-  def self.find_due(renew_at = Time.now)
-    find(:all, :include => :account, :conditions => { :state => 'active', :next_renewal_at => (renew_at.beginning_of_day .. renew_at.end_of_day) })
-  end
-
   def paypal?
     card_number == 'PayPal'
   end
 
   protected
 
-  def set_billing
-    self.billing_id = @response.token unless @response.token.blank?
+  def update_billing_id(token)
+    self.billing_id = token
 
-    if new_record?
-      if !next_renewal_at? || next_renewal_at < 1.day.from_now.at_midnight
-        if subscription_plan.trial_period?
-          self.next_renewal_at = Time.now.advance(:months => subscription_plan.trial_period)
-        else
-          charge_amount = subscription_plan.setup_amount? ? subscription_plan.setup_amount : amount
-          if (@response = gateway.purchase(charge_amount * 100, billing_id)).success?
-            subscription_payments.build(:account => account, :amount => charge_amount, :transaction_id => @response.authorization, :setup => subscription_plan.setup_amount?)
-            self.state = 'active'
-            self.next_renewal_at = Time.now.advance(:months => renewal_period)
-          else
-            errors.add_to_base(@response.message)
-            return false
-          end
-        end
-      end
-    else
-      if !next_renewal_at? || next_renewal_at < 1.day.from_now.at_midnight
-        if (@response = gateway.purchase(amount_in_pennies, billing_id)).success?
-          subscription_payments.create(:account => account, :amount => amount, :transaction_id => @response.authorization)
-          self.state = 'active'
-          self.next_renewal_at = Time.now.advance(:months => renewal_period)
-        else
-          errors.add_to_base(@response.message)
-          return false
-        end
-      else
+    if pending?
+      #TODO: handle trial
+      if (response = gateway.purchase(amount_in_pennies, billing_id)).success?
+        #TODO: fill in description
+        user.subscription_payments << SubscriptionPayment.new(:amount => amount, :description => 'TODO', :transaction_id => response.authorization)
+        user.save!
         self.state = 'active'
+        self.next_renewal_at = Date.today.advance({renewal_units => renewal_period}.symbolize_keys)
+        save!
+      else
+        errors.add_to_base(response.message)
+        return false
       end
-      self.save
     end
 
     true
+  end
+
+  def amount_in_pennies
+    (amount * 100).to_i
   end
 
   def set_renewal_at
