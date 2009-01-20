@@ -22,6 +22,7 @@
 					<% if show_edit %>
 					<li class="edit"><%= link_to "Edit <span class='action_target'>Profile</span>", edit_user_url(@user), :class => 'action' %></li>
 					<li class="edit"><%= link_to "Upgrade <span class='action_target'>Subscription</span>", upgrade_url, :class => 'action' %></li>
+					<li class="edit"><%= link_to "Edit <span class='action_target'>Payment Information</span>", edit_billing_information_url, :class => 'action' %></li>
 					<% end %>
 					<% if show_disable %>
 						<% if @user.disabled? %>
