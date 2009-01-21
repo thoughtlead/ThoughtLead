@@ -77,7 +77,7 @@ class Subscription < ActiveRecord::Base
         description = "#{access_class.name} from #{Date.today} through #{next_renewal_at}"
         user.subscription_payments << SubscriptionPayment.new(:amount => amount, :description => description, :transaction_id => response.authorization)
         user.access_class = access_class
-        save
+        save && user.save
       else
         errors.add_to_base(response.message)
         return false

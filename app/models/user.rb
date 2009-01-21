@@ -71,10 +71,6 @@ class User < ActiveRecord::Base
     owner? ? Class.new { def has_access_to(*args) true end } : real_access_class
   end
 
-  def access_class=(ac)
-    access_class = ac
-  end
-
   def access_classes
     [access_class].compact
   end
