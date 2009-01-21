@@ -74,31 +74,30 @@ class Subscription < ActiveRecord::Base
   def ensure_activation
     if pending?
       #TODO: handle trial
-      if (response = gateway.purchase(amount_in_pennies, billing_id)).success?
-        self.state = 'active'
-        self.next_renewal_at = Date.today.advance({renewal_units => renewal_period}.symbolize_keys)
-
-        user.access_class = access_class
-        save && user.save
-
-        description = "#{access_class.name} from #{Date.today} through #{next_renewal_at}"
-        user.subscription_payments << SubscriptionPayment.new(:amount => amount, :description => description, :transaction_id => response.authorization)
-      else
-        errors.add_to_base(response.message)
+      if !charge
         return false
       end
+
+      user.access_class = access_class
+      user.save
     end
     return true
   end
 
   def charge
-    if amount == 0 || (@response = gateway.purchase(amount_in_pennies, self.billing_id)).success?
-      update_attributes(:next_renewal_at => self.next_renewal_at.advance(:months => self.renewal_period), :state => 'active')
-      subscription_payments.create(:account => account, :amount => amount, :transaction_id => @response.authorization) unless amount == 0
-      true
+    if amount == 0 || (response = gateway.purchase(amount_in_pennies, billing_id)).success?
+      self.state = 'active'
+      self.next_renewal_at = Date.today.advance({renewal_units => renewal_period}.symbolize_keys)
+
+      save
+
+      unless amount == 0
+        description = "#{access_class.name} from #{Date.today} through #{next_renewal_at}"
+        user.subscription_payments << SubscriptionPayment.new(:amount => amount, :description => description, :transaction_id => response.authorization)
+      end
     else
-      errors.add_to_base(@response.message)
-      false
+      errors.add_to_base(response.message)
+      return false
     end
   end
 

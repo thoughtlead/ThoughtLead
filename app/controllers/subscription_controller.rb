@@ -23,8 +23,11 @@ class SubscriptionController < ApplicationController
     if @subscription.needs_billing_information?
       redirect_to edit_billing_information_url
     else
-      @subscription.ensure_activation
-      flash[:notice] = "Successfully changed subscription."
+      if @subscription.ensure_activation
+        flash[:notice] = "Successfully changed subscription."
+      else
+        flash[:notice] = "Subscription could not be activated, check your payment method. #{@subscription.errors.full_messages.join(", ")}"
+      end
       redirect_to user_url(current_user)
     end
   end

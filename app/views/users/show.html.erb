@@ -131,7 +131,13 @@
 						<p>Free subscription</p>
 					<% else %>
 						<p>Price: <%= h @user.subscription.summary %></p>
-						<p>Next payment due: <%= @user.subscription.next_renewal_at %></p>
+						<% if @user.subscription.pending? %>
+							<p>Pending Payment</p>
+						<% elsif @user.subscription.trial? %>
+							<p>Trial expires: <%= @user.subscription.next_renewal_at %></p>
+						<% else %>
+							<p>Next payment due: <%= @user.subscription.next_renewal_at %></p>
+						<% end %>
 					<% end %>
 
 				</td>
