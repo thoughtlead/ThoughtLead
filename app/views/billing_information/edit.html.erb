@@ -11,72 +11,76 @@
 	</div>
 	<h2>Submit Payment Information</h2>
 
-  <% form_tag billing_information_url, :method => :put do -%>
-    <fieldset class="input">
-    	<div class="inp group">
-        <label>First Name</label>
-        <%= text_field :creditcard, :first_name, :size => 20, :class => "inp_text" %>
-        <label>Last Name</label>
-        <%= text_field :creditcard, :last_name, :size => 20, :class => "inp_text" %>
-      </div>
+	<% form_tag billing_information_url, :method => :put do -%>
+	<%= error_messages_for :subscription %>
+	<%= error_messages_for :card %>
+	<%= error_messages_for :address %>
 
-      <div class="inp group">
-        <label>Card Number</label>
-        <%= text_field :creditcard, :number, :size => 20, :class => "inp_text" %>
-      </div>
+	<fieldset class="input">
+		<div class="inp group">
+			<label>First Name</label>
+			<%= text_field :card, :first_name, :size => 20, :class => "inp_text" %>
+			<label>Last Name</label>
+			<%= text_field :card, :last_name, :size => 20, :class => "inp_text" %>
+		</div>
 
-      <div class="inp group">
-        <label>Type</label>
-        <%= select :creditcard, :type, [['Visa', 'visa'], ['MasterCard', 'master'], ['American Express', 'american_express']] %>
-      </div>
+		<div class="inp group">
+			<label>Card Number</label>
+			<%= text_field :card, :number, :size => 20, :class => "inp_text" %>
+		</div>
 
-      <div class="inp group">
-        <label>Expiration</label>
-        <%= select :creditcard, :month, (1 .. 12) %>
-        <%= select :creditcard, :year, (Time.now.year .. 10.years.from_now.year) %>
-      </div>
+		<div class="inp group">
+			<label>Type</label>
+			<%= select :card, :type, [['Visa', 'visa'], ['MasterCard', 'master'], ['American Express', 'american_express']] %>
+		</div>
 
-      <div class="inp group">
-        <label>Card Verification Value</label>
-        <%= text_field :creditcard, :verification_value, :size => 4, :class => "inp_text"%>
-      </div>
+		<div class="inp group">
+			<label>Expiration</label>
+			<%= select :card, :month, (1 .. 12) %>
+			<%= select :card, :year, (Time.now.year .. 10.years.from_now.year) %>
+		</div>
 
-      <div class="inp group">
-        <label>Address</label>
-        <%= text_field :address, :address1, :class => "inp_text" %><br/>
-        <%= text_field :address, :address2, :class => "inp_text" %>
-      </div>
+		<div class="inp group">
+			<label>Card Verification Value</label>
+			<%= text_field :card, :verification_value, :size => 4, :class => "inp_text"%>
+		</div>
 
-      <div class="inp group">
-        <label>City</label>
-        <%= text_field :address, :city, :class => "inp_text" %>
-      </div>
+		<div class="inp group">
+			<label>Address</label>
+			<%= text_field :address, :address1, :class => "inp_text" %><br/>
+			<%= text_field :address, :address2, :class => "inp_text" %>
+		</div>
 
-      <div class="inp group">
-        <%= label_tag :address, "State" %>
-        <%= text_field :address, :state, :class => "inp_text" %>
-      </div>
+		<div class="inp group">
+			<label>City</label>
+			<%= text_field :address, :city, :class => "inp_text" %>
+		</div>
 
-      <div class="inp group">
-        <label>Zip</label>
-        <%= text_field :address, :zip, :class => "inp_text" %>
-      </div>
+		<div class="inp group">
+			<%= label_tag :address, "State" %>
+			<%= text_field :address, :state, :class => "inp_text" %>
+		</div>
 
-      <div class="inp group">
-        <label>Country</label>
-        <%= country_select :address, :country, ['United States', 'Canada'] %>
-      </div>
+		<div class="inp group">
+			<label>Zip</label>
+			<%= text_field :address, :zip, :class => "inp_text" %>
+		</div>
 
-      <div class="inp group">
-        <label>Phone</label>
-        <%= text_field :address ,:phone, :class => "inp_text" %>
-      </div>
-    </fieldset>
-    <fieldset class="submit">
-		  <ul class="submit_opts">
-		  	<li><%= submit_tag "Submit" %></li>
-			  <li class="text">or <%= link_to "Cancel", user_url(current_user) %></li>
-		  </ul>
-	  </fieldset>
-  <% end %>
+		<div class="inp group">
+			<label>Country</label>
+			<%= country_select :address, :country, ['United States', 'Canada'] %>
+		</div>
+
+		<div class="inp group">
+			<label>Phone</label>
+			<%= text_field :address ,:phone, :class => "inp_text" %>
+		</div>
+	</fieldset>
+	<fieldset class="submit">
+		<ul class="submit_opts">
+			<li><%= submit_tag "Submit" %></li>
+			<li class="text">or <%= link_to "Cancel", user_url(current_user) %></li>
+		</ul>
+	</fieldset>
+	<% end %>
 </div>

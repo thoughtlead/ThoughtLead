@@ -5,7 +5,7 @@ class BillingInformationController < ApplicationController
   end
 
   def update
-    @card = ActiveMerchant::Billing::CreditCard.new(params[:creditcard])
+    @card = ActiveMerchant::Billing::CreditCard.new(params[:card])
     @address = SubscriptionAddress.new(params[:address])
 
     @address.first_name = @card.first_name
@@ -13,9 +13,11 @@ class BillingInformationController < ApplicationController
     if @card.valid? && @address.valid?
       if @subscription.store_card(@card, :billing_address => @address.to_activemerchant, :ip => request.remote_ip)
         flash[:notice] = "Your billing information has been updated."
-        redirect_to user_url(current_user)
+        redirect_to user_url(current_user) and return
       end
     end
+
+    render :action => "edit"
   end
 
   protected
