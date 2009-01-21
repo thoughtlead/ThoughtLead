@@ -9,8 +9,18 @@
 			</ul>
 		</div>
 	</div>
-	<h2>Submit Payment Information</h2>
+	<h2>Change Payment Method</h2>
 
+	<% if @subscription.has_billing_information? %>
+
+		<h3>Current payment method:</h3>
+		<p>
+			<%= @subscription.paypal? ? 'PayPal' : "Credit Card #: #{@subscription.card_number}, expiration #{@subscription.card_expiration}" %>
+		</p>
+
+	<% end %>
+
+	<h3>New payment method:</h3>
 	<% form_tag billing_information_url, :method => :put do -%>
 	<%= error_messages_for :subscription %>
 	<%= error_messages_for :card %>

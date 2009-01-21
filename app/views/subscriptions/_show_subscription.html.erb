@@ -1,6 +1,0 @@
-<% if subscription.nil? %>
-<p>Free subscription</p>
-<% else %>
-<p>Price: <%= h subscription.summary %></p>
-<p>Next payment due: <%= subscription.next_renewal_at %></p>
-<% end %>

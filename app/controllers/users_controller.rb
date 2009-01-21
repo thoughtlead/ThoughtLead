@@ -38,6 +38,11 @@ class UsersController < ApplicationController
 
   def show
     @user = current_community.users.find(params[:id])
+    @viewing_self = current_user == @user
+    @title = @viewing_self ? "Your Profile" : @user.to_s
+    @show_edit = @viewing_self || logged_in_as_owner?
+    @show_disable = logged_in_as_owner? && !@user.owner?
+    @show_change_billing = !@user.subscription.blank?
   end
 
   def edit

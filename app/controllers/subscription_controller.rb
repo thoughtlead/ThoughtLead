@@ -8,7 +8,7 @@ class SubscriptionController < ApplicationController
   def update
     plan_id = params[:subscription][:subscription_plan_id]
 
-    if plan_id == 'Free'
+    if plan_id == 'free'
       @subscription.destroy unless @subscription.blank?
       redirect_to user_url(current_user) and return
     end

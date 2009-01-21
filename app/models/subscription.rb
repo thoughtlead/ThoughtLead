@@ -13,7 +13,11 @@ class Subscription < ActiveRecord::Base
   named_scope :trials_expiring_soon, lambda { |*args| { :conditions => { :state => 'trial', :next_renewal_at => (args.first || 7.days.from_now) } } }
   named_scope :due, lambda { |*args| { :conditions => { :state => 'active', :next_renewal_at => (args.first || Date.today) } } }
 
-  before_destroy :destroy_gateway_record
+  before_destroy :destroy_gateway_record, :reset_access_class
+
+  def has_billing_information?
+    !needs_billing_information?
+  end
 
   def needs_billing_information?
     billing_id.blank?
@@ -74,10 +78,11 @@ class Subscription < ActiveRecord::Base
         self.state = 'active'
         self.next_renewal_at = Date.today.advance({renewal_units => renewal_period}.symbolize_keys)
 
-        description = "#{access_class.name} from #{Date.today} through #{next_renewal_at}"
-        user.subscription_payments << SubscriptionPayment.new(:amount => amount, :description => description, :transaction_id => response.authorization)
         user.access_class = access_class
         save && user.save
+
+        description = "#{access_class.name} from #{Date.today} through #{next_renewal_at}"
+        user.subscription_payments << SubscriptionPayment.new(:amount => amount, :description => description, :transaction_id => response.authorization)
       else
         errors.add_to_base(response.message)
         return false
@@ -157,6 +162,10 @@ class Subscription < ActiveRecord::Base
     self.card_number = nil
     self.card_expiration = nil
     self.billing_id = nil
+  end
+
+  def reset_access_class
+    self.user.access_class = nil
   end
 
   def gateway_config

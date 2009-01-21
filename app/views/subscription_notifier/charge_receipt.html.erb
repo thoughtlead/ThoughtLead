@@ -1,25 +1,5 @@
 Thank you for using <%= @user.community.name %>!
 
-Your credit card <%= @subscription.card_number %> has been charged 
-<%= number_to_currency(@amount) %> for your <%= @subscription.subscription_plan.name %> plan. This charge covers usage
-from <%= Time.now.to_s(:short_day).strip %> until <%= @subscription.next_renewal_at.to_s(:short_day).strip %>.
-
-The attached invoice is for your records.
-
-
-INVOICE
-----------------------------------------------------------
-
-<%= @subscription.user.community.name %>
-
-
-Description                                          Price
-----------------------------------------------------------
-<%= (@subscription.subscription_plan.name + ' Plan').ljust(36) %> <%= number_to_currency(@amount).rjust(21) %>
-             From <%= Time.now.to_s(:short_day).strip %> to <%= @subscription.next_renewal_at.to_s(:short_day).strip %>
-
-                   Credit card billed: <%= @subscription.card_number %>
-
-
+Your credit card <%= @subscription.card_number %> has been charged <%= number_to_currency(@amount) %> for your <%= @subscription.subscription_plan.name %> subscription plan for <%= @subscription.access_class.name %> access. This charge covers usage from <%= Date.today %> through <%= @subscription.next_renewal_at %>.
 
 Thank you for your business!
