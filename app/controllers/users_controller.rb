@@ -42,7 +42,7 @@ class UsersController < ApplicationController
     @title = @viewing_self ? "Your Profile" : @user.to_s
     @show_edit = @viewing_self || logged_in_as_owner?
     @show_disable = logged_in_as_owner? && !@user.owner?
-    @show_change_billing = !@user.subscription.blank?
+    @show_change_billing = !@user.subscription.blank? && !@user.owner?
   end
 
   def edit
