@@ -19,16 +19,16 @@ class SubscriptionNotifier < ActionMailer::Base
     @body = { :user => subscription_payment.user, :subscription => subscription_payment.user.subscription, :amount => subscription_payment.amount }
   end
 
+  def trial_expiring(subscription)
+    setup_email(subscription.user, 'Trial period expiring')
+    @body = { :subscription => subscription }
+  end
+
   #none of these below here work
 
   def welcome(account)
     setup_email(account.admin, "Welcome to #{AppConfig['app_name']}!")
     @body = { :account => account }
-  end
-
-  def trial_expiring(user, subscription)
-    setup_email(user, 'Trial period expiring')
-    @body = { :user => user, :subscription => subscription }
   end
 
 
