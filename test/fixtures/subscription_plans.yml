@@ -15,3 +15,12 @@ c1_premium_yearly:
   trial_period: 0
   trial_units: days
   access_class: c1_premium
+
+c3_premium_monthly:
+  name: Monthly
+  amount: 10.00
+  renewal_period: 1
+  renewal_units: months
+  trial_period: 0
+  trial_units: days
+  access_class: c3_premium
