@@ -43,6 +43,7 @@ Rails::Initializer.run do |config|
   config.gem "lockfile"
   config.gem "thoughtbot-shoulda", :lib => "shoulda", :source => "http://gems.github.com"
   config.gem "faker"
+  config.gem "mocha"
 
   # Only load the plugins named here, in the order given. By default, all plugins
   # in vendor/plugins are loaded in alphabetical order.
