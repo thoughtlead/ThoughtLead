@@ -6,3 +6,12 @@ premium:
   access_class: testing_premium
   state: active
   next_renewal_at: <%= 1.month.from_now %>
+
+premium_audrey_subscription:
+  user: premium_audrey
+  amount: 100.00
+  renewal_period: 1
+  renewal_units: months
+  access_class: c3_premium
+  state: active
+  next_renewal_at: <%= 1.month.from_now %>

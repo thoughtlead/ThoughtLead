@@ -165,6 +165,7 @@ class Subscription < ActiveRecord::Base
 
   def reset_access_class
     self.user.access_class = nil
+    self.user.save!
   end
 
   def gateway_config

@@ -20,7 +20,7 @@ class SubscriptionController < ApplicationController
     @subscription.plan = SubscriptionPlan.find(plan_id)
     @subscription.save!
 
-    if @subscription.needs_billing_information?
+    if @subscription.needs_billing_information? && !current_user.owner?
       redirect_to edit_billing_information_url
     else
       if @subscription.ensure_activation
