@@ -20,20 +20,6 @@
 				<%= f.check_box :expert %>
 				<%= f.label :expert %>
 			</div>
-			<div class="checkbox group">
-				
-				<li>
-			    <%= f.radio_button :access_class, "" %>
-			    <%= f.label :access_class, 'Registered' %>
-		    </li>
-		    
-		    <% current_community.access_classes.each do |access_class|%>
-	    	<li>
-			    <%= f.radio_button :access_class, access_class %>
-			    <%= f.label :access_class, access_class.name %>
-		    </li>
-		    <% end %>
-			</div>
 			<% end %>
 
 			<div class="inp group">
@@ -101,11 +87,11 @@
 			<p><strong><%= link_to "Change your password", edit_password_user_url(@user) %></strong></p>
 
 			<div class="update_avatar">
-				<%= f.label :avatar %> 
+				<%= f.label :avatar %>
 				<div class="module image avatar">
 					<%= avatar_for(@user) %>
 				</div>
-				<%= f.file_field :user_avatar %> 
+				<%= f.file_field :user_avatar %>
 			</div>
 		</fieldset>
 		<fieldset class="submit">
