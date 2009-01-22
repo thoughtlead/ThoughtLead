@@ -12,8 +12,6 @@ class Community < ActiveRecord::Base
   validates_uniqueness_of :host
   validate :validate_host_restrictions
 
-  before_create :owner_becomes_user
-
   alias_attribute :to_s, :name
 
   def authenticate(login, password)
@@ -26,10 +24,6 @@ class Community < ActiveRecord::Base
   end
 
   private
-
-  def owner_becomes_user
-    self.users << self.owner unless self.users.include?(self.owner)
-  end
 
   def validate_host_restrictions
     # Disallow host name of $app_host, (a list of things).$app_domain, and empty.

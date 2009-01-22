@@ -43,6 +43,7 @@ class CommunitiesController < ApplicationController
       return
     end
 
+    @user.community = @community
     @user.save
     @community.owner = @user
     @community.save
