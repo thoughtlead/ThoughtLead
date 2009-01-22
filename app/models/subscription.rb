@@ -148,7 +148,7 @@ class Subscription < ActiveRecord::Base
   end
 
   def paypal
-    @paypal ||=  ActiveMerchant::Billing::Base.gateway(:paypal_express_reference_nv).new(gateway_config)
+    @paypal ||= ActiveMerchant::Billing::Base.gateway(:paypal_express_reference_nv).new(gateway_config)
   end
 
   def cc
