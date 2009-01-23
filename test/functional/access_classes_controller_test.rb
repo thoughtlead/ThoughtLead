@@ -1,58 +1,58 @@
 require File.dirname(__FILE__) + '/../test_helper'
 
 class AccessClassesControllerTest < ActionController::TestCase
-  def test_create_access_class_without_children
-    owner = users :c3_community_owner
-    community = communities :c3
+  context "AccessClassesController" do
+    setup do
+      @community = Community.make
+      @owner = @community.owner
+      @gold = AccessClass.make(:community => @community)
+      @silver = AccessClass.make(:community => @community)
+    end
 
-    new_request(community,owner)
-    post :create, {:access_class => {:name => "new classy", :child_ids => []}}
-    assert_response :redirect
-  end
+    should "be able to create access class without children" do
+      new_request(@community, @owner)
+      post :create, {:access_class => {:name => "new classy", :child_ids => []}}
+      assert_response :redirect
 
-  def test_create_access_class_with_children
-    owner = users :c3_community_owner
-    community = communities :c3
+      @community.reload
+      assert_not_nil @community.access_classes.find_by_name("new classy")
+    end
 
-    new_request(community,owner)
-    post :create, {:access_class => {:name => "new classy", :child_ids => [access_classes(:c3_ultrapremium).id,
-        access_classes(:c3_premium).id]}}
+    should "be able to create access class with children" do
+      new_request(@community, @owner)
+      post :create, {:access_class => {:name => "new classy", :child_ids => [@gold.id, @silver.id]}}
 
-    assert_response :redirect
+      assert_response :redirect
 
-    the_new_class = AccessClass.find_by_name("new classy")
-    assert 2, the_new_class.children.size
-    assert the_new_class.children.include?(access_classes(:c3_ultrapremium))
-    assert the_new_class.children.include?(access_classes(:c3_premium))
-  end
+      @community.reload
 
-  def test_update_access_class_without_children
-    owner = users :c3_community_owner
-    community = communities :c3
-    premium = AccessClass.find(access_classes(:c3_premium).id)
-    new_name = "new classy"
+      a = @community.access_classes.find_by_name "new classy"
+      assert 2, a.children.size
+      assert a.children.include?(@gold)
+      assert a.children.include?(@silver)
+    end
 
-    new_request(community,owner)
-    post :update, {:id => premium.id, :access_class => {:name => new_name, :child_ids => []}}
+    should "be able to update access class without children" do
+      new_request(@community, @owner)
+      put :update, {:id => @gold.id, :access_class => {:name => "new classy", :child_ids => []}}
 
-    assert_response :redirect
+      assert_response :redirect
 
-    premium.reload
-    assert_equal new_name, premium.name
-  end
+      @gold.reload
+      assert_equal "new classy", @gold.name
+    end
 
-  def test_update_access_class_without_children
-    owner = users :c3_community_owner
-    community = communities :c3
-    premium = AccessClass.find(access_classes(:c3_premium).id)
-    new_name = "new classy"
+    should "be able to update access class with children" do
+      new_request(@community, @owner)
+      put :update, {:id => @gold.id, :access_class => {:name => "new classy",  :child_ids => [@silver.id,]}}
 
-    new_request(community,owner)
-    post :update, {:id => premium.id, :access_class => {:name => new_name, :child_ids => [access_classes(:c3_ultrapremium).id, access_classes(:c3_premium).id]}}
+      assert_response :redirect
 
-    assert_response :redirect
+      @gold.reload
+      assert_equal "new classy", @gold.name
 
-    premium.reload
-    assert_equal new_name, premium.name
+      assert 1, @gold.children.size
+      assert @gold.children.include?(@silver)
+    end
   end
 end

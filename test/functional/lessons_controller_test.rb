@@ -1,109 +1,141 @@
 require File.dirname(__FILE__) + '/../test_helper'
 
 class LessonsControllerTest < ActionController::TestCase
+  context "LessonsController" do
+    setup do
+      @community = Community.make
+      @gold = AccessClass.make(:community => @community)
+      @silver = AccessClass.make(:community => @community)
 
-  def test_accessibility_rules_no_user
-    unknown_user = nil
+      @registered_user = User.make(:community => @community)
+      @gold_user = User.make(:community => @community, :access_class => @gold)
+      @silver_user = User.make(:community => @community, :access_class => @silver)
 
-    course = courses :happiness
-    chapter = chapters :first_chapter
+      @course = Course.make(:community => @community)
+      @chapter = Chapter.make(:course => @course)
+    end
 
-    public = lessons :public_lesson
-    new_request(public.chapter.course.community, unknown_user)
-    get :show, {:id=> public.id, :course_id => course.id, :chapter_id => chapter.id}
-    assert_response :success
+    context "with a public lesson" do
+      setup do
+        @lesson = Lesson.make(:chapter => @chapter)
+      end
 
-    registered = lessons :registered_lesson
-    new_request(registered.chapter.course.community, unknown_user)
-    get :show, {:id=> registered.id, :course_id => course.id, :chapter_id => chapter.id}
-    assert_response :redirect
+      should "allow access to public" do
+        new_request(@community, nil)
+        get :show, { :id=> @lesson.id, :chapter_id => @chapter.id, :course_id => @course.id }
+        assert_response :success
+      end
 
-    premium = lessons :premium_lesson
-    new_request(premium.chapter.course.community, unknown_user)
-    get :show, {:id=> premium.id, :course_id => course.id, :chapter_id => chapter.id}
-    assert_response :redirect
+      should "allow access to registered user" do
+        new_request(@community, @registered_user)
+        get :show, { :id=> @lesson.id, :chapter_id => @chapter.id, :course_id => @course.id }
+        assert_response :success
+      end
 
-    ultrapremium = lessons :ultrapremium_lesson
-    new_request(ultrapremium.chapter.course.community, unknown_user)
-    get :show, {:id=> ultrapremium.id, :course_id => course.id, :chapter_id => chapter.id}
-    assert_response :redirect
-  end
+      should "allow access to gold user" do
+        new_request(@community, @gold_user)
+        get :show, { :id=> @lesson.id, :chapter_id => @chapter.id, :course_id => @course.id }
+        assert_response :success
+      end
 
-  def test_accessibility_rules_registered_user
-    registered_user = users :audrey
-    course = courses :happiness
-    chapter = chapters :first_chapter
+      should "allow access to silver user" do
+        new_request(@community, @silver_user)
+        get :show, { :id=> @lesson.id, :chapter_id => @chapter.id, :course_id => @course.id }
+        assert_response :success
+      end
+    end
 
-    public = lessons :public_lesson
-    new_request(registered_user.community,registered_user)
-    get :show, {:id=> public.id, :course_id => course.id, :chapter_id => chapter.id}
-    assert_response :success
+    context "with a registered lesson" do
+      setup do
+        @content = Content.make(:user => @course.user, :registered => true)
+        @lesson = Lesson.make(:chapter => @chapter, :content => @content)
+      end
 
-    registered = lessons :registered_lesson
-    new_request(registered_user.community,registered_user)
-    get :show, {:id=> registered.id, :course_id => course.id, :chapter_id => chapter.id}
-    assert_response :success
+      should "not allow access to public" do
+        new_request(@community, nil)
+        get :show, { :id=> @lesson.id, :chapter_id => @chapter.id, :course_id => @course.id }
+        assert_response :redirect
+      end
 
-    premium = lessons :premium_lesson
-    new_request(registered_user.community,registered_user)
-    get :show, {:id=> premium.id, :course_id => course.id, :chapter_id => chapter.id}
-    assert_response :redirect
+      should "allow access to registered user" do
+        new_request(@community, @registered_user)
+        get :show, { :id=> @lesson.id, :chapter_id => @chapter.id, :course_id => @course.id }
+        assert_response :success
+      end
 
-    ultrapremium = lessons :ultrapremium_lesson
-    new_request(registered_user.community,registered_user)
-    get :show, {:id=> ultrapremium.id, :course_id => course.id, :chapter_id => chapter.id}
-    assert_response :redirect
-  end
+      should "allow access to gold user" do
+        new_request(@community, @gold_user)
+        get :show, { :id=> @lesson.id, :chapter_id => @chapter.id, :course_id => @course.id }
+        assert_response :success
+      end
 
-  def test_accessibility_rules_ultrapremium_user
-    ultrapremium_user = users :ultrapremium_audrey
-    course = courses :happiness
-    chapter = chapters :first_chapter
+      should "allow access to silver user" do
+        new_request(@community, @silver_user)
+        get :show, { :id=> @lesson.id, :chapter_id => @chapter.id, :course_id => @course.id }
+        assert_response :success
+      end
+    end
 
-    public = lessons :public_lesson
-    new_request(ultrapremium_user.community,ultrapremium_user)
-    get :show, {:id=> public.id, :course_id => course.id, :chapter_id => chapter.id}
-    assert_response :success
+    context "with a gold lesson" do
+      setup do
+        @content = Content.make(:user => @course.user, :registered => true, :access_classes => [@gold])
+        @lesson = Lesson.make(:chapter => @chapter, :content => @content)
+      end
 
-    registered = lessons :registered_lesson
-    new_request(ultrapremium_user.community,ultrapremium_user)
-    get :show, {:id=> registered.id, :course_id => course.id, :chapter_id => chapter.id}
-    assert_response :success
+      should "not allow access to public" do
+        new_request(@community, nil)
+        get :show, { :id=> @lesson.id, :chapter_id => @chapter.id, :course_id => @course.id }
+        assert_response :redirect
+      end
 
-    premium = lessons :premium_lesson
-    new_request(ultrapremium_user.community,ultrapremium_user)
-    get :show, {:id=> premium.id, :course_id => course.id, :chapter_id => chapter.id}
-    assert_response :redirect
+      should "not allow access to registered user" do
+        new_request(@community, @registered_user)
+        get :show, { :id=> @lesson.id, :chapter_id => @chapter.id, :course_id => @course.id }
+        assert_response :redirect
+      end
 
-    ultrapremium = lessons :ultrapremium_lesson
-    new_request(ultrapremium_user.community, ultrapremium_user)
-    get :show, {:id=> ultrapremium.id, :course_id => course.id, :chapter_id => chapter.id}
-    assert_response :success
-  end
+      should "allow access to gold user" do
+        new_request(@community, @gold_user)
+        get :show, { :id=> @lesson.id, :chapter_id => @chapter.id, :course_id => @course.id }
+        assert_response :success
+      end
 
-  def test_accessibility_premium_user
-    premium_user = users :premium_audrey
-    course = courses :happiness
-    chapter = chapters :first_chapter
+      should "not access to silver user" do
+        new_request(@community, @silver_user)
+        get :show, { :id=> @lesson.id, :chapter_id => @chapter.id, :course_id => @course.id }
+        assert_response :redirect
+      end
+    end
 
-    public = lessons :public_lesson
-    new_request(premium_user.community,premium_user)
-    get :show, {:id=> public.id, :course_id => course.id, :chapter_id => chapter.id}
-    assert_response :success
+    context "with a silver lesson" do
+      setup do
+        @content = Content.make(:user => @course.user, :registered => true, :access_classes => [@silver])
+        @lesson = Lesson.make(:chapter => @chapter, :content => @content)
+      end
 
-    registered = lessons :registered_lesson
-    new_request(premium_user.community,premium_user)
-    get :show, {:id=> registered.id, :course_id => course.id, :chapter_id => chapter.id}
-    assert_response :success
+      should "not allow access to public" do
+        new_request(@community, nil)
+        get :show, { :id=> @lesson.id, :chapter_id => @chapter.id, :course_id => @course.id }
+        assert_response :redirect
+      end
 
-    premium = lessons :premium_lesson
-    new_request(premium_user.community,premium_user)
-    get :show, {:id=> premium.id, :course_id => course.id, :chapter_id => chapter.id}
-    assert_response :success
+      should "not allow access to registered user" do
+        new_request(@community, @registered_user)
+        get :show, { :id=> @lesson.id, :chapter_id => @chapter.id, :course_id => @course.id }
+        assert_response :redirect
+      end
 
-    ultrapremium = lessons :ultrapremium_lesson
-    new_request(premium_user.community, premium_user)
-    get :show, {:id=> ultrapremium.id, :course_id => course.id, :chapter_id => chapter.id}
-    assert_response :redirect
+      should "not access to gold user" do
+        new_request(@community, @gold_user)
+        get :show, { :id=> @lesson.id, :chapter_id => @chapter.id, :course_id => @course.id }
+        assert_response :redirect
+      end
+
+      should "allow access to silver user" do
+        new_request(@community, @silver_user)
+        get :show, { :id=> @lesson.id, :chapter_id => @chapter.id, :course_id => @course.id }
+        assert_response :success
+      end
+    end
   end
 end

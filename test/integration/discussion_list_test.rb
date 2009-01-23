@@ -1,7 +1,7 @@
 require File.dirname(__FILE__) + '/../test_helper' 
 
 class DiscussionListTest < ActionController::IntegrationTest
-  fixtures :communities
+  fixtures :all
   
   def setup
     @c = Theme.new(:name=>"Japan", :description=>"Discussions about the land of the rising sun.", :community_id => communities(:c1).id)

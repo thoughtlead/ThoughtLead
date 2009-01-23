@@ -1,7 +1,7 @@
 require File.dirname(__FILE__) + '/../test_helper' 
 
 class DeleteCourseTest < ActionController::IntegrationTest
-  fixtures :users, :courses, :communities
+  fixtures :all
 
   context "A Course" do
     should "be deletable" do

@@ -1,6 +1,8 @@
 require File.dirname(__FILE__) + '/../test_helper'
 
 class DiscussionsControllerTest < ActionController::TestCase
+  fixtures :all
+  
   def test_accessibility_rules_no_user
     #this is different than the unit tests because authenticated_system will do the proccess of setting current_user to :false
     unknown_user = nil

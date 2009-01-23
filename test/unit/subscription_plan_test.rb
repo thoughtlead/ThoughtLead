@@ -1,69 +1,90 @@
 require File.dirname(__FILE__) + '/../test_helper'
 
 class SubscriptionPlanTest < ActiveSupport::TestCase
-  def test_renewal_summary
-    plan = subscription_plans :c1_premium_monthly
+  context "A Subscription Plan" do
+    setup do
+      @plan = SubscriptionPlan.new
+      @plan.amount = 10.00
+      @plan.renewal_period = 2
+      @plan.renewal_units = "months"
+    end
 
-    plan.renewal_period = 1
-    plan.renewal_units = "months"
+    should "have a renewal summary that includes the correct units" do
+      assert_equal("2 months", @plan.renewal_summary)
 
-    assert_equal("month", plan.renewal_summary)
+      @plan.renewal_units = "days"
+      assert_equal("2 days", @plan.renewal_summary)
 
-    plan.renewal_units = "days"
-    assert_equal("day", plan.renewal_summary)
+      @plan.renewal_units = "weeks"
+      assert_equal("2 weeks", @plan.renewal_summary)
 
-    plan.renewal_units = "weeks"
-    assert_equal("week", plan.renewal_summary)
+      @plan.renewal_units = "years"
+      assert_equal("2 years", @plan.renewal_summary)
+    end
 
-    plan.renewal_units = "years"
-    assert_equal("year", plan.renewal_summary)
+    should "not include the number and be singular in renewal summary when renewal period is only 1" do
+      @plan.renewal_period = 1
+      assert_equal("month", @plan.renewal_summary)
 
-    plan.renewal_period = 6
-    assert_equal("6 years", plan.renewal_summary)
+      @plan.renewal_units = "days"
+      assert_equal("day", @plan.renewal_summary)
 
-    plan.renewal_units = "months"
-    assert_equal("6 months", plan.renewal_summary)
-  end
+      @plan.renewal_units = "weeks"
+      assert_equal("week", @plan.renewal_summary)
 
-  def test_trial_summary
-    plan = subscription_plans :c1_premium_monthly
+      @plan.renewal_units = "years"
+      assert_equal("year", @plan.renewal_summary)
+    end
 
-    plan.renewal_period = 1
-    plan.renewal_units = "months"
-    plan.trial_period = 3
-    plan.trial_units = "years"
+    should "include the amount in the summary" do
+      assert_equal("$10.00 per 2 months", @plan.summary)
+    end
 
-    assert_equal(" with a free trial period of 3 years", plan.trial_summary)
+    should "not include the number and be singular in summary when renewal period is only 1" do
+      @plan.renewal_period = 1
+      assert_equal("$10.00 per month", @plan.summary)
+    end
 
-    plan.trial_units = "days"
-    assert_equal(" with a free trial period of 3 days", plan.trial_summary)
+    should "display correct unit in summary" do
+      @plan.renewal_units = "days"
+      assert_equal("$10.00 per 2 days", @plan.summary)
 
-    plan.trial_units = "weeks"
-    assert_equal(" with a free trial period of 3 weeks", plan.trial_summary)
+      @plan.renewal_units = "weeks"
+      assert_equal("$10.00 per 2 weeks", @plan.summary)
+    end
 
-    plan.trial_units = "months"
-    assert_equal(" with a free trial period of 3 months", plan.trial_summary)
+    context "with a trial period" do
+      setup do
+        @plan.trial_period = 3
+        @plan.trial_units = "years"
+      end
 
-    plan.trial_period = 1
-    assert_equal(" with a free trial period of 1 month", plan.trial_summary)
+      should "have a trial summary that includes the correct units" do
+        assert_equal(" with a free trial period of 3 years", @plan.trial_summary)
 
-    plan.trial_units = "days"
-    assert_equal(" with a free trial period of 1 day", plan.trial_summary)
-  end
+        @plan.trial_units = "days"
+        assert_equal(" with a free trial period of 3 days", @plan.trial_summary)
 
-  def test_summary
-    plan = subscription_plans :c1_premium_monthly
+        @plan.trial_units = "weeks"
+        assert_equal(" with a free trial period of 3 weeks", @plan.trial_summary)
 
-    plan.amount = 10.00
-    plan.renewal_period = 1
-    plan.renewal_units = "weeks"
+        @plan.trial_units = "months"
+        assert_equal(" with a free trial period of 3 months", @plan.trial_summary)
+      end
 
-    assert_equal("$10.00 per week", plan.summary)
+      should "be singular in trial summary when trial period is only 1" do
+        @plan.trial_period = 1
+        assert_equal(" with a free trial period of 1 year", @plan.trial_summary)
 
-    plan.renewal_units = "months"
-    assert_equal("$10.00 per month", plan.summary)
+        @plan.trial_units = "days"
+        assert_equal(" with a free trial period of 1 day", @plan.trial_summary)
 
-    plan.renewal_period = 6
-    assert_equal("$10.00 per 6 months", plan.summary)
+        @plan.trial_units = "weeks"
+        assert_equal(" with a free trial period of 1 week", @plan.trial_summary)
+
+        @plan.trial_units = "months"
+        assert_equal(" with a free trial period of 1 month", @plan.trial_summary)
+      end
+    end
   end
 end

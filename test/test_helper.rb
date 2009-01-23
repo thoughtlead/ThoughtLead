@@ -1,11 +1,8 @@
 ENV["RAILS_ENV"] = "test"
 require File.expand_path(File.dirname(__FILE__) + "/../config/environment")
-
-$: << File.expand_path(File.dirname(__FILE__) + "/integration/dsl")
-require 'basics_dsl'
-require 'thought_lead_dsl'
-
 require 'test_help'
+require File.expand_path(File.dirname(__FILE__) + "/blueprints")
+require File.expand_path(File.dirname(__FILE__) + "/integration/dsl/basics_dsl")
 
 class Test::Unit::TestCase
   # Transactional fixtures accelerate your tests by wrapping each test method
@@ -37,11 +34,11 @@ class Test::Unit::TestCase
   #
   # Note: You'll currently still have to declare fixtures explicitly in integration tests
   # -- they do not yet inherit this setting
-  fixtures :all
+  # fixtures :all
 
-  def assert_unordered_arrays_equal(expected, actual, object_display_method = :to_s, message = '')
-    assert_arrays_equal(expected.sort, actual.sort, object_display_method, message)
-  end
+  # Add more helper methods to be used by all tests here...
+
+  setup { Sham.reset }
 
   def new_request(community, user = nil)
     raise "The user isn't a User object" if user && user.class != User
@@ -57,7 +54,6 @@ class ActionController::IntegrationTest
   def new_session(host, &block)
     open_session do | session |
       session.extend(BasicsDsl)
-      session.extend(ThoughtLeadDsl)
       session.host!(host)
       session.instance_eval(&block) if block
       session

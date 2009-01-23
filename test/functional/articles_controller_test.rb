@@ -1,6 +1,8 @@
 require File.dirname(__FILE__) + '/../test_helper'
 
 class ArticlesControllerTest < ActionController::TestCase
+  fixtures :all
+  
   def test_accessibility_rules_no_user
     unknown_user = nil
 

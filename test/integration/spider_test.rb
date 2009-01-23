@@ -1,9 +1,7 @@
 require "#{File.dirname(__FILE__)}/../test_helper"
 
 class SpiderTest < ActionController::IntegrationTest
-  fixtures :articles, :attachments, :categories, :categorizations,
-  :chapters, :communities, :contents, :courses, :discussions, :emails,
-  :lessons, :themes, :users
+  fixtures :all
 
   IgnoreURLs = ['/login', 'http://www.onemillionmarketers.com', 'http://thoughtlead.com/', %r{^javascript:.*}, %r{^.*/categories/[0-9]+}, %r{^.+logout}, %r{^.+delete.?}, %r{^.+/destroy.?}]
   ExcludeFormPatterns = [%r{^.*/search}, %r{^.*/login}, %r{^.*/session}, %r{^.*/community/edit}]
