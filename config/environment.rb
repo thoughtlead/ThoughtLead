@@ -28,7 +28,6 @@ Rails::Initializer.run do |config|
   # config.gem "sqlite3-ruby", :lib => "sqlite3"
   # config.gem "aws-s3", :lib => "aws/s3"
   config.gem "hpricot"
-  config.gem "RubyInline", :lib => "inline"
   config.gem "image_science"
   config.gem "builder"
   config.gem "xml-simple", :lib => "xmlsimple"
