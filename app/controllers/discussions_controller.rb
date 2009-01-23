@@ -64,12 +64,11 @@ class DiscussionsController < ApplicationController
   end
 
   private
-  #bogus warning, this function is called by a method obtained from application.rb (ruby craziness!)
+
   def get_access_controlled_object
     return Discussion.find(params[:id]) if params[:id]
     #TODO this is bad, replace it with a refactored control_access function where the controller is responsible for is_premium and is_registered
     #(possibly using those functions from their models where appropriate)
     return Discussion.new(:title => "", :body => "", :community => current_community) #make sure all other functions are access controlled as well (except skipped ones of course)
   end
-
 end

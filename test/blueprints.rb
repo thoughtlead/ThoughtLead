@@ -98,3 +98,18 @@ Article.blueprint do
   community { Community.make }
   content { Content.make(:user => User.make(:community => community)) }
 end
+
+Theme.blueprint do
+  name { Sham.word }
+  description { Sham.sentence }
+  community { Community.make }
+  registered false
+end
+
+Discussion.blueprint do
+  title { Sham.sentence }
+  body { Sham.paragraphs }
+  theme { Theme.make }
+  community { theme.community }
+  user { User.make(:community => community) }
+end
