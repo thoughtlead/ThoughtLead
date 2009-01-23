@@ -93,3 +93,8 @@ Content.blueprint do
   draft false
   registered false
 end
+
+Article.blueprint do
+  community { Community.make }
+  content { Content.make(:user => User.make(:community => community)) }
+end
