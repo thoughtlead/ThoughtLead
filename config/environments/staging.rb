@@ -31,3 +31,7 @@ ActionMailer::Base.smtp_settings = {
   :port => 25,
   :domain  => "tsi.local",
 }
+
+config.after_initialize do
+  ActiveMerchant::Billing::Base.gateway_mode = :test
+end
