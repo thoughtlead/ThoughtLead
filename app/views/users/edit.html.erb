@@ -88,10 +88,12 @@
 
 			<div class="update_avatar">
 				<%= f.label :avatar %>
+
 				<div class="module image avatar">
 					<%= avatar_for(@user) %>
 				</div>
 				<%= f.file_field :user_avatar %>
+				<p>Maximum file size is 10 megabytes</p>
 			</div>
 		</fieldset>
 		<fieldset class="submit">

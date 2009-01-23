@@ -69,7 +69,7 @@
 						<dt><%= (@user.disabled? ? "<strike>" : "") + h(@user) + (@user.disabled? ? "</strike>" : "") %></dt>
 						<% unless @user.location.blank? %><dd><%=h @user.location %></dd><% end %>
 						<% unless @user.zipcode.blank? %><dd><%=h @user.zipcode %></dd><% end %>
-						<dd><%= @user.access_class.nil? ? 'Non-Premium User' : @user.access_class.name + ' Member' %></dd>
+						<dd><%= @user.access_class.nil? ? 'Registered Member' : @user.access_class.name + ' Member' %></dd>
 					</dl>
 					<div class="button clear"><a href="<%= email_user_url(@user) %>"><span class="icon email">Email <%= h(@user) %></span></a></div>
 				</td>
