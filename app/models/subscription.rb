@@ -73,8 +73,12 @@ class Subscription < ActiveRecord::Base
 
   def ensure_activation
     if pending?
-      #TODO: handle trial
-      if !charge
+      if user.trial_available && !subscription_plan.nil? && subscription_plan.trial_period > 0
+        self.next_renewal_at = Date.today.advance({subscription_plan.trial_units => subscription_plan.trial_period}.symbolize_keys)
+        self.state = 'trial'
+        user.trial_available = false
+        save
+      elsif !charge
         return false
       end
 
