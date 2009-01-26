@@ -10,128 +10,216 @@ class ArticlesControllerTest < ActionController::TestCase
       @registered_user = User.make(:community => @community)
       @gold_user = User.make(:community => @community, :access_class => @gold)
       @silver_user = User.make(:community => @community, :access_class => @silver)
+
+      @public_article = Article.make(:community => @community)
+
+      @registered_content = Content.make(:user => User.make(:community => @community), :registered => true)
+      @registered_article = Article.make(:community => @community, :content => @registered_content)
+
+      @gold_content = Content.make(:user => User.make(:community => @community), :registered => true, :access_classes => [@gold])
+      @gold_article = Article.make(:community => @community, :content => @gold_content)
+
+      @silver_content = Content.make(:user => User.make(:community => @community), :registered => true, :access_classes => [@silver])
+      @silver_article = Article.make(:community => @community, :content => @silver_content)
     end
 
-    context "with a public article" do
+    context "when not logged in" do
       setup do
-        @article = Article.make(:community => @community)
-      end
-
-      should "allow access to public" do
         new_request(@community, nil)
-        get :show, { :id=> @article.id }
+      end
+
+      should "be able to see public article" do
+        get :show, { :id=> @public_article.id }
         assert_response :success
       end
 
-      should "allow access to registered user" do
-        new_request(@community, @registered_user)
-        get :show, { :id=> @article.id }
-        assert_response :success
-      end
-
-      should "allow access to gold user" do
-        new_request(@community, @gold_user)
-        get :show, { :id=> @article.id }
-        assert_response :success
-      end
-
-      should "allow access to silver user" do
-        new_request(@community, @silver_user)
-        get :show, { :id=> @article.id }
-        assert_response :success
-      end
-    end
-
-    context "with a registered lesson" do
-      setup do
-        @content = Content.make(:user => User.make(:community => @community), :registered => true)
-        @article = Article.make(:community => @community, :content => @content)
-      end
-
-      should "not allow access to public" do
-        new_request(@community, nil)
-        get :show, { :id=> @article.id }
+      should "not be able to see registered article" do
+        get :show, { :id=> @registered_article.id }
         assert_response :redirect
       end
 
-      should "allow access to registered user" do
-        new_request(@community, @registered_user)
-        get :show, { :id=> @article.id }
-        assert_response :success
-      end
-
-      should "allow access to gold user" do
-        new_request(@community, @gold_user)
-        get :show, { :id=> @article.id }
-        assert_response :success
-      end
-
-      should "allow access to silver user" do
-        new_request(@community, @silver_user)
-        get :show, { :id=> @article.id }
-        assert_response :success
-      end
-    end
-
-    context "with a gold lesson" do
-      setup do
-        @content = Content.make(:user => User.make(:community => @community), :registered => true, :access_classes => [@gold])
-        @article = Article.make(:community => @community, :content => @content)
-      end
-
-      should "not allow access to public" do
-        new_request(@community, nil)
-        get :show, { :id=> @article.id }
+      should "not be able to see gold article" do
+        get :show, { :id=> @gold_article.id }
         assert_response :redirect
       end
 
-      should "not allow access to registered user" do
-        new_request(@community, @registered_user)
-        get :show, { :id=> @article.id }
+      should "not be able to see silver article" do
+        get :show, { :id=> @silver_article.id }
         assert_response :redirect
       end
 
-      should "allow access to gold user" do
-        new_request(@community, @gold_user)
-        get :show, { :id=> @article.id }
-        assert_response :success
-      end
+      context "when viewing index" do
+        setup do
+          get :index
+          assert_response :success
+          assert @articles = assigns(:articles), "Cannot find @articles"
+        end
 
-      should "not access to silver user" do
-        new_request(@community, @silver_user)
-        get :show, { :id=> @article.id }
-        assert_response :redirect
+        should "list public article" do
+          assert @articles.include?(@public_article)
+        end
+
+        should "not list registered article" do
+          assert !@articles.include?(@registered_article)
+        end
+
+        should "not list gold article" do
+          assert !@articles.include?(@gold_article)
+        end
+
+        should "not list silver article" do
+          assert !@articles.include?(@silver_article)
+        end
       end
     end
 
-    context "with a silver lesson" do
+    context "when logged in as a registered user" do
       setup do
-        @content = Content.make(:user => User.make(:community => @community), :registered => true, :access_classes => [@silver])
-        @article = Article.make(:community => @community, :content => @content)
-      end
-
-      should "not allow access to public" do
-        new_request(@community, nil)
-        get :show, { :id=> @article.id }
-        assert_response :redirect
-      end
-
-      should "not allow access to registered user" do
         new_request(@community, @registered_user)
-        get :show, { :id=> @article.id }
-        assert_response :redirect
       end
 
-      should "not access to gold user" do
-        new_request(@community, @gold_user)
-        get :show, { :id=> @article.id }
-        assert_response :redirect
-      end
-
-      should "allow access to silver user" do
-        new_request(@community, @silver_user)
-        get :show, { :id=> @article.id }
+      should "be able to see public article" do
+        get :show, { :id=> @public_article.id }
         assert_response :success
+      end
+
+      should "be able to see registered article" do
+        get :show, { :id=> @registered_article.id }
+        assert_response :success
+      end
+
+      should "not be able to see gold article" do
+        get :show, { :id=> @gold_article.id }
+        assert_response :redirect
+      end
+
+      should "not be able to see silver article" do
+        get :show, { :id=> @silver_article.id }
+        assert_response :redirect
+      end
+      
+      context "when viewing index" do
+        setup do
+          get :index
+          assert_response :success
+          assert @articles = assigns(:articles), "Cannot find @articles"
+        end
+
+        should "list public article" do
+          assert @articles.include?(@public_article)
+        end
+
+        should "list registered article" do
+          assert @articles.include?(@registered_article)
+        end
+
+        should "not list gold article" do
+          assert !@articles.include?(@gold_article)
+        end
+
+        should "not list silver article" do
+          assert !@articles.include?(@silver_article)
+        end
+      end
+    end
+
+    context "when logged in as a gold user" do
+      setup do
+        new_request(@community, @gold_user)
+      end
+
+      should "be able to see public article" do
+        get :show, { :id=> @public_article.id }
+        assert_response :success
+      end
+
+      should "be able to see registered article" do
+        get :show, { :id=> @registered_article.id }
+        assert_response :success
+      end
+
+      should "be able to see gold article" do
+        get :show, { :id=> @gold_article.id }
+        assert_response :success
+      end
+
+      should "not be able to see silver article" do
+        get :show, { :id=> @silver_article.id }
+        assert_response :redirect
+      end
+      
+      context "when viewing index" do
+        setup do
+          get :index
+          assert_response :success
+          assert @articles = assigns(:articles), "Cannot find @articles"
+        end
+
+        should "list public article" do
+          assert @articles.include?(@public_article)
+        end
+
+        should "list registered article" do
+          assert @articles.include?(@registered_article)
+        end
+
+        should "list gold article" do
+          assert @articles.include?(@gold_article)
+        end
+
+        should "not list silver article" do
+          assert !@articles.include?(@silver_article)
+        end
+      end
+    end
+
+    context "when logged in as a silver user" do
+      setup do
+        new_request(@community, @silver_user)
+      end
+
+      should "be able to see public article" do
+        get :show, { :id=> @public_article.id }
+        assert_response :success
+      end
+
+      should "be able to see registered article" do
+        get :show, { :id=> @registered_article.id }
+        assert_response :success
+      end
+
+      should "not be able to see gold article" do
+        get :show, { :id=> @gold_article.id }
+        assert_response :redirect
+      end
+
+      should "be able to see silver article" do
+        get :show, { :id=> @silver_article.id }
+        assert_response :success
+      end
+      
+      context "when viewing index" do
+        setup do
+          get :index
+          assert_response :success
+          assert @articles = assigns(:articles), "Cannot find @articles"
+        end
+
+        should "list public article" do
+          assert @articles.include?(@public_article)
+        end
+
+        should "list registered article" do
+          assert @articles.include?(@registered_article)
+        end
+
+        should "not list gold article" do
+          assert !@articles.include?(@gold_article)
+        end
+
+        should "list silver article" do
+          assert @articles.include?(@silver_article)
+        end
       end
     end
   end

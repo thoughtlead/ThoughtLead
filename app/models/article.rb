@@ -32,17 +32,18 @@ class Article < ActiveRecord::Base
 
   def visible_to(user)
     return true if user == self.community.owner
-    unless content.draft?
-      unless content.access_classes.blank?
-        return user.has_access_to(content)
-      end
-      if content.registered
+    return false if content.draft?
+
+    if content.access_classes.blank?
+      if content.registered?
         return !user.nil?
-      else #content is publicly viewable
+      else
         return true
       end
+    else
+      return false if user.nil?    
+      return user.has_access_to(content)
     end
-    false
   end
 
   named_scope :for_category, lambda { | category_id |
