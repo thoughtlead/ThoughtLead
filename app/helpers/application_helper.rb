@@ -1,4 +1,37 @@
 module ApplicationHelper
+  def avatar_link_for(user, size = :medium)
+    link_to(avatar_for(user, size), user)
+  end
+
+  def avatar_for(user, size = :medium)
+    image_tag(avatar_filename(user, size), :id => "profile_avatar")
+  end
+
+  def avatar_filename(user, size = :medium)
+    if user.avatar
+      user.avatar.public_filename(size)
+    else
+      "default_avatar_#{size}.png"
+    end
+  end
+
+  def flash_class
+    return "" if flash.values.empty?
+    %{class = "#{flash.keys.join(' ')}"}
+  end
+
+  def flash_value
+    flash.values.collect { | value | "<p>#{value}</p>"}.join("\n")
+  end
+
+  def body_tag
+    onload_str = @onload_event ? %{ onload="#{@onload_event}"} : ''
+    "<body#{onload_str}>"
+  end
+
+  def teaser_format(teaser)
+    auto_link(h(teaser))
+  end
 
   def course_index_notes(course)
     s = []
@@ -50,7 +83,7 @@ module ApplicationHelper
 
     return default_public_file unless current_community
     return default_public_file unless File.exist?("#{themes_absolute_dir}/#{current_community.host}/#{filename}")
-      "#{themes_public_dir}/#{current_community.host}/#{filename}"
+    "#{themes_public_dir}/#{current_community.host}/#{filename}"
   end
 
   def current_tag(tag_name, class_is_current_if, &block)
@@ -75,7 +108,7 @@ module ApplicationHelper
     default_file = "/themes/default/#{default_path}"
     return default_file unless current_community
     return default_file unless File.exist?(File.expand_path(File.dirname(__FILE__) + "/../../public/themes/#{current_community.host}/#{path}"))
-      "/themes/#{current_community.host}/#{path}"
+    "/themes/#{current_community.host}/#{path}"
   end
 
   def snippet(thought, letters = 15)

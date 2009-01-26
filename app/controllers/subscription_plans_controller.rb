@@ -1,4 +1,5 @@
 class SubscriptionPlansController < ApplicationController
+  helper AdminHelper
   before_filter :owner_login_required
 
   def index

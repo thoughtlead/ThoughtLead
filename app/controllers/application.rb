@@ -1,6 +1,4 @@
 class ApplicationController < ActionController::Base
-  helper :all
-
   include AuthenticatedSystem
   include ExceptionNotifiable
   include CommunityLocation
