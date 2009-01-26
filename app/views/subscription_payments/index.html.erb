@@ -36,7 +36,7 @@
 						<% end %>
 						<% if current_user.owner? %>
 						<li class="edit">
-							<%= link_to "View <span class='action_target'>Payment History</span>", user_subscription_payments_url(@user), :class => 'action' %>
+							<%= link_to "View <span class='action_target'>Payment History</span>", subscription_payments(@user), :class => 'action' %>
 						</li>
 						<% end %>
 
@@ -82,56 +82,10 @@
 				</td>
 			</tr>
 		</thead>
+
 		<tbody>
-			<% unless @user.about.blank? %>
 			<tr>
-				<th scope="row">About</th>
-				<td><%= details_format(@user.about) %></td>
-			</tr>
-			<% end %>
-
-			<% unless @user.interests.blank? %>
-			<tr>
-				<th scope="row">Interests</th>
-				<td><%= details_format(@user.interests) %></td>
-			</tr>
-			<% end %>
-
-			<% unless @user.website_1.blank? && @user.website_2.blank? %>
-			<tr>
-				<th scope="row">Websites</th>
-				<td>
-					<ul>
-						<% unless @user.website_1.blank? %>
-						<li><%= link_to @user.website_1, "http://" + @user.website_1 %></li>
-						<% end %>
-						<% unless @user.website_2.blank? %>
-						<li><%= link_to @user.website_2, "http://" + @user.website_2 %></li>
-						<% end %>
-					</ul>
-				</td>
-			</tr>
-			<% end %>
-
-			<% if logged_in_as_owner? %>
-			<tr>
-				<th scope="row">Reason for Joining</th>
-				<td><%= details_format(@user.reason) %></td>
-			</tr>
-			<tr>
-				<th scope="row">First Name</th>
-				<td><%= details_format(@user.first_name) %></td>
-			</tr>
-			<tr>
-				<th scope="row">Last Name</th>
-				<td><%= details_format(@user.last_name) %></td>
-			</tr>
-			<% end %>
-
-			<% if @show_change_billing %>
-
-			<tr>
-				<th scope="row">Subscription Information</th>
+				<th scope="row">Current Subscription Information</th>
 				<td>
 
 					<% if @user.subscription.blank? %>
@@ -149,10 +103,25 @@
 
 				</td>
 			</tr>
-
-			<% end %>
-		</tbody>
-	</table>
+					</tbody>
+			</table>
+			<h3>Payment History</h3>
+      <table>
+        <tr>
+          <th>Description</th>
+          <th>Amount</th>
+          <th>Date</th>
+          <th>Transation Id</th>
+        </tr>
+        <% @subscription_payments.each do |payment| %>
+        <tr>
+          <td><%= payment.description %></td>
+          <td><%= payment.amount %></td>
+          <td><%= payment.created_at %></td>
+          <td><%= payment.transaction_id %></td>
+        </tr>
+        <% end %>
+      </table>
 </div>
 <div id="sidebar">
 	<ul class="modules">
