@@ -6,7 +6,7 @@ class ArticlesController < ApplicationController
 
   def index
     @articles = current_community.articles.for_category(params[:category])
-    @articles = @articles.find_all { |article| article.visible_to(current_user) }
+    @articles = @articles.find_all { |article| !article.content.draft }
     @articles = @articles.sort_by{ |article| article.content.updated_at }
     @articles = @articles.reverse
     @articles = @articles.paginate :page => params[:page], :per_page => 20
