@@ -59,16 +59,16 @@ class ArticlesControllerTest < ActionController::TestCase
           assert @articles.include?(@public_article)
         end
 
-        should "not list registered article" do
-          assert !@articles.include?(@registered_article)
+        should "List registered article" do
+          assert @articles.include?(@registered_article)
         end
 
-        should "not list gold article" do
-          assert !@articles.include?(@gold_article)
+        should "List gold article" do
+          assert @articles.include?(@gold_article)
         end
 
-        should "not list silver article" do
-          assert !@articles.include?(@silver_article)
+        should "List silver article" do
+          assert @articles.include?(@silver_article)
         end
       end
     end
@@ -97,7 +97,7 @@ class ArticlesControllerTest < ActionController::TestCase
         get :show, { :id=> @silver_article.id }
         assert_response :redirect
       end
-      
+
       context "when viewing index" do
         setup do
           get :index
@@ -113,12 +113,12 @@ class ArticlesControllerTest < ActionController::TestCase
           assert @articles.include?(@registered_article)
         end
 
-        should "not list gold article" do
-          assert !@articles.include?(@gold_article)
+        should "List gold article" do
+          assert @articles.include?(@gold_article)
         end
 
-        should "not list silver article" do
-          assert !@articles.include?(@silver_article)
+        should "List silver article" do
+          assert @articles.include?(@silver_article)
         end
       end
     end
@@ -147,7 +147,7 @@ class ArticlesControllerTest < ActionController::TestCase
         get :show, { :id=> @silver_article.id }
         assert_response :redirect
       end
-      
+
       context "when viewing index" do
         setup do
           get :index
@@ -167,8 +167,8 @@ class ArticlesControllerTest < ActionController::TestCase
           assert @articles.include?(@gold_article)
         end
 
-        should "not list silver article" do
-          assert !@articles.include?(@silver_article)
+        should "List silver article" do
+          assert @articles.include?(@silver_article)
         end
       end
     end
@@ -197,7 +197,7 @@ class ArticlesControllerTest < ActionController::TestCase
         get :show, { :id=> @silver_article.id }
         assert_response :success
       end
-      
+
       context "when viewing index" do
         setup do
           get :index
@@ -213,8 +213,8 @@ class ArticlesControllerTest < ActionController::TestCase
           assert @articles.include?(@registered_article)
         end
 
-        should "not list gold article" do
-          assert !@articles.include?(@gold_article)
+        should "List gold article" do
+          assert @articles.include?(@gold_article)
         end
 
         should "list silver article" do
