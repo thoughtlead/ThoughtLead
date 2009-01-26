@@ -24,10 +24,12 @@
 						<li class="edit">
 							<%= link_to "Edit <span class='action_target'>Profile</span>", edit_user_url(@user), :class => 'action' %>
 						</li>
-						<% if @show_change_billing %>
+						<% unless @user.owner? %>
 						<li class="edit">
 							<%= link_to "Upgrade <span class='action_target'>Subscription</span>", upgrade_url, :class => 'action' %>
 						</li>
+						<% end %>
+						<% if @show_change_billing %>
 						<li class="edit">
 							<%= link_to "Change <span class='action_target'>Payment Method</span>", edit_billing_information_url, :class => 'action' %>
 						</li>
