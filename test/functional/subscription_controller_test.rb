@@ -6,40 +6,93 @@ class SubscriptionControllerTest < ActionController::TestCase
       ActiveMerchant::Billing::AuthorizeNetCimGateway.any_instance.stubs(:unstore)
       ActiveMerchant::Billing::AuthorizeNetCimGateway.any_instance.stubs(:store).returns(stub(:success? => true, :token => 'foo'))
       ActiveMerchant::Billing::AuthorizeNetCimGateway.any_instance.stubs(:update).returns(stub(:success? => true, :token => 'foo'))
-      ActiveMerchant::Billing::AuthorizeNetCimGateway.any_instance.stubs(:purchase).returns(stub(:success? => true, :authorization => 'foo'))
-    end
-
-    context "on EDIT subscription" do
-      setup do
-        @user = User.make
-        new_request(@user.community, @user)
-        get :edit
-      end
-
-      should_assign_to :access_classes
-      should_respond_with :success
-      should_render_template :edit
-      should_not_set_the_flash
-
-      should "do nothing" do
-      end
+#      ActiveMerchant::Billing::AuthorizeNetCimGateway.any_instance.stubs(:purchase).returns(stub(:success? => true, :authorization => 'foo'))
     end
 
     context "on UPDATE subscription to a paid subscription" do
       context "when the user is not the community owner" do
-        setup do
-          @user = User.make
-          @access_class = AccessClass.make(:community => @user.community)
-          @plan = SubscriptionPlan.make(:access_class => @access_class)
+        context "when there is no free trial for the subscription plan" do
+          setup do
+            @user = User.make
+            @user.subscription = Subscription.make
 
-          new_request(@user.community, @user)
-          put :update, {:subscription => {:subscription_plan_id => @plan.id}}
+            @access_class = AccessClass.make(:community => @user.community)
+            @plan = SubscriptionPlan.make(:access_class => @access_class)
+            ActiveMerchant::Billing::AuthorizeNetCimGateway.any_instance.expects(:purchase).returns(stub(:success? => true, :authorization => 'foo'))
+            @plan.trial_period = 0
+
+            new_request(@user.community, @user)
+            put :update, {:subscription => {:subscription_plan_id => @plan.id}}
+            @user.reload
+          end
+
+          should_redirect_to "user_url(@user.id)"
+          should_set_the_flash_to "Successfully changed subscription."
+
+          should "set next renewal date to today plus renewal period" do
+            assert_equal Date.today.advance({@plan.renewal_units => @plan.renewal_period}.symbolize_keys), @user.subscription.next_renewal_at
+          end
+
+          should "actually set the plan" do
+            assert_equal @plan, @user.subscription.subscription_plan
+          end
+
+          should "actually change the users access_class" do
+            assert_equal @plan.access_class, @user.access_class
+          end
         end
 
-        should_respond_with :redirect
 
-        should "actually set the plan" do
-          assert_equal @plan, @user.subscription.subscription_plan
+        context "when there is a free trial for the subscription plan" do
+          context "and the member has not used their one free trial" do
+            setup do
+              ActiveMerchant::Billing::AuthorizeNetCimGateway.any_instance.expects(:purchase).never
+              @user = User.make
+              @user.subscription = Subscription.make
+              assert !@user.subscription.needs_payment_info?
+              @access_class = AccessClass.make(:community => @user.community)
+              @plan = SubscriptionPlan.make(:access_class => @access_class, :trial_units => "weeks", :trial_period => 2)
+              new_request(@user.community, @user)
+              put :update, {:subscription => {:subscription_plan_id => @plan.id}}
+            end
+
+            should_redirect_to "user_url(@user.id)"
+            should_set_the_flash_to "Successfully changed subscription."
+
+            should "actually set the plan" do
+              assert_equal @plan, @user.subscription.subscription_plan
+            end
+
+
+
+            should "set next renewal date to today plus trial period" do
+              assert_equal Date.today.advance({@plan.trial_units => @plan.trial_period}.symbolize_keys), @user.subscription.next_renewal_at
+            end
+          end
+
+          context "but the member has already used their free trial" do
+            setup do
+              ActiveMerchant::Billing::AuthorizeNetCimGateway.any_instance.expects(:purchase).returns(stub(:success? => true, :authorization => 'foo'))
+              @user = User.make
+              @user.subscription = Subscription.make
+              assert !@user.subscription.needs_payment_info?
+              @access_class = AccessClass.make(:community => @user.community)
+              @plan = SubscriptionPlan.make(:access_class => @access_class, :trial_units => "weeks", :trial_period => 2)
+              new_request(@user.community, @user)
+              put :update, {:subscription => {:subscription_plan_id => @plan.id}}
+            end
+
+            should_redirect_to "user_url(@user.id)"
+            should_set_the_flash_to "Successfully changed subscription."
+
+            should "actually set the plan" do
+              assert_equal @plan, @user.subscription.subscription_plan
+            end
+
+            should "set next renewal date to today plus renewal period" do
+              assert_equal Date.today.advance({@plan.renewal_units => @plan.renewal_period}.symbolize_keys), @user.subscription.next_renewal_at
+            end
+          end
         end
       end
 
@@ -80,6 +133,20 @@ class SubscriptionControllerTest < ActionController::TestCase
         assert_nil @user.subscription, "User should not have a subscription"
         assert_nil @user.access_class, "user should not have an access class if they choose the free plan"
       end
+    end
+
+
+    context "on get EDIT subscription" do
+      setup do
+        @user = User.make
+        new_request(@user.community, @user)
+        get :edit
+      end
+
+      should_assign_to :access_classes
+      should_respond_with :success
+      should_render_template :edit
+      should_not_set_the_flash
     end
   end
 end
