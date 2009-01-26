@@ -32,7 +32,7 @@
 
 		      <% for access_class in @access_classes %>
 
-            <h3><%= h access_class.name %></h3>
+            <h3><%= h access_class.name %> <%= get_access_description(access_class) %></h3>
 
             <ul class="checkbox group">
 
