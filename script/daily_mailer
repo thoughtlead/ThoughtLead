@@ -6,9 +6,7 @@ Lockfile('lock', :retries => 0) do
   require File.dirname(__FILE__) + '/../config/boot'
   require File.dirname(__FILE__) + '/../config/environment'
 
-  Subscription.trials_expiring_soon.each do |sub|
-    SubscriptionNotifier.deliver_trial_expiring(sub)
-  end
+  Subscription.notify_expiring_trials
 
   # # Trial subscriptions for which we have payment info.
   # # This will always turn up empty unless we are collecting
@@ -19,15 +17,5 @@ Lockfile('lock', :retries => 0) do
   #   end
   # end
 
-  Subscription.due.each do |sub|
-    if !sub.charge
-      sub.state = "pending"
-      sub.save
-      sub.user.access_class = nil
-      sub.user.save
-
-      SubscriptionNotifier.deliver_charge_failure(sub)
-    end
-  end
-
+  Subscription.charge_due_subscriptions
 end

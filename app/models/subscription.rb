@@ -10,8 +10,8 @@ class Subscription < ActiveRecord::Base
   validates_inclusion_of :renewal_units, :in => units
   validates_inclusion_of :state, :in => ["pending", "active", "trial"]
 
-  named_scope :trials_expiring_soon, lambda { |*args| { :conditions => { :state => 'trial', :next_renewal_at => (args.first || 7.days.from_now) } } }
-  named_scope :due, lambda { |*args| { :conditions => { :state => 'active', :next_renewal_at => (args.first || Date.today) } } }
+  named_scope :trials_expiring_soon, lambda { |*args| { :conditions => { :state => 'trial', :next_renewal_at => (args.first || 7.days.from_now.to_date) } } }
+  named_scope :active_due, lambda { |*args| { :conditions => { :state => 'active', :next_renewal_at => (args.first || Date.today) } } }
 
   before_destroy :destroy_gateway_record, :reset_access_class
 
@@ -139,6 +139,24 @@ class Subscription < ActiveRecord::Base
 
   def paypal?
     card_number == 'PayPal'
+  end
+
+  def self.notify_expiring_trials
+    trials_expiring_soon.each do |sub|
+      SubscriptionNotifier.deliver_trial_expiring(sub)
+    end
+  end
+
+  def self.charge_due_subscriptions
+    active_due.each do |sub|
+      if !sub.charge
+        sub.state = "pending"
+        sub.user.access_class = nil
+        sub.save && sub.user.save
+
+        SubscriptionNotifier.deliver_charge_failure(sub)
+      end
+    end
   end
 
   protected

@@ -53,4 +53,22 @@ class SubscriptionTest < ActiveSupport::TestCase
       assert_equal("$10.00 per 2 weeks", @subscription.summary)
     end
   end
+
+  context "with a trial subscription expiring soon" do
+    setup do
+      @subscription = Subscription.make(:state => "trial", :next_renewal_at => 7.days.from_now)
+    end
+
+    should "be listed in named scope" do
+      assert Subscription.trials_expiring_soon.include?(@subscription)
+    end
+
+    should "send email when notifying expiring trials" do
+      Subscription.notify_expiring_trials
+
+      assert_sent_email do |email|
+        email.subject =~ /Trial period expiring/ && email.to.include?(@subscription.user.email)
+      end
+    end
+  end
 end

@@ -23,28 +23,4 @@ class SubscriptionNotifier < ActionMailer::Base
     setup_email(subscription.user, 'Trial period expiring')
     @body = { :subscription => subscription }
   end
-
-  #none of these below here work
-
-  def welcome(account)
-    setup_email(account.admin, "Welcome to #{AppConfig['app_name']}!")
-    @body = { :account => account }
-  end
-
-
-  def setup_receipt(subscription_payment)
-    setup_email(subscription_payment.subscription.account.admin, "Your #{AppConfig['app_name']} invoice")
-    @body = { :subscription => subscription_payment.subscription, :amount => subscription_payment.amount }
-  end
-
-
-  def plan_changed(subscription)
-    setup_email(subscription.account.admin, "Your #{AppConfig['app_name']} plan has been changed")
-    @body = { :subscription => subscription }
-  end
-
-  def password_reset(reset)
-    setup_email(reset.user, 'Password Reset Request')
-    @body = { :reset => reset }
-  end
 end
