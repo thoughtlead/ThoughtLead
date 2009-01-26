@@ -10,8 +10,8 @@ Sham.define do
   city { Faker::Address.city }
   word { Faker::Lorem.words(1).first }
   price { rand * 100 }
-  period { 1 + rand(6) }
-  units { SubscriptionPlan.units.rand }
+  period(:unique => false) { 1 + rand(6) }
+  units(:unique => false) { SubscriptionPlan.units.rand }
   paragraphs { Faker::Lorem.paragraphs }
 end
 

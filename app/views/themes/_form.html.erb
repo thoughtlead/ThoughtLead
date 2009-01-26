@@ -1,3 +1,7 @@
+<% content_for :head do %>
+	<%= javascript_include_tag('theme') %>
+<% end %>
+
 <% form_for @theme, :html => {:class => "edit"} do | f | %>
 	<%= f.error_messages %>
 
@@ -12,7 +16,28 @@
 			<%= f.label :description, "Theme description" %>
 			<%= f.text_area :description, :rows=>5, :class => "inp_area" %>
 		</div>
-
+    <h3 class="separator">Access to Discussions Under This Theme:</h3>
+    <ul class="checkbox group">
+		  <li>
+			   <%= f.radio_button :registered, "false", :id => 'theme_public' %>
+			   <%= f.label :registered, 'Public' %>
+		   </li>
+		   <li>
+		    <%= f.radio_button :registered, "true", :id => 'theme_registered' %>
+		    <%= f.label :registered, 'Registered' %>
+	    </li>
+    </ul>
+      <h3 class="separator">If Registered, Limit Access to These Membership Levels:</h3>
+	    <ul class="checkbox group">
+	      <%= hidden_field_tag "theme[access_class_ids][]", "" %>
+		    <% current_community.access_classes.each do |access_class|%>
+		    <li>
+		      <%= check_box_tag "theme[access_class_ids][]", access_class.id, @theme.access_classes.include?(access_class), :class => "theme_access_class" %>
+			    <%= label_tag "theme[access_class_ids][]", access_class.name %>
+		    </li>
+		    <% end %>
+	    </ul>
+	    <br />
 	</fieldset>
 
 	<fieldset class="submit">

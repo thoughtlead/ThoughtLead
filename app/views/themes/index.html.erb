@@ -20,7 +20,8 @@
 	<ul class="sep_item_list categories">
 		<% for theme in current_community.themes %>
 		<li>
-			<h3><%=h theme %></h3>
+			<h3><%=h theme %> <%= get_access_description(theme) %>
+			</h3>
 			<ul class="item_actions">
 				<li><%= link_to "Edit", edit_theme_url(theme) %></li>
 				<li><%= link_to "Delete", theme, :method => :delete, :confirm => "Are you sure you'd like to delete this theme?  Its posts will no longer be categorized.", :class => "delete" %></li>
