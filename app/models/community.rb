@@ -19,8 +19,8 @@ class Community < ActiveRecord::Base
     u && !u.disabled? && u.authenticated?(password) ? u : nil
   end
 
-  def discussions_are_premium?
-    return self.discussion_accessibility > 0
+  def uses_internal_billing
+    premium_link.blank?
   end
 
   private
