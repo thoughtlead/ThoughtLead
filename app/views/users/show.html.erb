@@ -24,7 +24,7 @@
 						<li class="edit">
 							<%= link_to "Edit <span class='action_target'>Profile</span>", edit_user_url(@user), :class => 'action' %>
 						</li>
-						<% unless @user.owner? %>
+						<% unless current_user.owner? %>
 						<li class="edit">
 							<%= link_to "Upgrade <span class='action_target'>Subscription</span>", upgrade_url, :class => 'action' %>
 						</li>
