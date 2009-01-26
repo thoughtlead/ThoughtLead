@@ -1,93 +1,235 @@
 require File.dirname(__FILE__) + '/../test_helper'
 
 class DiscussionsControllerTest < ActionController::TestCase
-  fixtures :all
-  
-  def test_accessibility_rules_no_user
-    #this is different than the unit tests because authenticated_system will do the proccess of setting current_user to :false
-    unknown_user = nil
-    public = discussions :its_coming
-    premium = discussions :lost_my_monkey
+  context "DiscussionsController" do
+    setup do
+      @community = Community.make
+      @gold = AccessClass.make(:community => @community)
+      @silver = AccessClass.make(:community => @community)
 
-    new_request(public.community,unknown_user)
-    get :show, {:id=> public.id}
-    assert_response :success
-    new_request(premium.community,unknown_user)
-    get :show, {:id=> premium.id}
-    assert_response :redirect
-  end
-
-  def test_accessibility_rules_registered_user
-    registered_user = users :duff
-    public = discussions :its_coming
-    premium = discussions :lost_my_monkey
-
-    new_request(public.community,registered_user)
-    get :show, {:id=> public.id}
-    assert_response :success
-    new_request(premium.community,registered_user)
-    get :show, {:id=> premium.id}
-    assert_response :success
-  end
-
-  def test_accessibility_premium_user
-    premium_user = users :daniel
-    public = discussions :its_coming
-    premium = discussions :lost_my_monkey
-
-    new_request(public.community,premium_user)
-    get :show, {:id=> public.id}
-    assert_response :success
-    new_request(premium.community,premium_user)
-    get :show, {:id=> premium.id}
-    assert_response :success
-  end
-
-  def test_discussions_you_do_not_have_access_to_do_not_show_up_in_your_list_if_you_are_premium
-    premium_user = users :premium_audrey
-    public = discussions :c3_public_discussion
-
-    new_request(public.community,premium_user)
-    get :index
-
-    assert_equal 4, assigns(:discussions).size
-    assigns(:discussions).map(&:theme).each do |theme|
-      assert theme.is_visible_to(premium_user)
+      @registered_user = User.make(:community => @community)
+      @gold_user = User.make(:community => @community, :access_class => @gold)
+      @silver_user = User.make(:community => @community, :access_class => @silver)
     end
-  end
 
-  def test_discussions_you_do_not_have_access_to_do_not_show_up_in_your_list_if_you_are_ultrapremium
-    premium_user = users :ultrapremium_audrey
-    public = discussions :c3_public_discussion
+    context "on GET to :show" do
+      context "with a public discussion" do
+        setup do
+          @discussion = Discussion.make(:community => @community)
+        end
 
-    new_request(public.community,premium_user)
-    get :index
-    assert_equal 2, assigns(:discussions).size
-    assigns(:discussions).map(&:theme).each do |theme|
-      assert theme.is_visible_to(premium_user)
+        should "allow access to public" do
+          new_request(@community, nil)
+          get :show, { :id => @discussion.id }
+          assert_response :success
+        end
+
+        should "allow access to registered user" do
+          new_request(@community, @registered_user)
+          get :show, { :id => @discussion.id }
+          assert_response :success
+        end
+
+        should "allow access to gold user" do
+          new_request(@community, @gold_user)
+          get :show, { :id => @discussion.id }
+          assert_response :success
+        end
+
+        should "allow access to silver user" do
+          new_request(@community, @silver_user)
+          get :show, { :id => @discussion.id }
+          assert_response :success
+        end
+      end
+
+      context "with a registered discussion" do
+        setup do
+          @theme = Theme.make(:community => @community, :registered => true)
+          @discussion = Discussion.make(:community => @community, :theme => @theme)
+        end
+
+        should "not allow access to public" do
+          new_request(@community, nil)
+          get :show, { :id => @discussion.id }
+          assert_response :redirect
+        end
+
+        should "allow access to registered user" do
+          new_request(@community, @registered_user)
+          get :show, { :id => @discussion.id }
+          assert_response :success
+        end
+
+        should "allow access to gold user" do
+          new_request(@community, @gold_user)
+          get :show, { :id => @discussion.id }
+          assert_response :success
+        end
+
+        should "allow access to silver user" do
+          new_request(@community, @silver_user)
+          get :show, { :id => @discussion.id }
+          assert_response :success
+        end
+      end
+
+      context "with a gold discussion" do
+        setup do
+          @theme = Theme.make(:community => @community, :registered => true, :access_classes => [@gold])
+          @discussion = Discussion.make(:community => @community, :theme => @theme)
+        end
+
+        should "not allow access to public" do
+          new_request(@community, nil)
+          get :show, { :id => @discussion.id }
+          assert_response :redirect
+        end
+
+        should "not allow access to registered user" do
+          new_request(@community, @registered_user)
+          get :show, { :id => @discussion.id }
+          assert_response :redirect
+        end
+
+        should "allow access to gold user" do
+          new_request(@community, @gold_user)
+          get :show, { :id => @discussion.id }
+          assert_response :success
+        end
+
+        should "not access to silver user" do
+          new_request(@community, @silver_user)
+          get :show, { :id => @discussion.id }
+          assert_response :redirect
+        end
+      end
+
+      context "with a silver discussion" do
+        setup do
+          @theme = Theme.make(:community => @community, :registered => true, :access_classes => [@silver])
+          @discussion = Discussion.make(:community => @community, :theme => @theme)
+        end
+
+        should "not allow access to public" do
+          new_request(@community, nil)
+          get :show, { :id => @discussion.id }
+          assert_response :redirect
+        end
+
+        should "not allow access to registered user" do
+          new_request(@community, @registered_user)
+          get :show, { :id => @discussion.id }
+          assert_response :redirect
+        end
+
+        should "not access to gold user" do
+          new_request(@community, @gold_user)
+          get :show, { :id => @discussion.id }
+          assert_response :redirect
+        end
+
+        should "allow access to silver user" do
+          new_request(@community, @silver_user)
+          get :show, { :id => @discussion.id }
+          assert_response :success
+        end
+      end
     end
-  end
 
-  def test_discussions_you_do_not_have_access_to_do_not_show_up_in_your_list_if_you_are_registered
-    registered_user = users :audrey
-    public = discussions :c3_public_discussion
+    context "on GET to :index" do
+      setup do
+        @public_discussion = Discussion.make(:community => @community)
 
-    new_request(public.community,registered_user)
-    get :index
-    assert_equal 2, assigns(:discussions).size
-    assigns(:discussions).map(&:theme).each do |theme|
-      assert theme.is_visible_to(registered_user)
-    end
-  end
+        @registered_theme = Theme.make(:community => @community, :registered => true)
+        @registered_discussion = Discussion.make(:community => @community, :theme => @registered_theme)
 
-  def test_discussions_you_do_not_have_access_to_do_not_show_up_in_your_list_if_you_are_not_logged_in
-    public = discussions :c3_public_discussion
+        @gold_theme = Theme.make(:community => @community, :registered => true, :access_classes => [@gold])
+        @gold_discussion = Discussion.make(:community => @community, :theme => @gold_theme)
 
-    new_request(public.community)
-    get :index
-    assert_equal 1, assigns(:discussions).size
-    assigns(:discussions).map(&:theme).each do |theme|
-      assert theme.is_visible_to(nil)
+        @silver_theme = Theme.make(:community => @community, :registered => true, :access_classes => [@silver])
+        @silver_discussion = Discussion.make(:community => @community, :theme => @silver_theme)
+      end
+
+      context "when not logged in" do
+        setup do
+          new_request(@community, nil)
+          get :index
+        end
+
+        should "see public discussion" do
+          assert_equal(true, assigns(:discussions).include?(@public_discussion))
+        end
+        should "not see registered discussion" do
+          assert_equal(false, assigns(:discussions).include?(@registered_discussion))
+        end
+        should "not see gold discussion" do
+          assert_equal(false, assigns(:discussions).include?(@gold_discussion))
+        end
+        should "not see silver discussion" do
+          assert_equal(false, assigns(:discussions).include?(@silver_discussion))
+        end
+      end
+
+      context "when logged in as registered user" do
+        setup do
+          new_request(@community, @registered_user)
+          get :index
+        end
+
+        should "see public discussion" do
+          assert_equal(true, assigns(:discussions).include?(@public_discussion))
+        end
+        should "see registered discussion" do
+          assert_equal(true, assigns(:discussions).include?(@registered_discussion))
+        end
+        should "not see gold discussion" do
+          assert_equal(false, assigns(:discussions).include?(@gold_discussion))
+        end
+        should "not see silver discussion" do
+          assert_equal(false, assigns(:discussions).include?(@silver_discussion))
+        end
+      end
+
+      context "when logged in as gold user" do
+        setup do
+          new_request(@community, @gold_user)
+          get :index
+        end
+
+        should "see public discussion" do
+          assert_equal(true, assigns(:discussions).include?(@public_discussion))
+        end
+        should "see registered discussion" do
+          assert_equal(true, assigns(:discussions).include?(@registered_discussion))
+        end
+        should "see gold discussion" do
+          assert_equal(true, assigns(:discussions).include?(@gold_discussion))
+        end
+        should "not see silver discussion" do
+          assert_equal(false, assigns(:discussions).include?(@silver_discussion))
+        end
+      end
+
+      context "when logged in as silver user" do
+        setup do
+          new_request(@community, @silver_user)
+          get :index
+        end
+
+        should "see public discussion" do
+          assert_equal(true, assigns(:discussions).include?(@public_discussion))
+        end
+        should "see registered discussion" do
+          assert_equal(true, assigns(:discussions).include?(@registered_discussion))
+        end
+        should "not see gold discussion" do
+          assert_equal(false, assigns(:discussions).include?(@gold_discussion))
+        end
+        should "see silver discussion" do
+          assert_equal(true, assigns(:discussions).include?(@silver_discussion))
+        end
+      end
     end
   end
 end

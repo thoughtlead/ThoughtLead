@@ -48,9 +48,7 @@ class Test::Unit::TestCase
   end
 end
 
-
 class ActionController::IntegrationTest
-
   def new_session(host, &block)
     open_session do | session |
       session.extend(BasicsDsl)
@@ -71,9 +69,7 @@ class ActionController::IntegrationTest
   def logger
     Rails.logger
   end
-
 end
-
 
 module ActionController
   module Integration

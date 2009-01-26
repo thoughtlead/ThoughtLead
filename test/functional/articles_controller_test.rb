@@ -1,101 +1,138 @@
 require File.dirname(__FILE__) + '/../test_helper'
 
 class ArticlesControllerTest < ActionController::TestCase
-  fixtures :all
-  
-  def test_accessibility_rules_no_user
-    unknown_user = nil
+  context "ArticlesController" do
+    setup do
+      @community = Community.make
+      @gold = AccessClass.make(:community => @community)
+      @silver = AccessClass.make(:community => @community)
 
-    public = articles :about_cats
-    new_request(public.community,unknown_user)
-    get :show, {:id=> public.id}
-    assert_response :success
+      @registered_user = User.make(:community => @community)
+      @gold_user = User.make(:community => @community, :access_class => @gold)
+      @silver_user = User.make(:community => @community, :access_class => @silver)
+    end
 
-    registered = articles :about_registered
-    new_request(registered.community,unknown_user)
-    get :show, {:id=> registered.id}
-    assert_response :redirect
+    context "with a public article" do
+      setup do
+        @article = Article.make(:community => @community)
+      end
 
-    premium = articles :about_premium
-    new_request(premium.community,unknown_user)
-    get :show, {:id=> premium.id}
-    assert_response :redirect
+      should "allow access to public" do
+        new_request(@community, nil)
+        get :show, { :id=> @article.id }
+        assert_response :success
+      end
 
-    ultrapremium = articles :about_ultrapremium
-    new_request(ultrapremium.community,unknown_user)
-    get :show, {:id=> ultrapremium.id}
-    assert_response :redirect
-  end
+      should "allow access to registered user" do
+        new_request(@community, @registered_user)
+        get :show, { :id=> @article.id }
+        assert_response :success
+      end
 
-  def test_accessibility_rules_registered_user
-    registered_user = users :audrey
+      should "allow access to gold user" do
+        new_request(@community, @gold_user)
+        get :show, { :id=> @article.id }
+        assert_response :success
+      end
 
-    public = articles :about_cats
-    new_request(public.community,registered_user)
-    get :show, {:id=> public.id}
-    assert_response :success
+      should "allow access to silver user" do
+        new_request(@community, @silver_user)
+        get :show, { :id=> @article.id }
+        assert_response :success
+      end
+    end
 
-    registered = articles :about_registered
-    new_request(registered.community,registered_user)
-    get :show, {:id=> registered.id}
-    assert_response :success
+    context "with a registered lesson" do
+      setup do
+        @content = Content.make(:user => User.make(:community => @community), :registered => true)
+        @article = Article.make(:community => @community, :content => @content)
+      end
 
-    premium = articles :about_premium
-    new_request(premium.community,registered_user)
-    get :show, {:id=> premium.id}
-    assert_response :redirect
+      should "not allow access to public" do
+        new_request(@community, nil)
+        get :show, { :id=> @article.id }
+        assert_response :redirect
+      end
 
-    ultrapremium = articles :about_ultrapremium
-    new_request(ultrapremium.community,registered_user)
-    get :show, {:id=> ultrapremium.id}
-    assert_response :redirect
-  end
+      should "allow access to registered user" do
+        new_request(@community, @registered_user)
+        get :show, { :id=> @article.id }
+        assert_response :success
+      end
 
-  def test_accessibility_rules_ultrapremium_user
-    ultrapremium_user = users :ultrapremium_audrey
+      should "allow access to gold user" do
+        new_request(@community, @gold_user)
+        get :show, { :id=> @article.id }
+        assert_response :success
+      end
 
-    public = articles :about_cats
-    new_request(public.community,ultrapremium_user)
-    get :show, {:id=> public.id}
-    assert_response :success
+      should "allow access to silver user" do
+        new_request(@community, @silver_user)
+        get :show, { :id=> @article.id }
+        assert_response :success
+      end
+    end
 
-    registered = articles :about_registered
-    new_request(registered.community,ultrapremium_user)
-    get :show, {:id=> registered.id}
-    assert_response :success
+    context "with a gold lesson" do
+      setup do
+        @content = Content.make(:user => User.make(:community => @community), :registered => true, :access_classes => [@gold])
+        @article = Article.make(:community => @community, :content => @content)
+      end
 
-    premium = articles :about_premium
-    new_request(premium.community,ultrapremium_user)
-    get :show, {:id=> premium.id}
-    assert_response :redirect
+      should "not allow access to public" do
+        new_request(@community, nil)
+        get :show, { :id=> @article.id }
+        assert_response :redirect
+      end
 
-    ultrapremium = articles :about_ultrapremium
-    new_request(ultrapremium.community,ultrapremium_user)
-    get :show, {:id=> ultrapremium.id}
-    assert_response :success
-  end
+      should "not allow access to registered user" do
+        new_request(@community, @registered_user)
+        get :show, { :id=> @article.id }
+        assert_response :redirect
+      end
 
-  def test_accessibility_premium_user
-    premium_user = users :premium_audrey
+      should "allow access to gold user" do
+        new_request(@community, @gold_user)
+        get :show, { :id=> @article.id }
+        assert_response :success
+      end
 
-    public = articles :about_cats
-    new_request(public.community,premium_user)
-    get :show, {:id=> public.id}
-    assert_response :success
+      should "not access to silver user" do
+        new_request(@community, @silver_user)
+        get :show, { :id=> @article.id }
+        assert_response :redirect
+      end
+    end
 
-    registered = articles :about_registered
-    new_request(registered.community,premium_user)
-    get :show, {:id=> registered.id}
-    assert_response :success
+    context "with a silver lesson" do
+      setup do
+        @content = Content.make(:user => User.make(:community => @community), :registered => true, :access_classes => [@silver])
+        @article = Article.make(:community => @community, :content => @content)
+      end
 
-    premium = articles :about_premium
-    new_request(premium.community,premium_user)
-    get :show, {:id=> premium.id}
-    assert_response :success
+      should "not allow access to public" do
+        new_request(@community, nil)
+        get :show, { :id=> @article.id }
+        assert_response :redirect
+      end
 
-    ultrapremium = articles :about_ultrapremium
-    new_request(ultrapremium.community,premium_user)
-    get :show, {:id=> ultrapremium.id}
-    assert_response :redirect
+      should "not allow access to registered user" do
+        new_request(@community, @registered_user)
+        get :show, { :id=> @article.id }
+        assert_response :redirect
+      end
+
+      should "not access to gold user" do
+        new_request(@community, @gold_user)
+        get :show, { :id=> @article.id }
+        assert_response :redirect
+      end
+
+      should "allow access to silver user" do
+        new_request(@community, @silver_user)
+        get :show, { :id=> @article.id }
+        assert_response :success
+      end
+    end
   end
 end

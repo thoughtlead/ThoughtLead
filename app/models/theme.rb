@@ -10,14 +10,16 @@ class Theme < ActiveRecord::Base
 
   def is_visible_to(user)
     return true if user == community.owner
-    unless access_classes.blank?
-      return user.has_access_to(self) unless user.nil?
-    end
-    if registered
+
+    if access_classes.blank?
+      if registered
         return !user.nil?
-    else #content is publicly viewable
+      else
         return true
+      end
+    else
+      return false if user.nil?
+      return user.has_access_to(self)
     end
-    false
   end
 end
