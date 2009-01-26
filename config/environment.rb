@@ -94,7 +94,6 @@ end
 
 require RAILS_ROOT + '/lib/attachment_fu_windows_bug_fixes'
 require RAILS_ROOT + '/lib/strip_whitespace'
-require RAILS_ROOT + '/lib/community_specific'
 
 Ultrasphinx::Search.excerpting_options = HashWithIndifferentAccess.new({
   :before_match => '<strong class="match">',
