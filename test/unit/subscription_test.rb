@@ -54,7 +54,7 @@ class SubscriptionTest < ActiveSupport::TestCase
     end
   end
 
-  context "" do
+  context "When renewing subscriptions" do
     setup do
       ActionMailer::Base.deliveries = []
     end
@@ -105,11 +105,11 @@ class SubscriptionTest < ActiveSupport::TestCase
         setup do
           gw = ActiveMerchant::Billing::AuthorizeNetCimGateway.any_instance
           gw.expects(:purchase).with((@subscription.amount * 100).to_i, @subscription.billing_id).returns(stub(:success? => true, :authorization => 'foo'))
-          Subscription.charge_due_subscriptions
+          Subscription.renew_active_subscriptions
+          @subscription.reload
         end
 
         should "update the next renewal date" do
-          @subscription.reload
           assert_equal 1.month.from_now.to_date, @subscription.next_renewal_at
         end
 
@@ -124,11 +124,11 @@ class SubscriptionTest < ActiveSupport::TestCase
         setup do
           gw = ActiveMerchant::Billing::AuthorizeNetCimGateway.any_instance
           gw.expects(:purchase).with((@subscription.amount * 100).to_i, @subscription.billing_id).returns(stub(:success? => false, :message => "Insufficient cheese."))
-          Subscription.charge_due_subscriptions
+          Subscription.renew_active_subscriptions
+          @subscription.reload
         end
 
         should "set the user state to pending" do
-          @subscription.reload
           assert_equal "pending", @subscription.state
         end
 
@@ -147,52 +147,143 @@ class SubscriptionTest < ActiveSupport::TestCase
     context "with a subscription not due today" do
       setup do
         @subscription = Subscription.make(:state => "active", :next_renewal_at => Date.tomorrow)
-        ActiveMerchant::Billing::AuthorizeNetCimGateway.any_instance.expects(:purchase).never
       end
 
       should "not list it as active and due" do
         assert Subscription.active_due.empty?
       end
 
-      should "not charge the subscription" do
-        Subscription.charge_due_subscriptions
-      end
+      context "when renewing active subscriptions" do
+        setup do
+          ActiveMerchant::Billing::AuthorizeNetCimGateway.any_instance.expects(:purchase).never
+          Subscription.renew_active_subscriptions
+          @subscription.reload
+        end
 
-      should "not update the next renewal date" do
-        Subscription.charge_due_subscriptions
-        @subscription.reload
-        assert_equal Date.tomorrow, @subscription.next_renewal_at
-      end
+        should "not charge the subscription" do
+          # expectation of the gateway mock should be met
+        end
 
-      should "not send email with receipt" do
-        Subscription.charge_due_subscriptions
-        assert_did_not_send_email
+        should "not update the next renewal date" do
+          assert_equal Date.tomorrow, @subscription.next_renewal_at
+        end
+
+        should "not send email with receipt" do
+          assert_did_not_send_email
+        end
       end
     end
 
     context "with a pending subscription due today" do
       setup do
         @subscription = Subscription.make(:state => "pending", :next_renewal_at => Date.today)
-        ActiveMerchant::Billing::AuthorizeNetCimGateway.any_instance.expects(:purchase).never
       end
 
       should "not list it as active and due" do
         assert Subscription.active_due.empty?
       end
 
-      should "not charge the subscription" do
-        Subscription.charge_due_subscriptions
+      context "when renewing active subscriptions" do
+        setup do
+          ActiveMerchant::Billing::AuthorizeNetCimGateway.any_instance.expects(:purchase).never
+          Subscription.renew_active_subscriptions
+          @subscription.reload
+        end
+
+        should "not charge the subscription" do
+          # expectation of the gateway mock should be met
+        end
+
+        should "not update the next renewal date" do
+          assert_equal Date.today, @subscription.next_renewal_at
+        end
+
+        should "not send email with receipt" do
+          assert_did_not_send_email
+        end
+      end
+    end
+
+    context "with a trial subscription expiring today" do
+      setup do
+        @subscription = Subscription.make(:state => "trial", :next_renewal_at => Date.today, :billing_id => nil, :renewal_period => 1, :renewal_units => "months")
       end
 
-      should "not update the next renewal date" do
-        Subscription.charge_due_subscriptions
-        @subscription.reload
-        assert_equal Date.today, @subscription.next_renewal_at
+      should "list it as trial and due" do
+        assert Subscription.trials_due.include?(@subscription)
       end
 
-      should "not send email with receipt" do
-        Subscription.charge_due_subscriptions
-        assert_did_not_send_email
+      context "without payment information" do
+        setup do
+          ActiveMerchant::Billing::AuthorizeNetCimGateway.any_instance.expects(:purchase).never
+          Subscription.process_expired_trials
+          @subscription.reload
+        end
+
+        should "set the user state to pending" do
+          assert_equal "pending", @subscription.state
+        end
+
+        should "set the user's access class back to Registered" do
+          assert_nil @subscription.user.access_class
+        end
+
+        should "not update the next renewal date" do
+          assert_equal Date.today, @subscription.next_renewal_at
+        end
+
+        should "not send email with receipt" do
+          assert_did_not_send_email
+        end
+      end
+
+      context "with payment information" do
+        setup do
+          @subscription.billing_id = "12345"
+          @subscription.save!
+        end
+
+        context "after successfully charging the subscription" do
+          setup do
+            gw = ActiveMerchant::Billing::AuthorizeNetCimGateway.any_instance
+            gw.expects(:purchase).with((@subscription.amount * 100).to_i, @subscription.billing_id).returns(stub(:success? => true, :authorization => 'foo'))
+            Subscription.process_expired_trials
+            @subscription.reload
+          end
+
+          should "update the next renewal date" do
+            assert_equal 1.month.from_now.to_date, @subscription.next_renewal_at
+          end
+
+          should "send email with receipt" do
+            assert_sent_email do |email|
+              email.subject =~ /Your #{@subscription.user.community.name} invoice/ && email.to.include?(@subscription.user.email)
+            end
+          end
+        end
+
+        context "after charging the subscription fails" do
+          setup do
+            gw = ActiveMerchant::Billing::AuthorizeNetCimGateway.any_instance
+            gw.expects(:purchase).with((@subscription.amount * 100).to_i, @subscription.billing_id).returns(stub(:success? => false, :message => "Insufficient cheese."))
+            Subscription.process_expired_trials
+            @subscription.reload
+          end
+
+          should "set the user state to pending" do
+            assert_equal "pending", @subscription.state
+          end
+
+          should "set the user's access class back to Registered" do
+            assert_nil @subscription.user.access_class
+          end
+
+          should "send email with charge failure" do
+            assert_sent_email do |email|
+              email.subject =~ /Your #{@subscription.user.community.name} renewal failed/ && email.to.include?(@subscription.user.email)
+            end
+          end
+        end
       end
     end
   end

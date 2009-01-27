@@ -7,15 +7,6 @@ Lockfile('lock', :retries => 0) do
   require File.dirname(__FILE__) + '/../config/environment'
 
   Subscription.notify_expiring_trials
-
-  # # Trial subscriptions for which we have payment info.
-  # # This will always turn up empty unless we are collecting
-  # # payment info when creating an account.
-  # Subscription.find_due_trials.each do |sub|
-  #   if !sub.charge
-  #     SubscriptionNotifier.deliver_charge_failure(sub)
-  #   end
-  # end
-
-  Subscription.charge_due_subscriptions
+  Subscription.renew_active_subscriptions
+  Subscription.process_expired_trials
 end
