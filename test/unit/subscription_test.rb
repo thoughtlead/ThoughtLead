@@ -54,20 +54,41 @@ class SubscriptionTest < ActiveSupport::TestCase
     end
   end
 
-  context "with a trial subscription expiring soon" do
+  context "" do
     setup do
-      @subscription = Subscription.make(:state => "trial", :next_renewal_at => 7.days.from_now)
+      ActionMailer::Base.deliveries = []
     end
 
-    should "be listed in named scope" do
-      assert Subscription.trials_expiring_soon.include?(@subscription)
+    context "with a trial subscription expiring soon" do
+      setup do
+        @subscription = Subscription.make(:state => "trial", :next_renewal_at => 7.days.from_now)
+      end
+
+      should "list it as a trial expiring soon" do
+        assert Subscription.trials_expiring_soon.include?(@subscription)
+      end
+
+      should "send email when notifying expiring trials" do
+        Subscription.notify_expiring_trials
+
+        assert_sent_email do |email|
+          email.subject =~ /Trial period expiring/ && email.to.include?(@subscription.user.email)
+        end
+      end
     end
 
-    should "send email when notifying expiring trials" do
-      Subscription.notify_expiring_trials
+    context "with a trial subscription not expiring soon" do
+      setup do
+        @subscription = Subscription.make(:state => "trial", :next_renewal_at => 12.days.from_now)
+      end
 
-      assert_sent_email do |email|
-        email.subject =~ /Trial period expiring/ && email.to.include?(@subscription.user.email)
+      should "not have any trials expiring soon" do
+        assert Subscription.trials_expiring_soon.empty?
+      end
+
+      should "send not email when notifying expiring trials" do
+        Subscription.notify_expiring_trials
+        assert_did_not_send_email
       end
     end
   end
