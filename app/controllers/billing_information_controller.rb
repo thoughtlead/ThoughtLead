@@ -12,7 +12,8 @@ class BillingInformationController < ApplicationController
     @address.last_name = @card.last_name
     if @card.valid? && @address.valid?
       if @subscription.store_card(@card, :billing_address => @address.to_activemerchant, :ip => request.remote_ip)
-        flash[:notice] = "Your billing information has been updated."
+        message = "Congratulations on becoming a #{@subscription.access_class.name} member! You now have access to members-only content and discussions on the site."
+        flash[:notice] = message
         redirect_to user_url(current_user) and return
       end
     end

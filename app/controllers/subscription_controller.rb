@@ -24,7 +24,7 @@ class SubscriptionController < ApplicationController
       redirect_to edit_billing_information_url
     else
       if @subscription.ensure_activation
-        flash[:notice] = "Successfully changed subscription."
+        flash[:notice] = "Congratulations on becoming a #{@subscription.access_class.name} member! You now have access to members-only content and discussions on the site."
       else
         flash[:notice] = "Subscription could not be activated, check your payment method. #{@subscription.errors.full_messages.join(", ")}"
       end
