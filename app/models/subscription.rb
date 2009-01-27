@@ -10,8 +10,9 @@ class Subscription < ActiveRecord::Base
   validates_inclusion_of :renewal_units, :in => units
   validates_inclusion_of :state, :in => ["pending", "active", "trial"]
 
-  named_scope :trials_expiring_soon, lambda { |*args| { :conditions => { :state => 'trial', :next_renewal_at => (args.first || 7.days.from_now.to_date) } } }
-  named_scope :active_due, lambda { |*args| { :conditions => { :state => 'active', :next_renewal_at => (args.first || Date.today) } } }
+  named_scope :trials_expiring_soon, lambda { { :conditions => { :state => 'trial', :next_renewal_at => 7.days.from_now.to_date } } }
+  named_scope :active_due, lambda { { :conditions => { :state => 'active', :next_renewal_at => Date.today } } }
+  named_scope :trials_due, lambda { { :conditions => { :state => 'trial', :next_renewal_at => Date.today } } }
 
   before_destroy :destroy_gateway_record, :reset_access_class
 
@@ -21,11 +22,6 @@ class Subscription < ActiveRecord::Base
 
   def needs_billing_information?
     billing_id.blank?
-  end
-
-  def trial_days_left
-    next_renewal_at - Date.today if trial?
-    0
   end
 
   def pending?
@@ -133,12 +129,21 @@ class Subscription < ActiveRecord::Base
     end
   end
 
-  def needs_payment_info?
-    self.card_number.blank? && self.subscription_plan.amount > 0
-  end
-
   def paypal?
     card_number == 'PayPal'
+  end
+
+  def renew
+    if !charge
+      deactivate
+      SubscriptionNotifier.deliver_charge_failure(self)
+    end
+  end
+
+  def deactivate
+    self.state = "pending"
+    self.user.access_class = nil
+    save && user.save
   end
 
   def self.notify_expiring_trials
@@ -147,14 +152,18 @@ class Subscription < ActiveRecord::Base
     end
   end
 
-  def self.charge_due_subscriptions
+  def self.renew_active_subscriptions
     active_due.each do |sub|
-      if !sub.charge
-        sub.state = "pending"
-        sub.user.access_class = nil
-        sub.save && sub.user.save
+      sub.renew
+    end
+  end
 
-        SubscriptionNotifier.deliver_charge_failure(sub)
+  def self.process_expired_trials
+    trials_due.each do |sub|
+      if sub.needs_billing_information?
+        sub.deactivate
+      else
+        sub.renew
       end
     end
   end

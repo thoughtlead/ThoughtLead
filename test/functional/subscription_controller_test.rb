@@ -45,7 +45,7 @@ class SubscriptionControllerTest < ActionController::TestCase
             ActiveMerchant::Billing::AuthorizeNetCimGateway.any_instance.expects(:purchase).never
             @user = User.make(:trial_available => true)
             @user.subscription = Subscription.make
-            assert !@user.subscription.needs_payment_info?
+            assert @user.subscription.has_billing_information?
             @access_class = AccessClass.make(:community => @user.community)
             @plan = SubscriptionPlan.make(:access_class => @access_class, :trial_units => "weeks", :trial_period => 2)
             new_request(@user.community, @user)
@@ -73,7 +73,7 @@ class SubscriptionControllerTest < ActionController::TestCase
             ActiveMerchant::Billing::AuthorizeNetCimGateway.any_instance.expects(:purchase).returns(stub(:success? => true, :authorization => 'foo'))
             @user = User.make(:trial_available => false)
             @user.subscription = Subscription.make
-            assert !@user.subscription.needs_payment_info?
+            assert @user.subscription.has_billing_information?
             @access_class = AccessClass.make(:community => @user.community)
             @plan = SubscriptionPlan.make(:access_class => @access_class, :trial_units => "weeks", :trial_period => 2)
             new_request(@user.community, @user)
