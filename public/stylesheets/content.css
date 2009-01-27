@@ -412,12 +412,13 @@ h1, h2, h3, h4, h5, h6 {margin: 0.5em 0;}
 							background-position: 3px 2px;
 							background-repeat: no-repeat;
 						}
+
 							#main_content .meta_info .meta_tags li span.icon {
 								display: block;
 								float: left;
 							}
 								#main_content .meta_info .meta_tags li.premium span.icon {padding-left: 6px;}
-								#main_content .meta_info .meta_tags li.registered span.icon {width: 5px;}
+								#main_content .meta_info .meta_tags li.registered span.icon {width: 5px;overflow: hidden;}
 
 								#main_content .meta_info .meta_tags li span.content {padding-left: 5px;}
 
