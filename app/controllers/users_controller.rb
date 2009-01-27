@@ -42,7 +42,7 @@ class UsersController < ApplicationController
     @title = @viewing_self ? "Your Profile" : @user.to_s
     @show_edit = @viewing_self || logged_in_as_owner?
     @show_disable = logged_in_as_owner? && !@user.owner?
-    @show_change_billing = !@user.subscription.blank? && !@user.owner? && current_community.uses_internal_billing
+    @show_change_billing = @viewing_self && !@user.subscription.blank? && !@user.owner? && current_community.uses_internal_billing
   end
 
   def edit
@@ -170,7 +170,17 @@ class UsersController < ApplicationController
   end
 
   def get_access_controlled_object
-    User.find(params[:id]) if params[:id]
+    return nil if params[:user_id].blank?
+
+    return Class.new do
+      def is_registered?
+        true
+      end
+
+      def access_classes
+        nil
+      end
+    end.new
   end
 
   def check_disabled

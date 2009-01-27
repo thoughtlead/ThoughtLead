@@ -69,7 +69,7 @@ class User < ActiveRecord::Base
   alias :real_access_class :access_class
   def access_class
     # if the user is the community owner then they have access to everything
-    owner? ? Class.new { def has_access_to(*args) true end } : real_access_class
+    owner? ? Class.new { def has_access_to(*args) true end }.new : real_access_class
   end
 
   def access_classes
