@@ -587,7 +587,7 @@ h1, h2, h3, h4, h5, h6 {margin: 0.5em 0;}
 					#main_content ul.categories_add select {width: 160px;}
 					#main_content ul.categories_add .inp_text {width: 146px;}
 					#main_content ul.categories_add button {margin-top: 4px;}
-				
+
 
 			#main_content .edit .submit_opts {}
 				#main_content .edit .submit_opts .button {float: left;}
@@ -1355,7 +1355,7 @@ h1, h2, h3, h4, h5, h6 {margin: 0.5em 0;}
 	.stroke .top {top: -1px;}
 	.stroke .right {right: -1px;}
 	.stroke .bottom {bottom: -1px;}
-	.stroke .left {left: -1px;}	
+	.stroke .left {left: -1px;}
 
 	.top_left {background-image: url(../images/template/corners/content_r5/top_left.png);}
 	.top_right {background-image: url(../images/template/corners/content_r5/top_right.png);}
@@ -1483,7 +1483,7 @@ form {
 		}
 			#main_content form .group.checkbox li {padding: 0 0 3px 0;}
 			#main_content form .group.checkbox input {
-				margin: 0 5px 0 0; 
+				margin: 0 5px 0 0;
 				float: left;
 			}
 
@@ -1544,3 +1544,8 @@ form {
 		position: absolute;
 		top: 5px; right: 5px;
 	}
+
+table.payment_history td, table.payment_history th {
+  vertical-align: top;
+  padding: 0px 4px 3px 4px;
+}

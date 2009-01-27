@@ -24,6 +24,8 @@ ActionController::Routing::Routes.draw do |map|
 
   map.resources :themes, :conditions => { :is_client_domain => true }
 
+  map.resources :subscription_payments, :conditions => { :is_client_domain => true }
+
   map.resources :users, :as => 'members', :member => { :email => :any, :edit_password => :any, :disable => :any, :reactivate => :any }, :conditions => { :is_client_domain => true } do |users|
     users.resources :subscription_payments, :conditions => { :is_client_domain => true }
   end
