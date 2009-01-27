@@ -6,7 +6,8 @@
 			<p>Jump to:</p>
 			<ul>
 				<li class="first"><%= link_to "People", users_path %></li>
-				<li><%= @title %></li>
+				<li><%= link_to @user.display_name, @user %></li>
+				<li>Payment History</li>
 			</ul>
 		</div>
 	</div>
@@ -116,8 +117,8 @@
         <% @subscription_payments.each do |payment| %>
         <tr>
           <td><%= payment.description %></td>
-          <td><%= payment.amount %></td>
-          <td><%= payment.created_at %></td>
+          <td><%= number_to_currency payment.amount %></td>
+          <td><%= payment.created_at.to_s(:date_time) %></td>
           <td><%= payment.transaction_id %></td>
         </tr>
         <% end %>
