@@ -54,20 +54,117 @@ class SubscriptionTest < ActiveSupport::TestCase
     end
   end
 
-  context "with a trial subscription expiring soon" do
+  context "" do
     setup do
-      @subscription = Subscription.make(:state => "trial", :next_renewal_at => 7.days.from_now)
+      ActionMailer::Base.deliveries = []
     end
 
-    should "be listed in named scope" do
-      assert Subscription.trials_expiring_soon.include?(@subscription)
+    context "with a trial subscription expiring soon" do
+      setup do
+        @subscription = Subscription.make(:state => "trial", :next_renewal_at => 7.days.from_now)
+      end
+
+      should "list it as a trial expiring soon" do
+        assert Subscription.trials_expiring_soon.include?(@subscription)
+      end
+
+      should "send email when notifying expiring trials" do
+        Subscription.notify_expiring_trials
+
+        assert_sent_email do |email|
+          email.subject =~ /Trial period expiring/ && email.to.include?(@subscription.user.email)
+        end
+      end
     end
 
-    should "send email when notifying expiring trials" do
-      Subscription.notify_expiring_trials
+    context "with a trial subscription not expiring soon" do
+      setup do
+        @subscription = Subscription.make(:state => "trial", :next_renewal_at => 12.days.from_now)
+      end
 
-      assert_sent_email do |email|
-        email.subject =~ /Trial period expiring/ && email.to.include?(@subscription.user.email)
+      should "not have any trials expiring soon" do
+        assert Subscription.trials_expiring_soon.empty?
+      end
+
+      should "send not email when notifying expiring trials" do
+        Subscription.notify_expiring_trials
+        assert_did_not_send_email
+      end
+    end
+
+    context "with a subscription due today" do
+      setup do
+        @subscription = Subscription.make(:state => "active", :next_renewal_at => Date.today, :renewal_period => 1, :renewal_units => "months")
+      end
+
+      should "list it as active and due" do
+        assert Subscription.active_due.include?(@subscription)
+      end
+
+      context "after successfully charging the subscription" do
+        setup do
+          ActiveMerchant::Billing::AuthorizeNetCimGateway.any_instance.expects(:purchase).returns(stub(:success? => true, :authorization => 'foo'))
+          Subscription.charge_due_subscriptions
+        end
+
+        should "update the next renewal date" do
+          @subscription.reload
+          assert_equal 1.month.from_now.to_date, @subscription.next_renewal_at
+        end
+
+        should "send email with receipt" do
+          assert_sent_email do |email|
+            email.subject =~ /Your #{@subscription.user.community.name} invoice/ && email.to.include?(@subscription.user.email)
+          end
+        end
+      end
+
+      context "after charging the subscription fails" do
+        setup do
+          ActiveMerchant::Billing::AuthorizeNetCimGateway.any_instance.expects(:purchase).returns(stub(:success? => false, :message => "Insufficient cheese."))
+          Subscription.charge_due_subscriptions
+        end
+
+        should "set the user state to pending" do
+          @subscription.reload
+          assert_equal "pending", @subscription.state
+        end
+
+        should "set the user's access class back to Registered" do
+          assert_nil @subscription.user.access_class
+        end
+
+        should "send email with charge failure" do
+          assert_sent_email do |email|
+            email.subject =~ /Your #{@subscription.user.community.name} renewal failed/ && email.to.include?(@subscription.user.email)
+          end
+        end
+      end
+    end
+
+    context "with a subscription not due today" do
+      setup do
+        @subscription = Subscription.make(:state => "active", :next_renewal_at => Date.tomorrow, :renewal_period => 1, :renewal_units => "months")
+        ActiveMerchant::Billing::AuthorizeNetCimGateway.any_instance.expects(:purchase).never
+      end
+
+      should "not list it as active and due" do
+        assert Subscription.active_due.empty?
+      end
+
+      should "not charge the subscription" do
+        Subscription.charge_due_subscriptions
+      end
+
+      should "not update the next renewal date" do
+        Subscription.charge_due_subscriptions
+        @subscription.reload
+        assert_equal Date.tomorrow, @subscription.next_renewal_at
+      end
+
+      should "not send email with receipt" do
+        Subscription.charge_due_subscriptions
+        assert_did_not_send_email
       end
     end
   end
