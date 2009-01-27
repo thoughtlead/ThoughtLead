@@ -137,6 +137,7 @@ class Subscription < ActiveRecord::Base
     if !charge
       deactivate
       SubscriptionNotifier.deliver_charge_failure(self)
+      SubscriptionNotifier.deliver_charge_failure_to_owner(self)
     end
   end
 
@@ -149,6 +150,7 @@ class Subscription < ActiveRecord::Base
   def self.notify_expiring_trials
     trials_expiring_soon.each do |sub|
       SubscriptionNotifier.deliver_trial_expiring(sub)
+      SubscriptionNotifier.deliver_trial_expiring_to_owner(sub)
     end
   end
 

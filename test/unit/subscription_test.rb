@@ -74,6 +74,10 @@ class SubscriptionTest < ActiveSupport::TestCase
         assert_sent_email do |email|
           email.subject =~ /Trial period expiring/ && email.to.include?(@subscription.user.email)
         end
+
+        assert_sent_email do |email|
+              email.subject =~ /Trial period expiring for #{@subscription.user.display_name} on #{@subscription.user.community.name}/ && email.to.include?(@subscription.user.community.owner.email)
+        end
       end
     end
 
@@ -118,6 +122,12 @@ class SubscriptionTest < ActiveSupport::TestCase
             email.subject =~ /Your #{@subscription.user.community.name} invoice/ && email.to.include?(@subscription.user.email)
           end
         end
+
+        should "send copy of email to owner" do
+          assert_sent_email do |email|
+              email.subject =~ /Invoice sent to #{@subscription.user.display_name}/ && email.to.include?(@subscription.user.community.owner.email)
+          end
+        end
       end
 
       context "after charging the subscription fails" do
@@ -140,6 +150,12 @@ class SubscriptionTest < ActiveSupport::TestCase
           assert_sent_email do |email|
             email.subject =~ /Your #{@subscription.user.community.name} renewal failed/ && email.to.include?(@subscription.user.email)
           end
+        end
+
+        should "send copy of email to owner" do
+          assert_sent_email do |email|
+              email.subject =~ /Charge failed/ && email.to.include?(@subscription.user.community.owner.email)
+            end
         end
       end
     end
@@ -260,6 +276,12 @@ class SubscriptionTest < ActiveSupport::TestCase
               email.subject =~ /Your #{@subscription.user.community.name} invoice/ && email.to.include?(@subscription.user.email)
             end
           end
+
+          should "send copy of email to owner" do
+            assert_sent_email do |email|
+              email.subject =~ /Invoice sent to/ && email.to.include?(@subscription.user.community.owner.email)
+            end
+          end
         end
 
         context "after charging the subscription fails" do
@@ -281,6 +303,12 @@ class SubscriptionTest < ActiveSupport::TestCase
           should "send email with charge failure" do
             assert_sent_email do |email|
               email.subject =~ /Your #{@subscription.user.community.name} renewal failed/ && email.to.include?(@subscription.user.email)
+            end
+          end
+
+          should "send copy of email to owner" do
+            assert_sent_email do |email|
+              email.subject =~ /Charge failed/ && email.to.include?(@subscription.user.community.owner.email)
             end
           end
         end
