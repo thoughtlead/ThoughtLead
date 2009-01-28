@@ -36,4 +36,59 @@ class UsersControllerTest < ActionController::TestCase
     should_render_template :show
     should_not_set_the_flash
   end
+
+  context "on get SHOW your own profile when the community does not have a premium link or payment gateway information" do
+    setup do
+      @community = Community.make(:premium_link => "", :gateway_login => "", :gateway_password => "")
+      @user = User.make(:community => @community)
+      @subscription = Subscription.make(:user => @user)
+      new_request(@user.community, @user)
+      get :show, :id => @user.id
+    end
+
+    should_respond_with :success
+    should_render_template :show
+
+    should "not have a link to update payment informaiton" do
+      assert_select "a" do
+        assert_select "span", {:count => 0, :text => /Payment/ }, "there should not be a link to change payment information"
+      end
+    end
+  end
+
+  context "on get SHOW your own profile when the community does have a premium link but not a payment gateway information" do
+    setup do
+      @community = Community.make(:premium_link => "http://www.google.com", :gateway_login => "", :gateway_password => "")
+      @user = User.make(:community => @community)
+      @subscription = Subscription.make(:user => @user)
+      new_request(@user.community, @user)
+      get :show, :id => @user.id
+    end
+
+    should_respond_with :success
+    should_render_template :show
+
+    should "not have a link to update payment informaiton" do
+      assert_select "a" do
+        assert_select "span", {:count => 0, :text => /Payment/ }, "there should not be a link to change payment information"
+      end
+    end
+  end
+
+    context "on get SHOW your own profile when the community does not have a premium link but does have a payment gateway information" do
+    setup do
+      @community = Community.make(:premium_link => "", :gateway_login => "qwqewq", :gateway_password => "qwesdvs")
+      @user = User.make(:community => @community)
+      @subscription = Subscription.make(:user => @user)
+      new_request(@user.community, @user)
+      get :show, :id => @user.id
+    end
+
+    should_respond_with :success
+    should_render_template :show
+
+    should "have a link to update payment informaiton" do
+      assert_select "span", {:count => 1, :text => /Payment/ }, "there should be a link to change payment information"
+    end
+  end
 end

@@ -8,6 +8,26 @@ class SubscriptionControllerTest < ActionController::TestCase
       ActiveMerchant::Billing::AuthorizeNetCimGateway.any_instance.stubs(:update).returns(stub(:success? => true, :token => 'foo'))
     end
 
+    context "on get UPGRADE when the community has no premium link and no payment gateway info" do
+      setup do
+        @community = Community.make(:premium_link => "", :gateway_login => "", :gateway_password => "")
+        @user = User.make(:community => @community)
+        @access_class = AccessClass.make(:community => @community)
+        @subscription = Subscription.make(:user => @user)
+        new_request(@user.community, @user)
+        get :edit, :id => @subscription.id
+      end
+
+      should_respond_with :success
+      should_render_template :edit
+
+      should "not show any forms besides the search form" do
+        assert_select "form", {:count => 1} do
+          assert_select "[action=\"/search\"]"
+        end
+      end
+    end
+
     context "on UPDATE subscription to a paid subscription" do
       context "when there is no free trial for the subscription plan" do
         setup do
