@@ -29,3 +29,5 @@ ActionMailer::Base.smtp_settings = {
 config.after_initialize do
   ActiveMerchant::Billing::Base.gateway_mode = :test
 end
+
+SslRequirement.disable_ssl_check = true

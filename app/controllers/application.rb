@@ -1,4 +1,5 @@
 class ApplicationController < ActionController::Base
+  include SslRequirement
   include AuthenticatedSystem
   include ExceptionNotifiable
   include CommunityLocation

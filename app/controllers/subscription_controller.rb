@@ -21,7 +21,7 @@ class SubscriptionController < ApplicationController
     @subscription.save!
 
     if @subscription.needs_billing_information? && !current_user.owner?
-      redirect_to edit_billing_information_url
+      redirect_to edit_billing_information_url(:secure => true)
     else
       if @subscription.ensure_activation
         flash[:notice] = "Congratulations on becoming a #{@subscription.access_class.name} member! You now have access to members-only content and discussions on the site."
