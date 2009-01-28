@@ -20,7 +20,7 @@ class Community < ActiveRecord::Base
   end
 
   def uses_internal_billing
-    premium_link.blank?
+    premium_link.blank? && !gateway_login.blank? && !gateway_password.blank?
   end
 
   private

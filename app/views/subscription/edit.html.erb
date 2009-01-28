@@ -14,7 +14,7 @@
 
 		<%= link_to current_community.premium_text, current_community.premium_link %>
 
-	<% elsif !@access_classes.blank? %>
+	<% elsif !@access_classes.blank? && current_community.uses_internal_billing %>
 
     <% form_for :subscription, :url => subscription_url, :html => { :method => :put } do |f| %>
   	  <%= f.error_messages %>
@@ -57,6 +57,6 @@
 	  <% end %>
 
 	<% else %>
-		We're sorry! The community owner has not yet configured a way for members to upgrade to premium access.
+	<h3>We're sorry! The community owner has not yet configured a way for members to upgrade to premium access.</h3>
 	<% end %>
 </div>
