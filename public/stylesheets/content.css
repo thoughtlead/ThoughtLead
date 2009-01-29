@@ -1522,6 +1522,24 @@ form {
 		#main_content .add_sep_item form.edit fieldset.submit {margin: 0;}
 		#main_content .add_sep_item form.edit input.inp_text {width: 200px;}
 
+  /* creditcard form */
+
+  #main_content .creditcard label {margin: 8px 0px 0px 0px;font-weight:bold;}
+  #main_content .creditcard .left {float: left}
+  #main_content .creditcard .right {float:none;}
+  #main_content .creditcard .right label {text-indent:5px}
+  #main_content .creditcard .right input, #main_content .creditcard .right select {margin-left:5px}
+  #main_content .creditcard .longfield {clear: both;}
+
+
+
+
+
+
+
+
+
+
 
 /* Miscellaneous
 ----------------------------------------------- */
