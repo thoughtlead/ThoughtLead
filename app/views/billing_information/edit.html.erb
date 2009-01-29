@@ -98,7 +98,7 @@
   <h2>Review your subscription information</h2>
   <p>Subscription to <%= @subscription.access_class.name %> content <%= get_access_description(@subscription.access_class) %></p>
 	<p>Price: <%= h @subscription.summary %></p>
-	<% if @user.subscription.pending? %>
+	<% if @subscription.pending? %>
 	  <p>Pending Payment: Your card will be charged when you click submit.</p>
 	<% elsif @subscription.trial? %>
 		<p>Trial expires: <%= @subscription.next_renewal_at %></p>
