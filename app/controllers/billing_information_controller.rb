@@ -1,4 +1,5 @@
 class BillingInformationController < ApplicationController
+  helper SubscriptionHelper
   before_filter :login_required, :subscription_required, :load_subscription
   ssl_required :edit, :update
 

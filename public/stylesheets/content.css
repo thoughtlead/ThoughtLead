@@ -1529,7 +1529,7 @@ form {
   #main_content .creditcard .right {float:none;}
   #main_content .creditcard .right label {text-indent:5px}
   #main_content .creditcard .right input, #main_content .creditcard .right select {margin-left:5px}
-  #main_content .creditcard .longfield {clear: both;}
+  #main_content .creditcard .clear {clear: both;}
 
 
 
