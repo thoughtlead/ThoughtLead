@@ -31,3 +31,4 @@ ActionMailer::Base.smtp_settings = {
 
 $app_host = 'localhost.com'
 
+SslRequirement.disable_ssl_check = true

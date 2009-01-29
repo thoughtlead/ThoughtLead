@@ -16,7 +16,6 @@ class SubscriptionPayment < ActiveRecord::Base
   def send_receipt
     return unless amount > 0
     SubscriptionNotifier.deliver_charge_receipt(self)
-    SubscriptionNotifier.deliver_charge_receipt_to_owner(self)
     true
   end
 end

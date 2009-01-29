@@ -6,6 +6,6 @@ Your account has been temporarily reduced to non-premium access until you update
 
 Please visit your account page at the following URL to update your payment information as soon as possible:
 
-<%= edit_billing_information_url(:host => @subscription.user.community.host) %>
+<%= edit_billing_information_url(:secure => true, :host => @subscription.user.community.host) %>
 
 Thank you for your business!

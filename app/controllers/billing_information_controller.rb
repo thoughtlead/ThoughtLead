@@ -1,5 +1,6 @@
 class BillingInformationController < ApplicationController
   before_filter :login_required, :subscription_required, :load_subscription
+  ssl_required :edit, :update
 
   def edit
   end

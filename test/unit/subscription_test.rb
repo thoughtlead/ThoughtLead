@@ -72,11 +72,15 @@ class SubscriptionTest < ActiveSupport::TestCase
         Subscription.notify_expiring_trials
 
         assert_sent_email do |email|
-          email.subject =~ /Trial period expiring/ && email.to.include?(@subscription.user.email)
+          email.subject =~ /Trial period expiring/ &&
+          email.to.include?(@subscription.user.email) &&
+          email.body =~ /your credit card on file will be charged/
         end
 
         assert_sent_email do |email|
-              email.subject =~ /Trial period expiring for #{@subscription.user.display_name} on #{@subscription.user.community.name}/ && email.to.include?(@subscription.user.community.owner.email)
+          email.subject =~ /Trial period expiring for #{@subscription.user.display_name}/ &&
+          email.to.include?(@subscription.user.community.owner.email) &&
+          email.body =~ /your credit card on file will be charged/
         end
       end
     end
@@ -119,13 +123,17 @@ class SubscriptionTest < ActiveSupport::TestCase
 
         should "send email with receipt" do
           assert_sent_email do |email|
-            email.subject =~ /Your #{@subscription.user.community.name} invoice/ && email.to.include?(@subscription.user.email)
+            email.subject =~ /Your #{@subscription.user.community.name} invoice/ &&
+            email.to.include?(@subscription.user.email) &&
+            email.body =~ /Your credit card #{@subscription.card_number} has been charged/
           end
         end
 
         should "send copy of email to owner" do
           assert_sent_email do |email|
-              email.subject =~ /Invoice sent to #{@subscription.user.display_name}/ && email.to.include?(@subscription.user.community.owner.email)
+            email.subject =~ /Invoice sent to #{@subscription.user.display_name}/ &&
+            email.to.include?(@subscription.user.community.owner.email) &&
+            email.body =~ /Your credit card #{@subscription.card_number} has been charged/
           end
         end
       end
@@ -148,14 +156,18 @@ class SubscriptionTest < ActiveSupport::TestCase
 
         should "send email with charge failure" do
           assert_sent_email do |email|
-            email.subject =~ /Your #{@subscription.user.community.name} renewal failed/ && email.to.include?(@subscription.user.email)
+            email.subject =~ /Your #{@subscription.user.community.name} renewal failed/ &&
+            email.to.include?(@subscription.user.email) &&
+            email.body =~ /We were unable to charge your credit card #{@subscription.card_number}/
           end
         end
 
         should "send copy of email to owner" do
           assert_sent_email do |email|
-              email.subject =~ /Charge failed/ && email.to.include?(@subscription.user.community.owner.email)
-            end
+            email.subject =~ /Charge failed for #{@subscription.user.display_name}/ &&
+            email.to.include?(@subscription.user.community.owner.email) &&
+            email.body =~ /We were unable to charge your credit card #{@subscription.card_number}/
+          end
         end
       end
     end
@@ -273,13 +285,17 @@ class SubscriptionTest < ActiveSupport::TestCase
 
           should "send email with receipt" do
             assert_sent_email do |email|
-              email.subject =~ /Your #{@subscription.user.community.name} invoice/ && email.to.include?(@subscription.user.email)
+              email.subject =~ /Your #{@subscription.user.community.name} invoice/ &&
+              email.to.include?(@subscription.user.email) &&
+              email.body =~ /Your credit card #{@subscription.card_number} has been charged/
             end
           end
 
           should "send copy of email to owner" do
             assert_sent_email do |email|
-              email.subject =~ /Invoice sent to/ && email.to.include?(@subscription.user.community.owner.email)
+              email.subject =~ /Invoice sent to #{@subscription.user.display_name}/ &&
+              email.to.include?(@subscription.user.community.owner.email) &&
+              email.body =~ /Your credit card #{@subscription.card_number} has been charged/
             end
           end
         end
@@ -302,13 +318,17 @@ class SubscriptionTest < ActiveSupport::TestCase
 
           should "send email with charge failure" do
             assert_sent_email do |email|
-              email.subject =~ /Your #{@subscription.user.community.name} renewal failed/ && email.to.include?(@subscription.user.email)
+              email.subject =~ /Your #{@subscription.user.community.name} renewal failed/ &&
+              email.to.include?(@subscription.user.email) &&
+              email.body =~ /We were unable to charge your credit card #{@subscription.card_number}/
             end
           end
 
           should "send copy of email to owner" do
             assert_sent_email do |email|
-              email.subject =~ /Charge failed/ && email.to.include?(@subscription.user.community.owner.email)
+              email.subject =~ /Charge failed for #{@subscription.user.display_name}/ &&
+              email.to.include?(@subscription.user.community.owner.email) &&
+              email.body =~ /We were unable to charge your credit card #{@subscription.card_number}/
             end
           end
         end

@@ -21,7 +21,7 @@
 	<% end %>
 
 	<h3>New payment method:</h3>
-	<% form_tag billing_information_url, :method => :put do -%>
+	<% form_tag billing_information_url(:secure => true), :method => :put do -%>
 	<%= error_messages_for :subscription %>
 	<%= error_messages_for :card %>
 	<%= error_messages_for :address %>
