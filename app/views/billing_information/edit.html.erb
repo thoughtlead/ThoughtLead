@@ -19,7 +19,7 @@
 		</p>
 
 	<% end %>
-
+  <p>*required information</p>
 	<% form_tag billing_information_url(:secure => true), :method => :put do -%>
 	<%= error_messages_for :subscription %>
 	<%= error_messages_for :card %>
@@ -27,60 +27,60 @@
 
 	<fieldset class="creditcard">
 		<div class="left">
-			<label>First Name</label>
+			<label>First Name*</label>
 			<%= text_field :card, :first_name, :size => 20, :class => "inp_text" %>
 		</div>
 
 		<div class="right">
-			<label>Last Name</label>
+			<label>Last Name*</label>
 			<%= text_field :card, :last_name, :size => 20, :class => "inp_text" %>
 		</div>
 
 		<div class="clear">
-			<label>Address</label>
+			<label>Address*</label>
 			<%= text_field :address, :address1, :class => "inp_text" %><br/>
 			<%= text_field :address, :address2, :class => "inp_text" %>
 		</div>
 
 		<div class="clear">
-			<label>City</label>
+			<label>City*</label>
 			<%= text_field :address, :city, :class => "inp_text" %>
 		</div>
 
 		<div class="left">
-			<%= label_tag :address, "State" %>
+			<%= label_tag :address, "State*" %>
 			<%= text_field :address, :state, :class => "inp_text" %>
 		</div>
 
 		<div class="right">
-			<label>Zip</label>
+			<label>Zip*</label>
 			<%= text_field :address, :zip, :size => 12, :class => "inp_text" %>
 		</div>
 
 		<div class="clear">
-			<label>Country</label>
+			<label>Country*</label>
 			<%= country_select :address, :country, ['United States', 'Canada']%>
 		</div>
 
 		<div class="clear">
-			<label>Phone</label>
+			<label>Phone*</label>
 			<%= text_field :address ,:phone, :size => 12, :class => "inp_text" %>
 		</div>
 
 		<div class="left">
-			<label>Card Number</label>
+			<label>Card Number*</label>
 			<%= text_field :card, :number, :size => 20, :class => "inp_text" %>
 		</div>
 
 		<div class="right">
-			<label>Type</label>
+			<label>Type*</label>
 			<%= select :card, :type, [['Visa', 'visa'], ['MasterCard', 'master'], ['American Express', 'american_express']] %>
 		</div>
 
     <div class="clear"> </div>
 
 		<div class="left">
-			<label>Expiration</label>
+			<label>Expiration*</label>
 			<%= select :card, :month, (1 .. 12) %>
 			<%= select :card, :year, (Time.now.year .. 10.years.from_now.year) %>
 		</div>
@@ -92,7 +92,7 @@
     </script>
 
 		<div class="right">
-			<label>Security Code <a href="javascript:popup('/cvv.html')">what's this?</a></label>
+			<label>Security Code* <a href="javascript:popup('/cvv.html')">what's this?</a></label>
 			<%= text_field :card, :verification_value, :size => 4, :class => "inp_text"%>
 		</div>
 
