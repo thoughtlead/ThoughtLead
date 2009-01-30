@@ -9,7 +9,7 @@
 			</ul>
 		</div>
 	</div>
-	<h2>Change Payment Method</h2>
+	<h2>Enter Payment Information</h2>
 
 	<% if @subscription.has_billing_information? %>
 
@@ -20,7 +20,6 @@
 
 	<% end %>
 
-	<h2>New Payment Method:</h2>
 	<% form_tag billing_information_url(:secure => true), :method => :put do -%>
 	<%= error_messages_for :subscription %>
 	<%= error_messages_for :card %>
@@ -86,8 +85,14 @@
 			<%= select :card, :year, (Time.now.year .. 10.years.from_now.year) %>
 		</div>
 
+    <script language="javascript">
+       function popup(page) {
+           window.open(page,"SecurityCodeExplanation","width=500, height=200, location=no, menubar=no, toolbar=no");
+       }
+    </script>
+
 		<div class="right">
-			<label>Card Verification Value</label>
+			<label>Security Code <a href="javascript:popup('/cvv.html')">what's this?</a></label>
 			<%= text_field :card, :verification_value, :size => 4, :class => "inp_text"%>
 		</div>
 
@@ -98,12 +103,14 @@
   <h2>Review your subscription information</h2>
   <p>Subscription to <%= @subscription.access_class.name %> content <%= get_access_description(@subscription.access_class) %></p>
 	<p>Price: <%= h @subscription.summary %></p>
-	<% if @subscription.pending? %>
+	<% if @subscription.pending? && (@subscription.subscription_plan.trial_period == 0) %>
 	  <p>Pending Payment: Your card will be charged when you click submit.</p>
 	<% elsif @subscription.trial? %>
 		<p>Trial expires: <%= @subscription.next_renewal_at %></p>
-	<% else %>
+	<% elsif @subscription.next_renewal_at %>
 		<p>Next payment due: <%= @subscription.next_renewal_at %></p>
+	<% elsif @subscription.subscription_plan && (@subscription.subscription_plan.trial_period > 0) %>
+	  <p>Free trial will expire: <%= Date.today.advance({@subscription.subscription_plan.trial_units => @subscription.subscription_plan.trial_period}.symbolize_keys) %></p>
 	<% end %>
 
 	<fieldset class="submit">
