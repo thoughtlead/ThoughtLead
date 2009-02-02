@@ -15,25 +15,31 @@
 	    <% end %>
 	</div>
 	<h2><%=h "Edit chapters for #{@course}" %></h2>
-	<ul class="sep_item_list chapters">
+	<ul id="chapters" class="sep_item_list chapters">
+
 		<% for chapter in @course.chapters %>
-		<% chapter_number = chapter_number ? chapter_number + 1 : 1 %>
-		<li>
-			<h3><%=h "#{chapter_number.to_s_roman}. #{chapter.to_s}" %></h3>
-			<ul class="meta_info">
-				<li class="meta_tags">
-					<ul>
-						<% if chapter.draft %><li class="draft">Draft</li><% end %>
-					</ul>
-				</li>
-			</ul>
-			<ul class="item_actions">
-				<li><%= link_to "Edit", edit_course_chapter_url(@course, chapter), :class => 'chapter_rename' %></li>
-				<li><%= link_to "Delete", course_chapter_url(@course, chapter), :method => :delete, :class => 'chapter_delete', :confirm => "Are you sure you would like to delete this chapter?  Its lessons will also be deleted." %></li>
-			</ul>
-		</li>
+
+			<% content_tag_for :li, chapter do %>
+
+				<h3><%= h chapter.to_s %></h3>
+				<ul class="meta_info">
+					<li class="meta_tags">
+						<ul>
+							<% if chapter.draft %><li class="draft">Draft</li><% end %>
+						</ul>
+					</li>
+				</ul>
+				<ul class="item_actions">
+					<li><%= link_to "Edit", edit_chapter_url(chapter), :class => 'chapter_rename' %></li>
+					<li><%= link_to "Delete", chapter_url(chapter), :method => :delete, :class => 'chapter_delete', :confirm => "Are you sure you would like to delete this chapter?  Its lessons will also be deleted." %></li>
+				</ul>
+
+			<% end %>
+
 		<% end %>
+
 	</ul>
+	<%= sortable_element "chapters", :url => sort_course_chapters_url, :complete => visual_effect(:highlight, "chapters") %>
 
 	<div class="add_sep_item">
 		<h2>Add a New Chapter</h2>

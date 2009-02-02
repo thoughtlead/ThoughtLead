@@ -36,8 +36,8 @@ ActionController::Routing::Routes.draw do |map|
   end
   map.resources :responses, :conditions => { :is_client_domain => true }
 
-  map.resources :courses, :conditions => { :is_client_domain => true } do | courses |
-    courses.resources :chapters, :conditions => { :is_client_domain => true } do | chapters |
+  map.resources :courses, :shallow => true, :conditions => { :is_client_domain => true } do | courses |
+    courses.resources :chapters, :collection => { :sort => :post }, :conditions => { :is_client_domain => true } do | chapters |
       chapters.resources :lessons, :conditions => { :is_client_domain => true } do | lessons |
         lessons.resources :attachments, :conditions => { :is_client_domain => true }
       end
