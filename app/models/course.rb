@@ -1,7 +1,7 @@
 class Course < ActiveRecord::Base
   belongs_to :user
   belongs_to :community
-  has_many :chapters, :dependent => :destroy
+  has_many :chapters, :order => :position, :dependent => :destroy
 
   validates_presence_of :title, :description
 
