@@ -15,6 +15,8 @@
 	    <% end %>
 	</div>
 	<h2><%=h "Edit chapters for #{@course}" %></h2>
+	<p>To re-order chapters, drag and drop them up and down.</p>
+
 	<ul id="chapters" class="sep_item_list chapters">
 
 		<% @course.chapters.each_with_index do |chapter, index| %>
@@ -39,7 +41,7 @@
 		<% end %>
 
 	</ul>
-	<%= sortable_element "chapters", :url => sort_course_chapters_url, :complete => visual_effect(:highlight, "chapters") %>
+	<%= sortable_element "chapters", :url => sort_course_chapters_url(@course), :complete => visual_effect(:highlight, "chapters") %>
 
 	<div class="add_sep_item">
 		<h2>Add a New Chapter</h2>
