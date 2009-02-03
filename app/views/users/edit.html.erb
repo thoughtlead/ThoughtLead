@@ -15,21 +15,29 @@
 	<% form_for(@user, :html => { :method => :put, :multipart => true, :class => 'edit' } ) do | f | -%>
 		<%= error_messages_for(:user, :object => @user.avatar ? [@user.avatar, @user] : @user ) %>
 		<fieldset class="input">
+			<% if current_user == @user %>
+			<div class="checkbox group">
+			  <label>Would you like to receive an email when someone starts a new discussion in the community?</label>
+        <%= f.radio_button :send_email_notifications, true %>
+        <%= f.label :send_email_notifications, "Yes" %>
+        <%= f.radio_button :send_email_notifications, false %>
+        <%= f.label :send_email_notifications, "No" %>
+			</div>
+      <% end %>
+
 			<% if logged_in_as_owner? %>
 			<div class="checkbox group">
 				<%= f.check_box :expert %>
 				<%= f.label :expert %>
 			</div>
+
 			<div class="checkbox group">
-        <li>
-          <%= f.radio_button :access_class_id, nil %>
-          <%= f.label :access_class_id, 'Registered' %>
-        </li>
+        <%= f.radio_button :access_class_id, nil %>
+        <%= f.label :access_class_id, 'Registered' %>
+
         <% current_community.access_classes.each do |access_class|%>
-          <li>
             <%= f.radio_button :access_class_id, access_class.id %>
             <%= f.label :access_class_id, access_class.name %>
-          </li>
         <% end %>
       </div>
 

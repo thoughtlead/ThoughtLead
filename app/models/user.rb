@@ -96,6 +96,10 @@ class User < ActiveRecord::Base
     return object.access_classes.blank?
   end
 
+  def self.find_all_by_community_and_send_email_notifications(community, send_email_notifications = true)
+    all(:conditions => {"community_id" => community.id, "send_email_notifications" => send_email_notifications})
+  end
+
   private
 
   def encrypt_password
