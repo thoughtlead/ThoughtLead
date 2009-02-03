@@ -33,8 +33,10 @@ ActionController::Routing::Routes.draw do |map|
   map.forgot_password '/forgot_password', :controller => 'users', :action => 'forgot_password', :conditions => { :is_client_domain => true }
   map.resources :discussions, :conditions => { :is_client_domain => true } do | discussions |
     discussions.resources :responses, :conditions => { :is_client_domain => true }
+    discussions.resources :email_subscriptions, :conditions => { :is_client_domain => true }
   end
   map.resources :responses, :conditions => { :is_client_domain => true }
+  map.resources :email_subscriptions, :conditions => { :is_client_domain => true }
 
   map.resources :courses, :conditions => { :is_client_domain => true } do | courses |
     courses.resources :chapters, :conditions => { :is_client_domain => true } do | chapters |

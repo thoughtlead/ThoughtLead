@@ -3,6 +3,8 @@ class Discussion < ActiveRecord::Base
   belongs_to :community
   belongs_to :theme
   has_many :responses, :dependent => :destroy
+  has_many :email_subscriptions, :dependent => :destroy
+  has_many :subscribers, :class_name => 'User', :through => :email_subscriptions
 
   validates_presence_of :title, :body, :theme
 

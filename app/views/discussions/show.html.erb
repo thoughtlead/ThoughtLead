@@ -37,7 +37,6 @@
 				<li class="comments"><%= pluralize(@discussion.responses.count, "Response") %></li>
 			</ul>
 		</div>
-		<% if current_user == @discussion.user || logged_in_as_owner? %>
 		<div class="module actions">
 			<div class="content">
 				<h4>Discussion Actions</h4>
@@ -48,10 +47,14 @@
 					<% if logged_in_as_owner? %>
 					<li class="delete"><%= link_to("Delete <span class='action_target'>Discussion</span>", @discussion, :method => :delete, :confirm => "Are you sure you'd like to delete this discussion?  All of the responses to this discussion will also be deleted.") %></li>
 					<% end %>
+					<% if @email_subscription %>
+					<li class="edit"><%= link_to "Unsubscribe <span class='action_target'>from Email Updates</span>", @email_subscription, :controller => :email_subscriptions, :method => :delete , :confirm => "Are you sure you want to unsubscribe from email updates to this discussion?" %></li>
+					<% elsif current_user %>
+					<li class="add"><%= link_to "Send Me <span class='action_target'>Email Updates</span>", discussion_email_subscriptions_url(:discussion_id => @discussion.id), :method => :post, :action => :create  %></li>
+					<% end %>
 				</ul>
 			</div>
 		</div>
-		<% end %>
 		<%= textilize(sanitize(@discussion.body)) %>
 	</div>
 

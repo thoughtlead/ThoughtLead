@@ -54,6 +54,7 @@ class DiscussionsController < ApplicationController
     @discussion = current_community.discussions.find(params[:id])
     @responses = @discussion.responses
     @responses = @responses.paginate :page => params[:page], :per_page => 5
+    @email_subscription = @discussion.email_subscriptions.find_by_subscriber_id(current_user.id) if current_user
   end
 
   def destroy
