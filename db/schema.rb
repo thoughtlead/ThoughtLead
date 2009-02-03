@@ -74,7 +74,6 @@ ActiveRecord::Schema.define(:version => 20090202211742) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.boolean  "draft",      :default => true
-    t.integer  "order"
     t.integer  "position"
   end
 
