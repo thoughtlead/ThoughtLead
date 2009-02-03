@@ -8,7 +8,7 @@ class ResponsesController < ApplicationController
     @discussion_response.user = current_user
     @discussion_response.discussion = @discussion
 
-    return render(:template => 'discussions/show') unless @discussion_response.valid?
+    return redirect_to @discussion unless @discussion_response.valid?
 
     @discussion.responses << @discussion_response
 
