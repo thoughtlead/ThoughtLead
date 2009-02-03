@@ -137,5 +137,27 @@ class LessonsControllerTest < ActionController::TestCase
         assert_response :success
       end
     end
+
+    context "when sorting lessons" do
+      setup do
+        @lesson1 = Lesson.make(:chapter => @chapter)
+        @lesson2 = Lesson.make(:chapter => @chapter)
+        @chapter.reload
+        assert_equal(2, @chapter.lessons.length)
+        assert_equal(@lesson1, @chapter.lessons.first)
+        assert_equal(@lesson2, @chapter.lessons.second)
+      end
+
+      should "handle sort correctly" do
+        new_request(@community, @community.owner)
+
+        xhr :post, :sort, { :chapter_id => @chapter.id, "chapter_#{@chapter.id}" => [@lesson2.id, @lesson1.id] }
+
+        @chapter.reload
+        assert_equal(2, @chapter.lessons.length)
+        assert_equal(@lesson2, @chapter.lessons.first)
+        assert_equal(@lesson1, @chapter.lessons.second)
+      end
+    end
   end
 end

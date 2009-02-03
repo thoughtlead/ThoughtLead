@@ -1,5 +1,4 @@
 class ResponsesController < ApplicationController
-
   before_filter :community_is_active
 
   def create
@@ -8,7 +7,7 @@ class ResponsesController < ApplicationController
     @discussion_response.user = current_user
     @discussion_response.discussion = @discussion
 
-    return redirect_to @discussion unless @discussion_response.valid?
+    return redirect_to(@discussion) unless @discussion_response.valid?
 
     @discussion.responses << @discussion_response
 
@@ -29,9 +28,7 @@ class ResponsesController < ApplicationController
 
   private
 
-  #bogus warning, this function is called by a method obtained from application.rb (ruby craziness!)
   def get_access_controlled_object
     Response.find(params[:id]) if params[:id]
   end
-
 end

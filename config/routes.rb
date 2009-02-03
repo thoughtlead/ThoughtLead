@@ -40,7 +40,7 @@ ActionController::Routing::Routes.draw do |map|
 
   map.resources :courses, :shallow => true, :conditions => { :is_client_domain => true } do | courses |
     courses.resources :chapters, :collection => { :sort => :post }, :conditions => { :is_client_domain => true } do | chapters |
-      chapters.resources :lessons, :conditions => { :is_client_domain => true } do | lessons |
+      chapters.resources :lessons, :collection => { :sort => :post }, :conditions => { :is_client_domain => true } do | lessons |
         lessons.resources :attachments, :conditions => { :is_client_domain => true }
       end
     end

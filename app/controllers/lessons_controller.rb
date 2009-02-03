@@ -5,6 +5,13 @@ class LessonsController < ApplicationController
 
   uses_tiny_mce(tiny_mce_options)
 
+  def sort
+    params[dom_id(@chapter)].each_with_index do |id, index|
+      Lesson.update_all(['position=?', index+1], ['id=?', id])
+    end
+    render :nothing => true
+  end
+
   def new
     @lesson = Lesson.new
     @lesson.content = Content.new
