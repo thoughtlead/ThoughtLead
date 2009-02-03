@@ -117,6 +117,7 @@ ActiveRecord::Schema.define(:version => 20090203201350) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.boolean  "draft",        :default => true
+    t.integer  "position"
   end
 
   create_table "discussions", :force => true do |t|

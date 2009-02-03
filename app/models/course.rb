@@ -4,6 +4,8 @@ class Course < ActiveRecord::Base
   has_many :chapters, :order => :position, :dependent => :destroy
   has_many :lessons, :through => :chapters
 
+  acts_as_list :scope => :community
+
   validates_presence_of :title, :description
 
   alias_attribute :to_s, :title
