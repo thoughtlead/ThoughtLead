@@ -9,7 +9,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20090203195922) do
+ActiveRecord::Schema.define(:version => 20090203201350) do
 
   create_table "access_class_relationships", :force => true do |t|
     t.integer "access_class_id", :null => false
