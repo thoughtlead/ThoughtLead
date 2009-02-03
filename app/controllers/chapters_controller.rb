@@ -6,7 +6,7 @@ class ChaptersController < ApplicationController
     params[:chapters].each_with_index do |id, index|
       Chapter.update_all(['position=?', index+1], ['id=?', id])
     end
-    render :nothing => true
+    @chapters = @course.chapters
   end
 
   def create

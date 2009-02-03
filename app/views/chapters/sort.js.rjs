@@ -1,0 +1,3 @@
+@chapters.each do |chapter|
+  page << "$('#{dom_id(chapter)}').select('.roman').each(function(element) { element.update('#{chapter.position.to_s_roman}'); });"
+end
