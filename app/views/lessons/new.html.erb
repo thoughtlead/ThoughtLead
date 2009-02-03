@@ -9,14 +9,14 @@
 			</ul>
 		</div>
 		<% if logged_in_as_owner? %>
-		<div class="action">
-			<span class="button_left">&nbsp;</span><a href="<%= new_course_url %>" class="button"><span class="icon create">+</span><span class="text">Create a Course</span></a>
-		</div>
+			<div class="action">
+				<span class="button_left">&nbsp;</span><a href="<%= new_course_url %>" class="button"><span class="icon create">+</span><span class="text">Create a Course</span></a>
+			</div>
 	    <% end %>
 	</div>
 	<div class="title">
 		<h2>Add a New Lesson</h2>
-		<p class="subtitle">In Course: "<%=h @course %>" | In Chapter: "<%=h @chapter %>"</p>
+		<p class="subtitle">In Course: "<%= h @course %>" | In Chapter: "<%= h @chapter %>"</p>
 	</div>
 	<%= render :partial => 'form', :locals => { :mode => :new } %>
 </div>

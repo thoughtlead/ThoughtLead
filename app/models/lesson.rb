@@ -2,7 +2,7 @@ class Lesson < ActiveRecord::Base
   belongs_to :chapter
   belongs_to :content, :dependent => :destroy
 
-  acts_as_list :scope => :chapter, :column => :chapter_position
+  acts_as_list :scope => :chapter
 
   def higher_item_visible_to(user)
     lesson = self.higher_item
