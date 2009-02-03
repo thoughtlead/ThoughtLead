@@ -74,6 +74,7 @@ ActiveRecord::Schema.define(:version => 20090202211742) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.boolean  "draft",      :default => true
+    t.integer  "order"
     t.integer  "position"
   end
 
@@ -127,6 +128,11 @@ ActiveRecord::Schema.define(:version => 20090202211742) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.integer  "theme_id"
+  end
+
+  create_table "email_subscriptions", :force => true do |t|
+    t.integer "subscriber_id", :null => false
+    t.integer "discussion_id", :null => false
   end
 
   create_table "emails", :force => true do |t|
