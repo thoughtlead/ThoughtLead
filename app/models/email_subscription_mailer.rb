@@ -6,6 +6,12 @@ class EmailSubscriptionMailer < ActionMailer::Base
     end
   end
 
+  def discussion_created(subscriber, discussion)
+    setup_email subscriber
+    subject "A new discussion has begun at #{subscriber.community.name}"
+    body :subscriber => subscriber, :discussion => discussion
+  end
+
   def discussion_update(subscriber, response)
     setup_email subscriber
     subject "New response from #{response.user.display_name} for the discussion: #{response.discussion.title}"

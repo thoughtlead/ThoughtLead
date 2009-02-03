@@ -1,0 +1,7 @@
+<%= @discussion.user.display_name %> started a discussion on <%= @discussion.title %>:
+
+"<%= @discussion.body %>"
+
+Read more and respond: <%= discussion_url(@discussion, :host => @subscriber.community.host) %>
+
+You can unsubscribe from these notifications on your edit profile page: <%= edit_user_url(@subscriber, :host => @subscriber.community.host)%>

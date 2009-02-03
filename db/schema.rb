@@ -237,6 +237,7 @@ ActiveRecord::Schema.define(:version => 20090203195922) do
     t.boolean  "super_admin",               :default => false
     t.integer  "access_class_id"
     t.boolean  "trial_available",           :default => true
+    t.boolean  "send_email_notifications",  :default => false
   end
 
 end
