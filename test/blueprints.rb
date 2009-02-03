@@ -113,3 +113,9 @@ Discussion.blueprint do
   community { theme.community }
   user { User.make(:community => community) }
 end
+
+Response.blueprint do
+  body { Sham.paragraphs }
+  discussion { Discussion.make }
+  user { User.make(:community => discussion.community) }
+end
