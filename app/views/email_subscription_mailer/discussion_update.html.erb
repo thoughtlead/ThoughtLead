@@ -1,0 +1,7 @@
+There is a new response from <%= @response.user.display_name %> for the discussion: <%= @response.discussion.title %>:
+
+<%= @response.user.display_name %>: "<%= @response.body %>"
+
+Read more and respond: <%= link_to "#{@response.discussion.title}", discussion_url(@response.discussion, :host => @subscriber.community.host) %>
+
+You can unsubscribe from these updates by clicking "Unsubscribe from Email Updates" <%= link_to "here", discussion_url(@response.discussion, :host => @subscriber.community.host) %>
