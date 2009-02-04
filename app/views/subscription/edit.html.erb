@@ -8,7 +8,7 @@
 			</ul>
 		</div>
 	</div>
-	<h2>Edit Subscription to <%= current_community %></h2>
+	<h2>Change Your Subscription to <%= current_community %></h2>
 
 	<% if !current_community.premium_link.blank? %>
 
@@ -33,21 +33,21 @@
 		      <% for access_class in @access_classes %>
 
             <h3><%= h access_class.name %> <%= get_access_description(access_class) %></h3>
-
+            <p><%= access_class.description %></p>
             <ul class="checkbox group">
+              <% if access_class.subscription_plans.blank? %>
+                <li><label>No subscriptions defined.</label></li>
+              <% else %>
+			          <% for subscription_plan in access_class.subscription_plans %>
 
-            <% if access_class.subscription_plans.blank? %>
-              <li><label>No subscriptions defined.</label></li>
-            <% else %>
-			        <% for subscription_plan in access_class.subscription_plans %>
+					          <li>
+					            <%= f.radio_button(:subscription_plan_id, subscription_plan.id) %>
+					            <%= label :subscription_subscription_plan_id, subscription_plan.id, subscription_plan.summary %>
+					          </li>
 
-					        <li>
-					          <%= f.radio_button(:subscription_plan_id, subscription_plan.id) %>
-					          <%= label :subscription_subscription_plan_id, subscription_plan.id, subscription_plan.summary %>
-					        </li>
-
+			          <% end %>
 			        <% end %>
-			      <% end %>
+			      </ul>
 			    <% end %>
 
 		    </div>

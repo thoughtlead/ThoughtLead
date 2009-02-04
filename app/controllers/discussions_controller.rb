@@ -23,7 +23,7 @@ class DiscussionsController < ApplicationController
     return render(:action => :new) unless @discussion.save
 
     User.find_all_by_community_and_send_email_notifications(current_community, true).each do |member|
-      EmailSubscriptionMailer.deliver_discussion_created(member, @discussion)
+      EmailSubscriptionMailer.deliver_discussion_created(member, @discussion) if member.has_access_to(@discussion)
     end
 
     flash[:notice] = "Successfully created"

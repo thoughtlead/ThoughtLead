@@ -1,4 +1,5 @@
 class SubscriptionController < ApplicationController
+  helper AccessClassesHelper
   before_filter :login_required, :load_subscription
 
   def edit

@@ -12,6 +12,84 @@ class DiscussionsControllerTest < ActionController::TestCase
       @silver_user = User.make(:community => @community, :access_class => @silver)
     end
 
+    context "when a new discussion is created and members are signed up to receive emails on creation" do
+      setup do
+        @registered_user.send_email_notifications = true
+        @registered_user.save
+        @gold_user.send_email_notifications = true
+        @gold_user.save
+        @silver_user.send_email_notifications = true
+        @silver_user.save
+      end
+
+      context "when the discussion is gold access class" do
+        setup do
+          new_request(@community, @community.owner)
+          @theme = Theme.make(:community => @community, :access_classes => [@gold])
+          @body = Sham.paragraphs
+          @title = Sham.word
+          post :create, {:discussion => {:body => @body, :theme_id => @theme.id, :title => @title}}
+        end
+
+        should "only send emails to members that have access to the new discussion" do
+          assert_sent_email do |email|
+            email.to.include?(@gold_user.email) &&
+            email.body =~ /#{@title}/
+          end
+        end
+      end
+
+      context "when the discusison is for any registered people" do
+        setup do
+          new_request(@community, @community.owner)
+          @theme = Theme.make(:community => @community, :registered => true)
+          @body = Sham.paragraphs
+          @title = Sham.word
+          post :create, {:discussion => {:body => @body, :theme_id => @theme.id, :title => @title}}
+        end
+
+        should "send emails to all subscribed members" do
+          assert_sent_email do |email|
+            email.to.include?(@registered_user.email) &&
+            email.body =~ /#{@title}/
+          end
+          assert_sent_email do |email|
+            email.to.include?(@gold_user.email) &&
+            email.body =~ /#{@title}/
+          end
+          assert_sent_email do |email|
+            email.to.include?(@silver_user.email) &&
+            email.body =~ /#{@title}/
+          end
+        end
+      end
+
+      context "when the discusison is public" do
+        setup do
+          new_request(@community, @community.owner)
+          @theme = Theme.make(:community => @community, :registered => false)
+          @body = Sham.paragraphs
+          @title = Sham.word
+          post :create, {:discussion => {:body => @body, :theme_id => @theme.id, :title => @title}}
+        end
+
+        should "send emails to all subscribed members" do
+          assert_sent_email do |email|
+            email.to.include?(@registered_user.email) &&
+            email.body =~ /#{@title}/
+          end
+          assert_sent_email do |email|
+            email.to.include?(@gold_user.email) &&
+            email.body =~ /#{@title}/
+          end
+          assert_sent_email do |email|
+            email.to.include?(@silver_user.email) &&
+            email.body =~ /#{@title}/
+          end
+        end
+      end
+    end
+
     context "on GET to :show" do
       context "with a public discussion" do
         setup do
