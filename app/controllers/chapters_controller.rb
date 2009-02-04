@@ -39,6 +39,8 @@ class ChaptersController < ApplicationController
     redirect_to course_chapters_url(@course)
   end
 
+  private
+
   def load_objects
     if params[:id]
       @chapter = current_community.chapters.find(params[:id])
