@@ -14,13 +14,14 @@
 	<ul class="sep_item_list categories">
 		<% for access_class in @community.access_classes %>
 		<li>
-			<h3><%=h access_class.name %>
-			<% unless access_class.children.blank? %> (includes access to<% end %> <%= access_class.children.map(&:name).join(", ") %><% unless access_class.children.blank? %>)<% end %></h3>
+			<h3><%= access_class.name %>	<%= get_access_description(access_class) %></h3>
+			<p style="clear:both;margin-bottom:0px"><%= access_class.description %></p>
 			<ul class="item_actions">
 				<li><%= link_to "Edit", edit_access_class_url(access_class) %></li>
 				<li><%= link_to "Add Subscription Plans", access_class_subscription_plans_url(access_class) %></li>
 			</ul>
 		</li>
+
 		<% end %>
 	</ul>
 
