@@ -22,8 +22,6 @@ ActionController::Routing::Routes.draw do |map|
   map.signup '/signup', :controller => 'users', :action => 'signup', :conditions => { :is_client_domain => true }
   map.status '/status', :controller => 'home', :action => 'status', :conditions => { :is_client_domain => false }
 
-  map.resources :themes, :conditions => { :is_client_domain => true }
-
   map.resources :subscription_payments, :conditions => { :is_client_domain => true }
 
   map.resources :users, :as => 'members', :member => { :email => :any, :edit_password => :any, :disable => :any, :reactivate => :any }, :conditions => { :is_client_domain => true } do |users|
@@ -31,16 +29,22 @@ ActionController::Routing::Routes.draw do |map|
   end
 
   map.forgot_password '/forgot_password', :controller => 'users', :action => 'forgot_password', :conditions => { :is_client_domain => true }
-  map.resources :discussions, :conditions => { :is_client_domain => true } do | discussions |
-    discussions.resources :responses, :conditions => { :is_client_domain => true }
-    discussions.resources :email_subscriptions, :conditions => { :is_client_domain => true }
-  end
-  map.resources :responses, :conditions => { :is_client_domain => true }
-  map.resources :email_subscriptions, :conditions => { :is_client_domain => true }
 
-  map.resources :courses, :shallow => true, :collection => { :sort => :post }, :conditions => { :is_client_domain => true } do | courses |
-    courses.resources :chapters, :collection => { :sort => :post }, :conditions => { :is_client_domain => true } do | chapters |
-      chapters.resources :lessons, :collection => { :sort => :post }, :conditions => { :is_client_domain => true } do | lessons |
+  # the shallow nested route for discussions below doesn't give us discussions_path, only discussion_path.
+  # Similarly, we don't get new_discussion_path, only new_theme_discussion_path.
+  # So we need to declare those here.  This has to come before the routes below.
+  map.resources :discussions, :only => [:new, :create, :index], :collection => { :uncategorized => :get }, :conditions => { :is_client_domain => true }
+
+  map.resources :themes, :shallow => true, :collection => { :sort => :post }, :conditions => { :is_client_domain => true } do |themes|
+    themes.resources :discussions, :conditions => { :is_client_domain => true } do |discussions|
+      discussions.resources :responses, :conditions => { :is_client_domain => true }
+      discussions.resources :email_subscriptions, :conditions => { :is_client_domain => true }
+    end
+  end
+
+  map.resources :courses, :shallow => true, :collection => { :sort => :post }, :conditions => { :is_client_domain => true } do |courses|
+    courses.resources :chapters, :collection => { :sort => :post }, :conditions => { :is_client_domain => true } do |chapters|
+      chapters.resources :lessons, :collection => { :sort => :post }, :conditions => { :is_client_domain => true } do |lessons|
         lessons.resources :attachments, :conditions => { :is_client_domain => true }
       end
     end
@@ -51,8 +55,6 @@ ActionController::Routing::Routes.draw do |map|
   map.search '/search', :controller=>"search", :action=>"index", :conditions => { :is_client_domain => true }
 
   map.root :controller => "home", :conditions => { :is_client_domain => false }
-
-  map.discussions_for_theme '/discussions/theme/:id', :controller => "discussions", :action => "for_theme", :conditions => { :is_client_domain => true }
 
   map.edit_community '/community/edit', :controller => 'admin', :action => 'edit_community', :conditions => { :is_client_domain => true }
   map.access_levels '/community/access', :controller => 'admin', :action => 'access_levels', :conditions => { :is_client_domain => true }

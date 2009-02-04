@@ -1,0 +1,32 @@
+<div id="sidebar">
+	<ul class="modules">
+		<li class="navigation themes">
+			<h3>
+				<span>Themes</span>
+				<% if logged_in_as_owner? %>
+					<%= link_to "<span>Edit</span>", themes_path, :class => "button edit" %>
+				<% end %>
+			</h3>
+
+			<ul class="content">
+				<% current_community.themes.each do |theme| %>
+					<% if theme.discussions.count > 0 %>
+						<% content_tag(:li, :class => current_class_for_theme(theme)) do %>
+							<%= link_to theme, theme_discussions_path(theme) %>
+						<% end %>
+					<% end %>
+				<% end %>
+				
+				<% if current_community.discussions.uncategorized.count > 0 %>
+					<% content_tag(:li, :class => current_class_uncategorized) do %>
+						<%= link_to "General", uncategorized_discussions_path %>
+					<% end %>
+				<% end %>
+								
+				<% content_tag(:li, :class => current_class_all, :id => "show_all") do %>
+					<%= link_to "All Discussions", discussions_path %>
+				<% end %>				
+			</ul>
+		</li>
+	</ul>
+</div>

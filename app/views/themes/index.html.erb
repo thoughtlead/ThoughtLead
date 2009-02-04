@@ -6,29 +6,37 @@
 			<ul>
 				<li class="first"><%= link_to "Discussions", discussions_path %></li>
 				<% if @theme %>
-				<li><%= @theme.name %></li>
+					<li><%= @theme.name %></li>
 				<% end %>
 			</ul>
 		</div>
 		<% if current_user_can_post? %>
-		<div class="action">
-			<span class="button_left">&nbsp;</span><a href="<%= new_discussion_url %>" class="button"><span class="icon create">+</span><span class="text">Create a Discussion</span></a>
-		</div>
-	    <% end %>
+			<div class="action">
+				<span class="button_left">&nbsp;</span><a href="<%= new_discussion_url %>" class="button"><span class="icon create">+</span><span class="text">Create a Discussion</span></a>
+			</div>
+		<% end %>
 	</div>
+
 	<h2>Themes</h2>
-	<ul class="sep_item_list categories">
+
+	<ul id="themes" class="sep_item_list categories">
+
 		<% for theme in current_community.themes %>
-		<li>
-			<h3><%=h theme %> <%= get_access_description(theme) %>
-			</h3>
-			<ul class="item_actions">
-				<li><%= link_to "Edit", edit_theme_url(theme) %></li>
-				<li><%= link_to "Delete", theme, :method => :delete, :confirm => "Are you sure you'd like to delete this theme?  Its posts will no longer be categorized.", :class => "delete" %></li>
-			</ul>
-		</li>
+			<% content_tag_for :li, theme do %>
+				<h3>
+					<%= h theme %>
+					<%= get_access_description(theme) %>
+				</h3>
+				<ul class="item_actions">
+					<li><%= link_to "Edit", edit_theme_url(theme) %></li>
+					<li><%= link_to "Delete", theme, :method => :delete, :confirm => "Are you sure you'd like to delete this theme?  Its posts will no longer be categorized.", :class => "delete" %></li>
+				</ul>
+			<% end %>
 		<% end %>
 	</ul>
+
+	<%= sortable_element "themes", :url => sort_themes_url, :complete => visual_effect(:highlight, "themes") %>
+
 	<div class="add_sep_item">
 		<h2>Add a New Theme</h2>
 		<%= render :partial => 'form', :locals => { :mode => :new } %>

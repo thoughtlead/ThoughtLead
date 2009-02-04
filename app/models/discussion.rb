@@ -6,23 +6,21 @@ class Discussion < ActiveRecord::Base
   has_many :email_subscriptions, :dependent => :destroy
   has_many :subscribers, :class_name => 'User', :through => :email_subscriptions
 
+  named_scope :uncategorized, :conditions => { :theme_id => nil }
+
   validates_presence_of :title, :body, :theme
 
   is_indexed :fields => ['title', 'body', 'community_id']
 
   alias_attribute :to_s, :title
 
-  named_scope :for_theme, lambda { | theme_id |
-    { :conditions => ({ :theme_id => (theme_id == 'nil' || theme_id == '') ? nil : theme_id } if theme_id) }
-  }
-
-  def is_premium?
-    self.community.discussion_accessibility == 1
+  def uncategorized?
+    theme.nil?
   end
 
   def is_registered?
     return false if theme.nil?
-    return theme.registered
+    return theme.is_registered?
   end
 
   def access_classes

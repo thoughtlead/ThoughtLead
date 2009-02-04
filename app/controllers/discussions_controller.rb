@@ -1,23 +1,15 @@
 class DiscussionsController < ApplicationController
-
-  #TODO this could be incorporated into a refactored control_access where the controllers are responsible for is_premium and is_registered
-  before_filter :login_required, :except => [ :index, :show]
+  before_filter :load_objects
+  before_filter :load_accessible_themes, :only => [:new, :create, :edit, :update]
+  before_filter :login_required, :except => [ :index, :uncategorized, :show ]
   before_filter :community_is_active
-  skip_before_filter :control_access, :only => [ :index ]
 
   def index
-    @discussions = current_community.discussions.for_theme(params[:theme])
-    @discussions = @discussions.find_all { |discussion| discussion.is_visible_to(current_user) }
-    @discussions = @discussions.sort_by do |discussion|
-		  if discussion.responses.blank?
-    		discussion.created_at
-      else
-			  discussion.responses.find(:last).created_at
-		  end
-	  end
-    @discussions = @discussions.reverse
-    @discussions = @discussions.paginate :page => params[:page], :per_page => 20
-    @theme = current_community.themes.find_by_id(params[:theme]) if params[:theme] && params[:theme] != 'nil'
+    @discussions = filter_and_paginate_discussions(@theme.nil? ? current_community.discussions : @theme.discussions)
+  end
+
+  def uncategorized
+    @discussions = filter_and_paginate_discussions(current_community.discussions.uncategorized)
   end
 
   def new
@@ -38,20 +30,17 @@ class DiscussionsController < ApplicationController
     redirect_to @discussion
   end
 
-  def update
-    @discussion = current_community.discussions.find(params[:id])
+  def edit
+    unless current_user == @discussion.user || logged_in_as_owner?
+      redirect_to @discussion
+    end
+  end
 
+  def update
     return render(:action => :edit) unless @discussion.update_attributes(params[:discussion])
 
     flash[:notice] = "Successfully saved"
     redirect_to @discussion
-  end
-
-  def edit
-  	@discussion = current_community.discussions.find(params[:id])
-  	unless current_user == @discussion.user || logged_in_as_owner?
-		redirect_to @discussion
-	end
   end
 
   def show
@@ -70,10 +59,35 @@ class DiscussionsController < ApplicationController
 
   private
 
+  def load_accessible_themes
+    @accessible_themes = current_community.themes.select { |theme| current_user.has_access_to(theme) }
+  end
+
+  def filter_and_paginate_discussions(discussions)
+    discussions = discussions.find_all { |discussion| discussion.is_visible_to(current_user) }
+    discussions = discussions.sort_by do |discussion|
+      if discussion.responses.blank?
+        discussion.created_at
+      else
+        discussion.responses.find(:last).created_at
+      end
+    end
+    discussions = discussions.reverse
+    discussions = discussions.paginate :page => params[:page], :per_page => 20
+  end
+
   def get_access_controlled_object
-    return Discussion.find(params[:id]) if params[:id]
-    #TODO this is bad, replace it with a refactored control_access function where the controller is responsible for is_premium and is_registered
-    #(possibly using those functions from their models where appropriate)
-    return Discussion.new(:title => "", :body => "", :community => current_community) #make sure all other functions are access controlled as well (except skipped ones of course)
+    return current_community.discussions.find(params[:id]) if params[:id]
+    return current_community.themes.find(params[:theme_id]) if params[:theme_id]
+    return current_community.themes.find(params[:discussion][:theme_id]) if params[:discussion] && !params[:discussion][:theme_id].blank?
+  end
+
+  def load_objects
+    if params[:id]
+      @discussion = current_community.discussions.find(params[:id])
+      @theme = @discussion.theme
+    elsif params[:theme_id]
+      @theme = current_community.themes.find(params[:theme_id])
+    end
   end
 end

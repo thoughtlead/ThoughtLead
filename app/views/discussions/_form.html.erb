@@ -1,4 +1,4 @@
-<% form_for @discussion, :html => { :class => 'edit' } do | f | %>
+<% form_for @discussion, :html => { :class => 'edit' } do |f| %>
 	<%= f.error_messages %>
 
 	<fieldset class="input">
@@ -14,19 +14,22 @@
 		</div>
 
 		<% if !current_community.themes.empty? %>
-		<div class="inp group">
-		    <%= f.label :theme_id, 'Theme' %>
-		    <%= f.select(:theme_id, [[ "Choose a theme...", nil ]] + current_community.themes.map { | each | [ each.name, each.id ] } ) %>
-		</div>
+			<div class="inp group">
+				<%= f.label :theme_id, 'Theme' %>
+				<%= f.select :theme_id, [[ "Choose a theme...", nil ]] + @accessible_themes.map { |each| [ each.name, each.id ] } %>
+			</div>
 		<% end %>
+
 	</fieldset>
+
 	<fieldset class="submit">
 		<ul class="submit_opts">
 			<% if mode == :new %>
-			<li><%= submit_tag "Create Discussion", :class => "make_button", :id => "create" %></li>
+				<li><%= submit_tag "Create Discussion", :class => "make_button", :id => "create" %></li>
 			<% else %>
-			<li><%= submit_tag "Save Changes", :class => "make_button", :id => "save" %></li>
+				<li><%= submit_tag "Save Changes", :class => "make_button", :id => "save" %></li>
 			<% end %>
+
 			<li class="text">or <%= link_to "Cancel", @discussion %></li>
 		</ul>
 	</fieldset>

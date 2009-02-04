@@ -32,10 +32,6 @@ class Lesson < ActiveRecord::Base
     return content.draft? || chapter.draft_to_users?
   end
 
-  def is_premium?
-    content.premium?
-  end
-
   def is_registered?
     content.registered?
   end

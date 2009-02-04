@@ -6,86 +6,70 @@
 			<ul>
 				<li class="first"><%= link_to "Discussions", discussions_path %></li>
 				<% if @theme %>
-				<li><%= h(snippet(@theme.to_s)) %></li>
+					<li><%= h(snippet(@theme.to_s)) %></li>
 				<% end %>
 			</ul>
 		</div>
+
 		<% if current_user_can_post? %>
-		<div class="action">
-			<span class="button_left">&nbsp;</span><a href="<%= new_discussion_url %>" class="button"><span class="icon create">+</span><span class="text">Create a Discussion</span></a>
-		</div>
-	    <% end %>
+			<div class="action">
+				<span class="button_left">&nbsp;</span><a href="<%= new_discussion_path %>" class="button"><span class="icon create">+</span><span class="text">Create a Discussion</span></a>
+			</div>
+		<% end %>
+
 	</div>
+
 	<% if @theme %>
-	<div class="page_title">
-		<h2>Theme: <%= @theme.name %></h2>
-		<p><%= @theme.description %></p>
-	</div>
+		<div class="page_title">
+			<h2>Theme: <%= @theme.name %></h2>
+			<p><%= @theme.description %></p>
+		</div>
 	<% else %>
-	<div class="page_title">
-		<h2><%= "#{current_community} #{@current_tab}" %></h2>
-		<p>Ask questions, contribute your expertise, and engage with other members. Sort discussions by topic using the tabs to the right.</p>
-	</div>
+		<div class="page_title">
+			<h2><%= "#{current_community} #{@current_tab}" %></h2>
+			<p>Ask questions, contribute your expertise, and engage with other members. Sort discussions by topic using the tabs to the right.</p>
+		</div>
 	<% end %>
 
 	<ul class="article_list discussions clearsub">
 
 		<% for discussion in @discussions %>
-		<li>
-			<div class="item_image module image">
-				<div class="image_wrap"><%= avatar_for(discussion.user, :small) %></div>
-			</div>
-			<div class="item_content">
-				<div class="title">
-					<h2><%= link_to(h(discussion),discussion) %></h2>
-					<ul class="meta_info clear">
-						<li class="author first">
-							<%= link_to(h(discussion.user),discussion.user) %>
-							<% if discussion.user.expert? %>
-							<span class="marker expert replace" /><span>Expert</span></span>
-							<% end %>
-						</li>
-						<li class="date"><%= discussion.created_at.to_s(:month_day) %></li>
-						<li class="comments"><a href="<%= url_for(discussion) %>#responses"><%= pluralize(discussion.responses.count, "Response") %></a></li>
-					</ul>
+			<li>
+				<div class="item_image module image">
+					<div class="image_wrap"><%= avatar_for(discussion.user, :small) %></div>
 				</div>
-				<div class="content">
-					<p><%=h truncate(discussion.body, :length => 200) %>&nbsp;<a class="more" href="<%= url_for(discussion) %>">Continue Reading</a><span class="arrow">&nbsp;</span></p>
+				<div class="item_content">
+					<div class="title">
+						<h2><%= link_to(h(discussion),discussion) %></h2>
+						<ul class="meta_info clear">
+							<li class="author first">
+								<%= link_to(h(discussion.user),discussion.user) %>
+
+								<% if discussion.user.expert? %>
+									<span class="marker expert replace" /><span>Expert</span></span>
+								<% end %>
+
+							</li>
+							<li class="date"><%= discussion.created_at.to_s(:month_day) %></li>
+							<li class="comments">
+								<%= link_to pluralize(discussion.responses.count, "Response"), discussion_path(discussion, :anchor => :responses) %>
+							</li>
+						</ul>
+					</div>
+					<div class="content">
+						<p><%= h truncate(discussion.body, :length => 200) %>&nbsp;<%= link_to "Continue Reading", discussion_path(discussion), :class => :more %><span class="arrow">&nbsp;</span></p>
+					</div>
 				</div>
-			</div>
-		</li>
+			</li>
 		<% end %>
 
 	</ul>
+
 	<% if @discussions.total_pages > 1 %>
-	<div class="apple_pagination">
-		<%= will_paginate @discussions %>
-	</div>
+		<div class="apple_pagination">
+			<%= will_paginate @discussions %>
+		</div>
 	<% end %>
+
 </div>
-<div id="sidebar">
-	<ul class="modules">
-		<li class="navigation themes">
-			<h3><span>Themes</span>
-				<% if logged_in_as_owner? %><a href="<%= url_for(themes_url) %>" class="button edit"><span>Edit</span></a><% end %>
-			</h3>
-			<ul class="content">
-				<% current_community.themes.each do |theme| %>
-					<% if theme.discussions.count > 0 %>
-						<% content_tag(:li, :class => current_class_for_theme(theme)) do %>
-							<%= link_to theme, discussions_url(:theme => theme) %>
-						<% end %>
-					<% end %>
-				<% end %>
-				<% if current_community.discussions.for_theme('nil').count > 0 %>
-					<% content_tag(:li, :class => current_class_uncategorized) do %>
-						<%= link_to "General", discussions_url(:theme => 'nil') %>
-					<% end %>
-				<% end %>
-				<% content_tag(:li, :class => current_class_all_tasks(), :id => "show_all") do %>
-					<%= link_to "All Discussions", discussions_url %>
-				<% end %>
-			</ul>
-		</li>
-	</ul>
-</div>
+<%= render :partial => 'theme_sidebar' %>

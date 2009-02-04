@@ -1,21 +1,16 @@
 class Response < ActiveRecord::Base
-  
-  validates_presence_of :body
   belongs_to :discussion
   belongs_to :user
-  
+
+  validates_presence_of :body
+
   is_indexed :fields => ['body'], :include => [{:association_name => 'discussion', :field => 'community_id'}]
-  
+
   def community
     discussion.community if discussion
   end
-  
-  def is_premium?
-    return discussion.is_premium?
-  end
-  
+
   def is_registered?
     return discussion.is_registered?
   end
-  
 end

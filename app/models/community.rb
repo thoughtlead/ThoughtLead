@@ -4,8 +4,8 @@ class Community < ActiveRecord::Base
   has_many :chapters, :through => :courses
   has_many :lessons, :through => :chapters
 
+  has_many :themes, :order => :position, :dependent => :destroy
   has_many :discussions, :dependent => :destroy
-  has_many :themes, :dependent => :destroy
   has_many :categories, :dependent => :destroy
   has_many :articles, :dependent => :destroy
   has_many :access_classes, :order => :position, :dependent => :destroy
