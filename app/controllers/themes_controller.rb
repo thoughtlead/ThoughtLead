@@ -6,6 +6,7 @@ class ThemesController < ApplicationController
     params[:themes].each_with_index do |id, index|
       Theme.update_all(['position=?', index+1], ['id=?', id])
     end
+    render :nothing => true
   end
 
   def index
