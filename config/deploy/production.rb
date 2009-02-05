@@ -4,6 +4,7 @@ role :app, "74.201.254.36:8118", :mongrel => true, :sphinx => true
 role :db , "74.201.254.36:8118", :primary => true
 set :rails_env, "production"
 set :branch, "production"
+set :deploy_via, :remote_cache
 
 set :environment_database, defer { production_database }
 set :environment_dbhost, defer { production_dbhost }
