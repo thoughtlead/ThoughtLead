@@ -13,4 +13,8 @@ class Response < ActiveRecord::Base
   def is_registered?
     return discussion.is_registered?
   end
+
+  def is_visible_to(user)
+    return discussion.is_visible_to(user)
+  end
 end

@@ -16,10 +16,10 @@
 					<dd><%= sanitize user.zipcode -%></dd>
 				</dl>
 			</li>
-		<% end # @user.each -%>
+		<% end -%>
 	<% else %>
 		<li>
-		You must&nbsp;<%= link_to "log in", login_url %>&nbsp;to view the contents of user profiles.
+			You must&nbsp;<%= link_to "log in", login_url %>&nbsp;to view the contents of user profiles.
 		</li>
 	<% end %>
 </ul>

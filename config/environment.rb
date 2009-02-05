@@ -97,23 +97,9 @@ require RAILS_ROOT + '/lib/strip_whitespace'
 
 Ultrasphinx::Search.excerpting_options = HashWithIndifferentAccess.new({
   :before_match => '<strong class="match">',
-  :after_match => '</strongong>',
+  :after_match => '</strong>',
   :chunk_separator => "...",
   :limit => 128,
   :around => 3,
-  :content_methods => [['title', 'display_name'], ['login'], ['body', 'description', 'content', 'about'], ['teaser'], ['interests'], ['location'], ['zipcode']] # The first responding method in each group for each record will be excerpted.
-}
-)
-
-Ultrasphinx::Search.query_defaults = HashWithIndifferentAccess.new({
-  :query => nil,
-  :page => 1,
-  :per_page => 100,
-  :sort_by => nil,
-  :sort_mode => 'relevance',
-  :weights => {},
-  :class_names => [],
-  :filters => {},
-  :facets => []
-}
-)
+  :content_methods => [['title', 'display_name'], ['login'], ['body', 'description', 'content', 'about'], ['teaser'], ['interests'], ['location'], ['zipcode']]
+  })

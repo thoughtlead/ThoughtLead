@@ -1,14 +1,14 @@
 <% lessons.each do |content| -%>
-<li>
-	<dl>
-		<dt><span class="result_type">Lesson:</span> <%= link_to content.title, content.lesson %></dt>
-		<dd>In course: <%= link_to content.lesson.chapter.course.title, :controller=>:courses, :action=>:show, :id=>content.lesson.chapter.course.id %></dd>
-		<dd class="description"><%= content.teaser %></dd>
-	</dl>
-	<% if content.lesson.is_premium? && !logged_in_as_active? %>
-		<p>Lesson content is restricted to&nbsp;<%= link_to "premium members", upgrade_url %>.</p>
-	<% elsif content.lesson.is_registered? && !logged_in? %>
-		<p>You must&nbsp;<%= link_to "log in", login_url %>&nbsp;to view the lesson contents.</p>
-	<% end %>
-</li>
+	<li>
+		<dl>
+			<dt><span class="result_type">Lesson:</span> <%= link_to content.title, content.lesson %></dt>
+			<dd>In course: <%= link_to content.lesson.chapter.course.title, course_path(content.lesson.chapter.course) %></dd>
+			<dd class="description"><%= content.teaser %></dd>
+		</dl>
+		<% if logged_in? && !current_user.has_access_to(content) %>
+			<p>Lesson content is restricted to&nbsp;<%= link_to "premium members", upgrade_url %>.</p>
+		<% elsif content.lesson.is_registered? && !logged_in? %>
+			<p>You must&nbsp;<%= link_to "log in", login_url %>&nbsp;to view the lesson contents.</p>
+		<% end %>
+	</li>
 <% end %>

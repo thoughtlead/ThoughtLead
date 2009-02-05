@@ -13,10 +13,6 @@ module AuthenticatedSystem
     logged_in? && current_user.super_admin?
   end
 
-  def logged_in_as_active?
-    logged_in? && current_user.active?
-  end
-
   def current_user_can_post?
     return logged_in? && (logged_in_as_owner? || current_user.can_post)
   end
