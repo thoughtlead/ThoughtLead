@@ -68,5 +68,5 @@ ActionController::Routing::Routes.draw do |map|
 
   map.library '/library', :controller => 'articles', :action => 'index', :conditions => { :is_client_domain => true }
   map.resources :articles, :conditions => { :is_client_domain => true }
-  map.resources :categories, :conditions => { :is_client_domain => true }
+  map.resources :categories, :collection => { :sort => :post }, :conditions => { :is_client_domain => true }
 end

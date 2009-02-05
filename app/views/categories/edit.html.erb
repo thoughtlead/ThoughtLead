@@ -8,10 +8,10 @@
 			</ul>
 		</div>
 		<% if logged_in? && current_user.owner? %>
-		<div class="action">
-			<span class="button_left">&nbsp;</span><a href="<%= new_article_url %>" class="button"><span class="icon create">+</span><span class="text">Create an Article</span></a>
-		</div>
-	    <% end %>
+			<div class="action">
+				<span class="button_left">&nbsp;</span><a href="<%= new_article_url %>" class="button"><span class="icon create">+</span><span class="text">Create an Article</span></a>
+			</div>
+		<% end %>
 	</div>
 	<div class="add_sep_item">
 		<h2>Edit Category</h2>

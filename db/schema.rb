@@ -9,7 +9,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20090203215422) do
+ActiveRecord::Schema.define(:version => 20090205204222) do
 
   create_table "access_class_relationships", :force => true do |t|
     t.integer "access_class_id", :null => false
@@ -62,6 +62,7 @@ ActiveRecord::Schema.define(:version => 20090203215422) do
     t.string   "name"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "position"
   end
 
   create_table "categorizations", :id => false, :force => true do |t|

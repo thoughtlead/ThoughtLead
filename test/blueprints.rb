@@ -119,3 +119,8 @@ Response.blueprint do
   discussion { Discussion.make }
   user { User.make(:community => discussion.community) }
 end
+
+Category.blueprint do
+  name { Sham.word }
+  community { Community.make }
+end
