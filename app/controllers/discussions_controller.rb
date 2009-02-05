@@ -1,7 +1,7 @@
 class DiscussionsController < ApplicationController
+  before_filter :login_required, :except => [ :index, :uncategorized, :show ]
   before_filter :load_objects
   before_filter :load_accessible_themes, :only => [:new, :create, :edit, :update]
-  before_filter :login_required, :except => [ :index, :uncategorized, :show ]
   before_filter :community_is_active
 
   def index

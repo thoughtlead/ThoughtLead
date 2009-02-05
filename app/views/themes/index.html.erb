@@ -10,11 +10,8 @@
 				<% end %>
 			</ul>
 		</div>
-		<% if current_user_can_post? %>
-			<div class="action">
-				<span class="button_left">&nbsp;</span><a href="<%= new_discussion_url %>" class="button"><span class="icon create">+</span><span class="text">Create a Discussion</span></a>
-			</div>
-		<% end %>
+
+		<%= create_discussion_link %>
 	</div>
 
 	<h2>Themes</h2>

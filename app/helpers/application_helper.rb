@@ -102,6 +102,20 @@ module ApplicationHelper
     themed_file("images/logo.gif")
   end
 
+  def create_discussion_link
+    if current_user_can_post?
+      content_tag :div, :class => :action, :id => :create_discussion do
+        span = content_tag :span, '&nbsp;', :class => :button_left
+        link = link_to new_discussion_path, :class => :button do
+          plus = content_tag :span, "+", :class => "icon create"
+          text = content_tag :span, "Create a Discussion", :class => "text"
+          "#{plus}#{text}"
+        end
+        "#{span}#{link}"
+      end
+    end
+  end
+
   private
 
   def themed_file(path, default_path = path)
