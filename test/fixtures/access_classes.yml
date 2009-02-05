@@ -1,0 +1,39 @@
+c1_premium:
+  community: c1
+  name: Premium
+  position: 1
+
+c1_superpremium:
+  community: c1
+  name: Super Premium
+  position: 2
+
+c2_premium:
+  community: c2
+  name: Premium
+  position: 1
+
+c3_premium:
+  community: c3
+  name: Premium
+  position: 1
+
+c3_ultrapremium:
+  community: c3
+  name: Ultrapremium
+  position: 2
+
+c3_super:
+  community: c3
+  name: Super
+  position: 3
+
+testing_premium:
+  community: testing
+  name: Premium
+  position: 1
+
+watirtest_premium:
+  community: watirtest
+  name: Premium
+  position: 1

@@ -10,15 +10,16 @@
 				<li><%= h(snippet(@course.to_s)) %></li>
 			</ul>
 		</div>
+
 		<% if logged_in_as_owner? %>
-		<div class="action">
-			<span class="button_left">&nbsp;</span><a href="<%= new_course_url %>" class="button"><span class="icon create">+</span><span class="text">Create a Course</span></a>
-		</div>
-	    <% end %>
+			<div class="action">
+				<span class="button_left">&nbsp;</span><a href="<%= new_course_url %>" class="button"><span class="icon create">+</span><span class="text">Create a Course</span></a>
+			</div>
+		<% end %>
 	</div>
 
 	<div class="title">
-		<h2><%=h @course %></h2>
+		<h2><%= h @course %></h2>
 		<ul class="meta_info clear">
 			<li class="date first"><%= @course.created_at.to_s(:day_month_year) %></li>
 			<li class="meta_tags">
@@ -28,57 +29,65 @@
 			</li>
 		</ul>
 	</div>
-	<%if logged_in_as_owner? %>
-	<div class="module actions">
-		<div class="content">
-			<h4>Course Actions</h4>
-			<ul class="action_nav">
-				<li class="edit"><%= link_to "Edit <span class='action_target'>Course</span>", edit_course_url(@course) if logged_in_as_owner? %></li>
-				<li class="edit"><%= link_to("Edit <span class='action_target'>Chapters</span>", course_chapters_url(@course)) if logged_in_as_owner? %></li>
-				<li class="delete"><%= link_to("Delete <span class='action_target'>Course</span>", course_url(@course), :method => :delete, :confirm => "Are you sure you would like to delete this course?  This action cannot be undone.") if logged_in_as_owner? %></li>
-			</ul>
+
+	<% if logged_in_as_owner? %>
+		<div class="module actions">
+			<div class="content">
+				<h4>Course Actions</h4>
+				<ul class="action_nav">
+					<li class="edit"><%= link_to "Edit <span class='action_target'>Course</span>", edit_course_url(@course) if logged_in_as_owner? %></li>
+					<li class="edit"><%= link_to("Edit <span class='action_target'>Chapters</span>", course_chapters_url(@course)) if logged_in_as_owner? %></li>
+					<li class="delete"><%= link_to("Delete <span class='action_target'>Course</span>", course_url(@course), :method => :delete, :confirm => "Are you sure you would like to delete this course?  This action cannot be undone.") if logged_in_as_owner? %></li>
+				</ul>
+			</div>
 		</div>
-	</div>
 	<% end %>
-	<p><%=h @course.description %></p>
+
+	<p><%= h @course.description %></p>
+
+	<% if logged_in_as_owner? && !@course.chapters.blank? %>
+		<p style="clear: both;">To re-order lessons, drag and drop them up and down.</p>
+	<% end %>
+
 	<ul class="lesson_list">
 		<% for chapter in @course.chapters %>
-		<% unless chapter.draft && !logged_in_as_owner? %>
-		<% chapter_number = chapter_number ? chapter_number + 1 : 1 %>
-		<li>
-			<h3>
-				<%=h "#{chapter_number.to_s_roman}. #{chapter.to_s}" %> 
-				<ul class="meta_info">
-					<li class="meta_tags">
-						<ul>
-							<% if chapter.draft %><li class="draft last">Draft</li><% end %>
-						</ul>
-					</li>
-				</ul>
-			</h3>
-			<ul>
-				<% for lesson in chapter.lessons  %>
-				<% if lesson.visible_to(current_user) %>
+			<% unless chapter.draft && !logged_in_as_owner? %>
 				<li>
-					<h4><%= link_to(h(lesson),[@course,chapter,lesson]) %></h4>
-					<ul class="meta_info">
-						<li class="meta_tags">
-							<ul>
-								<%= content_notes(lesson.content) %>
-							</ul>
-						</li>
-					</ul>
-					<p><%= teaser_format(lesson.content.teaser) %></p>
-				</li>
-				<% end %>
-				<% end %>
-			</ul>
+					<h3>
+						<%= h "#{chapter.position.to_s_roman}. #{chapter.to_s}" %>
+						<ul class="meta_info">
+							<li class="meta_tags">
+								<ul>
+									<% if chapter.draft %><li class="draft last">Draft</li><% end %>
+								</ul>
+							</li>
+						</ul>
+					</h3>
+					<% content_tag_for :ul, chapter do %>
+						<% for lesson in chapter.lessons  %>
+							<% if lesson.visible_to(current_user) %>
+								<% content_tag_for :li, lesson do %>
+									<h4><%= link_to(h(lesson), lesson) %></h4>
+									<ul class="meta_info">
+										<li class="meta_tags">
+											<ul>
+												<%= content_notes(lesson.content) %>
+											</ul>
+										</li>
+									</ul>
+									<p><%= teaser_format(lesson.content.teaser) %></p>
+								<% end %>
+							<% end %>
+						<% end %>
+					<% end %>
 
-			<% if logged_in_as_owner? %>
-			<div class="button clear"><a href="<%= url_for(new_course_chapter_lesson_url(@course, chapter)) %>"><span class="icon create">Add a Lesson</span></a></div>
+					<% if logged_in_as_owner? %>
+						<%= sortable_element dom_id(chapter), :url => sort_chapter_lessons_url(chapter), :complete => visual_effect(:highlight, dom_id(chapter)) %>
+
+						<div class="button clear"><a href="<%= url_for(new_chapter_lesson_url(chapter)) %>"><span class="icon create">Add a Lesson</span></a></div>
+					<% end %>
+				</li>
 			<% end %>
-		</li>
-		<% end %>
 		<% end %>
 	</ul>
 </div>

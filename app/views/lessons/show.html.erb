@@ -11,15 +11,17 @@
 				<li><%= h(snippet(@lesson.to_s)) %></li>
 			</ul>
 		</div>
+
 		<% if logged_in_as_owner? %>
-		<div class="action">
-			<span class="button_left">&nbsp;</span><a href="<%= new_course_url %>" class="button"><span class="icon create">+</span><span class="text">Create a Course</span></a>
-		</div>
+			<div class="action">
+				<span class="button_left">&nbsp;</span><a href="<%= new_course_url %>" class="button"><span class="icon create">+</span><span class="text">Create a Course</span></a>
+			</div>
 	    <% end %>
 	</div>
 
 	<%= render :partial => '/contents/show_content', :locals => { :content => @lesson.content } %>
 	<%= render :partial => '/contents/show_attachments', :locals => { :content => @lesson.content } %>
+
 	<div class="content_bar" id="bottom">
 		<div class="breadcrumbs">
 			<p>Jump to:</p>
@@ -31,12 +33,12 @@
 		</div>
 		<ul class="lesson_nav">
 			<% if (lesson_higher_item = @lesson.higher_item_visible_to(current_user)) %>
-				<li class="previous"><%= link_to("Previous Lesson",[lesson_higher_item.chapter.course,lesson_higher_item.chapter,lesson_higher_item]) %></li>
+				<li class="previous"><%= link_to("Previous Lesson", lesson_higher_item) %></li>
 			<% else %>
 				<li class="previous inactive"><a>Previous Lesson</a></li>
 			<% end %>
 			<% if (lesson_lower_item = @lesson.lower_item_visible_to(current_user)) %>
-				<li class="next"><%= link_to("Next Lesson",[lesson_lower_item.chapter.course,lesson_lower_item.chapter,lesson_lower_item]) %></li>
+				<li class="next"><%= link_to("Next Lesson", lesson_lower_item) %></li>
 			<% else %>
 				<li class="next inactive"><a>Next Lesson</a></li>
 			<% end %>

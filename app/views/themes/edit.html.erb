@@ -6,16 +6,14 @@
 			<ul>
 				<li class="first"><%= link_to "Discussions", discussions_path %></li>
 				<% if @theme %>
-				<li><%= @theme.name %></li>
+					<li><%= @theme.name %></li>
 				<% end %>
 			</ul>
 		</div>
-		<% if current_user_can_post? %>
-		<div class="action">
-			<span class="button_left">&nbsp;</span><a href="<%= new_discussion_url %>" class="button"><span class="icon create">+</span><span class="text">Create a Discussion</span></a>
-		</div>
-	    <% end %>
+
+		<%= create_discussion_link %>
 	</div>
+
 	<div class="add_sep_item">
 		<h2>Edit Theme</h2>
 		<%= render :partial => 'form', :locals => { :mode => :edit } %>

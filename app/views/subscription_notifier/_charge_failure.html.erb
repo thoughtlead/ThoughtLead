@@ -1,0 +1,11 @@
+Uh-oh!
+
+We were unable to charge your credit card <%= @subscription.card_number %> <%= number_to_currency(@subscription.amount) %> for your <%= @subscription.subscription_plan.name %> subscription plan. 
+
+Your account has been temporarily reduced to non-premium access until you update your billing method.
+
+Please visit your account page at the following URL to update your payment information as soon as possible:
+
+<%= edit_billing_information_url(:secure => true, :host => @subscription.user.community.host) %>
+
+Thank you for your business!

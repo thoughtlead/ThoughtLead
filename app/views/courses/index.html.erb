@@ -9,42 +9,45 @@
 			</ul>
 		</div>
 		<% if logged_in_as_owner? %>
-		<div class="action">
-			<span class="button_left">&nbsp;</span><a href="<%= new_course_url %>" class="button"><span class="icon create">+</span><span class="text">Create a Course</span></a>
-		</div>
-	    <% end %>
+			<div class="action">
+				<span class="button_left">&nbsp;</span><a href="<%= new_course_url %>" class="button"><span class="icon create">+</span><span class="text">Create a Course</span></a>
+			</div>
+		<% end %>
 	</div>
 	<div class="page_title">
 		<h2><%= "#{current_community} #{@current_tab}" %></h2>
 		<p>Take your understanding further with our courses.</p>
 	</div>
-	<ul class="article_list courses">
-	<% for course in @courses %>
-		<% if !course.draft || logged_in_as_owner?  %>
-		<li>
-			<div class="title">
-				<h2>
-					<%= link_to h(course), course %> 
-					<% if logged_in_as_owner? %>
-					<a class="button edit" href="<%= edit_course_url(course) %>"><span>Edit</span></a>
-					<% end %>
-				</h2>
-				<ul class="meta_info clear">
-					<li class="date first"><%= course.created_at.to_s(:day_month_year) %></li>
-					<li class="meta_tags">
-						<ul>
-							<%= course_index_notes(course) %>
+	<ul id="courses" class="article_list courses">
+		<% for course in @courses %>
+			<% if !course.draft || logged_in_as_owner?  %>
+				<% content_tag_for :li, course do %>
+					<div class="title">
+						<h2>
+							<%= link_to h(course), course %> 
+							<% if logged_in_as_owner? %>
+							<a class="button edit" href="<%= edit_course_url(course) %>"><span>Edit</span></a>
+							<% end %>
+						</h2>
+						<ul class="meta_info clear">
+							<li class="date first"><%= course.created_at.to_s(:day_month_year) %></li>
+							<li class="meta_tags">
+								<ul>
+									<%= course_index_notes(course) %>
+								</ul>
+							</li>
 						</ul>
-					</li>
-				</ul>
-			</div>
-			<div class="content">
-				<p><%=h course.description %> <a class="more" href="<%= url_for(course) %>">Keep Reading</a><span class="arrow">&nbsp;</span></p>
-			</div>
-		</li>
+					</div>
+					<div class="content">
+						<p><%=h course.description %> <a class="more" href="<%= url_for(course) %>">Keep Reading</a><span class="arrow">&nbsp;</span></p>
+					</div>
+				<% end %>
+			<% end %>
 		<% end %>
-	<% end %>
 	</ul>
+	<% if logged_in_as_owner? %>
+		<%= sortable_element "courses", :url => sort_courses_url %>
+	<% end %>
 </div>
 <div id="sidebar">
 	<ul class="modules">

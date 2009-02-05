@@ -412,14 +412,13 @@ h1, h2, h3, h4, h5, h6 {margin: 0.5em 0;}
 							background-position: 3px 2px;
 							background-repeat: no-repeat;
 						}
+
 							#main_content .meta_info .meta_tags li span.icon {
-								visibility: hidden;
 								display: block;
 								float: left;
-								overflow: hidden;
 							}
-								#main_content .meta_info .meta_tags li.premium span.icon {width: 4px;}
-								#main_content .meta_info .meta_tags li.registered span.icon {width: 5px;}
+								#main_content .meta_info .meta_tags li.premium span.icon {padding-left: 6px;}
+								#main_content .meta_info .meta_tags li.registered span.icon {width: 5px;overflow: hidden;}
 
 								#main_content .meta_info .meta_tags li span.content {padding-left: 5px;}
 
@@ -587,7 +586,7 @@ h1, h2, h3, h4, h5, h6 {margin: 0.5em 0;}
 					#main_content ul.categories_add select {width: 160px;}
 					#main_content ul.categories_add .inp_text {width: 146px;}
 					#main_content ul.categories_add button {margin-top: 4px;}
-				
+
 
 			#main_content .edit .submit_opts {}
 				#main_content .edit .submit_opts .button {float: left;}
@@ -1355,7 +1354,7 @@ h1, h2, h3, h4, h5, h6 {margin: 0.5em 0;}
 	.stroke .top {top: -1px;}
 	.stroke .right {right: -1px;}
 	.stroke .bottom {bottom: -1px;}
-	.stroke .left {left: -1px;}	
+	.stroke .left {left: -1px;}
 
 	.top_left {background-image: url(../images/template/corners/content_r5/top_left.png);}
 	.top_right {background-image: url(../images/template/corners/content_r5/top_right.png);}
@@ -1483,7 +1482,7 @@ form {
 		}
 			#main_content form .group.checkbox li {padding: 0 0 3px 0;}
 			#main_content form .group.checkbox input {
-				margin: 0 5px 0 0; 
+				margin: 0 5px 0 0;
 				float: left;
 			}
 
@@ -1523,6 +1522,24 @@ form {
 		#main_content .add_sep_item form.edit fieldset.submit {margin: 0;}
 		#main_content .add_sep_item form.edit input.inp_text {width: 200px;}
 
+  /* creditcard form */
+
+  #main_content .creditcard label {margin: 8px 0px 0px 0px;font-weight:bold;}
+  #main_content .creditcard .left {float: left}
+  #main_content .creditcard .right {float:none;}
+  #main_content .creditcard .right label {text-indent:5px}
+  #main_content .creditcard .right input, #main_content .creditcard .right select {margin-left:5px}
+  #main_content .creditcard .clear {clear: both;}
+
+
+
+
+
+
+
+
+
+
 
 /* Miscellaneous
 ----------------------------------------------- */
@@ -1544,3 +1561,8 @@ form {
 		position: absolute;
 		top: 5px; right: 5px;
 	}
+
+table.payment_history td, table.payment_history th {
+  vertical-align: top;
+  padding: 0px 4px 3px 4px;
+}

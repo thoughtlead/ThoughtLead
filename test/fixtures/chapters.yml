@@ -3,17 +3,17 @@ first_chapter:
     draft: false
 
 #===== WATIRTEST =====
-    
+
 tagged_1:
     course: tagged
     name: tagged chapter 1
     draft: false
-    
+
 antitagged_1:
     course: antitagged
     name: antitagged chapter 1
     draft: true
-    
+
 draft_1:
     course: draft
     name: draft chapter 1

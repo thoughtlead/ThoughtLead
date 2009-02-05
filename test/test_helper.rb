@@ -1,11 +1,8 @@
 ENV["RAILS_ENV"] = "test"
 require File.expand_path(File.dirname(__FILE__) + "/../config/environment")
-
-$: << File.expand_path(File.dirname(__FILE__) + "/integration/dsl")
-require 'basics_dsl'
-require 'thought_lead_dsl'
-
 require 'test_help'
+require File.expand_path(File.dirname(__FILE__) + "/blueprints")
+require File.expand_path(File.dirname(__FILE__) + "/integration/dsl/basics_dsl")
 
 class Test::Unit::TestCase
   # Transactional fixtures accelerate your tests by wrapping each test method
@@ -21,7 +18,7 @@ class Test::Unit::TestCase
   # don't care one way or the other, switching from MyISAM to InnoDB tables
   # is recommended.
   #
-  # The only drawback to using transactional fixtures is when you actually 
+  # The only drawback to using transactional fixtures is when you actually
   # need to test transactions.  Since your test is bracketed by a transaction,
   # any transactions started in your code will be automatically rolled back.
   self.use_transactional_fixtures = true
@@ -37,42 +34,42 @@ class Test::Unit::TestCase
   #
   # Note: You'll currently still have to declare fixtures explicitly in integration tests
   # -- they do not yet inherit this setting
-  fixtures :all
-  
-  def assert_unordered_arrays_equal(expected, actual, object_display_method = :to_s, message = '')
-    assert_arrays_equal(expected.sort, actual.sort, object_display_method, message)
-  end
-  
+  # fixtures :all
 
+  # Add more helper methods to be used by all tests here...
+
+  setup { Sham.reset }
+
+  def new_request(community, user = nil)
+    raise "The user isn't a User object" if user && user.class != User
+    @request = ActionController::TestRequest.new
+    @request.host = community.host
+    @request.session[:user_id] = user.nil? ? nil : user.id
+  end
 end
 
-
 class ActionController::IntegrationTest
-
-  def new_session(host, &block) 
-    open_session do | session | 
+  def new_session(host, &block)
+    open_session do | session |
       session.extend(BasicsDsl)
-      session.extend(ThoughtLeadDsl)
       session.host!(host)
       session.instance_eval(&block) if block
       session
-    end 
-  end 
-  
+    end
+  end
+
   def new_session_as(user_symbol, &block)
     user = users(user_symbol)
     session = new_session(user.community.host)
     session.login(user_symbol)
     session.instance_eval(&block) if block
     session
-  end 
-  
+  end
+
   def logger
     Rails.logger
   end
-    
 end
-
 
 module ActionController
   module Integration
@@ -83,4 +80,3 @@ module ActionController
     end
   end
 end
-

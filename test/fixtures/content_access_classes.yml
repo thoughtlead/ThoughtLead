@@ -1,0 +1,27 @@
+premium_content:
+  content: premium_content
+  access_class: c3_premium
+
+super_premium_content:
+  content: super_premium_content
+  access_class: c3_ultrapremium
+
+ultrapremium_content:
+  content: ultrapremium_content
+  access_class: c3_ultrapremium
+
+premium_draft_content:
+  content: premium_draft_content
+  access_class: c3_premium
+
+tagged_1_premium:
+  content: tagged_1_premium
+  access_class: watirtest_premium
+
+antitagged_1_premium:
+  content: antitagged_1_premium
+  access_class: watirtest_premium
+
+premium:
+  content: premium
+  access_class: watirtest_premium

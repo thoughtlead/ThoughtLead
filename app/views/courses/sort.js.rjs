@@ -1,0 +1,1 @@
+page << "jQuery('ul.article_list').children('li:odd').addClass('odd').end().children('li:even').removeClass('odd').end();";

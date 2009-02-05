@@ -1,37 +1,64 @@
-<% @current_tab = :'People' %><!-- TODO  Should only display if current user, otherwise show something like "_____'s Profile"  -->
+<% @current_tab = :'People' %>
+<%# TODO  Should only display if current user, otherwise show something like "_____'s Profile"  %>
 <div id="main_content">
 	<div class="content_bar" id="top">
 		<div class="breadcrumbs">
 			<p>Jump to:</p>
 			<ul>
 				<li class="first"><%= link_to "People", users_path %></li>
-				<li><%= current_user == @user ? "Your Profile" : @user.to_s  %></li>
+				<li><%= @title %></li>
 			</ul>
 		</div>
 	</div>
-	<h2><%= current_user == @user ? "Your Profile" : @user.to_s  %></h2>
+	<h2><%= @title %></h2>
 
+	<% if @show_edit || @show_disable %>
 
-	<% show_edit = current_user == @user || logged_in_as_owner? %>
-	<% show_disable = logged_in_as_owner? && !@user.owner? %>
-	<% if show_edit || show_disable %>
 		<div class="module actions profile_overlay">
 			<div class="content">
 				<h4>Profile Actions</h4>
 				<ul class="action_nav">
-					<% if show_edit %>
-					<li class="edit"><%= link_to "Edit <span class='action_target'>Profile</span>", edit_user_url(@user), :class => 'action' %></li>
-					<% end %>
-					<% if show_disable %>
-						<% if @user.disabled? %>
-							<li class="add"><%= link_to "Reactivate <span class='action_target'>User</span>", reactivate_user_url(@user), :class => 'action', :confirm =>  "Are you sure you would like to reactivate this user?" %></li>
-						<% else %>
-							<li class="delete"><%= link_to "Disable <span class='action_target'>User</span>", disable_user_url(@user), :class => 'action', :confirm =>  "Are you sure you would like to disable this user?" %></li>
+
+					<% if @show_edit %>
+
+						<li class="edit">
+							<%= link_to "Edit <span class='action_target'>Profile</span>", edit_user_url(@user), :class => 'action' %>
+						</li>
+						<% unless current_user.owner? %>
+						<li class="edit">
+							<%= link_to "Upgrade <span class='action_target'>Subscription</span>", upgrade_url, :class => 'action' %>
+						</li>
 						<% end %>
+						<% if @show_change_billing %>
+						<li class="edit">
+							<%= link_to "Change <span class='action_target'>Payment Method</span>", edit_billing_information_url(:secure => true), :class => 'action' %>
+						</li>
+						<% end %>
+						<% if current_user.owner? %>
+						<li class="edit">
+							<%= link_to "View <span class='action_target'>Payment History</span>", user_subscription_payments_url(@user), :class => 'action' %>
+						</li>
+						<% end %>
+
+					<% end %>
+
+					<% if @show_disable %>
+
+						<% if @user.disabled? %>
+							<li class="add">
+								<%= link_to "Reactivate <span class='action_target'>User</span>", reactivate_user_url(@user), :class => 'action', :confirm =>  "Are you sure you would like to reactivate this user?" %>
+							</li>
+						<% else %>
+							<li class="delete">
+								<%= link_to "Disable <span class='action_target'>User</span>", disable_user_url(@user), :class => 'action', :confirm =>  "Are you sure you would like to disable this user?" %>
+							</li>
+						<% end %>
+
 					<% end %>
 				</ul>
 			</div>
 		</div>
+
 	<% end %>
 
 
@@ -43,13 +70,13 @@
 						<%= avatar_for(@user, :large) %>
 						<% if @user.expert? %><span class="marker expert replace">Expert</span><% end %>
 					</div>
-				</td>
+				</th>
 				<td>
 					<dl class="profile_header">
 						<dt><%= (@user.disabled? ? "<strike>" : "") + h(@user) + (@user.disabled? ? "</strike>" : "") %></dt>
 						<% unless @user.location.blank? %><dd><%=h @user.location %></dd><% end %>
 						<% unless @user.zipcode.blank? %><dd><%=h @user.zipcode %></dd><% end %>
-						<dd><%= @user.active ? 'Premium User' : 'Non-Premium User' %></dd>				
+						<dd><%= get_membership_level_description(@user) %></dd>
 					</dl>
 					<div class="button clear"><a href="<%= email_user_url(@user) %>"><span class="icon email">Email <%= h(@user) %></span></a></div>
 				</td>
@@ -99,6 +126,30 @@
 				<th scope="row">Last Name</th>
 				<td><%= details_format(@user.last_name) %></td>
 			</tr>
+			<% end %>
+
+			<% if @show_change_billing %>
+
+			<tr>
+				<th scope="row">Subscription Information</th>
+				<td>
+
+					<% if @user.subscription.blank? %>
+						<p>Free subscription</p>
+					<% else %>
+						<p>Price: <%= h @user.subscription.summary %></p>
+						<% if @user.subscription.pending? %>
+							<p>Pending Payment</p>
+						<% elsif @user.subscription.trial? %>
+							<p>Trial expires: <%= @user.subscription.next_renewal_at %></p>
+						<% else %>
+							<p>Next payment due: <%= @user.subscription.next_renewal_at %></p>
+						<% end %>
+					<% end %>
+
+				</td>
+			</tr>
+
 			<% end %>
 		</tbody>
 	</table>

@@ -1,13 +1,13 @@
 class Article < ActiveRecord::Base
-  has_and_belongs_to_many :categories, :join_table=>'categorizations'
+  has_and_belongs_to_many :categories, :join_table => 'categorizations'
   belongs_to :content, :dependent => :destroy
   belongs_to :community
   before_save :update_new_categories
-  
+
   def to_s
-   (content && content.title) || ""
+    (content && content.title) || ""
   end
-  
+
   def article_categories=(it)
     self.categories = []
     for category_id in it.uniq
@@ -16,35 +16,47 @@ class Article < ActiveRecord::Base
       end
     end
   end
-  
+
   def article_new_categories=(it)
     #to be completed before save, so that we know all other work (which may be inter-dependent) is completed
     @new_category_names = it.uniq
   end
-  
-  def is_premium?
-    self.content.premium?
+
+  def access_classes
+    content.access_classes
   end
-  
+
   def is_registered?
-    self.content.registered?
+    content.registered?
   end
-  
+
   def visible_to(user)
-    !self.content.draft? || user == self.community.owner
+    return true if user == self.community.owner
+    return false if content.draft?
+
+    if content.access_classes.blank?
+      if content.registered?
+        return !user.nil?
+      else
+        return true
+      end
+    else
+      return false if user.nil?    
+      return user.has_access_to(content)
+    end
   end
-  
-  named_scope :for_category, lambda { | category_id | 
-    { :include=>:categories, :conditions => ({ 'categories.id' => (category_id == 'nil' || category_id == '') ? nil : category_id } if category_id) } 
+
+  named_scope :for_category, lambda { | category_id |
+    { :include=>:categories, :conditions => ({ 'categories.id' => (category_id == 'nil' || category_id == '') ? nil : category_id } if category_id) }
   }
-  
+
   def teaser_text
     self.content.teaser_text
-  end  
-  
+  end
+
   private
-  
-  def update_new_categories()
+
+  def update_new_categories
     unless @new_category_names.blank?
       @new_category_names.each do |new_category_name|
         unless new_category = Category.find_by_name_and_community_id(new_category_name,self.community.id)
@@ -57,5 +69,5 @@ class Article < ActiveRecord::Base
       end
     end
   end
-  
+
 end

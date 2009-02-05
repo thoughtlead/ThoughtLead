@@ -1,0 +1,3 @@
+@chapters.each do |chapter|
+  page << "jQuery('##{dom_id(chapter)} .roman').html('#{chapter.position.to_s_roman}');"
+end

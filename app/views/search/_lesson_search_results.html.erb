@@ -1,7 +1,7 @@
 <% lessons.each do |content| -%>
 <li>
 	<dl>
-		<dt><span class="result_type">Lesson:</span> <%= link_to content.title, [content.lesson.chapter.course, content.lesson.chapter, content.lesson] %></dt>
+		<dt><span class="result_type">Lesson:</span> <%= link_to content.title, content.lesson %></dt>
 		<dd>In course: <%= link_to content.lesson.chapter.course.title, :controller=>:courses, :action=>:show, :id=>content.lesson.chapter.course.id %></dd>
 		<dd class="description"><%= content.teaser %></dd>
 	</dl>

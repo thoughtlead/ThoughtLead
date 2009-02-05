@@ -1,0 +1,14 @@
+<div id="main_content">
+	<div class="content_bar" id="top">
+    <div class="breadcrumbs">
+			<p>Jump to:</p>
+			<ul>
+				<li class="first no_tab"><%= link_to "Community Setup", :controller => :admin, :action => :edit_community %></li>
+			</ul>
+		</div>
+	</div>
+	<div class="add_sep_item">
+		<h2>Edit Access Level <%= @access_class.name %></h2>
+	</div>
+  <%= render :partial => 'form', :locals => { :mode => :edit } %>
+</div>

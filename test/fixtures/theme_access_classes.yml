@@ -1,0 +1,7 @@
+monkeys:
+  theme: monkeys
+  access_class: c3_premium
+
+c3_premium:
+  theme: premium_theme
+  access_class: c3_premium

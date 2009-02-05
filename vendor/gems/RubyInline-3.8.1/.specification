@@ -1,0 +1,87 @@
+--- !ruby/object:Gem::Specification 
+name: RubyInline
+version: !ruby/object:Gem::Version 
+  version: 3.8.1
+platform: ruby
+authors: 
+- Ryan Davis
+autorequire: 
+bindir: bin
+cert_chain: []
+
+date: 2008-10-24 00:00:00 -04:00
+default_executable: 
+dependencies: 
+- !ruby/object:Gem::Dependency 
+  name: ZenTest
+  type: :runtime
+  version_requirement: 
+  version_requirements: !ruby/object:Gem::Requirement 
+    requirements: 
+    - - ">="
+      - !ruby/object:Gem::Version 
+        version: "0"
+    version: 
+- !ruby/object:Gem::Dependency 
+  name: hoe
+  type: :development
+  version_requirement: 
+  version_requirements: !ruby/object:Gem::Requirement 
+    requirements: 
+    - - ">="
+      - !ruby/object:Gem::Version 
+        version: 1.8.0
+    version: 
+description: Inline allows you to write foreign code within your ruby code. It automatically determines if the code in question has changed and builds it only when necessary. The extensions are then automatically loaded into the class/module that defines it.  You can even write extra builders that will allow you to write inlined code in any language. Use Inline::C as a template and look at Module#inline for the required API.
+email: 
+- ryand-ruby@zenspider.com
+executables: []
+
+extensions: []
+
+extra_rdoc_files: 
+- History.txt
+- Manifest.txt
+- README.txt
+files: 
+- History.txt
+- Manifest.txt
+- README.txt
+- Rakefile
+- demo/fastmath.rb
+- demo/hello.rb
+- example.rb
+- example2.rb
+- lib/inline.rb
+- test/test_inline.rb
+- tutorial/example1.rb
+- tutorial/example2.rb
+has_rdoc: true
+homepage: http://rubyforge.org/projects/rubyinline/
+post_install_message: 
+rdoc_options: 
+- --main
+- README.txt
+require_paths: 
+- lib
+required_ruby_version: !ruby/object:Gem::Requirement 
+  requirements: 
+  - - ">="
+    - !ruby/object:Gem::Version 
+      version: "0"
+  version: 
+required_rubygems_version: !ruby/object:Gem::Requirement 
+  requirements: 
+  - - ">="
+    - !ruby/object:Gem::Version 
+      version: "0"
+  version: 
+requirements: 
+- A POSIX environment and a compiler for your language.
+rubyforge_project: rubyinline
+rubygems_version: 1.3.1
+signing_key: 
+specification_version: 2
+summary: Inline allows you to write foreign code within your ruby code
+test_files: 
+- test/test_inline.rb

@@ -1,3 +1,0 @@
-class ActiveRecord::Base
-  
-end

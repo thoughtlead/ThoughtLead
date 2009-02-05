@@ -8,15 +8,6 @@
 		<%= f.error_messages %>
 
 		<fieldset class="input">
-			<div class="inp group">
-				<%= f.label :"Select a Username" %>
-				<%= f.text_field :login, :class => 'inp_text' %>
-			</div>
-			
-			<div class="inp group">
-				<%= f.label :display_name %>
-				<%= f.text_field :display_name, :class => 'inp_text' %>
-			</div>
 			
 			<div class="inp group">
 				<%= f.label :"Your First Name" %>
@@ -33,21 +24,6 @@
 				<%= f.text_field :email, :class => 'inp_text' %>
 			</div>
 
-			<div class="inp group">
-				<%= f.label :"Choose a Password" %>
-				<%= f.password_field :password, :class => 'inp_text' %>
-			</div>
-
-			<div class="inp group">
-				<%= f.label :password_confirmation %>
-				<%= f.password_field :password_confirmation, :class => 'inp_text' %>
-			</div>
-
-			<div class="inp group">
-				<%= f.label :"Why are you interested in joining this community?" %>
-				<%= f.text_area :reason, :class => 'inp_area' %>
-			</div>
-
 			<p>By signing up you agree to the <a href="/tos" target="_blank">terms of use</a> for this site.</p>
 
 		</fieldset>
@@ -55,4 +31,7 @@
 			<%= submit_tag "Sign Up", :class => "make_button", :id => "signup" %>
 		</fieldset>
 	<% end -%>
+	
+	<p>If you signed up and did not received your verification email <%= link_to "click here", forgot_password_url, :class => "forgot_password" %> to send the verification email again. Check your spam folder.</p>
+				
 </div>

@@ -1,0 +1,124 @@
+<% @current_tab = :'People' %>
+<div id="main_content">
+	<div class="content_bar" id="top">
+		<div class="breadcrumbs">
+			<p>Jump to:</p>
+			<ul>
+				<li class="first"><%= link_to "People", users_path %></li>
+				<li><%= link_to "Edit Subscription", upgrade_url %></li>
+			</ul>
+		</div>
+	</div>
+	<h2>Enter Payment Information</h2>
+
+	<% if @subscription.has_billing_information? %>
+
+		<h3>Current payment method:</h3>
+		<p>
+			<%= @subscription.paypal? ? 'PayPal' : "Credit Card #: #{@subscription.card_number}, expiration #{@subscription.card_expiration}" %>
+		</p>
+
+	<% end %>
+  <p>*required information</p>
+	<% form_tag billing_information_url(:secure => true), :method => :put do -%>
+	<%= error_messages_for :subscription %>
+	<%= error_messages_for :card %>
+	<%= error_messages_for :address %>
+
+	<fieldset class="creditcard">
+		<div class="left">
+			<label>First Name*</label>
+			<%= text_field :card, :first_name, :size => 20, :class => "inp_text" %>
+		</div>
+
+		<div class="right">
+			<label>Last Name*</label>
+			<%= text_field :card, :last_name, :size => 20, :class => "inp_text" %>
+		</div>
+
+		<div class="clear">
+			<label>Address*</label>
+			<%= text_field :address, :address1, :class => "inp_text" %><br/>
+			<%= text_field :address, :address2, :class => "inp_text" %>
+		</div>
+
+		<div class="clear">
+			<label>City*</label>
+			<%= text_field :address, :city, :class => "inp_text" %>
+		</div>
+
+		<div class="left">
+			<%= label_tag :address, "State*" %>
+			<%= text_field :address, :state, :class => "inp_text" %>
+		</div>
+
+		<div class="right">
+			<label>Zip*</label>
+			<%= text_field :address, :zip, :size => 12, :class => "inp_text" %>
+		</div>
+
+		<div class="clear">
+			<label>Country*</label>
+			<%= country_select :address, :country, ['United States', 'Canada']%>
+		</div>
+
+		<div class="clear">
+			<label>Phone*</label>
+			<%= text_field :address ,:phone, :size => 12, :class => "inp_text" %>
+		</div>
+
+		<div class="left">
+			<label>Card Number*</label>
+			<%= text_field :card, :number, :size => 20, :class => "inp_text" %>
+		</div>
+
+		<div class="right">
+			<label>Type*</label>
+			<%= select :card, :type, [['Visa', 'visa'], ['MasterCard', 'master'], ['American Express', 'american_express']] %>
+		</div>
+
+    <div class="clear"> </div>
+
+		<div class="left">
+			<label>Expiration*</label>
+			<%= select :card, :month, (1 .. 12) %>
+			<%= select :card, :year, (Time.now.year .. 10.years.from_now.year) %>
+		</div>
+
+    <script language="javascript">
+       function popup(page) {
+           window.open(page,"SecurityCodeExplanation","width=500, height=200, location=no, menubar=no, toolbar=no");
+       }
+    </script>
+
+		<div class="right">
+			<label>Security Code* <a href="javascript:popup('/cvv.html')">what's this?</a></label>
+			<%= text_field :card, :verification_value, :size => 4, :class => "inp_text"%>
+		</div>
+
+    <div class="clear"> </div>
+
+	</fieldset>
+
+  <h2>Review your subscription information</h2>
+  <p>Subscription to <%= @subscription.access_class.name %> content <%= get_access_description(@subscription.access_class) %></p>
+	<p>Price: <%= h @subscription.summary %></p>
+	<% if @subscription.pending? && (@subscription.subscription_plan.trial_period == 0) %>
+	  <p>Pending Payment: Your card will be charged when you click submit.</p>
+	<% elsif @subscription.trial? %>
+		<p>Trial expires: <%= @subscription.next_renewal_at %></p>
+	<% elsif @subscription.next_renewal_at %>
+		<p>Next payment due: <%= @subscription.next_renewal_at %></p>
+	<% elsif @subscription.subscription_plan && (@subscription.subscription_plan.trial_period > 0) %>
+	  <p>Free trial will expire: <%= Date.today.advance({@subscription.subscription_plan.trial_units => @subscription.subscription_plan.trial_period}.symbolize_keys) %></p>
+	<% end %>
+
+	<fieldset class="submit">
+		<ul class="submit_opts">
+			<li><%= submit_tag "Submit Payment Information" %></li>
+			<li class="text">or <%= link_to "Cancel", user_url(current_user) %></li>
+		</ul>
+	</fieldset>
+	<h3>Payment is proccessed through a secure connection</h3>
+	<% end %>
+</div>

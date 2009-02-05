@@ -1,9 +1,9 @@
 class Lesson < ActiveRecord::Base
   belongs_to :chapter
   belongs_to :content, :dependent => :destroy
-  
-  acts_as_list :scope => :chapter, :column => :chapter_position
-  
+
+  acts_as_list :scope => :chapter
+
   def higher_item_visible_to(user)
     lesson = self.higher_item
     while lesson && !lesson.visible_to(user) do
@@ -11,7 +11,7 @@ class Lesson < ActiveRecord::Base
     end
     return lesson
   end
-  
+
   def lower_item_visible_to(user)
     lesson = self.lower_item
     while lesson && !lesson.visible_to(user) do
@@ -19,33 +19,32 @@ class Lesson < ActiveRecord::Base
     end
     return lesson
   end
-  
+
   def community
     chapter.community
   end
-  
+
   def to_s
-   (content && content.title) || ""
+    (content && content.title) || ""
   end
-  
+
   def draft_to_users?
-    return self.content.draft? || self.chapter.draft_to_users?
+    return content.draft? || chapter.draft_to_users?
   end
-  
-  def is_premium?
-    self.content.premium?
-  end
-  
+
   def is_registered?
-    self.content.registered?
+    content.registered?
   end
-  
+
   def visible_to(user)
-    !self.draft_to_users? || user == self.chapter.course.community.owner
+    !self.draft_to_users? || user == chapter.course.community.owner
   end
-  
+
   def teaser_text
-    self.content.teaser_text
+    content.teaser_text
   end
-  
+
+  def access_classes
+    content.access_classes
+  end
 end
