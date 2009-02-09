@@ -57,7 +57,7 @@
 				</ul>
 			</div>
 		</div>
-		<%= textilize(sanitize(@discussion.body)) %>
+		<%= render_body(@discussion) %>
 	</div>
 
 	<% unless @discussion.responses.blank? %>
@@ -86,7 +86,7 @@
 									<li class="delete"><%= link_to "Delete", response, :controller => :responses, :method => :delete, :confirm => "Are you sure you'd like to delete this response?" if logged_in_as_owner? %></li>
 								</ul>
 								<div class="comment_body">
-									<%= textilize(sanitize(response.body)) %>
+									<%= render_body(response) %>
 								</div>
 							</div>
 						</div>
@@ -117,7 +117,7 @@
 
 						<% form_for [@discussion, Response.new] do |f| %>
 							<fieldset class="input">
-								<label for="area_comment">Enter your response:</label>
+								<%= f.label :body, "Enter your response:" %>
 								<%= f.text_area :body, :rows => 6 %>
 							</fieldset>
 							<fieldset class="submit">

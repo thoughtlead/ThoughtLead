@@ -45,4 +45,8 @@ module DiscussionsHelper
       pluralize((minutes / 1440).round, "day")
     end
   end
+
+  def render_body(item)
+    textilize(sanitize(item.body))
+  end
 end
