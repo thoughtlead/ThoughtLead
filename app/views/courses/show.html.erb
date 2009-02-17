@@ -54,7 +54,8 @@
 			<% unless chapter.draft && !logged_in_as_owner? %>
 				<li>
 					<h3>
-						<%= h "#{chapter.position.to_s_roman}. #{chapter.to_s}" %>
+						<% index ||= 0 and index += 1 %>
+						<%= h "#{index.to_s_roman}. #{chapter.to_s}" %>
 						<ul class="meta_info">
 							<li class="meta_tags">
 								<ul>
