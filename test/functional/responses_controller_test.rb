@@ -19,6 +19,7 @@ class ResponsesControllerTest < ActionController::TestCase
 
       should "send email to all subscribers" do
         assert_sent_email do |email|
+          email.from.first =~ /#{@community.host}/ &&
           email.subject =~ /New response from/ &&
           email.to.include?(@subscriber.email) &&
           email.body =~ /#{@response_text}/

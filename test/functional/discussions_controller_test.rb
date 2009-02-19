@@ -3,6 +3,8 @@ require File.dirname(__FILE__) + '/../test_helper'
 class DiscussionsControllerTest < ActionController::TestCase
   context "DiscussionsController" do
     setup do
+      ActionMailer::Base.deliveries = []
+
       @community = Community.make
       @gold = AccessClass.make(:community => @community)
       @silver = AccessClass.make(:community => @community)
@@ -38,6 +40,7 @@ class DiscussionsControllerTest < ActionController::TestCase
 
         should "only send emails to members that have access to the new discussion" do
           assert_sent_email do |email|
+            email.from.first =~ /#{@community.host}/ &&
             email.to.include?(@gold_user.email) &&
             email.body =~ /#{@title}/
           end
@@ -55,14 +58,17 @@ class DiscussionsControllerTest < ActionController::TestCase
 
         should "send emails to all subscribed members" do
           assert_sent_email do |email|
+            email.from.first =~ /#{@community.host}/ &&
             email.to.include?(@registered_user.email) &&
             email.body =~ /#{@title}/
           end
           assert_sent_email do |email|
+            email.from.first =~ /#{@community.host}/ &&
             email.to.include?(@gold_user.email) &&
             email.body =~ /#{@title}/
           end
           assert_sent_email do |email|
+            email.from.first =~ /#{@community.host}/ &&
             email.to.include?(@silver_user.email) &&
             email.body =~ /#{@title}/
           end
@@ -80,14 +86,17 @@ class DiscussionsControllerTest < ActionController::TestCase
 
         should "send emails to all subscribed members" do
           assert_sent_email do |email|
+            email.from.first =~ /#{@community.host}/ &&
             email.to.include?(@registered_user.email) &&
             email.body =~ /#{@title}/
           end
           assert_sent_email do |email|
+            email.from.first =~ /#{@community.host}/ &&
             email.to.include?(@gold_user.email) &&
             email.body =~ /#{@title}/
           end
           assert_sent_email do |email|
+            email.from.first =~ /#{@community.host}/ &&
             email.to.include?(@silver_user.email) &&
             email.body =~ /#{@title}/
           end
