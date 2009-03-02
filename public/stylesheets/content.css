@@ -1193,6 +1193,24 @@ h1, h2, h3, h4, h5, h6 {margin: 0.5em 0;}
 			}
 			#sidebar ul.modules li.cta .content .more:hover {text-decoration: underline;}
 
+		#sidebar ul.modules li.register {}
+			#sidebar ul.modules li.register form {}
+				#sidebar ul.modules li.register fieldset {}
+					#sidebar ul.modules li.register fieldset.input {}
+						#sidebar ul.modules li.register fieldset label {
+							margin: 6px 0 0 0; padding: 0;
+							font-size: 1.2em;
+						}
+						#sidebar ul.modules li.register fieldset.input input {width: 90%;}
+					#sidebar ul.modules li.register fieldset.submit {}
+						#sidebar ul.modules li.register fieldset.submit .button,
+						#sidebar ul.modules li.register fieldset.submit .button a {background: none; padding: 0;}
+						#sidebar ul.modules li.register fieldset.submit .button a {font-size: 1.3em;}
+						#sidebar ul.modules li.register fieldset.submit .button a:hover span {text-decoration: underline;}
+					#page #sidebar ul.modules li.register fieldset p {margin: 1em 0; font-size: 1.1em;}
+			
+
+
 		#sidebar ul.modules li.outline {}
 			#sidebar ul.modules li.outline ul {}
 				#sidebar ul.modules li.outline ul li {}
