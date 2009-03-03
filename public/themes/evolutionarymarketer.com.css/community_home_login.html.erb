@@ -1,0 +1,41 @@
+<% @current_tab = :Home %>
+<% content_for :head do %>
+	<%= stylesheet_link_tag('home') %>
+	<%= javascript_include_tag('home') %>
+<% end %>
+<div id="main_content" class="login">
+	<div class="content_bar" id="top">
+		<div class="content">
+			<h4>Evolutionary Marketer: The Marketing Community for Evolutionaries</h4>
+			<p>Welcome to our small but growing hub of evolutionaries who want to use marketing as a tool for creating a better future! Below, you'll find all the ways you can take advantage of this site—through reading articles and listening to interviews, taking our courses, conversing with fellow members, and meeting like-minded individuals. And, of course, if you'd like to take your education further, sign up for premium access by clicking the link in the box to the right.</p>
+		</div>
+	</div>
+	<ul class="section_list">
+		<li class="library">
+			<h4><span>Browse Library</span></h4>
+			<p>Explore our multimedia library to further your grasp on making a difference through marketing on the web. Browse articles, videos, audios and more. <%= link_to "Go to Library", articles_url, :class => "more" %><span class="arrow">&nbsp;</span></p>
+		</li>
+		<li class="courses">
+			<h4><span>Take Courses</span></h4>
+			<p>Take your understanding deeper with an Evolutionary Marketer course. We'll teach you the skills and techniques you need to turn your idea into an engine for change and innovation. <%= link_to "Go to Courses", courses_url, :class => "more" %><span class="arrow">&nbsp;</span></p>
+		</li>
+		<li class="discussions">
+			<h4><span>Join Discussions</span></h4>
+			<p>Contribute your expertise, find answers to your questions, and engage with other inspired evolutionaries by joining a discussion. <%= link_to "Go to Discussions", discussions_url, :class => "more" %><span class="arrow">&nbsp;</span></p>
+		</li>
+		<li class="people">
+			<h4><span>Meet People</span></h4>
+			<p>Create a profile and get to know your fellow community members by browsing or searching for similar interests, location, or skills. <%= link_to "Go to People", users_url, :class => "more" %><span class="arrow">&nbsp;</span></p>
+		</li>
+	</ul>
+</div>
+<div id="sidebar">
+	<ul class="modules">
+		<li class="cta register">
+			<div class="content">
+				<h4 class="get_premium replace">Get Premium Access</h4>
+				<p>Join Evolutionary Marketer Pro to get access to our premium content and features, including live conference calls, special bonus interviews and reports, and much more. <a class="more" href="/upgrade">Click here to find out more about Pro membership</a><span class="arrow">&nbsp;</span></p>
+			</div>
+		</li>
+	</ul>
+</div>

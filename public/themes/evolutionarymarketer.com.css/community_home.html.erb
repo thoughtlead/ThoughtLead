@@ -1,0 +1,61 @@
+<% @current_tab = :Home %>
+<% content_for :head do %>
+	<%= stylesheet_link_tag('home') %>
+	<%= javascript_include_tag('home') %>
+<% end %>
+<div id="main_content" class="marketing">
+	<div class="banner">
+		<div class="banner_wrap">
+		<div class="content">
+			<h2 class="tagline replace">What could matter more?</h2>
+			<p>When you set up your free Evolutionary Marketer account, you'll become part of a growing collective of inspired individuals using the tools of marketing to create a more conscious future. Just enter your name and email address in the box to the right, and you'll immediately be on your way to making more money and changing the world.</p>
+			<p class="register replace"><%= link_to "Register for Free Access", signup_url %></p>
+		</div>
+		</div>
+	</div>
+	<div class="page_content">
+		<h2>Here's a sample of what you'll learn when you sign up for your free Evolutionary Marketer account...</h2>
+		<ul class="feature_list clear">
+			<li><p>How to use email marketing as a tool to <strong>inspire the best in your readers</strong> and develop authentically positive relationships with them, while dramatically increasing your revenues</p></li>
+			<li><p>A 30+ page guide that teaches you the <strong>essential elements of online marketing</strong>&mdash;from making sense out of the web to creating highly effective, low-budget marketing campaigns</p></li>
+			<li><p>How <strong>Gary Vaynerchuk</strong> of Wine Library TV became a major force for change in the wine world&mdash;and why your &ldquo;social media strategy&rdquo; has much more to do with your own humanity than any clever tactics</p></li>
+			<li><p>The humble story of how <strong>Matt Flannery</strong>, co-founder of Kiva.org, created a world- and industry-changing website</p></li>
+			<li><p><strong>Jay Conrad Levinson</strong>, creator of Guerilla Marketing, busts 19 marketing myths and shows how to have a big impact with few resources</p></li>
+			<li><p>Why <strong>Rand Fishkin</strong>, founder of SEO Moz&mdash;the web&#x27;s leading SEO resource&mdash;explains how you can understand SEO with a simple Pac-Man diagram</p></li>
+			<li><p>And we&#x27;re just getting started...</p></li>
+		</ul>
+	</div>
+</div>
+<div id="sidebar">
+	<ul class="modules">
+		<li class="cta register">
+			<div class="content">
+				<h4 class="get_free replace">Get Free Access</h4>
+				<% form_for :user, @user, :url => signup_url, :html => {:class => 'edit'} do | f | -%>
+					<%= f.error_messages %>
+					<fieldset class="input">
+						<div class="inp group">
+							<%= f.label :"First Name" %>
+							<%= f.text_field :first_name, :class => 'inp_text', :size => 20 %>
+						</div>
+
+						<div class="inp group">
+							<%= f.label :"Last Name" %>
+							<%= f.text_field :last_name, :class => 'inp_text', :size => 20 %>
+						</div>
+
+						<div class="inp group">
+							<%= f.label :"Email Address" %>
+							<%= f.text_field :email, :class => 'inp_text', :size => 20 %>
+						</div>
+
+						<p class="disclaimer">By signing up you agree to the <a href="/tos" target="_blank">terms of use</a> for this site.</p>
+					</fieldset>
+					<fieldset class="submit">
+						<%= submit_tag "Sign Up", :class => "make_button", :id => "signup" %>
+					</fieldset>
+				<% end -%>
+			</div>
+		</li>
+	</ul>
+</div>
