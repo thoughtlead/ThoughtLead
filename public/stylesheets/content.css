@@ -1205,7 +1205,11 @@ h1, h2, h3, h4, h5, h6 {margin: 0.5em 0;}
 					#sidebar ul.modules li.register fieldset.submit {}
 						#sidebar ul.modules li.register fieldset.submit .button,
 						#sidebar ul.modules li.register fieldset.submit .button a {background: none; padding: 0;}
-						#sidebar ul.modules li.register fieldset.submit .button a {font-size: 1.3em;}
+						#sidebar ul.modules li.register fieldset.submit .button a {
+							padding: 3px 7px 1px 7px;
+							border: 1px solid #fff;
+							font-size: 1.3em;
+						}
 						#sidebar ul.modules li.register fieldset.submit .button a:hover span {text-decoration: underline;}
 					#page #sidebar ul.modules li.register fieldset p {margin: 1em 0; font-size: 1.1em;}
 			

@@ -20,10 +20,10 @@ h1, h2, h3, h4, h5, h6 {margin: 0.5em 0;}
 #header {}
 	#logo h1 {
 		background-image: url(images/headlines/h1_logo_bg.gif);
-		background-position: 0 43px;
-		width: 240px;
+		background-position: 0 33px;
+		width: 276px;
 	}
-	#logo h1 a {width: 240px;}
+	#logo h1 a {width: 276px;}
 
 
 /* Typography
@@ -320,6 +320,10 @@ a,
 		#sidebar ul.modules li.publishing {}
 			#sidebar ul.modules li.publishing .icon.premium {background-image: url(images/template/icon_premium_mod_pub.gif);}
 
+		#sidebar ul.modules li.register {}
+			#sidebar ul.modules li.register fieldset.submit {}
+				#sidebar ul.modules li.register fieldset.submit .button {}
+					#sidebar ul.modules li.register fieldset.submit .button a {border-color: #fff;}
 
 
 /* Footer
@@ -335,21 +339,6 @@ a,
 		background-color: #fff;
 		background-image: url(images/template/search_inp_bg.gif);
 	}
-
-.register form {}
-	.register fieldset {}
-		.register fieldset.input {}
-			.register fieldset label {
-				margin: 6px 0 0 0; padding: 0;
-				font-size: 1.2em;
-			}
-			.register fieldset.input input {width: 90%;}
-		.register fieldset.submit {}
-			.register fieldset.submit .button,
-			.register fieldset.submit .button a {background: none; padding: 0;}
-			.register fieldset.submit .button a {font-size: 1.3em;}
-			.register fieldset.submit .button a:hover span {text-decoration: underline;}
-		#page #sidebar .register fieldset p {margin: 1em 0; font-size: 1.1em;}
 
 
 /* Miscellaneous
@@ -370,6 +359,7 @@ a,
 	border-bottom-color: #ebd9ab;
 }
 #content #main_content .banner_wrap .content {width: auto;}
+	#content #main_content .banner_wrap .content p {font-size: 1.3em;}
 #content #main_content .banner_wrap .image {}
 	#main_content .banner h2 {background-image: url(images/headlines/h2_tagline_bg.gif);}
 	#main_content .banner .register {background-image: url(images/template/button_register_bg.gif);}
