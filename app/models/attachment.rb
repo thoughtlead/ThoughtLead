@@ -38,6 +38,11 @@ class Attachment < ActiveRecord::Base
     def video?
       encoded_with_panda?
     end
+    
+  def css_class
+    return 'video' if legacy_video? or video?
+    return type
+  end
   
   def update_panda_status(panda_video)
     # If the video has been encoded, save the url of the standard quality flash video which users will watch
@@ -95,7 +100,16 @@ class Attachment < ActiveRecord::Base
     return 'article' if content.article_content?
     return 'lesson' if content.lesson_content?
     return ''
-   end
+  end
+   
+  protected
+  def destroy_file_with_panda
+    # Do nothing (for the moment) if encoded with panda
+    return true if encoded_with_panda?
+    # Otherwise, do what we normally do...
+    destroy_file_without_panda
+  end
+  alias_method_chain :destroy_file, :panda
     
   private
 
