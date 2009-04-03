@@ -58,21 +58,26 @@ addAttachment = function() {
 
 	<div class="columns">
 		<div class="column one">
-			<h3 class="separator">Attachments</h3>
-			<ul class="attachments_list attachment">
-			</ul>
-			<ul class="attachments_add attachment repeatable clearsub">
-				<li class="create">
-					<%= file_field_tag "content[content_attachments][]", :size => 17, :class => "inp_file" %>
-				</li>
-			</ul>
-		</div>
-		<div class="column two">
-			<h3 class="separator">Embedded Media</h3>
-			<p>Media (video/audio) uploaded here will be embedded in the lesson.</p>
+			<h3 class="separator">Embedded Audio</h3>
+			<p>Audio uploaded here will be embedded in the lesson.</p>
 			<%= f.file_field :embedded_media, :size => 17, :class => "inp_file" %>
 		</div>
+		<div class="column two">
+		  <h3 class="separator">Embedded Video</h3>
+  		<p>Video uploaded on the <strong>next page</strong> will be converted and embedded in the lesson.</p>
+  		<p><%= check_box_tag :embed_video %> <label for="embed_video" style="font-size:10px; font-weight:normal; display:inline">I want to upload a video.</label></p>
+		</div>
 	</div>
+
+  <h3 class="separator">Attachments</h3>
+	<ul class="attachments_list attachment">
+	</ul>
+	<ul class="attachments_add attachment repeatable clearsub">
+		<li class="create">
+			<%= file_field_tag "content[content_attachments][]", :size => 17, :class => "inp_file wide" %>
+		</li>
+	</ul>
+
 
 	<h3 class="separator">Lesson Publishing</h3>
 	<ul class="checkbox group">

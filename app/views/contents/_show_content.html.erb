@@ -46,11 +46,11 @@
 	<p><%= teaser_format(content.teaser) %></p>
 </div>
 <% if (embedded_media = content.attachments.find_by_embedded(true)) %>
-	<% embedded_media_url = embedded_media.authenticated_s3_url(:expires_in => 2.hours) %>
+	<% embedded_media_url = embedded_media.url %>
 	<div class="module video">
-		<% if embedded_media.content_type.include?("image") %>
+		<% if embedded_media.image? %>
 		<img src="<%= embedded_media_url %>" />
-		<% elsif embedded_media.content_type.include?("video") %>
+		<% elsif embedded_media.legacy_video? %>
 		<div id="player<%=embedded_media.id%>">
 			This text will be replaced
 		</div>
@@ -65,7 +65,9 @@
 			so.addVariable('autostart', 'false');
 			so.write('player<%= embedded_media.id%>');
 		</script>
-		<% elsif embedded_media.content_type.include?("audio") %>
+		<% elsif embedded_media.video? %>
+		  <%= embedded_media.panda_embed_js %>
+		<% elsif embedded_media.audio? %>
 		<div id="player<%=embedded_media.id%>">
 		This text will be replaced
 		</div>
@@ -82,5 +84,6 @@
 		</script>
 		<% end %>
 	</div>
+	<div style="clear:both">&nbsp;</div>
 <% end %>
 <p><%= auto_link(content.body) %></p>

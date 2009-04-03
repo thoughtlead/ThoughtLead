@@ -1529,6 +1529,10 @@ form {
 			font-size: 1.1em;
 			width: 200px;
 		}
+		
+		#main_content form.edit .input input.inp_file.wide {
+			width: 80%;
+		}
 
 		#main_content form.edit .attachments_add {}
 			#main_content form.edit .attachments_add input.inp_file {}
