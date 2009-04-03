@@ -66,9 +66,12 @@ ActionController::Routing::Routes.draw do |map|
     access_classes.resources :subscription_plans, :conditions => { :is_client_domain => true }
   end
   
+  map.media_upload '/media/:id/upload', :controller => 'media', :action => 'upload'
+  map.media_done '/media/:id/done', :controller => 'media', :action => 'done'
+  map.media_status '/media/:id/status', :controller => 'media', :action => 'status', :conditions => { :method => :post }
+  
+  
   map.library '/library', :controller => 'articles', :action => 'index', :conditions => { :is_client_domain => true }
-  map.panda_done '/articles/:id/done', :controller => 'articles', :action => 'done'
-  map.panda_status '/articles/:id/status', :controller => 'articles', :action => 'status'
-  map.resources :articles, :member => {:status => :post, :upload => :get, :done => :get }, :conditions => { :is_client_domain => true }
+  map.resources :articles, :conditions => { :is_client_domain => true }
   map.resources :categories, :collection => { :sort => :post }, :conditions => { :is_client_domain => true }
 end

@@ -5,19 +5,18 @@
 </fieldset>
 </form>
 
-<% @current_tab = :Article %>
 <div id="main_content">
 	<div class="content_bar" id="top">
 		<div class="breadcrumbs">
-			<p>Jump to:</p>
+			<p>Uploading...</p>
 			<ul>
-				<li class="first"><%= link_to "Library", library_url(:category => @category) %></li>
+				<li class="first"></li>
 			</ul>
 		</div>
 	</div>
 
   <h2 class="separator">Upload Video</h2>
-	<p>Video uploaded on <strong>this page</strong> will be converted and embedded in the lesson.</p>
+	<p>Video uploaded on <strong>this page</strong> will be converted and embedded in your <%= @video.for_article_or_lesson? %>.</p>
   <iframe src="<%= @upload_form_url %>" width="80%" height="100" frameborder="0"></iframe>
 
 </div>

@@ -89,6 +89,14 @@ class Attachment < ActiveRecord::Base
     "#{self.url}.jpg"
   end
   
+  # returns string containing 'article' or 'lesson' depending on the content's container
+  def for_article_or_lesson?
+    return '' unless content
+    return 'article' if content.article_content?
+    return 'lesson' if content.lesson_content?
+    return ''
+   end
+    
   private
 
   def set_type_for_embedded_media

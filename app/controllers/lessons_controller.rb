@@ -15,6 +15,9 @@ class LessonsController < ApplicationController
   def new
     @lesson = Lesson.new
     @lesson.content = Content.new
+    
+    @media = Panda::Video.create
+    @upload_form_url = %(http://#{Panda.api_domain}:#{Panda.api_port}/videos/#{@media.id}/form)
   end
 
   def create
@@ -25,6 +28,8 @@ class LessonsController < ApplicationController
 
     return render(:action => :new) unless @lesson.content.save && @lesson.save
 
+    embed_video and return if params[:embed_video] 
+
     flash[:notice] = "Successfully created"
     redirect_to @lesson
   end
@@ -34,6 +39,8 @@ class LessonsController < ApplicationController
     @lesson.content.attributes = params[:content]
 
     return render(:action => :edit) unless @lesson.content.save && @lesson.save
+
+    embed_video and return if params[:embed_video] 
 
     flash[:notice] = "Successfully saved"
     redirect_to @lesson
@@ -53,6 +60,17 @@ class LessonsController < ApplicationController
   end
 
   private
+  
+  def embed_video
+    @panda_video = Panda::Video.create
+    @video = @lesson.content.attachments.build(:user => current_user, :embedded => true, :panda_id => @panda_video.id)
+    unless @video.save_without_validation
+      render :text => @video.inspect, :layout => false
+    else
+      flash[:notice] = "Ready to upload your video"
+      redirect_to media_upload_url(:id => @video.id)
+    end
+  end
 
   def get_access_controlled_object
     @lesson = current_community.lessons.find(params[:id]) if params[:id]

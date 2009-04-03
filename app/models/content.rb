@@ -67,6 +67,16 @@ class Content < ActiveRecord::Base
   def teaser_text
     self.teaser + "<br/>" + self.body.slice(0,300) + "...";
   end
+  
+  # Returns true if this content belongs to an article
+  def article_content?
+    !article.nil?
+  end
+  
+  # Returns true if this content belongs to a lesson/course
+  def lesson_content?
+    !lesson.nil?
+  end
 
   private
 
