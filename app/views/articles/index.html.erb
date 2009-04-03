@@ -31,7 +31,7 @@
 					<h2>
 						<%= link_to(h(article),article) %> 
 						<% if (embedded_media = article.content.attachments.find_by_embedded(true)) %>
-							<span class="media <%= embedded_media.type %>"><span>Image</span></span>
+							<span class="media <%= embedded_media.css_class %>"><span>Image</span></span>
 						<% end %>
 					</h2>
 					<ul class="meta_info clear">
