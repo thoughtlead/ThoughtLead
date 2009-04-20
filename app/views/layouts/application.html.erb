@@ -21,6 +21,7 @@
 			<%= yield %>
 		</div>
 		<%= render(:partial => '/layouts/footer') %>
-  	</div>  		
+  	</div>
+  	<%= google_stats if trackable? %>
 </body>
 </html>

@@ -47,6 +47,12 @@
 				<span class="hint">(i.e. "Click to purchase premium access for just $19.95 per month")</span>
 				<%= f.text_field :premium_text, :class => "inp_text"  %>
 			</div>
+			
+			<div class="inp group">
+				<%= f.label :ga_property_id, "Google Analytics Integration" %>
+				<span class="hint">(if you have a web property ID for this domain, e.g. "UA-123456-78", enter it here to enable tracking)</span>
+				<%= f.text_field :ga_property_id, :class => "inp_text"  %>
+			</div>
 		</fieldset>
 
 		<fieldset class="submit">

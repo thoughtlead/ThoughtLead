@@ -9,7 +9,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20090205204222) do
+ActiveRecord::Schema.define(:version => 20090420132936) do
 
   create_table "access_class_relationships", :force => true do |t|
     t.integer "access_class_id", :null => false
@@ -17,9 +17,9 @@ ActiveRecord::Schema.define(:version => 20090205204222) do
   end
 
   create_table "access_classes", :force => true do |t|
-    t.integer  "community_id", :null => false
-    t.string   "name",         :null => false
-    t.integer  "position",     :null => false
+    t.integer  "community_id",                 :null => false
+    t.string   "name",         :default => "", :null => false
+    t.integer  "position",                     :null => false
     t.datetime "created_at"
     t.datetime "updated_at"
     t.text     "description"
@@ -42,6 +42,7 @@ ActiveRecord::Schema.define(:version => 20090205204222) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.boolean  "embedded",     :default => false
+    t.string   "panda_id"
   end
 
   create_table "avatars", :force => true do |t|
@@ -90,6 +91,7 @@ ActiveRecord::Schema.define(:version => 20090205204222) do
     t.string   "premium_text"
     t.string   "gateway_login"
     t.string   "gateway_password"
+    t.string   "ga_property_id"
   end
 
   create_table "content_access_classes", :force => true do |t|
@@ -161,34 +163,34 @@ ActiveRecord::Schema.define(:version => 20090205204222) do
   end
 
   create_table "subscription_payments", :force => true do |t|
-    t.integer  "user_id",                                       :null => false
-    t.string   "description",                                   :null => false
-    t.decimal  "amount",         :precision => 10, :scale => 2, :null => false
+    t.integer  "user_id",                                                       :null => false
+    t.string   "description",                                   :default => "", :null => false
+    t.decimal  "amount",         :precision => 10, :scale => 2,                 :null => false
     t.string   "transaction_id"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
 
   create_table "subscription_plans", :force => true do |t|
-    t.string   "name",                                           :null => false
-    t.decimal  "amount",          :precision => 10, :scale => 2, :null => false
-    t.integer  "renewal_period",                                 :null => false
-    t.string   "renewal_units",                                  :null => false
-    t.integer  "trial_period",                                   :null => false
-    t.string   "trial_units",                                    :null => false
-    t.integer  "access_class_id",                                :null => false
+    t.string   "name",                                           :default => "", :null => false
+    t.decimal  "amount",          :precision => 10, :scale => 2,                 :null => false
+    t.integer  "renewal_period",                                                 :null => false
+    t.string   "renewal_units",                                  :default => "", :null => false
+    t.integer  "trial_period",                                                   :null => false
+    t.string   "trial_units",                                    :default => "", :null => false
+    t.integer  "access_class_id",                                                :null => false
     t.datetime "created_at"
     t.datetime "updated_at"
   end
 
   create_table "subscriptions", :force => true do |t|
-    t.integer  "user_id",                                             :null => false
+    t.integer  "user_id",                                                             :null => false
     t.integer  "subscription_plan_id"
-    t.decimal  "amount",               :precision => 10, :scale => 2, :null => false
-    t.integer  "renewal_period",                                      :null => false
-    t.string   "renewal_units",                                       :null => false
-    t.integer  "access_class_id",                                     :null => false
-    t.string   "state",                                               :null => false
+    t.decimal  "amount",               :precision => 10, :scale => 2,                 :null => false
+    t.integer  "renewal_period",                                                      :null => false
+    t.string   "renewal_units",                                       :default => "", :null => false
+    t.integer  "access_class_id",                                                     :null => false
+    t.string   "state",                                               :default => "", :null => false
     t.date     "next_renewal_at"
     t.string   "card_number"
     t.string   "card_expiration"

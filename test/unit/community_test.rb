@@ -44,5 +44,9 @@ class CommunityTest < ActiveSupport::TestCase
         assert @community.valid?, "#{each}.something.com should be valid"
       end
     end
+  
+    should "have an attribute to store Google Analytics web property id" do
+      assert @community.has_attribute?(:ga_property_id)
+    end
   end
 end

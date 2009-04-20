@@ -115,6 +115,15 @@ module ApplicationHelper
       end
     end
   end
+  
+  def trackable?
+    if Rails.env.production?
+      if current_community && current_community.attribute_present?(:ga_property_id)
+        GStats.analytics_account = current_community.ga_property_id
+        GStats.domain = current_community.host
+      end
+    end
+  end
 
   private
 
