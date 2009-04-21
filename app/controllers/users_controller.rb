@@ -4,6 +4,7 @@ class UsersController < ApplicationController
   before_filter :logged_in_as_owner?, :only => [ :disable, :reactivate]
   skip_before_filter :invalidate_return_to, :only => [ :signup ]
   before_filter :check_disabled
+  before_filter :set_section_title, :only => [:index, :show]
 
   def signup
     @user = User.new(params[:user])
@@ -37,16 +38,17 @@ class UsersController < ApplicationController
   end
 
   def show
-    @user = current_community.users.find(params[:id])
+    @user = current_community.users.find_by_login(params[:id])
     @viewing_self = current_user == @user
     @title = @viewing_self ? "Your Profile" : @user.to_s
     @show_edit = @viewing_self || logged_in_as_owner?
     @show_disable = logged_in_as_owner? && !@user.owner?
     @show_change_billing = @viewing_self && !@user.subscription.blank? && !@user.owner? && current_community.uses_internal_billing
+    set_headline :content => @user.display_name
   end
 
   def edit
-    @user = current_community.users.find(params[:id])
+    @user = current_community.users.find_by_login(params[:id])
     if @user.display_name.nil?
       unless @user.login == @user.email
         @user.display_name = @user.login
@@ -62,7 +64,7 @@ class UsersController < ApplicationController
   end
 
   def update
-    @user = User.find(params[:id])
+    @user = User.find_by_login(params[:id])
     @user.attributes = params[:user]
     return render(:action => :edit) unless @user.save
 
@@ -77,7 +79,7 @@ class UsersController < ApplicationController
   end
 
   def edit_password
-    @user = current_community.users.find(params[:id])
+    @user = current_community.users.find_by_login(params[:id])
     if @user != current_user && !logged_in_as_owner?
       flash[:warning] = "You do not have the privileges to reach that part of the site"
       redirect_to login_url
@@ -111,7 +113,7 @@ class UsersController < ApplicationController
   end
 
   def email
-    @send_to_user = current_community.users.find(params[:id])
+    @send_to_user = current_community.users.find_by_login(params[:id])
     @email = Email.new(params[:email])
     return if request.get? || !@email.valid?
 
@@ -122,7 +124,7 @@ class UsersController < ApplicationController
   end
 
   def disable
-    @user = User.find(params[:id])
+    @user = User.find_by_login(params[:id])
     unless @user.owner?
       @user.disabled = true
       @user.save
@@ -131,13 +133,17 @@ class UsersController < ApplicationController
   end
 
   def reactivate
-    @user = User.find(params[:id])
+    @user = User.find_by_login(params[:id])
     @user.disabled = false
     @user.save
     redirect_to @user
   end
 
   private
+  
+  def set_section_title
+    set_headline :section => 'Member Directory'
+  end
 
   def make_display_name(user)
     #first try to set it to "firstname lastname"
@@ -185,7 +191,9 @@ class UsersController < ApplicationController
 
   def check_disabled
     return true if !params[:id]
-    @user = User.find(params[:id])
+      
+    params[:id].gsub!('-','.')
+    @user = User.find_by_login(params[:id])
     if @user.disabled? && !logged_in_as_owner?
       flash[:warning] = "The user \"#{@user}\" has been disabled."
       if request.referer

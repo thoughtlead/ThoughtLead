@@ -5,7 +5,7 @@ class UsersControllerTest < ActionController::TestCase
     setup do
       @user = User.make
       new_request(@user.community, @user)
-      get :show, :id => @user.id
+      get :show, :id => @user.to_param
     end
 
     should_assign_to :user
@@ -29,7 +29,7 @@ class UsersControllerTest < ActionController::TestCase
       @gold_user = User.make(:community => @community, :access_class => @gold)
 
       new_request(@gold_user.community, @gold_user)
-      get :show, :id => @owner.id
+      get :show, :id => @owner.to_param
     end
 
     should_respond_with :success
@@ -43,7 +43,7 @@ class UsersControllerTest < ActionController::TestCase
       @user = User.make(:community => @community)
       @subscription = Subscription.make(:user => @user)
       new_request(@user.community, @user)
-      get :show, :id => @user.id
+      get :show, :id => @user.to_param
     end
 
     should_respond_with :success
@@ -62,7 +62,7 @@ class UsersControllerTest < ActionController::TestCase
       @user = User.make(:community => @community)
       @subscription = Subscription.make(:user => @user)
       new_request(@user.community, @user)
-      get :show, :id => @user.id
+      get :show, :id => @user.to_param
     end
 
     should_respond_with :success
@@ -81,7 +81,7 @@ class UsersControllerTest < ActionController::TestCase
       @user = User.make(:community => @community)
       @subscription = Subscription.make(:user => @user)
       new_request(@user.community, @user)
-      get :show, :id => @user.id
+      get :show, :id => @user.to_param
     end
 
     should_respond_with :success

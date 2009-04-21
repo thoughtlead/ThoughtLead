@@ -2,6 +2,7 @@ class ChaptersController < ApplicationController
   before_filter :load_objects
   before_filter :owner_login_required
 
+
   def sort
     params[:chapters].each_with_index do |id, index|
       Chapter.update_all(['position=?', index+1], ['id=?', id])

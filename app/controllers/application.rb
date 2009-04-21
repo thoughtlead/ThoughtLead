@@ -5,9 +5,10 @@ class ApplicationController < ActionController::Base
   include CommunityLocation
   include RomanNumerals
   include WillPaginate
-
+  
   before_filter :control_access
   before_filter :invalidate_return_to
+  before_filter :set_site_title
   protect_from_forgery
 
   filter_parameter_logging :password, :password_confirmation, :card
@@ -19,7 +20,16 @@ class ApplicationController < ActionController::Base
     request.env["HTTP_REFERER"] ? redirect_to(request.env["HTTP_REFERER"]) : redirect_to(redirect_opts)
   end
 
+  def set_headline(line = {})
+    @headline ||= {:site => nil, :section => nil, :subsection => nil, :content => nil}
+    @headline.merge!(line)
+  end
+
   private
+  
+  def set_site_title
+    set_headline :site => current_community.name
+  end
 
   def community_is_active
     if current_community && !current_community.active

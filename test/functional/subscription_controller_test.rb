@@ -43,7 +43,7 @@ class SubscriptionControllerTest < ActionController::TestCase
           @user.reload
         end
 
-        should_redirect_to "user_url(@user.id)"
+        should_redirect_to "user_url(@user.to_param)"
 
         should "set next renewal date to today plus renewal period" do
           assert_equal Date.today.advance({@plan.renewal_units => @plan.renewal_period}.symbolize_keys), @user.subscription.next_renewal_at, "should have moved today by #{@plan.renewal_period} #{@plan.renewal_units}"
@@ -73,7 +73,7 @@ class SubscriptionControllerTest < ActionController::TestCase
             @user.reload
           end
 
-          should_redirect_to "user_url(@user.id)"
+          should_redirect_to "user_url(@user.to_param)"
 
           should "actually set the plan" do
             assert_equal @plan, @user.subscription.subscription_plan
@@ -101,7 +101,7 @@ class SubscriptionControllerTest < ActionController::TestCase
             @user.reload
           end
 
-          should_redirect_to "user_url(@user.id)"
+          should_redirect_to "user_url(@user.to_param)"
 
           should "actually set the plan" do
             assert_equal @plan, @user.subscription.subscription_plan
@@ -124,7 +124,7 @@ class SubscriptionControllerTest < ActionController::TestCase
           put :update, {:subscription => {:subscription_plan_id => @plan.id}}
         end
 
-        should_redirect_to "user_url(@user.id)"
+        should_redirect_to "user_url(@user.to_param)"
 
         should "actually set the plan" do
           assert_equal @plan, @user.subscription.subscription_plan

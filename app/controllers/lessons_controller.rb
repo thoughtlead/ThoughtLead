@@ -2,6 +2,7 @@ class LessonsController < ApplicationController
   before_filter :load_objects
   before_filter :owner_login_required, :except => [ :show ]
   before_filter :community_is_active
+  before_filter :set_subsection_title
 
   uses_tiny_mce(tiny_mce_options)
 
@@ -60,6 +61,13 @@ class LessonsController < ApplicationController
   end
 
   private
+  
+  def set_subsection_title
+    if @lesson and @course
+      set_headline :section => @course
+      set_headline :subsection => @lesson 
+    end
+  end
   
   def embed_video
     @panda_video = Panda::Video.create

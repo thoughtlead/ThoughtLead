@@ -57,6 +57,10 @@ class User < ActiveRecord::Base
   def to_s
     display_name.blank? ? login : display_name
   end
+  
+  def to_param
+    login.gsub('.','-')
+  end
 
   def make_reset_password_token
     self.update_attribute(:reset_password_token, Digest::SHA1.hexdigest(Time.now.to_s.split(//).concat(login.split(//)).sort_by { rand }.join))

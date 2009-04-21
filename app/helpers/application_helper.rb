@@ -1,4 +1,9 @@
-module ApplicationHelper
+module ApplicationHelper  
+  def headline
+    pieces = [@headline[:content], @headline[:subsection], @headline[:section], @headline[:site]]
+    pieces.compact.join(" | ")
+  end
+  
   def avatar_link_for(user, size = :medium)
     link_to(avatar_for(user, size), user)
   end

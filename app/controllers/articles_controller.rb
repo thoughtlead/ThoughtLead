@@ -1,6 +1,7 @@
 class ArticlesController < ApplicationController  
   before_filter :owner_login_required, :except => [ :show, :index ]
   before_filter :community_is_active
+  before_filter :set_section_title
 
   uses_tiny_mce(tiny_mce_options)
 
@@ -17,6 +18,7 @@ class ArticlesController < ApplicationController
 
   def edit
     @article = current_community.articles.find(params[:id])
+    set_headline :content => "Edit Article - #{@article}"
   end
 
   def update
@@ -35,12 +37,14 @@ class ArticlesController < ApplicationController
   def show
     @article = current_community.articles.find(params[:id])
     owner_login_required if @article.content.draft? #is there a better home for me?
+    set_headline :content => @article
   end
 
   def new
     @article = Article.new
     @article.content = Content.new
-    @category = Category.find_by_id(params[:category]) if params[:category] && params[:category] != 'nil'    
+    @category = Category.find_by_id(params[:category]) if params[:category] && params[:category] != 'nil'   
+    set_headline :content => "Add a new article" 
   end
 
   def create
@@ -65,6 +69,10 @@ class ArticlesController < ApplicationController
   end
   
   private
+  
+  def set_section_title
+    set_headline :section => 'Library'
+  end
   
   def embed_video
     @panda_video = Panda::Video.create

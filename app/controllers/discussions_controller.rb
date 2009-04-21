@@ -3,9 +3,14 @@ class DiscussionsController < ApplicationController
   before_filter :load_objects
   before_filter :load_accessible_themes, :only => [:new, :create, :edit, :update]
   before_filter :community_is_active
+  before_filter :set_section_title
+  
 
   def index
     @discussions = filter_and_paginate_discussions(@theme.nil? ? current_community.discussions : @theme.discussions)
+    unless @theme.nil?
+      set_headline :subsection => @theme.name
+    end
   end
 
   def uncategorized
@@ -14,6 +19,7 @@ class DiscussionsController < ApplicationController
 
   def new
     @discussion = Discussion.new
+    set_headline :content => "Start a New Discussion"
   end
 
   def create
@@ -34,6 +40,8 @@ class DiscussionsController < ApplicationController
     unless current_user == @discussion.user || logged_in_as_owner?
       redirect_to @discussion
     end
+    set_headline :content => "Edit Discussion - #{@discussion.title}"
+    
   end
 
   def update
@@ -48,6 +56,7 @@ class DiscussionsController < ApplicationController
     @responses = @discussion.responses
     @responses = @responses.paginate :page => params[:page], :per_page => 5
     @email_subscription = @discussion.email_subscriptions.find_by_subscriber_id(current_user.id) if current_user
+    set_headline :content => @discussion.title
   end
 
   def destroy
@@ -58,6 +67,10 @@ class DiscussionsController < ApplicationController
   end
 
   private
+  
+  def set_section_title
+    set_headline :section => 'Discussions'
+  end
 
   def load_accessible_themes
     @accessible_themes = current_community.themes.select { |theme| current_user.has_access_to(theme) }
