@@ -50,7 +50,7 @@ class ApplicationController < ActionController::Base
 
     if logged_in?
       return if ac_object.access_classes.blank?
-      if !ac_object.access_classes.blank? && (current_user.access_class.nil? || !current_user.access_class.has_access_to(ac_object.access_classes))
+      if !ac_object.access_classes.blank? && (current_user.access_classes.empty? || !current_user.has_access_to(ac_object))
         flash[:notice] = "You need to upgrade your account to #{ac_object.access_classes.map(&:name).join(" or ")} if you wish to view this content."
         redirect_to upgrade_url and return
       end
