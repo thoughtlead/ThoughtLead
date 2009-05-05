@@ -46,6 +46,23 @@ class Test::Unit::TestCase
     @request.host = community.host
     @request.session[:user_id] = user.nil? ? nil : user.id
   end
+  
+  def deny(testable, msg=nil)
+    assert !testable, msg
+  end
+  
+  def assert_empty(container, msg=nil)
+    # assert not nil but empty
+    assert container && container.empty?, msg
+  end
+  
+  def assert_not_empty(container, msg=nil)
+    raise "Nil can't contain anything" if container.nil?
+    deny container.empty?, msg
+  end
+  alias_method :deny_empty, :assert_not_empty
+  
+    
 end
 
 class ActionController::IntegrationTest

@@ -28,6 +28,14 @@ class AccessClassTest < ActiveSupport::TestCase
       assert_equal true, @parent.has_access_to(@child)
       assert_equal true, @child.has_access_to(@grandchild)
     end
+    
+    should "have exclusive access to self" do
+      assert_equal true, @parent.has_exclusive_access_to(@parent)
+    end
+    
+    should "not have exclusive access to children" do
+      assert_equal false, @parent.has_exclusive_access_to(@child)
+    end
 
     should "not have access to its grandchild access classes" do
       assert_equal false, @parent.has_access_to(@grandchild)

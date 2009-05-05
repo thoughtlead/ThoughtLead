@@ -7,6 +7,11 @@ module UsersHelper
 
   def get_membership_level_description(user)
     return "Community Owner" if user.owner?
-    user.access_class.nil? ? 'Registered Member' : "#{user.access_class.name} Member"
+    return 'Registered Member' if user.access_classes.empty?
+    if user.access_classes.size > 1
+      "Special Access"
+    else
+      "#{user.access_classes.first.name} Member"
+    end
   end
 end

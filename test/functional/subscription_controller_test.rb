@@ -148,7 +148,7 @@ class SubscriptionControllerTest < ActionController::TestCase
       should "actually set the user's access class to nil" do
         @user.reload
         assert_nil @user.subscription, "User should not have a subscription"
-        assert_nil @user.access_class, "user should not have an access class if they choose the free plan"
+        assert_empty @user.access_classes, "user should not have an access class if they choose the free plan"
       end
     end
 

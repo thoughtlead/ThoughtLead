@@ -77,13 +77,13 @@ class UserTest < ActiveSupport::TestCase
       user.community = community
       AccessClass.make(:community => community)
 
-      assert_nil user.access_class
+      assert_empty user.access_classes
 
       community.owner = user
-      assert_not_nil user.access_class, "Owners should be premium members"
+      assert_not_empty user.access_classes, "Owners should be premium members"
 
-      user.access_class = nil
-      assert_not_nil user.access_class, "Owners should be premium members"
+      user.access_classes = []
+      assert_not_empty user.access_classes, "Owners should be premium members"
     end
 
     should "have the correct name displayed" do

@@ -5,6 +5,9 @@ class User < ActiveRecord::Base
   has_many :courses
   has_one :avatar, :dependent => :destroy
   belongs_to :access_class
+  has_many :user_classes
+  has_many :access_classes, :through => :user_classes
+  
   has_one :subscription
   has_many :subscription_payments
 
@@ -19,7 +22,7 @@ class User < ActiveRecord::Base
   validates_associated :avatar
 
   before_save :encrypt_password
-
+  after_create :add_user_class
   is_indexed :fields => ['login','about', 'interests', 'display_name', 'location', 'zipcode', 'community_id']
 
   def is_registered?
@@ -70,14 +73,10 @@ class User < ActiveRecord::Base
     community.owner == self
   end
 
-  alias :real_access_class :access_class
-  def access_class
-    # if the user is the community owner then they have access to everything
-    owner? ? Class.new { def has_access_to(*args) true end }.new : real_access_class
-  end
-
+  alias :real_access_classes :access_classes
   def access_classes
-    [access_class].compact
+    # if the user is the community owner then they have access to everything
+    owner? ? [Class.new { def has_access_to(*args) true end; def has_exclusive_access_to(*args) true end;  }.new] : real_access_classes
   end
 
   def can_post
@@ -95,8 +94,16 @@ class User < ActiveRecord::Base
   end
 
   def has_access_to(object)
-    return access_class.has_access_to(object.access_classes) if !access_class.nil?
-    #else we know user is only registered
+    # Test user access classes first
+    unless access_classes.empty?
+      if access_classes.size == 1
+        return access_classes.first.has_access_to(object.access_classes)
+      else
+        return access_classes.any? { |ac| ac.has_exclusive_access_to(object.access_classes) } 
+      end
+    end
+    # else we know user is only registered
+    # And return true only if the object has no required classes
     return object.access_classes.blank?
   end
 
@@ -114,5 +121,11 @@ class User < ActiveRecord::Base
 
   def password_required?
     @password_required || crypted_password.blank? || !@password.blank? || !@password_confirmation.blank?
+  end
+  
+  def add_user_class
+    unless access_class_id.nil?
+      user_classes.find_or_create_by_access_class_id(access_class_id)
+    end 
   end
 end

@@ -26,21 +26,36 @@
       <% end %>
 
 			<% if logged_in_as_owner? %>
-			<div class="checkbox group">
-				<%= f.check_box :expert %>
-				<%= f.label :expert %>
-			</div>
+  			<div class="checkbox group">
+  				<%= f.check_box :expert %>
+  				<%= f.label :expert %>
+  			</div>
+        <% if current_user != @user -%>
+    			<div class="checkbox group">
+            <% current_community.access_classes.each do |access_class|%>
+              <%= check_box_tag "user[access_class_ids][]", access_class.id, @user.access_class_ids.include?(access_class.id) %>
+              <%= f.label :user_access_classes, access_class.name %>        
+            <% end %>
+          </div>
+          <div class="checkbox group">
+            <% if @user.access_classes.size == 1 %>
+              <% user_class = @user.access_classes.first
+                user_children = user_class.children  %>
+              <p>Can access <strong><%= user_class.name %></strong> level
+                <% unless user_children.empty? -%> 
+                  and its children (<strong><%= user_children.map(&:name).join(", ") %></strong>)
+                <% end -%></p>
 
-			<div class="checkbox group">
-        <%= f.radio_button :access_class_id, nil %>
-        <%= f.label :access_class_id, 'Registered' %>
-
-        <% current_community.access_classes.each do |access_class|%>
-            <%= f.radio_button :access_class_id, access_class.id %>
-            <%= f.label :access_class_id, access_class.name %>
-        <% end %>
-      </div>
-
+            <% elsif @user.access_classes.size > 1 -%>
+              <% user_classes = @user.access_classes %>
+              <p>Can access only levels: <strong><%= user_classes.map(&:name).join(", ") %></strong>.</p>         
+            <% end -%>
+          </div>
+        <% else -%>
+          <div class="checkbox group">
+            <p>You own this community. You can see everything.</p>
+          </div>
+        <% end -%>
 			<% end %>
 
 			<div class="inp group">

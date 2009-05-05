@@ -142,7 +142,7 @@ class Subscription < ActiveRecord::Base
 
   def deactivate
     self.state = "pending"
-    self.user.access_class = nil
+    self.user.access_classes.clear
     save && user.save
   end
 
@@ -195,7 +195,7 @@ class Subscription < ActiveRecord::Base
   end
 
   def reset_access_class
-    self.user.access_class = nil
+    self.user.access_classes.clear
     self.user.save!
   end
 

@@ -21,4 +21,22 @@ class AccessClass < ActiveRecord::Base
     end
     return false
   end
+  
+  def has_exclusive_access_to(access_class_or_classes)
+    access_classes = if access_class_or_classes.is_a?(Enumerable)
+      access_class_or_classes
+    else
+      [access_class_or_classes].compact
+    end
+
+    return true if access_classes.empty?
+    access_classes.each do |access_class|
+      return true if access_class == self
+    end
+    return false
+  end
+  
+  def with_children
+    all = ([self] + children).uniq
+  end
 end

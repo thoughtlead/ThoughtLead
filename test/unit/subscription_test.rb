@@ -155,7 +155,7 @@ class SubscriptionTest < ActiveSupport::TestCase
         end
 
         should "set the user's access class back to Registered" do
-          assert_nil @subscription.user.access_class
+          assert_empty @subscription.user.access_classes
         end
 
         should "send email with charge failure" do
@@ -259,7 +259,7 @@ class SubscriptionTest < ActiveSupport::TestCase
         end
 
         should "set the user's access class back to Registered" do
-          assert_nil @subscription.user.access_class
+          assert_empty @subscription.user.access_classes
         end
 
         should "not update the next renewal date" do
@@ -321,7 +321,7 @@ class SubscriptionTest < ActiveSupport::TestCase
           end
 
           should "set the user's access class back to Registered" do
-            assert_nil @subscription.user.access_class
+            assert_empty @subscription.user.access_classes
           end
 
           should "send email with charge failure" do
