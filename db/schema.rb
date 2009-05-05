@@ -9,7 +9,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20090420132936) do
+ActiveRecord::Schema.define(:version => 20090504175637) do
 
   create_table "access_class_relationships", :force => true do |t|
     t.integer "access_class_id", :null => false
@@ -215,6 +215,13 @@ ActiveRecord::Schema.define(:version => 20090420132936) do
     t.boolean  "registered",   :default => false
     t.integer  "position"
   end
+
+  create_table "user_classes", :force => true do |t|
+    t.integer "user_id"
+    t.integer "access_class_id"
+  end
+
+  add_index "user_classes", ["user_id", "access_class_id"], :name => "index_user_classes_on_user_id_and_access_class_id", :unique => true
 
   create_table "users", :force => true do |t|
     t.string   "login"
