@@ -28,7 +28,11 @@ class ApplicationController < ActionController::Base
   private
   
   def set_site_title
-    set_headline :site => current_community.name
+    if @current_community && current_community.name
+      set_headline :site => current_community.name
+    else
+      set_headline :site => 'ThoughtLead'
+    end
   end
 
   def community_is_active
