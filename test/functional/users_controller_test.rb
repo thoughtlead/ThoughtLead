@@ -90,5 +90,35 @@ class UsersControllerTest < ActionController::TestCase
     should "have a link to update payment informaiton" do
       assert_select "span", {:count => 1, :text => /Payment/ }, "there should be a link to change payment information"
     end
+  
   end
+  
+  context "on post to forgot password" do
+    setup do
+      @community = Community.make(:premium_link => "http://www.google.com", :gateway_login => "", :gateway_password => "")
+      @user = User.make(:community => @community)
+      @subscription = Subscription.make(:user => @user)      
+    end
+
+    context "where login is set to a valid numeric ID" do
+      setup do
+        new_request(@user.community)
+        post :forgot_password, :login => @user.id
+      end
+      
+      should_respond_with :redirect
+      should_redirect_to "community_home_url"
+    end
+    
+    context "where login is set to a nonexistant numeric ID" do
+      setup do
+        new_request(@user.community)
+        post :forgot_password, :login => '3535234534'
+      end
+      
+      should_respond_with :redirect
+      should_redirect_to "forgot_password_url"
+    end
+  end
+
 end

@@ -94,6 +94,52 @@ class UserTest < ActiveSupport::TestCase
       user.display_name = "MySuper Display Name"
       assert_equal("MySuper Display Name", user.to_s)
     end
+    
+    should "have a method that finds by login or email" do
+      assert_nothing_raised { User.find_by_login_or_email("test") }
+    end
+    
+    should "have a finder method that works with id, login or email" do
+      user = user_for_finding
+      
+      # test for finding by id
+      assert_equal user, User.find_by_login_or_email(user.id)
+      
+      # try the email first, before we add a login
+      assert_not_nil User.find_by_login_or_email(user.email)
+      
+      user.login = "myuserlogin"
+      user.save
+      
+      assert_not_nil User.find_by_login_or_email(user.login)
+    end
+    
+    should "find users by login or email correctly when using community" do
+      user = user_for_finding
+      
+      assert_equal user, @community.users.find_by_login_or_email(user.id)
+
+      assert_equal user, @community.users.find_by_login_or_email(user.email)
+      
+      user.login = "myuserlogin"
+      user.save
+
+      assert_equal user, @community.users.find_by_login_or_email(user.login)
+    end
+
   end
 
+  def user_for_finding
+    a_user = User.make_unsaved(:community => @community)    
+    a_user.password = "1234%^aa"
+    a_user.password_confirmation = "1234%^aa"
+    if User.find_by_login(a_user.email).nil?
+      a_user.login = a_user.email
+    else
+      a_user.login = "12345aa"
+    end
+    a_user.save
+    
+    return a_user
+  end
 end

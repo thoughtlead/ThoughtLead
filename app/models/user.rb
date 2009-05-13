@@ -62,7 +62,11 @@ class User < ActiveRecord::Base
   end
   
   def to_param
-    login.gsub('.','-')
+    if login == email
+      id.to_s
+    else
+      login.gsub('.','-')
+    end
   end
 
   def make_reset_password_token
@@ -105,6 +109,31 @@ class User < ActiveRecord::Base
     # else we know user is only registered
     # And return true only if the object has no required classes
     return object.access_classes.blank?
+  end
+  
+  def self.find_by_login_or_email(token = nil)
+    return nil if token.nil?
+    
+    # Check for numeric first, and try a find by ID, returning if a user exists
+    begin
+      if token.to_i.to_s == token.to_s and user = User.find(token)
+        return user
+      end
+    rescue ActiveRecord::RecordNotFound
+    end
+    
+    # Otherwise, check the token against login and return user if exists
+    if user = User.find_by_login(token)
+       return user
+
+    # Then check the token against enail and return user if exists
+    elsif user = User.find_by_email(token)
+       return user
+
+    # No user found
+    else
+      return nil
+    end
   end
 
   def self.find_all_by_community_and_send_email_notifications(community, send_email_notifications = true)

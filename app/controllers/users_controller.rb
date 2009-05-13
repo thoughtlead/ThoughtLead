@@ -12,7 +12,7 @@ class UsersController < ApplicationController
     if request.post?
       @user.password = random_password(7)
       @user.password_confirmation = @user.password
-      if User.find_by_login(@user.email).nil?
+      if User.find_by_login_or_email(@user.email).nil?
         @user.login = @user.email
       else
         @user.login = random_password(10)
@@ -38,7 +38,7 @@ class UsersController < ApplicationController
   end
 
   def show
-    @user = current_community.users.find_by_login(params[:id])
+    @user = current_community.users.find_by_login_or_email(params[:id])
     @viewing_self = current_user == @user
     @title = @viewing_self ? "Your Profile" : @user.to_s
     @show_edit = @viewing_self || logged_in_as_owner?
@@ -48,7 +48,7 @@ class UsersController < ApplicationController
   end
 
   def edit
-    @user = current_community.users.find_by_login(params[:id])
+    @user = current_community.users.find_by_login_or_email(params[:id])
     if @user.display_name.nil?
       unless @user.login == @user.email
         @user.display_name = @user.login
@@ -64,10 +64,15 @@ class UsersController < ApplicationController
   end
 
   def update
-    @user = User.find_by_login(params[:id])
+    @user = User.find_by_login_or_email(params[:id])
     @user.attributes = params[:user]
     return render(:action => :edit) unless @user.save
-
+    
+    # Clear out user's access classes if edited
+    unless access_classes = params[:user][:access_class_ids] and !access_classes.empty?
+      @user.access_classes.clear
+    end
+    
     flash[:notice] = "Saved profile"
     redirect_to @user
   end
@@ -79,7 +84,7 @@ class UsersController < ApplicationController
   end
 
   def edit_password
-    @user = current_community.users.find_by_login(params[:id])
+    @user = current_community.users.find_by_login_or_email(params[:id])
     if @user != current_user && !logged_in_as_owner?
       flash[:warning] = "You do not have the privileges to reach that part of the site"
       redirect_to login_url
@@ -97,7 +102,7 @@ class UsersController < ApplicationController
   def forgot_password
     return if request.get?
 
-    if user = current_community.users.find_by_login(params[:login])
+    if user = current_community.users.find_by_login_or_email(params[:login])
       @new_password = random_password(20)
       user.password = user.password_confirmation = @new_password
       user.save!
@@ -113,7 +118,7 @@ class UsersController < ApplicationController
   end
 
   def email
-    @send_to_user = current_community.users.find_by_login(params[:id])
+    @send_to_user = current_community.users.find_by_login_or_email(params[:id])
     @email = Email.new(params[:email])
     return if request.get? || !@email.valid?
 
@@ -124,7 +129,7 @@ class UsersController < ApplicationController
   end
 
   def disable
-    @user = User.find_by_login(params[:id])
+    @user = User.find_by_login_or_email(params[:id])
     unless @user.owner?
       @user.disabled = true
       @user.save
@@ -133,7 +138,7 @@ class UsersController < ApplicationController
   end
 
   def reactivate
-    @user = User.find_by_login(params[:id])
+    @user = User.find_by_login_or_email(params[:id])
     @user.disabled = false
     @user.save
     redirect_to @user
@@ -193,7 +198,7 @@ class UsersController < ApplicationController
     return true if !params[:id]
       
     params[:id].gsub!('-','.')
-    @user = User.find_by_login(params[:id])
+    @user = User.find_by_login_or_email(params[:id])
     if @user.disabled? && !logged_in_as_owner?
       flash[:warning] = "The user \"#{@user}\" has been disabled."
       if request.referer
