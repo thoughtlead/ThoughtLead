@@ -37,3 +37,7 @@ config.after_initialize do
 end
 
 SslRequirement.disable_ssl_check = true
+
+# This suffix gets removed from the host before looking up the community
+# i.e., "demo.thoughtlead.com.tl-dev.local" becomes "demo.thoughtlead.com"
+$host_suffix = 'tl-staging.wideopenspac.es'
