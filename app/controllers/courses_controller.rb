@@ -2,7 +2,7 @@ class CoursesController < ApplicationController
   before_filter :load_objects
   before_filter :owner_login_required, :except => [ :index, :show ]
   before_filter :community_is_active
-  before_filter :set_section_title, :except => :show
+  before_filter :set_section_title
 
   def sort
     params[:courses].each_with_index do |id, index|
