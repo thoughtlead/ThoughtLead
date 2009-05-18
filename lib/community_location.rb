@@ -31,8 +31,9 @@ module CommunityLocation
   
   def find_community
     host = host_from(request)
-    
-    if host.blank? || host == $app_host 
+    if host.blank? or host == $app_host
+      logger.info "=====> No community"
+      
       @current_community = nil
     else
       @current_community = Community.find_by_host(host)

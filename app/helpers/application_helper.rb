@@ -1,6 +1,23 @@
 module ApplicationHelper  
   def headline
-    pieces = [@headline[:content], @headline[:subsection], @headline[:section], @headline[:site]]
+    site_head = [@headline[:site]].compact.join(" | ")
+    content_head = [@headline[:content], @headline[:subsection], @headline[:section]]
+    
+    total_length = site_head.length + content_head.compact.join(" | ").length
+    if total_length > 63
+      remaining = 63 - (site_head.length + 3)      
+      max = remaining / content_head.compact.size
+      chead = content_head.compact.collect do |ch|
+        if ch.to_s.length > max
+          "#{ch.to_s[0..max]}..."
+        else
+          ch
+        end
+      end
+    else
+      chead = content_head
+    end
+    pieces = chead << site_head
     pieces.compact.join(" | ")
   end
   

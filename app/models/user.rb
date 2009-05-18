@@ -74,6 +74,7 @@ class User < ActiveRecord::Base
   end
 
   def owner?
+    return false if community.nil?
     community.owner == self
   end
 
