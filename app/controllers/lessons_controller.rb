@@ -64,7 +64,6 @@ class LessonsController < ApplicationController
   
   def set_subsection_title
     if @lesson and @course
-      set_headline :section => @course
       set_headline :subsection => @lesson 
     end
   end
