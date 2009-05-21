@@ -1,0 +1,40 @@
+<% content_for :head do %>
+	<%= javascript_include_tag('jquery.livequery') %>
+	<%= javascript_include_tag('edit') %>
+	<%= javascript_include_tag('content') %>
+<% end %>
+
+<% form_for @page, :html => {:class => "edit"} do |f| %>
+	<%= f.error_messages %>
+
+	<fieldset class="input">
+
+  	<div class="inp group">
+  		<%= f.label(:title, 'Title') %>
+  		<%= f.text_field :name, :class => "inp_text" %>		
+  	</div>
+  	
+  	<div class="inp group">
+  		<%= f.label(:page_path, 'Keyword') %>
+  		<%= f.text_field :page_path, :class => "inp_text", :disabled => true %>	
+  	</div>
+  	
+  	<div class="inp group">
+  		<%= f.label(:body, 'Body') %>
+  		<%= f.text_area(:body, :rows => 25, :cols => 66, :mce_editable => "true", :class => "inp_area large") %>
+  	</div>
+
+	</fieldset>
+
+	<fieldset class="submit">
+		<ul class="submit_opts">
+			<% if mode == :new %>
+				<li><%= submit_tag "Create Category", :class => "make_button", :id => "create" %></li>
+			<% else %>
+				<li><%= submit_tag "Save Changes", :class => "make_button", :id => "save" %></li>
+				<li class="text">or <%= link_to "Cancel", categories_url %></li>
+			<% end %>
+		</ul>
+	</fieldset>
+
+<% end %>

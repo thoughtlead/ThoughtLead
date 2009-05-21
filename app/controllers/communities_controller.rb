@@ -17,7 +17,11 @@ class CommunitiesController < ApplicationController
   end
 
   def current_community_about
-    render :file => themed_file("community_about.html.erb"), :layout => true
+    unless @page = current_community.pages.find_by_page_path('about')
+      render :file => themed_file("community_about.html.erb"), :layout => true
+    else 
+      render_custom_page(@page)
+    end
   end
 
   def current_community_contact

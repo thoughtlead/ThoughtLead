@@ -1,0 +1,13 @@
+# Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
+
+one:
+  community_id: 1
+  name: MyString
+  body: MyText
+  standalone: false
+
+two:
+  community_id: 1
+  name: MyString
+  body: MyText
+  standalone: false

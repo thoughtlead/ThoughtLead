@@ -146,7 +146,7 @@ module ApplicationHelper
       end
     end
   end
-
+  
   private
 
   def themed_file(path, default_path = path)

@@ -1,4 +1,6 @@
 ActionController::Routing::Routes.draw do |map|
+  map.resources :pages, :conditions => { :is_client_domain => true }
+
   map.resource :session, :controller => 'session', :conditions => { :is_client_domain => true }
 
   map.login '/login', :controller => "session", :action => 'new', :conditions => { :is_client_domain => true }
@@ -74,4 +76,6 @@ ActionController::Routing::Routes.draw do |map|
   map.library '/library', :controller => 'articles', :action => 'index', :conditions => { :is_client_domain => true }
   map.resources :articles, :conditions => { :is_client_domain => true }
   map.resources :categories, :collection => { :sort => :post }, :conditions => { :is_client_domain => true }
+  
+  map.catch_all '*path', :controller => 'pages', :action => 'catchall'
 end
