@@ -64,7 +64,7 @@ class UsersController < ApplicationController
   end
 
   def update
-    @user = User.find_by_login_or_email(params[:id])
+    @user = current_community.users.find_by_login_or_email(params[:id])
     @user.attributes = params[:user]
     return render(:action => :edit) unless @user.save
     
@@ -129,7 +129,7 @@ class UsersController < ApplicationController
   end
 
   def disable
-    @user = User.find_by_login_or_email(params[:id])
+    @user = current_community.users.find_by_login_or_email(params[:id])
     unless @user.owner?
       @user.disabled = true
       @user.save
@@ -138,7 +138,7 @@ class UsersController < ApplicationController
   end
 
   def reactivate
-    @user = User.find_by_login_or_email(params[:id])
+    @user = current_community.users.find_by_login_or_email(params[:id])
     @user.disabled = false
     @user.save
     redirect_to @user
@@ -198,7 +198,7 @@ class UsersController < ApplicationController
     return true if !params[:id]
       
     params[:id].gsub!('-','.')
-    @user = User.find_by_login_or_email(params[:id])
+    @user = current_community.users.find_by_login_or_email(params[:id])
     if @user.disabled? && !logged_in_as_owner?
       flash[:warning] = "The user \"#{@user}\" has been disabled."
       if request.referer
