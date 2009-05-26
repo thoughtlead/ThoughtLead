@@ -3,7 +3,6 @@
 	<%= javascript_include_tag('edit') %>
 	<%= javascript_include_tag('content') %>
 <% end %>
-
 <% form_for @page, :html => {:class => "edit"} do |f| %>
 	<%= f.error_messages %>
 
@@ -16,13 +15,17 @@
   	
   	<div class="inp group">
   		<%= f.label(:page_path, 'Keyword') %>
-  		<%= f.text_field :page_path, :class => "inp_text", :disabled => true %>	
+  		<%= f.text_field :page_path, :class => "inp_text", :disabled => @editing %>	
   	</div>
   	
   	<div class="inp group">
   		<%= f.label(:body, 'Body') %>
-  		<%= f.text_area(:body, :rows => 25, :cols => 66, :mce_editable => "true", :class => "inp_area large") %>
+  		<%= f.text_area(:body, :rows => 25, :cols => 66, :mce_editable => @mce, :class => "inp_area large") %>
   	</div>
+  	<div class="checkbox group">
+  		<%= f.check_box :active %>
+			<%= f.label :active %>
+		</div>
 
 	</fieldset>
 

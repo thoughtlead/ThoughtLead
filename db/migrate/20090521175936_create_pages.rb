@@ -10,7 +10,7 @@ class CreatePages < ActiveRecord::Migration
 
       t.timestamps
     end
-    add_index :pages, [:community_id, :page_path], :unique => true
+    add_index :pages, [:community_id, :page_path], :name => "community_pages", :unique => true
   end
 
   def self.down

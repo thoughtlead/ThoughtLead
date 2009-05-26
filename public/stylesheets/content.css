@@ -1592,3 +1592,39 @@ table.payment_history td, table.payment_history th {
   vertical-align: top;
   padding: 0px 4px 3px 4px;
 }
+
+dl.pages {
+  font-size:1.2em;
+}
+dl.pages a {
+  color:#8fc400;
+}
+dl.pages .a-page {
+  margin-bottom:0.5em;
+  border-bottom:1px solid #eee;
+  
+}
+dl.pages .page_preview {
+  color:gray;
+  font-size:0.8em;
+}
+dl.pages dt, dl.pages dd {
+  display:inline-block;
+  margin-bottom:0.25em;
+  height:1.4em;
+  
+}
+dl.pages dt {
+  width:75%;
+  overflow:hidden;
+  padding-left:0.5em;
+}
+
+dl.pages dd {
+  vertical-align:top;
+}
+
+dl.pages dd.edit {
+  padding-left:16px;
+  background: transparent url(/themes/default/images/template/icon_action_edit.gif) no-repeat 50% left;
+}
