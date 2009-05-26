@@ -7,7 +7,7 @@
 	<%= f.error_messages %>
 
 	<fieldset class="input">
-
+    <%= f.hidden_field :standalone %>
   	<div class="inp group">
   		<%= f.label(:title, 'Title') %>
   		<%= f.text_field :name, :class => "inp_text" %>		

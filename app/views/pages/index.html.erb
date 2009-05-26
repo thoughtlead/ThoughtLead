@@ -1,8 +1,7 @@
 <div id="main_content">
 	<div class="content_bar" id="top">
 		<% if logged_in? && current_user.owner? %>
-		<div class="action">
-			<span class="button_left">&nbsp;</span><a href="<%= new_page_path %>" class="button"><span class="icon create">+</span><span class="text">New Content Page</span></a>
+		<div class="action"><a href="<%= new_page_path %>" class="button"><span class="icon create">+</span><span class="text">New Content Page</span></a>
 		  <span class="button_left">&nbsp;</span><a href="<%= new_page_path(:standalone => 'yes') %>" class="button"><span class="icon create">+</span><span class="text">New Landing Page</span></a>
 		</div>
 	    <% end %>
@@ -18,7 +17,8 @@
 	<dl class="pages">
 	<% @active_pages.each do |active| %>
 	<div class="a-page">
-	  <dt><%= link_to h(active.name), "/#{active.page_path}"  %> <span class="page_preview"><%= active.standalone? ? "(Landing)" : "(Content)" %></span></dt>
+	  <dt><%= link_to h(active.name), "/#{active.page_path}"  %> <span class="page_preview"><%= active.standalone? ? "(Landing)" : "(Content)" %></span>
+	    <div class="url"><small>http://<%= request.host %>/<%= active.page_path %></small></div></dt>
 	  <dd class="edit"><%= link_to "Edit", edit_page_path(active) %></dd>
 	</div>
 	<% end -%>

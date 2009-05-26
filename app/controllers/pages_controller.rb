@@ -18,7 +18,7 @@ class PagesController < ApplicationController
     @mce = params[:standalone] ? false : true
     @editing = false
     
-    @page = current_community.pages.new(:active => true, :standalone => @mce)
+    @page = current_community.pages.new(:active => true, :standalone => !@mce)
   end
   
   def create
@@ -27,7 +27,7 @@ class PagesController < ApplicationController
     
     flash[:notice] = "Successfully created"
     if @page.active?
-      redirect_to @page
+      redirect_to "/#{@page.page_path}"
     else 
       redirect_to :action => 'index'
     end
@@ -37,7 +37,8 @@ class PagesController < ApplicationController
     @editing = true
     
     @page = current_community.pages.find_by_page_path(params[:id], :conditions => {})
-    @mce = params[:standalone] ? false : true
+    @mce = @page.standalone? ? false : true
+    
   end
   
   def update
@@ -48,9 +49,18 @@ class PagesController < ApplicationController
     
     flash[:notice] = "Successfully saved"
     if @page.active?
-      redirect_to @page
+      redirect_to "/#{@page.page_path}"
     else 
       redirect_to :action => 'index'
+    end
+  end
+  
+  def destroy
+    @page = current_community.pages.find_by_page_path(params[:id])
+    if @page.update_attribute(:active, false)
+      redirect_to :action => 'index'
+    else
+      redirect_to "/#{@page.page_path}"
     end
   end
   

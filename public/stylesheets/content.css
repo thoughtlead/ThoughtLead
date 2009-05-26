@@ -1611,11 +1611,12 @@ dl.pages .page_preview {
 dl.pages dt, dl.pages dd {
   display:inline-block;
   margin-bottom:0.25em;
-  height:1.4em;
   
 }
 dl.pages dt {
-  width:75%;
+  height:3em;
+  
+  width:80%;
   overflow:hidden;
   padding-left:0.5em;
 }
@@ -1628,3 +1629,5 @@ dl.pages dd.edit {
   padding-left:16px;
   background: transparent url(/themes/default/images/template/icon_action_edit.gif) no-repeat 50% left;
 }
+
+dl.pages div.url { color:grey; }

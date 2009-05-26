@@ -2,6 +2,17 @@
 	<div class="title bar">
 		<h2><%= h(@page.name) %></h2>
 	</div>
+	<% if @page && logged_in_as_owner? %>
+  	<div class="module actions">
+  		<div class="content">
+  			<h4>Page Actions</h4>
+  			<ul class="action_nav">
+  				<li class="edit"><%= link_to("Edit <span class='action_target'>Page</span>", edit_page_url(@page))  if logged_in_as_owner? %></li>
+  				<li class="delete"><%= link_to("Deactivate <span class='action_target'>Page</span>", page_url(@page), :method => :delete, :confirm =>  "Are you sure you would like to deactivate this page?")  if logged_in_as_owner? %></li>
+  			</ul>
+  		</div>
+  	</div>
+  <% end %>
   <%= @page.body %>
 </div>
 

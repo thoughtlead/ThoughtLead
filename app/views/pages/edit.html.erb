@@ -1,14 +1,6 @@
-<div id="main_content">
-	<div class="content_bar" id="top">
-		<div class="breadcrumbs">
-		</div>
-		<% if logged_in? && current_user.owner? %>
-		<div class="action">
-			<span class="button_left">&nbsp;</span><a href="<%= new_article_url %>" class="button"><span class="icon create">+</span><span class="text">Create an Article</span></a>
-		</div>
-	    <% end %>
-	</div>
-
+<% content_for :page_filler do %>
 	<h2>Edit Page</h2>
 	<%= render :partial => 'form', :locals => { :mode => :edit }  %>
-</div>
+<% end %>
+
+<%= render :partial => 'page_wrapper' %>
