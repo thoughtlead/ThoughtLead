@@ -1,4 +1,6 @@
 class PagesController < ApplicationController
+  include AdminHelper
+  
   before_filter :community_is_active
   before_filter :owner_login_required, :except => [ :catchall ]
   
