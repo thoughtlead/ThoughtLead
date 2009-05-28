@@ -12,18 +12,22 @@
 		<p>Active pages are currently visible on your site. You can usually find them at <strong>http://<%= request.host %>/<em>keyword</em></strong>. A landing page is a self-contained HTML document, and does not appear within your site's current design; content pages do.</p>
 				<p>Inactive pages do not appear on your site. You might deactivate a page that includes a time-limited promotion, for example.</p>
 
+	<h2>Predefined Pages</h2>
+
+	<dl class="pages">
+  <% if @editable_pgs.empty? -%>
+    <p>You currently have no predefined pages.</p>
+  <% else %>
+    <%= render :partial => 'page', :collection => @editable_pgs %>
+  <% end -%>
+	</dl>
+	
 	<h2>Active Pages</h2>
   <% if @active_pages.empty? -%>
     <p>You currently have no active pages.</p>
   <% else %>
   	<dl class="pages">
-  	<% @active_pages.each do |active| %>
-  	<div class="a-page">
-  	  <dt><%= link_to h(active.name), "/#{active.page_path}"  %> <span class="page_preview"><%= active.standalone? ? "(Landing)" : "(Content)" %></span>
-  	    <div class="url"><small>http://<%= request.host %>/<%= active.page_path %></small></div></dt>
-  	  <dd class="edit"><%= link_to "Edit", edit_page_path(active) %></dd>
-  	</div>
-  	<% end -%>
+      <%= render :partial => 'page', :collection => @active_pages %>
   	</dl>
   <% end -%>
 	
@@ -33,12 +37,7 @@
   <% if @inactive_pages.empty? -%>
     <p>You currently have no inactive pages.</p>
   <% else %>
-  	<% @inactive_pages.each do |active| %>
-  	<div class="a-page">
-  	  <dt><%= h(active.name) %> <span class="page_preview"><%= active.standalone? ? "(Landing)" : "(Content)" %></span></dt>
-  	  <dd class="edit"><%= link_to "Edit", edit_page_path(active) %></dd>
-  	</div>
-  	<% end -%>
+    <%= render :partial => 'page', :collection => @inactive_pages %>
   <% end -%>
 	</dl>
 </div>

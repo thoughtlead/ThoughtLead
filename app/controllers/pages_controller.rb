@@ -9,6 +9,7 @@ class PagesController < ApplicationController
   def index
     @active_pages = current_community.pages.active.user_defined.all
     @inactive_pages = current_community.pages.inactive.user_defined.all 
+    @editable_pgs = current_community.pages.active.app_defined.all
   end
   
   def show

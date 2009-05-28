@@ -17,19 +17,15 @@ class CommunitiesController < ApplicationController
   end
 
   def current_community_about
-    unless @page = current_community.pages.find_by_page_path('about')
-      render :file => themed_file("community_about.html.erb"), :layout => true
-    else 
-      render_custom_page(@page)
-    end
+    custom_page_or_themed_file_for 'about'
   end
 
   def current_community_contact
-    render :file => themed_file("community_contact.html.erb"), :layout => true
+    custom_page_or_themed_file_for 'contact'
   end
 
   def current_community_tos
-    render :file => themed_file("community_tos.html.erb"), :layout => false
+    custom_page_or_themed_file_for 'tos', :layout => false
   end
 
   def new
@@ -75,4 +71,15 @@ class CommunitiesController < ApplicationController
   def community_layout
     ['new', 'choose_plan', 'index', 'create'].include?(params[:action]) ? 'community_home' : 'application'
   end
+  
+  def custom_page_or_themed_file_for(path, opts = {:layout => true})
+    layout = opts.delete(:layout)
+    unless @page = current_community.pages.active.find_by_page_path(path)
+      render :file => themed_file("community_#{path}.html.erb"), :layout => layout
+    else 
+      render_custom_page(@page)
+    end
+  end
+    
+    
 end
