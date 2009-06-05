@@ -15,6 +15,8 @@ ActionController::Routing::Routes.draw do |map|
   map.communities '/communities', :controller => "communities", :action => 'index', :conditions => { :is_client_domain => true }
   map.communities_activate '/communities/toggle_activation/:id', :controller => "communities", :action => 'toggle_activation', :conditions => { :is_client_domain => true }
 
+  map.setup '/getting-started/:action/:id', :controller => "setup", :conditions => { :is_client_domain => false }
+
   map.community_home '', :controller => "communities", :action => 'current_community_home', :conditions => { :is_client_domain => true }
   map.community_about '/about', :controller => "communities", :action => 'current_community_about', :conditions => { :is_client_domain => true }
   map.community_contact '/contact', :controller => "communities", :action => 'current_community_contact', :conditions => { :is_client_domain => true }

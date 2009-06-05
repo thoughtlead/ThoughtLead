@@ -16,7 +16,7 @@ config.action_controller.perform_caching             = false
 # Don't care if the mailer can't send
 config.action_mailer.raise_delivery_errors = false
 
-$app_host = 'thoughtleaddev.com'
+$app_host = 'thoughtlead.com'
 
 ActionMailer::Base.raise_delivery_errors = true
 ActionMailer::Base.delivery_method = :smtp
@@ -37,3 +37,7 @@ ENV['INLINEDIR'] = Rails.root + "/tmp"
 # This suffix gets removed from the host before looking up the community
 # i.e., "demo.thoughtlead.com.tl-dev.local" becomes "demo.thoughtlead.com"
 $host_suffix = 'tl-dev.local'
+
+if $host_suffix
+  $dev_host = [$app_host, $host_suffix].join(".")
+end
