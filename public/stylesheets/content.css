@@ -1557,12 +1557,15 @@ form {
   #main_content .creditcard .right input, #main_content .creditcard .right select {margin-left:5px}
   #main_content .creditcard .clear {clear: both;}
 
+  /* setup form */
+  fieldset.setup { padding:5px 10px 10px 10px; border:1px solid #fcfcfc; margin-bottom:20px; }
+  fieldset.setup legend { margin: 0 -10px; }
 
+  div.inp.right { float:right; }
+  div.inp.left { float:left; }
 
-
-
-
-
+  .left.buffered { margin-left:10px; }
+  .right.buffered { margin-right:10px; }
 
 
 

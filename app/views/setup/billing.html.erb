@@ -1,0 +1,61 @@
+<div id="main_content">
+	<div class="content_bar" id="top">
+		<div class="breadcrumbs">
+			<p>Jump to:</p>
+			<ul>
+				<li class="first no_tab"><%= link_to "Home", root_url %></li>
+			</ul>
+		</div>
+	</div>
+
+	<h2><%= @page_title = "Create a community" %></h2>
+
+	<% form_for @community, :html => {:class => "edit"} do | f | -%>
+
+		<%= error_messages_for :user, :community %>
+
+		<fieldset class="input setup" id="community-info">
+      <legend><h3>Community Information</h3></legend>
+			<div class="inp group">
+				
+			  <p><strong>Name</strong>: <%= @community.name %></p>
+			</div>
+			
+			<div class="inp group">
+			  <p><strong>Host</strong>: <%= @community.host %></p>
+
+			</div>
+		</fieldset>
+		<fieldset class="input setup" id="personal-info">
+      <legend><h3>Your Account</h3></legend>
+			<div class="inp group">
+        <p><strong>Login</strong>: <%= @user.login %></p>
+			</div>
+
+			<div class="inp group" style="overflow:scroll-y">
+				  <p><strong>Name</strong>: <%= [@user.first_name, @user.last_name].join(" ") %></p>
+			</div>
+
+      <div style="clear:both"></div>
+			<div class="inp group">
+			  <p><strong>Email</strong>: <%= @user.email %></p>
+			</div>
+
+		</fieldset>
+
+		
+
+    <fieldset class="input setup" id="cc-info">
+      <legend><h3>Billing Details</h3></legend>
+  		<p>... Description of monthly costs, etc go here ... </p>
+      <%= render :partial => 'billing_information/cc_fields', :locals => {:card => @card }%>
+    </fieldset>
+    
+		<fieldset class="submit">
+			<ul class="submit_opts">
+				<li><%= submit_tag 'Sign up', :class => "make_button", :id => "create" %></li>
+				<li class="text">or <%= link_to "Cancel", root_url %></li>
+			</ul>
+		</fieldset>
+	<% end -%>
+</div>

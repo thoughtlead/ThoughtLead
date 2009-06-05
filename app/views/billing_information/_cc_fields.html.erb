@@ -1,0 +1,66 @@
+<div class="left">
+	<label>First Name*</label>
+	<%= text_field :card, :first_name, :size => 20, :class => "inp_text" %>
+</div>
+
+<div class="right">
+	<label>Last Name*</label>
+	<%= text_field :card, :last_name, :size => 20, :class => "inp_text" %>
+</div>
+
+<div class="clear">
+	<label>Address*</label>
+	<%= text_field :address, :address1, :class => "inp_text" %><br/>
+	<%= text_field :address, :address2, :class => "inp_text" %>
+</div>
+
+<div class="clear">
+	<label>City*</label>
+	<%= text_field :address, :city, :class => "inp_text" %>
+</div>
+
+<div class="left">
+	<%= label_tag :address, "State*" %>
+	<%= text_field :address, :state, :class => "inp_text" %>
+</div>
+
+<div class="right">
+	<label>Zip*</label>
+	<%= text_field :address, :zip, :size => 12, :class => "inp_text" %>
+</div>
+
+<div class="clear">
+	<label>Country*</label>
+	<%= country_select :address, :country, ['United States', 'Canada']%>
+</div>
+
+<div class="clear">
+	<label>Phone*</label>
+	<%= text_field :address ,:phone, :size => 12, :class => "inp_text" %>
+</div>
+
+<div class="left">
+	<label>Card Number*</label>
+	<%= text_field :card, :number, :size => 20, :class => "inp_text" %>
+</div>
+
+<div class="right" style="overflow:auto">
+  <div class="inp left">
+	  <label>Type*</label>
+	  <%= select :card, :type, [['Visa', 'visa'], ['MasterCard', 'master'], ['American Express', 'american_express']] %>
+  </div>
+	<div class="inp left buffered">
+    <label>Expiration*</label>
+	  <%= select :card, :month, (1 .. 12) %>
+	  <%= select :card, :year, (Time.now.year .. 10.years.from_now.year) %>
+	</div>
+	<div class="inp right">
+	  <script language="javascript">
+       function popup(page) {
+           window.open(page,"SecurityCodeExplanation","width=500, height=200, location=no, menubar=no, toolbar=no");
+       }
+    </script>
+	  <label>Security Code* <a href="javascript:popup('/cvv.html')">what's this?</a></label>
+  	<%= text_field :card, :verification_value, :width => 4, :class => "inp_text", :style => "width:20px" %>
+  </div>
+</div>

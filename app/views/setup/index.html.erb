@@ -1,0 +1,74 @@
+<div id="main_content">
+	<div class="content_bar" id="top">
+		<div class="breadcrumbs">
+			<p>Jump to:</p>
+			<ul>
+				<li class="first no_tab"><%= link_to "Home", root_url %></li>
+			</ul>
+		</div>
+	</div>
+
+	<h2><%= @page_title = "Create a community" %></h2>
+
+	<% form_for @community, :url => { :action => 'billing' }, :html => {:class => "edit"} do | f | -%>
+
+		<%= error_messages_for :user, :community %>
+
+		<fieldset class="input setup" id="community-info">
+      <legend><h3>Community Information</h3></legend>
+			<div class="inp group">
+				<%= f.label :community_name %>
+				<%= f.text_field :name, :class => 'inp_text'  %>
+			</div>
+			
+			<div class="inp group">
+				<%= f.label :host %>
+				<span class="hint">(Hostname only, without http://, e.g myplace.thoughtleadapp.com or mycommunity.com)</span>
+				<%= f.text_field :host, :class => 'inp_text'  %>
+			</div>
+		</fieldset>
+		<fieldset class="input setup" id="personal-info">
+      <legend><h3>Your Account</h3></legend>
+			<div class="inp group">
+				<%= label :user, :login %>
+				<%= text_field :user, :login, :class => 'inp_text'  %>
+			</div>
+
+			<div class="inp group" style="overflow:scroll-y">
+			  <div class="inp left"  style="width:48%">
+          <%= label :user, :first_name %>
+				  <%= text_field :user, :first_name, :class => 'inp_text'  %>
+				</div>
+				<div class="inp left buffered" style="width:48%">
+    			<%= label :user, :last_name %>
+  				<%= text_field :user, :last_name, :class => 'inp_text'  %>
+  			</div>
+			</div>
+
+      <div style="clear:both"></div>
+			<div class="inp group">
+				<%= label :user, :email %>
+				<%= text_field :user, :email, :class => 'inp_text'  %>
+			</div>
+
+			<div class="inp group">
+				<%= label :user, :password %>
+				<%= password_field :user, :password, :class => 'inp_text'  %>
+			</div>
+
+			<div class="inp group">
+				<%= label :user, :password_confirmation %>
+				<%= password_field :user, :password_confirmation, :class => 'inp_text'  %>
+			</div>
+
+		</fieldset>
+
+    
+		<fieldset class="submit">
+			<ul class="submit_opts">
+				<li><%= submit_tag 'Save &amp; Continue', :class => "make_button", :id => "create" %></li>
+				<li class="text">or <%= link_to "Cancel", root_url %></li>
+			</ul>
+		</fieldset>
+	<% end -%>
+</div>
