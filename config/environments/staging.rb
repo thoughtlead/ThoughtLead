@@ -23,7 +23,7 @@ config.action_mailer.raise_delivery_errors = false
 
 ENV['INLINEDIR'] = Rails.root + "/tmp" 
 
-$app_host = 'thoughtlead.intranet.ternarysoftware.com'
+$app_host = 'thoughtlead.com'
 
 ActionMailer::Base.delivery_method = :smtp
 ActionMailer::Base.smtp_settings = {
@@ -41,3 +41,7 @@ SslRequirement.disable_ssl_check = true
 # This suffix gets removed from the host before looking up the community
 # i.e., "demo.thoughtlead.com.tl-dev.local" becomes "demo.thoughtlead.com"
 $host_suffix = 'tl-staging.wideopenspac.es'
+
+if $host_suffix
+  $dev_host = [$app_host, $host_suffix].join(".")
+end
