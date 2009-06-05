@@ -25,7 +25,7 @@ module ActionController
     class RouteSet
       def extract_request_environment(request)        
         { 
-          :is_client_domain => request.host != $app_host,
+          :is_client_domain => request.host != ($dev_host || $app_host),
           :method => request.method,
           :domain => request.domain, 
           :port => request.port, 
