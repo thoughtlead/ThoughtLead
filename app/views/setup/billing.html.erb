@@ -10,7 +10,7 @@
 
 	<h2><%= @page_title = "Create a community" %></h2>
 
-	<% form_for @community, :html => {:class => "edit"} do | f | -%>
+	<% form_for @community, :url => "", :html => {:class => "edit"} do | f | -%>
 
 		<%= error_messages_for :user, :community %>
 
