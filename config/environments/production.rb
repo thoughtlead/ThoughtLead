@@ -23,7 +23,7 @@ config.action_controller.perform_caching             = true
 # Disable delivery errors, bad email addresses will be ignored < changed this to raise delivery errors for a test
 config.action_mailer.raise_delivery_errors = false
 
-$app_host = 'thoughtlead.com'
+$app_host = 'thoughtleadapp.com'
 
 ActionMailer::Base.delivery_method = :smtp
 ActionMailer::Base.smtp_settings = {
