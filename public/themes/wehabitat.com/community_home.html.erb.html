@@ -1,0 +1,53 @@
+<% @current_tab = :Home %>
+<% content_for :head do %>
+	<%= stylesheet_link_tag('home') %>
+	<%= javascript_include_tag('home') %>
+<% end %>
+<div id="main_content" class="marketing">
+	<div class="banner">
+		<div class="banner_wrap">
+		<div class="content">
+			<h2 class="helping replace">Helping Women Make a Difference, and a Profit</h2>
+			<p>When you join WeHabitat, you'll get both the know-how and know-who to build a profitable business and make a difference in the world. Our first course just went live, and it's about how you can use the Internet to get started immediately. And best of all, it's FREE.</p>
+			<p class="register replace"><%= link_to "Register for Free Access", signup_url %></p>
+		</div>
+		<div class="image">
+			<img src="<%= themed_file('images/content/home_screenshot.png') %>" alt="Screenshot" />
+		</div>
+		</div>
+	</div>
+	<div class="page_content">
+		<h2>Here's a sample of what you'll learn when you join WeHabitat...</h2>
+		<ul class="feature_list clear">
+			<li>
+				<p>Co-founders Sam Rosen and Larina Kase outline the step-by-step basics of getting started online</p>
+			</li>
+			<li>
+				<p>Terri Zwierzynski reveals how to convert website visitors into e-zine subscribers</p>
+			</li>
+			<li>
+				<p>Angela Nielsen, web designer extraordinaire, discusses how to create a simple, bold, beautiful (and high performing!) website</p>
+			</li>
+			<li>
+				<p>Cindy Greenway shows you how to use a virtual support team to build your business</p>
+			</li>
+			<li>
+				<p>Lisa Manyon teaches you how to write a press release that will get noticed</p>
+			</li>
+			<li>
+				<p>Kelly Phipps, veteran search engine expert, helps you get found online by discovering how search engines work</p>
+			</li>
+		</ul>
+		<p><strong>And a lot more!</strong> <%= link_to "Join Now", signup_url, :class => 'more' %><span class="arrow">&nbsp;</span></p>
+	</div>
+</div>
+<div id="sidebar">
+	<ul class="modules">
+		<li class="cta register">
+			<div class="content">
+				<h4 class="get_free replace">Join WeHabitat</h4>
+				<p>Become a member to join the conversation. <%= link_to "It's FREE", signup_url, :class => 'more' %><span class="arrow">&nbsp;</span></p>
+			</div>
+		</li>
+	</ul>
+</div>
