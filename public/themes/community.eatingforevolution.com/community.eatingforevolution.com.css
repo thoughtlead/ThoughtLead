@@ -351,16 +351,15 @@ a,
 /* Home
 ----------------------------------------------- */
 #page #main_content .banner {
-	background-color: #f4d4d2;
-	background-image: url(images/template/home_banner_bg.gif);
+	background-color: #fff;
 }
 #page #main_content .banner_wrap {
 	border-top-color: #fae1f0;
 	border-bottom-color: #f5bedd;
 }
-	#main_content .banner h2 {background-image: url(images/headlines/h2_tagline_bg.gif);}
+	#main_content .banner h2 {background-image: url(images/headlines/h2_tagline_bg.gif); height: 60px;}
 	#main_content .banner .register {background-image: url(images/template/button_register_bg.gif);}
-
+	.topper { padding: 14px; font-size: 1.2em; }
 
 	#main_content .section_list h4 {}
 		#main_content .section_list .library h4 span {background-image: url(images/template/home_library_icon.gif);}
@@ -370,3 +369,19 @@ a,
 
 	#main_content .section_list .arrow {background-image: url(images/template/home_arrow_bg.gif);}
 	#sidebar .cta .arrow {background-image: url(images/template/cta_arrow_bg.gif);}
+	
+		ul.feature_list { margin: 0 15px 0 0; padding: 0 0 0 18px; list-style-image: url(images/template/bullet.jpg); list-style-type:square; }
+			.feature_list li {font-size:1.2em; margin-bottom:10px;}
+			.feature_list li li {font-size:.7em; margin-bottom:10px; list-style:none; margin-top:10px;}
+		
+.tif_img {
+	position:absolute;
+	z-index: 10000;
+	right: -46px;
+	top: -30px;
+
+	}
+	
+#sidebar {
+	z-index: -1;
+	}
