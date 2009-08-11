@@ -16,9 +16,6 @@ class LessonsController < ApplicationController
   def new
     @lesson = Lesson.new
     @lesson.content = Content.new
-    
-    @media = Panda::Video.create
-    @upload_form_url = %(http://#{Panda.api_domain}:#{Panda.api_port}/videos/#{@media.id}/form)
   end
 
   def create
