@@ -12,7 +12,7 @@ class Discussion < ActiveRecord::Base
 
   validates_presence_of :title, :body, :theme
   
-  before_save :set_thread_timestamp
+  before_create :set_thread_timestamp
 
   is_indexed :fields => ['title', 'body', 'community_id']
 
@@ -39,6 +39,6 @@ class Discussion < ActiveRecord::Base
   protected 
   
   def set_thread_timestamp
-    thread_last_updated_at = (created_at || Time.now) if thread_last_updated_at.nil?
+    self.thread_last_updated_at = Time.now
   end
 end
