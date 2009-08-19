@@ -6,6 +6,7 @@ class Discussion < ActiveRecord::Base
   has_many :email_subscriptions, :dependent => :destroy
   has_many :subscribers, :class_name => 'User', :through => :email_subscriptions
 
+  named_scope :get_all, :include => [:theme, :responses]
   named_scope :uncategorized, :conditions => { :theme_id => nil }
 
   validates_presence_of :title, :body, :theme
