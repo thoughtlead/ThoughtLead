@@ -7,7 +7,7 @@ class DiscussionsController < ApplicationController
   
 
   def index
-    @discussions = filter_and_paginate_discussions(@theme.nil? ? current_community.discussions.get_all : @theme.discussions.get_all)
+    @discussions = filter_and_paginate_discussions(@theme.nil? ? current_community.discussions.by_age : @theme.discussions.by_age)
     unless @theme.nil?
       set_headline :subsection => @theme.name
     end
@@ -78,14 +78,7 @@ class DiscussionsController < ApplicationController
 
   def filter_and_paginate_discussions(discussions)
     discussions = discussions.find_all { |discussion| discussion.is_visible_to(current_user) }
-    discussions = discussions.sort_by do |discussion|
-      if discussion.responses.blank?
-        discussion.created_at
-      else
-        discussion.responses.find(:last).created_at
-      end
-    end
-    discussions = discussions.reverse
+
     discussions = discussions.paginate :page => params[:page], :per_page => 20
   end
 
