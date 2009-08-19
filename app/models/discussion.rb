@@ -1,7 +1,7 @@
 class Discussion < ActiveRecord::Base
   belongs_to :user
   belongs_to :community
-  belongs_to :theme
+  belongs_to :theme, :counter_cache => true
   has_many :responses, :dependent => :destroy
   has_many :email_subscriptions, :dependent => :destroy
   has_many :subscribers, :class_name => 'User', :through => :email_subscriptions
