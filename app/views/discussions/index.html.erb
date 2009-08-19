@@ -47,7 +47,7 @@
 							</li>
 							<li class="date"><%= discussion.created_at.to_s(:month_day) %></li>
 							<li class="comments">
-								<%= link_to pluralize(discussion.responses.count, "Response"), discussion_path(discussion, :anchor => :responses) %>
+								<%= link_to pluralize(discussion.responses_count, "Response"), discussion_path(discussion, :anchor => :responses) %>
 							</li>
 						</ul>
 					</div>
