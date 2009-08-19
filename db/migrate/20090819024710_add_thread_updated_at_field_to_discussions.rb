@@ -14,9 +14,11 @@ class AddThreadUpdatedAtFieldToDiscussions < ActiveRecord::Migration
       end
     end
     
+    add_index :discussions, [:community_id, :thread_last_updated_at], :name => "last_updated_at_index"
   end
 
   def self.down
     remove_column :discussions, :thread_last_updated_at
+    remove_index :discussions, :name => :last_updated_at_index
   end
 end
