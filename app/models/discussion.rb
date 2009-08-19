@@ -9,6 +9,30 @@ class Discussion < ActiveRecord::Base
   named_scope :get_all, :include => [:theme, :responses]
   named_scope :by_age, :include => [:theme, :responses], :order => 'thread_last_updated_at DESC'
   named_scope :uncategorized, :conditions => { :theme_id => nil }
+  
+  named_scope :publicly_available, :conditions => {:registered => false}
+  
+  named_scope :accessible_to, lambda { |user| 
+    if !user
+      conditions = {"themes.registered" => false}
+    elsif user == user.community.owner
+      # do nothing
+    else
+      if user.access_class_ids.empty?
+        ac = []
+      else
+        ac = user.access_class_ids
+      end
+      
+      conditions = [
+        '(SELECT count(id) FROM theme_access_classes where theme_id = themes.id) = 0 OR
+          ( theme_access_classes.theme_id = themes.id AND
+            theme_access_classes.access_class_id IN (?))', ac
+      ]
+    end
+    { :include => [{:theme => :theme_access_classes }, :responses],
+    :conditions => conditions }
+  }
 
   validates_presence_of :title, :body, :theme
   
