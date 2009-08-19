@@ -7,7 +7,7 @@ class DiscussionsController < ApplicationController
   
 
   def index
-    @discussions = filter_and_paginate_discussions(@theme.nil? ? current_community.discussions : @theme.discussions)
+    @discussions = filter_and_paginate_discussions(@theme.nil? ? current_community.discussions.get_all : @theme.discussions.get_all)
     unless @theme.nil?
       set_headline :subsection => @theme.name
     end
