@@ -24,11 +24,12 @@ class User < ActiveRecord::Base
   attr_accessor :password, :uploaded_avatar_data
   attr_writer   :password_required
 
-  validates_presence_of     :login, :email, :first_name, :last_name
+  validates_presence_of     :login, :email, :first_name, :last_name, :affiliate_code
   validates_presence_of     :password, :password_confirmation, :if => :password_required?
   validates_confirmation_of :password, :if => :password_required?
   validates_uniqueness_of   :login, :email, :case_sensitive => false, :scope => :community_id
   validates_uniqueness_of   :display_name, :case_sensitive => false, :scope => :community_id, :allow_nil => true, :allow_blank => false
+  validates_uniqueness_of   :affiliate_code
   validates_associated :avatar
 
   before_save :encrypt_password
@@ -149,6 +150,24 @@ class User < ActiveRecord::Base
 
   def self.find_all_by_community_and_send_email_notifications(community, send_email_notifications = true)
     all(:conditions => {"community_id" => community.id, "send_email_notifications" => send_email_notifications})
+  end
+  
+  def set_affiliate_code!
+    update_attribute(:affiliate_code, User.generate_affiliate_code)
+  end
+  
+  protected
+
+  def before_validate_on_create
+    self.affiliate_code = User.generate_affiliate_code if self.new_record? and self.affiliate_code.blank?
+  end
+  
+  def self.generate_affiliate_code
+    ac = rand(36**8).to_s(36) 
+    while self.exists?(['affiliate_code = ?', ac])
+      ac = rand(36**8).to_s(36)
+    end
+    return ac
   end
 
   private
