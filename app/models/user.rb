@@ -13,13 +13,14 @@ class User < ActiveRecord::Base
   has_many :subscription_payments
 
   # Affiliate tracking
+  has_many :referrals, :class_name => 'AffiliateAction', :foreign_key => :referrer_id
   has_many :clicks, :class_name => 'AffiliateAction', :foreign_key => :referrer_id, :conditions => "action = 'click'"
   has_many :uniques, :class_name => 'AffiliateAction', :foreign_key => :referrer_id, :conditions => "action = 'unique'"
   has_many :signups, :class_name => 'AffiliateAction', :foreign_key => :referrer_id, :conditions => "action = 'signup'"
   has_many :upgrades, :class_name => 'AffiliateAction', :foreign_key => :referrer_id, :conditions => "action = 'upgrade'"
   
-  has_many :referrals, :class_name => 'AffiliateAction', :foreign_key => :referrer_id
-  has_many :referred_users, :through => :referrals, :conditions => "action = 'signup' AND referred_id IS NOT NULL", :source => :referred
+  has_many :referred_users, :class_name => 'User', :foreign_key => :referred_by_id
+  belongs_to :referred_by, :class_name => 'User'
   
   attr_accessor :password, :uploaded_avatar_data
   attr_writer   :password_required
@@ -158,7 +159,7 @@ class User < ActiveRecord::Base
   
   protected
 
-  def before_validate_on_create
+  def before_validation_on_create
     self.affiliate_code = User.generate_affiliate_code if self.new_record? and self.affiliate_code.blank?
   end
   

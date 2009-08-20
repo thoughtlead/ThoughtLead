@@ -20,8 +20,14 @@ class UsersController < ApplicationController
       @user.display_name = make_display_name @user
       @user.community = current_community
       @user.disabled = false
+      if current_community.affiliates_enabled?
+        if aff = cookies['TLAFF'] and referrer = User.find_by_affiliate_code(aff)
+          @user.referred_by_id = referrer.id
+          record_action(aff, :signup)
+        end
+      end
     end
-
+    
     return unless request.post? && @user.save
 
     #send user account information
