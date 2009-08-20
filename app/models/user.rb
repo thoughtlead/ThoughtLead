@@ -8,9 +8,19 @@ class User < ActiveRecord::Base
   has_many :user_classes
   has_many :access_classes, :through => :user_classes
   
+  # Subscriptions
   has_one :subscription
   has_many :subscription_payments
 
+  # Affiliate tracking
+  has_many :clicks, :class_name => 'AffiliateAction', :foreign_key => :referrer_id, :conditions => "action = 'click'"
+  has_many :uniques, :class_name => 'AffiliateAction', :foreign_key => :referrer_id, :conditions => "action = 'unique'"
+  has_many :signups, :class_name => 'AffiliateAction', :foreign_key => :referrer_id, :conditions => "action = 'signup'"
+  has_many :upgrades, :class_name => 'AffiliateAction', :foreign_key => :referrer_id, :conditions => "action = 'upgrade'"
+  
+  has_many :referrals, :class_name => 'AffiliateAction', :foreign_key => :referrer_id
+  has_many :referred_users, :through => :referrals, :conditions => "action = 'signup' AND referred_id IS NOT NULL", :source => :referred
+  
   attr_accessor :password, :uploaded_avatar_data
   attr_writer   :password_required
 
