@@ -67,7 +67,7 @@
 			<tr>
 				<th scope="row">
 					<div class="item_image module image">
-						<%= avatar_for(@user, :large) %>
+						<%#= avatar_for(@user, :large) %>
 						<% if @user.expert? %><span class="marker expert replace">Expert</span><% end %>
 					</div>
 				</th>
@@ -126,6 +126,13 @@
 				<th scope="row">Last Name</th>
 				<td><%= details_format(@user.last_name) %></td>
 			</tr>
+			  <% if current_community.affiliates_enabled? %>
+  			  <th scope="row">Affiliate Link</th>
+  			  <td><%= "http://#{current_community.host}/<strong>?ac=#{@user.affiliate_code}</strong>" %>
+  			  <div><small>You can add <strong>?ac=<%= @user.affiliate_code %></strong> to any link to the
+  			    community (e.g., to a discussion or article).</small></div>
+  			  </td>
+  			<% end %>
 			<% end %>
 
 			<% if @show_change_billing %>
