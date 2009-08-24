@@ -28,6 +28,39 @@
         <%= submit_tag("Export to CSV") %>
         <% end %>
     </div>
+    <div id="totals">
+      <h3>Current Month's Affiliate Totals</h3>
+      <dl>
+        <table style="width:90%; text-align:left">
+          <tr>
+            <th>Clicks</th>
+            <th>Uniques</th>
+            <th>Signups</th>
+            <th>Upgrades</th>
+          </tr>
+          <tr>
+            <td><%= current_community.clicks.count %></td>
+            <td><%= current_community.uniques.count %></td>
+            <td><%= current_community.signups.count %></td>
+            <td><%= current_community.upgrades.count %></td>
+          </tr>
+        </table>
+    </div>
+    <div id="glossary">
+      <h3>Terms</h3>
+      <dl>
+        <dt><strong>Clicks</strong></dt>
+        <dd>Number of times an affiliate link is used to reach the site</dd>
+        
+        <dt><strong>Uniques</strong></dt>
+        <dd>Number of unique visitors who come to the site via an affiliate link</dd>
+        
+        <dt><strong>Signups</strong></dt>
+        <dd>Number of people who register after reaching the site by way of an affiliate link</dd>
+        
+        <dt><strong>Upgrades</strong> (not yet tracked)</dt>
+        <dd>Number of referred users who upgrade their account</dd>
+    </div>
 </div>
 <div id="sidebar">
     <ul class="modules">
