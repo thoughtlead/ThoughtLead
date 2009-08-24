@@ -77,8 +77,6 @@ class DiscussionsController < ApplicationController
   end
 
   def filter_and_paginate_discussions(discussions)
-    # discussions = discussions.find_all { |discussion| discussion.is_visible_to(current_user) }
-
     discussions = discussions.paginate :page => params[:page], :per_page => 20
   end
 

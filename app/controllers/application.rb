@@ -9,6 +9,8 @@ class ApplicationController < ActionController::Base
   before_filter :control_access
   before_filter :invalidate_return_to
   before_filter :set_site_title
+  
+  before_filter :record_affiliate_actions, :if => :affiliate_tracking_enabled?
   protect_from_forgery
 
   filter_parameter_logging :password, :password_confirmation, :card
@@ -23,6 +25,31 @@ class ApplicationController < ActionController::Base
   def set_headline(line = {})
     @headline ||= {:site => nil, :section => nil, :subsection => nil, :content => nil}
     @headline.merge!(line)
+  end
+  
+  def affiliate_tracking_enabled?
+    @current_community && @current_community.affiliates_enabled?
+  end
+  
+  def record_affiliate_actions
+    if affcode = params[:ac]
+      if cookies['TLAFF'] and cookies['TLAFF'] == affcode # Previous visit, record a click on referring user
+        record_action(affcode, :click)
+      elsif cookies['TLAFF'] and cookies['TLAFF'] != affcode # Previous visit, but referred by another user, record a click on referring user
+        record_action(affcode, :click)
+      else # No previous visit, record click and unique for referring user, and set cookie
+        record_action(affcode, :click)
+        record_action(affcode, :unique)
+        cookies['TLAFF'] = { :value => affcode, :expires => 3.months.from_now.utc }
+      end
+    end
+  end
+  
+  def record_action(aff_code, action)
+    referrer = User.find_by_affiliate_code(aff_code)
+    if referrer
+      referrer.referrals.create(:referred_id => (@current_user || nil), :action => action.to_s)
+    end
   end
 
   private
