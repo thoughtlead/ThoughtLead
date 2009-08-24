@@ -10,7 +10,7 @@
 	<% end %>
 	<% if current_community.affiliates_enabled? -%>
   	<% content_tag(:li, :class => current_class_for_action("select_affiliate_reports")) do %>
-  		<%= link_to "Affiliate Tracking", select_affiliate_reports_url %>
+  		<%= link_to "Affiliate Reporting", select_affiliate_reports_url %>
   	<% end %>
   <% end -%>
 	<% content_tag(:li, :class => current_class_for_action("select_exported_users")) do %>

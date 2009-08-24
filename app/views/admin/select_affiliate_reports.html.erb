@@ -9,8 +9,25 @@
 	</div>
     <div class="title">
         <h2>Affiliate Reporting</h2>
+        <p class="subtitle">
+            Download CSV files for affiliate activity
+        </p>
+        
+        
     </div>
+    <div id="export_users" class="export_users">
+      
+        <% form_tag :controller=>'admin', :action=>'export_affiliates' do %>
+        <label>
+            Download affiliate reports for
+              <%= select_month(Date.today) %> 
+              <%= select_year(Date.today, :start_year => current_community.created_at.year, :end_year => Date.today.year) %>
 
+        </label>
+
+        <%= submit_tag("Export to CSV") %>
+        <% end %>
+    </div>
 </div>
 <div id="sidebar">
     <ul class="modules">
@@ -18,22 +35,6 @@
             <h3>Community Setup</h3>
             <%= render :partial => "menu", :locals => { :mode => :edit } %>
         </li>
-        <li>
-          <div id="export_users" class="export_users">
-            <h2>Export Affiliate Reports</h2>
-            
-              <% form_tag :controller=>'admin', :action=>'export_affiliates' do %>
-              <label>
-                  Download affiliate reports for: 
-                    <%= select_month(Date.today) %> 
-                    <%= select_year(Date.today, :start_year => current_community.created_at.year, :end_year => Date.today.year) %>
-
-              </label>
-
-              <%= submit_tag("Export to CSV") %>
-              <% end %>
-          </div>
-      </li>
     		
     </ul>
 </div>
