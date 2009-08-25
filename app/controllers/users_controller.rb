@@ -36,11 +36,14 @@ class UsersController < ApplicationController
     #send the community owner notification
     Mailer.deliver_new_user_notice_to_owner(@user)
 
-    #redirect to login page
-    redirect_to login_url
+    # temporarily sign-in the new user
+    self.current_user = @user
+    
+    #redirect to thank you/upsell page
+    redirect_to community_upsell_path
 
     #flash user
-    flash[:notice] = "Your account has been created. Check your email to retrieve your login information."
+    flash[:notice] = "Your account has been created. Check your email to retrieve your username and password."
   end
 
   def show

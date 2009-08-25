@@ -128,4 +128,14 @@ class ApplicationController < ActionController::Base
       render :template => 'pages/page'
     end
   end
+  
+  def render_upsell_page(page)
+    @page = page
+    if @page.standalone?
+      render :text => @page.body, :type => 'text/html'
+    else
+      set_headline :section => @page.name  
+      render :template => 'pages/upsell_page'
+    end
+  end
 end

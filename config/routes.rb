@@ -17,11 +17,14 @@ ActionController::Routing::Routes.draw do |map|
 
   map.setup '/getting-started/:action/:id', :controller => "setup", :conditions => { :is_client_domain => false }
 
-  map.community_home '', :controller => "communities", :action => 'current_community_home', :conditions => { :is_client_domain => true }
-  map.community_about '/about', :controller => "communities", :action => 'current_community_about', :conditions => { :is_client_domain => true }
-  map.community_contact '/contact', :controller => "communities", :action => 'current_community_contact', :conditions => { :is_client_domain => true }
-  map.community_tos '/tos', :controller => "communities", :action => 'current_community_tos', :conditions => { :is_client_domain => true }
-  map.community_need_to_activate '/need_to_activate', :controller => "communities", :action => 'need_to_activate', :conditions => { :is_client_domain => true }
+  map.with_options :controller => "communities", :conditions => { :is_client_domain => true } do |pages|
+    pages.community_home              '',                   :action => 'current_community_home'
+    pages.community_about             '/about',             :action => 'current_community_about'
+    pages.community_contact           '/contact',           :action => 'current_community_contact'
+    pages.community_tos               '/tos',               :action => 'current_community_tos'
+    pages.community_upsell            '/thankyou',          :action => 'current_community_upsell'
+    pages.community_need_to_activate  '/need_to_activate',  :action => 'need_to_activate'
+  end
 
   map.signup '/signup', :controller => 'users', :action => 'signup', :conditions => { :is_client_domain => true }
   map.status '/status', :controller => 'home', :action => 'status', :conditions => { :is_client_domain => false }

@@ -27,7 +27,16 @@ class CommunitiesController < ApplicationController
   def current_community_tos
     custom_page_or_themed_file_for 'tos', :layout => false
   end
-
+  
+  def current_community_upsell
+    unless @page = current_community.pages.active.find_by_page_path('upsell')
+      flash[:notice] = "Thank you for signing up! Please check your email for your sign-in information."
+      redirect_to(community_home_url) and return
+    else
+      render_upsell_page(@page)
+    end
+  end
+  
   def new
     @community = Community.new
     @user = User.new
