@@ -79,6 +79,7 @@ class Subscription < ActiveRecord::Base
       end
 
       user.access_class = access_class
+      user.access_classes << access_class
       user.save
     end
     return true
