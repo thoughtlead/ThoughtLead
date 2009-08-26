@@ -146,7 +146,11 @@ module ApplicationHelper
       end
     end
   end
-
+  
+  def current_class_for_action(link_action_name)
+    return :current if link_action_name == action_name
+  end
+  
   private
 
   def themed_file(path, default_path = path)

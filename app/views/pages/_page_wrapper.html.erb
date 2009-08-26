@@ -1,0 +1,19 @@
+<div id="main_content">
+	<div class="content_bar" id="top">
+		<div class="breadcrumbs">
+		  <p>Jump to:</p>
+			<ul>
+				<li class="first"><%= link_to "Pages", pages_path %></li>
+			</ul>
+		</div>
+	</div>
+  <%= yield :page_filler %>
+</div>
+<div id="sidebar">
+	<ul class="modules">
+		<li class="navigation themes">
+			<h3>Community Setup</h3>
+			<%= render :partial => "admin/menu", :locals => { :mode => :edit }  %>
+		</li>
+	</ul>
+</div>

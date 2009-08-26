@@ -17,17 +17,26 @@ class CommunitiesController < ApplicationController
   end
 
   def current_community_about
-    render :file => themed_file("community_about.html.erb"), :layout => true
+    custom_page_or_themed_file_for 'about'
   end
 
   def current_community_contact
-    render :file => themed_file("community_contact.html.erb"), :layout => true
+    custom_page_or_themed_file_for 'contact'
   end
 
   def current_community_tos
-    render :file => themed_file("community_tos.html.erb"), :layout => false
+    custom_page_or_themed_file_for 'tos', :layout => false
   end
-
+  
+  def current_community_upsell
+    unless @page = current_community.pages.active.find_by_page_path('upsell')
+      flash[:notice] = "Thank you for signing up! Please check your email for your sign-in information."
+      redirect_to(community_home_url) and return
+    else
+      render_upsell_page(@page)
+    end
+  end
+  
   def new
     @community = Community.new
     @user = User.new
@@ -71,4 +80,15 @@ class CommunitiesController < ApplicationController
   def community_layout
     ['new', 'choose_plan', 'index', 'create'].include?(params[:action]) ? 'community_home' : 'application'
   end
+  
+  def custom_page_or_themed_file_for(path, opts = {:layout => true})
+    layout = opts.delete(:layout)
+    unless @page = current_community.pages.active.find_by_page_path(path)
+      render :file => themed_file("community_#{path}.html.erb"), :layout => layout
+    else 
+      render_custom_page(@page)
+    end
+  end
+    
+    
 end

@@ -9,7 +9,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20090504175637) do
+ActiveRecord::Schema.define(:version => 20090526172835) do
 
   create_table "access_class_relationships", :force => true do |t|
     t.integer "access_class_id", :null => false
@@ -153,6 +153,21 @@ ActiveRecord::Schema.define(:version => 20090504175637) do
     t.datetime "created_at"
     t.datetime "updated_at"
   end
+
+  create_table "pages", :force => true do |t|
+    t.integer  "community_id"
+    t.string   "page_path"
+    t.string   "name"
+    t.string   "title"
+    t.text     "body"
+    t.boolean  "standalone"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.boolean  "system",       :default => false
+    t.boolean  "active",       :default => true
+  end
+
+  add_index "pages", ["community_id", "page_path", "active"], :name => "active_pages", :unique => true
 
   create_table "responses", :force => true do |t|
     t.text     "body"

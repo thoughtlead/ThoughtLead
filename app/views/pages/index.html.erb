@@ -1,0 +1,51 @@
+<div id="main_content">
+	<div class="content_bar" id="top">
+		<% if logged_in? && current_user.owner? %>
+		<div class="action"><a href="<%= new_page_path %>" class="button"><span class="icon create">+</span><span class="text">New Content Page</span></a>
+		  <span class="button_left">&nbsp;</span><a href="<%= new_page_path(:standalone => 'yes') %>" class="button"><span class="icon create">+</span><span class="text">New Landing Page</span></a>
+		</div>
+	    <% end %>
+	</div>
+	<h2>About Customized Pages</h2>
+	<p>Want to create specialized marketing pages for your Thoughtlead site?</p>
+	<p>Would you like to add custom content to your site that doesn't fit elsewhere?</p>
+		<p>Active pages are currently visible on your site. You can usually find them at <strong>http://<%= request.host %>/<em>keyword</em></strong>. A landing page is a self-contained HTML document, and does not appear within your site's current design; content pages do.</p>
+				<p>Inactive pages do not appear on your site. You might deactivate a page that includes a time-limited promotion, for example.</p>
+
+	<h2>Predefined Pages</h2>
+
+	<dl class="pages">
+  <% if @editable_pgs.empty? -%>
+    <p>You currently have no predefined pages.</p>
+  <% else %>
+    <%= render :partial => 'page', :collection => @editable_pgs %>
+  <% end -%>
+	</dl>
+	
+	<h2>Active Pages</h2>
+  <% if @active_pages.empty? -%>
+    <p>You currently have no active pages.</p>
+  <% else %>
+  	<dl class="pages">
+      <%= render :partial => 'page', :collection => @active_pages %>
+  	</dl>
+  <% end -%>
+	
+	<h2>Inactive Pages</h2>
+
+	<dl class="pages">
+  <% if @inactive_pages.empty? -%>
+    <p>You currently have no inactive pages.</p>
+  <% else %>
+    <%= render :partial => 'page', :collection => @inactive_pages %>
+  <% end -%>
+	</dl>
+</div>
+<div id="sidebar">
+	<ul class="modules">
+		<li class="navigation themes">
+			<h3>Community Setup</h3>
+			<%= render :partial => "admin/menu", :locals => { :mode => :edit }  %>
+		</li>
+	</ul>
+</div>
