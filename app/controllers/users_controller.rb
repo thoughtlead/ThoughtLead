@@ -41,9 +41,6 @@ class UsersController < ApplicationController
     
     #redirect to thank you/upsell page
     redirect_to community_upsell_path
-
-    #flash user
-    flash[:notice] = "Your account has been created. Check your email to retrieve your username and password."
   end
 
   def show
