@@ -76,5 +76,8 @@ class AdminController < ApplicationController
   end
   
   def select_affiliate_reports
+    @current_month_totals = {
+      :clicks => current_community.clicks.count 
+    }
   end
 end
