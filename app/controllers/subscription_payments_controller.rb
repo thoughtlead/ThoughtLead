@@ -5,7 +5,7 @@ class SubscriptionPaymentsController < ApplicationController
   def index
     if params[:user_id]
       params[:user_id].gsub!('-','.')
-      if @user = User.find_by_login_or_email(params[:user_id])
+      if @user = current_community.users.find_by_login_or_email(params[:user_id])
         @subscription_payments = @user.subscription_payments
       end
     elsif (params[:start_date] && params[:end_date])
