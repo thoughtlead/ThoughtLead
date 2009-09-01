@@ -10,7 +10,7 @@
 
 			<ul class="content">
 				<% current_community.themes.each do |theme| %>
-					<% if theme.discussions_count > 0 %>
+					<% if theme.discussions_count and theme.discussions_count > 0 %>
 						<% content_tag(:li, :class => current_class_for_theme(theme)) do %>
 							<%= link_to theme, theme_discussions_path(theme) %>
 						<% end %>
