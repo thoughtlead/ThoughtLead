@@ -12,7 +12,11 @@ class CommunitiesController < ApplicationController
     if logged_in?
       render :file => themed_file("community_home_login.html.erb"), :layout => true
     else
-      render :file => themed_file("community_home.html.erb"), :layout => true
+      if themed_file_exists?("index.html.erb")
+        render :file => themed_file("index.html.erb"), :layout => false
+      else
+        render :file => themed_file("community_home.html.erb"), :layout => true
+      end
     end
   end
 
