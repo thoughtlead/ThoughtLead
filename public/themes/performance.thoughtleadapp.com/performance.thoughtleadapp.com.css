@@ -289,20 +289,21 @@ a,
 				background-image: url(images/template/mod_nav_bg.gif);
 				border-color: #f5bedd;
 			}
-				#sidebar ul.modules li.navigation .content a {color: #0f4b7b;}
+				#sidebar ul.modules li.navigation .content a {color: #1671B8;}
 
 		#sidebar ul.modules li.nav_sep {}
 			#sidebar ul.modules li.nav_sep ul {}
 				#sidebar ul.modules li.nav_sep ul li {background-image: url(images/template/mod_nav_sep_bg.gif);}
 
 		#sidebar ul.modules li.cta {
-			color: #009900;
+			color: #111;
 			background-image: url(images/template/mod_cta_top_bg.gif);
 		}
 			#sidebar ul.modules li.cta .content {background-image: url(images/template/mod_cta_bottom_bg.gif);}
 			#sidebar ul.modules li.cta .content h4.get_free { color:#009900; font-size:16px; margin-bottom:30px;}
 			#sidebar ul.modules li.cta .content h4.get_premium {background-image: url(images/headlines/h4_getpremium_bg.gif);}
-
+      #sidebar ul.modules li.cta .content a { font-weight:bold; color:#1671B8; }
+  		
 		#sidebar ul.modules li.outline {}
 			#sidebar ul.modules li.outline ul {}
 				#sidebar ul.modules li.outline ul li.active {background-image: url(images/template/mod_out_active_bg.gif);}

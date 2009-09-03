@@ -208,9 +208,9 @@ a:hover {
 	margin:0;
 	padding:0 0 15px 11px;
 	list-style-type:none;
-	font-size:13px;
+	font-size:15px;
 	color:#333333;
-	line-height:16px;
+	line-height:18px;
 	background:url(../graphics/bullet.gif) 0 5px no-repeat;
 }
 .midleftcontent p {
