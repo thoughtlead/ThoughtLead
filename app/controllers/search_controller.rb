@@ -27,7 +27,7 @@ class SearchController < ApplicationController
     @premium_discussion_count = @results.find_all { |result| result.class == Discussion && !result.is_visible_to(current_user) }.length
     @responses = @results.find_all { |result| result.class == Response && result.is_visible_to(current_user) }
     @premium_response_count = @results.find_all { |result| result.class == Response && !result.is_visible_to(current_user) }.length
-    @users = @results.find_all { |result| result.class == User }
+    @users = @results.find_all { |result| result.class == User && !result.disabled? }
 
     # Index the lessons by course_id so we can display then nested as necessary
     @lessons_by_course_id = {}
