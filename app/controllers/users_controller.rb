@@ -77,9 +77,11 @@ class UsersController < ApplicationController
     @user.attributes = params[:user]
     return render(:action => :edit) unless @user.save
     
-    # Clear out user's access classes if edited
-    unless access_classes = params[:user][:access_class_ids] and !access_classes.empty?
-      @user.access_classes.clear
+    # Clear out user's access classes if logged in as owner and no access classes selected
+    if logged_in_as_owner?
+      if access_classes = params[:user][:access_class_ids] and access_classes.empty?
+        @user.access_classes.clear
+      end
     end
     
     flash[:notice] = "Saved profile"
