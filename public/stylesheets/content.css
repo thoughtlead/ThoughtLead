@@ -1632,3 +1632,6 @@ dl.pages dd.edit {
 }
 
 dl.pages div.url { color:grey; }
+
+.disabled { opacity:0.25; }
+.disabled:hover { opacity:0.8; }

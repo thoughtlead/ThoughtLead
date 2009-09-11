@@ -37,6 +37,9 @@ class User < ActiveRecord::Base
   after_create :add_user_class
   is_indexed :fields => ['login','about', 'interests', 'display_name', 'location', 'zipcode', 'community_id']
 
+  named_scope :active, :conditions => { :disabled => false }
+  named_scope :disabled, :conditions => { :disabled => true }
+  
   def is_registered?
     return true
   end
