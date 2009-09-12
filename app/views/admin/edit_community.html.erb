@@ -50,6 +50,11 @@
 				<span class="hint">(if you have a web property ID for this domain, e.g. "UA-123456-78", enter it here to enable tracking)</span>
 				<%= f.text_field :ga_property_id, :class => "inp_text"  %>
 			</div>
+			
+			<div class="inp group">
+				<%= f.label :affiliates, "Affiliate Tracking" %>
+				<div class="inp_text"><%= f.check_box :affiliates_enabled %> Yes, enable affiliate tracking</div>
+			</div>
 		</fieldset>
 
 		<fieldset class="submit">

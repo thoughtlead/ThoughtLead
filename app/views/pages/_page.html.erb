@@ -1,0 +1,5 @@
+<div class="a-page">
+  <dt><%= link_to h(page.name), "/#{page.page_path}"  %> <span class="page_preview"><%= page.standalone? ? "(Landing)" : "(Content)" %></span>
+    <div class="url"><small>http://<%= request.host %>/<%= page.page_path %></small></div></dt>
+  <dd class="edit"><%= link_to "Edit", edit_page_path(page) %></dd>
+</div>

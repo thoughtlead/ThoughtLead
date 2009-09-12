@@ -127,6 +127,16 @@
 				<td><%= details_format(@user.last_name) %></td>
 			</tr>
 			<% end %>
+			
+		  <% if current_community.affiliates_enabled? -%>
+        <% if @viewing_self or logged_in_as_owner? -%>
+  			  <th scope="row">Affiliate Link</th>
+  			  <td><%= "http://#{current_community.host}/<strong>?ac=#{@user.affiliate_code}</strong>" %>
+  			  <div><small>You can add <strong>?ac=<%= @user.affiliate_code %></strong> to any link to the
+  			    community (e.g., to a discussion or article).</small></div>
+  			  </td>
+  			<% end -%>
+			<% end -%>
 
 			<% if @show_change_billing %>
 

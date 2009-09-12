@@ -3,9 +3,9 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <title>Performance Lifestyle</title>
-<link href="css/style.css" rel="stylesheet" type="text/css" />
+<link href="/themes/performancelifestyle.com/css/style.css" rel="stylesheet" type="text/css" />
 <!--[if lte IE 6]>
-<link href="css/styleIE.css" type="text/css" rel="stylesheet" />
+<link href="/themes/performancelifestyle.com/css/styleIE.css" type="text/css" rel="stylesheet" />
 <![endif]-->
 </head>
 <body>
@@ -16,7 +16,7 @@
       <h1> <a href="index.html" title="Turn Around">PerformanceLifestyle | Manage Your Energy</a> </h1>
     </div>
     <ul class="account_nav">
-      <li class="login"><a href="javascript:void(0);">Login</a></li>
+      <li class="login"><a href="/login">Login</a></li>
     </ul>
   </div>
 </div>
@@ -39,7 +39,7 @@
         </div>
         <span class="bannerbot"><span></span></span> </div>
       <div class="midleftcontent">
-        <h3>Start to understand energy and how to use it to your advantage don't wait. In the free <em><strong>Manage Your Energy</strong></em> e-book you are going to show you...</h3>
+        <h3>Start to understand energy and how to use it to your advantage &mdash; don't wait. In the free <em><strong>Manage Your Energy</strong></em> e-book, we are going to show you...</h3>
         <ul>
           <li>Ways to avoid the <em>stimulant delusion</em> and still <strong>increase your energy.</strong></li>
           <li>How you can maintain your health and <strong>achieve your goals</strong> without "hitting the wall" repeatedly or "falling off the wagon."</li>
@@ -47,33 +47,34 @@
           <li>What your grandparents knew about <em>managing energy</em> that you don't - and why it's still the key to <strong>sustaining success.</strong> </li>
           <li>Little known (yet dead simple to master) methods to <strong>keep you in control</strong> <em>of your energy reserves</em> so that you have enough energy to achieve success, consistently.</li>
         </ul>
-        <p>But that's not all! It's just a small preview of what you'll find in this free Performance Life style e-book. <a href="javascript:void(0);">Get your free copy right now by signing up today!</a></p>
+        <p>But that's not all! It's just a small preview of what you'll find in this free Performance Life style e-book. <a href="/signup">Get your free copy right now by signing up today!</a></p>
       </div>
     </div>
     <div id="sidebar"> <span class="topbar"></span>
       <div class="Midbar">
         <!--Side Section -->
-        <form action="" method="post">
           <div id="form_section">
             <h2>Get Free Access</h2>
-            <fieldset>
-            <label>First Name:</label>
-            <input type="text" class="inputtxt" />
-            </fieldset>
-            <fieldset>
-            <label>Last Name:</label>
-            <input type="text" class="inputtxt" />
-            </fieldset>
-            <fieldset>
-            <label>Email address:</label>
-            <input type="text" class="inputtxt" />
-            </fieldset>
-            <div class="accept">We respect your privacy and will not share your information with any third party, eversite.</div>
-            <fieldset class="btnsection">
-            <input type="image" src="graphics/btn_sign_up.gif" class="float_left" />
-            </fieldset>
+            <% form_for :user, @user, :url => signup_url, :html => {:class => 'edit'} do | f | -%>
+    					<%= f.error_messages %>
+              <fieldset>
+                <label for="user_First Name">First name</label>
+                <input class="inp_text" id="user_first_name" name="user[first_name]" size="20" type="text" />
+              </fieldset>
+              <fieldset>
+                <label for="user_Last Name">Last name</label>
+                <input class="inp_text" id="user_last_name" name="user[last_name]" size="20" type="text" />
+              </fieldset>
+              <fieldset>
+                <label for="user_Email Address">Email address</label>
+                <input class="inp_text" id="user_email" name="user[email]" size="20" type="text" />
+              </fieldset>
+              <div class="accept">We respect your privacy and will not share your information with any third party, ever.</div>
+              <fieldset class="btnsection">
+              <input type="image" src="/themes/performance.thoughtleadapp.com/graphics/btn_sign_up.gif" class="float_left" />
+              </fieldset>
+            <% end -%>
           </div>
-        </form>
       </div>
       <span class="bottombar"></span> </div>
   </div>
@@ -81,7 +82,7 @@
 <div id="footer">
   <!--Footer -->
   <div class="content_area">
-    <div class="credit"> <span class="float_right">Powered by <a href="http://thoughtlead.com/">ThoughtLead</a></span> </div>
+    <div class="credit"> <span class="float_right">Powered by <a href="http://thoughtlead.com/">ThoughtLead</a></span> </div>  
   </div>
 </div>
 </body>

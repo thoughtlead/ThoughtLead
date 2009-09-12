@@ -3,6 +3,7 @@ class Community < ActiveRecord::Base
   has_many :courses, :order => :position, :dependent => :destroy
   has_many :chapters, :through => :courses
   has_many :lessons, :through => :chapters
+  has_many :pages
 
   has_many :themes, :order => :position, :dependent => :destroy
   has_many :discussions, :dependent => :destroy
@@ -14,6 +15,11 @@ class Community < ActiveRecord::Base
   validates_presence_of :host, :name
   validates_uniqueness_of :host
   validate :validate_host_restrictions
+  
+  has_many :clicks, :through => :users
+  has_many :uniques, :through => :users
+  has_many :signups, :through => :users
+  has_many :upgrades, :through => :users
 
   alias_attribute :to_s, :name
 

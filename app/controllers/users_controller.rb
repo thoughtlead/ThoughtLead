@@ -20,8 +20,14 @@ class UsersController < ApplicationController
       @user.display_name = make_display_name @user
       @user.community = current_community
       @user.disabled = false
+      if current_community.affiliates_enabled?
+        if aff = cookies['TLAFF'] and referrer = User.find_by_affiliate_code(aff)
+          @user.referred_by_id = referrer.id
+          record_action(aff, :signup)
+        end
+      end
     end
-
+    
     return unless request.post? && @user.save
 
     #send user account information
@@ -30,11 +36,14 @@ class UsersController < ApplicationController
     #send the community owner notification
     Mailer.deliver_new_user_notice_to_owner(@user)
 
-    #redirect to login page
-    redirect_to login_url
+    # temporarily sign-in the new user
+    self.current_user = @user
+    
+    #redirect to thank you/upsell page
+    redirect_to community_upsell_path
 
     #flash user
-    flash[:notice] = "Your account has been created. Check your email to retrieve your login information."
+    flash[:notice] = "Your account has been created. Check your email to retrieve your username and password."
   end
 
   def show
@@ -68,9 +77,11 @@ class UsersController < ApplicationController
     @user.attributes = params[:user]
     return render(:action => :edit) unless @user.save
     
-    # Clear out user's access classes if edited
-    unless access_classes = params[:user][:access_class_ids] and !access_classes.empty?
-      @user.access_classes.clear
+    # Clear out user's access classes if logged in as owner and no access classes selected
+    if logged_in_as_owner?
+      if access_classes = params[:user][:access_class_ids] and access_classes.empty?
+        @user.access_classes.clear
+      end
     end
     
     flash[:notice] = "Saved profile"
@@ -79,7 +90,7 @@ class UsersController < ApplicationController
 
   def index
     @users = current_community.users
-    @users = @users.find_all { |user| !user.disabled? } unless logged_in_as_owner?
+    @users = logged_in_as_owner? ? current_community.users : current_community.users.active
     @users = @users.paginate :page => params[:page], :per_page => 15
   end
 

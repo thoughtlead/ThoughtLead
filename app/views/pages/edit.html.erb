@@ -1,0 +1,6 @@
+<% content_for :page_filler do %>
+	<h2>Edit Page</h2>
+	<%= render :partial => 'form', :locals => { :mode => :edit }  %>
+<% end %>
+
+<%= render :partial => 'page_wrapper' %>

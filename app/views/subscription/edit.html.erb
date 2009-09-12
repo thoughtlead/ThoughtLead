@@ -20,7 +20,7 @@
   	  <%= f.error_messages %>
 	    <fieldset class="input">
 		    <div id="priceTable">
-
+          <% unless current_user.is_registered? && current_user.access_classes.empty? -%>
             <h3>Registered</h3>
 
             <ul class="checkbox group">
@@ -29,7 +29,7 @@
                 <%= label(:subscription_subscription_plan_id, 'free', 'Free') %>
               </li>
             </ul>
-
+          <% end -%>
 		      <% for access_class in @access_classes %>
 
             <h3><%= h access_class.name %> <%= get_access_description(access_class) %></h3>

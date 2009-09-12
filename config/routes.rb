@@ -1,4 +1,6 @@
 ActionController::Routing::Routes.draw do |map|
+  map.resources :pages, :conditions => { :is_client_domain => true }
+
   map.resource :session, :controller => 'session', :conditions => { :is_client_domain => true }
 
   map.login '/login', :controller => "session", :action => 'new', :conditions => { :is_client_domain => true }
@@ -13,11 +15,14 @@ ActionController::Routing::Routes.draw do |map|
   map.communities '/communities', :controller => "communities", :action => 'index', :conditions => { :is_client_domain => true }
   map.communities_activate '/communities/toggle_activation/:id', :controller => "communities", :action => 'toggle_activation', :conditions => { :is_client_domain => true }
 
-  map.community_home '', :controller => "communities", :action => 'current_community_home', :conditions => { :is_client_domain => true }
-  map.community_about '/about', :controller => "communities", :action => 'current_community_about', :conditions => { :is_client_domain => true }
-  map.community_contact '/contact', :controller => "communities", :action => 'current_community_contact', :conditions => { :is_client_domain => true }
-  map.community_tos '/tos', :controller => "communities", :action => 'current_community_tos', :conditions => { :is_client_domain => true }
-  map.community_need_to_activate '/need_to_activate', :controller => "communities", :action => 'need_to_activate', :conditions => { :is_client_domain => true }
+  map.with_options :controller => "communities", :conditions => { :is_client_domain => true } do |pages|
+    pages.community_home              '',                   :action => 'current_community_home'
+    pages.community_about             '/about',             :action => 'current_community_about'
+    pages.community_contact           '/contact',           :action => 'current_community_contact'
+    pages.community_tos               '/tos',               :action => 'current_community_tos'
+    pages.community_upsell            '/thankyou',          :action => 'current_community_upsell'
+    pages.community_need_to_activate  '/need_to_activate',  :action => 'need_to_activate'
+  end
 
   map.signup '/signup', :controller => 'users', :action => 'signup', :conditions => { :is_client_domain => true }
   map.status '/status', :controller => 'home', :action => 'status', :conditions => { :is_client_domain => false }
@@ -60,7 +65,10 @@ ActionController::Routing::Routes.draw do |map|
   map.access_levels '/community/access', :controller => 'admin', :action => 'access_levels', :conditions => { :is_client_domain => true }
   map.create_access_level '/community/create_access', :controller => 'admin', :action => 'create_access_level', :conditions => { :is_client_domain => true }
   map.select_exported_users '/community/select_exported_users', :controller => 'admin', :action => 'select_exported_users', :conditions => { :is_client_domain => true }
+  map.select_affiliate_reports '/community/affiliate_reporting', :controller => 'admin', :action => 'select_affiliate_reports', :conditions => { :is_client_domain => true }
+
   map.export_users '/community/export_users', :controller => 'admin', :action => 'export_users', :conditions => { :is_client_domain => true }
+  map.export_users '/community/export_affiliates', :controller => 'admin', :action => 'export_affiliates', :conditions => { :is_client_domain => true }
 
   map.resources :access_classes, :conditions => { :is_client_domain => true } do |access_classes|
     access_classes.resources :subscription_plans, :conditions => { :is_client_domain => true }
@@ -74,4 +82,6 @@ ActionController::Routing::Routes.draw do |map|
   map.library '/library', :controller => 'articles', :action => 'index', :conditions => { :is_client_domain => true }
   map.resources :articles, :conditions => { :is_client_domain => true }
   map.resources :categories, :collection => { :sort => :post }, :conditions => { :is_client_domain => true }
+  
+  map.catch_all '*path', :controller => 'pages', :action => 'catchall'
 end

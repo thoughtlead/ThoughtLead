@@ -1,0 +1,73 @@
+<div id="main_content">
+	<div class="content_bar" id="top">
+		<div class="breadcrumbs">
+			<p>Jump to:</p>
+			<ul>
+				<li class="first no_tab"><%= link_to "Community Setup", edit_community_url %></li>
+			</ul>
+		</div>
+	</div>
+    <div class="title">
+        <h2>Affiliate Reporting</h2>
+        <p class="subtitle">
+            Download CSV files for affiliate activity
+        </p>
+        
+        
+    </div>
+    <div id="export_users" class="export_users">
+      
+        <% form_tag :controller=>'admin', :action=>'export_affiliates' do %>
+        <label>
+            Download affiliate reports for
+              <%= select_month(Date.today) %> 
+              <%= select_year(Date.today, :start_year => current_community.created_at.year, :end_year => Date.today.year) %>
+
+        </label>
+
+        <%= submit_tag("Export to CSV") %>
+        <% end %>
+    </div>
+    <div id="totals">
+      <h3>Current Month's Affiliate Totals</h3>
+      <dl>
+        <table style="width:90%; text-align:left">
+          <tr>
+            <th>Clicks</th>
+            <th>Uniques</th>
+            <th>Signups</th>
+            <th>Upgrades</th>
+          </tr>
+          <tr>
+            <td><%= current_community.clicks.count %></td>
+            <td><%= current_community.uniques.count %></td>
+            <td><%= current_community.signups.count %></td>
+            <td><%= current_community.upgrades.count %></td>
+          </tr>
+        </table>
+    </div>
+    <div id="glossary">
+      <h3>Terms</h3>
+      <dl>
+        <dt><strong>Clicks</strong></dt>
+        <dd>Number of times an affiliate link is used to reach the site</dd>
+        
+        <dt><strong>Uniques</strong></dt>
+        <dd>Number of unique visitors who come to the site via an affiliate link</dd>
+        
+        <dt><strong>Signups</strong></dt>
+        <dd>Number of people who register after reaching the site by way of an affiliate link</dd>
+        
+        <dt><strong>Upgrades</strong> (not yet tracked)</dt>
+        <dd>Number of referred users who upgrade their account</dd>
+    </div>
+</div>
+<div id="sidebar">
+    <ul class="modules">
+        <li class="navigation themes">
+            <h3>Community Setup</h3>
+            <%= render :partial => "menu", :locals => { :mode => :edit } %>
+        </li>
+    		
+    </ul>
+</div>

@@ -16,7 +16,7 @@
 
 	<ul class="people_list people">
 		<% for user in @users %>
-		<li>
+		<li class="<%= "disabled" if user.disabled? %>">
 			<div class="item_image module image">
 				<div class="image_wrap"><%= link_to(avatar_for(user, :medium),user) %></div>
 				<% if user.owner? %><span class="marker admin replace">Administrator</span><% end %>

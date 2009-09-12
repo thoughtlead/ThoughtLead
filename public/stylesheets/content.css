@@ -628,6 +628,7 @@ h1, h2, h3, h4, h5, h6 {margin: 0.5em 0;}
 				.button a span.icon.save {}
 				.button a span.icon.email {}
 				.button a span.icon.signup {padding-left: 16px;}
+				.button a span.icon.cancel {padding-left:0px;}
 
 		a.button.edit {
 			margin: 0; padding: 16px 47px 0 0;
@@ -1592,3 +1593,45 @@ table.payment_history td, table.payment_history th {
   vertical-align: top;
   padding: 0px 4px 3px 4px;
 }
+
+dl.pages {
+  font-size:1.2em;
+}
+dl.pages a {
+  color:#8fc400;
+}
+dl.pages .a-page {
+  margin-bottom:0.5em;
+  border-bottom:1px solid #eee;
+  
+}
+dl.pages .page_preview {
+  color:gray;
+  font-size:0.8em;
+}
+dl.pages dt, dl.pages dd {
+  display:inline-block;
+  margin-bottom:0.25em;
+  
+}
+dl.pages dt {
+  height:3em;
+  
+  width:80%;
+  overflow:hidden;
+  padding-left:0.5em;
+}
+
+dl.pages dd {
+  vertical-align:top;
+}
+
+dl.pages dd.edit {
+  padding-left:16px;
+  background: transparent url(/themes/default/images/template/icon_action_edit.gif) no-repeat 50% left;
+}
+
+dl.pages div.url { color:grey; }
+
+.disabled { opacity:0.25; }
+.disabled:hover { opacity:0.8; }

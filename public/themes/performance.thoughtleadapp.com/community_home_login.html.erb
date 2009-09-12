@@ -6,16 +6,16 @@
 <div id="main_content" class="login">
 	<div class="content_bar" id="top">
 		<div class="content">
-			<h4>Welcome to PerformanceLifestyle</h4>
-			<p>We're thrilled that you've joined us!</p>
-			<p><a href="articles/269"><img src="http://evolutionaryimpact.com/imgs/clickhere.gif" width="276" height="31" /></a></p>
-			<p>We hope you'll find Performance Lifestyle to be the singularly most transformative and inspiring community available online. So take a look around, start a discussion thread, or drop us a line. </p>
-	  </div>
+			<h4>Welcome to <%= h(current_community) %></h4>
+  			<p>We're thrilled that you've joined us!</p>
+  			<p><a href="articles/269"><img src="http://evolutionaryimpact.com/imgs/clickhere.gif" width="276" height="31" /></a></p>
+  			<p>We hope you'll find Performance Lifestyle to be the singularly most transformative and inspiring community available online. So take a look around, start a discussion thread, or drop us a line. </p>
+  	  </div>
 	</div>
 	<ul class="section_list">
 		<li class="library">
 			<h4><span>Browse Library</span></h4>
-			<p>You'll find articles and interviews in the library about living your best life.  <%= link_to "Go to Library", articles_url, :class => "more" %><span class="arrow">&nbsp;</span</p>
+			<p>You'll find articles and interviews in the library about living your best life.  <%= link_to "Go to Library", articles_url, :class => "more" %><span class="arrow">&nbsp;</span></p>
 		</li>
 		<li class="courses">
 			<h4><span>Join Courses</span></h4>

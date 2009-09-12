@@ -2,13 +2,22 @@
 	<% content_tag(:li, :class => current_class_for_action("edit_community")) do %>
 		<%= link_to "Edit Community", edit_community_url %>
 	<% end%>
+	<% content_tag(:li, :class => (:current if controller.controller_name == 'pages')) do %>
+		<%= link_to "Custom Pages", pages_url %>
+	<% end %>
 	<% content_tag(:li, :id => "show_all", :class => current_class_for_action("access_levels")) do %>
 		<%= link_to "Access Levels", access_classes_url %>
 	<% end %>
 	<% content_tag(:li, :class => current_class_for_action("subscription_payments")) do %>
 		<%= link_to "Payment History", subscription_payments_url %>
 	<% end %>
+	<% if current_community.affiliates_enabled? -%>
+  	<% content_tag(:li, :class => current_class_for_action("select_affiliate_reports")) do %>
+  		<%= link_to "Affiliate Reporting", select_affiliate_reports_url %>
+  	<% end %>
+  <% end -%>
 	<% content_tag(:li, :class => current_class_for_action("select_exported_users")) do %>
 		<%= link_to "Export Users", select_exported_users_url %>
 	<% end %>
+
 </ul>
