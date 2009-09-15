@@ -123,6 +123,12 @@ module ApplicationHelper
   def community_logo
     themed_file("images/logo.gif")
   end
+  
+  def copyright_holder
+    if current_community && current_community.copyright
+      "&copy; #{Date.today.year} #{current_community.copyright}. "
+    end
+  end
 
   def create_discussion_link
     if current_user_can_post?

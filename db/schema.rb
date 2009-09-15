@@ -9,7 +9,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20090526172835) do
+ActiveRecord::Schema.define(:version => 20090915164130) do
 
   create_table "access_class_relationships", :force => true do |t|
     t.integer "access_class_id", :null => false
@@ -17,13 +17,23 @@ ActiveRecord::Schema.define(:version => 20090526172835) do
   end
 
   create_table "access_classes", :force => true do |t|
-    t.integer  "community_id",                 :null => false
-    t.string   "name",         :default => "", :null => false
-    t.integer  "position",                     :null => false
+    t.integer  "community_id", :null => false
+    t.string   "name",         :null => false
+    t.integer  "position",     :null => false
     t.datetime "created_at"
     t.datetime "updated_at"
     t.text     "description"
   end
+
+  create_table "affiliate_actions", :force => true do |t|
+    t.integer  "referrer_id"
+    t.integer  "referred_id"
+    t.string   "action"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "affiliate_actions", ["referrer_id", "action"], :name => "referrer_action"
 
   create_table "articles", :force => true do |t|
     t.integer  "community_id"
@@ -86,12 +96,14 @@ ActiveRecord::Schema.define(:version => 20090526172835) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.string   "name"
-    t.boolean  "active",           :default => false
+    t.boolean  "active",             :default => false
     t.string   "premium_link"
     t.string   "premium_text"
     t.string   "gateway_login"
     t.string   "gateway_password"
     t.string   "ga_property_id"
+    t.boolean  "affiliates_enabled", :default => false
+    t.string   "copyright"
   end
 
   create_table "content_access_classes", :force => true do |t|
@@ -132,6 +144,8 @@ ActiveRecord::Schema.define(:version => 20090526172835) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.integer  "theme_id"
+    t.datetime "thread_last_updated_at"
+    t.integer  "responses_count"
   end
 
   create_table "email_subscriptions", :force => true do |t|
@@ -178,34 +192,34 @@ ActiveRecord::Schema.define(:version => 20090526172835) do
   end
 
   create_table "subscription_payments", :force => true do |t|
-    t.integer  "user_id",                                                       :null => false
-    t.string   "description",                                   :default => "", :null => false
-    t.decimal  "amount",         :precision => 10, :scale => 2,                 :null => false
+    t.integer  "user_id",                                       :null => false
+    t.string   "description",                                   :null => false
+    t.decimal  "amount",         :precision => 10, :scale => 2, :null => false
     t.string   "transaction_id"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
 
   create_table "subscription_plans", :force => true do |t|
-    t.string   "name",                                           :default => "", :null => false
-    t.decimal  "amount",          :precision => 10, :scale => 2,                 :null => false
-    t.integer  "renewal_period",                                                 :null => false
-    t.string   "renewal_units",                                  :default => "", :null => false
-    t.integer  "trial_period",                                                   :null => false
-    t.string   "trial_units",                                    :default => "", :null => false
-    t.integer  "access_class_id",                                                :null => false
+    t.string   "name",                                           :null => false
+    t.decimal  "amount",          :precision => 10, :scale => 2, :null => false
+    t.integer  "renewal_period",                                 :null => false
+    t.string   "renewal_units",                                  :null => false
+    t.integer  "trial_period",                                   :null => false
+    t.string   "trial_units",                                    :null => false
+    t.integer  "access_class_id",                                :null => false
     t.datetime "created_at"
     t.datetime "updated_at"
   end
 
   create_table "subscriptions", :force => true do |t|
-    t.integer  "user_id",                                                             :null => false
+    t.integer  "user_id",                                             :null => false
     t.integer  "subscription_plan_id"
-    t.decimal  "amount",               :precision => 10, :scale => 2,                 :null => false
-    t.integer  "renewal_period",                                                      :null => false
-    t.string   "renewal_units",                                       :default => "", :null => false
-    t.integer  "access_class_id",                                                     :null => false
-    t.string   "state",                                               :default => "", :null => false
+    t.decimal  "amount",               :precision => 10, :scale => 2, :null => false
+    t.integer  "renewal_period",                                      :null => false
+    t.string   "renewal_units",                                       :null => false
+    t.integer  "access_class_id",                                     :null => false
+    t.string   "state",                                               :null => false
     t.date     "next_renewal_at"
     t.string   "card_number"
     t.string   "card_expiration"
@@ -227,8 +241,9 @@ ActiveRecord::Schema.define(:version => 20090526172835) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.text     "description"
-    t.boolean  "registered",   :default => false
+    t.boolean  "registered",        :default => false
     t.integer  "position"
+    t.integer  "discussions_count"
   end
 
   create_table "user_classes", :force => true do |t|
@@ -265,6 +280,10 @@ ActiveRecord::Schema.define(:version => 20090526172835) do
     t.integer  "access_class_id"
     t.boolean  "trial_available",           :default => true
     t.boolean  "send_email_notifications",  :default => false
+    t.string   "affiliate_code"
+    t.integer  "referred_by_id"
   end
+
+  add_index "users", ["affiliate_code"], :name => "index_users_on_affiliate_code", :unique => true
 
 end
