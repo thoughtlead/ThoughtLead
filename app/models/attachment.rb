@@ -118,12 +118,12 @@ class Attachment < ActiveRecord::Base
   def self.process_video(record)
     input_file = record.s3_url.gsub("http://s3.amazonaws.com/","s3://")
     output_file = input_file + ".mp4"
-    notification_url = "http://#{record.community.host}/media/#{record.id}/update_status"
-    
+    notification_host = "demo.thoughtleadapp.com"
     # Make sure it works in staging
     if $host_suffix
-      notification_url += ".#{$host_suffix}"
+      notification_host += ".#{$host_suffix}"
     end
+    notification_url = "http://#{notification_host}/media/#{record.id}/update_status"
     
     job = FlixCloud::Job.new(
       :api_key => FLIXCLOUD_API_KEY, 

@@ -28,7 +28,7 @@ class MediaController < ApplicationController
   end
   
   def update_status
-    if request.put? and video = Attachment.find_by_panda_id(params[:id])
+    if request.put? and video = Attachment.find(params[:id])
       if @job = FlixCloud::Notification.new(request.raw_post)
         video.update_status(@job)
       end
