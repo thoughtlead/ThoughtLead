@@ -5,7 +5,7 @@ class Attachment < ActiveRecord::Base
   validates_as_attachment
   
   after_attachment_saved do |record|
-    process_video(record) if content_type.include?('video')
+    process_video(record) if record.content_type.include?('video')
   end
 
   def community
