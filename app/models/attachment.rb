@@ -120,6 +120,11 @@ class Attachment < ActiveRecord::Base
     output_file = input_file + ".mp4"
     notification_url = "http://#{record.community.host}/media/#{record.id}/update_status"
     
+    # Make sure it works in staging
+    if $host_suffix
+      notification_url += ".#{$host_suffix}"
+    end
+    
     job = FlixCloud::Job.new(
       :api_key => FLIXCLOUD_API_KEY, 
       :recipe_id => FLIXCLOUD_RECIPE_ID,
