@@ -79,6 +79,7 @@ ActionController::Routing::Routes.draw do |map|
   map.media_upload '/media/:id/upload', :controller => 'media', :action => 'upload'
   map.media_done '/media/:id/done', :controller => 'media', :action => 'done'
   map.media_status '/media/:id/status', :controller => 'media', :action => 'status', :conditions => { :method => :post }
+  map.update_status '/media/:id/update_status', :controller => 'media', :action => 'update_status', :conditions => { :method => :put }
   
   
   map.library '/library', :controller => 'articles', :action => 'index', :conditions => { :is_client_domain => true }

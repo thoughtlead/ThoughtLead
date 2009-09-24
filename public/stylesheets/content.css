@@ -1635,3 +1635,16 @@ dl.pages dd.edit {
 }
 
 dl.pages div.url { color:grey; }
+
+.disabled { 
+  filter:alpha(opacity=25);
+	-moz-opacity:0.25;
+	-khtml-opacity: 0.25;
+	opacity: 0.25;
+}
+.disabled:hover {
+  filter:alpha(opacity=80);
+ 	-moz-opacity:0.8;
+ 	-khtml-opacity: 0.8;
+ 	opacity: 0.8;
+}

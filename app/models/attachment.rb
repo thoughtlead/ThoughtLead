@@ -1,8 +1,12 @@
 class Attachment < ActiveRecord::Base
   belongs_to      :user
   belongs_to      :content
-  has_attachment  :storage => :s3, :max_size => 150.megabytes, :s3_access => :authenticated_read, :content_type => [:image,"video/x-flv","audio/x-mp3"]
+  has_attachment  :storage => :s3, :max_size => 150.megabytes, :s3_access => :authenticated_read, :content_type => [:image,"video/x-flv","video/mpg","video/mp4","video/quicktime","video/x-msvideo","audio/x-mp3"]
   validates_as_attachment
+  
+  after_attachment_saved do |record|
+    process_video(record) if content_type.include?('video')
+  end
 
   def community
     content.community if content
@@ -51,6 +55,13 @@ class Attachment < ActiveRecord::Base
         self.filename = encoding.filename
         self.save_without_validation
       end
+    end
+  end
+  
+  def update_status(job)
+    if job.successful?
+      self.filename = job.output_media_file.url
+      self.save_without_validation
     end
   end
   
@@ -103,6 +114,25 @@ class Attachment < ActiveRecord::Base
   end
    
   protected
+  
+  def self.process_video(record)
+    input_file = record.s3_url.gsub("http://s3.amazonaws.com/","s3://")
+    output_file = input_file + ".mp4"
+    notification_url = "http://#{record.community.host}/media/#{record.id}/update_status"
+    
+    job = FlixCloud::Job.new(
+      :api_key => FLIXCLOUD_API_KEY, 
+      :recipe_id => FLIXCLOUD_RECIPE_ID,
+      :input_url => input_file, 
+      :output_url => output_file,
+      :notification_url => notification_url
+    )
+    
+    if job.save
+      record.update_attribute(:panda_id, job.id)
+    end
+  end
+  
   def destroy_file_with_panda
     # Do nothing (for the moment) if encoded with panda
     return true if encoded_with_panda?

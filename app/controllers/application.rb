@@ -119,6 +119,13 @@ class ApplicationController < ActionController::Base
     "#{themes_dir}/#{current_community.host}/#{filename}"
   end
   
+  def themed_file_exists?(filename)
+    themes_dir = File.expand_path(File.dirname(__FILE__) + "/../../public/themes")
+    return false unless current_community
+    return false unless File.exist?("#{themes_dir}/#{current_community.host}/#{filename}")
+    true
+  end
+  
   def render_custom_page(page)
     @page = page
     if @page.standalone?

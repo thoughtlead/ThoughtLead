@@ -22,6 +22,11 @@
 				<%= f.label :host %>
 				<%= f.text_field :host, :class => "inp_text"  %>
 			</div>
+			
+			<div class="inp group">
+				<%= f.label :copyright, "Copyright Holder" %>
+				<%= f.text_field :copyright, :class => "inp_text"  %>
+			</div>
 
 			<div class="inp group">
 				<%= f.label :gateway_login, "Payment Gateway Login" %>
@@ -30,7 +35,7 @@
 
 			<div class="inp group">
 				<%= f.label :gateway_password, "Payment Gateway Password" %>
-				<%= f.text_field :gateway_password, :class => "inp_text"  %>
+				<%= f.password_field :gateway_password, :class => "inp_text"  %>
 			</div>
 
 			<div class="inp group">
