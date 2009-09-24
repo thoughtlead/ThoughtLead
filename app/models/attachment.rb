@@ -61,6 +61,11 @@ class Attachment < ActiveRecord::Base
   def update_status(job)
     if job.successful?
       self.filename = job.output_media_file.url
+      self.job_status = 'success'
+      self.save_without_validation
+    elsif job.failed?
+      self.job_status = 'failed'
+      self.job_comments = job.error_message
       self.save_without_validation
     end
   end
@@ -112,6 +117,20 @@ class Attachment < ActiveRecord::Base
     return 'lesson' if content.lesson_content?
     return ''
   end
+  
+  def processing?
+    return false unless job_id
+    return true if job_id and job_status == "processing"
+  end
+  
+  def encoding_successful?
+    return true unless job_id
+    return true if job_id and job_status == "success"
+  end
+  
+  def encoding_failed?
+    return true if job_id and job_status == "failed"
+  end
    
   protected
   
@@ -134,7 +153,7 @@ class Attachment < ActiveRecord::Base
     )
     
     if job.save
-      record.update_attribute(:panda_id, job.id)
+      record.update_attributes(:job_id => job.id, :job_status => 'processing')
     end
   end
   

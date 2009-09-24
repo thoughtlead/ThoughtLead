@@ -48,41 +48,47 @@
 <% if (embedded_media = content.attachments.find_by_embedded(true)) %>
 	<% embedded_media_url = embedded_media.url %>
 	<div class="module video">
-		<% if embedded_media.image? %>
-		<img src="<%= embedded_media_url %>" />
-		<% elsif embedded_media.legacy_video? %>
-		<div id="player<%=embedded_media.id%>">
-			This text will be replaced
-		</div>
-		<script type="text/javascript">
-			var so = new SWFObject('/mediaplayer.swf', 'mpl', '510', '500', '8');
-			so.addParam('allowfullscreen', 'true');
-			so.addParam('allowscriptaccess', 'true');
-			so.addVariable('width', '510');
-			so.addVariable('height', '500');
-			so.addVariable('file', encodeURIComponent(encodeURIComponent('<%= embedded_media_url %>')));
-			so.addVariable('type', 'flv');
-			so.addVariable('autostart', 'false');
-			so.write('player<%= embedded_media.id%>');
-		</script>
-		<% elsif embedded_media.video? %>
-		  <%= embedded_media.panda_embed_js %>
-		<% elsif embedded_media.audio? %>
-		<div id="player<%=embedded_media.id%>">
-		This text will be replaced
-		</div>
-		<script type="text/javascript">
-			var so = new SWFObject('/mediaplayer.swf', 'mpl', '510', '20', '8');
-			so.addParam('allowfullscreen', 'false');
-			so.addParam('allowscriptaccess', 'true');
-			so.addVariable('width', '510');
-			so.addVariable('height', '20');
-			so.addVariable('file', encodeURIComponent(encodeURIComponent('<%= embedded_media_url %>')));
-			so.addVariable('type', 'mp3');
-			so.addVariable('autostart', 'false');
-			so.write('player<%= embedded_media.id%>');
-		</script>
-		<% end %>
+	  <% if embedded_media.encoding_successful? -%>
+  		<% if embedded_media.image? %>
+  		<img src="<%= embedded_media_url %>" />
+  		<% elsif embedded_media.legacy_video? %>
+  		<div id="player<%=embedded_media.id%>">
+  			This text will be replaced
+  		</div>
+  		<script type="text/javascript">
+  			var so = new SWFObject('/mediaplayer.swf', 'mpl', '510', '500', '8');
+  			so.addParam('allowfullscreen', 'true');
+  			so.addParam('allowscriptaccess', 'true');
+  			so.addVariable('width', '510');
+  			so.addVariable('height', '500');
+  			so.addVariable('file', encodeURIComponent(encodeURIComponent('<%= embedded_media_url %>')));
+  			so.addVariable('type', 'flv');
+  			so.addVariable('autostart', 'false');
+  			so.write('player<%= embedded_media.id%>');
+  		</script>
+  		<% elsif embedded_media.video? %>
+  		  <%= embedded_media.panda_embed_js %>
+  		<% elsif embedded_media.audio? %>
+  		<div id="player<%=embedded_media.id%>">
+  		This text will be replaced
+  		</div>
+  		<script type="text/javascript">
+  			var so = new SWFObject('/mediaplayer.swf', 'mpl', '510', '20', '8');
+  			so.addParam('allowfullscreen', 'false');
+  			so.addParam('allowscriptaccess', 'true');
+  			so.addVariable('width', '510');
+  			so.addVariable('height', '20');
+  			so.addVariable('file', encodeURIComponent(encodeURIComponent('<%= embedded_media_url %>')));
+  			so.addVariable('type', 'mp3');
+  			so.addVariable('autostart', 'false');
+  			so.write('player<%= embedded_media.id%>');
+  		</script>
+  		<% end %>
+  	<% elsif embedded_media.encoding_failed? -%>
+  	  <p>There was an error processing your video. Please contact Thoughtlead support for assistance.</p>
+  	<% elsif embedded_media.processing? -%>
+  	  	  <p>We're hard at work processing this video!</p>
+  	<% end -%>
 	</div>
 	<div style="clear:both">&nbsp;</div>
 <% end %>
