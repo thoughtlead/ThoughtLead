@@ -1,7 +1,7 @@
 class Attachment < ActiveRecord::Base
   belongs_to      :user
   belongs_to      :content
-  has_attachment  :storage => :s3, :max_size => 150.megabytes, :s3_access => :authenticated_read, :content_type => [:image,"video/x-flv","video/mpg","video/mp4","video/quicktime","video/x-msvideo","audio/x-mp3"]
+  has_attachment  :storage => :s3, :max_size => 500.megabytes, :s3_access => :authenticated_read, :content_type => [:image,"video/x-flv","video/mpg","video/mp4","video/quicktime","video/x-msvideo","audio/x-mp3"]
   validates_as_attachment
   
   after_attachment_saved do |record|
