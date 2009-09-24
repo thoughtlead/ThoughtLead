@@ -1,6 +1,6 @@
 class MediaController < ApplicationController
   # Don't require an authenticity token for status post...
-  skip_before_filter :verify_authenticity_token, :only => :status
+  skip_before_filter :verify_authenticity_token, :only => [:status, :update_status]
 
   skip_before_filter :find_community, :only => [ :status, :done ]
   skip_before_filter :control_access, :only => [ :status, :done ]
@@ -24,6 +24,15 @@ class MediaController < ApplicationController
     @panda_video = Panda::Video.new_with_attrs(YAML.load(params[:video])[:video])
     @video.update_panda_status(@panda_video)
     get_current_community_from(@video)
+    render :nothing => true
+  end
+  
+  def update_status
+    if request.put? and video = Attachment.find_by_panda_id(params[:id])
+      if @job = FlixCloud::Notification.new(request.raw_post)
+        video.update_status(@job)
+      end
+    end
     render :nothing => true
   end
   
