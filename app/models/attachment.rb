@@ -136,7 +136,7 @@ class Attachment < ActiveRecord::Base
   
   def self.process_video(record)
     input_file = record.s3_url.gsub("http://s3.amazonaws.com/","s3://")
-    output_file = input_file + ".mp4"
+    output_file = input_file + ".flv"
     notification_host = "demo.thoughtleadapp.com"
     # Make sure it works in staging
     if $host_suffix
