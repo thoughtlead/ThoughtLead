@@ -1,8 +1,12 @@
 class Attachment < ActiveRecord::Base
   belongs_to      :user
   belongs_to      :content
-  has_attachment  :storage => :s3, :max_size => 150.megabytes, :s3_access => :authenticated_read, :content_type => [:image,"video/x-flv","audio/x-mp3"]
+  has_attachment  :storage => :s3, :max_size => 500.megabytes, :s3_access => :authenticated_read, :content_type => [:image,"video/x-flv","video/mpg","video/mp4","video/quicktime","video/x-msvideo","audio/x-mp3"]
   validates_as_attachment
+  
+  after_attachment_saved do |record|
+    process_video(record) if record.content_type.include?('video')
+  end
 
   def community
     content.community if content
@@ -54,6 +58,18 @@ class Attachment < ActiveRecord::Base
     end
   end
   
+  def update_status(job)
+    if job.successful?
+      self.filename = job.output_media_file.url
+      self.job_status = 'success'
+      self.save_without_validation
+    elsif job.failed?
+      self.job_status = 'failed'
+      self.job_comments = job.error_message
+      self.save_without_validation
+    end
+  end
+  
   def encoded_with_panda?
     !self.panda_id.blank? 
   end
@@ -101,8 +117,46 @@ class Attachment < ActiveRecord::Base
     return 'lesson' if content.lesson_content?
     return ''
   end
+  
+  def processing?
+    return false unless job_id
+    return true if job_id and job_status == "processing"
+  end
+  
+  def encoding_successful?
+    return true unless job_id
+    return true if job_id and job_status == "success"
+  end
+  
+  def encoding_failed?
+    return true if job_id and job_status == "failed"
+  end
    
   protected
+  
+  def self.process_video(record)
+    input_file = record.s3_url.gsub("http://s3.amazonaws.com/","s3://")
+    output_file = input_file + ".flv"
+    notification_host = "demo.thoughtleadapp.com"
+    # Make sure it works in staging
+    if $host_suffix
+      notification_host += ".#{$host_suffix}"
+    end
+    notification_url = "http://#{notification_host}/media/#{record.id}/update_status"
+    
+    job = FlixCloud::Job.new(
+      :api_key => FLIXCLOUD_API_KEY, 
+      :recipe_id => FLIXCLOUD_RECIPE_ID,
+      :input_url => input_file, 
+      :output_url => output_file,
+      :notification_url => notification_url
+    )
+    
+    if job.save
+      record.update_attributes(:job_id => job.id, :job_status => 'processing')
+    end
+  end
+  
   def destroy_file_with_panda
     # Do nothing (for the moment) if encoded with panda
     return true if encoded_with_panda?
