@@ -81,7 +81,7 @@ ActionController::Routing::Routes.draw do |map|
   
   
   map.library '/library', :controller => 'articles', :action => 'index', :conditions => { :is_client_domain => true }
-  map.resources :articles, :conditions => { :is_client_domain => true }
+  map.resources :articles, :collection => { :sort => :post }, :conditions => { :is_client_domain => true }
   map.resources :categories, :collection => { :sort => :post }, :conditions => { :is_client_domain => true }
   
   map.catch_all '*path', :controller => 'pages', :action => 'catchall'

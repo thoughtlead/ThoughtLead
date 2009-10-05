@@ -3,6 +3,8 @@ class Article < ActiveRecord::Base
   belongs_to :content, :dependent => :destroy
   belongs_to :community
   before_save :update_new_categories
+  
+  acts_as_list :scope => :community
 
   def to_s
     (content && content.title) || ""

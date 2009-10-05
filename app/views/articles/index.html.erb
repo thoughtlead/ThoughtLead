@@ -24,9 +24,9 @@
 		<p>Explore our multimedia library of articles, videos, audios, and more. Browse the whole library or sort by topic using the category tabs to the right.</p>
 	</div>
 	<% end %>
-	<ul class="article_list library">
+	<ul class="article_list library" id="library">
 		<% @articles.each do |article| %>
-			<li>
+			<% content_tag_for :li, article do %>
 				<div class="title">
 					<h2>
 						<%= link_to(h(article),article) %> 
@@ -60,7 +60,7 @@
 						<a class="more" href="<%= url_for(article) %>">Keep Reading</a><span class="arrow">&nbsp;</span>
 					</p>
 				</div>
-			</li>
+			<% end -%>
 		<% end %>
 	</ul>
 	<% if @articles.total_pages > 1 %>
@@ -100,3 +100,6 @@
 		</li>
 	</ul>
 </div>
+<% if logged_in? && current_user.owner? %>
+	<%= sortable_element 'library', :url => sort_articles_url, :complete => visual_effect(:highlight, 'library') %>
+<% end -%>
