@@ -8,7 +8,7 @@ class Community < ActiveRecord::Base
   has_many :themes, :order => :position, :dependent => :destroy
   has_many :discussions, :dependent => :destroy
   has_many :categories, :order => :position, :dependent => :destroy
-  has_many :articles, :order => 'articles.position, articles.updated_at DESC', :dependent => :destroy
+  has_many :articles, :include => :content, :order => 'articles.position, contents.updated_at DESC', :dependent => :destroy
   
   has_many :access_classes, :order => :position, :dependent => :destroy
   belongs_to :owner, :class_name => "User"
