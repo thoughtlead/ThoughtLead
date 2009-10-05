@@ -13,8 +13,8 @@
 	</div>
 	<ul id="account_nav">
 		<% if logged_in? %>
-		<li class="profile"><em>Welcome,</em> <%= link_to current_user, user_url(current_user), :class => 'user' %></li>
-		<li class="edit_profile replace"><%= link_to "Edit", edit_user_url(current_user), :class => 'action' %></li>
+		<li class="profile"><em>Welcome,</em> <strong><%= link_to current_user, user_url(current_user), :class => 'user', :title => "View your profile" %></strong>
+		  (<%= link_to "edit", edit_user_url(current_user), :class => 'action', :title => "Update your profile" %>)</li>
 		<% if logged_in_as_owner? %>
 			<li class="community_setup"><%= link_to "Community Setup", edit_community_url %></li>
 		<% end %>		
