@@ -30,7 +30,7 @@ a:hover {
 }
 /***Main Css***/
 .content_area {
-	margin: 0 auto;
+	margin:0px auto;
 	width:800px
 }
 /***Header****/
@@ -82,6 +82,51 @@ a:hover {
 }
 .account_nav li a:hover {
 	text-decoration:none
+}
+
+#navigation_bar {
+  position: relative;
+  top: -16px;
+  margin-left:75px;
+}
+
+ul#global_nav {
+  padding-top: 10px;
+}
+
+#navigation ul {
+  font-size: 11px;
+  font-weight: bold;
+  line-height: 1;
+  list-style-type: none;
+  margin: 0px;
+  padding: 0px;
+}
+
+#navigation ul a {
+  color: #1671B8;
+  text-decoration:none;
+}
+
+#global_nav {
+  float: right;
+}
+
+ul#global_nav li {
+  border-right: 1px solid rgb(204, 204, 204);
+  line-height: 1;
+  padding: 0px 5px;
+  float: left;
+}
+
+ul#global_nav li.contact_link {
+  border-right: 0px;
+  padding-right: 0px;
+}
+
+#content_nav {
+  float: left;
+  width: 700px;
 }
 /***Mid Art section******/
 .nav {
