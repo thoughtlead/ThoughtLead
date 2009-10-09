@@ -185,6 +185,10 @@ class User < ActiveRecord::Base
     end
   end
   
+  def online?
+    read_attribute(:last_login_at) > 5.minutes.ago.utc
+  end
+  
   protected
 
   def before_validation_on_create
