@@ -160,6 +160,13 @@ class User < ActiveRecord::Base
     update_attribute(:affiliate_code, User.generate_affiliate_code)
   end
   
+  def update_visit!
+    last_access = read_attribute(:last_login_at)
+    if last_access.nil? or Time.now.utc - 5.minutes > last_access
+      update_attribute(:last_login_at, Time.now.utc)
+    end
+  end
+  
   protected
 
   def before_validation_on_create
