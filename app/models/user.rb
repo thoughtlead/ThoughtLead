@@ -39,6 +39,24 @@ class User < ActiveRecord::Base
 
   named_scope :active, :conditions => { :disabled => false }
   named_scope :disabled, :conditions => { :disabled => true }
+  named_scope :with_avatars, :joins => "LEFT OUTER JOIN `avatars` ON avatars.user_id = users.id", :conditions => "avatars.user_id IS NOT NULL", :group => 'avatars.user_id'
+  named_scope :without_avatars, :joins => "LEFT OUTER JOIN `avatars` ON avatars.user_id = users.id", :conditions => "avatars.user_id IS NULL" 
+  named_scope :in_community, lambda { |community| {:conditions => { :community_id => community.id }}}
+  named_scope :by_recency, :order => 'last_login_at DESC'
+  
+  def self.list_all_members_of(community, options = {})
+    options[:page] ||= 1
+    options[:limit] ||= 15
+    options[:disabled] ||= false
+    if options[:owner]
+      has_pic = User.in_community(community).by_recency.with_avatars.find :all
+      no_pic  = User.in_community(community).by_recency.without_avatars.find :all
+    else
+      has_pic = User.active.in_community(community).by_recency.with_avatars.find :all
+      no_pic  = User.active.in_community(community).by_recency.without_avatars.find :all
+    end
+    has_pic + no_pic
+  end
   
   def is_registered?
     return true
