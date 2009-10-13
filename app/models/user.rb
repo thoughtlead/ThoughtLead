@@ -196,9 +196,9 @@ class User < ActiveRecord::Base
   end
   
   def self.generate_affiliate_code
-    ac = rand(36**8).to_s(36) 
+    ac = Code::Short.new
     while self.exists?(['affiliate_code = ?', ac])
-      ac = rand(36**8).to_s(36)
+      ac = Code::Short.new
     end
     return ac
   end
