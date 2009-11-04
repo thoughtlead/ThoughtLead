@@ -3,7 +3,7 @@ class SubscriptionController < ApplicationController
   before_filter :login_required, :load_subscription
 
   def edit
-    @access_classes = current_community.access_classes
+    @access_classes = current_community.access_classes.active
   end
 
   def update
