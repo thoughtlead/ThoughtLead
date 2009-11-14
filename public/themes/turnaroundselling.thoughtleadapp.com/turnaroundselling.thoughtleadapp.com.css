@@ -349,8 +349,11 @@ a:hover { color:#649d29; text-decoration:underline}
 	border-top-color: #eaf4ce;
 	border-bottom-color: #e0eeb7;
 }
-	#main_content .banner h2 {background-image: url(images/headlines/h2_domore_bg.gif);}
+	#main_content .banner h2 {background-image: url(images/headlines/h2_domore_bg.gif); height:100px;}
 	#main_content .banner .register {background-image: url(images/template/button_register_bg.gif);}
+	#main_content .banner .content { width:auto;}
+	#main_content .banner .image { top: -35px; right: -50px;
+}
 
 
 	#main_content .section_list h4 {}
@@ -362,3 +365,10 @@ a:hover { color:#649d29; text-decoration:underline}
 
 	#main_content .section_list .arrow {background-image: url(images/template/home_arrow_bg.gif);}
 	#sidebar .cta .arrow {background-image: url(images/template/cta_arrow_bg.gif);}
+	
+.tif_img {
+	position:absolute;
+	z-index: 10000;
+	right: -46px;
+	top: -36px;
+	}
