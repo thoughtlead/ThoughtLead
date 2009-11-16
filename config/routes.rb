@@ -71,7 +71,7 @@ ActionController::Routing::Routes.draw do |map|
   map.export_users '/community/export_affiliates', :controller => 'admin', :action => 'export_affiliates', :conditions => { :is_client_domain => true }
 
   map.resources :access_classes, :member => { :toggle => :post }, :conditions => { :is_client_domain => true } do |access_classes|
-    access_classes.resources :subscription_plans, :conditions => { :is_client_domain => true }
+    access_classes.resources :subscription_plans, :member => { :toggle => :post }, :conditions => { :is_client_domain => true }
   end
   
   map.media_upload '/media/:id/upload', :controller => 'media', :action => 'upload'

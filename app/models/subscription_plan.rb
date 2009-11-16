@@ -14,4 +14,7 @@ class SubscriptionPlan < ActiveRecord::Base
   default_value_for :renewal_units, "months"
   default_value_for :trial_period,  0
   default_value_for :trial_units,  "months"
+
+  named_scope :active, :conditions => { :activated => true }
+  
 end
