@@ -11,11 +11,18 @@ class ApplicationController < ActionController::Base
   before_filter :set_site_title
   
   before_filter :record_affiliate_actions, :if => :affiliate_tracking_enabled?
+  before_filter :update_visit
   protect_from_forgery
 
   filter_parameter_logging :password, :password_confirmation, :card
 
   protected
+  
+  def update_visit
+    if logged_in?
+      current_user.update_visit!
+    end
+  end
 
   def redirect_back(redirect_opts = nil)
     redirect_opts ||= {:controller => 'home'}

@@ -157,6 +157,12 @@ module ApplicationHelper
     return :current if link_action_name == action_name
   end
   
+  def toggle_subscription_plan_link(subscription_plan)
+    aktion = subscription_plan.activated? ? "Hide" : "Show"
+    style = subscription_plan.activated? ? "" : "color:red"
+    link_to aktion, toggle_access_class_subscription_plan_url(:access_class_id => subscription_plan.access_class.id, :id => subscription_plan.id), :method => :post, :style => style
+  end
+  
   private
 
   def themed_file(path, default_path = path)

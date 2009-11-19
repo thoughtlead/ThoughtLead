@@ -10,8 +10,6 @@ class ArticlesController < ApplicationController
     unless logged_in? && current_user.owner?
       @articles = @articles.find_all { |article| !article.content.draft }
     end
-    @articles = @articles.sort_by{ |article| article.content.updated_at }
-    @articles = @articles.reverse
     @articles = @articles.paginate :page => params[:page], :per_page => 20
     @category = current_community.categories.find_by_id(params[:category]) if params[:category] && params[:category] != 'nil'
   end
@@ -66,6 +64,13 @@ class ArticlesController < ApplicationController
     flash[:notice] = "Deleted the article named '#{@article}'"
     @article.destroy
     redirect_to library_url
+  end
+  
+  def sort
+    params['library'].each_with_index do |id, index|
+      Article.update_all(['position=?', index+1], ['id=?', id])
+    end
+    render :nothing => true
   end
   
   private

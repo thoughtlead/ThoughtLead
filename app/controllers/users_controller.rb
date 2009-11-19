@@ -86,8 +86,7 @@ class UsersController < ApplicationController
   end
 
   def index
-    @users = current_community.users
-    @users = logged_in_as_owner? ? current_community.users : current_community.users.active
+    @users = logged_in_as_owner? ? User.list_all_members_of(current_community, :owner => true): User.list_all_members_of(current_community)
     @users = @users.paginate :page => params[:page], :per_page => 15
   end
 

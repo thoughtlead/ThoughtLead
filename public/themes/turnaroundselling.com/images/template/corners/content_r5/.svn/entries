@@ -1,0 +1,68 @@
+8
+
+dir
+244
+svn://root@osiris.fadial.com/Projects/ThoughtLead/Code/images/template/corners/content_r5
+svn://root@osiris.fadial.com/Projects
+
+
+
+2008-07-10T04:12:17.163570Z
+244
+root
+
+
+svn:special svn:externals svn:needs-lock
+
+top_left.png
+file
+
+
+
+
+2008-06-30T02:26:20.000000Z
+12cef8c8c64ac1d80fd60384b3239907
+2008-07-10T04:12:17.163570Z
+244
+root
+has-props
+
+bottom_left.png
+file
+
+
+
+
+2008-06-30T02:26:37.000000Z
+c584ff7e46b3bb86a664ba5ecdb3e9eb
+2008-07-10T04:12:17.163570Z
+244
+root
+has-props
+
+top_right.png
+file
+
+
+
+
+2008-06-30T02:26:27.000000Z
+1f6d44f534463a6d7bf7a1cb95bc0f7d
+2008-07-10T04:12:17.163570Z
+244
+root
+has-props
+
+bottom_right.png
+file
+
+
+
+
+2008-06-30T02:26:32.000000Z
+6d9e23fc2912fc26948742fc78235d30
+2008-07-10T04:12:17.163570Z
+244
+root
+has-props
+

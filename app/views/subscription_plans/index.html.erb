@@ -15,7 +15,7 @@
 		<% for subscription_plan in @subscription_plans %>
 
 		<li>
-			<h3><%=h subscription_plan.name %></h3>
+			<h3><%=h subscription_plan.name %> - <small><%= toggle_subscription_plan_link(subscription_plan) %></small></h3>
 			<ul class="item_actions">
 				<li>
 					<%= h subscription_plan.summary %>

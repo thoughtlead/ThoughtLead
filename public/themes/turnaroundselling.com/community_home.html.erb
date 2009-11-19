@@ -1,0 +1,76 @@
+<% @current_tab = :Home %>
+<% content_for :head do %>
+	<%= stylesheet_link_tag('home') %>
+	<%= javascript_include_tag('home') %>
+<% end %>
+<div id="main_content" class="marketing">
+	<div class="banner">
+		<div class="banner_wrap">
+		<div class="content">
+			<h2 class="do_more replace">You're About to Discover the Secrets of How to Work Less and Earn More in Sales. Absolutely Free!</h2>
+			<p>The economy is shrinking, and most people are feeling the pinch.<br /> But did you know that the economy doesn't mean anything about<br /> your own success in sales? That's right. As a sales professional,<br /> your financial futures very much  <strong>in your own hands</strong>, regardless<br />  of the situation! If that's not the case in your life yet… if your bank  <br />account is tiny and you're still at the whims of fickle buyers, then it's time to <span style="text-decoration:underline;">upgrade your toolkit</span>. You need a sales system that will have you easily making over $100,000 per year. <br /><br />
+The system is called Smart Selling, and your guide is Stepp Stevens Sydnor, a 25-year veteran of sales, both in the field and as a coach.</p>
+		</div>
+		<div class="tif_img">
+			<img src="<%= themed_file('images/content/home_screenshot.png') %>" alt="Screenshot" />
+		</div>
+		</div>
+	</div>
+	<div class="page_content">
+    	<p>He's helped thousands of salespeople <strong>skyrocket their incomes</strong> by working <i>smarter</i>, not harder. <br /><br />
+For a limited time, you can receive the first three foundational steps of Smart Selling absolutely free of charge! In these powerful multimedia lessons, you will discover:</p>
+		<ul class="feature_list">
+			<li>
+				Most critical factor to succeeding in sales(good news, you have complete control over it)...
+			</li>
+			<li>
+				Which little things have been holding you back in a big way, and the simple steps that will free you to finally soar...
+			</li>
+			<li>
+                How to find opportunities where other people only see problems and dead ends...
+            </li>
+			<li>Why having a system for selling is your “secret weapon” to becoming a sales leader...
+			</li>
+			<li>What you need to offer the prospect, way before you pitch your product, that will boost your sales 200% or more...
+            </li>
+			<li>And much more...
+			</li>
+		</ul>
+        <p>To get your hands on the foundations of Smart Selling immediately, all you need to do is sign up in the box on the right. Just enter your first name, last name, and email address, then click the button and you'll be on your way to the sales career, and maybe even the life, of your dreams!</p>
+		<p>Sign up now to get started.</p>
+	</div>
+</div>
+<div id="sidebar">
+	<ul class="modules">
+		<li class="cta register">
+			<div class="content">
+				<h4 class="get_free replace">Get Free Access</h4>
+				<% form_for :user, @user, :url => signup_url, :html => {:class => 'edit'} do | f | -%>
+					<%= f.error_messages %>
+					<fieldset class="input">
+						<div class="inp group">
+							<%= f.label :"First Name" %>
+							<%= f.text_field :first_name, :class => 'inp_text', :size => 20 %>
+						</div>
+
+						<div class="inp group">
+							<%= f.label :"Last Name" %>
+							<%= f.text_field :last_name, :class => 'inp_text', :size => 20 %>
+						</div>
+
+						<div class="inp group">
+							<%= f.label :"Email Address" %>
+							<%= f.text_field :email, :class => 'inp_text', :size => 20 %>
+						</div>
+
+						<p class="disclaimer">By signing up you agree to the <a href="/tos" target="_blank">terms of use</a> for this site.</p>
+					</fieldset>
+					<fieldset class="submit">
+						<%= submit_tag "Sign Up", :class => "make_button", :id => "signup" %>
+					</fieldset>
+				<% end -%>
+        	</div>
+        </li>
+        <li> <img src="<%= themed_file('images/headlines/testimonial1.jpg') %>" alt="Testimonial" /></li>
+	</ul>
+</div>

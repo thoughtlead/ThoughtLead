@@ -3,6 +3,9 @@ class Article < ActiveRecord::Base
   belongs_to :content, :dependent => :destroy
   belongs_to :community
   before_save :update_new_categories
+  
+  acts_as_list :scope => :community
+  after_create :pop_to_top
 
   def to_s
     (content && content.title) || ""
@@ -55,6 +58,10 @@ class Article < ActiveRecord::Base
   end
 
   private
+  
+  def pop_to_top
+    move_to_top
+  end
 
   def update_new_categories
     unless @new_category_names.blank?

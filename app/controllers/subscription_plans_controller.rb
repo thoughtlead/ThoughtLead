@@ -21,4 +21,15 @@ class SubscriptionPlansController < ApplicationController
       render :action => "index"
     end
   end
+  
+  def toggle
+    @community = current_community
+    @access_class = current_community.access_classes.find(params[:access_class_id])
+    @plan = @access_class.subscription_plans.find(params[:id])
+    if @plan.toggle!(:activated)
+      aktion = @plan.activated? ? "enabled" : "disabled"
+      flash[:notice] = "Successfully #{aktion} \"#{@plan.name}\" subscription plan"
+    end
+    redirect_to :action => 'index'
+  end
 end

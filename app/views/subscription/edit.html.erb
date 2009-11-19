@@ -38,7 +38,7 @@
               <% if access_class.subscription_plans.blank? %>
                 <li><label>No subscriptions defined.</label></li>
               <% else %>
-			          <% for subscription_plan in access_class.subscription_plans %>
+			          <% for subscription_plan in access_class.subscription_plans.active %>
 
 					          <li>
 					            <%= f.radio_button(:subscription_plan_id, subscription_plan.id) %>

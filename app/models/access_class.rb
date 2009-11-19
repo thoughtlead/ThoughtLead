@@ -7,6 +7,8 @@ class AccessClass < ActiveRecord::Base
   has_many :children, :class_name => 'AccessClass', :through => :access_class_relationships
 
   validates_uniqueness_of :name, :case_sensitive => false, :scope => :community_id
+  
+  named_scope :active, :conditions => { :activated => true }
 
   def has_access_to(access_class_or_classes)
     access_classes = if access_class_or_classes.is_a?(Enumerable)

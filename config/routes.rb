@@ -72,8 +72,8 @@ ActionController::Routing::Routes.draw do |map|
   map.export_users '/community/export_users', :controller => 'admin', :action => 'export_users', :conditions => { :is_client_domain => true }
   map.export_users '/community/export_affiliates', :controller => 'admin', :action => 'export_affiliates', :conditions => { :is_client_domain => true }
 
-  map.resources :access_classes, :conditions => { :is_client_domain => true } do |access_classes|
-    access_classes.resources :subscription_plans, :conditions => { :is_client_domain => true }
+  map.resources :access_classes, :member => { :toggle => :post }, :conditions => { :is_client_domain => true } do |access_classes|
+    access_classes.resources :subscription_plans, :member => { :toggle => :post }, :conditions => { :is_client_domain => true }
   end
   
   map.media_upload '/media/:id/upload', :controller => 'media', :action => 'upload'
@@ -83,7 +83,7 @@ ActionController::Routing::Routes.draw do |map|
   
   
   map.library '/library', :controller => 'articles', :action => 'index', :conditions => { :is_client_domain => true }
-  map.resources :articles, :conditions => { :is_client_domain => true }
+  map.resources :articles, :collection => { :sort => :post }, :conditions => { :is_client_domain => true }
   map.resources :categories, :collection => { :sort => :post }, :conditions => { :is_client_domain => true }
   
   map.catch_all '*path', :controller => 'pages', :action => 'catchall'
