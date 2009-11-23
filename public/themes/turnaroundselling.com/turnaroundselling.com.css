@@ -349,9 +349,9 @@ a:hover { color:#649d29; text-decoration:underline}
 	border-top-color: #eaf4ce;
 	border-bottom-color: #e0eeb7;
 }
-	#main_content .banner h2 {background-image: url(images/headlines/h2_domore_bg.gif); height:100px;}
+	#main_content .banner h2 {background-image: url(images/headlines/h2_domore_bg.gif);}
 	#main_content .banner .register {background-image: url(images/template/button_register_bg.gif);}
-	#main_content .banner .content { width:auto;}
+	.topper { padding: 14px; font-size: 1em; }
 	#main_content .banner .image { top: -35px; right: -50px;
 }
 
@@ -363,12 +363,16 @@ a:hover { color:#649d29; text-decoration:underline}
 		#main_content .section_list .people h4 span {background-image: url(images/template/home_people_icon.gif);}
 		#main_content .section_list li { width:245px;}
 
+		ul.feature_list { margin: 0 15px 0 0; padding: 0 0 0 18px; list-style-image: url(images/template/bullet.jpg); list-style-type:square; }
+			.feature_list li {font-size:1.2em; margin-bottom:10px;}
+			.feature_list li li {font-size:.7em; margin-bottom:10px; list-style:none; margin-top:10px;}
+
 	#main_content .section_list .arrow {background-image: url(images/template/home_arrow_bg.gif);}
 	#sidebar .cta .arrow {background-image: url(images/template/cta_arrow_bg.gif);}
 	
-.tif_img {
+.screenshot_img {
 	position:absolute;
 	z-index: 10000;
-	right: -46px;
+	right: -16px;
 	top: -36px;
 	}
