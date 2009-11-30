@@ -30,7 +30,7 @@ a:hover {
 }
 /***Main Css***/
 .content_area {
-	margin: 0 auto;
+	margin:0px auto;
 	width:800px
 }
 /***Header****/
@@ -82,6 +82,51 @@ a:hover {
 }
 .account_nav li a:hover {
 	text-decoration:none
+}
+
+#navigation_bar {
+  position: relative;
+  top: -16px;
+  margin-left:75px;
+}
+
+ul#global_nav {
+  padding-top: 10px;
+}
+
+#navigation ul {
+  font-size: 11px;
+  font-weight: bold;
+  line-height: 1;
+  list-style-type: none;
+  margin: 0px;
+  padding: 0px;
+}
+
+#navigation ul a {
+  color: #1671B8;
+  text-decoration:none;
+}
+
+#global_nav {
+  float: right;
+}
+
+ul#global_nav li {
+  border-right: 1px solid rgb(204, 204, 204);
+  line-height: 1;
+  padding: 0px 5px;
+  float: left;
+}
+
+ul#global_nav li.contact_link {
+  border-right: 0px;
+  padding-right: 0px;
+}
+
+#content_nav {
+  float: left;
+  width: 700px;
 }
 /***Mid Art section******/
 .nav {
@@ -167,13 +212,25 @@ a:hover {
 .top_heading {
 	float:left;
 	width:322px;
-	font-size:20px;
+	font-size:24px;
 	margin:0;
 	padding:0 0 10px 0;
-	color:#333333;
+	color:#0D72B9;
 	font-weight:bold;
-	line-height:20px
+	line-height:24px
 }
+
+p#lead-in {
+  font-size:24px;
+	line-height:30px
+	
+}
+
+.banner_wrap i, .banner_wrap b, .banner_wrap strong {
+  color:#F36F32;
+}
+
+.banner_wrap p { font-size:14px; line-height:18px;}
 .inner_img {
 	float:left;
 	width:227px;
@@ -189,12 +246,13 @@ a:hover {
 	width:510px;
 	padding:15px 0 5px 0;
 	line-height:24px; margin:0;
-	font-size:20px;
+	font-size:18px;
 	color:#333333;
 	border-bottom:1px dotted #000;
 	font-family: Arial, Helvetica, Verdana, sans-serif;
 	font-weight:normal;
 }
+
 .midleftcontent ul {
 	width:510px;
 	float:left;
@@ -208,15 +266,15 @@ a:hover {
 	margin:0;
 	padding:0 0 15px 11px;
 	list-style-type:none;
-	font-size:15px;
+	font-size:14px;
 	color:#333333;
 	line-height:18px;
 	background:url(../graphics/bullet.gif) 0 5px no-repeat;
 }
 .midleftcontent p {
-	font-size:13px;
+  line-height:24px;
+	font-size:18px;
 	color:#333333; margin:0; padding:0;
-	line-height:16px;
 	width:510px;
 	float:left;
 }
@@ -226,6 +284,10 @@ a:hover {
 	line-height:16px;
 	text-decoration:underline;
 	font-weight:bold;
+}
+
+.midleftcontent i, .midleftcontent b, .midleftcontent strong {
+  color:#0D72B9;
 }
 /****Right Section****/
 .topbar {
@@ -322,15 +384,14 @@ fieldset.btnsection a {
 .credit {
 	float:left;
 	width:530px;
-	font-size:13px;
-	font-weight:bold;
+	font-size:11px;
 	font-family: Arial, Helvetica, Verdana, sans-serif;
 	color:#b2b2b2;
 	padding:0 0 0 20px;
 }
 .credit a {
 	color:#000;
-	font-size:13px;
+	font-size:11px;
 	font-weight:bold;
 	text-decoration:underline
 }
@@ -338,3 +399,15 @@ fieldset.btnsection a {
 	text-decoration:none
 }
 .underline{ text-decoration:underline;}
+
+#adbar {
+  float: left;
+  margin-top:21px;
+  padding-left: 7px;
+  width: 230px;
+  text-align:center;
+}
+
+#adbar img {
+  margin:0 auto;
+}

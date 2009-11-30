@@ -42,6 +42,12 @@ a,
 #sidebar h3,
 #sidebar h4 {color: #333;}
 
+#sidebar ul.modules li.cta .content p { color:black;}
+#sidebar ul.modules li.cta .content a {
+  color: #1671B8;
+  font-weight:bold;
+}
+
 
 /* Header
 ----------------------------------------------- */
@@ -383,3 +389,4 @@ a,
 	
 .bannar p { width: 300px;}	
 	
+/*

@@ -65,7 +65,7 @@ a:hover { color:#649d29; text-decoration:underline}
 	background-color: #649d29;
 	background-image: none;
 }
-	#navigation #navigation_art {background-image: url(images/template/leaves.gif);}
+	#navigation #navigation_art {background-image: url(images/template/leaves_bg.jpg);}
 
 	#content_nav {}
 		#content_nav li a {
@@ -349,9 +349,9 @@ a:hover { color:#649d29; text-decoration:underline}
 	border-top-color: #eaf4ce;
 	border-bottom-color: #e0eeb7;
 }
-	#main_content .banner h2 {background-image: url(images/headlines/h2_domore_bg.gif); height:100px;}
+	#main_content .banner h2 {background-image: url(images/headlines/h2_domore_bg.gif);}
 	#main_content .banner .register {background-image: url(images/template/button_register_bg.gif);}
-	#main_content .banner .content { width:auto;}
+	.topper { padding: 14px; font-size: 1.2em; }
 	#main_content .banner .image { top: -35px; right: -50px;
 }
 
@@ -370,7 +370,7 @@ a:hover { color:#649d29; text-decoration:underline}
 	#main_content .section_list .arrow {background-image: url(images/template/home_arrow_bg.gif);}
 	#sidebar .cta .arrow {background-image: url(images/template/cta_arrow_bg.gif);}
 	
-.tif_img {
+.screenshot_img {
 	position:absolute;
 	z-index: 10000;
 	right: -46px;
