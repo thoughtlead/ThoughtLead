@@ -62,6 +62,7 @@
   			so.addVariable('width', '510');
   			so.addVariable('height', '500');
   			so.addVariable('file', encodeURIComponent(encodeURIComponent('<%= embedded_media_url %>')));
+  			so.addVariable('type', 'video');
   			so.addVariable('autostart', 'false');
   			so.write('player<%= embedded_media.id%>');
   		</script>
@@ -78,6 +79,7 @@
   			so.addVariable('width', '510');
   			so.addVariable('height', '20');
   			so.addVariable('file', encodeURIComponent(encodeURIComponent('<%= embedded_media_url %>')));
+  			so.addVariable('type', 'sound');
   			so.addVariable('autostart', 'false');
   			so.write('player<%= embedded_media.id%>');
   		</script>
