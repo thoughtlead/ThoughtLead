@@ -1,3 +1,11 @@
+<% content_for :head do %>
+	<%= javascript_include_tag('jquery.livequery') %>
+	<%= javascript_include_tag('edit') %>
+	<%= javascript_include_tag('content') %>
+<% end %>
+
+
+
 <% form_for @discussion, :html => { :class => 'edit' } do |f| %>
 	<%= f.error_messages %>
 
@@ -10,7 +18,7 @@
 
 		<div class="inp group">
 			<%= f.label(:body) %>
-			<%= f.text_area(:body, :rows => 8) %>
+			<%= f.text_area(:body, :rows => 16, :mce_editable => "true") %>
 		</div>
 
 		<% if !current_community.themes.empty? %>

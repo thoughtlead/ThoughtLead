@@ -5,6 +5,8 @@ class DiscussionsController < ApplicationController
   before_filter :community_is_active
   before_filter :set_section_title
   
+  uses_tiny_mce(tiny_mce_options)
+  
 
   def index
     @discussions = filter_and_paginate_discussions(@theme.nil? ? current_community.discussions.accessible_to(current_user).by_age : @theme.discussions.accessible_to(current_user).by_age)
