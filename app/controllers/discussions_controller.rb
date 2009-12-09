@@ -54,7 +54,7 @@ class DiscussionsController < ApplicationController
   def show
     @discussion = current_community.discussions.find(params[:id])
     @responses = @discussion.responses
-    @responses = @responses.paginate :page => params[:page], :per_page => 5
+    @responses = @responses.paginate :page => params[:page], :per_page => 20
     @email_subscription = @discussion.email_subscriptions.find_by_subscriber_id(current_user.id) if current_user
     set_headline :content => @discussion.title
   end
