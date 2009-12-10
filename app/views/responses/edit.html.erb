@@ -1,0 +1,32 @@
+<% @current_tab = :Discussions %>
+<div id="main_content">
+	<div class="content_bar" id="top">
+		<div class="breadcrumbs">
+			<p>Jump to:</p>
+			<ul>
+				<li class="first"><%= link_to "Discussions", discussions_path %></li>
+				<li><%= link_to h(snippet(@discussion.to_s)), @discussion %></li>
+			</ul>
+		</div>
+
+		<%= create_discussion_link %>
+	</div>
+
+	<h2>Edit Response</h2>
+	<% if logged_in? %>
+
+		<% form_for @response do |f| %>
+			<fieldset class="input">
+				<%= f.label :body, "In reference to #{link_to h(@discussion.to_s), @discussion}, you wrote &hellip;" %>
+				<%= f.text_area :body, :rows => 16, :mce_editable => true %>
+			</fieldset>
+			<fieldset class="submit">
+				<%= submit_tag "Update your response" %>
+			</fieldset>
+		<% end %>
+
+	<% else %>
+		<p><%= link_to "Login to respond", login_url %></p>
+	<% end %>
+
+</div>

@@ -87,6 +87,7 @@
 								</ul>
 								<div class="comment_body">
 									<%= render_body(response) %>
+								  <div class="edit"><%= link_to "Edit", edit_response_path(response), :title => "Editable for 15 minutes" if logged_in? and response.editable_by?(current_user) %></div>
 								</div>
 							</div>
 						</div>
