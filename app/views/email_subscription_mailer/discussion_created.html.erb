@@ -1,6 +1,6 @@
 <%= @discussion.user.display_name %> started a discussion on <%= @discussion.title %>:
 
-"<%= @discussion.body %>"
+"<%= strip_tags(@discussion.body) %>"
 
 Read more and respond: <%= discussion_url(@discussion, :host => @subscriber.community.host) %>
 
