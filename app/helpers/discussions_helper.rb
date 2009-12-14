@@ -27,24 +27,24 @@ module DiscussionsHelper
     end
   end
 
-  def distance_of_time_in_words(minutes)
-    case
-    when minutes < 1
-      "less than a minute"
-    when minutes < 50
-      pluralize(minutes, "minute")
-    when minutes < 90
-      "about one hour"
-    when minutes < 1080
-      pluralize((minutes / 60).round, "hour")
-    when minutes < 1440
-      "one day"
-    when minutes < 2880
-      "about one day"
-    else
-      pluralize((minutes / 1440).round, "day")
-    end
-  end
+ #  def distance_of_time_in_words(minutes)
+ #    case
+ #    when minutes < 1
+ #      "less than a minute"
+ #    when minutes < 50
+ #      pluralize(minutes, "minute")
+ #    when minutes < 90
+ #      "about one hour"
+ #    when minutes < 1080
+ #      pluralize((minutes / 60).round, "hour")
+ #    when minutes < 1440
+ #      "one day"
+ #    when minutes < 2880
+ #      "about one day"
+ #    else
+ #      pluralize((minutes / 1440).round, "day")
+ #    end
+ #  end
 
   def render_body(item)
     textilize(sanitize(item.body))

@@ -82,7 +82,7 @@
 
 										says:
 									</li>
-									<li class="time"><%= timeago(response.created_at, {:date_format => :day_month_year}) %></li>
+									<li class="time"><%= "#{time_ago_in_words response.created_at} ago" %></li>
 									<li class="delete"><%= link_to "Delete", response, :controller => :responses, :method => :delete, :confirm => "Are you sure you'd like to delete this response?" if logged_in_as_owner? %></li>
 								</ul>
 								<div class="comment_body">
