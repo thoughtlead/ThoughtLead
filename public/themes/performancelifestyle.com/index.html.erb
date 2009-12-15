@@ -1,0 +1,112 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>Performance Lifestyle</title>
+<link href="/themes/performancelifestyle.com/css/style.css" rel="stylesheet" type="text/css" />
+<!--[if lte IE 6]>
+<link href="/themes/performancelifestyle.com/css/styleIE.css" type="text/css" rel="stylesheet" />
+<![endif]-->
+</head>
+<body>
+<div id="header">
+  <div class="headerinner">
+    <!--Header -->
+    <div id="logo">
+      <h1> <a href="/" title="Manage Your Energy">PerformanceLifestyle | Manage Your Energy</a> </h1>
+    </div>
+    <ul class="account_nav">
+      <li class="login"><a href="/login">Login</a></li>
+    </ul>
+  </div>
+</div>
+<div id="navigation" class="nav">
+  <div class="nav_artwrapper"> 
+    <div id="navigation_art" class="nav_art">
+      <div id="navigation_bar" class="content_area">
+        <ul id="content_nav"> </ul>
+  		  <ul id="global_nav">
+  			  <li class="about_link"><a href="/about">About</a></li>
+  			  <li class="contact_link"><a href="/contact">Contact</a></li>
+  		  </ul>
+  	  </div>
+    </div>
+  </div>
+</div>
+
+<div class="mid_section">
+  <div class="posrel">
+    <div class="image"><span class="inner_img"></span></div>
+  </div>
+  <div id="content">
+    <div id="left_content">
+      <div class="tiopbanner">
+        <div class="banner">
+          <div class="banner_wrap">
+                        <h2 class="top_heading">Tired of&hellip; being tired all the time?</h2> 
+                        <p id="lead-in">Discover the time-tested, <strong>proven formula</strong> for living with balance, vibrant health and peace of mind&mdash;<i>without</i> sacrificing your most ambitious life goals. </p>
+            			<p>This FREE PerformanceLifestyle e-book explains why you want to manage your energy, starting today! <br><br>Get it now&mdash;no strings attached. <strong>Just sign up using the box to the right, and you&#8217;ll have your book instantly!</strong></p> 
+                      </div> 
+                    </div> 
+                    <span class="bannerbot"><span></span></span> </div> 
+                  <div class="midleftcontent"> 
+                    <h3>Transform the <i>vicious cycle</i> of a lifestyle that’s robbing you of your energy into a <i>thriving lifestyle</i> that restores and renews your passion for life.</h3>
+                    <ul> 
+                      <li>Are you tired of programs that make you <i>live your life less</i> in order to have better health and more energy?</li>
+            <li>Has the chaos and complexity of your life begun to compromise your health and well-being?</li>
+            <li>Has your need to achieve success robbed you of your health, well-being, and deeper connection to life, your family, and your friends?</li>
+            <li>Are you looking for &#8220;a mindset&#8221; that’s realistic and flexible&mdash;and doesn’t force you to box your lifestyle into yet another rigid program?</li>
+
+            <li>Do you find yourself annoyed with certain habits or patterns throughout the day that drain your energy&mdash;but don’t know what to do to get past them?</li>
+
+            <li>Is the &#8220;just get eight hours of sleep every night,&#8221; &#8220;eat less&#8221; and &#8220;exercise more&#8221; advice not working so well for you?</li>
+
+            <li>Do you find yourself &#8220;hitting walls&#8221; constantly?</li>
+
+            <li>Are you ready <i>right now</i> to begin restoring yourself, renewing your energy, and truly accomplishing your highest vision of what’s possible for your life?</li> 
+                    </ul> 
+                    <p>If you’ve answered &#8220;Yes&#8221; to any or all of those questions, <b>Get your free copy</b> of the Performance Lifestyle e-book and start managing your energy <b>right now!</b><br><br>
+             <strong>Just sign up using the box to the right, and you&#8217;ll have your book instantly!</strong></p>
+      </div>
+    </div>
+    <div id="sidebar"> <span class="topbar"></span>
+      <div class="Midbar">
+        <!--Side Section -->
+          <div id="form_section">
+            <h2>Get Free Access</h2>
+            <% form_for :user, @user, :url => signup_url, :html => {:class => 'edit'} do | f | -%>
+    					<%= f.error_messages %>
+              <fieldset>
+                <label for="user_First Name">First name</label>
+                <input class="inp_text" id="user_first_name" name="user[first_name]" size="20" type="text" />
+              </fieldset>
+              <fieldset>
+                <label for="user_Last Name">Last name</label>
+                <input class="inp_text" id="user_last_name" name="user[last_name]" size="20" type="text" />
+              </fieldset>
+              <fieldset>
+                <label for="user_Email Address">Email address</label>
+                <input class="inp_text" id="user_email" name="user[email]" size="20" type="text" />
+              </fieldset>
+              <div class="accept">We respect your privacy and will not share your information with any third party, ever.</div>
+              <fieldset class="btnsection">
+              <input type="image" src="/themes/performancelifestyle.com/graphics/btn_sign_up.gif" class="float_left" />
+              </fieldset>
+            <% end -%>
+          </div>
+      </div>
+      <span class="bottombar"></span> </div>
+      <div id="adbar">
+        <a href="http://www.zico.com/shop"><img src="/themes/performancelifestyle.com/graphics/Zico_Ad_190x172_v2.png" width="190" height="172" alt="Zico Coconut Water - Unleash your natural athlete"></a>
+      </div>
+  </div>
+</div>
+<div id="footer">
+  <!--Footer -->
+  <div class="content_area">
+    <div class="credit"> <%= copyright_holder %> <span class="float_right">
+       <br />Powered by <a href="http://thoughtlead.com/">ThoughtLead</a></span> </div>  
+  </div>
+</div>
+</body>
+</html>

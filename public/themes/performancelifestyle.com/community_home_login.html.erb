@@ -1,0 +1,43 @@
+<% @current_tab = :Home %>
+<% content_for :head do %>
+	<%= stylesheet_link_tag('home') %>
+	<%= javascript_include_tag('home') %>
+<% end %>
+<div id="main_content" class="login">
+	<div class="content_bar" id="top">
+		<div class="content">
+			<h4>Welcome to <%= h(current_community) %></h4>
+  			<p>We're thrilled that you've joined us! <strong>To access your free e-book</strong>, <a href="/articles/269">click here</a>.</p>
+  			<p>We hope you'll find Performance Lifestyle to be the singularly most transformative and inspiring community available online. So take a look around, start a discussion thread, or drop us a line. </p>
+  	  </div>
+	</div>
+	<ul class="section_list">
+		<li class="library">
+			<h4><span>Browse Library</span></h4>
+			<p>You'll find articles and interviews in the library about living your best life.  <%= link_to "Go to Library", articles_url, :class => "more" %><span class="arrow">&nbsp;</span></p>
+		</li>
+		<li class="courses">
+			<h4><span>Join Courses</span></h4>
+			<p>Go in depth with JAM and other experts on the art of developing your Performance Lifestyle. New content will be added regularly. <%= link_to "Go to Courses", courses_url, :class => "more" %><span class="arrow">&nbsp;</span></p>
+		</li>
+		<li class="discussions">
+			<h4><span>Join Discussions</span></h4>
+			<p>Speak with JAM and your fellow members in the discussion area. Trade insights and tips, ask questions about any of the resources, and share personal stories of putting the Performance Lifestyle into action. <%= link_to "Go to Discussions", discussions_url, :class => "more" %><span class="arrow">&nbsp;</span></p>
+		</li>
+		<li class="people">
+			<h4><span>Meet People</span></h4>
+			<p>Learn about, and connect with, your fellow community members. You can continue the discussion offsite, or connect with people your neighborhood, using our secure contact forms in the People section. <%= link_to "Go to People", users_url, :class => "more" %><span class="arrow">&nbsp;</span></p>
+		</li>
+	</ul>
+</div>
+<div id="sidebar">
+	<ul class="modules">
+		<li class="cta register">
+			<div class="content">
+				<h4 class="get_premium replace">Get Premium Access</h4>
+				<p>Not a premium member yet? As a premium member, you'll have access to the discussion areas and to content that gives you the depth and detail you're looking for.</p>
+				<p><a href="/upgrade">Click here</a> to learn more about premium membership and see if it is right for you.<span class="arrow">&nbsp;</span></p>
+			</div>
+		</li>
+	</ul>
+</div>
