@@ -18,7 +18,7 @@
 
 		<div class="inp group">
 			<%= f.label(:body) %>
-			<%= f.text_area(:body, :rows => 16, :mce_editable => "true") %>
+			<%= f.text_area(:body, :rows => 16, :class => "mceEditor") %>
 		</div>
 
 		<% if !current_community.themes.empty? %>
