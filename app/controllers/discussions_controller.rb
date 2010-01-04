@@ -5,6 +5,8 @@ class DiscussionsController < ApplicationController
   before_filter :community_is_active
   before_filter :set_section_title
   
+  uses_tiny_mce(tiny_mce_options)
+  
 
   def index
     @discussions = filter_and_paginate_discussions(@theme.nil? ? current_community.discussions.accessible_to(current_user).by_age : @theme.discussions.accessible_to(current_user).by_age)
@@ -54,7 +56,7 @@ class DiscussionsController < ApplicationController
   def show
     @discussion = current_community.discussions.find(params[:id])
     @responses = @discussion.responses
-    @responses = @responses.paginate :page => params[:page], :per_page => 5
+    @responses = @responses.paginate :page => params[:page], :per_page => 20
     @email_subscription = @discussion.email_subscriptions.find_by_subscriber_id(current_user.id) if current_user
     set_headline :content => @discussion.title
   end

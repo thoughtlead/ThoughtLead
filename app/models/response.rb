@@ -20,6 +20,13 @@ class Response < ActiveRecord::Base
     return discussion.is_visible_to(user)
   end
   
+  def editable_by?(user)
+    return false unless user == self.user
+    return true if created_at >= 15.minutes.ago.utc
+    return true if updated_at and updated_at >= 15.minutes.ago.utc
+    false
+  end
+  
   protected
   
   def update_thread_timestamp

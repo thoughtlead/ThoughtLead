@@ -1,6 +1,6 @@
 There is a new response from <%= @response.user.display_name %> for the discussion: <%= @response.discussion.title %>
 
-<%= @response.user.display_name %>: "<%= @response.body %>"
+<%= @response.user.display_name %>: "<%= strip_tags(@response.body) %>"
 
 Read more and respond: <%= discussion_url(@response.discussion, :host => @subscriber.community.host) %>
 

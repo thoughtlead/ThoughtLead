@@ -57,6 +57,8 @@
           </div>
         <% end -%>
 			<% end %>
+			
+						<p style="text-align:right; width:100%"><strong style="background-color:rgb(242,242,242);padding:0.3em">Click here to <%= link_to "change your password", edit_password_user_url(@user) %></strong></p>
 
 			<div class="inp group">
 				<%= f.label :login %>
@@ -120,10 +122,10 @@
 				<%= f.text_area :interests, :rows => 4 %>
 			</div>
 
-			<p><strong><%= link_to "Change your password", edit_password_user_url(@user) %></strong></p>
+
 
 			<div class="update_avatar">
-				<%= f.label :avatar %>
+				<%= f.label "Profile Photo" %>
 
 				<div class="module image avatar">
 					<%= avatar_for(@user) %>

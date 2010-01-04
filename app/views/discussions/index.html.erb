@@ -52,7 +52,7 @@
 						</ul>
 					</div>
 					<div class="content">
-						<p><%= h truncate(discussion.body, :length => 200) %>&nbsp;<%= link_to "Continue Reading", discussion_path(discussion), :class => :more %><span class="arrow">&nbsp;</span></p>
+						<p><%= truncate(strip_tags(discussion.body), :length => 200) %>&nbsp;<%= link_to "Continue Reading", discussion_path(discussion), :class => :more %><span class="arrow">&nbsp;</span></p>
 					</div>
 				</div>
 			</li>

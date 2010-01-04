@@ -1,5 +1,8 @@
+include DiscussionsHelper
 class ResponsesController < ApplicationController
   before_filter :community_is_active
+  uses_tiny_mce(tiny_mce_options)
+  
 
   def create
     @discussion = current_community.discussions.find(params[:discussion_id])
@@ -25,6 +28,35 @@ class ResponsesController < ApplicationController
     flash[:notice] = "Successfully deleted the response."
     redirect_to @discussion
   end
+  
+  def edit
+    @response = Response.find(params[:id])
+    @discussion = @response.discussion
+    unless @response && (current_user == @response.user)
+      flash[:error] = "That isn't your response to edit."
+      redirect_to @discussion and return
+    end
+    unless @response.editable_by?(current_user)
+      flash[:error] = "That response is no longer editable."
+      redirect_to @discussion and return
+    end
+  end
+  
+  def update
+    @response = Response.find(params[:id])
+    @discussion = @response.discussion
+    
+    if @response && (current_user == @response.user)
+      if @response.update_attributes(params[:response])
+        flash[:notice] = "Successfully updated your response."
+        redirect_to @discussion and return
+      end
+    else
+      flash[:error] = "This isn't your response to edit."
+      redirect_to @discussion and return
+    end
+    return render(:action => :edit)
+  end  
 
   private
 

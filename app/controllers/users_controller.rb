@@ -204,7 +204,6 @@ class UsersController < ApplicationController
   def check_disabled
     return true if !params[:id]
       
-    params[:id].gsub!('-','.')
     @user = current_community.users.find_by_login_or_email(params[:id])
     if @user.disabled? && !logged_in_as_owner?
       flash[:warning] = "The user \"#{@user}\" has been disabled."
