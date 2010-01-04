@@ -4,6 +4,8 @@ class CoursesController < ApplicationController
   before_filter :community_is_active
   before_filter :set_section_title, :except => :show
 
+  uses_tiny_mce(tiny_mce_options)
+
   def sort
     params[:courses].each_with_index do |id, index|
       Course.update_all(['position=?', index+1], ['id=?', id])

@@ -39,7 +39,7 @@
 						</ul>
 					</div>
 					<div class="content">
-						<p><%=h course.description %> <a class="more" href="<%= url_for(course) %>">Keep Reading</a><span class="arrow">&nbsp;</span></p>
+						<p><%=h strip_tags(course.description) %> <a class="more" href="<%= url_for(course) %>">Keep Reading</a><span class="arrow">&nbsp;</span></p>
 					</div>
 				<% end %>
 			<% end %>
