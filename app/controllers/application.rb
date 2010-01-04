@@ -108,7 +108,7 @@ class ApplicationController < ActionController::Base
       {
         :mode => "specific_textareas",
         :theme => "advanced",
-        :plugins => %w{ paste },
+        :plugins => %w{ paste autoresize },
         :paste_auto_cleanup_on_paste => "true",
         :theme_advanced_buttons1 => "bold,italic,|,bullist,numlist,outdent,indent,|,link,image,|,pastetext,pasteword,|,undo,redo",
         :theme_advanced_buttons2 => "",
