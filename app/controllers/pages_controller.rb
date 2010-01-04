@@ -4,7 +4,7 @@ class PagesController < ApplicationController
   before_filter :community_is_active
   before_filter :owner_login_required, :except => [ :catchall ]
   
-  uses_tiny_mce(tiny_mce_options)
+  uses_tiny_mce(tiny_mce_options_with_code_toggle)
   
   def index
     @active_pages = current_community.pages.active.user_defined.all
@@ -75,4 +75,5 @@ class PagesController < ApplicationController
       render :file => "#{RAILS_ROOT}/public/404.html", :layout => false, :status => 404
     end
   end
+
 end
