@@ -43,7 +43,7 @@
 		</div>
 	<% end %>
 
-	<p><%= h @course.description %></p>
+	<p><%= @course.description %></p>
 
 	<% if logged_in_as_owner? && !@course.chapters.blank? %>
 		<p style="clear: both;">To re-order lessons, drag and drop them up and down.</p>
