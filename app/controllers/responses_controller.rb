@@ -61,6 +61,7 @@ class ResponsesController < ApplicationController
   private
 
   def get_access_controlled_object
-    Response.find(params[:id]) if params[:id]
+    response = Response.find(params[:id]) if params[:id]
+    response.discussion if response
   end
 end
