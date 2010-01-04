@@ -1,5 +1,6 @@
 class SubscriptionController < ApplicationController
   helper AccessClassesHelper
+  skip_before_filter :verify_authenticity_token, :only => [:edit]
   before_filter :login_required, :load_subscription
 
   def edit

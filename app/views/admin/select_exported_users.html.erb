@@ -21,9 +21,9 @@
         </label>
         <br/>
         <p>
-            <%= radio_button_tag 'premium', 'true', true %><%= label_tag 'premium_true', 'Premium Users', :style => 'display:inline' %>
+            <%= radio_button_tag 'premium', 'true', true %> <%= label_tag 'premium_true', 'Premium (Paid) Users', :style => 'display:inline' %>
             <br/>
-            <%= radio_button_tag 'premium', 'false' %><%= label_tag 'premium_false', 'Registered Users', :style => 'display:inline' %>
+            <%= radio_button_tag 'premium', 'false' %> <%= label_tag 'premium_false', 'All Registered Users', :style => 'display:inline' %>
         </p>
         <%= submit_tag("Export user list") %>
         <% end %>

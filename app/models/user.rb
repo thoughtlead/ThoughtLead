@@ -116,6 +116,11 @@ class User < ActiveRecord::Base
     # if the user is the community owner then they have access to everything
     owner? ? [Class.new { def has_access_to(*args) true end; def has_exclusive_access_to(*args) true end;  }.new] : real_access_classes
   end
+  
+  def access_class_names
+    real_access_classes.collect { |ac| ac.name }
+  end
+      
 
   def can_post
     community.themes.each do |theme|
