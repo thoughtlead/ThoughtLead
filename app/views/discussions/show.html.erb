@@ -119,7 +119,7 @@
 						<% form_for [@discussion, Response.new] do |f| %>
 							<fieldset class="input">
 								<%= f.label :body, "Enter your response:" %>
-								<%= f.text_area :body, :rows => 12, :mce_editable => true %>
+								<%= f.text_area :body, :rows => 12, :class => "mceEditor" %>
 							</fieldset>
 							<fieldset class="submit">
 								<%= submit_tag "Post this response" %>

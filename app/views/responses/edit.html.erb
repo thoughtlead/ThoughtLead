@@ -18,7 +18,7 @@
 		<% form_for @response do |f| %>
 			<fieldset class="input">
 				<%= f.label :body, "In reference to #{link_to h(@discussion.to_s), @discussion}, you wrote &hellip;" %>
-				<%= f.text_area :body, :rows => 16, :mce_editable => true %>
+				<%= f.text_area :body, :rows => 16, :class => "mceEditor" %>
 			</fieldset>
 			<fieldset class="submit">
 				<%= submit_tag "Update your response" %>
