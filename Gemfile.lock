@@ -46,6 +46,7 @@ GEM
     mislav-will_paginate (2.3.11)
     mocha (0.9.8)
       rake
+    mysql (2.8.1)
     newrelic_rpm (2.12.3)
     panda (1.0.0)
       json (>= 1.2)
@@ -99,6 +100,7 @@ DEPENDENCIES
   mini_magick
   mislav-will_paginate
   mocha
+  mysql
   newrelic_rpm
   panda
   rails (~> 2.2.2)

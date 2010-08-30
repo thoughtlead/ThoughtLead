@@ -4,6 +4,7 @@ source "http://gems.github.com"
 gem 'rails', '~> 2.2.2',        :require => false
 
 gem "bundler", "1.0.0"
+gem "mysql"
 gem "hpricot"
 gem "image_science"
 gem "builder"

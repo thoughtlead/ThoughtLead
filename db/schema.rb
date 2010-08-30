@@ -9,7 +9,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20090915164130) do
+ActiveRecord::Schema.define(:version => 20091116173432) do
 
   create_table "access_class_relationships", :force => true do |t|
     t.integer "access_class_id", :null => false
@@ -17,12 +17,13 @@ ActiveRecord::Schema.define(:version => 20090915164130) do
   end
 
   create_table "access_classes", :force => true do |t|
-    t.integer  "community_id", :null => false
-    t.string   "name",         :null => false
-    t.integer  "position",     :null => false
+    t.integer  "community_id",                   :null => false
+    t.string   "name",                           :null => false
+    t.integer  "position",                       :null => false
     t.datetime "created_at"
     t.datetime "updated_at"
     t.text     "description"
+    t.boolean  "activated",    :default => true
   end
 
   create_table "affiliate_actions", :force => true do |t|
@@ -40,7 +41,10 @@ ActiveRecord::Schema.define(:version => 20090915164130) do
     t.integer  "content_id"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "position",     :default => 0
   end
+
+  add_index "articles", ["community_id", "position"], :name => "community_position"
 
   create_table "attachments", :force => true do |t|
     t.integer  "user_id"
@@ -53,6 +57,9 @@ ActiveRecord::Schema.define(:version => 20090915164130) do
     t.datetime "updated_at"
     t.boolean  "embedded",     :default => false
     t.string   "panda_id"
+    t.integer  "job_id"
+    t.string   "job_status"
+    t.text     "job_comments"
   end
 
   create_table "avatars", :force => true do |t|
@@ -148,6 +155,8 @@ ActiveRecord::Schema.define(:version => 20090915164130) do
     t.integer  "responses_count"
   end
 
+  add_index "discussions", ["community_id", "thread_last_updated_at"], :name => "last_updated_at_index"
+
   create_table "email_subscriptions", :force => true do |t|
     t.integer "subscriber_id", :null => false
     t.integer "discussion_id", :null => false
@@ -201,15 +210,16 @@ ActiveRecord::Schema.define(:version => 20090915164130) do
   end
 
   create_table "subscription_plans", :force => true do |t|
-    t.string   "name",                                           :null => false
-    t.decimal  "amount",          :precision => 10, :scale => 2, :null => false
-    t.integer  "renewal_period",                                 :null => false
-    t.string   "renewal_units",                                  :null => false
-    t.integer  "trial_period",                                   :null => false
-    t.string   "trial_units",                                    :null => false
-    t.integer  "access_class_id",                                :null => false
+    t.string   "name",                                                             :null => false
+    t.decimal  "amount",          :precision => 10, :scale => 2,                   :null => false
+    t.integer  "renewal_period",                                                   :null => false
+    t.string   "renewal_units",                                                    :null => false
+    t.integer  "trial_period",                                                     :null => false
+    t.string   "trial_units",                                                      :null => false
+    t.integer  "access_class_id",                                                  :null => false
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.boolean  "activated",                                      :default => true
   end
 
   create_table "subscriptions", :force => true do |t|
@@ -282,6 +292,7 @@ ActiveRecord::Schema.define(:version => 20090915164130) do
     t.boolean  "send_email_notifications",  :default => false
     t.string   "affiliate_code"
     t.integer  "referred_by_id"
+    t.datetime "last_login_at"
   end
 
   add_index "users", ["affiliate_code"], :name => "index_users_on_affiliate_code", :unique => true
