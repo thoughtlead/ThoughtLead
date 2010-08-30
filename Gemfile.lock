@@ -1,0 +1,110 @@
+GEM
+  remote: http://rubygems.org/
+  remote: http://gems.github.com/
+  specs:
+    RedCloth (4.2.3)
+    actionmailer (2.2.3)
+      actionpack (= 2.2.3)
+    actionpack (2.2.3)
+      activesupport (= 2.2.3)
+    activerecord (2.2.3)
+      activesupport (= 2.2.3)
+    activeresource (2.2.3)
+      activesupport (= 2.2.3)
+    activesupport (2.2.3)
+    aws-s3 (0.6.2)
+      builder
+      mime-types
+      xml-simple
+    builder (2.1.2)
+    chronic (0.2.3)
+      hoe (>= 1.2.1)
+    colored (1.2)
+    columnize (0.3.1)
+    crack (0.1.8)
+    faker (0.3.1)
+    fastercsv (1.5.3)
+    flixcloud-flix_cloud-gem (0.5.5)
+      builder (>= 2.1.2)
+      crack (>= 0.1.1)
+      sevenwire-http_client (>= 0.1.0)
+    hoe (2.6.1)
+      rake (>= 0.8.7)
+      rubyforge (>= 2.0.4)
+    hoptoad_notifier (2.3.5)
+      activesupport
+    hpricot (0.8.2)
+    image_science (1.2.1)
+    json (1.4.6)
+    json_pure (1.4.6)
+    linecache (0.43)
+    lockfile (1.4.3)
+    map_by_method (0.8.3)
+    mime-types (1.16)
+    mini_magick (2.1)
+      subexec (~> 0.0.4)
+    mislav-will_paginate (2.3.11)
+    mocha (0.9.8)
+      rake
+    newrelic_rpm (2.12.3)
+    panda (1.0.0)
+      json (>= 1.2)
+      rest-client (>= 1.4)
+      ruby-hmac (>= 0.3.2)
+    rails (2.2.3)
+      actionmailer (= 2.2.3)
+      actionpack (= 2.2.3)
+      activerecord (= 2.2.3)
+      activeresource (= 2.2.3)
+      activesupport (= 2.2.3)
+      rake (>= 0.8.3)
+    rake (0.8.7)
+    rest-client (1.6.1)
+      mime-types (>= 1.16)
+    rexml-expansion-fix (1.0.1)
+    ruby-debug (0.10.3)
+      columnize (>= 0.1)
+      ruby-debug-base (~> 0.10.3.0)
+    ruby-debug-base (0.10.3)
+      linecache (>= 0.3)
+    ruby-hmac (0.4.0)
+    rubyforge (2.0.4)
+      json_pure (>= 1.1.7)
+    sevenwire-http_client (0.1.0)
+    subexec (0.0.4)
+    thoughtbot-shoulda (2.11.1)
+    wideopenspaces-gstats (0.1.2)
+    xml-simple (1.0.12)
+
+PLATFORMS
+  ruby
+
+DEPENDENCIES
+  RedCloth
+  aws-s3
+  builder
+  bundler (= 1.0.0)
+  chronic
+  colored
+  crack
+  faker
+  fastercsv
+  flixcloud-flix_cloud-gem
+  hoptoad_notifier
+  hpricot
+  image_science
+  lockfile
+  map_by_method
+  mime-types
+  mini_magick
+  mislav-will_paginate
+  mocha
+  newrelic_rpm
+  panda
+  rails (~> 2.2.2)
+  rexml-expansion-fix
+  ruby-debug
+  sevenwire-http_client
+  thoughtbot-shoulda
+  wideopenspaces-gstats
+  xml-simple
