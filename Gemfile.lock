@@ -1,6 +1,6 @@
 GIT
   remote: git://github.com/thoughtlead/panda.git
-  revision: a58d1e17cd1122ac5119dc6c4ded2ee41564511c
+  revision: 52c19f86d1d82967aa5079e577602e14e6f11ee2
   specs:
     panda (0.0.2)
 
@@ -31,7 +31,7 @@ GEM
     hoe (1.8.3)
       rake (>= 0.8.3)
       rubyforge (>= 1.0.2)
-    hoptoad_notifier (2.3.5)
+    hoptoad_notifier (2.3.6)
       activesupport
     hpricot (0.6.164)
     image_science (1.1.3)
