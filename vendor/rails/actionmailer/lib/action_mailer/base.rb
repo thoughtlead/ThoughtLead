@@ -429,7 +429,7 @@ module ActionMailer #:nodoc:
       def register_template_extension(extension)
         ActiveSupport::Deprecation.warn(
           "ActionMailer::Base.register_template_extension has been deprecated." +
-          "Use ActionView::Base.register_template_extension instead", caller)
+          "Use ActionView::Template.register_template_handler instead", caller)
       end
 
       def template_root
@@ -549,7 +549,12 @@ module ActionMailer #:nodoc:
       end
 
       def render_message(method_name, body)
+        if method_name.respond_to?(:content_type)
+          @current_template_content_type = method_name.content_type
+        end
         render :file => method_name, :body => body
+      ensure
+        @current_template_content_type = nil
       end
 
       def render(opts)
@@ -568,7 +573,11 @@ module ActionMailer #:nodoc:
       end
 
       def default_template_format
-        :html
+        if @current_template_content_type
+          Mime::Type.lookup(@current_template_content_type).to_sym
+        else
+          :html
+        end
       end
 
       def candidate_for_layout?(options)
@@ -588,7 +597,9 @@ module ActionMailer #:nodoc:
       end
 
       def initialize_template_class(assigns)
-        ActionView::Base.new(view_paths, assigns, self)
+        template = ActionView::Base.new(view_paths, assigns, self)
+        template.template_format = default_template_format
+        template
       end
 
       def sort_parts(parts, order = [])
