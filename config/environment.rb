@@ -42,7 +42,6 @@ Rails::Initializer.run do |config|
   config.gem "rexml-expansion-fix"
   config.gem "mislav-will_paginate", :lib => "will_paginate", :source => "http://gems.github.com"
   config.gem "lockfile"
-  config.gem "thoughtbot-shoulda", :lib => "shoulda", :source => "http://gems.github.com"
   config.gem "panda"
   config.gem 'flixcloud-flix_cloud-gem', :lib => 'flix_cloud', :source => 'http://gems.github.com'
   config.gem 'sevenwire-http_client', :lib => 'http_client', :source => 'http://gems.github.com'

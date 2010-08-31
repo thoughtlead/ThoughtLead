@@ -23,6 +23,7 @@ config.action_mailer.delivery_method = :test
 
 config.gem "faker"
 config.gem "mocha"
+config.gem "shoulda", :lib => "shoulda", :source => "http://gems.github.com"
 
 ActionMailer::Base.raise_delivery_errors = true
 ActionMailer::Base.delivery_method = :smtp
