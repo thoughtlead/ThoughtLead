@@ -1,3 +1,6 @@
+require 'rubygems'
+require 'bundler/setup'
+
 # Don't change this file!
 # Configure your app in config/environment.rb and config/environments/*.rb
 
@@ -104,9 +107,6 @@ module Rails
     end
   end
 end
-
-require 'rubygems'
-require 'bundler/setup'
 
 # All that for this:
 Rails.boot!

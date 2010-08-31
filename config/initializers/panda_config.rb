@@ -1,3 +1,4 @@
+require 'panda'
 PANDA_ENCODING = "Flash video TL"
 VIDEOS_DOMAIN = "thoughtlead_media.s3.amazonaws.com"
 
