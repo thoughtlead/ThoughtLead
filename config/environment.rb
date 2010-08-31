@@ -7,6 +7,35 @@
 # Specifies gem version of Rails to use when vendor/rails is not present
 RAILS_GEM_VERSION = '2.2.3' unless defined? RAILS_GEM_VERSION
 
+
+require 'rubygems'
+require 'bundler/setup'
+
+# Poor mans bundler... because we are 2.2.3, need to do this manually
+require "aws/s3"
+require "builder"
+require "chronic"
+require "colored"
+require "crack"
+require "fastercsv"
+require "flix_cloud"
+require "hoe"
+require "hpricot"
+require "image_science"
+require "lockfile"
+require "map_by_method"
+require "mime/types"
+require "mini_magick"
+require "will_paginate"
+require "mysql"
+require "panda"
+require "RedCloth"
+require "rake"
+require "rexml-expansion-fix"
+require "http_client"
+require "gstats"
+require "xmlsimple"
+
 # Bootstrap the Rails environment, frameworks, and default configuration
 require File.join(File.dirname(__FILE__), 'boot')
 

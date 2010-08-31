@@ -1,5 +1,6 @@
 source 'http://rubygems.org'
 
+gem "activesupport",            "2.2.3"
 gem "bundler",                  "1.0.0"
 gem "aws-s3",                   "~> 0.5.1",  :require => "aws/s3"
 gem "builder",                  "~> 2.1.2"
@@ -9,7 +10,7 @@ gem "crack",                    "~> 0.1.2"
 gem "fastercsv",                "~> 1.4.0"
 gem "flixcloud-flix_cloud-gem", "~> 0.5.5",  :require => 'flix_cloud'
 gem "hoe",                      "~> 1.8.3"
-gem "hpricot",                  "~> 0.6.164"
+gem "hpricot",                  "~> 0.8.2"
 gem "image_science",            "~> 1.1.3"
 gem "lockfile",                 "~> 1.4.3"
 gem "map_by_method",            "~> 0.8.3"
