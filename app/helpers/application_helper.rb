@@ -1,4 +1,8 @@
-module ApplicationHelper  
+module ApplicationHelper
+  
+  include GStats
+  include GoogleStatsHelper
+  
   def headline
     site_head = [@headline[:site]].compact.join(" | ")
     content_head = [@headline[:content], @headline[:subsection], @headline[:section]]
