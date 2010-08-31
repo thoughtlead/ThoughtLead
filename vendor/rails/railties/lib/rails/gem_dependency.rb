@@ -76,7 +76,7 @@ module Rails
       return [] if framework_gem?
       return [] if specification.nil?
       all_dependencies = specification.dependencies.map do |dependency|
-        GemDependency.new(dependency.name, :requirement => dependency.version_requirements)
+        GemDependency.new(dependency.name, :requirement => (dependency.respond_to?(:requirement) ? dependency.requirement : dependency.version_requirements))
       end
       all_dependencies += all_dependencies.map(&:dependencies).flatten
       all_dependencies.uniq
@@ -103,9 +103,16 @@ module Rails
       @dep.name.to_s
     end
 
-    def requirement
-      r = @dep.version_requirements
-      (r == Gem::Requirement.default) ? nil : r
+    if method_defined?(:requirement)
+      def requirement
+        req = super
+        req unless req == Gem::Requirement.default
+      end
+    else
+      def requirement
+        req = version_requirements
+        req unless req == Gem::Requirement.default
+      end
     end
 
     def frozen?
@@ -222,7 +229,7 @@ module Rails
                   "can't activate #{@dep}, already activated #{existing_spec.full_name}"
           end
           # we're stuck with it, so change to match
-          @dep.version_requirements = Gem::Requirement.create("=#{existing_spec.version}")
+          version_requirements = Gem::Requirement.create("=#{existing_spec.version}")
           existing_spec
         else
           # new load
