@@ -1,3 +1,3 @@
-$:.unshift File.dirname(__FILE__) + '/panda'
+$:.unshift File.dirname(__FILE__)
 
-require 'video'
+require 'panda/video'
