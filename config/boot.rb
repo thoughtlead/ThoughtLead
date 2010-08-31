@@ -105,5 +105,8 @@ module Rails
   end
 end
 
+require 'rubygems'
+require 'bundler/setup'
+
 # All that for this:
 Rails.boot!
