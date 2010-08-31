@@ -2,6 +2,7 @@ module ApplicationHelper
   
   include GStats
   include GoogleStatsHelper
+  WillPaginate.enable
   
   def headline
     site_head = [@headline[:site]].compact.join(" | ")

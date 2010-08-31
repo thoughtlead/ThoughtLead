@@ -69,7 +69,7 @@ Rails::Initializer.run do |config|
   config.gem "mini_magick"
   config.gem "fastercsv"
   config.gem "rexml-expansion-fix"
-  config.gem "mislav-will_paginate", :lib => "will_paginate", :source => "http://gems.github.com"
+  config.gem "will_paginate"
   config.gem "lockfile"
   config.gem "panda"
   config.gem 'flixcloud-flix_cloud-gem', :lib => 'flix_cloud', :source => 'http://gems.github.com'

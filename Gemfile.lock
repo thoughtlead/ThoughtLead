@@ -6,6 +6,7 @@ GIT
 
 GEM
   remote: http://rubygems.org/
+  remote: http://gemcutter.org/
   specs:
     RedCloth (4.1.9)
     RubyInline (3.8.4)
@@ -43,7 +44,6 @@ GEM
     map_by_method (0.8.3)
     mime-types (1.15)
     mini_magick (1.2.5)
-    mislav-will_paginate (2.3.11)
     mocha (0.9.8)
       rake
     mysql (2.8.1)
@@ -60,6 +60,7 @@ GEM
     sevenwire-http_client (0.1.0)
     shoulda (2.0.6)
     wideopenspaces-gstats (0.1.2)
+    will_paginate (2.3.14)
     xml-simple (1.0.12)
 
 PLATFORMS
@@ -85,7 +86,6 @@ DEPENDENCIES
   map_by_method (~> 0.8.3)
   mime-types (= 1.15)
   mini_magick (~> 1.2.3)
-  mislav-will_paginate (~> 2.3.6)
   mocha (~> 0.9.4)
   mysql
   newrelic_rpm
@@ -96,4 +96,5 @@ DEPENDENCIES
   sevenwire-http_client (~> 0.1.0)
   shoulda (~> 2.0.6)
   wideopenspaces-gstats (~> 0.1.2)
+  will_paginate (~> 2.3.11)
   xml-simple (~> 1.0.11)

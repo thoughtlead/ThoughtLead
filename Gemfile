@@ -1,4 +1,5 @@
 source 'http://rubygems.org'
+source 'http://gemcutter.org'
 
 gem "activesupport",            "2.2.3"
 gem "bundler",                  "1.0.0"
@@ -16,7 +17,7 @@ gem "lockfile",                 "~> 1.4.3"
 gem "map_by_method",            "~> 0.8.3"
 gem "mime-types",               "= 1.15",    :require => "mime/types"
 gem "mini_magick",              "~> 1.2.3"
-gem "mislav-will_paginate",     "~> 2.3.6",  :require => "will_paginate"
+gem "will_paginate",            "~> 2.3.11"
 gem "mysql"
 gem "panda",                    "~> 0.0.2",                              :git => "git://github.com/thoughtlead/panda.git"
 gem "RedCloth",                 "~> 4.1.1"
