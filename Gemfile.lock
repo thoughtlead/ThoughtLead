@@ -48,7 +48,7 @@ GEM
       rake
     mysql (2.8.1)
     newrelic_rpm (2.12.3)
-    rake (0.8.7)
+    rake (0.8.3)
     rexml-expansion-fix (1.0.1)
     ruby-debug (0.10.3)
       columnize (>= 0.1)
@@ -89,6 +89,7 @@ DEPENDENCIES
   mysql
   newrelic_rpm
   panda (~> 0.0.2)!
+  rake (= 0.8.3)
   rexml-expansion-fix (~> 1.0.1)
   ruby-debug
   sevenwire-http_client (~> 0.1.0)

@@ -19,6 +19,7 @@ gem "mislav-will_paginate",     "~> 2.3.6",  :require => "will_paginate"
 gem "mysql"
 gem "panda",                    "~> 0.0.2",                              :git => "git://github.com/thoughtlead/panda.git"
 gem "RedCloth",                 "~> 4.1.1"
+gem "rake",                     "= 0.8.3"
 gem "rexml-expansion-fix",      "~> 1.0.1"
 gem "sevenwire-http_client",    "~> 0.1.0",  :require => 'http_client'
 gem "wideopenspaces-gstats",    "~> 0.1.2",  :require => 'gstats'
