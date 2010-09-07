@@ -55,14 +55,14 @@ Rails::Initializer.run do |config|
   # config.gem "bj"
   # config.gem "hpricot", :version => '0.6', :source => "http://code.whytheluckystiff.net"
   # config.gem "sqlite3-ruby", :lib => "sqlite3"
-  config.gem "aws-s3", :lib => "aws/s3"
+  config.gem "aws-s3",          :lib => "aws/s3"
   config.gem "hpricot"
   config.gem "image_science"
   config.gem "builder"
-  config.gem "xml-simple", :lib => "xmlsimple"
+  config.gem "xml-simple",      :lib => "xmlsimple"
   config.gem "RedCloth"
-  config.gem "mime-types", :lib => "mime/types"
-  config.gem "aws-s3", :lib => "aws/s3"
+  config.gem "mime-types",      :lib => "mime/types"
+  config.gem "aws-s3",          :lib => "aws/s3"
   config.gem "colored"
   config.gem "map_by_method"
   config.gem "chronic"
@@ -72,11 +72,11 @@ Rails::Initializer.run do |config|
   config.gem "will_paginate"
   config.gem "lockfile"
   config.gem "panda"
-  config.gem 'flixcloud-flix_cloud-gem', :lib => 'flix_cloud', :source => 'http://gems.github.com'
-  config.gem 'sevenwire-http_client', :lib => 'http_client', :source => 'http://gems.github.com'
+  config.gem 'flix_cloud-gem'
+  config.gem 'http_client'
   config.gem 'crack'
   
-  config.gem "wideopenspaces-gstats", :source => "http://gems.github.com", :lib => 'gstats'
+  config.gem "gstats"
 
   # Only load the plugins named here, in the order given. By default, all plugins
   # in vendor/plugins are loaded in alphabetical order.
