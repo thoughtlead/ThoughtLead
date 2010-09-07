@@ -1,5 +1,4 @@
 source 'http://rubygems.org'
-source 'http://gemcutter.org'
 
 gem "activesupport",            "2.2.3"
 gem "bundler",                  "1.0.0"
@@ -9,13 +8,13 @@ gem "chronic",                  "~> 0.2.3"
 gem "colored",                  "= 1.1"
 gem "crack",                    "~> 0.1.2"
 gem "fastercsv",                "~> 1.4.0"
-gem "flixcloud-flix_cloud-gem", "~> 0.5.5",  :require => 'flix_cloud'
+gem "flix_cloud-gem",           "~> 0.5.5",  :require => 'flix_cloud',  :git => "git://github.com/thoughtlead/flix_cloud-gem.git"
 gem "hoe",                      "~> 1.8.3"
 gem "hpricot",                  "~> 0.8.2"
 gem "image_science",            "~> 1.1.3"
 gem "lockfile",                 "~> 1.4.3"
 gem "map_by_method",            "~> 0.8.3"
-gem "mime-types",               "= 1.15",    :require => "mime/types"
+gem "mime-types",               ">= 1.15",    :require => "mime/types"
 gem "mini_magick",              "~> 1.2.3"
 gem "will_paginate",            "~> 2.3.11"
 gem "mysql"
@@ -23,10 +22,10 @@ gem "panda",                    "~> 0.0.2",                              :git =>
 gem "RedCloth",                 "~> 4.1.1"
 gem "rake",                     "= 0.8.3"
 gem "rexml-expansion-fix",      "~> 1.0.1"
-gem "sevenwire-http_client",    "~> 0.1.0",  :require => 'http_client'
-gem "wideopenspaces-gstats",    "~> 0.1.2",  :require => 'gstats'
+gem "http_client",              "~> 0.1.0",                              :git => "git://github.com/thoughtlead/http_client.git"
+gem "gstats",                   "~> 0.1.2",  :require => 'gstats',       :git => "git://github.com/thoughtlead/gstats.git"
 gem "xml-simple",               "~> 1.0.11", :require => "xmlsimple"
-
+gem "engineyard"
 gem 'hoptoad_notifier'
 gem 'newrelic_rpm',                           :require => false
 
