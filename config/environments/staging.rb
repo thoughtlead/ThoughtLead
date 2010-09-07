@@ -27,9 +27,12 @@ $app_host = 'thoughtlead.intranet.ternarysoftware.com'
 
 ActionMailer::Base.delivery_method = :smtp
 ActionMailer::Base.smtp_settings = {
-  :address => "wren.tsi.local",
-  :port => 25,
-  :domain  => "tsi.local",
+  :address        => "smtp.sendgrid.net",
+  :port           => "25",
+  :authentication => :plain,
+  :user_name      => 'stevetrumpet@gmail.com',
+  :password       => 'shilke',
+  :domain         => 'thoughtlead.com',
 }
 
 config.after_initialize do

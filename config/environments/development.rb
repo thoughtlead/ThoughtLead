@@ -21,10 +21,8 @@ $app_host = 'thoughtleaddev.com'
 ActionMailer::Base.raise_delivery_errors = true
 ActionMailer::Base.delivery_method = :smtp
 ActionMailer::Base.smtp_settings = {
-  :address => "wren.tsi.local",
-  :port => 25,
-  :domain  => "tsi.local",
-}
+  :address        => "127.0.0.1",
+  :port           => "25" }
 
 config.after_initialize do
   ActiveMerchant::Billing::Base.gateway_mode = :test

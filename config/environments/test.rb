@@ -28,9 +28,8 @@ config.gem "shoulda", :lib => "shoulda", :source => "http://gems.github.com"
 ActionMailer::Base.raise_delivery_errors = true
 ActionMailer::Base.delivery_method = :smtp
 ActionMailer::Base.smtp_settings = {
-  :address => "wren.tsi.local",
-  :port => 25,
-  :domain  => "tsi.local",
+  :address => "127.0.0.1",
+  :port => 25
 }
 
 $app_host = 'localhost.com'

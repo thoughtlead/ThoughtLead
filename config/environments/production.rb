@@ -27,10 +27,12 @@ $app_host = 'thoughtleadapp.com'
 
 ActionMailer::Base.delivery_method = :smtp
 ActionMailer::Base.smtp_settings = {
-  :domain => "thoughtlead.com",
-  :perform_deliveries => true,
-  :address => 'smtp.ey03.engineyard.com',
-  :port => 25 
+  :address        => "smtp.sendgrid.net",
+  :port           => "25",
+  :authentication => :plain,
+  :user_name      => 'stevetrumpet@gmail.com',
+  :password       => 'shilke',
+  :domain         => 'thoughtlead.com',
 }
 
 ENV['INLINEDIR'] = Rails.root + "/tmp" 
