@@ -31,11 +31,15 @@ module CommunityLocation
   
   def find_community
     host = host_from(request)
-    if host.blank? or host == $app_host      
+    logger.info("Looking up community for #{host}")
+    if host.blank? or host == $app_host
       @current_community = nil
     else
       @current_community = Community.find_by_host(host)
-      render_404 unless @current_community
+      unless @current_community
+        logger.error("Could not finr community for #{host}")
+        render_404
+      end
     end
   end
   
