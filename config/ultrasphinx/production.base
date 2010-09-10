@@ -22,7 +22,7 @@
 indexer
 {
   # Indexer running options
-  mem_limit = 256M 
+  mem_limit = 128M 
 }
 
 searchd
@@ -32,11 +32,11 @@ searchd
   address = 0.0.0.0
   port = 3312
   seamless_rotate = 0
-  log = /var/log/sphinx/searchd.log
-  query_log = /var/log/sphinx/query.log
+  log = /var/log/engineyard/sphinx/searchd.log
+  query_log = /var/log/engineyard/sphinx/query.log
   read_timeout = 5
   max_children = 300
-  pid_file = /var/log/sphinx/searchd.pid
+  pid_file = /var/run/sphinx/ThoughtLead.pid
   max_matches = 100000
 }
 
