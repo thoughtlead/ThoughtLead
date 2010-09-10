@@ -32,8 +32,8 @@ searchd
   address = 0.0.0.0
   port = 3312
   seamless_rotate = 0
-  log = /var/log/engineyard/sphinx/searchd.log
-  query_log = /var/log/engineyard/sphinx/query.log
+  log = /var/log/engineyard/sphinx/ThoughtLead/searchd.log
+  query_log = /var/log/engineyard/sphinx/ThoughtLead/query.log
   read_timeout = 5
   max_children = 300
   pid_file = /var/run/sphinx/ThoughtLead.pid
