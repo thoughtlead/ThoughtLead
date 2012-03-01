@@ -26,13 +26,14 @@ config.action_mailer.raise_delivery_errors = false
 $app_host = 'thoughtleadapp.com'
 
 ActionMailer::Base.delivery_method = :smtp
-ActionMailer::Base.smtp_settings = {
-  :address        => "smtp.sendgrid.net",
-  :port           => "25",
-  :authentication => :plain,
-  :user_name      => 'stevetrumpet@gmail.com',
-  :password       => 'shilke',
-  :domain         => 'thoughtlead.com',
+ActionMailer::Base.smtp_settings = { 
+  :user_name => "steve@thoughtlead.com", 
+  :password => "halcyon66", 
+  :domain => "tpiprograms.com", 
+  :address => "smtp.sendgrid.net", 
+  :port => 587, 
+  :authentication => :plain, 
+  :enable_starttls_auto => true 
 }
 
 ENV['INLINEDIR'] = Rails.root + "/tmp" 
