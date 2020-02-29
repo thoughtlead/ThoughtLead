@@ -73,7 +73,7 @@ GEM
       rake
     mysql (2.8.1)
     newrelic_rpm (2.12.3)
-    rake (0.8.3)
+    rake (13.0.1)
     rest-client (1.6.1)
       mime-types (>= 1.16)
     rexml-expansion-fix (1.0.1)
@@ -120,7 +120,7 @@ DEPENDENCIES
   mysql
   newrelic_rpm
   panda (~> 0.0.2)!
-  rake (= 0.8.3)
+  rake (= 13.0.1)
   rexml-expansion-fix (~> 1.0.1)
   ruby-debug
   shoulda (~> 2.0.6)
