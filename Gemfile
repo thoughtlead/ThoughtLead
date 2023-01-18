@@ -1,6 +1,6 @@
 source 'http://rubygems.org'
 
-gem "activesupport",            "2.2.3"
+gem "activesupport",            "6.1.7.1"
 gem "bundler",                  "1.0.22"
 gem "aws-s3",                   "~> 0.5.1",  :require => "aws/s3"
 gem "builder",                  "~> 2.1.2"
